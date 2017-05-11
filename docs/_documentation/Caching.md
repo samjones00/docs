@@ -27,7 +27,7 @@ container.Register<ICacheClient>(new MemoryCacheClient());
 
 ```csharp 
 container.Register<IRedisClientsManager>(c => 
-    new PooledRedisClientManager("localhost:6379"));
+    new RedisManagerPool("localhost:6379"));
 
 container.Register(c => c.Resolve<IRedisClientsManager>().GetCacheClient());
 ```
