@@ -90,6 +90,8 @@ class ServerEventsFeature
 
 > The paths allow you to customize the routes for the built-in Server Events API's, whilst setting either path to `null` disables that feature. 
 
+### Custom Event Hooks
+
 There are also a number of hooks available providing entry points where custom logic can be added to modify or enhance existing behavior:
 
 ```csharp
@@ -102,6 +104,8 @@ class ServerEventsFeature
     Action<IEventSubscription, IRequest> OnCreated;  // Subscription is created
     Action<IEventSubscription> OnSubscribe;          // Subscription is registered 
     Action<IEventSubscription> OnUnsubscribe;        // Subscription is unregistered
+
+    Action<IEventSubscription, IResponse, string> OnPublish; // Fired when message is published
 }
 ```
 
