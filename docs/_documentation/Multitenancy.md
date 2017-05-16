@@ -55,7 +55,7 @@ register an alternative **Sqlite** RDBMS Dialect that we also want the user to b
 container.Register<IDbConnectionFactory>(c => 
     new OrmLiteConnectionFactory(defaultDbConn, SqlServer2012Dialect.Provider));
 
-var dbFactory = container.Resolve<IDbConnectionFactory>();
+var dbFactory = container.Resolve<IDbConnectionFactory>() as OrmLiteConnectionFactory;
 
 //Register NamedConnection
 dbFactory.RegisterConnection("Reporting", ReportConnString, PostgreSqlDialect.Provider);
