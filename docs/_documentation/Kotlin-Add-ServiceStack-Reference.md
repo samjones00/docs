@@ -169,6 +169,11 @@ For example the package name can be changed by uncommenting the **Package:** opt
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/kotlin/kotlin-update-servicestack-reference.png)
 
+### Java Server Events Client
+
+In addition to enabling end-to-end Typed APIs, Kotlin can also be used to handle real-time notifications 
+with the [Java Server Events Client](/java-server-events-client).
+
 ### JsonServiceClient API
 
 The goal of Native Types is to provide a productive end-to-end typed API to facilitate  consuming remote services 
