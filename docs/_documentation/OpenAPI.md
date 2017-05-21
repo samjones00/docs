@@ -194,10 +194,13 @@ The docs on the Virtual File System shows how to override embedded resources:
 ServiceStack's [Virtual File System](/virtual-file-system) supports multiple file source locations where you can override OpenAPI's embedded files by including your own custom files in the same location as the existing embedded files. This lets you replace built-in ServiceStack embedded resources with your own by simply copying the [/swagger-ui](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack.Api.OpenApi/swagger-ui) files you want to customize and placing them in your Website Directory at:
 
     /swagger-ui
-    /css
-    /images
-    /lib
-    index.html
+      /css
+      /fonts
+      /images
+      /lang
+      /lib
+      index.html
+      swagger-ui.js
 
 ### Basic Auth in OpenAPI
 
