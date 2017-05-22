@@ -330,33 +330,47 @@ client.RegisterNamedReceiver<JavaScriptReceiver>("css");
 
 As seen above the **target** names are **case-insensitive** and `-` are collapsed to cater for JavaScript/CSS naming conventions.
 
-## Add Authentication support to .NET ServerEvents Client
+## Event Triggers
 
-The explicit `Authenticate` and `AuthenticateAsync` API's can be used to authenticate the ServerEvents ServiceClient which **shares cookies** with the WebRequest that connects to the `/event-stream` so authenticating with the Server Events ServiceClient will also authenticate the `/event-stream` HTTP Connection:
+Triggers enable a pub/sub event model where multiple listeners can subscribe and be notified of an event.
 
-```csharp
-client.Authenticate(new Authenticate {
-    provider = CredentialsAuthProvider.Name,
-    UserName = "user",
-    Password = "pass",
-    RememberMe = true,
-});
-
-client.Start();
-```
-
-This is equivalent to:
+Registering an event handler can be done at anytime using the `addListener()` API, e.g:
 
 ```csharp
-client.ServiceClient.Post(new Authenticate {
-    provider = CredentialsAuthProvider.Name,
-    UserName = "user",
-    Password = "pass",
-    RememberMe = true,
-});
+Action<ServerEventMessage> handler = msg => {
+    Console.WriteLine($"received event ${msg.Target} with arg: ${msg.Json}");
+};
+
+var client = new ServerEventsClient("/", channels)
+    .AddListener("customEvent", handler)
+    .Start();
+
+//Register another listener to 'customEvent' event
+client.AddListener("customEvent", msg => { ... });
 ```
 
-## .NET UpdateSubscriber APIs
+The selector to trigger this custom event is:
+
+    trigger.customEvent arg
+    trigger.customEvent {json}
+
+Which can be sent in ServiceStack with a simple or complex type argument, e.g:
+
+```csharp
+ServerEvents.NotifyChannel(channel, "trigger.customEvent", "arg");
+ServerEvents.NotifyChannel(channel, "trigger.customEvent", new ChatMessage { ... });
+```
+
+#### Removing Listeners
+
+Use `RemoveListener()` to stop listening for an event, e.g:
+
+```csharp
+//Remove first event listener
+client.RemoveListener("customEvent", handler);
+```
+
+## Channel Subscriber APIs
 
 The sync/async APIs below built into the C# `ServerEventsClient` will let you modify an active Server Events
 subscription to join new or leave existing channels:
@@ -382,6 +396,32 @@ This can be handled together with **onJoin** and **onLeave** events using `OnCom
 
 ```csharp
 client.OnCommand = msg => ...; //= ServerEventJoin, ServerEventLeave or ServerEventUpdate
+```
+
+## Add Authentication support to .NET ServerEvents Client
+
+The explicit `Authenticate` and `AuthenticateAsync` API's can be used to authenticate the ServerEvents ServiceClient which **shares cookies** with the WebRequest that connects to the `/event-stream` so authenticating with the Server Events ServiceClient will also authenticate the `/event-stream` HTTP Connection:
+
+```csharp
+client.Authenticate(new Authenticate {
+    provider = CredentialsAuthProvider.Name,
+    UserName = "user",
+    Password = "pass",
+    RememberMe = true,
+});
+
+client.Start();
+```
+
+This is equivalent to:
+
+```csharp
+client.ServiceClient.Post(new Authenticate {
+    provider = CredentialsAuthProvider.Name,
+    UserName = "user",
+    Password = "pass",
+    RememberMe = true,
+});
 ```
 
 # ServerEvent .NET Examples

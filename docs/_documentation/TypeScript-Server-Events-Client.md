@@ -439,7 +439,7 @@ The selector to trigger this custom event is:
 
 Which can be sent in ServiceStack with a simple or complex type argument, e.g:
 
-```csharp
+```ts
 ServerEvents.NotifyChannel(channel, "trigger.customEvent", "arg");
 ServerEvents.NotifyChannel(channel, "trigger.customEvent", new ChatMessage { ... });
 ```
