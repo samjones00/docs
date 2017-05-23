@@ -7,55 +7,58 @@ slug: swift-add-servicestack-reference
 ## Swift 3
 
 ServiceStack's **Add ServiceStack Reference** feature lets iOS/OSX developers easily generate an native 
-typed Swift 3 API for your ServiceStack Services using the `swiftref` OSX command-line utility.
+typed Swift 3 API for your ServiceStack Services using the `swift-ref` OSX command-line utility.
 
-## swiftref OSX command-line utility
+## servicestack-cli - Simple command-line utils for ServiceStack
 
-The [swiftref OSX command-line utility](https://github.com/ServiceStack/swiftref) provides a simple command-line
-UX to Add and Update Swift ServiceStack References.
+The [servicestack-cli command-line utils](https://github.com/ServiceStack/servicestack-cli) provides a simple command-line UX to easily Add and Update Swift ServiceStack References.
 
-### Install swiftref
+### Install swift-ref
 
-The easiest way to install `swiftref` is to download the pre-built OSX binary into your `/usr/local/bin`
-so it's available in your `$PATH`:
+Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
 
-    sudo curl https://raw.githubusercontent.com/ServiceStack/swiftref/master/dist/swiftref > /usr/local/bin/swiftref
-    sudo chmod +x /usr/local/bin/swiftref
+    $ npm install -g servicestack-cli
 
-After which can be used from within a **Terminal window** at your Xcode project folder.
+This will make the `swift-ref` script available in your `$PATH` which can now be used from within a **Terminal window** at your Xcode project folder.
 
 #### Add a new ServiceStack Reference
 
-To Add a new ServiceStack Reference, call `swiftref` with the Base URL to a remote ServiceStack instance:
+To Add a new ServiceStack Reference, call `swift-ref` with the Base URL to a remote ServiceStack instance:
 
-    swiftref {BaseUrl}
-    swiftref {BaseUrl} {FileName}
+    swift-ref {BaseUrl}
+    swift-ref {BaseUrl} {FileName}
 
 Where if no FileName is provided, it's inferred from the host name of the remote URL, e.g:
 
-    swiftref http://techstacks.io
+    swift-ref http://techstacks.io
 
 Downloads the Typed Swift DTOs for [techstacks.io](http://techstacks.io) and saves them to `techstacks.dtos.swift`. 
 
 Alternatively you can have it saved to a different FileName with:
 
-    swiftref http://techstacks.io TechStacks
+    swift-ref http://techstacks.io TechStacks
 
 Which instead saves the DTOs to `TechStacks.dtos.swift`.
 
-`swiftref` also downloads [ServiceStack's Swift Client](https://github.com/ServiceStack/ServiceStack.Swift) 
+`swift-ref` also downloads [ServiceStack's Swift Client](https://github.com/ServiceStack/ServiceStack.Swift) 
 and saves it to `JsonServiceClient.swift` which together with the Server DTOs contains all the dependencies 
 required to consume Typed Web Services in Swift.
 
 #### Update an existing ServiceStack Reference
 
-To Update an existing ServiceStack Reference, call `swiftref` with the Filename:
+The easiest way to update all your Swift Server DTOs is to just call `swift-ref` without any arguments:
 
-    swiftref {FileName.dtos.swift}
+    swift-ref
+
+This will go through and update all your `*.dtos.swift` Service References.
+
+To Update a specific ServiceStack Reference, call `swift-ref` with the Filename:
+
+    swift-ref {FileName.dtos.swift}
 
 As an example, you can Update the Server DTOs added in the previous command with:
 
-    swiftref TechStacks.dtos.swift
+    swift-ref TechStacks.dtos.swift
 
 Which also includes any 
 [Customization Options](http://docs.servicestack.net/swift-add-servicestack-reference#swift-configuration) 
