@@ -29,6 +29,10 @@ Currently there are 5 different .NET logging providers available on NuGet:
 
     PM> Install-Package ServiceStack.Logging.Slack
 
+#### [SerilogLogger](https://www.nuget.org/packages/ServiceStack.Logging.Serilog/)
+
+    PM> Install-Package ServiceStack.Logging.Serilog
+
 > Note: The `ConsoleLogFactory` and `DebugLogFactory` and are already built-in and bind to .NET Framework's Console and Debug loggers.
 
 ### Why a Logging Interface?
@@ -54,6 +58,7 @@ ServiceStack.Logging also includes adapters for the following logging providers:
 * Log4Net 1.2.9
 * EventLog
 * SlackLog
+* Serilog
 * Console Log
 * Debug Log
 * Null / Empty Log
@@ -173,6 +178,13 @@ LogManager.LogFactory = new SlackLogFactory(appSettings);
 
 More usage examples are available in [SlackLogFactoryTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Logging.Tests/UnitTests/SlackLogFactoryTests.cs).
 
+## Serilog
+
+Configure to use Serilog with:
+
+```csharp
+LogManager.LogFactory = new SerilogFactory();
+```
 
 # Usage Example
 

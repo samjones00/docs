@@ -195,6 +195,15 @@ var sessionKeys = Cache.GetKeysStartingWith(sessionPattern).ToList();
 var allSessions = Cache.GetAll<IAuthSession>(sessionKeys);
 ```
 
+### CacheClient with Prefix
+
+The `CacheClientWithPrefix` class lets you decorate any `ICacheClient` to prefix all cache keys using the `.WithPrefix()` extension method. This could be used to easily enable multi-tenant usage of a single redis instance, e.g:
+
+```csharp
+container.Register(c => 
+    c.Resolve<IRedisClientsManager>().GetCacheClient().WithPrefix("site1"));
+```
+
 ## Live Example and code
 
 A live demo of the ICacheClient is available in [The ServiceStack.Northwind's example project](http://northwind.servicestack.net/). Here are some requests to cached services:

@@ -72,6 +72,19 @@ AppSettings = new MultiAppSettings(
     new AppSettings());
 ```
 
+### Multi AppSettings Builder
+
+An alternative is to use `MultiAppSettingsBuilder` if you prefer to use a fluent discoverable API:
+
+```csharp
+AppSettings = new MultiAppSettingsBuilder()
+    .AddAppSettings()
+    .AddDictionarySettings(new Dictionary<string,string> { "override" : "setting" })
+    .AddEnvironmentalVariables()
+    .AddTextFile("~/path/to/settings.txt".MapProjectPath())
+    .Build();
+```
+
 ## OrmLite AppSettings
 
 `OrmLiteAppSettings` provides an alternative read/write API that lets you maintain your applications configuration in any [RDBMS back-end OrmLite supports](https://github.com/ServiceStack/ServiceStack.OrmLite/#download). It works like a mini Key/Value database in which can store any serializable value against any key which is maintained into the simple Id/Value `ConfigSettings` table.
