@@ -99,8 +99,14 @@ visible, otherwise use `AddDebugLink` for plugins only available during debuggin
 When plugins are registered their Exceptions are swallowed and captured in `AppHost.StartupErrors` so an 
 individual Rogue plugin won't prevent your ServiceStack AppHost from starting. But when a plugin doesn't 
 work properly it can be hard to determine the cause was due to an Exception occuring at Startup. 
-To better highlight the presence of Startup Errors we're now adding a red warning banner in `/metadata` 
-pages when in [DebugMode](/debugging#debugmode), e.g:
+
+### Request Info
+
+ServiceStack's Request Info feature is useful for debugging requests. Just add **?debug=requestinfo** 
+in your `/pathinfo` and ServiceStack will return a dump of all the HTTP Request parameters to help with 
+debugging interoperability issues. The RequestInfoFeature is only enabled in [DebugMode](/debugging#debugmode).
+
+To better highlight the presence of Startup Errors a red warning banner will also appera in `/metadata` pages when in [DebugMode](/debugging#debugmode), e.g:
 
 ![](/images/release-notes/startup-errors.png)
 
@@ -121,12 +127,6 @@ AfterInitCallbacks.Add(host => {
 ## Plugins
 
 There are a number of plugins that can help with debugging:
-
-### Request Info
-
-Provides ServiceStack's Request Info feature useful for debugging requests. Just add **?debug=requestinfo** 
-in your `/pathinfo` and ServiceStack will return a dump of all the HTTP Request parameters to help with 
-debugging interoperability issues. The RequestInfoFeature is only enabled in [DebugMode](/debugging#debugmode).
 
 ### [Request Logger](/request-logger)
 
