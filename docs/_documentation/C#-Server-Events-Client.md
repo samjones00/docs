@@ -58,6 +58,17 @@ Plugins.Add(new ServerEventsFeature {
 })
 ``` 
 
+Whilst distinct `OnJoin`, `OnLeave` `OnUpdate` and `OnReconnect` callbacks can be used to handle a specific event, e.g:
+
+```csharp
+var client = new ServerEventsClient(baseUrl, channel) {
+    OnJoin = msg => ...,
+    OnLeave = msg => ...,
+    OnUpdate = msg => ...,
+    OnReconnect = () => ...
+};
+```
+
 ### Using C# Async/Await friendly API's
 
 Depending on your use-case, if you only want to use the ServerEvent Client for a short-time to listen for predictable responses (i.e. waiting for a Server callback on a pending request) you can alternatively use the Task-based API's letting you to participate in C# async/await workflows:

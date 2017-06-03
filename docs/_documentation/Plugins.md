@@ -346,6 +346,34 @@ catch (WebServiceException)
 
 Re-authenticating afterwards will allow access to the WebSudo service.
 
+## Community Plugins
+
+### [ServiceStack.Webhooks](https://github.com/jezzsantos/ServiceStack.Webhooks)
+
+If you need to implement a Webhooks solution for your Services check out [ServiceStack.Webhooks](https://github.com/jezzsantos/ServiceStack.Webhooks). ServiceStack.Webhooks is a [well documented](https://github.com/jezzsantos/ServiceStack.Webhooks/wiki) solution for raising and managing application-level "events" raised by your services:
+
+![](https://raw.githubusercontent.com/jezzsantos/ServiceStack.Webhooks/master/docs/images/Webhooks.Architecture.PNG)
+
+The ServiceStack.Webhooks plugin is versatile and supports persisting event subscriptions in [multiple back-end data stores](https://github.com/jezzsantos/ServiceStack.Webhooks/wiki/Plugins) including: Memory, Cache Clients, Azure Table Storage as well as every major [RDBMS that supported by OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite#download).
+
+#### Getting Started
+
+Install [ServiceStack.Webhooks](https://www.nuget.org/packages/ServiceStack.Webhooks) from NuGet:
+
+    PM> Install-Package ServiceStack.Webhooks
+
+Register the `WebhookFeature` plugin in your AppHost:
+
+```csharp
+public override void Configure(Container container)
+{
+    // Add ValidationFeature and AuthFeature plugins first
+    Plugins.Add(new WebhookFeature());
+}
+```
+
+Then [configure the plugin](https://github.com/jezzsantos/ServiceStack.Webhooks/wiki/Getting-Started) to suit your needs.
+
 # Community Resources
 
   - [Extending ServiceStack](http://morganskinner.blogspot.com/2013/04/extending-servicestack.html) by [morganskinner](http://morganskinner.blogspot.com/)

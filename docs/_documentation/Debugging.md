@@ -94,6 +94,30 @@ appHost.GetPlugin<MetadataFeature>()
 `AddPluginLink` adds links under the **Plugin Links** section and should be used if your plugin is publicly 
 visible, otherwise use `AddDebugLink` for plugins only available during debugging or development.
 
+## Startup Errors
+
+When plugins are registered their Exceptions are swallowed and captured in `AppHost.StartupErrors` so an 
+individual Rogue plugin won't prevent your ServiceStack AppHost from starting. But when a plugin doesn't 
+work properly it can be hard to determine the cause was due to an Exception occuring at Startup. 
+To better highlight the presence of Startup Errors we're now adding a red warning banner in `/metadata` 
+pages when in [DebugMode](/debugging#debugmode), e.g:
+
+![](/images/release-notes/startup-errors.png)
+
+The number of Startup Errors is also added to the `X-Startup-Errors: n` Global HTTP Header so you'll be 
+able to notice it when debugging HTTP Traffic.
+
+If you prefer that any Plugin Exception is immediately visible you can register this callback in your 
+`AppHost` to throw a YSOD with your first Startup Error:
+
+```csharp
+AfterInitCallbacks.Add(host => {
+    var appHost = (ServiceStackHost)host;
+    if (appHost.StartUpErrors.Count > 0)
+        throw new Exception(appHost.StartUpErrors[0].Message);
+});
+```
+
 ## Plugins
 
 There are a number of plugins that can help with debugging:

@@ -1,6 +1,7 @@
 ---
 slug: logging
 ---
+
 ## An implementation-free logging API for .Net
 
 **ServiceStack.Logging** is an implementation and dependency-free logging API with adapters for all of .NET's popular logging providers. It allows your business logic to bind to an easily-mockable and testable dependency-free interface whilst providing the flexibility to switch logging providers at runtime.
@@ -180,10 +181,29 @@ More usage examples are available in [SlackLogFactoryTests](https://github.com/S
 
 ## Serilog
 
-Configure to use Serilog with:
+To Configure Serilog Logging, first download [ServiceStack.Logging.Serilog](https://www.nuget.org/packages/ServiceStack.Logging.Serilog) from NuGet:
+
+    PM> Install-Package ServiceStack.Logging.Serilog
+
+Then configure ServiceStack to use `SerilogFactory`:
 
 ```csharp
-LogManager.LogFactory = new SerilogFactory();
+LogManager.LogFactory =  new SerilogFactory();
+```
+
+The Serilog adapter includes enhanced Serilog-specific APIs:
+
+```csharp
+ILog.Debug(Exception ex, string messageTemplate, params object[] propertyValues)
+ILog.Info(Exception ex, string messageTemplate, params object[] propertyValues)
+ILog.Warn(Exception ex, string messageTemplate, params object[] propertyValues)
+ILog.Error(Exception ex, string messageTemplate, params object[] propertyValues)
+ILog.Fatal(Exception ex, string messageTemplate, params object[] propertyValues)
+ILog.ForContext(Type type)
+ILog.ForContext<T>()
+ILog.ForContext(ILogEventEnricher enricher)
+ILog.ForContext(IEnumerable<ILogEventEnricher> enrichers)
+ILog.ForContext(string propertyName, object value, bool destructureObjects = false)
 ```
 
 # Usage Example

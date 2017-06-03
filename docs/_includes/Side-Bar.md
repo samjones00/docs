@@ -120,6 +120,7 @@
     - [Versioning](/versioning)
     - [Multitenancy](/multitenancy)
     - [Embedded Native Desktop Apps](https://github.com/ServiceStack/ServiceStack.Gap)
+    - [Compression](/compression)
 - Caching
     - [Overview](/caching)
     - [HTTP Caching](/http-caching)

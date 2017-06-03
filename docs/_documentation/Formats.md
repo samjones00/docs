@@ -58,6 +58,20 @@ Examples:
  - /json/reply/Hello (JSON)
  - /xml/oneway/SendEmail (XML)
 
+### Forcing a Content Type
+
+Whilst ServiceStack Services are typically available on any endpoint and format, there are times when you only want adhoc Services available in a particular format, for instance you may only want the View Models for your dynamic Web Views available in HTML. This can now be easily enabled with the new `[HtmlOnly]` Request Filter Attribute, e.g:
+    
+```cshtml
+[HtmlOnly]
+public class HtmlServices : Service
+{
+    public object Any(MyRequest request) => new MyViewModel { .. };
+}
+```
+
+This feature is also available for other built-in Content Types: `[JsonOnly]`, `[XmlOnly]`, `[JsvOnly]` and `[CsvOnly]`.
+
 ## [SOAP Endpoint](/soap-support)
 
 Consume ServiceStack Services via [SOAP](/soap-support) using WCF Add Service Reference or [ServiceStack generic SOAP Clients](/csharp-client#httpwebrequest-service-clients).

@@ -323,6 +323,19 @@ In this way, ServiceStack's AppHost is being used as a pure "logic server", host
 
 Run-able examples of these code-samples are available in the [RabbitMqServerIntroTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Server.Tests/Messaging/MqServerIntroTests.cs#L13).
 
+### Rabbit MQ Filters
+
+The new `CreateQueueFilter` and `CreateTopicFilter` filters let you customize what options Rabbit MQ Queue's and topics are created with. The filters can be used to [declare a queue with a custom TTL](https://www.rabbitmq.com/ttl.html) and have messages automatically expire after 60 seconds with:
+
+```csharp
+container.Register<IMessageService>(c => new RabbitMqServer(ConnectionString) {
+    CreateQueueFilter = (queueName, args) => {
+        if (queueName == QueueNames<MyRequest>.In)
+            args["x-message-ttl"] = 60000;
+    }
+});
+```
+
 ## Rabbit MQ Features
 
 The [Rabbit MQ Server](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.RabbitMq/RabbitMqServer.cs) have some configuration options that are unique to Rabbit MQ:

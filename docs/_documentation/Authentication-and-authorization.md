@@ -82,6 +82,7 @@ The `JwtAuthProvider` is our integrated stateless Auth solution for the popular 
 ### Community Auth Providers
 
   - [Azure Active Directory](https://github.com/jfoshee/ServiceStack.Authentication.Aad) - Allow Custom App to login with Azure Active Directory
+  - [Azure Active Directory via Azure Graph for ServiceStack](https://github.com/ticky74/ServiceStack.Authentication.Azure)
   - [ServiceStack.Authentication.IdentityServer](https://github.com/MacLeanElectrical/servicestack-authentication-identityserver) - Integration with ASP.NET IdentityServer and provides OpenIDConnect / OAuth 2.0 Single Sign-On Authentication
 
 Find more info about [OpenId 2.0 providers on the wiki](/openId).
@@ -152,6 +153,7 @@ The Authentication module allows you to use your own persistence back-ends but f
   - **AWS DynamoDB**: `DynamoDbAuthRepository` in [ServiceStack.Aws](https://nuget.org/packages/ServiceStack.Aws)
   - **Mongo DB**: `MongoDBAuthRepository` in [ServiceStack.Authentication.MongoDB](https://nuget.org/packages/ServiceStack.Authentication.MongoDB)
   - **Raven DB**: `RavenUserAuthRepository` in [ServiceStack.Authentication.RavenDB](https://nuget.org/packages/ServiceStack.Authentication.RavenDB)
+  - **Marten**: `MartenAuthRepository` in [ServiceStack.Authentication.Marten](https://www.nuget.org/packages/ServiceStack.Authentication.Marten) - [GitHub project](https://github.com/migajek/ServiceStack.Authentication.Marten)
 
 Use the OrmLite adapter if you want to store the Users Authentication information in any of the RDBMS's that 
 [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) supports. 
@@ -687,20 +689,41 @@ Plugins.Add(new AuthFeature(...) {
 });
 ```
 
-#### IAuthMetadataProvider
+### AuthFilterContext
 
-An IAuthMetadataProvider provides a way to customize the authInfo in all AuthProviders. It also allows overriding of how extended Auth metadata like profileUrl is returned.
+Auth Providers can customize the `AuthenticateResponse` returned by implementing `IAuthResponseFilter` where 
+it will get called back with a populated [AuthFilterContext](https://github.com/ServiceStack/ServiceStack/blob/dfefd50b6ab5f03fce4f6dbbf445ec08150e0cba/src/ServiceStack/Auth/IAuthProvider.cs#L51):
 
 ```csharp
-public interface IAuthMetadataProvider
+public class AuthFilterContext
 {
-   void AddMetadata(IAuthTokens tokens, Dictionary<string,string> authInfo);
-
-   string GetProfileUrl(IAuthSession authSession, string defaultUrl = null);
+    public AuthenticateService AuthService    // Instance of AuthenticateService
+    public IAuthProvider AuthProvider         // Selected Auth Provider for Request
+    public IAuthSession Session               // Users Session
+    public Authenticate AuthRequest           // Auth Request DTO
+    public AuthenticateResponse AuthResponse  // Auth Response DTO
+    public bool AlreadyAuthenticated          // User was already authenticated
+    public bool DidAuthenticate               // User Authenticated in this request
 }
 ```
 
-> To override with a custom implementation, register `IAuthMetadataProvider` in the IOC
+The filters can be used to modify properties on the `AuthenticateResponse` DTO or to completely replace what `AuthenticateResponse` is returned, specify a `AuthFeature.AuthResponseDecorator`.
+
+### ICustomUserAuth
+
+The `ICustomUserAuth` interface can be implemented on User Auth Repositories that allow replacing the custom 
+`UserAuth` and `UserAuthDetails` tables by returning the concrete Type that should be used instead:
+
+```csharp
+public interface ICustomUserAuth
+{
+    IUserAuth CreateUserAuth();
+    IUserAuthDetails CreateUserAuthDetails();
+}
+```
+
+This allows using the same `RegistrationFeature` and `RegisterService` to handle registering new users
+with the substituted `IUserAuth` and `IUserAuthDetails` Types.
 
 #### LoadUserAuthFilter
 
@@ -728,6 +751,37 @@ public void LoadUserAuthInfo(AuthUserSession userSession,
             ? "{0} {1}".Fmt(user.GivenName, user.Surname)
             : "{0} {1} {2}".Fmt(user.GivenName, user.MiddleName, user.Surname);
         tokens.PhoneNumber = user.VoiceTelephoneNumber;
+    }
+}
+```
+
+### Customizable PopulateUserRoles on AspNetWindowsAuthProvider
+
+The `AspNetWindowsAuthProvider` uses the public `IPrincipal.IsInRole()` API to determine if a User is in a particular Windows Auth role, however this can be slow when needing to query a large number of roles in LDAP as it would need to make an LDAP lookup for each role. 
+
+Performance of this can now be improved by specifying a custom `PopulateUserRoles` implementation that overrides how User Roles are resolved, e.g:
+
+```csharp
+new AspNetWindowsAuthProvider (AppSettings) {
+    PopulateUserRoles = (request, user, session) => {
+        using (WindowsIdentity userId = request?.LogonUserIdentity)
+        {
+            List roles = new List();
+            if (userId?.Groups != null)
+            {
+                foreach (var group in userId.Groups)
+                {
+                    // Remove the domain name from the name of the group, 
+                    // if it has it, and you don't need it. 
+                    var groupName = new SecurityIdentifier(group.Value)
+                        .Translate(typeof(NTAccount)).ToString();
+                    if (groupName.Contains("\")) 
+                    groupName = groupName.Split('\')[1]; 
+                    roles.Add(groupName);
+                }
+            }
+            session.Roles = roles;
+        }
     }
 }
 ```
@@ -767,6 +821,21 @@ public object Any(ImpersonateUser request)
 ```
 
 > Your Services can use the new `Request.IsInProcessRequest()` to identify Services that were executed in-process.
+
+#### IAuthMetadataProvider
+
+An IAuthMetadataProvider provides a way to customize the authInfo in all AuthProviders. It also allows overriding of how extended Auth metadata like profileUrl is returned.
+
+```csharp
+public interface IAuthMetadataProvider
+{
+   void AddMetadata(IAuthTokens tokens, Dictionary<string,string> authInfo);
+
+   string GetProfileUrl(IAuthSession authSession, string defaultUrl = null);
+}
+```
+
+> To override with a custom implementation, register `IAuthMetadataProvider` in the IOC
 
 ### Custom Hash Provider
 
