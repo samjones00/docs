@@ -106,7 +106,7 @@ ServiceStack's Request Info feature is useful for debugging requests. Just add *
 in your `/pathinfo` and ServiceStack will return a dump of all the HTTP Request parameters to help with 
 debugging interoperability issues. The RequestInfoFeature is only enabled in [DebugMode](/debugging#debugmode).
 
-To better highlight the presence of Startup Errors a red warning banner will also appera in `/metadata` pages when in [DebugMode](/debugging#debugmode), e.g:
+To better highlight the presence of Startup Errors a red warning banner will also appear in `/metadata` pages when in [DebugMode](/debugging#debugmode), e.g:
 
 ![](/images/release-notes/startup-errors.png)
 
