@@ -50,6 +50,7 @@ You can further document your services in the OpenAPI with the new `[Api]` and `
 
 ```csharp
 [Api("Service Description")]
+[Tag("Core Requests")]
 [ApiResponse(HttpStatusCode.BadRequest, "Your request was not understood")]
 [ApiResponse(HttpStatusCode.InternalServerError, "Oops, something broke")]
 [Route("/swagger/{Name}", "GET", Summary = "GET Summary", Notes = "Notes")]
@@ -87,6 +88,21 @@ Here is the table for type migration
 | long                    | integer                 | int64                       |
 | string                  | string                  |                             |
 
+You can use `[ApiAllowableValues()]` not only for anotating property as enum, but also as a restriction for values in array.
+
+```csharp
+[ApiAllowableValues("Includes", Values = new string[] { "Genres", "Releases", "Contributors" })]
+public string[] Includes { get; set; }
+```
+
+You can tag the DTO with `[Tag()]` attribute. Attributes are are annotated by the same tag are grouped by the tag name in Swagger UI. DTO may have several tags.
+
+```csharp
+[Tag("Core Features")]
+[Tag("Scheduler")]
+public class MyRequestDto { ... }
+```
+
 You can Exclude **properties** from being listed in OpenAPI with:
 
 ```csharp
@@ -106,6 +122,7 @@ To exclude entire Services from showing up in OpenAPI or any other Metadata Serv
 [Exclude(Feature.Metadata)]
 public class MyRequestDto { ... }
 ```
+
 
 ### Swagger UI Route Summaries
 
