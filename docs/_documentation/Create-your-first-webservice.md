@@ -6,7 +6,7 @@ title: Create your first WebService
 This is a quick walkthrough of getting your first web service up and running whilst having a look at the how some of the different components work. 
 
 ## Step 1: Download and Install ServiceStackVS 
-First we want to install ServiceStackVS Visual Studio extension. The easiest way to do this is to look for it from within Visual Studio by going to Tools->Extensions and Updates and searching the Visual Studio Gallery as seen below.
+First we want to install ServiceStackVS Visual Studio extension. The easiest way to do this is to look for it from within Visual Studio by going to `Tools > Extensions and Updates...` and searching the Visual Studio Gallery as seen below.
 
 [![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)
 
