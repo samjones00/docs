@@ -38,7 +38,7 @@ Creating any new ServiceStack project will create a solution with a minimum of 4
 - ServiceModel project
 - Test project
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png)
+<img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
 
 ### Host Project
 
