@@ -35,11 +35,6 @@ Creating any new ServiceStack project will create a solution with a minimum of 4
 
 <img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
 
-- Host project
-- ServiceInterface project
-- ServiceModel project
-- Test project
-
 ### Host Project
 
 The Host project contains your AppHost that references and registers all your App's concrete dependencies in its IOC. It also contains any Web Assets like any Razor Views, JS, CSS, Images, Fonts, etc. that's needed to deploy with your App. The AppHost is the master project which references all dependencies used by your App whose role is to act like a conduit where it decides which concrete implementations should be used. By design it references everything and nothing references it which as a goal should be kept logic-free.
