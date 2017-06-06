@@ -1,6 +1,7 @@
 ---
 slug: physical-project-structure
 ---
+
 Ideally the root-level **AppHost** project should be kept lightweight and implementation-free. Although for small projects with only a few services it's ok for everything to be in a single project and to simply grow your architecture when and as needed. 
 
 For medium-to-large projects we recommend the physical structure below which we'll model using [this concrete Events example](http://stackoverflow.com/a/15235822/85785) to describe how we'd typically layout a ServiceStack project. For the purposes of this illustration we'll assume our Application is called **EventMan**. 
@@ -28,6 +29,35 @@ The order of the projects also show its dependencies, e.g. the top-level `EventM
 
 With the `EventMan.ServiceModel` DTO's kept in their own separate implementation and dependency-free dll, you're freely able to share this dll in any .NET client project as-is - which you can use with any of the generic [C# Service Clients](/csharp-client) to provide an end-to-end typed API without any code-gen.
 
-### Example of Recommended Project Structure
+## Recommended structure built into all ServiceStackVS VS.NET Templates
+
+Creating any new ServiceStack project will create a solution with a minimum of 4 projects:
+
+- Host project
+- ServiceInterface project
+- ServiceModel project
+- Test project
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png)
+
+### Host Project
+
+The Host project contains your AppHost that references and registers all your App's concrete dependencies in its IOC. It also contains any Web Assets like any Razor Views, JS, CSS, Images, Fonts, etc. that's needed to deploy with your App. The AppHost is the master project which references all dependencies used by your App whose role is to act like a conduit where it decides which concrete implementations should be used. By design it references everything and nothing references it which as a goal should be kept logic-free.
+
+### ServiceInterface Project
+
+The ServiceInterface project is the implementation project where all Business Logic and Services live which typically references every other project except the Host projects. Small and Medium projects can maintain all their implementation here where logic can be grouped under sub feature folders. Large solutions can split this project into more manageable cohesive and modular projects which we also recommend encapsulates any dependencies they might use.
+
+### ServiceModel Project
+
+The ServiceModel Project contains all your Application's DTOs which is what defines your Services contract, keeping them isolated from any Server implementation is how your Service is able to encapsulate its capabilities and make them available behind a remote facade. There should be the only ServiceModel project per solution which should be impl, dependency and logic-free as Service contracts decoupled from implementation, enforces interoperability ensuring that your Services don't mandate specific client implementations and will ensure this is the only project clients need to be able to call which can 
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dtos-role.png)
+
+### Test Project
+
+The Unit Test project contains all your Unit and Integration tests. It's also a Host project that typically references all other non-Host projects in the solution and contains a combination of concrete and mock dependencies depending on what's being tested. See the [Testing Docs](/testing) for more information on testing ServiceStack projects.
+
+## Example of Recommended Project Structure
 
 The [EmailContacts solution](https://github.com/ServiceStack/EmailContacts/) details the recommended setup and physical layout structure of typical medium-sized ServiceStack projects. It includes the complete documentation going through how to create the solution from scratch, and explains all the ServiceStack hidden features it makes use of along the way.
