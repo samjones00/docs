@@ -33,12 +33,12 @@ With the `EventMan.ServiceModel` DTO's kept in their own separate implementation
 
 Creating any new ServiceStack project will create a solution with a minimum of 4 projects:
 
+<img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
+
 - Host project
 - ServiceInterface project
 - ServiceModel project
 - Test project
-
-<img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
 
 ### Host Project
 
