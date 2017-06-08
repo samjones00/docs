@@ -5,6 +5,155 @@ title: Release Notes Summary
 
 > [Release Notes History](/release-notes-history)
 
+# [v4.5.10 Release Notes](/releases/v4.5.10)
+
+We've developed new Angular4, React, Aurelia and Vue.js Single Page App VS.NET templates for ASP.NET which have been re-imagined to incorporate the latest gold standard in modern Single Page App development and integrated to provide the ideal development experience within VS.NET, optimal bundling and packaging for production including one-click Web App deployments using MS Web Deploy. 
+
+## Full support for VS.NET 2017
+
+We've added complete support for VS.NET 2017 with the [ServiceStackVS](https://github.com/ServiceStack/ServiceStackVS) VS.NET Extension and have migrated all ServiceStack code-bases for all of [ServiceStack's NuGet packages](https://www.nuget.org/profiles/servicestack) to VS2017's new MSBuild format which is now being used to generate the different .NET 4.5 and .NET Standard platform builds used in all .NET Core packages including our multi-target Test projects.
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](https://github.com/ServiceStack/ServiceStackVS#install-servicestackvs)
+
+## Webpack-powered Single Page App Templates
+ 
+We've developed a new Single Page App template for the simple and elegant [Vue.js](https://vuejs.org) and our existing Angular, Aurelia, React and React Desktop Single Page App templates have been rewritten to completely embrace [Webpack](https://webpack.js.org) - the most advanced module bundler for JavaScript Apps. Webpack is used to power the development, testing and production builds of your Web App.
+
+The release notes contains a detailed overview of Webpack and how to use it from within VS.NET and command-line which support both of Webpack's popular developer options of watching for changes and regenerating its outputs as well as Live Reload support using the [Webpack Dev Server](https://webpack.js.org/configuration/dev-server/#devserver) which automatically reloads the current page after processing any changes. 
+
+### Single Page App Template features
+
+The templates provide a highly productive base that's ideal for developing small to medium-sized JavaScript Web Apps including just the core essentials that pack the most productive punch whilst adding minimal complexity and required configuration, whilst still remaining open-ended to easily plug-in other tools into your Webpack configuration you believe will improve your development workflow. 
+ 
+With these goals in mind we've hand-picked and integrated a number of simple best-of-breed technologies so you'll be immediately productive:
+
+ - Integrated Bootstrap v4 UI framework and font-awesome Vector Icons
+   - Angular4 uses the more natural Material Design Lite UI framework and Design Icons 
+ - High-level TypeScrpt and Sass support andstandard .js or .css when preferred
+ - End-to-end Typed APIs pre-configured with TypeScript JsonServiceClient and Server DTOs
+ - All templates have Routing Enabled in a Multi-page Layout
+ - Deep linkable Pretty URLs
+ - JavaScript Unit Testing
+ - Live Unit Testing which automatically re-runs tests when sources have changed
+ - Built-in Test Coverage
+ - Single Click Deployments using MS WebDeploy
+ - All projects retain our [Recommended Multi-Project Solution Layout](/physical-project-structure)
+
+### Gistlyn Updated
+
+[Gistlyn](http://gistlyn.com) was upgraded to use the new Webpack-powered React Desktop Apps template.
+
+## Simple command-line utilities for ServiceStack
+
+The new [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) npm package replaces our existing `ss-util.exe` and OSX `swiftref` command-line programs to provide simple command-line utilities to easily Add and Update ServiceStack References for all of ServiceStack's 7 supported languages. Using it is as easy as choosing the language you want and the **BaseUrl** of the remote ServiceStack instance you want to download the Server DTOs for, e.g:
+
+    $ csharp-ref http://techstacks.io
+
+### Major Memory and Performance Improvements to ServiceStack.Text
+
+We've replaced our internal string parsing in ServiceStack.Text's serializers to use .NET Core's new `StringSegment` class (polyfilled in .NET 4.5) which dramatically reduces the memory allocations needed and execution time for deserialization. Parsing implementations of primitive .NET Types like integers, decimal and Guid types were also replaced with custom implementations utilizing `StringSegment` which sees their performance improved by **2.5-4x**. These improvements are best seen in large complex types with nested arrays like MiniProfiler's DTO where memory allocations were reduced by **5.3x** and performance improved by **33%**.
+
+### Vulnerability with object Properties
+
+We've resolved a vulnerability using public `object` properties on DTOs where we've needed to adopt a whitelist to limit the Types that are allowed to create instances of. Please see the release notes for full details.
+
+### Fast Reflection APIs
+
+We've consolidated functionality for populating the fields and properties of a runtime `Type` behind a formal API which includes multiple cascading implementations so it's able to use the fastest implementation available in [each supported platform](https://github.com/ServiceStackApps/HelloMobile#portable-class-library-support), i.e. for most .NET platforms we use the Reflection.Emit implementations when possible, when not available it falls back to using Compiled Expression trees, then finally falling back to using a Reflection-based implementation. 
+
+This functionality is available using the `CreateGetter()` and `CreateSetter()` extension methods on both `PropertyInfo` or `FieldInfo` which you may find useful if you'd like to get better performance when populating runtime types dynamically, e.g:
+
+```csharp
+var runtimeType = typeof(MyType);
+ 
+object instance = runtimeType.CreateInstance();
+PropertyInfo pi = runtimeType.GetProperty("Id");
+var idSetter = pi.CreateSetter();
+var idGetter = pi.CreateGetter();
+ 
+idSetter(instance, 1);
+var idValue = idGetter(instance);
+```
+
+### Support for C# 7 Value Tuples in OrmLite
+
+The fast, new C# 7 Value Tuple support in OrmLite enables an alternative terse, clean and typed API for accessing the [Dynamic Result Sets](https://github.com/ServiceStack/ServiceStack.OrmLite#dynamic-result-sets) returned when using a custom Select expression, e.g:
+
+```csharp
+var query = db.From<Employee>()
+    .Join<Department>()
+    .OrderBy(e => e.Id)
+    .Select<Employee, Department>(
+        (e, d) => new { e.Id, e.LastName, d.Name });
+ 
+var results = db.Select<(int id, string lastName, string deptName)>(query);
+ 
+var row = results[i];
+$"row: ${row.id}, ${row.lastName}, ${row.deptName}".Print();
+```
+
+### Expanded Typed SqlExpresion Surface Area
+
+OrmLite's Typed SqlExpression has been expanded to support up to **15 tables** in a single SQL Condition and up to **4 tables** in a JOIN expression.
+
+## Proxy Feature
+
+The new `ProxyFeature` plugin is an application-level proxy that can be used to transparently proxy HTTP Requests through to
+downstream servers whose behavior can be customized with custom C# hooks to control how requests are proxied.
+ 
+`ProxyFeature` registers an async/non-blocking `RawHttpHandler` which bypasses ServiceStack's Request Pipeline that in ASP.NET is executed as an ASP.NET `IHttpAsyncHandler` so it should be flexible and performant enough to handle many demanding workloads.
+
+## Autowired Typed Request Filters
+
+[Josh Engler](https://github.com/englerj) contributed support for Autowired Request and Response Filters which lets you handle Request DTOs in a Typed Filter similar to how Autowired Services handles Typed Request DTOs with access to IOC injected dependencies.
+
+## Refinements to Open API, Server Events, JWT
+
+Driven by customer requests we've added support to Open API, Server Events, JWT
+
+## HTTP Caching static Files
+
+Returning a static [Virtual File](/virtual-file-system) or `FileInfo` in a `HttpResult` now sets the **Last-Modified** HTTP Response Header whose behavior instructs the pre-configured [HttpCacheFeature](/http-caching) to generate the necessary HTTP Headers so HTTP Clients are able to validate subsequent requests using the [If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since) HTTP Request Header, allowing them to skip redownloading files they've already cached locally.
+
+### Re-Authentication
+
+We've changed the default behavior to no longer skipping Authenticating existing Authenticated Users. This resolves an issue for not being able to retrieve JWT Refresh Tokens if you're already Authenticated, previous behavior can be restored with:
+
+```csharp
+Plugins.Add(new AuthFeature(...) {
+    SkipAuthenticationIfAlreadyAuthenticated = true
+});
+```
+
+### API Key Auth Provider
+ 
+You can opt-in to allow API Keys to be passed on the **QueryString** (e.g. `?apikey={APIKEY}`) or HTTP POST **Form Data** with:
+ 
+```csharp
+Plugins.Add(new ApiKeyAuthProvider {
+    AllowInHttpParams = true
+});
+```
+
+### DebugMode
+ 
+The home page and directories are no longer cached in [DebugMode](/debugging#debugmode) to better be able to reflect changes during development.
+ 
+## WebServiceException
+ 
+The `WebServiceException` Message returns the the more appropriate `ResponseStatus.ErrorMessage` if available. The previous StatusDescription text can be retrieved from the `WebServiceException.StatusDescription` property.
+
+### Other Changes
+ 
+ - The `RemoveHeader()` API has been added to `IResponse` and all implementations
+ - The HTTP Request/Response Preview in Metadata pages uses the Verb, URL and Request Body of the preferred HTTP Method for each Service
+ - The Basic Auth Credentials are auto-sent in `JsonHttpClient` 401 Challenged Responses
+ - Empty Collections are now ignored AutoQuery Filters
+
+That's a high-level overview, please see the # [v4.5.10 Release Notes](/releases/v4.5.10) for the full details.
+
+Enjoy!
+
 # [v4.5.8 Release Notes](/releases/v4.5.8)
 
 We've got a another feature-packed release with a number of exciting new features  new support for the [Open API specification](https://github.com/OAI/OpenAPI-Specification) 
