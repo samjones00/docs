@@ -1,10 +1,8 @@
 ---
-title: Single Page App VS.NET Templates
+title: Webpack Single Page App Templates
 slug: templates-single-page-apps
 ---
- 
-## Webpack-powered Single Page App Templates
- 
+
 All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. 
  
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/webpack-overview.png)](https://webpack.js.org)

@@ -3,8 +3,6 @@ title: AngularJS v1.5 VS.NET Template
 slug: templates-angularjs-v15
 ---
 
-## ServiceStack with AngularJS
-
 The simple HelloWorld AngularJS application that is provided in the template calls the `/hello/{Name}` route and displays the result in 
 the `<p>` below. 
 
