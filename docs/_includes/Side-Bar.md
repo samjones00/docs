@@ -157,9 +157,10 @@
     - [Overview](/plugins)
     - [Open API](/openapi)
     - [Swagger API](/swagger-api)
-    - [Postman](/postman)
     - [CORS Feature](/corsfeature)
+    - [Proxy Feature](/proxy-feature)
     - [Request logger](/request-logger)
+    - [Postman](/postman)
     - [Sitemaps](/sitemaps)
     - [Cancellable Requests](/cancellable-requests)
 - Tests

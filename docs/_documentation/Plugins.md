@@ -256,6 +256,17 @@ To enable [ProtoBuf support](/protobuf-format) install the **[ServiceStack.Proto
 Plugins.Add(new ProtoBufFormat());
 ```
 
+### [Proxy Feature](/proxy-feature)
+
+The `ProxyFeature` plugin is an application-level proxy that can be used to transparently proxy HTTP Requests through to
+downstream servers whose behavior can be customized with custom C# hooks to control how requests are proxied.
+
+```csharp
+Plugins.Add(new ProxyFeature(
+    matchingRequests: req => req.PathInfo.StartsWith("/sales"),
+    resolveUrl:req => "http://sales.domain.com" + req.RawUrl.Replace("/sales", "/")))
+```
+
 ### [Request Logger](/request-logger)
 
 Add an In-Memory `IRequestLogger` and service with the default route at `/requestlogs` which maintains a live log of the most recent requests (and their responses). Supports multiple config options incl. Rolling-size capacity, error and session tracking, hidden request bodies for sensitive services, etc.
