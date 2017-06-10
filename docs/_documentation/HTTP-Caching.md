@@ -260,3 +260,23 @@ public object Any(GetOggVideo request)
 }
 ```
 
+## Http Caching of Static Files
+
+Returning a static [Virtual File](/virtual-file-system) or `FileInfo` in a `HttpResult` also sets the **Last-Modified** HTTP Response Header whose behavior instructs the pre-configured `HttpCacheFeature` to generate the necessary HTTP Headers so HTTP Clients are able to validate subsequent requests using the [If-Modified-Since](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since) HTTP Request Header, allowing them to skip redownloading files they've already cached locally.
+ 
+This feature is leveraged in all Single Page App templates in its `[FallbackRoute]` implementation that's used to enable full page reloads by returning the Home **index.html** page for any unknown Requests, allowing routing to be handled on the client:
+ 
+```csharp
+[FallbackRoute("/{PathInfo*}")]
+public class FallbackForClientRoutes
+{
+    public string PathInfo { get; set; }
+}
+ 
+public class MyServices : Service
+{
+    //Return default.html for unmatched requests so routing is handled on client
+    public object Any(FallbackForClientRoutes request) => 
+        new HttpResult(VirtualFileSources.GetFile("index.html"));
+}
+```
