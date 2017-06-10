@@ -20,7 +20,7 @@
     - [Complexity, Services and Role of DTOs](http://stackoverflow.com/a/32940275/85785)
 - VS.NET Templates
     - [Overview](/templates-overview) 
-    - [Webpack Single Page Apps](/single-page-app-templates)
+    - [Webpack Single Page Apps](/templates-single-page-apps)
 - Reference
     - [Order of Operations](/order-of-operations)
     - [IOC](/ioc)
