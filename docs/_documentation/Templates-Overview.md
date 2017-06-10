@@ -9,7 +9,7 @@ ServiceStack with its strong foundations as a remote services framework and it's
 
 All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. See the [Webpack Template Docs](/templates-single-page-apps) for an overview for how to utilize the templates features.
 
-The [ServiceStackVS VS.NET extension](#servicestack-vsnet-extension) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
+The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
 
  - Angular4 App
  - Aurelia App
