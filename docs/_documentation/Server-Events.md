@@ -140,6 +140,8 @@ public interface IServerEvents : IDisposable
     void SubscribeToChannels(string subscriptionId, string[] channels);
     void UnsubscribeFromChannels(string subscriptionId, string[] channels);
 
+    List<SubscriptionInfo> GetAllSubscriptionInfos();
+
     // Client API's
     List<Dictionary<string, string>> GetSubscriptionsDetails(params string[] channels);
     List<Dictionary<string, string>> GetAllSubscriptionsDetails();
@@ -183,29 +185,54 @@ public interface IEventSubscription : IMeta, IDisposable
 {
     DateTime CreatedAt { get; set; }
     DateTime LastPulseAt { get; set; }
+    long LastMessageId { get; }
 
-    string Channel { get; }
+    string[] Channels { get; }
     string UserId { get; }
     string UserName { get; }
     string DisplayName { get; }
     string SessionId { get; }
     string SubscriptionId { get; }
+    string UserAddress { get; set; }
     bool IsAuthenticated { get; set; }
+    bool IsClosed { get; }
+
+    void UpdateChannels(string[] channels);
 
     Action<IEventSubscription> OnUnsubscribe { get; set; }
     void Unsubscribe();
 
-    void Publish(string selector, object message);
-
+    void Publish(string selector, string message);
+    void PublishRaw(string frame);
     void Pulse();
+
+    Dictionary<string,string> ServerArgs { get; set; }
+    Dictionary<string,string> ConnectArgs { get; set; }
 }
 ```
 
 The `IServerEvents` API also offers an API to UnRegister a subscription with:
 
-
 ```csharp
 void UnRegister(IEventSubscription subscription);
+```
+
+### Event Subscription Metadata
+
+The `ServerArgs` string Dictionary on `IEventSubscription` and `SubscriptionInfo` is for storing metadata on a SSE subscription that you only want visible on the Server (e.g. Service implementations), `ConnectArgs` is for info you want the subscribed client to have access to from its `OnConnect` event whilst the `Meta` dictionary is for public info you'd like other channel subscribers to have access to from their `OnJoin`, `OnLeave` and `OnUpdate` on subscriber events. 
+ 
+Here's an example of using the server `OnCreated` callback to populate all 3 Dictionaries:
+ 
+```csharp
+new ServerEventsFeature {
+    OnCreated = (sub,req) => {
+        var session = req.GetSession();
+        if (!session.IsAuthenticated) return;
+        sub.Meta["Nickname"] = session.Nickname;           // channel subscribers
+        sub.ConnectArgs["Email"] = session.Email;          // client subscriber 
+        sub.ServerArgs["PostalCode"] = session.PostalCode; // server
+    }
+}
 ```
 
 ## Channels

@@ -88,19 +88,19 @@ Here is the table for type migration
 | long                    | integer                 | int64                       |
 | string                  | string                  |                             |
 
-You can use `[ApiAllowableValues()]` not only for anotating property as enum, but also as a restriction for values in array.
+You can use `[ApiAllowableValues]` lets you anotate enum properties as well as a restriction for values in array, e.g:
 
 ```csharp
 [ApiAllowableValues("Includes", Values = new string[] { "Genres", "Releases", "Contributors" })]
 public string[] Includes { get; set; }
 ```
 
-You can tag the DTO with `[Tag()]` attribute. Attributes are are annotated by the same tag are grouped by the tag name in Swagger UI. DTO may have several tags.
+You can tag the DTO with `[Tag]` attribute. Attributes are are annotated by the same tag are grouped by the tag name in Swagger UI. DTOs can have multiple tags, e.g:
 
 ```csharp
 [Tag("Core Features")]
 [Tag("Scheduler")]
-public class MyRequestDto { ... }
+public class MyRequest { ... }
 ```
 
 You can Exclude **properties** from being listed in OpenAPI with:
