@@ -214,6 +214,9 @@ new ApiKeyAuthProvider
 
     // Cache the User Session so it can be reused between subsequent API Key Requests
     public TimeSpan? SessionCacheDuration { get; set; }
+
+    // Whether to allow API Keys in 'apikey' QueryString or FormData (e.g. `?apikey={APIKEY}`) 
+    public bool AllowInHttpParams { get; set; }
 }
 ```
 

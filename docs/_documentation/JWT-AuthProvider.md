@@ -681,6 +681,27 @@ Or in [AppSettings](/appsettings):
 </appSettings>
 ```
 
+## Adhoc JWT APIs
+
+You can retrieve the JWT Token string from the current `IRequest` with:
+ 
+```csharp
+string jwt = req.GetJwtToken();
+```
+ 
+You can manually convert JWT Tokens into User Sessions with:
+ 
+```csharp
+var userSession = JwtAuthProviderReader.CreateSessionFromJwt(base.Request);
+```
+ 
+Which is essentially a shorthand for:
+ 
+```csharp
+var jwtProvider = (JwtAuthProviderReader)AuthenticateService.GetAuthProvider("jwt");
+var userSession = jwtProvider.ConvertJwtToSession(base.Request, req.GetJwtToken());
+```
+
 ## JWT Configuration
 
 The JWT Auth Provider provides the following options to customize its behavior: 
