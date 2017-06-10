@@ -18,6 +18,9 @@
     - [Designing a REST-ful service with ServiceStack](http://stackoverflow.com/a/15235822/85785)
     - [How to design a Message-Based API](http://stackoverflow.com/a/15941229/85785)
     - [Complexity, Services and Role of DTOs](http://stackoverflow.com/a/32940275/85785)
+- VS.NET Templates
+    - [Overview](/templates-overview) 
+    - [Webpack Single Page Apps](/single-page-app-templates)
 - Reference
     - [Order of Operations](/order-of-operations)
     - [IOC](/ioc)
@@ -121,6 +124,7 @@
     - [Multitenancy](/multitenancy)
     - [Embedded Native Desktop Apps](https://github.com/ServiceStack/ServiceStack.Gap)
     - [Compression](/compression)
+    - [HTML, CSS and JS Minifiers](/html-css-and-javascript-minification)
 - Caching
     - [Overview](/caching)
     - [HTTP Caching](/http-caching)
@@ -166,10 +170,6 @@
     - [React, Redux Chat App](https://github.com/ServiceStackApps/ReactChat)
     - [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md)
     - [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps)
-- Single Page Apps
-    - [Overview](/single-page-apps) 
-    - [HTML, CSS and JS Minifiers](/html-css-and-javascript-minification)
-    - [Bundling and Minification](/bundling-and-minification)
 - Java
     - [Java ServiceStack Resources](/java)
     - [Android Studio & IntelliJ](/java-add-servicestack-reference#servicestack-idea-android-studio-plugin)

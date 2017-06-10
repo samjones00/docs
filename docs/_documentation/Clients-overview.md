@@ -43,7 +43,7 @@ There are multiple C# service clients included, each optimized for their respect
 - [XML Client](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/XmlServiceClient.cs)
 - [JSV Client](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/JsvServiceClient.cs)
 - [SOAP 1.1/1.2 Clients](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/Soap12ServiceClient.cs)
-- [ProtoBuf Client](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ProtoBuf/ProtoBufServiceClient.cs) available in the [ServiceStack.Plugins.ProtoBuf](http://nuget.org/packages/ServiceStack.Plugins.ProtoBuf) NuGet package.
+- [ProtoBuf Client](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ProtoBuf/ProtoBufServiceClient.cs) available in the [ServiceStack.ProtoBuf](http://nuget.org/packages/ServiceStack.ProtoBuf) NuGet package.
 
 All clients share the same [IServiceClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IServiceClient.cs) and [IServiceClientAsync](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IServiceClientAsync.cs) so they're easily swappable at runtime, and is what allows the same Unit test to be re-used as within an [Xml, JSON, JSV, SOAP Integration test](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.IntegrationTests/Tests/WebServicesTests.cs). The JSON, XML and JSV clients also share [IRestClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IRestClient.cs) and [IRestClientAsync](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IRestClientAsync.cs)
 

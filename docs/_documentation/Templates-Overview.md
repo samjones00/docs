@@ -1,9 +1,57 @@
 ---
-slug: single-page-apps
+title: VS.NET Templates
+slug: templates-overview
 ---
-ServiceStack with its strong foundations as a remote services framework and it's [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Single Page Apps.
 
-## [TypeScript React VS.NET Template](https://github.com/ServiceStackApps/typescript-react-template/)
+ServiceStack with its strong foundations as a remote services framework and it's [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Websites and Single Page Apps.
+
+## [Webpack-powered Single Page App Templates](/templates-single-page-apps)
+
+All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. See the [Webpack Template Docs](/templates-single-page-apps) for an overview for how to utilize the templates features.
+
+The [ServiceStackVS VS.NET extension](#servicestack-vsnet-extension) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
+
+ - Angular4 App
+ - Aurelia App
+ - React App
+ - React Desktop Apps
+ - Vue App
+
+## VS.NET Templates
+
+ - [AngularJS 1.5 App](/templates-angularjs-v15)
+ - [ASP.NET Empty](/templates-aspnet-empty)
+ - [ServiceStack ASP.NET Empty](/create-your-first-webservice)
+ - [ServiceStack ASP.NET MVC4](https://github.com/ServiceStackApps/SocialBootstrapApi)
+ - [ServiceStack ASP.NET with Bootstrap](https://github.com/ServiceStackApps/EmailContacts)
+ - [ServiceStack ASP.NET with Razor](http://razor.servicestack.net)
+ - [Self Host Empty](/self-hosting)
+ - [Self Host with Razor](http://razor.servicestack.net/#runs-everywhere)
+ - [Windows Service Empty](/templates-windows-service)
+
+## ServiceStackVS VS.NET Extension
+
+[ServiceStackVS](https://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7) supports Visual Studio 2017, 2015 and 2013 and can be installed from within VS.NET:
+
+### Install ServiceStackVS 
+
+Install the ServiceStackVS VS.NET Extension by going to `Tools > Extensions and Updates...`
+
+[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)
+
+Then searching the Visual Studio Gallery for **ServiceStack**
+
+[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/search_download.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/search_download.png)
+
+Optionally it can be downloaded and installed from the [VS.NET Gallery](http://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
+
+[![VS.NET Gallery Download](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/servicestackvs/vsgallery-download.png)](http://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
+
+## Example Projects
+
+The Example projects below contain a working demo including further documentation about each of their templates they were built with:
+
+### [TypeScript React VS.NET Template](https://github.com/ServiceStackApps/typescript-react-template/)
 
 TypeScript React incorporates today's best-in-class technologies for developing rich, complex
 JavaScript Apps within VS.NET and encapsulated within ServiceStack's new
@@ -12,24 +60,25 @@ providing an instant integrated client and .NET server solution where you'll be 
 out-of-the-box whilst enabling an optimal iterative development experience with pre-configured Gulp tasks 
 that takes care of effortlessly packaging, bundling and deploying your next App. 
 
-## [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps)
+### [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps)
 
 React Desktop Apps take advantage of the adaptability, navigation and deep-linking benefits of a Web-based UI, the productivity and responsiveness of the 
 [React framework](https://facebook.github.io/react/),
 the performance, rich features and functionality contained in 
 [ServiceStack](https://github.com/ServiceStack/ServiceStack/wiki) and the .NET Framework combined with the native experience and OS Integration possible from a Native Desktop App - all within a single VS .NET template!
 
-## [React App Template](https://github.com/ServiceStackApps/ReactChat)
+### [React App Template](https://github.com/ServiceStackApps/ReactChat)
 
 The ReactJS App VS.NET Template enables an optimal iterative dev experience for creating optimized Single Page React.js Apps. It shares the same approach for developing modern Single Page Apps in VS.NET as the [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md) by leveraging the node.js ecosystem for managing all aspects of Client App development and using the best-in-class libraries.
 
-## [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md)
+### [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md)
 
 AngularJS App is a new template in [ServiceStackVS](/create-your-first-webservice) that provides a modern opinionated web technology stack for developing rich Single Page Apps with [AngularJS](https://angularjs.org) and ServiceStack.
 
-## [Integrated HTML, CSS and JavaScript Minifiers](/html-css-and-javascript-minification)
+### [Integrated HTML, CSS and JavaScript Minifiers](/html-css-and-javascript-minification)
 
-If the above Single Page App templates are not suitable you can still take advantage of ServiceStack's integrated and non-invasive minification features to effortlessly enable [HTML, CSS and JavaScript minification to your existing Website](/html-css-and-javascript-minification).
+For normal server-generated websites that don't leverage Webpack to bundle their outputs you can take advantage of ServiceStack's integrated and non-invasive minification features to effortlessly enable [HTML, CSS and JavaScript minification to your existing Website](/html-css-and-javascript-minification).
+
 
 # Community Resources
 
