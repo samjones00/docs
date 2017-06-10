@@ -86,6 +86,43 @@ public override void Configure(Container container)
 }
 ```
 
+### Autowired Typed Request Filters
+ 
+You can also register Autowired Typed Request and Response Filters which lets you handle Request DTOs in a Typed Filter similar to how Autowired Services handles Typed Request DTOs with access to IOC injected dependencies.
+ 
+Autowired Typed Filters just needs to implement `ITypedFilter<TRequest>` and can be registered in the IOC like a regular dependency, e.g:
+ 
+```csharp
+container.RegisterAutoWiredAs<Dependency, IDependency>();
+container.RegisterAutoWired<TypedRequestFilter>();
+```
+ 
+Then can be registered using the new `RegisterTypedRequestFilter` overload:
+ 
+```csharp
+this.RegisterTypedRequestFilter(c => c.Resolve<TypedRequestFilter>());
+```
+ 
+Which invokes the Typed Request Filter on each `MyRequest` where it's able to access any IOC injected dependencies, e.g:
+ 
+```csharp
+class TypedRequestFilter : ITypedFilter<MyRequest>
+{
+    public IDependency Dependency { get; set; } // injected by IOC
+ 
+    public void Invoke(IRequest req, IResponse res, MyRequest dto) 
+    {
+        // Handle MyRequest using a Request Filter
+        if (!Dependency.GrantAccess(dto, req))
+        {
+            res.StatusCode = (int)HttpStatusCode.Forbidden;
+            res.StatusDescription = "Thou shall not pass";
+            res.EndRequest();
+        }
+    }
+}
+```
+
 ### Apply custom behavior to multiple DTO's with Interfaces
 
 Typed Filters can also be used to apply custom behavior on Request DTO's sharing a common interface, e.g:
