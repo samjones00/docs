@@ -23,6 +23,20 @@ package manager dialog:
 
 Which will allow you to search and install pre-release packages from the selected MyGet feed.
 
+### Window machine without Visual Studio 2015
+
+On Windows machines without VS installed, the MyGet feed can be added to `%AppData%\NuGet\NuGet.config` with:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="ServiceStack MyGet feed" value="https://www.myget.org/F/servicestack" />
+    <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
+  </packageSources>
+</configuration>
+```
+
 ## Redownloading MyGet packages
 
 If you've already packages with the **same version number** from MyGet previously installed, you will 
