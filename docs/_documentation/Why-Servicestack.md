@@ -65,6 +65,279 @@ ServiceStack Services also maximize productivity for consumers providing an
 [instant end-to-end typed API without code-gen](/csharp-client) enabling
 the most productive development experience for developing .NET to .NET Web Services.
 
+### [Generate Instant Typed APIs from within all Major IDEs!](/add-servicestack-reference.html)
+
+ServiceStack now integrates with all Major IDE's used for creating the best native experiences on the most popular platforms 
+to enable a highly productive dev workflow for consuming Web Services, making ServiceStack the ideal back-end choice for powering 
+rich, native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on the Android platform with Java, OSX Desktop Appications 
+as well as targetting the most popular .NET PCL platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF, WinForms and Silverlight: 
+
+<img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/ide-ss-plugin-logos.png" align="right" />
+
+#### [VS.NET integration with ServiceStackVS](https://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
+
+Providing instant Native Typed API's for 
+[C#](/csharp-add-servicestack-reference.html), 
+[TypeScript](/typescript-add-servicestack-reference.html),
+[F#](/fsharp-add-servicestack-reference.html) and 
+[VB.NET](/vbnet-add-servicestack-reference.html) 
+directly in Visual Studio for the 
+[most popular .NET platforms](https://github.com/ServiceStackApps/HelloMobile) including iOS and Android using 
+[Xamarin.iOS](https://github.com/ServiceStackApps/HelloMobile#xamarinios-client) and 
+[Xamarin.Android](https://github.com/ServiceStackApps/HelloMobile#xamarinandroid-client) on Windows.
+
+#### [Xamarin Studio integration with ServiceStackXS](/csharp-add-servicestack-reference.html#xamarin-studio)
+
+Providing [C# Native Types](/csharp-add-servicestack-reference.html) 
+support for developing iOS and Android mobile Apps using 
+[Xamarin.iOS](https://github.com/ServiceStackApps/HelloMobile#xamarinios-client) and 
+[Xamarin.Android](https://github.com/ServiceStackApps/HelloMobile#xamarinandroid-client) with 
+[Xamarin Studio](https://www.xamarin.com/studio) on OSX. The **ServiceStackXS** plugin also provides a rich web service 
+development experience developing Client applications with 
+[Mono Develop on Linux](/csharp-add-servicestack-reference.html#xamarin-studio-for-linux)
+
+#### [Xcode integration with ServiceStackXC Plugin](/swift-add-servicestack-reference.html)
+
+Providing [an instant Native Typed API in Swift](/swift-add-servicestack-reference.html) 
+including generic Service Clients enabling a highly-productive workflow and effortless consumption of Web Services from 
+native iOS and OSX Applications - directly from within Xcode!
+
+#### [Android Studio integration with ServiceStackIDEA](/java-add-servicestack-reference.html)
+
+Providing [an instant Native Typed API in Java](/java-add-servicestack-reference.html) 
+and [Kotlin](/kotlin-add-servicestack-reference.html)
+including idiomatic Java Generic Service Clients supporting Sync and Async Requests by levaraging Android's AsyncTasks to enable the creation of services-rich and responsive native Java or Kotlin Mobile Apps on the Android platform - directly from within Android Studio!
+
+#### [IntelliJ integration with ServiceStackIDEA](/java-add-servicestack-reference.html#install-servicestack-idea-from-the-plugin-repository)
+
+The ServiceStack IDEA plugin is installable directly from IntelliJ's Plugin repository and enables seamless integration with IntelliJ Java Maven projects for genearting a Typed API to quickly and effortlessly consume remote ServiceStack Web Services from pure cross-platform Java or Kotlin Clients.
+
+#### [Eclipse integration with ServiceStackEclipse](https://github.com/ServiceStack/ServiceStack.Java/tree/master/src/ServiceStackEclipse#eclipse-integration-with-servicestack)
+
+The unmatched productivity offered by [Java Add ServiceStack Reference](/java-add-servicestack-reference.html) is also available in the 
+[ServiceStackEclipse IDE Plugin](https://github.com/ServiceStack/ServiceStack.Java/tree/master/src/ServiceStackEclipse#eclipse-integration-with-servicestack) that's installable 
+from the [Eclipse MarketPlace](https://marketplace.eclipse.org/content/servicestackeclipse) to provide deep integration of Add ServiceStack Reference with Eclipse Java Maven Projects
+enabling Java Developers to effortlessly Add and Update the references of their evolving remote ServiceStack Web Services.
+
+#### [servicestack-cli - Simple command-line utilities for ServiceStack](/add-servicestack-reference.html#simple-command-line-utilities-for-servicestack)
+
+In addition to our growing list of supported IDE's, the [servicestack-cli](https://github.com/ServiceStack/servicestack-cli)
+cross-platform command-line npm scripts makes it easy for build servers, automated tasks and command-line runners of your 
+favorite text editors to easily Add and Update ServiceStack References!
+
+## Simple Customer Database REST Services Example
+
+This example is also available as a [stand-alone integration test](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/CustomerRestExample.cs):
+
+```csharp
+//Web Service Host Configuration
+public class AppHost : AppSelfHostBase
+{
+    public AppHost() 
+        : base("Customer REST Example", typeof(CustomerService).Assembly) {}
+
+    public override void Configure(Container container)
+    {
+        //Register which RDBMS provider to use
+        container.Register<IDbConnectionFactory>(c => 
+            new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider));
+
+        using (var db = container.Resolve<IDbConnectionFactory>().Open())
+        {
+            //Create the Customer POCO table if it doesn't already exist
+            db.CreateTableIfNotExists<Customer>();
+        }
+    }
+}
+
+//Web Service DTO's
+[Route("/customers", "GET")]
+public class GetCustomers : IReturn<GetCustomersResponse> {}
+
+public class GetCustomersResponse
+{
+    public List<Customer> Results { get; set; } 
+}
+
+[Route("/customers/{Id}", "GET")]
+public class GetCustomer : IReturn<Customer>
+{
+    public int Id { get; set; }
+}
+
+[Route("/customers", "POST")]
+public class CreateCustomer : IReturn<Customer>
+{
+    public string Name { get; set; }
+}
+
+[Route("/customers/{Id}", "PUT")]
+public class UpdateCustomer : IReturn<Customer>
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+
+[Route("/customers/{Id}", "DELETE")]
+public class DeleteCustomer : IReturnVoid
+{
+    public int Id { get; set; }
+}
+
+// POCO DB Model
+public class Customer
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+
+//Web Services Implementation
+public class CustomerService : Service
+{
+    public object Get(GetCustomers request)
+    {
+        return new GetCustomersResponse { Results = Db.Select<Customer>() };
+    }
+
+    public object Get(GetCustomer request)
+    {
+        return Db.SingleById<Customer>(request.Id);
+    }
+
+    public object Post(CreateCustomer request)
+    {
+        var customer = new Customer { Name = request.Name };
+        Db.Save(customer);
+        return customer;
+    }
+
+    public object Put(UpdateCustomer request)
+    {
+        var customer = Db.SingleById<Customer>(request.Id);
+        if (customer == null)
+            throw HttpError.NotFound("Customer '{0}' does not exist".Fmt(request.Id));
+
+        customer.Name = request.Name;
+        Db.Update(customer);
+
+        return customer;
+    }
+
+    public void Delete(DeleteCustomer request)
+    {
+        Db.DeleteById<Customer>(request.Id);
+    }
+}
+
+```
+
+### [Calling the above REST Service from any C#/.NET Client](/csharp-add-servicestack-reference.html)
+
+> No code-gen required, can re-use above Server DTOs:
+
+```csharp
+var client = new JsonServiceClient(BaseUri);
+
+//GET /customers
+var all = client.Get(new GetCustomers());                         // Count = 0
+
+//POST /customers
+var customer = client.Post(new CreateCustomer { Name = "Foo" });
+
+//GET /customer/1
+customer = client.Get(new GetCustomer { Id = customer.Id });      // Name = Foo
+
+//GET /customers
+all = client.Get(new GetCustomers());                             // Count = 1
+
+//PUT /customers/1
+customer = client.Put(
+    new UpdateCustomer { Id = customer.Id, Name = "Bar" });       // Name = Bar
+
+//DELETE /customers/1
+client.Delete(new DeleteCustomer { Id = customer.Id });
+
+//GET /customers
+all = client.Get(new GetCustomers());                             // Count = 0
+```
+
+Same code also works with [PCL Clients in Xamarin iOS/Android, Windows Store Apps](https://github.com/ServiceStackApps/HelloMobile)
+
+> [F#](/fsharp-add-servicestack-reference.html) and 
+[VB.NET](/vbnet-add-servicestack-reference.html) can re-use same 
+[.NET Service Clients](/csharp-client.html) and DTO's
+
+### [Calling from TypeScript](/typescript-add-servicestack-reference.html#ideal-typed-message-based-api)
+
+```ts
+const client = new JsonServiceClient(baseUrl);
+
+client.get(new GetCustomers())
+    .then(r => {
+        const results = r.results;
+    });
+```
+
+### [Calling from Swift](/swift-add-servicestack-reference.html#jsonserviceclientswift)
+
+```swift
+let client = JsonServiceClient(baseUrl: BaseUri)
+
+client.getAsync(GetCustomers())
+    .then {
+        let results = $0.results;
+    }
+```
+
+### [Calling from Java](/java-add-servicestack-reference.html#jsonserviceclient-usage)
+
+```java
+JsonServiceClient client = new JsonServiceClient(BaseUri);
+
+GetCustomersResponse response = client.get(new GetCustomers());
+List<Customer> results = response.results; 
+```
+
+### [Calling from Kotlin](/kotlin-add-servicestack-reference.html#jsonserviceclient-usage)
+
+```kotlin
+val client = JsonServiceClient(BaseUri)
+
+val response = client.get(GetCustomers())
+val results = response.results
+```
+
+### [Calling from jQuery using TypeScript Defintions](/typescript-add-servicestack-reference.html#typescript-interface-definitions)
+
+```js
+$.getJSON($.ss.createUrl("/customers", request), request, 
+    function (r: dtos.GetCustomersResponse) {
+    	alert(r.Results.length == 1);
+    });
+```
+
+### Calling from jQuery
+
+```js
+$.getJSON(baseUri + "/customers", function(r) {
+	alert(r.Results.length == 1);
+});
+```
+
+### Calling the from [Dart JsonClient](https://github.com/dartist/json_client)
+
+```dart
+var client = new JsonClient(baseUri);
+client.customers()
+	.then((r) => alert(r.Results.length == 1)); 
+```
+
+That's all the application code required to create and consume a simple database-enabled REST Web Service!
+
+
 ### Define web services following Martin Fowlers Data Transfer Object Pattern
 
 Service Stack was heavily influenced by [**Martin Fowlers Data Transfer Object Pattern**](http://martinfowler.com/eaaCatalog/dataTransferObject):
