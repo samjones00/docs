@@ -243,14 +243,14 @@ Plugins.Add(new RegistrationFeature());
 See the [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) project for a working example of Registration and Authentication.
 
 ### [MessagePack format](/messagepack-format)
-To add fast binary [MessagePack support](/messagepack-format) to ServiceStack install the **[ServiceStack.Plugins.MsgPack](https://nuget.org/packages/ServiceStack.Plugins.MsgPack)** NuGet package and register the plugin with:
+To add fast binary [MessagePack support](/messagepack-format) to ServiceStack install the **[ServiceStack.MsgPack](https://nuget.org/packages/ServiceStack.MsgPack)** NuGet package and register the plugin with:
 
 ```csharp
 Plugins.Add(new MsgPackFormat());
 ```
 
 ### [ProtoBuf format](/protobuf-format)
-To enable [ProtoBuf support](/protobuf-format) install the **[ServiceStack.Plugins.ProtoBuf](https://nuget.org/packages/ServiceStack.Plugins.ProtoBuf)** NuGet package and register the plugin with:
+To enable [ProtoBuf support](/protobuf-format) install the **[ServiceStack.ProtoBuf](https://nuget.org/packages/ServiceStack.ProtoBuf)** NuGet package and register the plugin with:
 
 ```csharp
 Plugins.Add(new ProtoBufFormat());

@@ -67,7 +67,7 @@ message Person {
 
 From this they use their `protoc` command-line utility to generate native types in C++, Java and Python, which like Amazon and ServiceStack, enables them to benefit from using an end-to-end, typed API. 
 
-> Add a reference to [ServiceStack.Plugins.ProtoBuf](http://nuget.org/packages/ServiceStack.Plugins.ProtoBuf)  to enable [@marcgravell's](http://stackoverflow.com/users/23354/marc-gravell) excellent implementation of Protocol Buffers: [protobuf-net](http://code.google.com/p/protobuf-net/).
+> Add a reference to [ServiceStack.ProtoBuf](http://nuget.org/packages/ServiceStack.ProtoBuf)  to enable [@marcgravell's](http://stackoverflow.com/users/23354/marc-gravell) excellent implementation of Protocol Buffers: [protobuf-net](https://github.com/mgravell/protobuf-net).
 
 ## A Productivity Win 
 
@@ -274,4 +274,4 @@ In terms of packaging your client libraries, sticking a link to a zip file on yo
 
 ### NuGet is the new Add Service Reference
 
-For .NET this means adding it to NuGet. If you use ServiceStack your package would just need to contain your types with a reference to [ServiceStack.Client](http://nuget.org/packages/ServiceStack.Client) - which contains all ServiceStack's generic JSON, XML, JSV and SOAP 1.1/1.2 service clients. Add a reference to [ServiceStack.Plugins.ProtoBuf](http://nuget.org/packages/ServiceStack.Plugins.ProtoBuf) if you want to support Protocol Buffers as well. One of the benefits of using ServiceStack is that all your types are already created since it's what you used to define your web services with!
+For .NET this means adding it to NuGet. If you use ServiceStack your package would just need to contain your types with a reference to [ServiceStack.Client](http://nuget.org/packages/ServiceStack.Client) - which contains all ServiceStack's generic JSON, XML, JSV and SOAP 1.1/1.2 service clients. Add a reference to [ServiceStack.ProtoBuf](http://nuget.org/packages/ServiceStack.ProtoBuf) if you want to support Protocol Buffers as well. One of the benefits of using ServiceStack is that all your types are already created since it's what you used to define your web services with!
