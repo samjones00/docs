@@ -13,6 +13,8 @@ Create a new DTO instance, populated with matching properties on viewModel:
 
 ```csharp
 var dto = viewModel.ConvertTo<MyDto>();
+
+var dto = new { Anon = "Object" }.ConvertTo<MyDto>();
 ```
 
 Initialize DTO and populate it with matching properties on a view model:
@@ -63,6 +65,26 @@ Which is now easily consumable with just:
 ```csharp
 var dto = viewModel.ToDto();
 ```
+
+### Populating Types from an Object Dictionary
+
+The `ToObjectDictionary` and `FromObjectDictionary` extension methods are also useful in trying to convert loosely-typed data structures into a Typed POCO's, e.g:
+
+```csharp
+var dto = new User
+{
+    FirstName = "First",
+    LastName = "Last",
+    Car = new Car { Age = 10, Name = "ZCar" },
+};
+
+Dictionary<string,object> map = dtoUser.ToObjectDictionary();
+
+map["LastName"] = "Updated";
+
+User user = (User)map.FromObjectDictionary(typeof(User));
+```
+
 
   [1]: http://martinfowler.com/eaaCatalog/dataTransferObject.html
   [2]: http://msdn.microsoft.com/en-us/library/ff649585.aspx
