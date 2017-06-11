@@ -125,7 +125,7 @@ ServiceStack's clean Web Services design makes it simple and intuitive to be abl
 </script>
 ```
 
-To Sophisticated Single Page Apps using [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient), here's an 
+To sophisticated Single Page Apps using [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient), here's an 
 [example using React](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp1/ReactApp1/src/home/Hello.tsx):
 
 ```tsx
