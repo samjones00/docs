@@ -2,9 +2,6 @@
 - Overview
     - [Why ServiceStack?](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
-    - [What is a message-based WebService?](/what-is-a-message-based-web-service)
-    - [Advantages of message-based WebServices](/advantages-of-message-based-web-services)
-    - [Why remote services should use DTOs?](http://stackoverflow.com/a/15369736/85785)
     - [Live Demos](https://github.com/ServiceStackApps/LiveDemos)
 - Releases
     - [Latest Release Notes](/releases/v4.5.10)
@@ -12,15 +9,19 @@
     - [Release Notes History](/release-notes-history)
 - Getting Started
     - [Create your first WebService](/create-your-first-webservice)
-    - [Creating a WebService from scratch](/create-webservice-from-scratch)
-    - [Your first webservice explained](/your-first-webservice-explained)
+    - [Your first WebService explained](/your-first-webservice-explained)
+    - [Create a WebService from scratch](/create-webservice-from-scratch)
     - [ServiceStack's API Design](/api-design)
-    - [Designing a REST-ful service with ServiceStack](http://stackoverflow.com/a/15235822/85785)
-    - [How to design a Message-Based API](http://stackoverflow.com/a/15941229/85785)
-    - [Complexity, Services and Role of DTOs](http://stackoverflow.com/a/32940275/85785)
+    - [Designing RESTful Services](/design-rest-services)
+    - [Designing a Message-Based API](/design-message-based-apis)
 - VS.NET Templates
     - [Overview](/templates-overview) 
     - [Webpack Single Page Apps](/templates-single-page-apps)
+- Background Concepts
+    - [What is a message-based WebService?](/what-is-a-message-based-web-service)
+    - [Advantages of message-based WebServices](/advantages-of-message-based-web-services)
+    - [Why remote services should use DTOs?](http://stackoverflow.com/a/15369736/85785)
+    - [Complexity, Services and Role of DTOs](http://stackoverflow.com/a/32940275/85785)
 - Reference
     - [IOC](/ioc)
     - [Routing](/routing)
@@ -85,11 +86,6 @@
     - [.NET Core Clients](/netcore-clients)
     - [.NET Core Redis](/netcore-redis)
     - [Deploy .NET Core Apps with Docker to AWS](/deploy-netcore-docker-aws-ecs)
-- Mono
-    - [Overview](/mono)
-    - [Run ServiceStack as a daemon on Linux](/servicestack-as-daemon-on-linux)
-    - [Run ServiceStack in Fastcgi hosted on nginx](/servicestack-in-fastcgi-hosted-on-nginx)
-    - [Linux-Hosting-Options](/linux-hosting-options)
 - Security
     - [Overview](/security)
     - [Authentication & Authorization](/authentication-and-authorization)
@@ -182,6 +178,11 @@
     - [Swift](/swift)
     - [F#](/fsharp)
     - [VB.NET](/vbnet)
+- Mono
+    - [Overview](/mono)
+    - [Run ServiceStack as a daemon on Linux](/servicestack-as-daemon-on-linux)
+    - [Run ServiceStack in Fastcgi hosted on nginx](/servicestack-in-fastcgi-hosted-on-nginx)
+    - [Linux-Hosting-Options](/linux-hosting-options)
 - Amazon Web Services
     - [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
     - [PocoDynamo](https://github.com/ServiceStack/PocoDynamo)

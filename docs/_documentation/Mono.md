@@ -1,7 +1,10 @@
 ---
 slug: mono
 ---
-ServiceStack supports running on [Mono](http://www.mono-project.com).
+
+When running ServiceStack on non-Windows Server platforms (e.g. Linux/OSX) we recommend using the faster and more stable [.NET Core Release of ServiceStack](/netcore) instead of Mono.
+
+If needed ServiceStack also runs on [Mono](http://www.mono-project.com):
 
   - [Guide for running ServiceStack on Mono/Linux](https://github.com/ServiceStackApps/mono-server-config)
   - [Docker image for running ServiceStack in a Docker container](https://github.com/ServiceStackApps/mono-docker-config)
@@ -13,7 +16,6 @@ ServiceStack supports running on [Mono](http://www.mono-project.com).
 
   - [ServiceStack's Nginx + FastCGI Mono config for razor.servicestack.net](http://stackoverflow.com/questions/16148251/running-servicestack-with-razor-views-on-centos/16152053#16152053)
   - [What is the best way to run ServiceStack on Linux / Mono?](http://stackoverflow.com/questions/12188356/what-is-the-best-way-to-run-servicestack-on-linux-mono)
-
 
 # Community Resources
 
