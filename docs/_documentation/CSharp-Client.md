@@ -64,7 +64,7 @@ HelloResponse response = client.Get(new Hello { Name = "World!" });
 response.Result.Print();
 ```
 
-**Async Example**
+#### Async Example
 
 Using C# `await`:
 
@@ -87,7 +87,8 @@ client.GetAsync(new Hello { Name = "World!" })
 var response = client.Get<HelloResponse>("/hello/World!");
 response.Result.Print();
 ```
-**Async Example**
+
+#### Async Example
 
 ```csharp
 var response = await client.GetAsync<HelloResponse>("/hello/World!");
@@ -104,7 +105,7 @@ var response = client.Send(new Hello { Name = "World!" });
 response.Result.Print();
 ```
 
-**Async Example**
+#### Async Example
 
 ```csharp
 var response = await client.SendAsync(new Hello { Name = "World!" });
@@ -118,7 +119,7 @@ var response = client.Send<HelloResponse>(new Hello { Name = "World!" });
 response.Result.Print();
 ```
 
-**Async Example**
+#### Async Example
 
 ```csharp
 var response = await client.SendAsync<HelloResponse>(
@@ -183,7 +184,8 @@ dto.Result //Hello, World
 Or as a Stream:
 
 ```csharp
-using (Stream responseStream = client.Get<Stream>("/poco/World")) {
+using (Stream responseStream = client.Get<Stream>("/poco/World")) 
+{
     var dto = responseStream.ReadFully()
         .FromUtf8Bytes()
         .FromJson<PocoResponse>();
@@ -196,9 +198,11 @@ Or even access the populated `HttpWebResponse` object:
 ```csharp
 HttpWebResponse webResponse = client.Get<HttpWebResponse>("/poco/World");
 
-webResponse.Headers["X-Response"] //World
+webResponse.Headers["X-Response"] //= World
+
 using (var stream = webResponse.GetResponseStream())
-using (var sr = new StreamReader(stream)) {
+using (var sr = new StreamReader(stream)) 
+{
     var dto = sr.ReadToEnd().FromJson<PocoResponse>();
     dto.Result //Hello, World
 }
@@ -286,7 +290,8 @@ All these APIs are also available asynchronously as well:
 
 ```csharp
 using (HttpWebResponse response = await client.GetAsync(
-    new Strings { Text = "Test" })) {
+    new Strings { Text = "Test" })) 
+{
     response.Headers["X-Response"] // "World"
 }
 
@@ -313,7 +318,8 @@ They all behave the same as the sync versions except for `HttpWebResponse` which
 the request is sent (asynchronously) and before any response is read so you can still access the HTTP Headers e.g:
 
 ```csharp
-var client = new JsonServiceClient("http://localhost:2020/") {
+var client = new JsonServiceClient("http://localhost:2020/") 
+{
     ResponseFilter = httpRes => {
         var header = httpRes.Headers["X-Response"];
     }
