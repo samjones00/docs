@@ -7,8 +7,6 @@ ServiceStack has its strong foundations as a Web and MQ Services framework whose
 
 ## VS.NET Templates
 
- - [AngularJS 1.5 App](/templates-angularjs-v15)
- - [ASP.NET Empty](/templates-aspnet-empty)
  - [ServiceStack ASP.NET Empty](/create-your-first-webservice)
  - [ServiceStack ASP.NET MVC4](https://github.com/ServiceStackApps/SocialBootstrapApi)
  - [ServiceStack ASP.NET with Bootstrap](https://github.com/ServiceStackApps/EmailContacts)
@@ -16,6 +14,8 @@ ServiceStack has its strong foundations as a Web and MQ Services framework whose
  - [Self Host Empty](/self-hosting)
  - [Self Host with Razor](http://razor.servicestack.net/#runs-everywhere)
  - [Windows Service Empty](/templates-windows-service)
+ - [ASP.NET Empty](/templates-aspnet-empty)
+ - [AngularJS 1.5 App](/templates-angularjs-v15)
 
 ## [Webpack-powered Single Page App Templates](/templates-single-page-apps)
 
