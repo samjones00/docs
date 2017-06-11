@@ -1,6 +1,6 @@
 ---
 slug: servicestack-side-by-side-with-another-web-framework
-title: Run ServiceStack side-by-side with another Framework
+title: Run side-by-side with another Framework
 ---
 
 In order to avoid conflicts with your existing ASP.NET web framework it is recommended to host your ServiceStack web services at a custom path.
