@@ -2,13 +2,13 @@
 slug: architecture-overview
 ---
 
-Ultimately behind-the-scenes ServiceStack is just built on top of Raw ASP.NET 
-[IHttpHandler's](http://msdn.microsoft.com/en-us/library/system.web.ihttphandler.aspx). 
+Ultimately behind-the-scenes ServiceStack is just built on top of ASP.NET's Raw 
+[IHttpAsyncHandler](https://msdn.microsoft.com/en-us/library/ms227433.aspx). 
 Existing abstractions and xmlconfig-encumbered legacy ASP.NET providers have been abandoned, 
 in favour of fresh, simple and clean [Caching](/caching), [Session](/sessions) 
 and [Authentication](/authentication-and-authorization) providers all based on clean POCOs, 
-supporting multiple back-ends and all working seamlessly with each other. Our best-practices 
-architecture is purposely kept simple, introduces no new concepts or artificial constructs and 
+supporting multiple back-ends and all working seamlessly together. Our best-practices 
+architecture is purposely kept simple, introduces minimal new concepts or artificial constructs that 
 can all be eloquently captured in the diagram below:
 
 ### Server Architecture
@@ -40,8 +40,4 @@ The implementation of this can be visualized below:
 
 ![ServiceStack Overview](/images/overview/servicestack-overview-01.png)
 
-After the IHttpHandler is returned, it gets executed with the current ASP.NET or HttpListener request wrapped in a common [IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs) instance. 
-
-The implementation of [RestHandler](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Host/RestHandler.cs) shows what happens during a typical ServiceStack request:
-
-![ServiceStack Request Pipeline](/images/overview/servicestack-overview-02.png)
+After the `IHttpHandler` is returned, it gets executed with the current ASP.NET or HttpListener request wrapped in a common [IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs) instance. 
