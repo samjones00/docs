@@ -169,9 +169,9 @@ export default class HelloComponent extends React.Component<any, any> {
 
 Compare and contrast with other major JavaScript Frameworks:
 
- - [Vue.js Home.vue](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/VueApp1/VueApp1/src/home/Home.vue)
- - [Angular4 hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/Angular4App1/Angular4App1/src/modules/app/home/hello.ts)
- - [Aurelia hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/AureliaApp1/AureliaApp1/src/resources/elements/hello.ts)
+ - [Vue.js Home.vue](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/VueApp/VueApp/src/home/Home.vue)
+ - [Angular4 hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/Angular4App/Angular4App/src/modules/app/home/hello.ts)
+ - [Aurelia hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/AureliaApp/AureliaApp/src/resources/elements/hello.ts)
  - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
 
 ### Integrated with Major IDEs and most popular Mobile and Desktop platforms
