@@ -285,6 +285,7 @@
 
 .markdown-body blockquote {
   margin: 0;
+  font-size: 14px;
 }
 
 .markdown-body ul,
