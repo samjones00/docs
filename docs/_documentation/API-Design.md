@@ -48,7 +48,7 @@ public class ReqstarsService : Service
 }
 ```
 
-Whilst slightly more verbose this style benefits from better versionability and more coarse-grained APIs as additional results can be added to the Response DTO without breaking existing clients. You'll also need to follow the above convention if you also wanted to [support SOAP clients and endpoints](/soap-support), you'll also want to use an explicit Response DTO if you want to handle the [Response Messages in MQ Services](/messaging#message-workflow).
+Whilst slightly more verbose this style benefits from better versionability and more coarse-grained APIs as additional results can be added to the Response DTO without breaking existing clients. You'll also need to follow the above convention if you also wanted to [support SOAP clients and endpoints](/soap-support) or if you want to be able to handle Typed [Response Messages in MQ Services](/messaging#message-workflow).
 
 ## ServiceStack's API Design
 
