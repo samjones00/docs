@@ -37,12 +37,12 @@
     - [Debugging](/debugging)
 - Clients
     - [Overview](/clients-overview)
-    - [C#/.NET client](/csharp-client)
-    - [TypeScript client](/typescript-add-servicestack-reference#typescript-serviceclient)
-    - [JavaScript client](/javascript-client)
+    - [C#/.NET Client](/csharp-client)
+    - [TypeScript Client](/typescript-add-servicestack-reference#typescript-serviceclient)
+    - [JavaScript Client](/javascript-client)
     - [Java Client](/java-add-servicestack-reference#jsonserviceclient-api)
     - [Swift Client](/swift-add-servicestack-reference#swift-client-usage)
-    - [Silverlight client](/silverlight-client)
+    - [Silverlight Client](/silverlight-client)
     - [Dart Client](/dart-client)
     - [MQ Clients](/messaging#mq-client-architecture)
 - Add ServiceStack Reference
