@@ -7,7 +7,8 @@ slug: versioning
 You can populate Version numbers in all Request DTO's implementing `IHasVersion`, i.e:
 
 ```csharp
-public class Hello : IReturn<HelloResponse>, IHasVersion {
+public class Hello : IReturn<HelloResponse>, IHasVersion 
+{
     public int Version { get; set; }
     public string Name { get; set; }
 }
