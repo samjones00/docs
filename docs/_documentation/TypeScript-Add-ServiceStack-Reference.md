@@ -72,13 +72,9 @@ Other TypeScript or ES6 projects can install `servicestack-client` from npm with
 
     npm install --save servicestack-client
 
-Or if using JSPM:
+The Type Definitions are included in the above `servicestack-client` npm package, if using jspm they can be installed with:
 
-    jspm install servicestack-client
-
-The Type Definitions are contained in the above `servicestack-client` npm package, if using jspm it can be installed with:
-
-    npm install servicestack-client --save-dev
+    npm install --save-dev servicestack-client
 
 #### Enabling TypeScript async/await 
 
@@ -94,7 +90,7 @@ To make API requests using TypeScript's async/await feature you'll need to creat
 }
 ```
 
-The W3C fetch definitions are built into TypeScript 2.3, older versions of TypeScript can install them with:
+The W3C `fetch` definitions are built into TypeScript **2.3+**, if using older versions of TypeScript they can be installed with:
 
     npm install --save-dev @types/whatwg-fetch
 

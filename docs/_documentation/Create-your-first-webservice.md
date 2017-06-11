@@ -22,19 +22,17 @@ ServiceStackVS supports VS.NET 2017, 2015 and 2013.
 
 Once the ServiceStackVS extension is installed, you will have new project templates available when creating a new project. For this example, let's choose ServiceStack ASP.NET Empty to get started.
 
-[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/new_project_aspnet_empty.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/new_project_aspnet_empty.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-project-empty.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-project-empty.png)
 
 Once you've created your application from the template, you should have 4 projects in your new solution. If you left the default name, you'll end up with a solution with the following structure.
 
-[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_solution.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_solution.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/empty-project-solution.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/empty-project-solution.png)
 
 ## Step 3: Run your project
 
 Press F5 and run your project!
 
 [![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_run.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_run.png)
-
-> If you are continuing to use an older version of the **NuGet Package Manager** you will need to click on **Enable NuGet Package Restore** after creating a new project to ensure its NuGet dependencies are installed. Without this enabled, Visual Studio will not pull down the ServiceStack dependencies and successfully build the project.
 
 #### How does it work?
 
@@ -53,11 +51,11 @@ public class HelloResponse
 }
 ```
 
-The `Route` attribute is specifying what path `/hello/{Name}` where `{Name}` binds it's value to the public string property of 'Name'.
+The `Route` attribute is specifying what path `/hello/{Name}` where `{Name}` binds it's value to the public string property of **Name**.
 
 Let's access the route to see what comes back. Go to the following URL in your address bar, where <root_path> is your server address.
 
-    http://<root_path>/hello/world
+    http://{BaseUrl}/hello/world
 
 You will see a snapshot of the Result in a HTML response format. To change the return format to Json, simply add `?format=json` to the end of the URL. You'll learn more about formats, endpoints (URLs, etc) when you continue reading the documentation.
 
@@ -66,51 +64,115 @@ If we go back to the solution and find the WebApplication1.ServiceInterface and 
 ```csharp
 public class MyServices : Service
 {
-  public object Any(Hello request)
-  {
-    return new HelloResponse { Result = "Hello, {0}!".Fmt(request.Name) };
-  }
+    public object Any(Hello request)
+    {
+        return new HelloResponse { Result = $"Hello, {request.Name}!" };
+    }
 }
 ```
 
 If we look at the code above, there are a few things to note. The name of the method `Any` means the server will run this method for any of the valid HTTP Verbs. Service methods are where you control what returns from your service.
 
-## Step 4: Exploring the AngularJS Template
+## Step 4: Exploring the ServiceStack Solution
 
-Starting a new ServiceStack ASP.NET with AngularJS application will also give you 4 new projects.
+The Recommended structure below is built into all ServiceStackVS VS.NET Templates where creating any new ServiceStack project will create a solution with a minimum of 4 projects:
 
-- Host project
-- Service Interface project
-- Service Model project
-- Unit Testing project
+<img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
 
-[![AngularJS Solution](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/angularjs_solution.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/angularjs_solution.png)
+### Host Project
 
-The Host project contains an AppHost which has been configured with the RazorFormat plugin as well as hosting all the required JavaScript packages like AngularJS, Bootstrap and jQuery. It is setup initially with a single `_Layout.cshtml` using the default Bootstrap template and a `default.cshtml` which contains the HelloWorld demo.
+The Host project contains your AppHost that references and registers all your App's concrete dependencies in its IOC. It also contains any Web Assets like any Razor Views, JS, CSS, Images, Fonts, etc. that's needed to deploy with your App. The AppHost is the master project which references all dependencies used by your App whose role is to act like a conduit where it decides which concrete implementations should be used. By design it references everything and nothing references it which as a goal should be kept logic-free.
 
-[![AngularJS Project](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/angularjs_main_project.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/angularjs_main_project.png)
+### ServiceInterface Project
 
-The Host project has dependencies on the Service Model and Service Interface projects. These are the projects that contain your request/response DTOs, validators and filters. This structure is trying to encourage have your data structures and services in separate projects make testing and reuse easier.
+The ServiceInterface project is the implementation project where all Business Logic and Services live which typically references every other project except the Host projects. Small and Medium projects can maintain all their implementation here where logic can be grouped under sub feature folders. Large solutions can split this project into more manageable cohesive and modular projects which we also recommend encapsulates any dependencies they might use.
 
-[![AngularJS Other Projects](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/angularjs_other_projects.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/angularjs_other_projects.png)
+### ServiceModel Project
 
-The Unit Testing project, also as a dependency on these projects as it tests them in isolation of the main Host project. In the template, we are using the BasicAppHost to mock the AppHost we are using in the Host project. The example unit test is using NUit to setup and run the tests.
+The ServiceModel Project contains all your Application's DTOs which is what defines your Services contract, keeping them isolated from any Server implementation is how your Service is able to encapsulate its capabilities and make them available behind a remote facade. There should be the only ServiceModel project per solution which should be impl, dependency and logic-free as Service contracts decoupled from implementation, enforces interoperability ensuring that your Services don't mandate specific client implementations and will ensure this is the only project clients need to be able to call any of your Services using either referencing the **ServiceModel.dll** directly or downloading the DTOs from a remote ServiceStack instance using [Add ServiceStack Reference](/add-servicestack-reference):
 
-### The Demo
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dtos-role.png)
 
-The simple HelloWorld angular application that is provided in the template calls the `/hello/{Name}` route and displays the result in the `<p>` below. 
+### Test Project
 
-[![AngularJS Demo](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/servicestackvs-templates.gif)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/servicestackvs-templates.gif)
+The Unit Test project contains all your Unit and Integration tests. It's also a Host project that typically references all other non-Host projects in the solution and contains a combination of concrete and mock dependencies depending on what's being tested. See the [Testing Docs](/testing) for more information on testing ServiceStack projects.
 
-### Home Page
+### ServiceStack Integration
 
-The `default.cshtml` home page shows how easy it is to call ServiceStack Services from within AngularJS:
+ServiceStack's clean Web Services design makes it simple and intuitive to be able to call ServiceStack Services from any kind of client from a [simple Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
 
-[![AngularJS Home](https://github.com/ServiceStack/ServiceStackVS/raw/master/Images/angularjs_hello_app.png)](https://github.com/ServiceStack/ServiceStackVS/raw/master/Images/angularjs_hello_app.png)
+```html
+<div>
+    <div>
+        <input class="form-control input-lg" id="Name" type="text" placeholder="Type your name">
+        <p id="helloResult" style="margin-top: 15px;font-size: large"></p>
+    </div>
+</div>
+<script>
+    $('#Name').keyup(function () {
+        var name = $('#Name').val();
+        if (name) {
+            $.getJSON('/hello/' + name)
+                .success(function (response) {
+                    $('#helloResult').html(response.Result);
+                });
+        } else {
+            $('#helloResult').html('');
+        }
+    });
+</script>
+```
 
-### [Testing](/testing)
+To Sophisticated Single Page Apps using [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient), here's an 
+[example using React](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp1/ReactApp1/src/home/Hello.tsx):
 
-The project templates from the ServiceStackVS extension also include a Tests project. The project structure and addition of the Tests project is there to encourage a pattern that will scale to larger applications whilst maintaining a easy to understand and testable application.
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { client } from '../shared';
+import { Hello } from '../dtos';
+
+export default class HelloComponent extends React.Component<any, any> {
+    constructor(props, context) {
+        super(props, context);
+        this.state = { result: '' };
+    }
+
+    componentDidMount() {
+        this.nameChanged(this.props.name);
+    }
+
+    async nameChanged(name:string) {
+        if (name) {
+            let request = new Hello();
+            request.name = name;
+            let r = await client.get(request);
+            this.setState({ result: r.result });
+        } else {
+            this.setState({ result: '' });
+        }
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                <input className="form-control" type="text" placeholder="Your name"
+                    defaultValue={this.props.name}
+                    onChange={e => this.nameChanged((e.target as HTMLInputElement).value)} />
+                <h3 className="result">{this.state.result}</h3>
+            </div>);
+    }
+}
+```
+
+Compare and contrast with other major JavaScript Frameworks:
+
+ - [Vue.js Home.vue](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/VueApp1/VueApp1/src/home/Home.vue)
+ - [Angular4 hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/Angular4App1/Angular4App1/src/modules/app/home/hello.ts)
+ - [Aurelia hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/AureliaApp1/AureliaApp1/src/resources/elements/hello.ts)
+ - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
+
+ServiceStack Services are also [easily consumable from all major Mobile and Desktop platforms](/why-servicestack#generate-instant-typed-apis-from-within-all-major-ides) including native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on Android with Java or Kotlin, OSX Desktop Appications as well as targetting the most popular .NET Mobile and Desktop platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF, WinForms and Silverlight.
 
 ## [Create a WebService from scratch](/create-your-first-webservice)
 
@@ -119,7 +181,6 @@ If you prefer, you can instead [create a ServiceStack Web Service from a blank A
 ## [Explore more ServiceStack features](https://github.com/ServiceStackApps/EmailContacts/)
 
 The [EmailContacts solution](https://github.com/ServiceStackApps/EmailContacts/) is a new guidance available that walks through the recommended setup and physical layout structure of typical medium-sized ServiceStack projects, including complete documentation of how to create the solution from scratch, whilst explaining all the ServiceStack features it makes use of along the way.
-
 
 ## Community Resources
 
