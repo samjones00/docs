@@ -65,16 +65,17 @@ ServiceStack Services also maximize productivity for consumers providing an
 [instant end-to-end typed API without code-gen](/csharp-client) enabling
 the most productive development experience for developing .NET to .NET Web Services.
 
-### [Generate Instant Typed APIs from within all Major IDEs!](/add-servicestack-reference.html)
+### Generate Instant Typed APIs from within all Major IDEs!
 
-ServiceStack now integrates with all Major IDE's used for creating the best native experiences on the most popular platforms 
-to enable a highly productive dev workflow for consuming Web Services, making ServiceStack the ideal back-end choice for powering 
-rich, native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on the Android platform with Java, OSX Desktop Appications 
-as well as targetting the most popular .NET PCL platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF, WinForms and Silverlight: 
+ServiceStack now [integrates with all Major IDE's](/add-servicestack-reference.html) used for creating the best native experiences 
+on the most popular platforms to enable a highly productive dev workflow for consuming Web Services, making ServiceStack the ideal 
+back-end choice for powering rich, native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on the Android platform 
+with Java, OSX Desktop Appications as well as targetting the most popular .NET PCL platforms including Xamarin.iOS, Xamarin.Android, 
+Windows Store, WPF, WinForms and Silverlight: 
 
 <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/ide-ss-plugin-logos.png" align="right" />
 
-#### [VS.NET integration with ServiceStackVS](https://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
+#### [VS.NET integration with ServiceStackVS](/create-your-first-webservice#step-1-download-and-install-servicestackvs)
 
 Providing instant Native Typed API's for 
 [C#](/csharp-add-servicestack-reference.html), 
