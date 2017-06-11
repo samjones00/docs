@@ -15,6 +15,8 @@ Alternatively you can use the [HttpClient-based JsonHttpClient](/csharp-client#j
 
 These packages also contain PCL versions of the Service Clients available with support for [Xamarin.iOS, Xamarin.Android, Windows Store, WPF and Silverlight 5](https://github.com/ServiceStackApps/HelloMobile) platforms.
 
+> If running on .NET Core we recommend using `HttpClient` ServiceClient due to .NET's `HttpWebRequest` having a suboptimal implementation wrapper over HttpClient which is much slower than the .NET's Framework `HttpWebRequest` implementation.
+
 ### [Cache Aware Service Clients](/cache-aware-clients)
 
 When [caching is enabled on Services](/http-caching), the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
