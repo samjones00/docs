@@ -10,7 +10,7 @@ First we want to install ServiceStackVS Visual Studio extension. The easiest way
 
 [![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)
 
-[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/search_download.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/search_download.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/search-download.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/search-download.png)
 
 Optionally it can be downloaded and installed from the [VS.NET Gallery](http://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
 
@@ -171,6 +171,8 @@ Compare and contrast with other major JavaScript Frameworks:
  - [Angular4 hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/Angular4App1/Angular4App1/src/modules/app/home/hello.ts)
  - [Aurelia hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/AureliaApp1/AureliaApp1/src/resources/elements/hello.ts)
  - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
+
+### Integrated with Major IDEs and most popular Mobile and Desktop platforms
 
 ServiceStack Services are also [easily consumable from all major Mobile and Desktop platforms](/why-servicestack#generate-instant-typed-apis-from-within-all-major-ides) including native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on Android with Java or Kotlin, OSX Desktop Appications as well as targetting the most popular .NET Mobile and Desktop platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF, WinForms and Silverlight.
 
