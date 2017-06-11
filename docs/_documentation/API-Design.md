@@ -2,70 +2,70 @@
 slug: api-design
 title: ServiceStack’s API design
 ---
-We're excited to announce a ServiceStack New API design that's essentially better in every way than our original legacy v3 API design:
 
-  - Promotes a more succinct, typed, end-to-end client API 
-  - Works with all the existing JSON, XML and JSV Service Clients
-  - Typed client APIs use user-defined [Cool Uris](http://www.w3.org/TR/cooluris/) without needing to build strings on the HTTP Client
-  - Supports handling of any HTTP Verb 
-  - Less Restrictive and Opinionated - Allows for 'Pure Responses' whilst retaining structured exceptions in the typed clients
-  - Each service can now handle any number of different Request types and HTTP Verbs
-  - Easier to use - Merges and simplifies existing IService and IRestService concepts and interfaces together
-  - Introduces finer-grained Action Request and Response filters
-  - Smarter Routing
-  - Easier to add custom hooks that's more decoupled and testable
-  - Works with ServiceStack's existing features, e.g. Content Negotiation, Metadata pages, Razor views, Auto HTML report, etc.
-
-All this and the existing API wasn't actually bad :) It still promoted one of the DRY-est, typed APIs available in any .NET existing Web Services Framework, whilst continue to provide the most features out-of-the-box.
-
-To give you a flavour of the new API design, you can now create a service with:
+ServiceStack Services lets you return any kind of POCO, including naked collections:
 
 ```csharp
 [Route("/reqstars")]
-public class AllReqstars : IReturn<List<Reqstar>> { }
+public class GetReqstars : IReturn<List<Reqstar>> { }
 
 public class ReqstarsService : Service
 {
-    public object Get(AllReqstars request) 
-    {
-        return Db.Select<Reqstar>();
-    }
+    public object Get(GetReqstars request) => Db.Select<Reqstar>();
 }
 ```
 
 That your C# clients can call with just:
 
 ```csharp
-List<Reqstar> response = client.Get(new AllReqstars());
+List<Reqstar> response = client.Get(new GetReqstars());
 ```
 
-This will make a **GET** call to the custom `/reqstars` url, making it the **minimum effort required in any Typed REST API in .NET!** 
-When the client doesn't contain the `[Route]` definition it automatically falls back to using ServiceStack's [pre-defined routes](http://www.servicestack.net/ServiceStack.Hello/#predefinedroutes) - saving an extra LOC!
+This will make a **GET** call to the custom `/reqstars` url, making it the **minimum effort required in any Typed REST API in .NET!** When the client doesn't contain the `[Route]` definition it automatically falls back to using ServiceStack's [pre-defined routes](http://www.servicestack.net/ServiceStack.Hello/#predefinedroutes) - saving an extra LOC!
 
-### Inspiration
+### Using explicit Response DTO
 
-We were heavily inspired by [Ivan Korneliuk's proposal](http://korneliuk.blogspot.com/2012/08/servicestack-reusing-dtos.html) on how he customised ServiceStack to provide an even more succinct client API. We've embraced his idea and baked it into the heart of the framework which is now shipping in the latest release of ServiceStack (v3.9.13+). The beauty of this proposal was that it already fitted perfectly with ServiceStack's existing message-based semantics which meant we were able to implement it in record time without any disruption or breaking changes to the existing code-base. The result is that you can now start creating new services along side your existing services and they'll both continue to work seamlessly side-by-side.
+A popular alternative to returning naked collections is to return explicit Response DTO, e.g:
 
-### Recommended for future Web Service Development
+```csharp
+[Route("/reqstars")]
+public class GetReqstars : IReturn<GetReqstarsResponse> { }
 
-As the new API Design offers many benefits over the existing API, we're recommending its use for any new web service development. It will take us some time, but we intend to port all the old examples to adopt the new API ourselves. One reason to still prefer the older API is if you also wanted to [support SOAP clients and endpoints](/soap-support) which still requires the strict-ness enforced by the previous approach.
+public class GetReqstarsResponse 
+{
+    public List<Reqstar> Results { get; set; }
+    public ResponseStatus ResponseStatus { get; set; }
+}
 
-## ServiceStack's New API Design
+public class ReqstarsService : Service
+{
+    public object Get(GetReqstars request) 
+    {
+        return new GetReqstarsResponse {
+            Results = Db.Select<Reqstar>()
+        };
+    }
+}
+```
 
-We'll walk through a few examples here but for a more detailed look into the usages and capabilities of the new API design checkout its
+Whilst slightly more verbose this style benefits from better versionability and more coarse-grained APIs as additional results can be added to the Response DTO without breaking existing clients. You'll also need to follow the above convention if you also wanted to [support SOAP clients and endpoints](/soap-support), you'll also want to use an explicit Response DTO if you want to handle the [Response Messages in MQ Services](/messaging#message-workflow).
+
+## ServiceStack's API Design
+
+We'll walk through a few examples here but for a more detailed look into the usages and capabilities of ServiceStack's API design checkout its
 [Comprehensive Test Suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/ReqStarsService.cs)
 
-The new API design simplifies the existing Services with the single unified interface:
+At a minimum ServiceStack Services only need to implement the `IService` empty interface:
 
 ```csharp
 public interface IService {}
 ```
 
-That is now able to handle both RPC Service and Rest Service requests in a single class.
-The interface is just used as a Marker interface that ServiceStack uses to find, register and auto-wire your existing services. A convenience concrete `Service` class is also included which contains easy access to ServiceStack's providers:
+The interface is used as a Marker interface that ServiceStack uses to find, register and auto-wire your existing services. Although you're more likely going to want to inherit from ServiceStack's convenience concrete `Service` class which contains easy access to ServiceStack's providers:
 
 ```csharp
-public class Service : IService {
+public class Service : IService 
+{
     IRequest Request { get; }                 //HTTP Request Wrapper
     IResponse Response { get; }               //HTTP Response Wrapper
     IServiceGateway Gateway { get; }          //Built-in Service Gateway
@@ -76,6 +76,8 @@ public class Service : IService {
     IDbConnection Db { get; }                 //Registered ADO.NET IDbConnection
     IRedisClient Redis { get; }               //Registered RedisClient 
     IMessageProducer MessageProducer { get; } //Message Producer for Registered MQ Server
+    IServiceGateway Gateway { get; }          //Service Gateway
+    IAuthRepository AuthRepository { get; }   //Registered User Repository
     ISession SessionBag { get; }              //Dynamic Session Bag
     TUserSession SessionAs<TUserSession>();   //Resolve Typed UserSession
     T TryResolve<T>();                        //Resolve dependency at runtime
@@ -92,30 +94,27 @@ Lets revisit the Simple example from earlier:
 
 ```csharp
 [Route("/reqstars")]
-public class AllReqstars : IReturn<List<Reqstar>> { }
+public class GetReqstars : IReturn<List<Reqstar>> { }
 
 public class ReqstarsService : Service
 {
-    public object Any(AllReqstars request) 
-    {
-        return Db.Select<Reqstar>();
-    }
+    public object Get(GetReqstars request) => Db.Select<Reqstar>();
 }
 ```
 
-The new API maps HTTP Requests to your Services **Actions**. An Action is any method that:
+ServiceStack maps HTTP Requests to your Services **Actions**. An Action is any method that:
 
   - Is public 
   - Only contains a single argument - the typed Request DTO
   - Has a Method name matching a HTTP Method or **Any** which is used as a fallback if it exists
   - Can specify either `T` or `object` Return type, both have same behavior 
 
-The above example will handle any `AllReqstars` request made on any **HTTP Verb** or **endpoint** and will return the complete `List<Reqstar>` contained in your configured RDBMS. 
+The above example will handle any `GetReqstars` request made on any **HTTP Verb** or **endpoint** and will return the complete `List<Reqstar>` contained in your configured RDBMS. 
 
 ### Micro ORMs and ADO.NET's IDbConnection
 
 Code-First Micro ORMS like [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) and 
-[Dapper](http://code.google.com/p/dapper-dot-net/) provides a pleasant high-level experience whilst working directly against ADO.NET's low-level `IDbConnection`. They both support all major databases so you immediately have access to a flexible RDBMS option out-of-the-box. At the same time you're not limited to using the providers contained in the `Service` class and can continue to use your own register IOC dependencies (inc. an alternate IOC itself). 
+[Dapper](https://github.com/StackExchange/Dapper) provides a pleasant high-level experience whilst working directly against ADO.NET's low-level `IDbConnection`. They both support all major databases so you immediately have access to a flexible RDBMS option out-of-the-box. At the same time you're not limited to using the providers contained in the `Service` class and can continue to use your own register IOC dependencies (inc. an alternate IOC itself). 
 
 ### Micro ORM POCOs make good DTOs
 
@@ -131,14 +130,14 @@ But lets say you take the normal route of copying the DTOs (in either source of 
 
 ```csharp
 [Route("/reqstars")]
-public class AllReqstars : IReturn<List<Reqstar>> { }
+public class GetReqstars : IReturn<List<Reqstar>> { }
 ```
 
 The code on the client now just becomes:
 
 ```csharp
 var client = new JsonServiceClient(BaseUri);
-List<Reqstar> response = client.Get(new AllReqstars());
+List<Reqstar> response = client.Get(new GetReqstars());
 ```
 
 Which makes a **GET** web request to the `/reqstars` route.
@@ -154,12 +153,15 @@ All these APIs **have async equivalents** which you can use instead, when you ne
 
 ## Everything Just Works
 
-The immediate benefit we were able to realise from designing the new API within ServiceStack's existing semantics was that everything else just works. You're able to re-use the same Routes, Filters, Views and Validators together and it will continue to work just as it did before. 
+A nice property of ServiceStack's message-based design is all functionality is centered around Typed Request DTOs which easily lets you take advantage of high-level value-added functionality like [Auto Batched Requests](/auto-batched-requests) or [Encrypted Messaging](/encrypted-messaging) which are enabled automatically without any effort or easily opt-in to enhanced functionality by decorating Request DTOs or thier Services with Metadata and [Filter Attributes](/filter-attributes) and everything works together, binded against typed models naturally.
 
-E.g. you can take advantage of [ServiceStack's recent Razor support](http://razor.servicestack.net/) and create a web page for this service by just adding a [AllReqstars.cshtml](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/Views/AllReqstars.cshtml) in your views folder. Thanks to the built-in Content Negotiation you can fetch the HTML contents calling the same url: 
+E.g. you can take advantage of [ServiceStack's Razor support](http://razor.servicestack.net/) and create a web page for this service by just adding a Razor view with the same name as the Request DTO in the `/Views` folder,
+which for the `GetReqstars` Request DTO you can just add `/Views/GetReqstars.cshtml` and it will get rendered with the Services Response DTO as its View Model when the Service is called from a browser (i.e. HTTP Request with `Accept: text/html`). 
+
+Thanks to ServiceStack's built-in Content Negotiation you can fetch the HTML contents calling the same url: 
 
 ```csharp
-var html = "{0}/reqstars".Fmt(BaseUri).GetStringFromUrl(acceptContentType:"text/html");
+var html = $"{BaseUri}/reqstars".GetStringFromUrl(accept:"text/html");
 ```
 
 This [feature is particularly nice](http://razor.servicestack.net/#unified-stack) as it lets you **re-use your existing services** to serve both Web and Native Mobile and Desktop clients.
@@ -172,10 +174,7 @@ Service actions can also contain fine-grained application of Request and Respons
 public class ReqstarsService : Service
 {
     [ClientCanSwapTemplates]
-    public List<Reqstar> Any(AllReqstars request) 
-    {
-        return Db.Select<Reqstar>();
-    }
+    public object Get(GetReqstars request) => Db.Select<Reqstar>();
 }
 ```
 
@@ -183,13 +182,13 @@ This Request Filter allows the client to [change the selected Razor **View** and
 
 ## Handling different HTTP Verbs
 
-The new API design now lets you handle any HTTP Verb. This lets you respond with CORS headers to a HTTP **OPTIONS** request with just:
+ServiceStack Services lets you handle any HTTP Verb in the same way, e.g this lets you respond with CORS headers to a HTTP **OPTIONS** request with:
 
 ```csharp
 public class ReqstarsService : Service
 {
     [EnableCors]
-    public void Options(Reqstar request) {}
+    public void Options(GetReqstar request) {}
 }
 ```
 
@@ -235,9 +234,9 @@ Although sending different HTTP Verbs are unrestricted in native clients, they'r
 
 ## Structured Error Handling
 
-In the previous API we had a restriction that if you wanted structured exceptions on the client you need to have a Response DTO with the same name as your Request DTO but with a 'Response' suffix. This restriction has now been lifted and we will now just use a generic `ErrorResponse` when a Response DTO can't be found. This is a transparent technical detail you don't need to know about.
+When following the [explicit Response DTO Naming convention](/error-handling#error-response-types) ServiceStack will automatically populate the `ResponseStatus` property with a structured Error Response otherwise if returning other DTOs like naked collections ServiceStack will instead return a generic `ErrorResponse`, although this is mostly a transparent technical detail you don't need to know about as for schema-less formats like JSON they return the exact same wire-format.
 
-So Error Handling is effectively the same as it was before, but now can work without needing a Response DTO, e.g:
+[Error Handling](/error-handling) works naturally in ServiceStack where you can simply throw C# Exceptions, e.g:
 
 ```csharp
 public List<Reqstar> Post(Reqstar request)
@@ -250,7 +249,7 @@ public List<Reqstar> Post(Reqstar request)
 }
 ```
 
-Which will throw this Error if the client tried to create an empty Reqstar:
+This will result in an Error thrown on the client if it tried to create an empty Reqstar:
 
 ```csharp
 try
@@ -267,9 +266,7 @@ catch (WebServiceException webEx)
 }
 ```
 
-When your Service does have a conventionally named Response DTO, thrown exceptions will continue to be injected into an instance of that as seen in the [invalid SearchReqstars request example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/ReqStarsService.cs#L310).
-
-You can use the Service Clients Exception handling for handling any HTTP error generated in or outside of your service, e.g. here's how to detect if a HTTP Method isn't implemented or disallowed:
+The same Service Clients Exception handling is also used to handle any HTTP error generated in or outside of your service, e.g. here's how to detect if a HTTP Method isn't implemented or disallowed:
 
 ```csharp
 try
@@ -287,7 +284,7 @@ In addition to standard C# exceptions your services can also return multiple, ri
 
 ### Overriding the default Exception handling
 
-Overriding the default exception handling in ServiceStack just got a lot easier as well, you now no longer need to provide your own base class to do this and can easily just override it in your AppHost with:
+You can override the default exception handling in ServiceStack by registering a `ServiceExceptionHandlers`, e.g:
 
 ```csharp
 void Configure(Container container) 
@@ -309,14 +306,14 @@ For the most part you won't need to know about this as ServiceStack's routing wo
 
 These Rules only come into play when there are multiple routes that matches the pathInfo of an incoming request.
 
-Lets see some examples of these rules in action using the routes defined in the [new API Design test suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/ReqStarsService.cs):
+Lets see some examples of these rules in action using the routes defined in the [API Design test suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/ReqStarsService.cs):
 
 ```csharp
 [Route("/reqstars")]
 public class Reqstar {}
 
 [Route("/reqstars", "GET")]
-public class AllReqstars {}
+public class GetReqstars {}
 
 [Route("/reqstars/{Id}", "GET")]
 public class GetReqstar {}
@@ -340,7 +337,7 @@ public class SearchReqstars {}
 
 These are results for these HTTP Requests
 
-	GET   /reqstars           =>	AllReqstars
+	GET   /reqstars           =>	GetReqstars
 	POST  /reqstars           =>	Reqstar
 	GET   /reqstars/search    =>	SearchReqstars
 	GET   /reqstars/reset     =>	ResetReqstar
@@ -375,7 +372,7 @@ The Route on the Action that was declared first gets selected, i.e:
 
 The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customisation feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](?/request-and-response-filters).
 
-Although this is another area we've improved on as you can now add your own custom hooks without needing to subclass any services. To do this we've introduced the concept of a [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/ServiceHost/IServiceRunner.cs) that decouples the execution of your service from the implementation of it.
+The [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/ServiceHost/IServiceRunner.cs) decouples the execution of your service from the implementation of it which provides an alternative custom hook which lets you add custom behavior to all Services without needing to use a base Service class. 
 
 To add your own Service Hooks you just need to override the default Service Runner in your AppHost from its default implementation:
 
@@ -398,7 +395,8 @@ public override IServiceRunner<TRequest> CreateServiceRunner<TRequest>(ActionCon
 Where `MyServiceRunner<T>` is just a custom class implementing the custom hooks you're interested in, e.g:
 
 ```csharp
-public class MyServiceRunner<T> : ServiceRunner<T> {
+public class MyServiceRunner<T> : ServiceRunner<T> 
+{
     public override void OnBeforeExecute(IRequestContext requestContext, TRequest request) {
       // Called just before any Action is executed
     }
@@ -415,16 +413,16 @@ public class MyServiceRunner<T> : ServiceRunner<T> {
 
 ## Limitations
 
-This should probably be spelled out (even though wasn't possible with the previous API) but as the new API imposes less restriction we'll note it here: You're still not able to split the handling of a single Resource (i.e. Request DTO) over multiple service implementations. If you find you need to do this because your service is getting too big, consider using partial classes to spread the implementation over multiple files. Another option is encapsulating some of the re-usable functionality into Logic dependencies and inject them into your service.
+One limitation of Services is that you can't split the handling of a single Resource (i.e. Request DTO) over multiple service implementations. If you find you need to do this because your service is getting too big, consider using partial classes to spread the implementation over multiple files. Another option is encapsulating some of the re-usable functionality into Logic dependencies and inject them into your service.
 
 ## Other Notes
 
-Although they're not needed or used anywhere [we've introduced new HTTP service interfaces](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/ServiceHost/IService.cs#L18) that enforce the correct signature required by the services, e.g:
+Although they're not needed or used anywhere [you can also use HTTP Verb interfaces](https://github.com/ServiceStack/ServiceStack/blob/34acc429ee04053ea766e4fb183e7aad7321ef5e/src/ServiceStack.Interfaces/IService.cs#L27) to enforce the correct signature required by the services, e.g:
 
 ```csharp
-public class MyService : Service, IAny<AllReqstars>, IGet<SearchReqstars>, IPost<Reqstar>
+public class MyService : Service, IAny<GetReqstars>, IGet<SearchReqstars>, IPost<Reqstar>
 {
-    public object Any(AllReqstars request) { .. }
+    public object Any(GetReqstars request) { .. }
     public object Get(SearchReqstars request) { .. }
     public object Post(Reqstar request) { .. }
 }
@@ -432,150 +430,3 @@ public class MyService : Service, IAny<AllReqstars>, IGet<SearchReqstars>, IPost
 
 This has no effect to the runtime behaviour and your services will work the same way with or without the added interfaces.
 
-## Refactoring existing services to use the new API Design
-
-For the most part it should be fairly straight forward to port an existing service to the new API. To ease the process I'll walk through the changes we made to our most recent [razor.servicestack.net](http://razor.servicestack.net) demo. The goal of this port is to retain exactly the same API and behaviour so all existing urls continue to work just as they did before. 
-
-The service that runs at the heart of the Razor Rockstars demo is the [/rockstars](http://razor.servicestack.net/rockstars) uber-service which originally with old API that looked like:
-
-```csharp
-[Route("/rockstars")]
-[Route("/rockstars/aged/{Age}")]
-[Route("/rockstars/delete/{Delete}")]
-[Route("/rockstars/{Id}")]                      //All Routes on the single DTO
-public class Rockstars                          //All Fields merged into a single DTO
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public int? Age { get; set; }
-    public bool Alive { get; set; }
-    public string Delete { get; set; }
-}
-
-[Csv(CsvBehavior.FirstEnumerable)]
-public class RockstarsResponse
-{
-    public int Total { get; set; }
-    public int? Aged { get; set; }
-    public List<Rockstar> Results { get; set; }
-}
-
-[ClientCanSwapTemplates]
-public class RockstarsService : RestServiceBase<Rockstars>
-{
-    //Base class didn't include a IDbConnectionFactory
-    public IDbConnectionFactory DbFactory { get; set; }       
-
-    //Single implementation handling all GET requests
-    public override object OnGet(Rockstars request)           
-    {
-        using (var db = DbFactory.Open())
-        {
-            if (request.Delete == "reset")
-            {
-                db.DeleteAll<Rockstar>();
-                db.InsertAll(Rockstar.SeedData);
-            }
-            else if (request.Delete.IsInt())
-            {
-                db.DeleteById<Rockstar>(request.Delete.ToInt());
-            }
-
-            return new RockstarsResponse {
-                Aged = request.Age,
-                Total = db.Scalar<int>("select count(*) from Rockstar"),
-                Results = request.Id != default(int) ?
-                    db.Select<Rockstar>(q => q.Id == request.Id)
-                      : request.Age.HasValue ?
-                    db.Select<Rockstar>(q => q.Age == request.Age.Value)
-                      : db.Select<Rockstar>()
-            };
-        }
-    }
-
-    public override object OnPost(Rockstars request)
-    {
-        using (var db = DbFactory.Open())
-        {
-            db.Insert(request.TranslateTo<Rockstar>());
-            return OnGet(new Rockstars());
-        }
-    }
-}
-```
-
-I've added comments to all the attributes where the implementations differ with the new service.
-The biggest change is seen with the flexibility of the new API where it now allows a single service to handle multiple Request DTOs and lets you provide different implementations for each. This allows us to split existing operations in more cohesive parts and instead of a single merged Request DTO, we have more fine-grained DTOs with just the fields required for each operation:
-
-```csharp
-[Route("/rockstars")]
-[Route("/rockstars/aged/{Age}")]
-public class Rockstars               //Include only fields used in the GET/Search action
-{
-    public int? Age { get; set; }
-    public int Id { get; set; }
-}
-
-[Route("/rockstars/delete/{Id}")]
-public class DeleteRockstar         //Specific Action to delete a Rockstar. Only Id field needed
-{
-    public int Id { get; set; }
-}
-
-[Route("/rockstars/delete/reset")]  //The route for this can now be /rockstars/reset
-public class ResetRockstars { }     //No fields required for this Action
-
-[Csv(CsvBehavior.FirstEnumerable)]
-public class RockstarsResponse
-{
-    public int Total { get; set; }
-    public int? Aged { get; set; }
-    public List<Rockstar> Results { get; set; }
-}
-
-[ClientCanSwapTemplates]
-[DefaultView("Rockstars")]                //Default View for each Action
-public class RockstarsService : Service
-{
-    public object Get(Rockstars request)  //Only concerned with GET/Search actions
-    {
-        return new RockstarsResponse {
-            Aged = request.Age,
-            Total = Db.Scalar<int>("select count(*) from Rockstar"),
-            Results = request.Id != default(int) 
-                ? Db.Select<Rockstar>(q => q.Id == request.Id)
-                : request.Age.HasValue 
-                    ? Db.Select<Rockstar>(q => q.Age == request.Age.Value)
-                    : Db.Select<Rockstar>()
-        };
-    }
-
-    public object Any(DeleteRockstar request) //Handles any HTTP Verb
-    {
-        Db.DeleteById<Rockstar>(request.Id);
-        return Get(new Rockstars());
-    }
-
-    public object Post(Rockstar request)
-    {
-        Db.Insert(request);
-        return Get(new Rockstars());
-    }
-
-    public object Any(ResetRockstars request) //Handles any HTTP Verb
-    {
-        Db.DeleteAll<Rockstar>();
-        Db.InsertAll(AppHost.SeedData);
-        return Get(new Rockstars());
-    }
-}
-```
-
-The major omission that's no longer required in the Port is the using statement around DB access since it's now available by default in the `Service` base class. If you have your own dependencies that a lot of your services use, it's a good idea to include them in your own custom base class as it reduces the amount of boilerplate needed.
-
-The new introduction in this port is the `[DefaultView("Rockstars")]` Request Filter Attribute. This is required because we want the **text/html** format to use the **Rockstars.cshtml** Razor view to render the HTML page. In the old version when we only had 1 Request DTO named **Rockstars** this was able to inferred by the Razor View Engine. This is no longer the case now that we have multiple actions with different Request DTO's. Although if the Razor View was instead called **RockstarsResponse.cshtml** we wouldn't have needed the attribute since in all cases a populated **RockstarsResponse** DTO is returned. As we want this to be an exact port, rather than changing the name of the View we decided to specify the default view to be used in each action instead.
-
-#### Filter Attributes can be Applied to Actions as well
-
-Other interesting points in this port is now that the new API allows Action Filter attributes we could've instead placed the Attribute on each action, instead of on the service where it applies to all Actions. Also it's worth pointing out that the `[DefaultView]` is a Request Filter Attribute so is executed before the Action therefore doesn't clobber the values set by `[ClientCanSwapTemplates]` since it's a Response Filter which is executed after the Action.

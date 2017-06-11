@@ -104,7 +104,7 @@ Often message handlers will just return a POCO response after it processes a mes
 
 ```csharp
 mqServer.RegisterHandler<Hello>(m =>
-    new HelloResponse { Result = "Hello, {0}!".Fmt(m.GetBody().Name) });
+    new HelloResponse { Result = $"Hello, {m.GetBody().Name}!" });
 ```
 
 Whenever there's a response, then instead of the .outq the response message is sent to 
@@ -326,8 +326,7 @@ public class AuthOnlyService : Service
         var session = base.SessionAs<AuthUserSession>();
 
         return new AuthOnlyResponse {
-            Result = "Hello, {0}! Your UserName is {1}"
-                .Fmt(request.Name, session.UserAuthName)
+            Result = $"Hello, {request.Name}! Your UserName is {session.UserAuthName}";
         };
     }
 }
@@ -398,8 +397,7 @@ public class MqAuthOnlyService : Service
     {
         var session = base.SessionAs<AuthUserSession>();
         return new AuthOnlyResponse {
-            Result = "Hello, {0}! Your UserName is {1}"
-                .Fmt(request.Name, session.UserAuthName)
+            Result = $"Hello, {request.Name}! Your UserName is {session.UserAuthName}";
         };
     }
 }
@@ -417,8 +415,7 @@ public class AuthOnlyService : Service
     {
         var session = base.SessionAs<AuthUserSession>(); 
         return new AuthOnlyResponse {
-            Result = "Hello, {0}! Your UserName is {1}"
-                .Fmt(request.Name, session.UserAuthName)
+            Result = $"Hello, {request.Name}! Your UserName is {session.UserAuthName}";
         };
     }
 }
