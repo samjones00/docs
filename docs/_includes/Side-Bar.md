@@ -98,7 +98,7 @@
     - [Open Id 2.0 Support](/openid)
     - [Sessions](/sessions)
     - [Restricting Services](/restricting-services)
-    - [Form Hijacking Prevention](/form-hijacking-prevention)
+    - [Anti Forgery](/anti-forgery)
 - Advanced
     - [Configuration options](/configuration-options)
     - [Request & Response filters](/request-and-response-filters)
@@ -120,6 +120,7 @@
     - [MVC Integration](/mvc-integration)
     - [ServiceStack Integration](/servicestack-integration)
     - [Run ServiceStack side-by-side with another web framework](/servicestack-side-by-side-with-another-web-framework)
+    - [Form Hijacking Prevention](/form-hijacking-prevention)
     - [HTTP Utils](/http-utils)
     - [Dump Utils](/dump-utils)
     - [Reflection Utils](/relfection-utils)
