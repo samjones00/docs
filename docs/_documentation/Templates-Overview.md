@@ -17,6 +17,8 @@ The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains 
  - React Desktop Apps
  - Vue App
 
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](/templates-single-page-apps)
+
 ## VS.NET Templates
 
  - [AngularJS 1.5 App](/templates-angularjs-v15)
