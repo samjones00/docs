@@ -75,7 +75,9 @@ If we look at the code above, there are a few things to note. The name of the me
 
 ## Step 4: Exploring the ServiceStack Solution
 
-The Recommended structure below is built into all ServiceStackVS VS.NET Templates where creating any new ServiceStack project will create a solution with a minimum of 4 projects:
+The Recommended structure below is built into all ServiceStackVS VS.NET Templates where creating any new ServiceStack 
+project will create a solution with a minimum of 4 projects below ensuring ServiceStack solutions starts off from an optimal 
+logical project layout, laying the foundation for growing into a more maintainable, cohesive and reusable code-base:
 
 <img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
 
