@@ -16,14 +16,7 @@ Optionally it can be downloaded and installed from the [VS.NET Gallery](http://v
 
 [![VS.NET Gallery Download](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/servicestackvs/vsgallery-download.png)](http://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
 
-ServiceStackVS supports both VS.NET 2013 and 2012.
-
-### VS.NET 2012 Prerequisites
-
-  - VS.NET 2012 Users must install the [Microsoft Visual Studio Shell Redistributable](http://www.microsoft.com/download/details.aspx?id=40764)
-  - It's also highly recommended to [Update to the latest NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). 
-
-> Alternatively if continuing to use an older version of the **NuGet Package Manager** you will need to click on **Enable NuGet Package Restore** after creating a new project to ensure its NuGet dependencies are installed.
+ServiceStackVS supports VS.NET 2017, 2015 and 2013.
 
 ## Step 2: Selecting a template
 

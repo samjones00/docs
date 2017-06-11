@@ -3,7 +3,19 @@ title: VS.NET Templates
 slug: templates-overview
 ---
 
-ServiceStack with its strong foundations as a remote services framework and it's [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Websites and Single Page Apps.
+ServiceStack has its strong foundations as a Web and MQ Services framework whose [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Backend Systems and Web APIs, Websites, Single Page Apps, Windows Services, Self-Hosting Console Apps and Rich OSX and Winforms Desktop Apps.
+
+## VS.NET Templates
+
+ - [AngularJS 1.5 App](/templates-angularjs-v15)
+ - [ASP.NET Empty](/templates-aspnet-empty)
+ - [ServiceStack ASP.NET Empty](/create-your-first-webservice)
+ - [ServiceStack ASP.NET MVC4](https://github.com/ServiceStackApps/SocialBootstrapApi)
+ - [ServiceStack ASP.NET with Bootstrap](https://github.com/ServiceStackApps/EmailContacts)
+ - [ServiceStack ASP.NET with Razor](http://razor.servicestack.net)
+ - [Self Host Empty](/self-hosting)
+ - [Self Host with Razor](http://razor.servicestack.net/#runs-everywhere)
+ - [Windows Service Empty](/templates-windows-service)
 
 ## [Webpack-powered Single Page App Templates](/templates-single-page-apps)
 
@@ -18,18 +30,6 @@ The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains 
  - Vue App
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](/templates-single-page-apps)
-
-## VS.NET Templates
-
- - [AngularJS 1.5 App](/templates-angularjs-v15)
- - [ASP.NET Empty](/templates-aspnet-empty)
- - [ServiceStack ASP.NET Empty](/create-your-first-webservice)
- - [ServiceStack ASP.NET MVC4](https://github.com/ServiceStackApps/SocialBootstrapApi)
- - [ServiceStack ASP.NET with Bootstrap](https://github.com/ServiceStackApps/EmailContacts)
- - [ServiceStack ASP.NET with Razor](http://razor.servicestack.net)
- - [Self Host Empty](/self-hosting)
- - [Self Host with Razor](http://razor.servicestack.net/#runs-everywhere)
- - [Windows Service Empty](/templates-windows-service)
 
 ## ServiceStackVS VS.NET Extension
 
