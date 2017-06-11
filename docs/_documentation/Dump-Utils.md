@@ -82,7 +82,7 @@ if (obj.HasCircularReferences()) {
 }
 ```
 
-### Inbuilt into Service Stack JSV web service endpoint
+### Inbuilt into ServiceStack JSV web service endpoint
 
 As this feature has come in super useful for debugging, it's also included it as part of the JSV endpoint by simply appending `&debug` anywhere in the request’s query string. 
 

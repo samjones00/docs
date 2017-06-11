@@ -1608,7 +1608,7 @@ To help visualize the dependencies between the various components, here is a tre
 
 *****
 
-## Service Stack 1.82 Release Notes
+## ServiceStack 1.82 Release Notes
 
 ### [New HTML5 Report Format Added](/html5reportformat)
 
@@ -1676,7 +1676,7 @@ Also added is the ability to resolve existing web services (already auto-wired b
     var ordersResponse = (OrdersResponse)ordersService.Get(new Orders { CustomerId = customer.Id });
 
 
-## Service Stack 1.79 Release Notes
+## ServiceStack 1.79 Release Notes
 
 ### The C#/.NET Sync and Async Service Clients were improved to include: 
   * Enhanced REST functionality and access, now more succinct than ever
@@ -1697,7 +1697,7 @@ Also added is the ability to resolve existing web services (already auto-wired b
 Read the rest of the [Rest Files README.md](https://github.com/ServiceStack/ServiceStack.Examples/tree/master/src/RestFiles/RestFiles) for a more detailed overview about the project.
 
 
-## Service Stack 1.78 Release Notes
+## ServiceStack 1.78 Release Notes
 
  * Added more tests and fixed bugs in ServiceStack's new CSV format and Request/Response filters
  * Added new information on the generated web service index, individual web service page now include:
@@ -1712,7 +1712,7 @@ Read the rest of the [Rest Files README.md](https://github.com/ServiceStack/Serv
        SetConfig(new EndpointConfig { ServiceEndpointsMetadataConfig = ServiceEndpointsMetadataConfig.GetForIis6ServiceStackAshx() });
 
 
-## Service Stack 1.77 Release Notes
+## ServiceStack 1.77 Release Notes
 
 This release was focused to opening up ServiceStack to better support adding more hooks and extension points where new formats can be added. The CSV format was also added to test these new extension APIs.
 
@@ -1760,7 +1760,7 @@ The Response filter takes a IHttpRequest, IHttpResponse and the **Response DTO**
 
 Note: both sets of filters are called before there any output is written to the response stream so you can happily use the filters to authorize and redirect the request. Calling `IHttpResponse.Close()` will close the response stream and stop any further processing of this request.
 
-Feel free to discuss or find more about any of these features at the [Service Stack Google Group](https://groups.google.com/forum/#!forum/servicestack)
+Feel free to discuss or find more about any of these features at the [ServiceStack Google Group](https://groups.google.com/forum/#!forum/servicestack)
 
 
 [<Wiki Home](https://github.com/ServiceStack/ServiceStack/wiki)

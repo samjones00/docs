@@ -3,7 +3,7 @@ slug: why-servicestack
 title: Why ServiceStack?
 ---
 
-Developed in the modern age, Service Stack provides an alternate, cleaner POCO-driven way of creating web services.
+Developed in the modern age, ServiceStack provides an alternate, cleaner POCO-driven way of creating web services.
  
 - **Simplicity**
 - **Speed**
@@ -341,7 +341,7 @@ That's all the application code required to create and consume a simple database
 
 ### Define web services following Martin Fowlers Data Transfer Object Pattern
 
-Service Stack was heavily influenced by [**Martin Fowlers Data Transfer Object Pattern**](http://martinfowler.com/eaaCatalog/dataTransferObject):
+ServiceStack was heavily influenced by [**Martin Fowlers Data Transfer Object Pattern**](http://martinfowler.com/eaaCatalog/dataTransferObject):
 
 >When you're working with a remote interface, such as Remote Facade (388), each call to it is expensive. 
 >As a result you need to reduce the number of calls, and that means that you need to transfer more data 
@@ -357,10 +357,10 @@ The Request- and Response DTO's used to define web services in ServiceStack are 
 the implementation just needs to inherit from a testable and dependency-free `IService` marker interface. 
 As a bonus for keeping your DTO's in a separate dependency-free .dll, you're able to re-use them in 
 your C#/.NET clients providing a strongly-typed API without any code-gen what-so-ever. Also your DTO's 
-*define everything* Service Stack does not pollute your web services with any additional custom 
+*define everything* ServiceStack does not pollute your web services with any additional custom 
 artefacts or markup.
 
-Service Stack re-uses the custom artefacts above and with zero-config and without imposing any extra 
+ServiceStack re-uses the custom artefacts above and with zero-config and without imposing any extra 
 burden on the developer adds discover-ability and provides hosting of your web service on a number 
 of different physical end-points which as of today includes: 
  
@@ -430,7 +430,7 @@ Comparatively there is almost no win for a remote RPC API, except to maybe [hide
   - [Great example showing how you can re-use ServiceStack services in Websites and REST APIs](http://northwind.mattjcowan.com/customers) by [@mattjcowan](https://twitter.com/mattjcowan)
   - [RESTful Data Services in .NET](https://coldie.net/?tag=servicestack)
   - [Making mPACT API Better](https://web.archive.org/web/20130401041733/http://blog.mblast.com/mbwordpress/mpact-api/making-mpact-api-better/) by [@mBLAST](https://twitter.com/mBLAST)
-  - ["Service Stack" framework](http://dragansr.blogspot.com/2012/12/service-stack-framework) by [@dragansr](https://twitter.com/dragansr)
+  - ["ServiceStack" framework](http://dragansr.blogspot.com/2012/12/service-stack-framework) by [@dragansr](https://twitter.com/dragansr)
   - [servicestack.net – Skip WCF and use this](http://fafx.wordpress.com/category/tools/servicestack-net/) by [thefafxproject](http://fafx.wordpress.com/)
   - [Libraries and components used by DiceFeud](http://dicefeud.blogspot.se/2012/08/libraries-and-components) by [John Hård](http://www.blogger.com/profile/17364481663076074340)
   - [ServiceStack: a good alternative to WCF (French)](http://sgbd.arbinada.com/node/77)

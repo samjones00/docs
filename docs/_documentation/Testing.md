@@ -299,5 +299,5 @@ This example doesn't need a container as we're injecting all the dependencies ma
 ### Stack Overflow
 
   - [Unit Test HTTPRequest Headers with ServiceStack](http://stackoverflow.com/a/14791657/85785)
-  - [Service stack and Mocking, any tutorials?](http://stackoverflow.com/a/9587745/85785)
+  - [ServiceStack and Mocking, any tutorials?](http://stackoverflow.com/a/9587745/85785)
   - [How do you mock ServiceStack ISession using Moq and StructureMap?](http://stackoverflow.com/a/15012300/85785)

@@ -25,7 +25,7 @@ ServiceStack supports running on [Mono](http://www.mono-project.com).
   - [Creating a Link Description for Xamarin.Android and ServiceStack.Text](http://spiritmachineblog.tumblr.com/post/52943080201/creating-a-link-description-for-xamarin-android-and) by [@spiritmachine](https://twitter.com/spiritmachine)
   - [Atomic Mono deployment with capistrano and nginx under debian](http://blogs.7digital.com/dev/2012/09/25/atomic-mono-deployment-with-capistrano-and-nginx-under-debian/) by [@7digital](https://twitter.com/7digital)
   - [Lessons learnt whilst using ServiceStack](http://blogs.7digital.com/dev/2012/09/20/lessons-learnt-whilst-using-servicestack-on-mono-and-debian/) by [@7digital](https://twitter.com/7digital)
-  - [Service Stack walk through with Screenshots on MonoDevelop](http://www.ienablemuch.com/2012/04/servicestack-setup-screenshots-guide.html) by [@ienablemuch](https://twitter.com/ienablemuch)
+  - [ServiceStack walk through with Screenshots on MonoDevelop](http://www.ienablemuch.com/2012/04/servicestack-setup-screenshots-guide.html) by [@ienablemuch](https://twitter.com/ienablemuch)
   - [Time for a REST: How ServiceStack solved our mono woes](http://blog.teadriven.me.uk/2012/03/time-for-rest.html) by [@teadriven](https://twitter.com/teadriven)
   - [Chocolate & Peanut Butter - Running ServiceStack.net on Manos de Mono](http://johnacarruthers.posterous.com/chocolate-peanut-butter-running-servicestackn) by [@johnacarruthers](https://twitter.com/johnacarruthers)
   - [ServiceStack and MonoTouch](http://www.distribucon.com/blog/ServiceStackAndMonoTouch.aspx) by [@danmiser](https://twitter.com/danmiser)
