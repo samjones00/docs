@@ -106,20 +106,20 @@ ServiceStack's clean Web Services design makes it simple and intuitive to be abl
 ```html
 <div>
     <div>
-        <input class="form-control input-lg" id="Name" type="text" placeholder="Type your name">
-        <p id="helloResult" style="margin-top: 15px;font-size: large"></p>
+        <input class="form-control" id="Name" type="text" placeholder="Type your name">
+        <p id="result"></p>
     </div>
 </div>
 <script>
     $('#Name').keyup(function () {
-        var name = $('#Name').val();
+        var name = $(this).val();
         if (name) {
             $.getJSON('/hello/' + name)
                 .success(function (response) {
-                    $('#helloResult').html(response.Result);
+                    $('#result').html(response.Result);
                 });
         } else {
-            $('#helloResult').html('');
+            $('#result').html('');
         }
     });
 </script>
