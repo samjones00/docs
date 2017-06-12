@@ -3,9 +3,10 @@ title: Why Remote Services should use DTOs?
 slug: why-remote-services-use-dtos
 ---
 
-There shouldn't be any question as to whether Remote Services should have Typed DTOs, Types provide several productivity and compiler benefits when used within the same solution, they're especially more useful across process boundaries where they're 
-the only mechanical tool that will be able to determine if Remote Services are being consumed correctly, mitigating run-time 
-errors from making it into production where they'll ultimately be discovered by end-users who'll exhaust untested corner cases.
+Types provide several productivity and compiler benefits when used within the same solution, they're especially more useful 
+across process boundaries where they're the only mechanical tool that will be able to determine if Remote Services are being 
+consumed correctly, mitigating run-time errors from making it into production where they'll ultimately be discovered by 
+end-users who'll exhaust untested corner cases.
 
 ## The Service Layer is your most important Contract
 

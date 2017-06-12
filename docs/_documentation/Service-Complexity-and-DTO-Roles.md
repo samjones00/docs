@@ -10,7 +10,7 @@ pursuit for simplicity and seeking out the simplest solutions, with minimal abst
 any given problem. 
 
 Since its inception in 2008, this philosophy has helped ServiceStack become the most versatile 
-Services framework in the world - supporting an unparalleled number of  
+Services framework in the world - supporting an unparalleled number of 
 [Pluggable Formats](/why-servicestack#multiple-pluggable-formats), 
 multitude of [HTTP, SOAP and MQ Endpoints](/why-servicestack#multiple-endpoints)
 that can be hosted in an [variety of hosting scenarios](/why-servicestack#multiple-hosting-options) whilst 
@@ -23,7 +23,7 @@ and failed HTTP abstractions in its wake, ServiceStack has managed to stay lean,
 evolve a single code-base to support each major HTTP Host delivered with .NET with Orders of magnitude less resources.
 This was only achievable due to our relentness pursuit of simplicity, focus on underlying value, 
 [rewriting ugly encumbered providers](/architecture-overview)
-whilst actively rejecting aggressively marketed  
+whilst actively rejecting aggressively marketed 
 [unnecessary complexity and abstractions](https://www.infoq.com/articles/interview-servicestack) and slow
 [bloated technologies promoting anti-patterns](/why-not-odata) whose resulting value does not justify the level of 
 investment and effort required. We hope our experience can provide a valuable insight to help decide what areas to 
