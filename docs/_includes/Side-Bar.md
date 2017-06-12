@@ -2,7 +2,7 @@
 - Overview
     - [Why ServiceStack?](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
-    - [Live Demos](https://github.com/ServiceStackApps/LiveDemos)
+    - [Live Demos](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
 - Releases
     - [Latest Release Notes](/releases/v4.5.10)
     - [2017 Summary](/releases/)
