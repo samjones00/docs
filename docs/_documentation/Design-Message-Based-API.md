@@ -4,7 +4,7 @@ slug: design-message-based-apis
 ---
 
 To give you a flavor of the differences you should think about when designing message-based services in ServiceStack we'll 
-provide some examples comparing WCF/WebApi vs ServiceStack's approach:
+look at some examples to contrast WCF/WebApi vs ServiceStack's approach:
 
 ## WCF vs ServiceStack API Design
 
@@ -35,7 +35,8 @@ public class Customers : IReturn<List<Customer>>
     
 The important concept to keep in mind is that the entire query (aka Request) is captured in the Request Message 
 (i.e. Request DTO) and not in the server method signatures. The obvious immediate benefit of adopting a message-based 
-design is that any combination of the above RPC calls can be fulfilled in 1 remote message, by a single service implementation.
+design is that any combination of the above RPC calls can be fulfilled in 1 remote message, by a single service implementation 
+which improves cacheability and simplifies maintenance and testing with the reduced API surface area.
 
 ## WebApi vs ServiceStack API Design
 
@@ -133,25 +134,26 @@ Again capturing the essence of the Request in the Request DTO. The message-based
 It's grouped into 2 different services in this example based on **Call Semantics** and **Response Types**:
 
 Every property in each Request DTO has the same semantics that is for `SearchProducts` each property acts like a Filter 
-(e.g. an AND) whilst in `GetProduct` it acts like a combinator (e.g. an OR). The Services also return `IEnumerable<Product>` 
+(e.g. an AND) whilst in `GetProduct` it acts like a combinator (e.g. an OR). The Services also return `List<Product>` 
 and `Product` return types which will require different handling in the call-sites of Typed APIs.
 
 In WCF / WebAPI (and other RPC services frameworks) whenever you have a client-specific requirement you would add a new 
-Server signature on the controller that matches that request. In ServiceStack's message-based approach however you 
-should always be thinking about where this feature belongs and whether you're able to enhance existing services. 
+Server signature on the controller that matches that request. In ServiceStack's message-based approach however you're 
+instead encouraged to think about where this feature intuitively fits and whether you're able to enhance existing services. 
 You should also be thinking about how you can support the client-specific requirement in a **generic way** so that the 
 same service could benefit other future potential use-cases.
 
 # Separate One and Many Get Services
 
-With the info above we can start re-factoring your services. Since you have 2 different services that return different results 
-e.g. `GetBooking` returns 1 item and `GetBookings` returns many, they need to be kept in different services.
+We can use the above context as a guide to design new Services. If we needed to design a Bookings System that needed an API
+to return **All Bookings** and a **Single Booking** we'd use a separate Services as they'd have different Response Types, e.g. 
+`GetBooking` returns 1 booking whilst `GetBookings` returns many.
 
 ### Distinguish Service Operations vs Types 
 
-There should be a clean split between your Service Operations (e.g. Request DTO) which is unique per service and is 
-used to capture the Services' request, and the DTO types they return. Request DTOs are usually actions so they're verbs, 
-whilst DTO types are entities/data-containers so they're nouns. 
+There should be a clean split between your Operations (aka Request DTOs) which is unique per service and is used to capture the 
+Services' request, and the DTO types they return. Request DTOs are usually actions so they're verbs, whilst DTO types are 
+entities/data-containers so they're nouns. 
 
 ### Returning naked collections
 
@@ -159,13 +161,14 @@ ServiceStack can return naked collections that [don't require a ResponseStatus](
 since if it doesn't exist the generic `ErrorResponse` DTO will be thrown and serialized on the client instead which frees you 
 from having your Responses contain `ResponseStatus` property. 
 
-### Returning explicit Response DTOs
+### Returning coarse-grained Response DTOs
 
 However since they offer better versionability that can later be extended to return more results without breaking existing 
-clients we prefer having explicit Response DTO for each Service, although this is entirely optional. So our preferred 
+clients we prefer specifying explicit Response DTOs for each Service, although this is entirely optional. So our preferred 
 message-based would look similar to:
 
 ```csharp
+// Operations
 [Route("/bookings/{Id}")]
 public class GetBooking : IReturn<GetBookingResponse>
 {
@@ -175,16 +178,7 @@ public class GetBooking : IReturn<GetBookingResponse>
 public class GetBookingResponse
 {
     public Booking Result { get; set; }
-    public ResponseStatus ResponseStatus { get; set; }
-}
-
-public class Booking
-{
-    public int Id { get; set; }
-    public int ShiftId { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-    public int Limit { get; set; }
+    public ResponseStatus ResponseStatus { get; set; } // inject structured errors
 }
 
 [Route("/bookings/search")]
@@ -196,11 +190,21 @@ public class SeachBookings : IReturn<SeachBookingsResponse>
 public class SeachBookingsResponse
 {
     public List<BookingLimit> Results { get; set; }
-    public ResponseStatus ResponseStatus { get; set; }
+    public ResponseStatus ResponseStatus { get; set; } // inject structured errors 
+}
+
+// Types
+public class Booking
+{
+    public int Id { get; set; }
+    public int ShiftId { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public int Limit { get; set; }
 }
 ```
 
-For **GET** requests we tend to leave them out of the `[Route]` definition when they're not ambiguous as it's less code.
+When they're not ambiguous we'll typiclly leave out specifying the **Verb** in `[Route]` definitions for **GET** Requests as its unnecessary.
 
 ### Using AutoQuery
 
@@ -216,16 +220,16 @@ public class SeachBookings : QueryDb<Booking>
 }
 ```
 
-But no implementation is needed as AutoQuery automatically creates the optimal implementation.
+But no implementation is needed as AutoQuery automatically creates the optimal implementation. AutoQuery also supports [Implicit Conventions](/autoquery-rdbms#implicit-conventions) where you're able to filter by any of `Booking` table columns without any additional code or effort.
 
 ### Keep a consistent Nomenclature
 
 You should reserve the word **Get** on services which query on unique or Primary Keys fields, i.e. when a supplied value 
-matches a field (e.g. Id) it only **Gets** 1 result. For search services that acts like a filter and returns multiple 
-matching results which falls within a desired range we recommend using either the **Find** or **Search** verbs to signal 
-that this is the case.
+matches a field (e.g. Id) it only **Gets** 1 result. For "Search Services" that acts like a filter and returns multiple 
+matching results which falls within a desired range we recommend using prefixing Services with the **Search** or **Find** verbs 
+to signal the behavior of the Service.
 
-### Aim for self-describing Service Contracts
+### Self-describing Service Contracts
 
 Also try to be descriptive with each of your field names, these properties are part of your **public API** and should be 
 self-describing as to what it does. E.g. By just looking at the Service Contract (e.g. Request DTO) we'd have no idea what 
@@ -237,39 +241,37 @@ The benefit of this is now the call-sites of your [Typed .NET clients](/csharp-c
 ```csharp
 Product product = client.Get(new GetProduct { Id = 1 });
 
-var response = client.Get(
-    new SearchBookingLimits { BookedAfter = DateTime.Today });
+var response = client.Get(new SearchBookings { BookedAfter = DateTime.Today });
 ```
 
 ## Service implementation
 
-I've removed the `[Authenticate]` attribute from your Request DTOs since you can instead just specify it once on the 
-Service implementation, which now looks like:
+[Filter Attributes](/filter-attributes) can be applied on either the **class** or **method** level, so when you need to secure all Operations within a given Service you can just annotate the top-level Service class with the `[Authenticate]`, e.g:
 
 ```csharp
 [Authenticate]
-public class BookingLimitService : AppServiceBase 
+public class BookingsService : Service 
 { 
-    public BookingLimit Get(GetBookingLimit request) { ... }
+    public object Get(GetBooking request) => ...;
 
-    public BookingsResponse Get(SearchBookingLimits request) { ... }
+    public object Get(SearchBookings request) => ...;
 }
 ```
 
 ## Error Handling and Validation
 
 For info on how to add validation you either have the option to just [throw C# exceptions](/error-handling#throwing-c-exceptions) 
-and apply your own customizations to them, otherwise you have the option to use the built-in [Fluent Validation](/validation) 
-but you don't need to inject them into your service as you can wire them all with a single line in your AppHost, e.g:
+and apply your own customizations to them. You also have the option to use the built-in [Fluent Validation](/validation) 
+but you don't need to inject them into your service as they can all be registered with a single line in your AppHost, e.g:
 
 ```csharp
 container.RegisterValidators(typeof(CreateBookingValidator).Assembly);
 ```
 
 Validators are no-touch and invasive free meaning you can add them using a layered approach and maintain them without 
-modifying the service implementation or DTO classes. Since they require an extra class I would only use them on operations 
-with side-effects (e.g. POST/PUT) as GETs' tend to have minimal validation and throwing a C# Exception requires less 
-boiler plate. So an example of a validator you could have is when first creating a booking:
+modifying the service implementation or DTO classes. Since they require an extra class We'd only use them on operations 
+with side-effects e.g. **POST** or **PUT**, as **GET** requests tend to have minimal validation so throwing C# Exceptions 
+typically requires less boilerplate. Here's an example of a validator you could have when creating a Booking:
 
 ```csharp
 public class CreateBookingValidator : AbstractValidator<CreateBooking>
@@ -284,4 +286,4 @@ public class CreateBookingValidator : AbstractValidator<CreateBooking>
 ```
 
 Depending on the use-case instead of having separate `CreateBooking` and `UpdateBooking` DTOs you could re-use the same 
-`StoreBooking` Request DTO to handle both.
+`StoreBooking` Request DTO to handle both operations.
