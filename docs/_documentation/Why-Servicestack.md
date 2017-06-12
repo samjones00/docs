@@ -394,13 +394,13 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
 
 - **Windows, OSX or Linux**
   - **.NET Framework or Mono**
-    - [Any ASP.NET host](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WebHost)
-    - [A Stand-alone, self-hosted HttpListener](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.SelfHost)
+    - [Any ASP.NET host](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
+    - [Stand-alone, Self-Hosted HttpListener](/self-hosting)
     - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
   - **.NET Core**
-    - [Web App or SelfHost](https://github.com/NetCoreApps/RazorRockstars)
+    - [Web App or SelfHost](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
 - **Windows**
-  - [A Stand-alone Windows Service](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WinService)
+  - [Stand-alone Windows Service](/templates-windows-service)
   - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
   - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
 - **OSX**
