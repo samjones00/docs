@@ -85,15 +85,9 @@ By contrast we've witnessed .NET devs struggling to implement much fewer SOAP we
 
 Unfortunately despite Microsoft having hosted Martin Fowler's respected [Data Transfer Object](http://msdn.microsoft.com/en-us/library/ff649585.aspx) and [Service Gateway](http://msdn.microsoft.com/en-us/library/ff650101.aspx) patterns on MSDN for years - none of their web frameworks have encouraged their use. Instead in .NET we've been forced to code against the multiple generation of replacement web service frameworks they've churned out over the years like .asmx, CSF, WCF, WCF/REST, WSE, WCF DataServices, RIA, MVC (escaping earlier cruft) and now WebApi. Each of these frameworks share the same mistake of mapping to C# methods, which we believe is a terrible idea for network  services since it promotes chatty and brittle remote interfaces, that fail to facilitate the easy creation of SOA-like Apis. 
 
-Throughout all these generations of frameworks ServiceStack's underlying core [IService<T> interface](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IService.cs) has remained constant - with its simple Execute method:
-
-```csharp
-public interface IService<T> {
-    object Execute(T request);
-}
-```
-
-Which we've simplified even further in the [New API](/api-design) to just an empty marker interface:
+Throughout all these generations of frameworks ServiceStack's underlying core message-based design has remained 
+a constant powerful primitive that drives much of its simplicity. At a minimum ServiceStack Services just need 
+to implement the empty marker interface:
 
 ```csharp
 public interface IService { }
@@ -104,11 +98,11 @@ Which lets you handle any HTTP Verb, as well as a 'Catch All' **Any** fall-back 
 ```csharp
 public class MyService : IService 
 {
-    public Response Get(Request request){...}
-    public Response Post(Request request){...}
+    public Response Get(Request request)  => ...;
+    public Response Post(Request request) => ...;
 
     //Fallback for Anything else e.g DELETE, PUT, PATCH, OPTIONS, etc.
-    public Response Any(Request request){...} 
+    public Response Any(Request request)  => ...;
 }
 ```
 

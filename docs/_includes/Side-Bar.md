@@ -13,15 +13,15 @@
     - [Create a WebService from scratch](/create-webservice-from-scratch)
     - [ServiceStack's API Design](/api-design)
     - [Design RESTful Services](/design-rest-services)
-    - [Desig Message-Based APIs](/design-message-based-apis)
+    - [Desig Message-based APIs](/design-message-based-apis)
 - VS.NET Templates
     - [Overview](/templates-overview) 
     - [Webpack Single Page Apps](/templates-single-page-apps)
 - Background Concepts
-    - [What is a message-based WebService?](/what-is-a-message-based-web-service)
+    - [What is a Message-based WebService?](/what-is-a-message-based-web-service)
     - [Advantages of message-based WebServices](/advantages-of-message-based-web-services)
-    - [Why remote services should use DTOs?](http://stackoverflow.com/a/15369736/85785)
-    - [Complexity, Services and Role of DTOs](http://stackoverflow.com/a/32940275/85785)
+    - [Why Remote Services should use DTOs?](/why-remote-services-use-dtos)
+    - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
 - Reference
     - [IOC](/ioc)
     - [Routing](/routing)
