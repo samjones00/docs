@@ -392,24 +392,19 @@ Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can 
 
 In addition to supporting multiple formats and endpoints, ServiceStack can also be hosted within a multitude of differeint hosting options:
 
-#### Windows, OSX or Linux
-
-- **.NET Framework or Mono**
-  - [Any ASP.NET host](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WebHost)
-  - [A Stand-alone, self-hosted HttpListener](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.SelfHost)
-  - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
-- **.NET Core**
-  - [Web App or SelfHost](https://github.com/NetCoreApps/RazorRockstars)
-
-#### Windows
-
-- [A Stand-alone Windows Service](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WinService)
-- [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
-- [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
-
-#### OSX
-
-- [Hosted inside Mac OSX Cocoa App with Xmarain.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
+- **Windows, OSX or Linux**
+  - **.NET Framework or Mono**
+    - [Any ASP.NET host](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WebHost)
+    - [A Stand-alone, self-hosted HttpListener](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.SelfHost)
+    - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
+  - **.NET Core**
+    - [Web App or SelfHost](https://github.com/NetCoreApps/RazorRockstars)
+- **Windows**
+  - [A Stand-alone Windows Service](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WinService)
+  - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
+  - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
+- **OSX**
+  - [Hosted inside Mac OSX Cocoa App with Xmarain.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
 
 ### VS.NET Templates
 

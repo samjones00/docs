@@ -4,7 +4,7 @@ slug: architecture-overview
 
 Ultimately behind-the-scenes ServiceStack is just built on top of ASP.NET's Raw 
 [IHttpAsyncHandler](https://msdn.microsoft.com/en-us/library/ms227433.aspx). 
-Existing abstractions and xmlconfig-encumbered legacy ASP.NET providers have been abandoned, 
+Existing abstractions and [xmlconfig-encumbered legacy ASP.NET providers](http://mono.servicestack.net/mvc-powerpack/) have been abandoned, 
 in favour of fresh, simple and clean [Caching](/caching), [Session](/sessions) 
 and [Authentication](/authentication-and-authorization) providers all based on clean POCOs, 
 supporting multiple back-ends and all working seamlessly together. Our best-practices 
