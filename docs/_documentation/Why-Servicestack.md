@@ -379,7 +379,7 @@ of different formats, including:
    - [Razor](http://razor.servicestack.net/)
    - [Markdown Razor](/markdown-razor)
 
-#### Multiple Endpoints
+### Multiple Endpoints
 
 Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can also be consumed from [SOAP 1.1 and 1.2](/soap-support) endpoints as well as a number of [MQ Servers](/messaging):
 
@@ -394,24 +394,28 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
 
 #### Windows, OSX or Linux
 
- - **.NET Framework or Mono**
-   - [Any ASP.NET host](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WebHost)
-   - [A Stand-alone, self-hosted HttpListener](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.SelfHost)
-   - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
- - **.NET Core**
-    [Web App or SelfHost](https://github.com/NetCoreApps/RazorRockstars)
+- **.NET Framework or Mono**
+  - [Any ASP.NET host](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WebHost)
+  - [A Stand-alone, self-hosted HttpListener](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.SelfHost)
+  - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
+- **.NET Core**
+  - [Web App or SelfHost](https://github.com/NetCoreApps/RazorRockstars)
 
 #### Windows
 
-   - [A Stand-alone Windows Service](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WinService)
-   - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
-   - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
+- [A Stand-alone Windows Service](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.WinService)
+- [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
+- [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
 
 #### OSX
 
-   - [Hosted inside Mac OSX Cocoa App with Xmarain.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
+- [Hosted inside Mac OSX Cocoa App with Xmarain.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
 
-The [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps) VS.NET Template provides an easy and integrated way to host a Single Page React App on multiple platforms.
+### VS.NET Templates
+
+There's a [VS.NET Template](/templates-overview) for creating solutions targeting most of the above platforms.
+
+E.g. the [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps) VS.NET Template provides an easy and integrated way to host a Single Page React App on multiple platforms.
 
 ### WCF the anti-DTO Web Services Framework
 
