@@ -13,21 +13,21 @@ Since its inception in 2008, this philosophy has helped ServiceStack become the 
 Services Framework - supporting an unparalleled number of 
 [Pluggable Formats](/why-servicestack#multiple-pluggable-formats), 
 multitude of [HTTP, SOAP and MQ Endpoints](/why-servicestack#multiple-endpoints)
-that can be hosted in an [variety of hosting scenarios](/why-servicestack#multiple-hosting-options) whilst 
-providing a succinct, end-to-end Typed API for the most popular 
+that can be hosted in a [variety of hosting scenarios](/why-servicestack#multiple-hosting-options) whilst 
+providing a productive succinct, end-to-end Typed API for the most popular 
 [native Mobile and Desktop](http://docs.servicestack.net/add-servicestack-reference)
 and [.NET platforms](https://github.com/ServiceStackApps/HelloMobile#client-applications). 
 In the time other vendors have left a 
 [number of abandoned frameworks](/advantages-of-message-based-web-services#the-many-webservice-frameworks-of-microsoft) 
-and failed HTTP abstractions behind for its next framework rewrite, ServiceStack has managed to stay lean, fast and 
-continually enhance and evolve its single code-base to support each major HTTP Host delivered with .NET with an order of 
-magnitude less resources. This was only achievable due to our relentness pursuit of simplicity, focus on underlying value, 
+and failed HTTP abstractions behind for their next framework rewrite, ServiceStack has managed to stay lean, fast and 
+continually enhance and evolve its single code-base to support every major HTTP Host delivered with .NET with an order of 
+magnitude less resources. This is only achievable due to our relentness pursuit of simplicity, focus on underlying value, 
 [rewriting friction-encumbered providers](/architecture-overview)
 whilst actively rejecting 
 [unnecessary complexity and abstractions](https://www.infoq.com/articles/interview-servicestack) and slow
 [bloated technologies promoting well-known anti-patterns](/why-not-odata) whose resulting value does not justify the 
 level of investment and effort required to adopt it. We hope our experience can provide valuable insight and help 
-decide what areas to focus on and which to avoid.
+with deciding what areas to focus on and which to avoid.
 
 ## Software's biggest enemy
 
