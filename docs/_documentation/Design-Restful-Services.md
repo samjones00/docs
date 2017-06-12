@@ -1,5 +1,5 @@
 ---
-title: Design RESTful Services with ServiceStack
+title: Design RESTful Services
 slug: design-rest-services
 ---
 
