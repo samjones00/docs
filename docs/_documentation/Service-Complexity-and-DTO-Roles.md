@@ -9,8 +9,8 @@ when and how we should adopt patterns. The overarching theme that has served us 
 pursuit for simplicity and seeking out the simplest solutions, with minimal abstractions, concepts that best solves 
 any given problem. 
 
-Since its inception in 2008, this philosophy has helped ServiceStack become the most versatile 
-Services framework in the world - supporting an unparalleled number of 
+Since its inception in 2008, this philosophy has helped ServiceStack become the worlds most versatile 
+Services framework - supporting an unparalleled number of 
 [Pluggable Formats](/why-servicestack#multiple-pluggable-formats), 
 multitude of [HTTP, SOAP and MQ Endpoints](/why-servicestack#multiple-endpoints)
 that can be hosted in an [variety of hosting scenarios](/why-servicestack#multiple-hosting-options) whilst 
@@ -18,16 +18,16 @@ providing a succinct, end-to-end Typed API for the most popular
 [native Mobile and Desktop](http://docs.servicestack.net/add-servicestack-reference)
 and [.NET platforms](https://github.com/ServiceStackApps/HelloMobile#client-applications). 
 In the time other vendors have left a 
-[graveyard of abandoned frameworks](/advantages-of-message-based-web-services#the-many-webservice-frameworks-of-microsoft) 
-and failed HTTP abstractions in its wake, ServiceStack has managed to stay lean, fast and continually enhance and 
-evolve a single code-base to support each major HTTP Host delivered with .NET with Orders of magnitude less resources.
+[number of abandoned frameworks](/advantages-of-message-based-web-services#the-many-webservice-frameworks-of-microsoft) 
+and failed HTTP abstractions behind for its next rewrite, ServiceStack has managed to stay lean, fast and continually enhance and 
+evolve its single code-base to support each major HTTP Host delivered with .NET with an Order of magnitude less resources.
 This was only achievable due to our relentness pursuit of simplicity, focus on underlying value, 
-[rewriting ugly encumbered providers](/architecture-overview)
-whilst actively rejecting aggressively marketed 
+[rewriting friction-encumbered providers](/architecture-overview)
+whilst actively rejecting 
 [unnecessary complexity and abstractions](https://www.infoq.com/articles/interview-servicestack) and slow
-[bloated technologies promoting anti-patterns](/why-not-odata) whose resulting value does not justify the level of 
-investment and effort required. We hope our experience can provide a valuable insight to help decide what areas to 
-focus on and which to avoid.
+[bloated technologies promoting well-known anti-patterns](/why-not-odata) whose resulting value does not justify the 
+level of investment and effort required to adopt the technology. We hope our experience can provide a valuable 
+insight to help decide what areas to focus on and which to avoid.
 
 ## Software's biggest enemy
 
