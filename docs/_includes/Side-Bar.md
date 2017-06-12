@@ -12,8 +12,8 @@
     - [Your first WebService explained](/your-first-webservice-explained)
     - [Create a WebService from scratch](/create-webservice-from-scratch)
     - [ServiceStack's API Design](/api-design)
-    - [Designing RESTful Services](/design-rest-services)
-    - [Designing a Message-Based API](/design-message-based-apis)
+    - [Design RESTful Services](/design-rest-services)
+    - [Desig Message-Based APIs](/design-message-based-apis)
 - VS.NET Templates
     - [Overview](/templates-overview) 
     - [Webpack Single Page Apps](/templates-single-page-apps)

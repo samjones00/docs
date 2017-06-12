@@ -143,7 +143,7 @@ instead encouraged to think about where this feature intuitively fits and whethe
 You should also be thinking about how you can support the client-specific requirement in a **generic way** so that the 
 same service could benefit other future potential use-cases.
 
-# Separate One and Many Get Services
+### Separate One and Many Services
 
 We can use the above context as a guide to design new Services. If we needed to design a Bookings System that needed an API
 to return **All Bookings** and a **Single Booking** we'd use a separate Services as they'd have different Response Types, e.g. 
