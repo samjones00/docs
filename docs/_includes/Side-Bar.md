@@ -1,6 +1,6 @@
 
 - Overview
-    - [Why ServiceStack?](/why-servicestack)
+    - [Why ServiceStack](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
     - [Live Demos](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
 - Releases

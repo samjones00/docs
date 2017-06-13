@@ -1,6 +1,6 @@
 ---
 slug: why-servicestack
-title: Why ServiceStack?
+title: Why ServiceStack
 ---
 
 Developed in the modern age, ServiceStack provides an alternate, cleaner POCO-driven way of creating web services.
