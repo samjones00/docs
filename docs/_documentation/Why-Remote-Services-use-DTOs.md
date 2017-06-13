@@ -1,5 +1,5 @@
 ---
-title: Why Remote Services should use DTOs?
+title: Why Remote Services should use DTOs
 slug: why-remote-services-use-dtos
 ---
 

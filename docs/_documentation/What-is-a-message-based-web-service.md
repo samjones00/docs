@@ -1,6 +1,6 @@
 ---
 slug: what-is-a-message-based-web-service
-title: What is a message-based WebService?
+title: What is a Message-based WebService
 ---
 
 Answer from [ServiceStack's interview on InfoQ](http://www.infoq.com/articles/interview-servicestack-2):
