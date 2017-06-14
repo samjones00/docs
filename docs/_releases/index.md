@@ -29,7 +29,7 @@ With these goals in mind we've hand-picked and integrated a number of simple bes
 
  - Integrated Bootstrap v4 UI framework and font-awesome Vector Icons
    - Angular4 uses the more natural Material Design Lite UI framework and Design Icons 
- - High-level TypeScrpt and Sass support andstandard .js or .css when preferred
+ - High-level TypeScript and Sass support andstandard .js or .css when preferred
  - End-to-end Typed APIs pre-configured with TypeScript JsonServiceClient and Server DTOs
  - All templates have Routing Enabled in a Multi-page Layout
  - Deep linkable Pretty URLs
