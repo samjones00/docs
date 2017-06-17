@@ -69,8 +69,7 @@
     - [Razor Notes](/razor-notes)
     - [View and Template Selection](/view-and-template-selection)
     - [Compiled Razor Views](/compiled-razor-views)
-    - [Razor Views vs Content Pages](http://stackoverflow.com/questions/13206038/servicestack-razor-default-page/13206221#13206221)
-    - [Self-Hosted Razor Views](http://www.ienablemuch.com/2012/12/self-hosting-servicestack-serving.html) 
+    - [Razor Views vs Content Pages](/razor-views-vs-content-pages)
     - [Markdown Razor](/markdown-razor)
 - Hosts
     - [IIS](/iis)
