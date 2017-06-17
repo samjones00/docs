@@ -3,6 +3,16 @@ title: Webpack Single Page App Templates
 slug: templates-single-page-apps
 ---
 
+The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
+
+ - Angular4 App
+ - Aurelia App
+ - React App
+ - React Desktop Apps
+ - Vue App
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](/templates-single-page-apps)
+
 All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. 
  
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/webpack-overview.png)](https://webpack.js.org)
