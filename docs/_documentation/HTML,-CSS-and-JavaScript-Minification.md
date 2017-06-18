@@ -34,7 +34,7 @@ htmlCompressor.RemoveComments = false;
 
 ### Easy win for server generated websites
 
-If your project is not based off one of our optimized Gulp/Grunt.js powered [React JS and AngularJS Single Page App templates](https://github.com/ServiceStack/ServiceStackVS) or configured to use our eariler [node.js-powered Bundler](https://github.com/ServiceStack/Bundler) Web Optimization solution, these built-in minifiers now offers the easiest solution to effortlessly optimize your existing website which is able to work transparently with your existing Razor Views and static `.js`, `.css` and `.html` files without requiring adding any additional external tooling or build steps to your existing development workflow.
+If your project is not based off one of our optimized [Webpack-powered Single Page App templates](/templates-single-page-apps) or configured to use our eariler [node.js-powered Bundler](https://github.com/ServiceStack/Bundler) Web Optimization solution, these built-in minifiers now offers the easiest solution to effortlessly optimize your existing website which is able to work transparently with your existing Razor Views and static `.js`, `.css` and `.html` files without requiring adding any additional external tooling or build steps to your existing development workflow.
 
 ### Minify dynamic Razor Views
 
