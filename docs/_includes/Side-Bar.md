@@ -119,7 +119,7 @@
  - Utils
     - [HTTP Utils](/http-utils)
     - [Dump Utils](/dump-utils)
-    - [Reflection Utils](/relfection-utils)
+    - [Reflection Utils](/reflection-utils)
     - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - Caching
     - [Overview](/caching)

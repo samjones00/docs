@@ -1,6 +1,6 @@
 ---
-title: Relfection Utils
-slug: relfection-utils
+title: Reflection Utils
+slug: reflection-utils
 ---
 
 Most of ServiceStack's libraries relies on the high-performance reusable utilities in ServiceStack.Text to power many of its features. 
