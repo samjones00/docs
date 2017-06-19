@@ -33,4 +33,9 @@ This is an especially important approach to take whenever implementing service-i
 
 ### Adopted by most leading distributed frameworks
 
-Benefits of message-based designs are already well-known to developers of [leading distributed frameworks](http://www.servicestack.net/files/messaging.htm) who have adopted message-based designs in leading platforms, e.g: Google's Protocol Buffers, Amazon's Web Services platform, Erlang processes, F# mailboxes, Scala's Actors, Go's Channels, Dart's Isolates and Clojure's agents, etc.
+Benefits of message-based designs are already well-known to developers of leading distributed frameworks who have adopted message-based designs in leading platforms, e.g: Google's Protocol Buffers, Amazon's Web Services platform, Erlang processes, F# mailboxes, Scala's Actors, Go's Channels, Dart's Isolates and Clojure's agents, etc.
+
+![Message-based Services in ServiceStack](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-servicestack-csharp.png)
+![Concurrency in F#](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-fsharp.png)
+![Google Protobuf Messages](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-google-protobuf.png)
+![Scala and Go Actors](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-scala-actors.png)
