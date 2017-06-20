@@ -39,7 +39,7 @@ Benefits of message-based designs are already well-known to developers of leadin
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-servicestack-csharp.png)
 
-### Message-based Services in AWS clients
+### Message-based Services in AWS
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-simpledb-csharp.png)
 
