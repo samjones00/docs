@@ -31,11 +31,30 @@ More importantly, message-based designs encourage the design of coarse-grained a
 
 This is an especially important approach to take whenever implementing service-intensive systems like SOA platforms, as services routinely end up out-living and serving more clients that the original client that consume them, so it's important not to have your service APIs driven by adhoc client-specific requirements. It's more useful to think about designing APIs from the system's perspective with the goal of exposing the underlying systems capabilities in a generically re-usable API. This is the main reason why I now only ever adopt message-based designs for all my services endpoints as Coarse-grained APIs naturally encourage the design of more re-usable and feature-rich APIs.
 
-### Adopted by most leading distributed frameworks
+## Adopted by most leading distributed frameworks
 
 Benefits of message-based designs are already well-known to developers of leading distributed frameworks who have adopted message-based designs in leading platforms, e.g: Google's Protocol Buffers, Amazon's Web Services platform, Erlang processes, F# mailboxes, Scala's Actors, Go's Channels, Dart's Isolates and Clojure's agents, etc.
 
-![Message-based Services in ServiceStack](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-servicestack-csharp.png)
-![Concurrency in F#](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-fsharp.png)
-![Google Protobuf Messages](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-google-protobuf.png)
-![Scala and Go Actors](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-scala-actors.png)
+### Message-based Services in ServiceStack
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-servicestack-csharp.png)
+
+### Message-based Services in AWS clients
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-simpledb-csharp.png)
+
+### Concurrency in F# - Erlang Style Message Passing  
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-fsharp.png)
+
+### Google Protobuf Messages
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-google-protobuf.png)
+
+### Scala Actors
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-scala-actors.png)
+
+### Go Channels
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/messaging/example-go-channels.png)
