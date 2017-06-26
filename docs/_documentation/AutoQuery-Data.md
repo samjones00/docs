@@ -7,6 +7,14 @@ AutoQuery Data is a new implementation that closely follows the dev model you're
 where any experience gained in creating RDBMS AutoQuery Services previously are now also applicable to 
 Querying alternative data sources as well.
 
+### Getting Started
+
+The AutoQuery Data Feature is enabled by registering:
+
+```csharp
+Plugins.Add(new AutoQueryDataFeature { MaxLimit = 100 });
+```
+
 ### Learn Once, Query Everywhere 
 
 All features from [AutoQuery RDBMS](/autoquery-rdbms) except for the RDBMS-specific 
