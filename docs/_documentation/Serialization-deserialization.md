@@ -87,7 +87,7 @@ Instead of registering a custom binder you can skip the serialization of the req
 
 ```csharp
 //Request DTO
-public class Hello : IRequiresRequestStream
+public class RawBytes : IRequiresRequestStream
 {
     /// <summary>
     /// The raw Http Request Input Stream
@@ -96,19 +96,35 @@ public class Hello : IRequiresRequestStream
 }
 ```
 
+Which tells ServiceStack to skip trying to deserialize the request
+
+```csharp
+public object Post(RawBytes request)
+{
+    byte[] bytes = request.RequestStream.ReadFully();
+    string text = bytes.FromUtf8Bytes(); //if text was sent
+}
+```
+
+### Raw SOAP Message
+
 You can access raw WCF Message when accessed with the SOAP endpoints in your Service with `IHttpRequest.GetSoapMessage()` extension method, e.g:
 
-    Message requestMsg = base.Request.GetSoapMessage();
+```csharp
+Message requestMsg = base.Request.GetSoapMessage();
+```
 
 To tell ServiceStack to skip Deserializing the SOAP request entirely, add the `IRequiresSoapMessage` interface to your Request DTO, e.g:
 
-    public class RawWcfMessage : IRequiresSoapMessage {
-    	public Message Message { get; set; }
-    }
+```csharp
+public class RawWcfMessage : IRequiresSoapMessage {
+    public Message Message { get; set; }
+}
 
-    public object Post(RawWcfMessage request) { 
-    	request.Message... //Raw WCF SOAP Message
-    }
+public object Post(RawWcfMessage request) { 
+    request.Message... //Raw WCF SOAP Message
+}
+```
 
 ### Buffering the Request and Response Streams
 
