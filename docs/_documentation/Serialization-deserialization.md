@@ -96,7 +96,7 @@ public class RawBytes : IRequiresRequestStream
 }
 ```
 
-Which tells ServiceStack to skip trying to deserialize the request
+Which tells ServiceStack to skip trying to deserialize the request so you can read in the raw HTTP Request body yourself, e.g:
 
 ```csharp
 public object Post(RawBytes request)
