@@ -32,6 +32,15 @@ return new HttpResult(responseDto) {
 };
 ```
 
+This has the same behavior for your Service Responses as creating a Custom Config Scope for adhoc Serialization that overrides Global Configuration, e.g:
+
+```csharp
+using (JsConfig.With(emitLowercaseUnderscoreNames:true, excludeDefaultValues:true))
+{
+    var json = dto.ToJson();
+}
+```
+
 ## Customize JSON Responses from Client
 
 The JSON and JSV Responses for all Services (inc. [Auto Query](/autoquery) Services) can also be further customized with the 
@@ -114,6 +123,8 @@ For a quick reference the following **bool** customizations are supported:
     <tr><td>AlwaysUseUtc</td><td>auu</td></tr>
     <tr><td>AssumeUtc</td><td>au</td></tr>
     <tr><td>AppendUtcOffset</td><td>auo</td></tr>
+    <tr><td>EscapeHtmlChars</td><td>ehc</td></tr>
+    <tr><td>EscapeUnicode</td><td>eu</td></tr>
 </table>
 
 ### DateHandler (dh)
