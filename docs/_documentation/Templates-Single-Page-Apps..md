@@ -321,7 +321,39 @@ Executing a development build of Webpack is all that's required to be able to se
 The `00-webpack-dev` and `00-webpack-watch` gulp tasks facilitate the 2 popular development modes for running webpack during development:
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/gulp-tasks.png)
+
+### Gulp Tasks
  
+ - **00-webpack-dev** - Run Webpack Dev Server proxy on port **3000** and watch for changes
+ - **00-webpack-watch** - Run Webpack watch to automatically build, watch and process changed files
+ - **01-package-server** - Used for building and staging the server components of your application
+ - **02-package-client** - Used to compile and stage your client side resources ready for deployment
+ - **03-deploy-app** - Deploys your application using msdeploy and **config.json** found in `wwwroot_build/publish`
+ - **package-and-deploy** - Perform all tasks to build, stage and deploy your application
+ - **test-coverage** - View test coverage of your existing TypeScript/JS tests
+ - **tests-run** - Run all TypeScript/JS unit and integration tests
+ - **tests-watch** - Rerun all TypeScript/JS tests as source code changes are made
+ - **update-dtos** - Run **typescript-ref** npm script to import latest TypeScript Server DTOs
+ - **webpack-build** - Run a Webpack development build to bundle and output your app to `/dist`
+ - **webpack-build-prod** - Run a Webpack development build to bundle and output your app to `/wwwroot/dist`
+
+> Tip: as both **00-webpack-dev** and **00-webpack-watch** tasks are used to build your App during development, 
+[commenting out the one you don't use](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/gulpfile.js#L4-L5) 
+in your gulpfile.js is a nice time saver as it will then only show your preferred option that's always at the top, e.g:
+
+```js
+var SCRIPTS = {
+//    '00-webpack-dev': 'npm run dev',
+    '00-webpack-watch': 'npm run watch',
+    'webpack-build': 'npm run build',
+    'webpack-build-prod': 'npm run build-prod',
+    'tests-run': 'npm run test',
+    'tests-watch': 'npm run test-watch',
+    'tests-coverage': 'npm run test-coverage',
+    'update-dtos': 'npm run typescript-ref'
+};
+```
+
 ### Webpack watch
  
 Our recommendation is to run the `00-webpack-watch` Gulp task and leave it running in the background, or if preferred, run the **watch** npm script on the command-line with:
