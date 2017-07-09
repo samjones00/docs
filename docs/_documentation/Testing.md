@@ -283,6 +283,40 @@ public void Using_manual_dependency_injection()
 
 This example doesn't need a container as we're injecting all the dependencies manually.
 
+## Testing ServiceStack classes in Unit Tests
+
+Much of ServiceStack functionality assumes there's an AppHost is available which for Unit Tests you can just use an In Memory AppHost, e.g:
+
+```csharp
+[Test]
+public void My_unit_test()
+{
+    using (new BasicAppHost().Init())
+    {
+        //test ServiceStack classes
+    }
+}
+```
+
+If preferred this can be set up once per test fixture following this pattern:
+
+```csharp
+public class MyUnitTests
+{
+    ServiceStackHost appHost;
+    public MyUnitTests() => appHost = new BasicAppHost().Init();
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown() => appHost.Dispose();
+
+    [Test]
+    public void My_unit_test()
+    {
+        //test ServiceStack classes
+   }
+}
+```
+
 
 # Community Resources
 
