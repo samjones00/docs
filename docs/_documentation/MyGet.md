@@ -23,9 +23,9 @@ package manager dialog:
 
 Which will allow you to search and install pre-release packages from the selected MyGet feed.
 
-### Window machine without Visual Studio 2015
+### Adding MyGet feed without VS.NET
 
-On Windows machines without VS installed, the MyGet feed can be added to `%AppData%\NuGet\NuGet.config` with:
+If you're not using or don't have VS.NET installed, you can add the MyGet feed to your NuGet.config at `%AppData%\NuGet\NuGet.config`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
