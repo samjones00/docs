@@ -795,5 +795,5 @@ class JwtAuthProviderReader
 ### Further Examples
 
 More examples of both the new API Key and JWT Auth Providers are available in 
-[StatelessAuthTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/StatelessAuthTests.cs)
-and [JWT Token Cookie Example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/UseCases/JwtAuthProviderTokenCookieExample.cs).
+[StatelessAuthTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Server.Tests/Auth/StatelessAuthTests.cs)
+and [JWT Token Cookie Example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/UseCases/JwtAuthProviderTests.cs#L235).
