@@ -435,6 +435,16 @@ client.ServiceClient.Post(new Authenticate {
 });
 ```
 
+## Troubleshooting
+
+The Server Events Client uses .NET's `HttpWebRequest` internally for its long-running SSE connection and periodic heartbeats where if you're also using 
+other .NET ServiceClients to make API requests back to the same server you'll quickly hit its default limit (2) on number of requests allowed for a single domain 
+which can be increased by changing [ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.defaultconnectionlimit(v=vs.110).aspx), e.g:
+
+```csharp
+ServicePointManager.DefaultConnectionLimit = maxNumOfConcurrentConnections;
+```
+
 # ServerEvent .NET Examples
 
 ## [Xamarin.Android Chat](https://github.com/ServiceStackApps/AndroidXamarinChat)
