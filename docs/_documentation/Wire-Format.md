@@ -12,9 +12,9 @@ code-first POCO DTOs.
 
 Wire is easily installed with the [ServiceStack.Wire](https://nuget.org/packages/ServiceStack.Wire) NuGet package:
 
-### Install-Package [ServiceStack.Wire](https://nuget.org/packages/ServiceStack.Wire)
+    PM> Install-Package ServiceStack.Wire
 
-After the NuGet Package is added to your Project, enable the Wire format with:
+After the NuGet Package is added to your Project, enable the Wire format in your `AppHost` with:
 
     Plugins.Add(new WireFormat());
 
