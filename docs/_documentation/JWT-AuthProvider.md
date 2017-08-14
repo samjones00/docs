@@ -702,6 +702,42 @@ var jwtProvider = (JwtAuthProviderReader)AuthenticateService.GetAuthProvider("jw
 var userSession = jwtProvider.ConvertJwtToSession(base.Request, req.GetJwtToken());
 ```
 
+### Creating JWT Tokens Manually
+
+You can create a custom JWT Token that encapsulates an Authenticated User Session by using JwtAuthProvider's static APIs
+to create the JWT Header, JWT Payload then sign and authenticate the token using the configured signing keys in order to 
+make authenticated Requests to any remote AppHost configured with the same JwtAuthProvider configuration, e.g:
+
+```csharp
+var jwtProvider = new JwtAuthProvider { ... };
+
+var header = JwtAuthProvider.CreateJwtHeader(jwtProvider.HashAlgorithm);
+var body = JwtAuthProvider.CreateJwtPayload(new AuthUserSession
+    {
+        UserAuthId = "1",
+        DisplayName = "Test",
+        Email = "as@if.com",
+        IsAuthenticated = true,
+    },
+    issuer: jwtProvider.Issuer,
+    expireIn: jwtProvider.ExpireTokensIn,
+    audience: jwtProvider.Audience,
+    roles: new[] {"TheRole"},
+    permissions: new[] {"ThePermission"});
+
+var jwtToken = JwtAuthProvider.CreateJwt(header, body, jwtProvider.GetHashAlgorithm());
+```
+
+The generated JWT Token can then be [used to make Authenticated Requests](#sending-jwt-with-service-clients) 
+to any Server configured with the same JwtAuthProvider configuration that the JWT Token was created with, e.g:
+
+```csharp
+var client = new JsonServiceClient(baseUrl);
+client.SetTokenCookie(jwtToken);
+
+var response = client.Get(new Secured { ... });
+```
+
 ## JWT Configuration
 
 The JWT Auth Provider provides the following options to customize its behavior: 
