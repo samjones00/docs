@@ -40,6 +40,15 @@ When using un-typed [Session Bag](https://github.com/ServiceStack/ServiceStack/b
 
 The general recommendation is to use typed sessions, which will give you type-safety benefits as well as being able to fetch your entire users session with a single cache call. If you use the dynamic/session bag then it will be a network call for each key accessed - although as caches are designed for fast-access, this isn't too much of a concern.
 
+### Overriding a User Session
+
+An alternative solution used by `IAuthWithRequest` Auth Providers is to populating a Users Session on each request by injecting it in:
+
+```csharp
+IRequest req = base.Request;
+req.Items[Keywords.Session] = usersSession;
+```
+
 ## Using Typed Sessions in ServiceStack
 
 An example of using Typed Sessions is in the [Social Bootstrap Api](https://github.com/ServiceStack/SocialBootstrapApi) demo where a [CustomUserSession](https://github.com/ServiceStack/SocialBootstrapApi/blob/master/src/SocialBootstrapApi/Models/CustomUserSession.cs) is defined as:
@@ -61,15 +70,6 @@ To tell ServiceStack to use your Custom Typed Session instead, register it in th
 
 ```csharp
 Plugins.Add(new AuthFeature(() => new CustomUserSession(), ...));
-```
-
-### Overriding a User Session
-
-An alternative solution used by `IAuthWithRequest` Auth Providers is to populating a Users Session on each request by injecting it in:
-
-```csharp
-IRequest req = base.Request;
-req.Items[Keywords.Session] = usersSession;
 ```
 
 ## Session events
