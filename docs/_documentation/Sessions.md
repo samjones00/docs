@@ -63,6 +63,15 @@ To tell ServiceStack to use your Custom Typed Session instead, register it in th
 Plugins.Add(new AuthFeature(() => new CustomUserSession(), ...));
 ```
 
+### Overriding a User Session
+
+An alternative solution used by `IAuthWithRequest` Auth Providers is to populating a Users Session on each request by injecting it in:
+
+```csharp
+IRequest req = base.Request;
+req.Items[Keywords.Session] = usersSession;
+```
+
 ## Session events
 
 Inheriting from the AuthUserSession also lets you add custom logic for different events in the User Session life-cycle:
