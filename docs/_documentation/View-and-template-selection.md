@@ -59,6 +59,32 @@ The last filter to set `req.Items["View"]` wins.
 
 Although the above example only shows how to select the View (e.g. Page Body), the exact same rules applies to select the Layout template via the **Template** field also on the HttpResult and DefaultView attribute. If a template is not specified the default `/Shared/_Layout.cshtml` is used.
 
+## Executing Razor in Code
+
+The `RazorFormat` plugin provides several APIs which lets you access Razor views independently from ServiceStack, e.g:
+
+```csharp
+var razorFormat = HostContext.GetPlugin<RazorFormat>();
+var razorView = razorFormat.GetViewPage("MyView"); //e.g. /Views/MyView.cshtml
+var html = razorFormat.RenderToHtml(razorView, dto);
+```
+
+### Creating Pages at Runtime
+
+For views that don't exist you can use the `CreatePage()` API to dynamically create a Razor View from a dynamic string at runtime that can be later reused to generate HTML for multiple models:
+
+```csharp
+var razorView = razorFormat.CreatePage("<h3>Hello @Model.name, the year is @DateTime.Now.Year</h3>");
+var htmlFoo = razorFormat.RenderToHtml(razorView, new { name = "foo" });
+var htmlBar = razorFormat.RenderToHtml(razorView, new { name = "bar" });
+```
+
+Or if you don't need to reuse the page again, it can be done in 1-line with:
+
+```csharp
+var html = razorFormat.CreateAndRenderToHtml("<h3>Hello @Model.name</h3>", model: new { name = "foo" });
+```
+
 ## Debuggable Razor Views
 
 Razor Views are now debuggable for 
