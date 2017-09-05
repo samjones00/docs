@@ -13,6 +13,8 @@ A major reason for our reduced focus around Razor is similar to VB6's one-way co
 
 So instead of having browsers perform full-page POST backs and creating specific Controllers/Services that can only handle browser requests, you'll get much better responsiveness, utility and code-reuse by just developing "pure" back-end Services and using JavaScript to make Ajax requests. JavaScript is also much better than C# at being able to [use a generic routine](/ss-utils-js#fluent-validation) to automatically update Form UIs with Service's structured error responses where it also benefits from reduced development effort.
 
+In this light it's more important to interoperate with JavaScript than it is to have C# logic embedded in HTML pages.
+
 ## Poor extensibility
 
 Razor is not easily extensible, to add a new directive you need to go deep into its compiler architecture where even something as pervasive as its `@model` directive is not a feature in `System.Web.Razor` itself, it has to be re-implemented in every Web Framework that uses it, forcing tight coupling to the Web Framework it's hosted in. You're also constrained as to what directives and features you should even attempt to add as if it's not supported by VS.NET's designers there's no point implementing it as having broken intelli-sense is worse than having no intelli-sense at all.
