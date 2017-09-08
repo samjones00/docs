@@ -81,6 +81,9 @@ The `JwtAuthProvider` is our integrated stateless Auth solution for the popular 
 
 ### Community Auth Providers
 
+## LiteDB Auth Provider
+
+  - [ServiceStack.Authentication.LiteDB](https://github.com/CaveBirdLabs/ServiceStack.Authentication.LiteDB) - Auth Provider for [LiteDB](https://github.com/mbdavid/LiteDB)
   - [Azure Active Directory](https://github.com/jfoshee/ServiceStack.Authentication.Aad) - Allow Custom App to login with Azure Active Directory
   - [Azure Active Directory via Azure Graph for ServiceStack](https://github.com/ticky74/ServiceStack.Authentication.Azure)
   - [ServiceStack.Authentication.IdentityServer](https://github.com/MacLeanElectrical/servicestack-authentication-identityserver) - Integration with ASP.NET IdentityServer and provides OpenIDConnect / OAuth 2.0 Single Sign-On Authentication
