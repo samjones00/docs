@@ -120,6 +120,7 @@
     - [HTTP Utils](/http-utils)
     - [Dump Utils](/dump-utils)
     - [Reflection Utils](/reflection-utils)
+    - [JS Utils](/js-utils)
     - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - Caching
     - [Overview](/caching)
@@ -177,6 +178,11 @@
     - [Swift](/swift)
     - [F#](/fsharp)
     - [VB.NET](/vbnet)
+- Templates
+    - [Overview](http://templates.servicestack.net)
+    - [API Pages](http://templates.servicestack.net/docs/api-pages)
+    - [Web Apps](http://templates.servicestack.net/docs/web-apps)
+    - [ServiceStack Filters](http://templates.servicestack.net/docs/servicestack-filters)
 - Mono
     - [Overview](/mono)
     - [Run ServiceStack as a daemon on Linux](/servicestack-as-daemon-on-linux)

@@ -54,6 +54,29 @@ SetConfig(new HostConfig { DebugMode = true });
 In addition, users with the **Admin** role or Requests with an **AuthSecret** can also view Debug Info 
 in production.
 
+### StrictMode
+
+You can configure Strict Mode in ServiceStack to enforce stricter behavior and have it throw Exceptions when it 
+sees certain failure conditions. To enable Strict Mode across all libraries use:
+
+```csharp
+Env.StrictMode = true;
+```
+
+Otherwise to just enable StrictMode for ServiceStack:
+
+```csharp
+SetConfig(new HostConfig {
+    StrictMode = true
+})
+```
+
+When enabled ServiceStack will perform runtime checks to catch invalid state, currently:
+
+ - Checks if Services return Value Types
+ - Checks if UserSession has circular dependencies
+ - Fails fast for exceptions on Startup
+
 ### Admin Role
 
 Users in the `Admin` role have super-user access giving them access to any services or plugins protected 
@@ -99,6 +122,41 @@ visible, otherwise use `AddDebugLink` for plugins only available during debuggin
 When plugins are registered their Exceptions are swallowed and captured in `AppHost.StartupErrors` so an 
 individual Rogue plugin won't prevent your ServiceStack AppHost from starting. But when a plugin doesn't 
 work properly it can be hard to determine the cause was due to an Exception occuring at Startup. 
+
+Alternatively enable [StrictMode](#strictmode) to have StartUp Exceptions thrown on StartUp.
+
+## Metadata Debug Template
+
+[![](http://templates.servicestack.net/assets/img/screenshots/metadata-debug.png)](http://templates.servicestack.net/metadata/debug)
+
+All ServiceStack Apps have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Template](http://templates.servicestack.net/docs/info-filters#debug-template).
+
+The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
+
+```csharp
+Plugins.Add(new TemplatePagesFeature { 
+    EnableDebugTemplate = true
+})
+```
+
+This registers the Service but limits it to Users with the `Admin` role, alternatively you configure an 
+[Admin Secret](http://docs.servicestack.net/debugging#authsecret):
+
+```csharp
+SetConfig(new HostConfig { AdminAuthSecret = "secret" })
+```
+
+Which will let you access it by appending the authsecret to the querystring: `/metadata/debug?authsecret=secret`
+
+Alternatively if preferred you can make the Debug Template Service available to all users with:
+
+```csharp
+Plugins.Add(new TemplatePagesFeature { 
+    EnableDebugTemplateToAll = true
+})
+```
+
+Which is the configuration that allows [templates.servicestack.net/metadata/debug](http://templates.servicestack.net/metadata/debug) to be accessible to anyone.
 
 ### Request Info
 
