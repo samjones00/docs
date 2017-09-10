@@ -74,7 +74,7 @@ li.active a, #content li.active a {
     position:fixed;
     height:64px;
     width:100%;
-    left:300px;
+    left:325px;
 }
 #sidebar {
     position: fixed;
@@ -131,6 +131,10 @@ pre.highlight {
     padding: 10px;
 }
 
+#toc {
+    display: none;
+}
+
 ::-webkit-scrollbar { width:7px; height:5px }
 ::-webkit-scrollbar-thumb { background-color:#ccc; }
 
@@ -146,11 +150,20 @@ pre.highlight {
     #content {
         margin-left: 225px;
     }
+    #scroll-screen {
+        left: 225px;
+    }
     #content img {
         max-width: 650px !important;
     }
 }
 @media (max-width: 768px) {
+    #topnav {
+        position: absolute;
+    }
+    #toc {
+        display: block;
+    }
     #sidebar {
         display: none;
     }

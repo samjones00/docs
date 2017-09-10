@@ -10,6 +10,15 @@ title: ServiceStack Resources
 - [Feature Requests](http://servicestack.uservoice.com/forums/176786-feature-requests) - Request features on UserVoice
 - [Release Notes](https://servicestack.net/release-notes) - Stay up to date with ServiceStack's latest features
 
+<div id="toc">
+
+## Table of Contents
+
+{% capture my-include %}{% include Side-Bar.md %}{% endcapture %}
+{{ my-include | markdownify }}
+
+</div>
+
 ## ServiceStack Examples and Live Demos
 
 - [Live Demos](https://github.com/ServiceStackApps/LiveDemos) - Web, Mobile and Desktop Apps and Live Demos
