@@ -70,7 +70,7 @@ var pathinfo = location.pathname + location.hash;
 if (/*screenWidth > 768 && */ pathinfo != "/")
 {
     var scrollItem = $("#sidebar").find("a[href='" + pathinfo + "']")
-            .addClass('active')
+            .parent().addClass('active')
             .parents().filter("div>ul>li")[0];
 
     if (scrollItem) {

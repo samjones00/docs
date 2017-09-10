@@ -95,6 +95,9 @@ li.active a, #content li.active a {
     background: #f8f8f8;
     border-left: .2em solid #3371e3;   
 }
+#sidebar li.active a {
+    font-weight: normal;
+}
 #sidebar li h5 {
     margin: 0.8em 0;
     font-size: 18px;
