@@ -63,7 +63,7 @@ li.active a, #content li.active a {
     position:fixed;
     height:64px;
     width:100%;
-    left:220px;
+    left:300px;
 }
 #sidebar {
     position: fixed;
@@ -103,7 +103,7 @@ li.active a, #content li.active a {
 }
 
 #content img {
-    max-width: 900px !important;
+    max-width: 800px !important;
 }
 
 ::-webkit-scrollbar { width:7px; height:5px }
