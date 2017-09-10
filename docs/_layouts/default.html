@@ -6,6 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/github-markdown.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -60,6 +61,37 @@
 
 </script>
 {% endif %}
+
+
+<script>
+//var screenWidth = $(window).width();
+// Add .active class to active link + scroll into view
+var pathinfo = location.pathname + location.hash;
+if (/*screenWidth > 768 && */ pathinfo != "/")
+{
+    var scrollItem = $("#sidebar").find("a[href='" + pathinfo + "']")
+            .addClass('active')
+            .parents().filter("div>ul>li")[0];
+
+    if (scrollItem) {
+        scrollItem.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+
+$(".sidebar-nav a[href^=http]")
+    .append('<i class="fa fa-external-link" style="margin-left:-15px"></i>');
+
+//Allow clicking on non-linked headers to jump to its #href
+$("h2,h3,h4").click(function(){
+    if (this.id && this.innerHTML.indexOf("<a") == -1) {
+        location.href = "#" + this.id;
+    }
+});
+</script>
+
 
 </body>
 </html>

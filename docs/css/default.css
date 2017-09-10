@@ -77,17 +77,23 @@ li.active a, #content li.active a {
     -ms-overflow-style: none;
 }
 #sidebar .inner {
-    width: 320px;
+    width: 325px;
     padding: 15px 0 0 10px;
 }
 #sidebar ul {
     list-style-type: none;
     margin: 0;
     line-height: 1.5em;
-    padding-left: 1em;
+    padding-left: 0;
 }
 #sidebar li {
-    margin-top: 0.5em;
+    padding: .20em 0 .25em .8em;
+    border-left: .2em solid #fff;
+    margin-top: .1em;
+}
+#sidebar li.active {
+    background: #f8f8f8;
+    border-left: .2em solid #3371e3;   
 }
 #sidebar li h5 {
     margin: 0.8em 0;
@@ -116,15 +122,15 @@ pre.highlight {
 
 @media (max-width: 1366px) {
     #content {
-        margin-left: 320px;
+        margin-left: 325px;
     }
 }
 @media (max-width: 1024px) {
     #sidebar .inner {
-        width: 215px;
+        width: 220px;
     }
     #content {
-        margin-left: 160px;
+        margin-left: 220px;
     }
     #content img {
         max-width: 650px !important;
