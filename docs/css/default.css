@@ -141,16 +141,22 @@ pre.highlight {
 }
 @media (max-width: 1024px) {
     #sidebar .inner {
-        width: 220px;
+        width: 225px;
     }
     #content {
-        margin-left: 220px;
+        margin-left: 225px;
     }
     #content img {
         max-width: 650px !important;
     }
 }
 @media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+    #content {
+        margin-left: 0;
+    }
     #content img {
         max-width: 450px !important;
     }
