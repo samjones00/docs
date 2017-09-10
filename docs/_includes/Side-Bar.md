@@ -19,7 +19,7 @@
     - [Webpack Single Page Apps](/templates-single-page-apps)
 - Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
-    - [Advantages of message-based WebServices](/advantages-of-message-based-web-services)
+    - [Advantages of message-based Services](/advantages-of-message-based-web-services)
     - [Why Remote Services should use DTOs](/why-remote-services-use-dtos)
     - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
 - Reference
@@ -84,7 +84,7 @@
     - [Smart MVC Razor Pages](/netcore-razor)
     - [.NET Core Clients](/netcore-clients)
     - [.NET Core Redis](/netcore-redis)
-    - [Deploy .NET Core Apps with Docker to AWS](/deploy-netcore-docker-aws-ecs)
+    - [Deploy .NET Core Apps to AWS ECS](/deploy-netcore-docker-aws-ecs)
 - Security
     - [Overview](/security)
     - [Authentication & Authorization](/authentication-and-authorization)
@@ -98,7 +98,7 @@
     - [Logging](/logging)
     - [Request & Response filters](/request-and-response-filters)
     - [Filter attributes](/filter-attributes)
-    - [Access HTTP specific features in services](/access-http-specific-features-in-services)
+    - [Access HTTP features in services](/access-http-specific-features-in-services)
     - [Serialization & Deserialization](/serialization-deserialization)
     - [Auto-Mapping](/auto-mapping)
     - [Auto Batched Requests](/auto-batched-requests)
@@ -110,7 +110,7 @@
     - [HTML, CSS and JS Minifiers](/html-css-and-javascript-minification)
     - [MVC Integration](/mvc-integration)
     - [ServiceStack Integration](/servicestack-integration)
-    - [Run side-by-side with another framework](/servicestack-side-by-side-with-another-web-framework)
+    - [Run side-by-side with another fx](/servicestack-side-by-side-with-another-web-framework)
     - [Versioning](/versioning)
     - [Config API](/config-api)
     - [Configuration options](/configuration-options)
@@ -186,7 +186,7 @@
 - Mono
     - [Overview](/mono)
     - [Run ServiceStack as a daemon on Linux](/servicestack-as-daemon-on-linux)
-    - [Run ServiceStack in Fastcgi hosted on nginx](/servicestack-in-fastcgi-hosted-on-nginx)
+    - [Run ServiceStack in Fastcgi on nginx](/servicestack-in-fastcgi-hosted-on-nginx)
     - [Linux-Hosting-Options](/linux-hosting-options)
 - Amazon Web Services
     - [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
@@ -194,9 +194,9 @@
     - [AWS Live Demos](http://awsapps.servicestack.net)
     - [Getting Started with AWS](https://github.com/ServiceStackApps/AwsGettingStarted)
 - Deployment
-    - [Deploy Multiple Sites to single AWS Instance](/deploy-multiple-sites-to-aws)
-    - [Simple Deployments to AWS with WebDeploy](/simple-deployments-to-aws)
-    - [Advanced Deployments with OctopusDeploy](/advanced-deployment-octopus-deploy)
+    - [Deploy Multiple Sites to single AWS](/deploy-multiple-sites-to-aws)
+    - [Simple Deployments with WebDeploy](/simple-deployments-to-aws)
+    - [Deployments with OctopusDeploy](/advanced-deployment-octopus-deploy)
 - Install 3rd Party Products
     - [Redis on Windows](https://github.com/ServiceStack/redis-windows)
     - [RabbitMQ on Windows](https://github.com/ServiceStack/rabbitmq-windows)
