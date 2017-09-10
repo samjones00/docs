@@ -11,8 +11,7 @@ title: ServiceStack Resources
 - [Release Notes](https://servicestack.net/release-notes) - Stay up to date with ServiceStack's latest features
 
 <div id="toc">
-
-## Table of Contents
+<h2>Table of Contents</h2>
 
 {% capture my-include %}{% include Side-Bar.md %}{% endcapture %}
 {{ my-include | markdownify }}
