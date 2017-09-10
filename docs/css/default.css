@@ -9,8 +9,19 @@ h1, h2, h3, h4, strong {
     content: " \00B6";
 }
 h1 {
+    font-size: 2.25rem;
     margin: 0 0 20px 0;
 }
+h2 {
+    font-size: 1.8rem;
+}
+h3 {
+    font-size: 1.6rem;
+}
+h4 {
+    font-size: 1.4rem;
+}
+
 .ref {
     color: #0277BD;
     border-bottom: 1px solid rgba(0,0,0,0.15);
