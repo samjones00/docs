@@ -131,6 +131,13 @@ pre.highlight {
     padding: 10px;
 }
 
+#edit-github {
+    font-size: .85rem;
+    z-index: 3;
+    position: absolute;
+    right: 1.5em;
+    top: 1em;
+}
 #toc {
     display: none;
 }
