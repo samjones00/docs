@@ -164,7 +164,7 @@ pre.highlight {
     #toc {
         display: block;
     }
-    #sidebar {
+    #sidebar, #scroll-screen {
         display: none;
     }
     #content {
