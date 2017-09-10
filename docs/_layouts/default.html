@@ -5,53 +5,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/github-markdown.css">
-    <link rel="stylesheet" href="/css/simple-sidebar.css">
+    <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div id="wrapper">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper" class="sidebar-nav">
-        <i id="menu-toggle" class="fa fa-angle-up" aria-hidden="true"></i>
-        <a id="logo" href="/">
-            <img src="../images/logo-docs.png" width="292" height="40" />
+    <nav id="topnav" class="navbar navbar-light bg-faded">
+        <a title="ServiceStack Templates" class="navbar-brand" href="/" style="width:220px;">
+            <img src="/images/logo-32.png" width="42" height="32" class="d-inline-block align-top" alt="" style="float:left;margin:0 10px 0 0">
+            <h3>Documentation</h3>
         </a>
-        {% capture my-include %}{% include Side-Bar.md %}{% endcapture %}
-        {{ my-include | markdownify }}
-    </div>
-    <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 markdown-body">
-                    <a class="pull-right" href="https://github.com/ServiceStack/docs/tree/master/docs/{{ page.path }}" target="_blank"><span class="fa fa-github"></span> Edit on GitHub</a>
-                    <h1>{{page.title}}</h1>
-
-                    {{content}}
-                </div>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                </li>
+            </ul>
         </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-</div>
-<!-- /#wrapper -->
+    </nav>
+    <div id="scroll-screen"></div>
+    
+    <div id="body">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <nav id="sidebar">
+            <div class="inner">
+
+                {% capture my-include %}{% include Side-Bar.md %}{% endcapture %}
+                {{ my-include | markdownify }}
+                    
+            </div>
+        </nav>        
+            
+        <div id="content">
+            <h1>{{page.title}}</h1>
+            {{content}}
+        </div>
+
+    </div>
+   
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 {% if jekyll.environment == 'production' %}
 <script>
@@ -66,45 +61,5 @@
 </script>
 {% endif %}
 
-<script>
-    var screenWidth = $(window).width();
-
-    // Add .active class to active link + scroll into view
-    var pathinfo = location.pathname + location.hash;
-    if (screenWidth > 768 && pathinfo != "/")
-    {
-        var scrollItem = $("#sidebar-wrapper").find("a[href='" + pathinfo + "']")
-                .addClass('active')
-                .parents().filter("div>ul>li")[0];
-        if (scrollItem) {
-            scrollItem.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-    }
-
-    // Add external link icon next to external menu links
-    $(".sidebar-nav a[href^=http]")
-        .append('<i class="fa fa-external-link" style="margin-left:-15px"></i>');
-
-    $("#menu-toggle").click(function(){
-        $("#sidebar-wrapper").scrollTop(0);
-        $(this).toggleClass("fa-angle-down");
-        $("#wrapper").toggleClass("menu-collapsed");
-    });
-
-    if (screenWidth <= 768) {
-        $("#menu-toggle").click();            
-    }
-
-    //Allow clicking on non-linked headers to jump to its #href
-    $("h2,h3,h4").click(function(){
-        if (this.id && this.innerHTML.indexOf("<a") == -1) {
-            location.href = "#" + this.id;
-        }
-    });
-
-</script>
 </body>
 </html>
