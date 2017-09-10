@@ -174,3 +174,14 @@ pre.highlight {
         max-width: 450px !important;
     }
 }
+@media (max-width: 414px) {
+    #content img {
+        max-width: 414px !important;
+    }
+}
+@media (max-width: 375px) {
+    #content img {
+        max-width: 375px !important;
+    }
+}
+    
