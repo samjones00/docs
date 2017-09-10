@@ -159,7 +159,7 @@ pre.highlight {
 }
 @media (max-width: 768px) {
     #topnav {
-        position: absolute;
+        background: #fff;
     }
     #toc {
         display: block;
