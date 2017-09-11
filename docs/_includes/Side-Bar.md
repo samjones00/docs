@@ -7,6 +7,7 @@
     - [Latest Release Notes](/releases/v4.5.14)
     - [2017 Summary](/releases/)
     - [Release Notes History](/release-notes-history)
+    - [Pre-release MyGet Packages](/myget)
 - ##### Getting Started
     - [Create your first WebService](/create-your-first-webservice)
     - [Your first WebService explained](/your-first-webservice-explained)
