@@ -89,7 +89,7 @@ a:hover {
 }
 #sidebar .inner {
     width: 325px;
-    padding: 10px 0 0 40px;
+    padding: 10px 0 0 10px;
 }
 #sidebar ul {
     list-style-type: none;
