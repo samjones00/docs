@@ -5,6 +5,595 @@ title: Release Notes Summary
 
 > [Release Notes History](/release-notes-history)
 
+# [v4.5.14 Release Notes](/releases/v4.5.14)
+
+In this release we've added a new simple, fast and highly-versatile alternative to Razor for developing Server generated Websites, official support for .NET Core 2.0, new ServiceStack.Azure NuGet package for deeper integration with ServiceStack Apps hosted on Azure and a number of new features and enhancements across ServiceStack.
+
+Please see the full release notes for what's in this Release: http://docs.servicestack.net/releases/v4.5.14
+
+### .NET Core 2.0 Ready
+
+Firstly we’d like to announce this Release adds support for the newly released .NET Core 2.0. Our test suites have been upgraded to run .NET Core 2.0 as well as some of our existing .NET Core Apps. All new Web Apps created in this release were developed on .NET Core 2.0 which we believe is the first .NET Core release that should be given first consideration for development of new greenfield .NET Web Apps to see if it’s able to meet your requirements. 
+
+## ServiceStack Templates!
+
+We're super excited to announce [ServiceStack Templates](http://templates.servicestack.net). At its core ServiceStack Templates is a simple, fast and versatile general-purpose dynamic templating language for .NET and .NET Core. It requires no pre-compilation, is lazily loaded and Starts up instantly with fast runtime performance, is late-bound with no binary coupling, is highly extensible and is evaluated in a Sandbox with complete fine-grain control over what functionality is available to templates running in different contexts.
+
+These characteristics opens up Templates into a number of exciting new use-cases, some of which we cover in our comprehensive and interactive documentation at [templates.servicestack.net](http://templates.servicestack.net).
+
+### Starter Projects
+
+The Starter Projects below provide a quick way to get started with a pre-configured ServiceStack Template App:
+
+#### [.NET Core 2.0 Boostrap Starter](https://github.com/NetCoreApps/TemplatesBootstrapStarter)
+
+Clone the [TemplatesBootstrapStarter](https://github.com/NetCoreApps/TemplatesBootstrapStarter) GitHub project to start from a Bootstrap v4 and jQuery .NET Core 2.0 App:
+
+[![](https://raw.githubusercontent.com/NetCoreApps/TemplatePages/master/src/wwwroot/assets/img/screenshots/templates-bootstrap.png)](https://github.com/NetCoreApps/TemplatesBootstrapStarter)
+
+#### ASP.NET v4.5 Bootstrap Starter
+
+For ASP.NET v4.5 projects create a new **ServiceStack ASP.NET Templates with Bootstrap** from the VS.NET Templates in [ServiceStackVS VS.NET Extension](http://docs.servicestack.net/templates-overview#servicestackvs-vsnet-extension) to create an ASP.NET v4.5 Project using [ServiceStack's recommended project structure](http://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution):
+
+[![](http://templates.servicestack.net/assets/img/screenshots/ssvs-bootstrap.png)](https://github.com/ServiceStack/ServiceStackVS)
+
+## Why Templates?
+
+We developed Templates because we want to be able to offer a simple, clean, highly-productive and innovative end-to-end solution for building ServiceStack Web Apps without the external baggage and issues Razor brings to a project. If interested in the finer details, we've published some of the limitations and issues we've hit in [Why not Razor](http://docs.servicestack.net/why-not-razor). 
+
+### A new .NET templating language was born
+
+So we set out to build the server templating language we wanted, one without the complexity, issues, design problems and static coupling of Razor, with great Startup and runtime performance, is highly-extensible and promotes reuse, integrates cleanly with .NET but still adopts the strengths that make the premier JavaScript frameworks enjoyable and productive to build HTML UIs with. 
+
+We didn't want to invent a new syntax so we evaluated various syntax from multiple JavaScript frameworks and ultimately settled on [Vue.js Filters syntax](https://vuejs.org/v2/guide/filters.html) which has optimal syntax for a templating language, we also share Vue's primary focus on simplicity and its incremental approach to layering advanced functionality, a goal that drove the design and development of ServiceStack Templates. The [Syntax](http://templates.servicestack.net/docs/syntax) is essentially compatible with Vue.js filters including supporting JavaScript's syntax for its native data types and function calls.
+
+Within this minimal syntax we've been able to achieve a highly versatile dynamic template language whose expressive power comes from its [filters](http://templates.servicestack.net/docs/filters) of which we've included a [comprehensive suite](http://templates.servicestack.net/docs/filters-reference) to handle many of the tasks commonly required in Templates and Web Apps.
+
+### Meet ServiceStack Templates
+
+Even in this initial release we're extremely pleased with its current form. It's not coupled to any external tooling or susceptible to any of the external factors that has plagued us with Razor. It's highly testable by design with unit tests being trivial to write that it's our most tested feature with over 350 new tests added to support its current feature-set, it's also our [most documented feature](http://templates.servicestack.net). 
+
+It's small, lightweight footprint and built-in Hot Reloading provides a fun, clean and productive alternative to MVC Razor that's easily integrated into any web framework and runs identically in every platform ServiceStack runs on, it can also be returned in ASP.NET MVC and ASP.NET MVC Core Controllers - in all cases, using the same [high-performance implementation](http://templates.servicestack.net/docs/introduction#instant-startup) to asynchronously write to a forward-only OutputStream for max performance and maximum potential reuse of your code.
+
+Templates are lazily loaded and late-bound for Instant Startup, doesn't require any pre-compilation, have coupling to any external configuration files, build tools, designer tooling or have any special deployment requirements. It can be used as a general purpose templating language to enhance any text format and includes built-in support for `.html`.
+
+Templates are evaluated in an Isolated Sandboxed that enables fine-grained control over exactly what functionality and instances are available to different Templates. They're pre-configured with a comprehensive suite of safe Default Filters which when running in trusted contexts can easily be granted access to enhanced functionality.
+
+Templates are designed to be incrementally adoptable where its initial form is ideal for non-programmers, that can gradually adopt more power and functionality when needed where they can leverage existing Services or MVC Controllers to enable an MVC programming model or have `.html` pages upgraded to use Code Pages where they can utilize the full unlimited power of the C# programming language to enable precise control over the rendering of pages and partials. Code pages take precedence and are interchangeable wherever normal `.html` pages are requested making them a non-invasive layered solution whenever advanced functionality is required.
+
+### Surrounding Ecosystem
+
+These qualities opens Templates up to a number of [new use-cases](http://templates.servicestack.net/usecases/) tthat's better suited than Razor for maintaining content-heavy websites, live documents, Email Templates and can easily introspect the state of running .NET Apps where they provide valuable insight at a glance with support for Adhoc querying.
+
+## Web Apps
+
+One use-case made possible by Templates we're extremely excited about is [Web Apps](http://templates.servicestack.net/docs/web-apps) - a new approach to dramatically simplify .NET Web App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
+
+Web Apps leverages Templates to develop entire content-rich, data-driven websites without needing to write any C#, compile projects or manually refresh pages - resulting in the easiest and fastest way to develop Web Apps in .NET!
+
+### Ultimate Simplicity
+
+Not having to write any C# code or perform any app builds dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [Template's syntax](http://templates.servicestack.net/docs/syntax) and what [filters are available](http://templates.servicestack.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript developers despite calling and binding directly to .NET APIs behind the scenes.
+
+All complexity with C#, .NET, namespaces, references, .dlls, strong naming, packages, MVC, Razor, build tools, IDE environments, etc has been eliminated leaving all Web Developers needing to do is run a cross-platform [web/app.dll](https://github.com/NetCoreWebApps/Web) .NET Core 2.0 executable and configure a simple [web.settings](https://github.com/NetCoreWebApps/WebAppStarter/blob/master/app/web.settings) text file to specify which website folder to use, which ServiceStack features to enable, which db or redis providers to connect to, etc. 
+
+### Rapid Development Workflow
+
+The iterative development experience is also unparalleled for a .NET App, no compilation is required so you can just leave the `web/app.dll` running whilst you add the template `.html` files needed to build your App and thanks to the built-in [Hot Reloading](http://templates.servicestack.net/docs/hot-reloading) support, pages will refresh automatically as you save. You'll just need to do a full page refresh when modifying external .css/.js files to bypass the browser's cache and you'll need to restart `web/app.dll` to pick up any changes to your `web.settings` or .dlls to your `/plugins` folder.
+
+### Pure Cloud Apps
+
+Web Apps also enable the development of [Pure Cloud Apps](http://templates.servicestack.net/docs/web-apps#pure-cloud-apps) where the same Web App can be developed and run entirely on **AWS S3 and RDS** or **Azure Blob Storage and SQL Server** by just changing the `web.settings` that's deployed with the pre-compiled [Web App Binary](https://github.com/NetCoreWebApps/Web).
+
+## Example Web Apps 
+
+We've developed a number of [Web Apps](http://templates.servicestack.net/docs/web-apps) to illustrate the various features available and to showcase its strengths and the different kind of Web Apps that can easily be developed with it. The source code for each app is maintained in [NetCoreWebApps](https://github.com/NetCoreWebApps) and each Web App runs the same [pre-compiled web/app.dll binary](https://github.com/NetCoreWebApps/Web).
+
+## Metadata Debug Templates
+
+[![](http://templates.servicestack.net/assets/img/screenshots/metadata-debug.png)](http://templates.servicestack.net/metadata/debug)
+
+All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Template](http://templates.servicestack.net/docs/info-filters#debug-template).
+
+The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
+
+```csharp
+Plugins.Add(new TemplatePagesFeature { 
+    EnableDebugTemplate = true
+})
+```
+
+This registers the Service but limits it to Users with the `Admin` role, alternatively you configure an 
+[Admin Secret](http://docs.servicestack.net/debugging#authsecret):
+
+```csharp
+SetConfig(new HostConfig { AdminAuthSecret = "secret" })
+```
+
+Which will let you access it by appending the authsecret to the querystring: `/metadata/debug?authsecret=secret`
+
+Alternatively if preferred you can make the Debug Template Service available to all users with:
+
+```csharp
+Plugins.Add(new TemplatePagesFeature { 
+    EnableDebugTemplateToAll = true
+})
+```
+
+Which is the configuration that allows [templates.servicestack.net/metadata/debug](http://templates.servicestack.net/metadata/debug) to be accessible to anyone.
+
+## JavaScript Utils
+
+The development of Templates also brought with it the development of a number of high-performance utilities that are useful for use on their own. The ServiceStack.Text JSON Serializer was only designed for serializing Typed POCOs, you can still use it to [deserialize dynamic JSON](https://github.com/ServiceStack/ServiceStack.Text#supports-dynamic-json) but you would need to specify the Type to deserialize into on the call-site otherwise the value would be returned as a string.
+
+Templates implementation of JavaScript preserves the Type which can be used to parse JavaScript or JSON literals:
+
+```csharp
+JSON.parse("1")      //= int 1 
+JSON.parse("1.1")    //= double 1.1
+JSON.parse("'a'")    //= string "a"
+JSON.parse("{a:1}")  //= new Dictionary<string, object> { {"a", 1 } }
+```
+
+It can be used to parse dynamic JSON and any primitive JavaScript data type. The inverse API of `JSON.stringify()` is also available.
+
+### Eval
+
+Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [Templates Sandbox](http://templates.servicestack.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
+
+```csharp
+public class CustomFilter : TemplateFilter
+{
+    public string reverse(string text) => new string(text.Reverse().ToArray());
+}
+
+var scope = JS.CreateScope(
+         args: new Dictionary<string, object> { { "arg", "value"} }, 
+    functions: new CustomFilter());
+
+JS.eval("arg", scope)                                        //= "value"
+JS.eval("reverse(arg)", scope)                               //= "eulav"
+JS.eval("itemsOf(3, padRight(reverse(arg), 8, '_'))", scope) //= ["eulav___", "eulav___", "eulav___"]
+
+//= { a: ["eulav___", "eulav___", "eulav___"] }
+JS.eval("{a: itemsOf(3, padRight(reverse(arg), 8, '_')) }", scope)
+```
+
+## Simple Container
+
+In order for Templates to be free of external dependencies and be decoupled from any one Web Framework but still retain AutoWired functionality it uses a new [SimpleContainer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/SimpleContainer.cs) which implements [IContainer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IContainer.cs) - the smallest interface we could define for a minimal but useful IOC:
+
+```csharp
+public interface IContainer
+{
+    Func<object> CreateFactory(Type type);
+
+    IContainer AddSingleton(Type type, Func<object> factory);
+    
+    IContainer AddTransient(Type type, Func<object> factory);
+
+    object Resolve(Type type);
+
+    bool Exists(Type type);
+}
+```
+
+It's late-bound API supports registering dependencies in the 2 most useful Scopes: Singleton and Transient. Leveraging the utility of extension methods, every IOC implementing `IContainer` also gains the same [Typed Generic API](https://github.com/ServiceStack/ServiceStack/blob/710da129005f3df5dc93ea0e51e6d8a8681ec04e/src/ServiceStack.Common/SimpleContainer.cs#L114), e.g: 
+
+```csharp
+container.AddTransient<IFoo,Foo>();
+container.AddTransient<IFoo>(() => new Foo());
+container.AddTransient<IBar>(() => new Bar());
+container.AddTransient(() => new FooImpl());
+container.AddTransient<FooImpl>();
+
+container.AddSingleton(typeof(Foo));
+container.AddSingleton(() => foo);
+
+var foo = container.Resolve<IFoo>();
+var bar = container.Resolve(typeof(IBar));
+
+var hasFoo = container.Exists<IFoo>();
+```
+
+Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which 
+[ServiceStack's TemplatePagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
+
+### Fast, small, dependency-free IOC
+
+We're happy to report `SimpleContainer` is even smaller and faster than Funq and only requires a dependency to `ServiceStack.Common.dll`. It supports AutoWiring, constructor and public property injection but not Funq's other less used features like Child Containers, named dependencies and Request Scoped dependencies.
+
+## Simple AppSettings
+
+[SimpleAppSettings](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/SimpleAppSettings.cs) is an [IAppSettings provider](http://docs.servicestack.net/appsettings) that you can use to maintain substitutable App Configuration without a dependency to `ServiceStack.dll` which can be populated with a string Dictionary:
+
+```csharp
+AppSettings = new SimpleAppSettings(new Dictionary<string, string> {
+    ["string"] = "value",
+    ["EnableFeature.1"] = "true",
+    ["AllowedUsers"] = "Tom,Mick,Harry",
+}));
+
+string value = AppSettings.GetString("string");
+bool enableFeature1 = AppSettings.Get("EnableFeature.1", defaultValue:false);
+bool enableFeature2 = AppSettings.Get("EnableFeature.2", defaultValue:false);
+IList<string> allowedUsers = AppSettings.GetList("AllowedUsers");
+```
+
+## Virtual File System
+
+The major change added in order for Templates to be isolated from the ServiceStack Web Framework was to decouple the [Virtual File System providers](http://docs.servicestack.net/virtual-file-system) from ServiceStack's AppHost and move them to `ServiceStack.Common`. 
+
+This separation makes it easier to use VFS providers outside of ServiceStack AppHost which is a useful abstraction for copying files from different file sources as done in the [copy-files](https://github.com/NetCoreWebApps/WebApp/tree/master/src/support/copy-files) project to upload files to AWS S3 or Azure Blob Storage.
+
+### AddVirtualFileSources
+
+Registering an additional VFS provider in AppHost's previously required overriding `GetVirtualFileSources()`, they can now also be registered
+by adding them to `AddVirtualFileSources`, e.g:
+
+```csharp
+AddVirtualFileSources.Add(vfsProvider);
+```
+
+### VFS Breaking Change
+
+ServiceStack App's typically don't create instances of VFS providers directly but all VFS provider constructors needed to be changed to remove its `IAppHost` dependency. We used the same breaking change window to also give the user-facing VFS providers better names, changing from `*VirtualPathProvider` to `*VirtualFiles`, e.g:
+
+ - `FileSystemVirtualFiles`
+ - `MemoryVirtualFiles`
+ - `ResourceVirtualFiles`
+ - `S3VirtualFiles`
+ - `AzureBlobVirtualFiles`
+ - `MultiVirtualFiles`
+
+The VFS providers and extension methods in `ServiceStack.Common` use the same `ServiceStack.IO` namespace that the [VFS Interfaces are defined in](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack.Interfaces/IO) where typically this would be the only change required, including `using ServiceStack.IO;` if you're using any VFS extension methods.
+
+## ServiceStack.Azure
+
+We've added deeper integration with Azure with [ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure) - a new project containing Azure backed managed implementations for popular ServiceStack providers (as we've done with [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)):
+
+ - `ServiceBusMqServer` - [MQ Server](http://docs.servicestack.net/messaging) for invoking ServiceStack Services via Azure ServiceBus
+ - `AzureBlobVirtualFiles` - [Virtual File System](http://docs.servicestack.net/virtual-file-system) provider using Azure Blob Storage
+ - `AzureTableCacheClient` - [Cache Client](http://docs.servicestack.net/caching) provider using Azure Table Storage
+
+We intend to add support for additional providers in future and make it even easier for ServiceStack Apps to be able to move freely between hosting on an Azure or an AWS managed infrastructure.
+
+### ServiceBus MQ Server
+
+Configuring to use ServiceBus is the same as other MQ Servers, by first registering the ServiceBus `IMessageService` provider followed by registering all ServiceStack Services you want to be able to invoke via MQ's:
+
+```csharp
+container.Register<IMessageService>(c => new ServiceBusMqServer(ConnectionString));
+
+var mqServer = container.Resolve<IMessageService>();
+mqServer.RegisterHandler<MyRequest>(ExecuteMessage);
+mqServer.Start();
+```
+
+### Azure Blob Storage VFS
+
+The `AzureBlobVirtualFiles` VFS provider can be used to serve website content directly from an Azure Blob Storage container:
+
+```csharp
+public class AppHost : AppHostBase
+{
+    public override void Configure(Container container)
+    {
+        //Specify to use Azure Blob Container for uploading / writing files
+        VirtualFiles = new AzureBlobVirtualFiles(connectionString, containerName);
+
+        //Register an additional File Source for static files
+        AddVirtualFileSources.Add(VirtualFiles);
+    }
+}
+```
+
+### Azure Table Storage Cache Client
+
+The `AzureTableCacheClient` [Caching provider](http://docs.servicestack.net/caching) lets you use an Azure Table for your App's distributed caching:
+
+```csharp
+container.Register<ICacheClient>(c => new AzureTableCacheClient(CacheConnectionString));
+```
+
+## ServiceStack
+
+A number of internal improvements were made for making ServiceStack run better than ever on .NET Core:
+
+### Internal improvements
+
+In preparation for .NET Core's plans [to disallow sync read / writes to Request and Responses](https://github.com/aspnet/Announcements/issues/252) a number of internal handlers were refactored to use async APIs when writing to the Response Stream including static files and all raw `byte[]`, `Stream` responses, including HTTP Partial Content responses. Custom Results can implement the new `IStreamWriterAsync` and `IPartialWriterAsync` interfaces to return results that asynchronously writes to the Response Stream. 
+
+ASP.NET, HttpListener and .NET Core hosts were refactored to use as much of the same code-paths as possible to ensure better consistency and code maintenance.
+
+The HTTP Request Pipeline was refactored to only use VFS APIs when determining static file requests resulting in more consistent behavior for all VFS sources.
+
+Requests to directories are automatically redirected to enforce a trailing slash, it can be disabled with `Config.RedirectDirectoriesToTrailingSlashes=false`.
+
+## Strict Mode
+
+We're adding a new Strict Mode to ServiceStack which you can use to make ServiceStack behave stricter and throw Exceptions when it sees certain failure conditions. To enable Strict Mode across all libraries use:
+
+```csharp
+Env.StrictMode = true;
+```
+
+Otherwise to just enable StrictMode for ServiceStack:
+
+```csharp
+SetConfig(new HostConfig {
+    StrictMode = true
+})
+```
+
+When enabled ServiceStack will perform runtime checks to catch invalid state, currently:
+
+ - Checks if Services return Value Types
+ - Checks if UserSession has circular dependencies
+ - Fails fast for exceptions on Startup
+
+In future we'll use it to change the default mode of deserializing as much as possible without error, to fail fast when it detects an error condition. Initially it will be used in Text Serializers and OrmLite to detect mapping errors.
+
+### Content-Type Specific Service Implementations
+
+Service implementations can now use `Verb{Format}` method names to provide a different implementation for handling a specific Content-Type. The Service below defines several different implementation for handling the same Request:
+
+```csharp
+[Route("/my-request")]
+public class MyRequest 
+{
+    public string Name { get; set; }
+}
+
+public class ContentTypeServices : Service
+{
+    public object Any(MyRequest request) => ...;    // Handles all other unspecified Verbs/Formats to /my-request
+
+    public object GetJson(MyRequest request) => ..; // Handles GET /my-request for JSON responses
+
+    public object AnyHtml(MyRequest request) =>     // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
+$@"<html>
+<body>
+<h1>AnyHtml {request.Name}</h1>
+</body>
+</html>";
+
+    public object GetHtml(MyRequest request) =>     // Handles GET /my-request for HTML Responses
+$@"<html>
+<body>
+<h1>GetHtml {request.Name}</h1>
+</body>
+</html>";
+}
+```
+
+### Redirect Paths
+
+The `RedirectPaths` dictionary can be used to maintain a redirect mapping of redirect paths, e.g. we use this to redirect
+all requests to `/metadata/` to redirect to `/metadata`:
+
+```csharp
+SetConfig(new HostConfig { 
+    RedirectPaths = {
+        { "/metadata/", "/metadata" },
+    }
+})
+```
+
+### Forbidden Paths
+
+The `ForbiddenPaths` can be used to prevent access to different folders in your Web Root, e.g:
+
+```csharp
+SetConfig(new HostConfig { 
+    ForbiddenPaths = {
+        "/private-folder",
+    }
+})
+```
+
+### ServiceAssemblies
+
+The list of Service Implementation Assemblies specified in your AppHost constructor is available from `IAppHost.ServiceAssemblies` which plugins can use to enable auto-wired features, e.g. you can use `ScanAppHostAssemblies` in `ValidationFeature` to automatically register any validators defined in the Service Implementation Assemblies:
+
+```csharp
+Plugins.Add(new ValidationFeature {
+    ScanAppHostAssemblies = true
+})
+```
+
+## ServiceStack Minor Features
+
+ - New `Config.Metadata.GetAllDtos()` metadata API to return all DTO Types
+ - Encrypted Messaging Requests are now marked as Secure in `IRequest.RequestAttributes`
+ - `VaryByHeaders` option added to `[CacheResponse]` attribute
+ - New `[ExcludeMetadata]` attribute as alias for `[Exclude(Feature.Metadata | Feature.Soap)]`
+ 
+## Service Clients 
+
+New `*Body` and `*BodyAsync` APIs have been added to all Service Clients which lets you post a separate Request Body for Request DTOs 
+that implement `IRequiresRequestStream` where they contain both properties and a custom Request Body, e.g:
+
+```csharp
+[Route("/json")]
+public class SendJson : IRequiresRequestStream, IReturn<string>
+{
+    public string Name { get; set; }
+    public Stream RequestStream { get; set; }
+}
+
+[Route("/text")]
+public class SendText : IRequiresRequestStream, IReturn<string>
+{
+    public string Name { get; set; }
+    public string ContentType { get; set; }
+    public Stream RequestStream { get; set; }
+}
+
+public class SendRawService : Service
+{
+    [JsonOnly]
+    public object Any(SendJson request) => request.RequestStream.ReadFully();
+
+    public object Any(SendText request)
+    {
+        base.Request.ResponseContentType = request.ContentType ?? base.Request.AcceptTypes[0];
+        return request.RequestStream.ReadFully();
+    }
+}
+```
+
+The new APIs accept both a Request DTO which specifies which Service to call and what properties to add to the QueryString and another object to send in the raw HTTP Request Body, e.g:
+
+```csharp
+var client = new JsonServiceClient(BaseUrl);
+
+var json = client.PostBody(new SendJson { Name = "JSON body" }, new PocoRequest { Foo = "Bar" });
+json.FromJson<PocoRequest>().Foo //= Bar
+
+json = await client.PutBodyAsync(new SendJson { Name = "JSON body" }, "{\"Foo\":\"Bar\"}");
+json.FromJson<PocoRequest>().Foo //= Bar
+
+var client = new JsonHttpClient(BaseUrl);
+var request = new SendText { Name = "Text body", ContentType = "text/plain" };
+
+var text = await client.PostBodyAsync(request, "foo");
+text //= foo
+```
+
+## AutoQuery
+
+Previously all AutoQuery Requests would execute an additional Aggregate query to return the total records available for that query. As this can be unnecessary overhead for requests that don't need it, we've made it opt-in where requests that need the total can add it on the QueryString, e.g:
+
+    /query?Include=Total
+
+Or on the Request DTO:
+
+```csharp
+var response = client.Get(new MyQuery { Include = "Total" });
+```
+
+You can restore the previous behavior and have the Total returned in every request with:
+
+```csharp
+Plugins.Add(new AutoQueryFeature {
+    IncludeTotal = true
+})
+```
+
+## Native Types
+
+User defined interfaces on Request DTOs are now being exported in the generated DTOs. It can be disabled with:
+
+```csharp
+this.GetPlugin<NativeTypesFeature>().MetadataTypesConfig.ExcludeImplementedInterfaces = true;
+```
+
+ - Support was also added for Arrays of Nullable Types.
+
+### Open API Refinements
+
+You can register [Open API Tags](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#tagObject) by adding them to the `Tags` collection:
+
+```csharp
+Plugins.Add(new OpenApiFeature
+{
+    Tags =
+    {
+        new OpenApiTag
+        {
+            Name = "TheTag",
+            Description = "TheTag Description",
+            ExternalDocs = new OpenApiExternalDocumentation
+            {
+                Description = "Link to External Docs Desc",
+                Url = "http://example.org/docs/path",
+            }
+        }
+    }
+});
+```
+
+ - `[ApiMember(IsRequired = true)]` is now included in `OpenApiSchema`
+ - `[ApiResponse(IsDefaultResponse = true)]` can be used to specify the default Service response
+ - The `LogoHref` and `LogoUrl` properties can be used to customize the `/swagger-ui` logo
+ - A `RequestType` was added in `OpenApiOperation` to make it easy for filters to map Open API classes back to Services
+ - Added support for `IReturnVoid` NoContent responses
+
+## Request Logging
+
+ - Add logging for short-circuited requests terminated in Request Filters
+ - Allow logging of non-Service Requests, opt-in with `LimitToServiceRequests=false`
+ - Add `SkipLogging` delegate to control which requests should be logged
+
+## ServiceStack.RabbitMq
+
+You can send MQ Request bodies using a different registered Content-Type which ServiceStack will use to deserialize into the Request DTO.
+
+## LiteDB Auth Provider
+
+[Stefan de Vogelaere](https://github.com/stefandevo) from the ServiceStack Community released the [ServiceStack.Authentication.LiteDB](https://github.com/CaveBirdLabs/ServiceStack.Authentication.LiteDB) AuthProvider for [LiteDB](https://github.com/mbdavid/LiteDB) - A .NET NoSQL Document Store in a single data file.
+
+## ServiceStack.Text
+
+Several enhancements were added in ServiceStack.Text to improve support for Object Dictionaries and KeyValuePair's which are extensively used in Templates, including support in CSV, QueryStrings and AutoMapping/Conversion Utils.
+
+### String Segment Extensions
+
+We've further enhanced it with several StringSegment extension methods to make it easier to work with, e.g. `TryReadLine` is nice for efficiently reading lines from a large string without generating any string references on the heap:
+
+```csharp
+var pos = 0;
+var buf = new StringSegment(fileContents);
+while (buf.TryReadLine(out StringSegment line, ref pos)) {
+    // line
+}
+```
+
+### Resolve Paths
+
+The `ResolvePaths()` extension method evaluates string paths containing directory commands, e.g:
+
+```csharp
+"/a/b/../".ResolvePaths()    //= /a/
+"a/../b".ResolvePaths()      //= b
+"a/../b/./c".ResolvePaths()  //= b/c
+```
+## OrmLite
+
+### SQL Server JSON
+
+[@KevinHoward](https://github.com/KevinHoward) added preliminary support for SQL Server JSON queries, e.g:
+
+```csharp
+var results = db.Select<Table>(q => Sql.JsonValue(q.JsonColumn, "$.State") == "NV" && q.Id == 1);
+```
+
+See [JsonExpressionsTest.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/src/ServiceStack.OrmLite.SqlServerTests/Expressions/JsonExpressionsTest.cs) for more examples.
+
+> Requires `SqlServer2016Dialect.Provider`
+
+### Normalizing PostgreSQL
+
+By default PostgreSQL's dialect provider uses quoted **snake_case** for all Table and Column names.
+It can be configured to generate similar SQL as other RDBMS's with:
+
+```csharp
+PostgreSqlDialectProvider.Instance.Normalize = true; 
+```
+
+Where it will use the default Naming strategy and only quote tables and columns using reserved words.
+OrmLite's mapping is case-insensitive so will still be able to map columns as a result of PostgreSQL's lowercase names for unquoted symbols.
+
+### Ignore properties
+
+The new `[IgnoreOnInsert]` and `[IgnoreOnUpdate]` attributes can be used to ignore properties from INSERT's and UPDATE's.
+
+ - Added `[Computed]` attribute as a better named alias for `[Compute]`
+ - Added support for using string params larger than default string length
+ - The new `SqlConcat`, `SqlCurrency`, `SqlBool` and `SqlLimit` APIs can help creating cross-platform SQL, see [SqlDialectTests.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/SqlDialectTests.cs) for examples.
+
+
 # [v4.5.10 Release Notes](/releases/v4.5.10)
 
 We've developed new Angular4, React, Aurelia and Vue.js Single Page App VS.NET templates for ASP.NET which have been re-imagined to incorporate the latest gold standard in modern Single Page App development and integrated to provide the ideal development experience within VS.NET, optimal bundling and packaging for production including one-click Web App deployments using MS Web Deploy. 
