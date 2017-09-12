@@ -347,6 +347,59 @@ Stream stream = new MemoryStream(bytes);
 await client.PostAsync<SendRawResponse>("/sendraw", stream);
 ```
 
+### Sending Typed Request with Raw Body
+
+The `*Body` and `*BodyAsync` APIs have avaialble in all Service Clients lets you post a separate Request Body for Request DTOs 
+that implement `IRequiresRequestStream` where they contain both properties and a custom Request Body, e.g:
+
+```csharp
+[Route("/json")]
+public class SendJson : IRequiresRequestStream, IReturn<string>
+{
+    public string Name { get; set; }
+    public Stream RequestStream { get; set; }
+}
+
+[Route("/text")]
+public class SendText : IRequiresRequestStream, IReturn<string>
+{
+    public string Name { get; set; }
+    public string ContentType { get; set; }
+    public Stream RequestStream { get; set; }
+}
+
+public class SendRawService : Service
+{
+    [JsonOnly]
+    public object Any(SendJson request) => request.RequestStream.ReadFully();
+
+    public object Any(SendText request)
+    {
+        base.Request.ResponseContentType = request.ContentType ?? base.Request.AcceptTypes[0];
+        return request.RequestStream.ReadFully();
+    }
+}
+```
+
+The new APIs accept both a Request DTO which specifies which Service to call and what properties to add to the QueryString and another
+object to send in the raw HTTP Request Body, e.g:
+
+```csharp
+var client = new JsonServiceClient(BaseUrl);
+
+var json = client.PostBody(new SendJson { Name = "JSON body" }, new PocoRequest { Foo = "Bar" });
+json.FromJson<PocoRequest>().Foo //= Bar
+
+json = await client.PutBodyAsync(new SendJson { Name = "JSON body" }, "{\"Foo\":\"Bar\"}");
+json.FromJson<PocoRequest>().Foo //= Bar
+
+var client = new JsonHttpClient(BaseUrl);
+var request = new SendText { Name = "Text body", ContentType = "text/plain" };
+
+var text = await client.PostBodyAsync(request, "foo");
+text //= foo
+```
+
 ## Client / Server Request Compression
 
 You can  elect to compress HTTP Requests in any C#/.NET Service Clients by specifying the Compression 

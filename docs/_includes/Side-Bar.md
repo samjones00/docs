@@ -79,7 +79,8 @@
     - [Overview](/messaging)
     - [Rabbit MQ](/rabbit-mq)
     - [Redis MQ](/redis-mq)
-    - [Amazon SQS](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver)
+    - [Amazon SQS MQ](/amazon-sqs-mq)
+    - [Azure Service Bus MQ](/azure-service-bus-mq)
 - ##### .NET Core
     - [Overview](/netcore)
     - [Smart MVC Razor Pages](/netcore-razor)
@@ -122,6 +123,7 @@
     - [Dump Utils](/dump-utils)
     - [Reflection Utils](/reflection-utils)
     - [JS Utils](/js-utils)
+    - [Simple IOC](/simple-ioc)
     - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - ##### Caching
     - [Overview](/caching)

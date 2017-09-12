@@ -218,20 +218,27 @@ public class MyRequestValidator : AbstractValidator<MyRequest>
 
 ### Register Validators
 
-All validators have to be registered in the IoC container, a convenient way to register all validators which exist in one assembly is to use `RegisterValidators()`, e.g:
+All validators have to be registered in the IoC container, a convenient way to register all validators whose implementations exist in the same assemblies as your Service implementations is to register the `ValidationFeature` plugin with:
+
+```csharp
+Plugins.Add(new ValidationFeature {
+    ScanAppHostAssemblies = true
+})
+```
+
+Otherwise if the validators are in other assembles they can be registered using `RegisterValidators()`, e.g:
 
 ```csharp
 //This method scans the assembly for validators
 container.RegisterValidators(typeof(UserValidator).Assembly);
 ```
 
-Optionally you can also register each validator individually:
+Optionally each validator can be registered individually:
 
 ```csharp
 //Add the IAdressValidator which will be injected into the UserValidator
 container.Register<IAddressValidator>(new AddressValidator());
 ```
-
 
 Now the service etc can be created and the validation rules are checked every time a request comes in.
 

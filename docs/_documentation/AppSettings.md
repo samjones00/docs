@@ -178,6 +178,23 @@ Dictionary<string,string> valuesMap = settings.GetDictionary("key");
 MyConfig config = settings.Get("key", new MyConfig { Key = "default"});
 ```
 
+### SimpleAppSettings
+
+`SimpleAppSettings` is an alternative Dictionary-based provider that only requires a dependency to `ServiceStack.Common`, e.g:
+
+```csharp
+AppSettings = new SimpleAppSettings(new Dictionary<string, string> {
+    ["string"] = "value",
+    ["EnableFeature.1"] = "true",
+    ["AllowedUsers"] = "Tom,Mick,Harry",
+}));
+
+string value = AppSettings.GetString("string");
+bool enableFeature1 = AppSettings.Get("EnableFeature.1", defaultValue:false);
+bool enableFeature2 = AppSettings.Get("EnableFeature.2", defaultValue:false);
+IList<string> allowedUsers = AppSettings.GetList("AllowedUsers");
+```
+
 ## [DynamoDbAppSettings](https://github.com/ServiceStack/ServiceStack/blob/master/docs/2015/release-notes.md#dynamodbappsettings)
 
 Storing production config in DynamoDB reduces the effort for maintaining production settings decoupled from source code. 

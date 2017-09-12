@@ -78,6 +78,56 @@ public class HelloService : Service
   - [/hellohtml/ServiceStack](http://bootstrapapi.apphb.com/api/hellohtml/ServiceStack)
   - [/helloimage/ServiceStack?Width=600&height=300&Foreground=Yellow](http://bootstrapapi.apphb.com/api/helloimage/ServiceStack?Width=600&height=300&Foreground=Yellow)
 
+
+### Content-Type Specific Service Implementations
+
+Service implementations can use `Verb{Format}` method names to provide a different implementation for handling a specific Content-Type, e.g. 
+the Service below defines several different implementation for handling the same Request:
+
+```csharp
+[Route("/my-request")]
+public class MyRequest 
+{
+    public string Name { get; set; }
+}
+
+public class ContentTypeServices : Service
+{
+    // Handles all other unspecified Verbs/Formats to /my-request
+    public object Any(MyRequest request) => ...;
+
+    // Handles GET /my-request for JSON responses
+    public object GetJson(MyRequest request) => ..; 
+
+    // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
+    public object AnyHtml(MyRequest request) =>  
+$@"<html>
+<body>
+<h1>AnyHtml {request.Name}</h1>
+</body>
+</html>";
+
+    // Handles GET /my-request for HTML Responses
+    public object GetHtml(MyRequest request) =>   
+$@"<html>
+<body>
+<h1>GetHtml {request.Name}</h1>
+</body>
+</html>";
+}
+```
+
+This convention can be used for any of the formats listed in `ContentTypes.KnownFormats`, which by default includes:
+
+ - json
+ - xml
+ - jsv
+ - csv
+ - html
+ - protobuf
+ - msgpack
+ - wire
+
 ## Partial Content Support
 
 Partial Content Support allows a resource to be split up an accessed in multiple chunks for clients that support HTTP Range Requests. This is a popular feature in download managers for resuming downloads of large files and streaming services for real-time streaming of content (e.g. consumed whilst it's being watched or listened to).

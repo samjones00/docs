@@ -866,9 +866,29 @@ Which returns results in:
     response.Meta["Min(Age)"]
     response.Meta["AverageAge"]
 
+### Include Total
+
+The total records available for a query can be included in the Response by adding it on the QueryString, e.g:
+
+    /query?Include=Total
+
+Or on the Request DTO:
+
+```csharp
+var response = client.Get(new MyQuery { Include = "Total" });
+```
+
+Alternatively you can always have the Total returned in every request with:
+
+```csharp
+Plugins.Add(new AutoQueryFeature {
+    IncludeTotal = true
+})
+```
+
 #### Aggregate Query Performance
 
-Surprisingly AutoQuery is able to execute any number of Aggregate functions without performing any additional queries as previously to support paging, a `Total` needed to be executed for each AutoQuery. Now the `Total` query is combined with all other aggregate functions and executed in a single query.
+AutoQuery combineds all other aggregate functions like `Total` and executes them in the same a single query for optimal performance.
 
 ### AutoQuery Response Filters
 
@@ -1072,16 +1092,6 @@ initialized allowing them to use the shorthand collection initializer syntax, e.
 var response = client.Get(new SearchQuestions { 
     Tags = { "redis", "ormlite" }
 });
-```
-
-A problem with this is that AutoQuery encourages having multiple collection properties, most of which will 
-remain unused but would still have an empty collection initialized for all unused properties that are then 
-emitted on the wire. To help with this we've made it easy to prevent collections from being emitted in 
-AutoQuery DTO's by configuring the pre-registered `NativeTypesFeature` plugin below with:
-
-```csharp
-var nativeTypes = this.GetPlugin<NativeTypesFeature>();
-nativeTypes.InitializeCollectionsForType = NativeTypesFeature.DontInitializeAutoQueryCollections;
 ```
 
 # AutoQuery Examples
