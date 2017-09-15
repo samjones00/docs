@@ -81,9 +81,6 @@ The `JwtAuthProvider` is our integrated stateless Auth solution for the popular 
 
 ### Community Auth Providers
 
-## LiteDB Auth Provider
-
-  - [ServiceStack.Authentication.LiteDB](https://github.com/CaveBirdLabs/ServiceStack.Authentication.LiteDB) - Auth Provider for [LiteDB](https://github.com/mbdavid/LiteDB)
   - [Azure Active Directory](https://github.com/jfoshee/ServiceStack.Authentication.Aad) - Allow Custom App to login with Azure Active Directory
   - [Azure Active Directory via Azure Graph for ServiceStack](https://github.com/ticky74/ServiceStack.Authentication.Azure)
   - [ServiceStack.Authentication.IdentityServer](https://github.com/MacLeanElectrical/servicestack-authentication-identityserver) - Integration with ASP.NET IdentityServer and provides OpenIDConnect / OAuth 2.0 Single Sign-On Authentication
@@ -157,6 +154,7 @@ The Authentication module allows you to use your own persistence back-ends but f
   - **Mongo DB**: `MongoDBAuthRepository` in [ServiceStack.Authentication.MongoDB](https://nuget.org/packages/ServiceStack.Authentication.MongoDB)
   - **Raven DB**: `RavenUserAuthRepository` in [ServiceStack.Authentication.RavenDB](https://nuget.org/packages/ServiceStack.Authentication.RavenDB)
   - **Marten**: `MartenAuthRepository` in [ServiceStack.Authentication.Marten](https://www.nuget.org/packages/ServiceStack.Authentication.Marten) - [GitHub project](https://github.com/migajek/ServiceStack.Authentication.Marten)
+  - **LiteDB**: `LiteDBAuthRepository` in [ServiceStack.Authentication.LiteDB](https://github.com/CaveBirdLabs/ServiceStack.Authentication.LiteDB)
 
 Use the OrmLite adapter if you want to store the Users Authentication information in any of the RDBMS's that 
 [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) supports. 
