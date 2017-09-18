@@ -142,7 +142,7 @@ pre.highlight {
 ::-webkit-scrollbar { width:7px; height:5px }
 ::-webkit-scrollbar-thumb { background-color:#ccc; }
 
-@media (max-width: 1366px) {
+@media (max-width: 1580px) {
     #content {
         margin-left: 325px;
     }
