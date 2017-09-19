@@ -140,7 +140,7 @@ Each appSetting is on a new line with the **Key** and **Value** separated by a s
 
     {Key} {Value}\n
 
-> The delimiter can be changed in the constructor e.g. new TextFileSettings(path,delimiter:": ");
+> The delimiter can be changed in the constructor e.g. `new TextFileSettings(path,delimiter:": ");`
 
 ### Extract key / value settings from text file
 
