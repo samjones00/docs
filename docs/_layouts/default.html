@@ -19,12 +19,9 @@
             <h3>Documentation</h3>
         </a>
 
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                </li>
-            </ul>
-        </div>
+        <button id="sidebar-toggle" class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </nav>
     <div id="scroll-screen"></div>
     <a id="edit-github" href="https://github.com/ServiceStack/docs/tree/master/docs/{{ page.path }}" target="_blank"><span class="fa fa-github"></span> Edit on GitHub</a>
@@ -81,6 +78,9 @@ if (/*screenWidth > 768 && */ pathinfo != "/")
         });
     }
 }
+$("#sidebar-toggle").click(function(){
+    $("#sidebar").fadeToggle()
+});
 
 $("#sidebar a[href^=http]")
     .append('<i class="fa fa-external-link" style="margin-left:5px"></i>');

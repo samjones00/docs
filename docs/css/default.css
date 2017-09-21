@@ -135,9 +135,6 @@ pre.highlight {
     right: 1.5em;
     top: 1em;
 }
-#toc {
-    display: none;
-}
 
 ::-webkit-scrollbar { width:7px; height:5px }
 ::-webkit-scrollbar-thumb { background-color:#ccc; }
@@ -164,28 +161,31 @@ pre.highlight {
 @media (max-width: 768px) {
     #topnav {
         background: #fff;
+        position: absolute;
     }
-    #toc {
-        display: block;
-    }
-    #sidebar, #scroll-screen {
+    #sidebar, #scroll-screen, #edit-github {
         display: none;
     }
     #content {
         margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
     }
     #content img {
         max-width: 450px !important;
     }
+    #sidebar .inner {
+        background: #fff;
+        width: 325px;
+        padding: 10px 0 0 10px;
+    }
+    #sidebar-toggle {
+        display: block;
+    }
 }
 @media (max-width: 414px) {
-    #content img {
-        max-width: 414px !important;
-    }
+    #content img { max-width: 414px !important; }
 }
 @media (max-width: 375px) {
-    #content img {
-        max-width: 375px !important;
-    }
+    #content img { max-width: 375px !important; }
 }
-    
