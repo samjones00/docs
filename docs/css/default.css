@@ -170,6 +170,9 @@ pre.highlight {
     #sidebar, #scroll-screen, #edit-github {
         display: none;
     }
+    #body { 
+        padding-right: 0; 
+    }
     #content {
         margin-left: 0;
         padding-left: 10px;
