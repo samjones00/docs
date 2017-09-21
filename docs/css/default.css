@@ -136,6 +136,10 @@ pre.highlight {
     top: 1em;
 }
 
+#sidebar-toggle {
+    display: none;
+}
+
 ::-webkit-scrollbar { width:7px; height:5px }
 ::-webkit-scrollbar-thumb { background-color:#ccc; }
 
