@@ -3,7 +3,7 @@ slug: simple-ioc
 title: Simple Container
 ---
 
-[SimpleContainer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/SimpleContainer.cs) is an IOC that implements [IContainer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IContainer.cs) - the smallest interface we could define for a minimal but useful IOC:
+[SimpleContainer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/SimpleContainer.cs) is an IOC that implements [IContainer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/IContainer.cs) - a minimal interface for a useful IOC:
 
 ```csharp
 public interface IContainer
@@ -38,8 +38,7 @@ var bar = container.Resolve(typeof(IBar));
 var hasFoo = container.Exists<IFoo>();
 ```
 
-Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which 
-[ServiceStack's TemplatePagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
+Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which [ServiceStack's TemplatePagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
 
 ### Fast, small, dependency-free IOC
 
