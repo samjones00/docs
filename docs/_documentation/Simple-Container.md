@@ -40,7 +40,7 @@ var hasFoo = container.Exists<IFoo>();
 
 Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which [ServiceStack's TemplatePagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
 
-### Fast, small, dependency-free IOC
+### Fast, small, minimal dependency IOC
 
 [Funq](/ioc) was originally chosen for ServiceStack because it was the amongst the fastest, smallest and most embeddable IOC's available with a pleasant Typed API, which is integrated into `ServiceStack.dll` where it provides all IOC functionality in ServiceStack.
 
