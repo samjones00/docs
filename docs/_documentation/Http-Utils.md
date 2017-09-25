@@ -251,11 +251,11 @@ For finer-grain control you can use the `UploadFile` extension method which allo
 ```csharp
 var uploadFile = new FileInfo("path/to/file.csv");
 
-var webRequest = (HttpWebRequest)WebRequest.Create("http://example.org/upload");
-webRequest.Accept = MimeTypes.Json;
-using (var fileStream = uploadFile.OpenRead())
+var webReq = (HttpWebRequest)WebRequest.Create("http://example.org/upload");
+webReq.Accept = MimeTypes.Json;
+using (var stream = uploadFile.OpenRead())
 {
-    var webRes = webRequest.UploadFile(fileStream, uploadFile.Name, MimeTypes.GetMimeType(uploadFile.Name));
+    var webRes = webReq.UploadFile(stream, uploadFile.Name, MimeTypes.GetMimeType(uploadFile.Name));
 }
 ```
 
