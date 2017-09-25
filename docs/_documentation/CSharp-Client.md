@@ -561,6 +561,69 @@ Whilst a simple feature, it enables treating your remote services as a message-b
 [yielding its many inherent advantages](/advantages-of-message-based-web-services#advantages-of-message-based-designs) 
 where your Application API's need only pass Request DTO models around to be able to invoke remote Services, decoupling the Service Request from its implementation which can be now easily managed by a high-level adapter that takes care of proxying the Request to the underlying Service Client. The adapter could also add high-level functionality of it's own including auto retrying of failed requests, generic error handling, logging/telemetrics, event notification, throttling, offline queuing/syncing, etc.
 
+### File Uploads
+
+You can use the `PostFile` API to upload a single File, with the Route of the Service you want to call,
+the name of the file and the `Stream` of its contents, e.g:
+
+```csharp
+var client = new JsonServiceClient(baseUrl);
+using (var fileStream = new FileInfo(filePath).OpenRead())
+{
+    var fileName = "upload.html";
+    var response = client.PostFile<FileUploadResponse>("/files/upload", 
+        fileStream, fileName, MimeTypes.GetMimeType(fileName));
+}
+```
+
+Files uploaded using the `PostFile*` APIs are uploaded as a HTTP POST using the `multipart/form-data` Content-Type which can 
+be accessed from the `IRequest.Files` collection in your Services, e.g:
+
+```csharp
+[Route("/files/upload")]
+public class UploadFile {}
+
+public class UploadFileService : Service
+{
+    readonly string UploadsDir = "uploads";
+
+    public object Post(UploadFile request)
+    {
+        var uploadedFile = base.Request.Files[0];
+        VirtualFiles.WriteFile(UploadsDir.CombineWith(uploadedFile.FileName), uploadedFile.InputStream);
+        return new FileUploadResponse { ... };
+    }
+}
+```
+
+You can use the `PostFileWithRequest` API To also include additional metadata with your File Upload, e.g:
+
+```csharp
+[DataContract]
+[Route("/files/upload")]
+public class FileUpload : IReturn<FileUploadResponse>
+{
+    [DataMember]
+    public int CustomerId { get; set; }
+
+    [DataMember]
+    public DateTime CreatedDate { get; set; }
+}
+
+var client = new JsonHttpClient(baseUrl);
+var fileInfo = new FileInfo(filePath);
+using (var fileStream = fileInfo.OpenRead())
+{
+    var request = new FileUpload {
+        CustomerId = customerId,
+        CreatedDate = fileInfo.CreationTimeUtc,
+    };
+
+    var response = client.PostFileWithRequest<FileUploadResponse>(
+        "/files/upload", fileStream, fileInfo.Name, request);
+}
+```
+
 ### Multiple File Uploads
 
 The `PostFilesWithRequest` APIs available in all .NET Service Clients allow you to easily upload multiple 
