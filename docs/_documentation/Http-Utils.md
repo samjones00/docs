@@ -244,6 +244,21 @@ var httpRes = "http://example.org/upload"
     .PostFileToUrl(new FileInfo("/path/to/file.xml"), "application/xml");
 ```
 
+## Upload File from Stream
+
+For finer-grain control you can use the `UploadFile` extension method which allows you to customize the `WebRequest` that's used to send the File Upload HTTP Request, e.g:
+
+```csharp
+var uploadFile = new FileInfo("path/to/file.csv");
+
+var webRequest = (HttpWebRequest)WebRequest.Create("http://example.org/upload");
+webRequest.Accept = MimeTypes.Json;
+using (var fileStream = uploadFile.OpenRead())
+{
+    var webRes = webRequest.UploadFile(fileStream, uploadFile.Name, MimeTypes.GetMimeType(uploadFile.Name));
+}
+```
+
 ## Exception handling
 
 Exception handling is another area we can DRY up using extension methods. Rather than wrapping them in our own Custom exception classes or repeating the boilerplate required to find the underlying issue on every request, we provide typed APIs over the native WebRequest **Exceptions**, providing typed DRY APIs to handle common HTTP Faults:
