@@ -72,6 +72,11 @@
     - [Compiled Razor Views](/compiled-razor-views)
     - [Razor Views vs Content Pages](/razor-views-vs-content-pages)
     - [Markdown Razor](/markdown-razor)
+- ##### Templates
+    - [Overview](http://templates.servicestack.net)
+    - [API Pages](http://templates.servicestack.net/docs/api-pages)
+    - [Web Apps](http://templates.servicestack.net/docs/web-apps)
+    - [ServiceStack Filters](http://templates.servicestack.net/docs/servicestack-filters)
 - ##### Hosts
     - [IIS](/iis)
     - [Self-hosting](/self-hosting)
@@ -181,11 +186,6 @@
     - [Swift](/swift)
     - [F#](/fsharp)
     - [VB.NET](/vbnet)
-- ##### Templates
-    - [Overview](http://templates.servicestack.net)
-    - [API Pages](http://templates.servicestack.net/docs/api-pages)
-    - [Web Apps](http://templates.servicestack.net/docs/web-apps)
-    - [ServiceStack Filters](http://templates.servicestack.net/docs/servicestack-filters)
 - ##### Mono
     - [Overview](/mono)
     - [Run ServiceStack as a daemon on Linux](/servicestack-as-daemon-on-linux)
