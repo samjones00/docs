@@ -360,6 +360,42 @@ your C#/.NET clients providing a strongly-typed API without any code-gen what-so
 *define everything* ServiceStack does not pollute your web services with any additional custom 
 artefacts or markup.
 
+### Multiple Clients
+
+Our generic Service clients covers the most popular Mobile, Desktop and Server platforms with first-class implementations for Xamarin, Android, Java and TypeScript which now includes:
+
+ - [C#/.NET Service Clients](/csharp-client)
+    - Xamarin.iOS
+    - Xamarin.Android
+    - UWP
+    - .NET Framework 4.5+
+    - .NET Core
+    - Silverlight
+ - [TypeScript Service Client](/typescript-add-servicestack-reference#typescript-serviceclient)
+    - Web
+    - Node.js Server
+    - React Native
+        - iOS
+        - Android
+ - [Java Service Client](/java-add-servicestack-reference#jsonserviceclient-api)
+    - Android
+    - JVM 1.7+ (Java, Kotlin, Scala, etc)
+        - Java Clients
+        - Java Servers
+ - [Swift Service Client](/swift-add-servicestack-reference#swift-client-usage)
+    - iOS
+    - OSX
+    - [Swift Package Manager Apps](https://github.com/ServiceStackApps/swift-techstacks-console)
+ - [JavaScript (jQuery)](/ss-utils-js)
+   - Web
+ - [Dart](/dart-client)
+   - Web
+ - [MQ Clients](/messaging#mq-client-architecture)
+   - Rabbit MQ
+   - Redis MQ
+   - Amazon SQS
+   - Azure Service Bus
+
 ### Multiple pluggable Formats
 
 ServiceStack re-uses the custom artefacts above and with zero-config and without imposing any extra 
