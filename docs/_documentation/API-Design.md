@@ -122,34 +122,55 @@ The POCOs used in Micro ORMS are particularly well suited for re-using as DTOs s
 
 ### Calling Services from a Typed C# Client
 
-In Service development your services DTOs provides your technology agnostic **Service Layer** which you want to keep clean and as 'dependency-free' as possible for maximum accessibility and potential re-use. Our recommendation is to keep your service DTOs in a separate largely dep-free assembly. We intend to improve this story further with a commercial VS.NET extension to enable 'Add ServiceStack Reference' like behaviour providing a familiar productive development experience for existing VS.NET SOAP WebService developers.
+In Service development your services DTOs provides your technology agnostic **Service Layer** which you want to keep clean and as 'dependency-free' for maximum accessibility and potential re-use. Our recommendation is to follow our [Recommended Physical Project Structure](/physical-project-structure) and keep your DTOs in a separate ServiceModel project which ensures a well-defined
+ServiceContract [decoupled from their implemenation and accessible from any client](/service-complexity-and-dto-roles#data-transfer-objects---dtos). This recommended Physical project structure is embedded in each [ServiceStack VS.NET Template](/templates-overview).
 
-One of ServiceStack's strengths is its ability to re-use your Server DTOs on the client enabling ServiceStack's productive end-to-end typed API. The exact DTOs aren't needed, only the shape of the DTOs is important, ServiceStack's message-based design means you can even use partial DTOs on the client containing just the fields they're interested in. 
+One of ServiceStack's strengths is its ability to re-use your Server DTOs on the client enabling ServiceStack's productive end-to-end typed API. 
+ServiceStack's use of Typed DTOs in its message-based design enable greater resiliency for your Services where the exact DTOs aren't needed, only the shape of the DTOs is important and clients can also opt to use partial DTOs containing just the fields they're interested in. In the same way extending existing Services with new optional properties wont break existing clients using older DTOs.
 
-But lets say you take the normal route of copying the DTOs (in either source of binary form) so you have something like this on the client:
+When developing both Server and Client applications the easiest way to call typed Services from clients is to just have them reference the same ServiceModel .dll the Server uses to define its Service Contract, or for clients that only need to call a couple of Service you can choose to 
+instead copy the class definitions as-is, in both cases calling Services is exactly the same where the Request DTO can be used with any of the generic [C#/.NET Service Clients](/csharp-client) to call Services using a succinct typed API, e.g:
+
+#### Service Model Classes
 
 ```csharp
 [Route("/reqstars")]
 public class GetReqstars : IReturn<List<Reqstar>> { }
+public class Reqstar { ... }
 ```
 
-The code on the client now just becomes:
+Which can used in any ServiceClient with:
 
 ```csharp
 var client = new JsonServiceClient(BaseUri);
 List<Reqstar> response = client.Get(new GetReqstars());
 ```
 
-Which makes a **GET** web request to the `/reqstars` route.
-When a custom route is not present on the client it automatically falls back to using ServiceStack's [pre-defined routes](/routing#pre-defined-routes).
-	
-Finally you can also use the previous more explicit client API (ideal for when you don't have the `IReturn<>` marker):
+Which makes a **GET** web request to the `/reqstars` route. Custom Routes on Request DTO's are also not required as when none are defined the client automatically falls back to using ServiceStack's [pre-defined routes](/routing#pre-defined-routes).
+
+### Generating Typed DTOs
+
+In addition to being able to share your `ServiceModel.dll` on .NET Clients enable a typed end-to-end API without code-gen, clients 
+can alternatively choose to use [Add ServiceStack Reference](http://docs.servicestack.net/csharp-add-servicestack-reference) support to provide an 
+alternative way to get the Services typed DTOs on the client. In both cases the exact same source code is used to call the Services:
+
+```csharp
+var client = new JsonServiceClient(BaseUri);
+var response = client.Get(new GetReqstars());
+```
+
+Add ServiceStack Reference is also available for [most popular languages](http://docs.servicestack.net/add-servicestack-reference) used in developing Web, Mobile and Desktop Apps.
+
+#### Custom API Requests
+
+When preferred, you can also use the previous more explicit client API (ideal for when you don't have the `IReturn<>` marker) which 
+lets you call the Service using just its route:
 
 ```csharp
 var response = client.Get<List<Reqstar>>("/reqstars");
 ```
 
-All these APIs **have async equivalents** which you can use instead, when you need to.
+> All these Service Client APIs **have async equivalents** with an `*Async` suffix.
 
 ## Everything Just Works
 
