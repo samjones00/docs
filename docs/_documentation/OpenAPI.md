@@ -247,7 +247,7 @@ call protected Services in `/swagger-ui`.
 
 ## Generating AutoRest client
 
-You can use OpenAPI plugin to automatically generate client using [Autorest](https://guthub.com/Azure/Autorest). 
+You can use OpenAPI plugin to automatically generate client using [Autorest](https://github.com/Azure/Autorest). 
 To use AutoRest first install it from npm:
 
     npm install -g autorest
