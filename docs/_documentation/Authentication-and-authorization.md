@@ -823,6 +823,12 @@ public object Any(ImpersonateUser request)
 
 > Your Services can use the new `Request.IsInProcessRequest()` to identify Services that were executed in-process.
 
+#### Custom User Sessions using JWT Tokens
+
+The [JWT Auth Provider](/jwt-authprovider) allows for a more flexible approach to impersonating users as they allow
+[Manually creating JWT Tokens](/jwt-authprovider#creating-jwt-tokens-manually) to construct a custom User Session with Custom metadata, 
+Roles and Permissions.
+
 #### IAuthMetadataProvider
 
 An IAuthMetadataProvider provides a way to customize the authInfo in all AuthProviders. It also allows overriding of how extended Auth metadata like profileUrl is returned.
