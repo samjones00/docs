@@ -11,9 +11,10 @@ ServiceStack supports the following formats:
 - [JSV](/jsv-format) _(hybrid CSV-style escaping + JSON format that is optimized for both size and speed)_
 - [CSV](/csv-format)
 - HTML
-    - [Razor](http://razor.servicestack.net)
-    - [Markdown Razor](/markdown-razor) _(Razor combined with markdown)_
-    - [HTML5 Report](/html5reportformat) _(human-friendly HTML auto-layout letting you quickly visualize data returned by your services)_
+    - [Templates](http://templates.servicestack.net) _(Simple, clean, fast alternative to Razor)_
+    - [Razor](http://razor.servicestack.net) _(Microsoft's Razor View Engine)_
+    - [Markdown Razor](/markdown-razor) _(Razor-inspired syntax combined with markdown)_
+    - [HTML5 Report](/html5reportformat) _(Human-friendly HTML auto-layout to quickly visualize data returned by services)_
 - [Message Pack](/messagepack-format)
 - [Protocol Buffers](/protobuf-format)
 - [Wire](/wire-format)
