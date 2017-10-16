@@ -15,8 +15,8 @@ ServiceStack has the following Virtual Files Sources available:
  - `MemoryVirtualFiles` - Virtual Files and Folders that can be programatically populated In Memory
  - `ResourceVirtualFiles` - Embedded Resource Files in .dlls
  - `FileSystemMapping` - Hard-disk or Network files made available under an custom file mapping alias
- - `S3VirtualFiles` - Files and folders stored on Amazon's S3 Managed Networked File Storage in [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualfiles)
- - `AzureBlobVirtualFiles` - Virtual file system based on Azure Blob Storage in [ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure)
+ - `S3VirtualFiles` - Files stored on Amazon's S3 Managed File Storage in [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualfiles)
+ - `AzureBlobVirtualFiles` - Files stored on Azure's Managed Blob Storage in [ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure)
  - `MultiVirtualFiles` - Any combination of any of the above Virtual File Sources under a cascading configuration
 
 ## Embedded Resources
