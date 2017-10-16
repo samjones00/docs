@@ -5,7 +5,7 @@ title: Virtual File System
 
 In order to access physical files in view engines from multiple sources, ServiceStack includes its own pluggable virtual file system API that lets it support multiple filesystem backends. 
 
-The virtual file system (VFS) is what allows ServiceStack to support view engines in a standard ASP.NET websites (e.g. serving directories from the root directory) as well in self-hosting stand-alone HttpListener websites and Windows Services serving from the output `/bin` directory as well as embedded resources inside .dlls, [in memory filesystems](/html-css-and-javascript-minification#minify-static-js-css-and-html-files) populated at runtime, [remote datastores like AWS S3](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualpathprovider) or any combination of either.
+The virtual file system (VFS) is what allows ServiceStack to support view engines in a standard ASP.NET websites (e.g. serving directories from the root directory) as well in self-hosting stand-alone HttpListener websites and Windows Services serving from the output `/bin` directory as well as embedded resources inside .dlls, [in memory filesystems](/html-css-and-javascript-minification#minify-static-js-css-and-html-files) populated at runtime, [remote datastores like AWS S3](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualpathprovider), or in a [remote Azure Blob Storage](https://github.com/ServiceStack/ServiceStack.Azure) or any combination of either.
 
 ## Virtual File Systems Available
 
@@ -15,7 +15,8 @@ ServiceStack has the following Virtual Files Sources available:
  - `MemoryVirtualFiles` - Virtual Files and Folders that can be programatically populated In Memory
  - `ResourceVirtualFiles` - Embedded Resource Files in .dlls
  - `FileSystemMapping` - Hard-disk or Network files made available under an custom file mapping alias
- - `S3VirtualFiles` - Files and folders stored on Amazon's S3 Managed Networked File Storage
+ - `S3VirtualFiles` - Files and folders stored on Amazon's S3 Managed Networked File Storage in [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualfiles)
+ - `AzureBlobVirtualFiles` - Virtual file system based on Azure Blob Storage in [ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure)
  - `MultiVirtualFiles` - Any combination of any of the above Virtual File Sources under a cascading configuration
 
 ## Embedded Resources
