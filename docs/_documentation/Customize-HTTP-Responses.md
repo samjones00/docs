@@ -59,6 +59,28 @@ If you only have access to the `IRequest` you can access the `IResponse` via the
 req.Response.EndRequest();
 ```
 
+### Using a [Global Request or Response Filter](/request-and-response-filters)
+
+You can use a Global Request Filter to set Custom HTTP Headers and then short-circuit the request:
+
+```csharp
+public override void Configure(Container container) 
+{ 
+    GlobalRequestFilters.Add((req, res, requestDto) => 
+    {
+        if (req.Verb == HttpMethods.Head && requestDto is DownloadTrack track)
+        {
+            var dep = req.TryResolve<IDependency>();
+
+            res.ContentType = "audio/mpeg";
+            res.AddHeader("X-Genre", dep.GetGenre(track));
+            res.SetContentLength(dep.CalculateLength(track));
+            res.EndRequest();
+        }
+    });
+}
+```
+
 ### Using a [Request or Response Filter Attribute](/filter-attributes)
 
 Example 4). uses the in-built [AddHeaderAttribute](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/AddHeaderAttribute.cs) to modify the HTTP Response using a [Request Filter attribute](/filter-attributes). You can also modify all HTTP Service Responses by using a [Global Request or Response Filter](?/request-and-response-filters): 
