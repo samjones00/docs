@@ -258,11 +258,11 @@ var response = client.Get(new GetApiKeys { Environment = "live" });
 response.Results.PrintDump(); //User's "live" API Keys 
 ```
 
-And the `RegenrateApiKeys` Service to invalidate all current API Keys and generate new ones for the specified environment:
+And the `RegenerateApiKeys` Service to invalidate all current API Keys and generate new ones for the specified environment:
 
 ```csharp
 //POST /apikeys/regenerate/live
-var response = client.Post(new RegenrateApiKeys { Environment = "live" }); 
+var response = client.Post(new RegenerateApiKeys { Environment = "live" }); 
 response.Results.PrintDump(); //User's new "live" API Keys 
 ```
 
