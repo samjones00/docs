@@ -307,7 +307,7 @@ See the [HttpUtilsMockTests.cs](https://github.com/ServiceStack/ServiceStack.Tex
 
 The above description should give you a good idea of how to make use of the APIs, although for a more complete reference we'll post the full signatures here.
 
-Most of the APIs are located in the [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/WebRequestExtensions.cs) namespace:
+Most of the APIs are located in the [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/HttpUtils.cs) namespace:
 
 ```csharp
 string GetJsonFromUrl(this string url, Action<HttpWebRequest> requestFilter=null,
