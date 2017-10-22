@@ -11,7 +11,8 @@ There are currently 4 supported MQ Server options:
 
   - [Rabbit MQ Server](/rabbit-mq)
   - [Redis MQ Server](/redis-mq)
-  - [Amazon SQS MQ Server](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver)
+  - [Amazon SQS MQ Server](/amazon-sqs-mq)
+  - [Azure Service Bus MQ](/azure-service-bus-mq)
   - [InMemory MQ Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Messaging/InMemoryTransientMessageService.cs)
 
 Like other ServiceStack providers, all MQ Servers are interchangeable, visible in the shared MQ Server tests below:
