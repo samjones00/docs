@@ -72,14 +72,12 @@ public class CustomerService : Service
 }
 
 //Write your Integration tests
-[TestFixture]
 public class CustomerRestExample
 {
     const string BaseUri = "http://localhost:2000/";
     ServiceStackHost appHost;
 
-    [TestFixtureSetUp]
-    public void TestFixtureSetUp()
+    public CustomerRestExample()
     {
         //Start your AppHost on TestFixtureSetUp
         appHost = new AppHost() 
@@ -87,12 +85,8 @@ public class CustomerRestExample
             .Start(BaseUri);
     }
 
-    [TestFixtureTearDown]
-    public void TestFixtureTearDown()
-    {
-        //Dispose it on TearDown
-        appHost.Dispose();     
-    }
+    [OneTimeTearDown]
+    public void OneTimeTearDown() => appHost.Dispose();
 
     /* Write your Integration Tests against the self-host instance */
 
@@ -189,8 +183,8 @@ If you're accessing `Db` from directly within your service implementation you're
 ```csharp
 private ServiceStackHost appHost;
 
-[TestFixtureSetUp]
-public void TestFixtureSetUp()
+[OneTimeSetUp]
+public void OneTimeSetUp()
 {
     appHost = new BasicAppHost().Init();
     var container = appHost.Container;
@@ -209,11 +203,8 @@ public void TestFixtureSetUp()
     }
 }
 
-[TestFixtureTearDown]
-public void TestFixtureTearDown()
-{
-    appHost.Dispose();
-}
+[OneTimeTearDown]
+public void OneTimeTearDown() => appHost.Dispose();
 ```
 
 With everything setup we can now test the service just like a normal C# class in isolation independently of ServiceStack itself:
