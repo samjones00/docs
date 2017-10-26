@@ -4,6 +4,7 @@ slug: community-resources
 
 ### Blog posts
 
+  - [ASP.NET Core 2 + React + Docker + ServiceStack](https://medium.com/@williams.jackj/asp-net-core-2-react-docker-servicestack-96be42933e86) by [@jackkedd](https://twitter.com/jackkedd)
   - [ServiceStack in a Console Application](https://dev.to/tonytalkstech/servicestack-in-a-console-application) by [@TonyTalksTech](https://twitter.com/TonyTalksTech)
   - [Journey into Microservices](http://www.wwwlicious.com/2016/05/03/servicestack-microservices-1/) by [@wwwlicious](https://twitter.com/wwwlicious)
     - [Logging and Debugging](http://www.wwwlicious.com/2016/05/06/servicestack-microservices-logging-debugging-2/)

@@ -960,3 +960,6 @@ app.Use(new RazorHandler("/login"));
 Which will render the `/wwwroot/login.cshtml` Razor Page using the 
 [MVC Smart Razor Pages support](/netcore-razor)
 
+# Community Resources
+
+  - [ASP.NET Core 2 + React + Docker + ServiceStack](https://medium.com/@williams.jackj/asp-net-core-2-react-docker-servicestack-96be42933e86) by [@jackkedd](https://twitter.com/jackkedd)
