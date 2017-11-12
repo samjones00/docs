@@ -40,11 +40,13 @@ When using un-typed [Session Bag](https://github.com/ServiceStack/ServiceStack/b
 
 The general recommendation is to use typed sessions, which will give you type-safety benefits as well as being able to fetch your entire users session with a single cache call. If you use the dynamic/session bag then it will be a network call for each key accessed - although as caches are designed for fast-access, this isn't too much of a concern.
 
-### Overriding a User Session
+### Auth with Request AuthProviders
 
-Auth Providers that authenticate with each request (i.e. implement `IAuthWithRequest`) don't persist Users Sessions in the cache, they're only the `IRequest` and only last for the duration of the Request.
+Auth Providers that authenticate with each request that implement `IAuthWithRequest` like [JWT](/jwt-authprovider), [API Key](/api-key-authprovider) and `BasicAuthProvider` don't persist Users Sessions in the cache, they're only the `IRequest` and only last for the duration of the Request.
 
-You can utilize this alternative solution of populating a Users Session on each request by injecting it in:
+#### Overriding a User Session
+
+This alternative solution for populating a Users Session on each request can be utilized by injecting an authenticated UserSession in:
 
 ```csharp
 IRequest req = base.Request;
