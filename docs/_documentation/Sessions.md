@@ -42,7 +42,9 @@ The general recommendation is to use typed sessions, which will give you type-sa
 
 ### Overriding a User Session
 
-An alternative solution used by `IAuthWithRequest` Auth Providers is to populating a Users Session on each request by injecting it in:
+Auth Providers that authenticate with each request (i.e. implement `IAuthWithRequest`) don't persist Users Sessions in the cache, they're only the `IRequest` and only last for the duration of the Request.
+
+You can utilize this alternative solution of populating a Users Session on each request by injecting it in:
 
 ```csharp
 IRequest req = base.Request;
