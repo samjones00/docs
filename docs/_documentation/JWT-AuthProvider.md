@@ -220,7 +220,7 @@ JWT standard allows for a number of different Hashing Algorithms although requir
 HMAC SHA-256 to be supported which is the default. The full list of Symmetric HMAC and Asymmetric RSA
 Algorithms `JwtAuthProvider` supports include:
 
- - **HM256** - Symmetric HMAC SHA-256 algorithm
+ - **HS256** - Symmetric HMAC SHA-256 algorithm
  - **HS384** - Symmetric HMAC SHA-384 algorithm
  - **HS512** - Symmetric HMAC SHA-512 algorithm
  - **RS256** - Asymmetric RSA with PKCS#1 padding with SHA-256
