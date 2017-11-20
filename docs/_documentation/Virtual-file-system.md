@@ -45,8 +45,8 @@ Custom FileSystem mappings can be easily registered under a specific alias by ov
 public override List<IVirtualPathProvider> GetVirtualFileSources()
 {
     var existingProviders = base.GetVirtualFileSources();
-    existingProviders.Add(new FileSystemMapping(this, "img", "i:\\images"));
-    existingProviders.Add(new FileSystemMapping(this, "docs", "d:\\documents"));
+    existingProviders.Add(new FileSystemMapping("img", "i:\\images"));
+    existingProviders.Add(new FileSystemMapping("docs", "d:\\documents"));
     return existingProviders;
 }
 ```
