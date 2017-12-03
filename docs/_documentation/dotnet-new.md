@@ -5,12 +5,12 @@ title: .NET Core 2.0 and ASP.NET Project Templates
 
 There are a number of the most popular starting ServiceStack v5 Project Templates available in the GitHub organizations:
 
- - .NET Core 2.0 C# Templates - [github.com/NetCoreTemplates](https://github.com/NetCoreTemplates)
- - .NET Framework C# Templates - [github.com/NetFrameworkTemplates](https://github.com/NetFrameworkTemplates)
+ - **.NET Core 2.0 C# Templates** - [github.com/NetCoreTemplates](https://github.com/NetCoreTemplates)
+ - **.NET Framework C# Templates** - [github.com/NetFrameworkTemplates](https://github.com/NetFrameworkTemplates)
 
 The **dotnet-new** script included in [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) can be used to create projects from the available templates:
 
-### Install or Update servicestack-cli
+### Install or update servicestack-cli
 
 You'll need to have `servicestack-cli v0.0.10` or later installed. If you had a previous version you can remove it with:
 
