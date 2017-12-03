@@ -129,9 +129,9 @@ This can easily be done by using the `[assembly:ContractNamespace]` attribute us
 
 ### SOAP Exceptions
 
-Exceptions in SOAP responses are returned with an `200 OK` HTTP Status so they are deserialized as normal responses in code-generated SOAP clients. The original HTTP Status code is available in the `X-Status` HTTP Header or SOAP Response Header named `X-Status`. This is transparently converted into a typed WebServiceException when using ServiceStack's built-in Soap 1.1/1.2 generic Service Clients as seen in [WebServicesTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.IntegrationTests/Tests/WebServicesTests.cs).
+Exceptions in SOAP responses are returned with an `200 OK` HTTP Status so they are deserialized as normal responses in code-generated SOAP clients. The original HTTP Status code is available in the `X-Status` HTTP Header or SOAP Response Header named `X-Status`. This is transparently converted into a typed `WebServiceException` when using ServiceStack's built-in Soap 1.1/1.2 generic Service Clients as seen in [WebServicesTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.IntegrationTests/Tests/WebServicesTests.cs).
 
-To check if the response was an error in non ServiceStack SOAP clients, check the response.ResponseStatus.ErrorCode property for a non-null value.
+To check if the response was an error in non ServiceStack SOAP clients, check the `response.ResponseStatus.ErrorCode` property for a **non-null** value.
 
 #### Convert SOAP Exceptions to SOAP Faults
 
