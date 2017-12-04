@@ -138,10 +138,11 @@ To check if the response was an error in non ServiceStack SOAP clients, check th
 If preferred, you can also convert SOAP Exceptions into a SOAP Fault by adding a ServiceExceptionHandler, e.g:
 
 ```csharp
-ServiceExceptionHandlers.Add((req, request, ex) => {
-    var requestMsg = req.GetItem("SoapMessage") as System.ServiceModel.Channels.Message;
-    if (requestMsg != null)
+ServiceExceptionHandlers.Add((req, request, ex) =>
+{
+    if (req.GetItem(Keywords.SoapMessage) is System.ServiceModel.Channels.Message requestMsg)
     {
+        req.Response.UseBufferedStream = true;
         var msgVersion = requestMsg.Version;
         using (var response = XmlWriter.Create(req.Response.OutputStream))
         {
