@@ -383,7 +383,7 @@ other Networked Servers and Services available from your local Intranet.
 
 TypeScript has become a core part of our overall recommended solution that's integrated into all  ServiceStackVS's React and Aurelia Single Page App VS.NET Templatesoffering a seamless development experience with access to advanced ES6 features like modules, classes and arrow functions whilst still being able to target most web browsers with its down-level ES5 support. 
 
-We've added even deeper integration with TypeScript in this release with several enhancements to the generated TypeScript DTOs which graduates TypeScript to a 1st class supported language that together with the new TypeScript `JsonServiceClient` available in the servicestack-client npm package enables the same productive, typed API development experience available in our other 1st-class supported client platforms, e.g: 
+We've added even deeper integration with TypeScript in this release with several enhancements to the generated TypeScript DTOs which graduates TypeScript to a 1st class supported language that together with the new TypeScript `JsonServiceClient` available in the @servicestack/client npm package enables the same productive, typed API development experience available in our other 1st-class supported client platforms, e.g: 
 
 ```ts
 client.post(request)
@@ -399,7 +399,7 @@ Where the `r` param in the returned `then()` Promise callback is typed to Respon
 
 ### Isomorphic Fetch
 
-The `servicestack-client` is a clean "jQuery-free" implementation based on JavaScript's new Fetch API standard utilizing nodes isomorphic-fetch implementation so it can be used in both JavaScript client web apps as well as node.js server projects.
+The `@servicestack/client` is a clean "jQuery-free" implementation based on JavaScript's new Fetch API standard utilizing nodes isomorphic-fetch implementation so it can be used in both JavaScript client web apps as well as node.js server projects.
 
 ### ServerEventsClient
 
@@ -453,7 +453,7 @@ the .NET 4.0 compatible ServiceStack source code will remain accessible in the `
 
 ## Aurelia updated to 1.0
 
-To coincide with the v1.0 release of Aurelia the Aurelia VS.NET template has been updated to v1.0 using **bootstrap.native** and is now pre-configured with both the new `servicestack-client` and local `src/dtos.ts` TypeScript Reference that includes an end-to-end Typed DTO integrated example.
+To coincide with the v1.0 release of Aurelia the Aurelia VS.NET template has been updated to v1.0 using **bootstrap.native** and is now pre-configured with both the new `@servicestack/client` and local `src/dtos.ts` TypeScript Reference that includes an end-to-end Typed DTO integrated example.
 
 ## Improved Razor intellisense
 

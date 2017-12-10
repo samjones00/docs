@@ -24,13 +24,13 @@ once it leaves beta.
 ### Ideal Typed Message-based API
 
 The TypeScript `JsonServiceClient` available in the 
-[servicestack-client npm package](https://www.npmjs.com/package/servicestack-client) enables the same 
+[@servicestack/client npm package](https://www.npmjs.com/package/@servicestack/client) enables the same 
 productive, typed API development experience available in our other 1st-class supported client platforms. 
 
 ServiceStack embeds additional type hints in each Request DTO in order to achieve the ideal typed, 
 message-based API. You can see an example of this is below which shows how to create a C# Gist in 
 [Gislyn](http://gistlyn.com) after adding a ServiceStack Reference to `gistlyn.com` and installing the 
-[servicestack-client](https://www.npmjs.com/package/servicestack-client) npm package: 
+[@servicestack/client](https://www.npmjs.com/package/@servicestack/client) npm package: 
 
 ```ts
 import { JsonServiceClient } from 'servicesack-client';
@@ -58,23 +58,19 @@ Where the `r` param in the returned `then()` Promise callback is typed to `Store
 
 ## TypeScript ServiceClient
 
-The `servicestack-client` is a clean "jQuery-free" implementation based on JavaScript's new 
+The `@servicestack/client` is a clean "jQuery-free" implementation based on JavaScript's new 
 [Fetch API standard](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), 
 utilizing the [isomorphic-fetch](https://www.npmjs.com/package/isomorphic-fetch) implementation
 so it can be used in both JavaScript client web apps as well as node.js server projects.
 
-### [servicestack-client](https://www.npmjs.com/package/servicestack-client)
+### [@servicestack/client](https://www.npmjs.com/package/@servicestack/client)
 
 The easiest way to use TypeScript with ServiceStack is to start with one of 
 [ServiceStackVS TypeScript projects](https://github.com/ServiceStack/ServiceStackVS). 
 
-Other TypeScript or ES6 projects can install `servicestack-client` from npm with:
+Other TypeScript or ES6 projects can install `@servicestack/client` from npm with:
 
-    npm install --save servicestack-client
-
-The Type Definitions are included in the above `servicestack-client` npm package, if using jspm they can be installed with:
-
-    npm install --save-dev servicestack-client
+    npm install --save @servicestack/client
 
 #### Enabling TypeScript async/await 
 
@@ -267,11 +263,11 @@ Making API Requests in TypeScript is the same as all other
 [ServiceStack's Service Clients](/clients-overview)
 by sending a populated Request DTO using a `JsonServiceClient` which returns typed Response DTO.
 
-So the only things we need to make any API Request is the `JsonServiceClient` from the `servicestack-client` 
+So the only things we need to make any API Request is the `JsonServiceClient` from the `@servicestack/client` 
 package and any DTO's we're using from generated TypeScript ServiceStack Reference, e.g:
 
 ```ts
-import { JsonServiceClient } from 'servicestack-client';
+import { JsonServiceClient } from '@servicestack/client';
 import { GetTechnology } from './dtos';
 
 const client = new JsonServiceClient("http://techstacks.io");

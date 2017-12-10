@@ -122,19 +122,19 @@ To make it more wrist-friendly you can also use the shorter `ts-ref` alias inste
 
 ### Installing Generic Service Client
 
-Now we have our TechStacks Server DTOs we can use them with the generic `JsonServiceClient` in the [servicestack-client](https://www.npmjs.com/package/servicestack-client) npm package to make Typed API Calls.
+Now we have our TechStacks Server DTOs we can use them with the generic `JsonServiceClient` in the [@servicestack/client](https://www.npmjs.com/package/@servicestack/client) npm package to make Typed API Calls.
 
-#### Install servicestack-client
+#### Install @servicestack/client
 
-    $ npm install --save servicestack-client
+    $ npm install @servicestack/client
 
 #### TechStacks Example
 
-Once installed create a `demo.ts` file with the example below using both the `JsonServiceClient` from the **servicestack-client** npm package and the Server DTOs we 
+Once installed create a `demo.ts` file with the example below using both the `JsonServiceClient` from the **s@servicestack/client** npm package and the Server DTOs we 
 want to use from our local `techstacks.dtos.ts` above:
 
 ```ts
-import { JsonServiceClient } from 'servicestack-client';
+import { JsonServiceClient } from '@servicestack/client';
 import { GetTechnology, GetTechnologyResponse } from './techstacks.dtos';
 
 var client = new JsonServiceClient("http://techstacks.io")
@@ -178,7 +178,7 @@ To make API requests using TypeScript's async/await feature we'll need to create
 Now we can create a new `await-demo.ts` file and start using TypeScript's async/await feature which as it can only be called within an `async` function, we'll need to wrap in an async function:
 
 ```ts
-import { JsonServiceClient } from 'servicestack-client';
+import { JsonServiceClient } from '@servicestack/client';
 import { GetTechnology, GetTechnologyResponse } from './techstacks.dtos';
 
 var client = new JsonServiceClient("http://techstacks.io")

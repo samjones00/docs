@@ -803,12 +803,12 @@ Twitter or Google User accounts.
 
 ## [Web, Node.js and React Native ServerEvents Apps](https://github.com/ServiceStackApps/typescript-server-events)
 
-The TypeScript [servicestack-client](https://github.com/ServiceStack/servicestack-client) npm package is a 
+The TypeScript [@servicestack/client](https://github.com/ServiceStack/servicestack-client) npm package is a 
 cross-platform library enabling a rich, productive end-to-end Typed development experience on Web, node.js Server 
 projects, node.js test suites, React Native iOS and Android Mobile Apps - written in either TypeScript or 
 plain JavaScript.
 
-To help getting started using [servicestack-client](https://github.com/ServiceStack/servicestack-client) in each of 
+To help getting started using [@servicestack/client](https://github.com/ServiceStack/servicestack-client) in each of 
 JavaScript's most popular platforms we've developed a simple Server Events Web, Node.js and React Native Mobile iOS App
 that can connect to any Server Events Server and listen to messages published on the subscribed channel. The App also 
 maintains a live synchronized list of Users in the channel that's automatically updated whenever Users join or leave 
@@ -817,12 +817,12 @@ the channel:
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/typescript-serverevents/typescript-server-events-banner.png)](https://github.com/ServiceStackApps/typescript-server-events)
 
 Each App uses the optimal starting configuration that enables a productive workflow on each platform and uses the minimum
-runtime dependencies - essentially just [servicestack-client](https://github.com/ServiceStack/servicestack-client) 
+runtime dependencies - essentially just [@servicestack/client](https://github.com/ServiceStack/servicestack-client) 
 and its es6-shim and W3C `EventSource` polyfills on Node.js and React Native where it's missing a native implementation.
 
-## TypeScript servicestack-client improvements
+## TypeScript @servicestack/client improvements
 
-New APIs have been added to TypeScript's [servicestack-client](https://github.com/ServiceStack/servicestack-client) 
+New APIs have been added to TypeScript's [@servicestack/client](https://github.com/ServiceStack/servicestack-client) 
 to catch up with the additional flexibility and features available in [C#/.NET Service Clients](/csharp-client):
 
 ### Sending additional arguments with Typed API Requests

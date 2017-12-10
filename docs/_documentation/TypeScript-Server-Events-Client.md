@@ -13,21 +13,12 @@ TypeScript Web and node.js server applications.
 ## Install
 
 `ServerEventClient` is available in the 
-[servicestack-client npm package](https://github.com/ServiceStack/servicestack-client) 
+[@servicestack/client npm package](https://github.com/ServiceStack/servicestack-client) 
 which is preconfigured in all [ServiceStackVS TypeScript VS.NET Templates](https://github.com/ServiceStack/ServiceStackVS)
 
-Other TypeScript or ES6 projects can install `servicestack-client` with:
+npm based projects can install it with:
 
-    jspm install servicestack-client
-
-node server projects can instead install it with:
-
-    npm install servicestack-client --save
-
-The Type Definitions are contained in the above `servicestack-client` npm package, if using jspm it 
-can be installed with:
-
-    npm install servicestack-client --save-dev
+    npm install @servicestack/client
 
 To configure Server Sent Events on the client create a new instance of `ServerEventsClient` with the
 **baseUrl** and the **channels** you want to connect to, e.g:

@@ -8,17 +8,18 @@ There are a number of the most popular starting ServiceStack v5 Project Template
  - **.NET Core 2.0 C# Templates** - [github.com/NetCoreTemplates](https://github.com/NetCoreTemplates)
  - **.NET Framework C# Templates** - [github.com/NetFrameworkTemplates](https://github.com/NetFrameworkTemplates)
 
-The **dotnet-new** script included in [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) can be used to create projects from the available templates:
+The **dotnet-new** script included in [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli) can be used to create projects from the available templates:
 
-### Install or update servicestack-cli
+### Install or update @servicestack/cli
 
-You'll need to have `servicestack-cli v0.0.10` or later installed. If you had a previous version you can remove it with:
+You'll need to have `@servicestack/cli v1.0.0` or later installed. If you had a previous version you can remove it with:
 
-    $ npm uninstall -g servicestack-cli
+    $ npm uninstall -g @servicestack/cli
+    $ npm uninstall -g servicestack-cli   #old npm package
 
 Before installing it again to install the latest version:
 
-    $ npm install -g servicestack-cli
+    $ npm install -g @servicestack/cli
 
 ### Create projects with dotnet-new
 

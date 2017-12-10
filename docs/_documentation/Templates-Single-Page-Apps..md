@@ -49,7 +49,7 @@ entry: {
         'react',
         'react-dom',
         'react-router-dom',
-        'servicestack-client'
+        '@servicestack/client'
     ]
 },
 ```
@@ -398,7 +398,7 @@ Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY 
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/servicestack-ts.png)
  
-ServiceStack is seamlessly [integrated with TypeScript](/typescript-add-servicestack-reference) where all templates are pre-configured to use the Server's TypeScript DTOs and [servicestack-client](https://github.com/ServiceStack/servicestack-client) generic `JsonServiceClient` to make the [Typed API request below](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/src/home/Hello.tsx) which displays a Welcome message on each key-press:
+ServiceStack is seamlessly [integrated with TypeScript](/typescript-add-servicestack-reference) where all templates are pre-configured to use the Server's TypeScript DTOs and [@servicestack/client](https://github.com/ServiceStack/servicestack-client) generic `JsonServiceClient` to make the [Typed API request below](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/src/home/Hello.tsx) which displays a Welcome message on each key-press:
  
 ```ts
 import { client } from '../shared';
