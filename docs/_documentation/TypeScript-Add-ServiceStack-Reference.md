@@ -105,7 +105,7 @@ The [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) npm pac
 
 Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
 
-    $ npm install -g servicestack-cli
+    $ npm install -g @servicestack/cli
 
 ### Adding a ServiceStack Reference
 
