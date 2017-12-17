@@ -206,7 +206,7 @@ ILog.ForContext(IEnumerable<ILogEventEnricher> enrichers)
 ILog.ForContext(string propertyName, object value, bool destructureObjects = false)
 ```
 
-# Usage Example
+## Usage Example
 
 Using a logger in your Service is similar to other .NET Logging providers, e.g. you can initialize a static property for the class and use it in your services, e.g:
 
