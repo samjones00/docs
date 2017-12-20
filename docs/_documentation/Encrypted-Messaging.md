@@ -165,6 +165,9 @@ var authResponse = encryptedClient.Send(new Authenticate {
 But then fallback to using the normal `IServiceClient` for subsequent requests. But as the `encryptedClient` doesn't receive cookies we'd need to set it explicitly on the client ourselves with:
 
 ```csharp
+client.SetSessionId(authResponse.SessionId);
+
+//Equivalent to:
 client.SetCookie("ss-id", authResponse.SessionId);
 ```
 
