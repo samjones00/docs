@@ -9,15 +9,15 @@ slug: swift-add-servicestack-reference
 ServiceStack's **Add ServiceStack Reference** feature lets iOS/OSX developers easily generate an native 
 typed Swift 3 API for your ServiceStack Services using the `swift-ref` OSX command-line utility.
 
-## servicestack-cli - Simple command-line utils for ServiceStack
+## @servicestack/cli - Simple command-line utils for ServiceStack
 
-The [servicestack-cli command-line utils](https://github.com/ServiceStack/servicestack-cli) provides a simple command-line UX to easily Add and Update Swift ServiceStack References.
+The [@servicestack/cli command-line utils](https://github.com/ServiceStack/servicestack-cli) provides a simple command-line UX to easily Add and Update Swift ServiceStack References.
 
 ### Install swift-ref
 
 Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
 
-    $ npm install -g servicestack-cli
+    $ npm install -g @servicestack/cli
 
 This will make the `swift-ref` script available in your `$PATH` which can now be used from within a **Terminal window** at your Xcode project folder.
 

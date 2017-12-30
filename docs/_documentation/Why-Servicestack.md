@@ -120,9 +120,9 @@ The unmatched productivity offered by [Java Add ServiceStack Reference](/java-ad
 from the [Eclipse MarketPlace](https://marketplace.eclipse.org/content/servicestackeclipse) to provide deep integration of Add ServiceStack Reference with Eclipse Java Maven Projects
 enabling Java Developers to effortlessly Add and Update the references of their evolving remote ServiceStack Web Services.
 
-#### [servicestack-cli - Simple command-line utilities for ServiceStack](/add-servicestack-reference.html#simple-command-line-utilities-for-servicestack)
+#### [@servicestack/cli - Simple command-line utilities for ServiceStack](/add-servicestack-reference.html#simple-command-line-utilities-for-servicestack)
 
-In addition to our growing list of supported IDE's, the [servicestack-cli](https://github.com/ServiceStack/servicestack-cli)
+In addition to our growing list of supported IDE's, the [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli)
 cross-platform command-line npm scripts makes it easy for build servers, automated tasks and command-line runners of your 
 favorite text editors to easily Add and Update ServiceStack References!
 

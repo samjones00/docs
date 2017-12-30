@@ -51,13 +51,13 @@ Options for the generated DTOs can be changed by updating the commented section 
 
 ## Simple command-line utilities for ServiceStack
 
-The servicestack-cli provides simple command-line utilities to easily Add and Update ServiceStack References for all of ServiceStack's supported languages.
+The `@servicestack/cli` provides simple command-line utilities to easily Add and Update ServiceStack References for all of ServiceStack's supported languages.
 
 ## Installation
 
 Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
 
-    $ npm install -g servicestack-cli
+    $ npm install -g @servicestack/cli
 
 This will make the following utilities availble from your command-line which will let you download the Server DTO classes for a remote ServiceStack endpoint in your chosen language which you can use with ServiceStack's generic Service clients to be able to make end-to-end API calls.
 

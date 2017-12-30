@@ -99,7 +99,7 @@ You can get both concrete types and interface definitions for your Services at t
 
 ## Simple command-line utilities for TypeScript
 
-The [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) npm package lets you quickly and easily Add and Update ServiceStack References via a simple `typescript-ref` command-line utility.
+The [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli) npm package lets you quickly and easily Add and Update ServiceStack References via a simple `typescript-ref` command-line utility.
 
 ### Installation
 
