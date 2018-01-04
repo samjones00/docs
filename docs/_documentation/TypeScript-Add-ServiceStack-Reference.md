@@ -44,14 +44,13 @@ file.filename = "main.cs";
 file.content = 'var greeting = "Hi, from TypeScript!";';
 request.files = { [file.filename]: file };
 
-client.post(request)
-    .then(r => { // r:StoreGistResponse
-        console.log(`New C# Gist was created with id: ${r.gist}`);
-        location.href = `http://gistlyn.com?gist=${r.gist}`;
-    })
-    .catch(e => {
-        console.log("Failed to create Gist: ", e.responseStatus);
-    });
+try {
+    var r = await client.post(request); // r:StoreGistResponse
+    console.log(`New C# Gist was created with id: ${r.gist}`);
+    location.href = `http://gistlyn.com?gist=${r.gist}`;
+} catch (e) {
+    console.log("Failed to create Gist: ", e.responseStatus);
+}
 ```
 
 Where the `r` param in the returned `then()` Promise callback is typed to `StoreGistResponse` DTO Type.
@@ -275,13 +274,11 @@ const client = new JsonServiceClient("http://techstacks.io");
 const request = new GetTechnology();
 request.Slug = "ServiceStack";
 
-client.get(request)
-    .then(r => {                  // typed to GetTechnologyResponse
-        cont tech = r.Technology; // typed to Technology
+var r = await client.get(request);  // typed to GetTechnologyResponse
+cont tech = r.Technology;           // typed to Technology
 
-        console.log(`${tech.Name} by ${tech.VendorName} (${tech.ProductUrl})`);
-        console.log(`${tech.Name} TechStacks:`, r.TechnologyStacks);
-    });
+console.log(`${tech.Name} by ${tech.VendorName} (${tech.ProductUrl})`);
+console.log(`${tech.Name} TechStacks:`, r.TechnologyStacks);
 ```
 
 ### Sending additional arguments with Typed API Requests
@@ -293,8 +290,7 @@ additional arguments with the typed Request DTO, e.g:
 ```ts
 const request = new FindTechStacks();
 
-client.get(request, { VendorName: "ServiceStack" })
-    .then(r => { })               // typed to QueryResponse<TechnologyStack> 
+var r = client.get(request, { VendorName: "ServiceStack" }); // typed to QueryResponse<TechnologyStack>
 ```
 
 ### Making API Requests with URLs
