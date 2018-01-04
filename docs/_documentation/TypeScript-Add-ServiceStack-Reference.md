@@ -179,7 +179,7 @@ JavaScript clients. Firstly we'll need to add a TypeScript Reference to the remo
 
 This will import the remote Services dtos into your local project which looks similar to:
 
-```
+```ts
 /* Options:
 Date: 2016-08-11 22:23:24
 Version: 4.061
