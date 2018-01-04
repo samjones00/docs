@@ -5,6 +5,937 @@ title: Release Notes Summary
 
 > [Release Notes History](/release-notes-history)
 
+# [v5.0.2 Update](http://docs.servicestack.net/releases/v5.0.0)
+
+Happy New 2018 All! We hope you’ve all had a long, relaxing break over the holidays and are re-energized for a productive start to the new year. We have a new v5.0.2 release ready for the start of the new year. A summary of the changes are included below, for the full details see the [v5 Release Notes](http://docs.servicestack.net/releases/v5.0.0).
+
+### Future Versioning Updates
+
+We intend to ship more frequent "Enhancement Updates" like this one in between major releases so we're able to ship fixes to Customers sooner. Update releases will be primarily additive and minimally disruptive so they’re safe to upgrade.
+
+To distinguish updates from normal releases we’ll use the `{PATCH}` version to indicate an Enhancement Release and use the `{MINOR}` version for normal major releases:
+
+    {MAJOR}.{MINOR}.{PATCH}
+
+The `{MAJOR}` is reserved for Major releases like v5 containing structural changes that may require changes to environment and/or project configurations like v5. A new `{MINOR}` version will be used for normal "Major" releases which will have a `{PATCH}` version of **0**. An **even** `{PATCH}` version number indicates an "Update" release published to **NuGet** whilst an **odd** version number indicates a "pre-release" version that's only [available on MyGet](http://docs.servicestack.net/myget), e.g:
+
+  - **v5.0.0** - Current Major Release with structural changes
+    - v5.0.2 - Enhancement of Major v5.0.0 Release
+    - v5.0.3 - Pre-release packages published to MyGet only
+    - v5.0.4? - Enhancement of Major v5.0.0 Release (if any)
+  - **v5.1.0** - Next Major Release
+    - v5.1.1 - Pre-release packages published to MyGet only
+    - v5.1.2? - Enhancement of Major v5.1.0 Release (if any)
+  - ...
+  - **v6.0.0** - Next Major Release with structural changes
+
+## Run ASP.NET Core Apps on the .NET Framework
+
+To support developing ASP.NET Core Apps on the .NET Framework we'll continue publishing `.Core` packages which contains only the **.NET Standard 2.0** builds in order to force .NET Framework projects to use **.NET Standard 2.0** builds which contains support for running ASP.NET Core Apps. The complete list of `.Core` packages include:
+
+ - ServiceStack.Text.Core
+ - ServiceStack.Interfaces.Core
+ - ServiceStack.Client.Core
+ - ServiceStack.HttpClient.Core
+ - ServiceStack.Core
+ - ServiceStack.Common.Core
+ - ServiceStack.Mvc.Core
+ - ServiceStack.Server.Core
+ - ServiceStack.Redis.Core
+ - ServiceStack.OrmLite.Core
+ - ServiceStack.OrmLite.Sqlite.Core
+ - ServiceStack.OrmLite.SqlServer.Core
+ - ServiceStack.OrmLite.PostgreSQL.Core
+ - ServiceStack.OrmLite.MySql.Core
+ - ServiceStack.OrmLite.MySqlConnector.Core
+ - ServiceStack.Aws.Core
+ - ServiceStack.Azure.Core
+ - ServiceStack.RabbitMq.Core
+ - ServiceStack.Api.OpenApi.Core
+ - ServiceStack.Admin.Core
+ - ServiceStack.Stripe.Core
+ - ServiceStack.Kestrel
+
+To make it as easy possible to get started we've created a new [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organization containing popular starting templates for running ASP.NET Core Apps on .NET Framework (default v4.7) which as a convention all have the `-corefx` suffix: 
+
+ - [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx) - .NET Framework ASP.NET Core Website
+ - [selfhost-corefx](https://github.com/NetFrameworkCoreTemplates/selfhost-corefx) - .NET Framework ASP.NET Core self-hosting Console App
+ - [mvc-corefx](https://github.com/NetFrameworkCoreTemplates/mvc-corefx) - .NET Framework ASP.NET Core MVC Website
+ - [razor-corefx](https://github.com/NetFrameworkCoreTemplates/razor-corefx) - .NET Framework ASP.NET Core Website with ServiceStack.Razor
+ - [templates-corefx](https://github.com/NetFrameworkCoreTemplates/templates-corefx) - .NET Framework ASP.NET Core Templates Bootstrap Website
+
+The latest `@servicestack/cli` **v1.0.2** has been updated to include this additional config source, including them in the list of available templates:
+
+    $ dotnet-new
+
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+
+Which will let you create an ASP.NET Core App running on the .NET Framework v4.7 with:
+
+    $ npm install -g @servicestack/cli
+
+    $ dotnet-new web-corefx AcmeNetFx
+
+Which can then be opened in your preferred VS.NET or Project Rider C# IDE.
+
+## ServiceStack Mobile and Desktop Apps
+
+[![](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots/splash-900.png)](https://github.com/ServiceStackApps/HelloMobile)
+
+The [HelloMobile](https://github.com/ServiceStackApps/HelloMobile) project has been rewritten to use the latest v5 .NET Standard 2.0 and .NET Framework clients and contains multiple versions of the same App demonstrating a number of different calling conventions, service integrations and reuse possibilities for each of the following platforms:
+
+ - WPF
+ - UWP
+ - Xamarin.Android
+ - Xamarin.iOS
+ - Xamarin.OSX
+ - Xamarin.Forms
+   - iOS
+   - Android
+   - UWP
+
+### ServiceStack Server App
+
+The [HelloMobile](https://github.com/ServiceStackApps/HelloMobile) project also provides an example of ServiceStack's versatility where the [WebServices.cs](https://github.com/ServiceStackApps/HelloMobile/blob/master/src/Server.Common/WebServices.cs) implementation can be hosted on any of .NET's popular HTTP Server hosting configurations:
+
+### [Server.NetCore](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.NetCore)
+
+The AppHost for hosting the ServiceStack Services in a ASP.NET Core 2.0 App:
+
+```csharp
+public class AppHost : AppHostBase
+{
+    public AppHost() : base(nameof(Server.NetCore), typeof(WebServices).Assembly) { }
+    public override void Configure(Container container) => SharedAppHost.Configure(this);
+}
+```
+
+### [Server.NetCoreFx](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.NetCoreFx)
+
+The same source code can be used to run a ServiceStack ASP.NET Core App on the **.NET Framework**:
+
+```csharp
+public class AppHost : AppHostBase
+{
+    public AppHost() : base(nameof(Server.NetCoreFx), typeof(WebServices).Assembly) { }
+    public override void Configure(Container container) => SharedAppHost.Configure(this);
+}
+```
+
+The difference between a **.NET Framework v4.7** and a **.NET Core 2.0** ASP.NET Core App is in [Server.NetCoreFx.csproj](https://github.com/ServiceStackApps/HelloMobile/blob/master/src/Server.NetCoreFx/Server.NetCoreFx.csproj) where it references **ServiceStack.Core** NuGet package to force using the **.NET Standard 2.0** version of ServiceStack that contains the support for hosting ASP.NET Core Apps.
+
+### [Server.AspNet](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.AspNet)
+
+The same source code is also used for hosting classic ASP.NET Web Applications:
+
+```csharp
+public class AppHost : AppHostBase
+{
+    public AppHost() : base(nameof(Server.AspNet), typeof(WebServices).Assembly) { }
+    public override void Configure(Container container) => SharedAppHost.Configure(this);
+}
+```
+
+### [Server.HttpListener](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.HttpListener)
+
+Alternatively to host in a .NET Framework Self-Hosting HttpListener, the AppHost needs to inherit from `AppSelfHostBase`:
+
+```csharp
+public class AppHost : AppSelfHostBase
+{
+    public AppHost() : base(nameof(Server.HttpListener), typeof(WebServices).Assembly) {}
+    public override void Configure(Container container) => SharedAppHost.Configure(this);
+}
+```
+
+## .NET Standard 2.0 Logging Providers
+
+Whilst our recommendation is to use [.NET Core's Logging Abstraction](http://docs.servicestack.net/netcore#servicestacklogging-adapters) some Customers prefer to avoid this abstraction and configure logging directly with ServiceStack. To support this we've included **.NET Standard 2.0** builds to the following logging providers:
+
+ - ServiceStack.Logging.Serilog
+ - ServiceStack.Logging.Slack
+
+## Async Error Handling
+
+This is an enhancement to our [Expanded Async Support](#expanded-async-support) where there's now the option to register async exception handlers, e.g:
+
+```csharp
+this.ServiceExceptionHandlersAsync.Add(async (httpReq, request, ex) =>
+{
+    await LogServiceExceptionAsync(httpReq, request, ex);
+
+    if (ex is UnhandledException)
+        throw ex;
+
+    if (request is IQueryDb)
+        return DtoUtils.CreateErrorResponse(request, new ArgumentException("AutoQuery request failed"));
+
+    return null;
+});
+
+this.UncaughtExceptionHandlersAsync.Add(async (req, res, operationName, ex) =>
+{
+    await res.WriteAsync($"UncaughtException '{ex.GetType().Name}' at '{req.PathInfo}'");
+    res.EndRequest(skipHeaders: true);
+});
+```
+
+If you were instead inheriting `OnServiceException` or `OnUncaughtException` in your AppHost they now return a `Task` type.
+
+## AutoQuery DISTINCT
+
+AutoQuery added support querying DISTINCT fields by prefixing the custom fields list with `DISTINCT `, example using QueryString:
+
+    ?Fields=DISTINCT Field1,Field2
+
+Examle using C# Client:
+
+```csharp
+var response = client.Get(new QueryCustomers { 
+    Fields = "DISTINCT Country"
+})
+```
+
+We can use this feature with Northwinds existing [AutoQuery Request DTOs](https://github.com/NetCoreApps/Northwind/blob/master/src/Northwind.ServiceModel/AutoQuery.cs):
+
+```csharp
+[Route("/query/customers")]
+public class QueryCustomers : QueryDb<Customer> { }
+```
+
+To return all unique City and Countries of Northwind Customers with:
+
+ - [northwind.netcore.io/query/customers?Fields=DISTINCT City,Country](http://northwind.netcore.io/query/customers?Fields=DISTINCT%20City,Country)
+
+Or to just return their unique Countries they're in:
+
+ - [northwind.netcore.io/query/customers?Fields=DISTINCT Country](http://northwind.netcore.io/query/customers?Fields=DISTINCT%20Country)
+
+### OrmLite commandFilter
+
+An optional `Func<IDbCommand> commandFilter` has been added to OrmLite's `INSERT` and `UPDATE` APIs to allow customization and inspection of the populated `IDbCommand` before it's run. This feature is utilized in the new [Conflict Resolution Extension methods](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/src/ServiceStack.OrmLite/OrmLiteConflictResolutions.cs) where you can specify the conflict resolution strategy when a Primary Key or Unique constraint violation occurs:
+
+```csharp
+db.InsertAll(rows, dbCmd => dbCmd.OnConflictIgnore());
+
+//Equivalent to: 
+db.InsertAll(rows, dbCmd => dbCmd.OnConflict(ConflictResolution.Ignore));
+```
+
+In this case it will ignore any conflicts that occurs and continue inserting the remaining rows in SQLite, MySql and PostgreSQL, whilst in SQL Server it's a NOOP.
+
+SQLite offers [additional fine-grained behavior](https://sqlite.org/lang_conflict.html) that can be specified for when a conflict occurs:
+
+ - ROLLBACK
+ - ABORT
+ - FAIL
+ - IGNORE
+ - REPLACE
+
+### ServiceStack.Text
+
+The `XmlSerializer.XmlWriterSettings` and `XmlSerializer.XmlReaderSettings` for controlling the default XML behavior is now publicly accessible with [DTD Processing now disabled by default](https://msdn.microsoft.com/en-us/magazine/ee335713.aspx).
+
+Support for leading zeros in integers was restored.
+
+
+# v5 Release Notes
+
+The theme of this major v5 release is integration and unification with the newly released .NET Standard 2.0 which offers the broadest compatibility and stabilized API surface for .NET Core and the version we've chosen to standardize around.
+
+We'll do our best to summarize new features here but if you have time we encourage you to read the [full v5 Release Notes](http://docs.servicestack.net/releases/v5.0.0), as this is a major version upgrade we recommend at least reviewing the [v5 Changes and Migration Notes](http://docs.servicestack.net/releases/v5.0.0#v5-changes-and-migration-notes) before upgrading. Whilst the user-facing source code impact is minimal, we've taken the opportunity of a major version window to perform some logical re-structuring and some potentially breaking changes from **replacing PCL clients** to use .NET Standard 2.0, moving .NET Framework implementations to different projects, making SOAP Support, Mini Profiler and Markdown Razor opt-in and to be able to utilize the latest NuGet package dependencies **ServiceStack.RabbitMQ** requires **.NET v4.5.1** and **ServiceStack.Azure** requires **.NET v4.5.2**.
+
+All .NET Standard builds have been upgraded to **.NET Standard 2.0** where now both `.Core` and `.Signed` NuGet package variants have been unified into ServiceStack's main NuGet packages - unifying them into a single suite of NuGet packages and release cadence. All **.NET 4.5 builds are Strong Named** by default using the `servicestack.snk` signing key that's in the [/src](https://github.com/ServiceStack/ServiceStack/tree/master/src) folder of each Project. The .NET Standard builds continue to remain unsigned so they can be built on each platform with .NET Core's `dotnet build` command.
+
+## New .NET Core 2.0 and .NET Framework Project Templates!
+
+ServiceStack's maintains exceptional source compatibility between .NET Core and .NET Framework projects which is visible in our new .NET Core 2.0 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](http://docs.servicestack.net/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
+
+The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
+
+v5 includes **11 new .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Templates WebApp](http://templates.servicestack.net/docs/web-apps) which is itslef a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
+
+All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](http://docs.servicestack.net/dotnet-new) command-line utility, installable from npm with:
+ 
+    $ npm install -g @servicestack/cli
+ 
+This makes the `dotnet-new` command globally available which can be run without arguments to view all templates available:
+
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+
+That can be used to create new projects with:
+ 
+    $ dotnet-new <template-name> <project-name>
+ 
+Example of creating a new Vue SPA project called **Acme**:
+ 
+    $ dotnet-new vue-spa Acme
+ 
+The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
+
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
+
+If using JetBrains Rider the npm packages can be installed by opening `package.json` and clicking on the **"npm install"** tooltip on the **bottom right**. In VS Code you'll need to run `npm install` manually from the command-line.
+
+### ServiceStackVS VS.NET Templates Updated
+
+The VS.NET Templates inside [ServiceStackVS](https://github.com/ServiceStack/ServiceStackVS) have also been updated to use the latest .NET Framework templates which you can continue to use to [create new projects within VS.NET](http://docs.servicestack.net/create-your-first-webservice). For all other IDEs and non-Windows Operating Systems you can use the cross-platform `dotnet-new` tooling to create new .NET Core 2.0 Projects. 
+
+### .NET Core 2.0 TypeScript Webpack Templates
+
+There's a project template for each of the most popular Single Page Application JavaScript frameworks, including a new [Angular 5.1](https://angular.io) template built and managed using Angular's new [angular-cli](https://cli.angular.io) tooling. All other SPA Templates (inc. Angular 4) utilize a modernized Webpack build system, pre-configured with npm scripts to perform all necessary debug, production and live watched builds and testing. The included [gulpfile.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/gulpfile.js) provides a Gulp script around each npm script so they can be run without the command-line, by running them using VS.NET's built-in Task Runner Explorer GUI. 
+
+All SPA templates are configured to use Typed DTOs from [TypeScript Add Reference](http://docs.servicestack.net/typescript-add-servicestack-reference) with the generic [@servicestack/client](https://github.com/ServiceStack/servicestack-client) `JsonServiceClient` with concrete Type Definitions except for the Angular 5 template which uses Angular's built-in Rx-enabled HTTP Client with ServiceStack's ambient TypeScript declarations, as it's often preferable to utilize Angular's built-in dependencies when available. 
+
+All Single Page App Templates are available for both .NET Core 2.0 and ASP.NET Framework projects which can be live-previewed and used to create new projects using the template names below:
+
+#### Angular 5 CLI Bootstrap Template
+
+ - .NET Core: [angular-cli](https://github.com/NetCoreTemplates/angular-cli)
+ - .NET Framework: [angular-cli-netfx](https://github.com/NetFrameworkTemplates/angular-cli-netfx)
+ - Live Preview: [angular-cli.web-templates.io](http://angular-cli.web-templates.io)
+
+#### Angular 4 Material Design Lite Template
+
+ - .NET Core: [https://github.com/NetCoreTemplates/angular-lite-spa](angular-lite-spa)
+ - .NET Framework: [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)
+ - Live Preview: [angular-lite-spa.web-templates.io](http://angular-lite-spa.web-templates.io)
+
+#### React 16 Webpack Bootstrap Template
+
+ - .NET Core: [react-spa](https://github.com/NetCoreTemplates/react-spa)
+ - .NET Framework: [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx)
+ - Live Preview: [react-spa.web-templates.io](http://react-spa.web-templates.io)
+ 
+#### Vue 2.5 Webpack Bootstrap Template
+
+ - .NET Core: [vue-spa](https://github.com/NetCoreTemplates/vue-spa)
+ - .NET Framework: [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx)
+ - Live Preview: [vue-spa.web-templates.io](http://vue-spa.web-templates.io)
+ 
+#### Aurelia Webpack Bootstrap Template
+
+ - .NET Core: [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)
+ - .NET Framework: [aurelia-spa](https://github.com/NetFrameworkTemplates/aurelia-spa)
+ - Live Preview: [aurelia-spa.web-templates.io](http://aurelia-spa.web-templates.io)
+ 
+### Optimal Dev Workflow with Hot Reloading
+
+The Webpack templates have been updated to utilize [Webpack's DllPlugin](https://robertknight.github.io/posts/webpack-dll-plugins/) which splits your App's TypeScript source code from its vendor dependencies for faster incremental build times. With the improved iteration times our recommendation for development is to run a normal Webpack watched build using the `dev` npm (or Gulp) script:
+ 
+    $ npm run dev
+
+Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [ServiceStack Templates hot-reloading](http://templates.servicestack.net/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port http://localhost:3000 
+
+### Deployments
+
+When your App is ready to deploy, run the `publish` npm (or Gulp) script to package your App for deployment:
+
+    npm run publish
+ 
+Which generates a production Webpack client build and `dotnet publish` release Server build to package your App ready for an XCOPY, rsync or MSDeploy deployment. We used [rsync and supervisord to deploy](http://templates.servicestack.net/docs/deploying-web-apps) each packaged Web template to our Ubuntu Server at the following URL:
+
+    http://<template-name>.web-templates.io
+
+### /wwwroot WebRoot Path for .NET Framework Templates
+
+To simplify migration efforts of ServiceStack projects between .NET Core and .NET Framework, all SPA and Website Templates are configured to use .NET Core's convention of `/wwwroot` for its public WebRoot Path. The 2 adjustments needed to support this was configuring ServiceStack to use the `/wwwroot` path in AppHost:
+
+```csharp
+SetConfig(new HostConfig {
+    WebHostPhysicalPath = MapProjectPath("~/wwwroot"),
+});
+```
+
+Then instructing MSBuild to include all `wwwroot\**\*` files when publishing the project using MS WebDeploy which is contained in the [Properties/PublishProfiles/PublishToIIS.pubxml](https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/master/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml) of each project.
+
+### Website Templates
+
+There are 3 templates for each of the different technologies that can be used with ServiceStack to develop Server HTML Generated Websites and HTTP APIs: 
+
+#### ASP.NET MVC
+
+ - .NET Core: [mvc](https://github.com/NetCoreTemplates/mvc)
+ - .NET Framework: [mvc-netfx](https://github.com/NetFrameworkTemplates/mvc-netfx)
+ - Live Preview: [mvc.web-templates.io](http://mvc.web-templates.io)
+ 
+#### ServiceStack.Razor 
+
+ - .NET Core: [](https://github.com/NetCoreTemplates/)
+ - .NET Framework: [](https://github.com/NetFrameworkTemplates/)
+ - Live Preview: [.web-templates.io](http://.web-templates.io)
+ 
+#### ServiceStack Templates
+
+ - .NET Core: [templates](https://github.com/NetCoreTemplates/templates)
+ - .NET Framework: [templates-netfx](https://github.com/NetFrameworkTemplates/templates-netfx)
+ - Live Preview: [templates.web-templates.io](http://templates.web-templates.io)
+
+#### Hot Reloading
+
+Both `razor` and `templates` project enjoy Hot Reloading where in development a long poll is used to detect and reload changes in the current Template Page or static files in `/wwwroot`.
+
+### Empty Web and SelfHost Templates
+
+Those who prefer starting from an Empty slate can use the `web` template to create the minimal configuration for a Web Application whilst the `selfhost` template can be used to develop Self-Hosting Console Apps. Both templates still follow our recommended physical project layout but are configured with the minimum number of dependencies, e.g. the `selfhost` Console App just has a dependency on [Microsoft.AspNetCore.Server.Kestrel and ServiceStack](https://github.com/NetCoreTemplates/selfhost/blob/f11b25e80752d1fee96ac904a8df07fb150ee746/MyApp/MyApp.csproj#L11-L12), in contrast most templates have a dependency on the all-encompasing `Microsoft.AspNetCore.All` meta package.
+
+#### Empty Web Template
+
+ - .NET Core: [web](https://github.com/NetCoreTemplates/web)
+ - .NET Framework: [web-netfx](https://github.com/NetFrameworkTemplates/web-netfx)
+ - Live Preview: [web.web-templates.io](http://web.web-templates.io)
+ 
+#### Empty SelfHost Console App Template
+
+ - .NET Core: [selfhost](https://github.com/NetCoreTemplates/selfhost)
+ - .NET Framework: [selfhost-netfx](https://github.com/NetFrameworkTemplates/selfhost-netfx)
+ - Live Preview: [selfhost.web-templates.io](http://selfhost.web-templates.io)
+
+### .NET Core 2.0 ServiceStack WebApp Template
+
+The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+
+ - .NET Core: [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp)
+ - Live Preview: [templates-webapp.web-templates.io](http://.templates-webappweb-templates.io)
+ 
+See [templates.servicestack.net/docs/web-apps](http://templates.servicestack.net/docs/web-apps) to learn the different use-cases made possible with Web Apps.
+
+### .NET Framework Templates
+
+Likewise there are 2 .NET Framework Templates without .NET Core 2.0 equivalents as they contain Windows-only .NET Framework dependencies. This includes our React Desktop Template which supports packaging your Web App into 4 different ASP.NET, Winforms, OSX Cocoa and cross-platform Console App Hosts:
+
+#### React Desktop Apps Template
+
+ - .NET Framework: [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx)
+ - Live Preview: [react-desktop-apps-netfx.web-templates.io](http://react-desktop-apps-netfx.web-templates.io)
+ 
+### Windows Service Template
+
+You can use [winservice-netfx](https://github.com/NetFrameworkTemplates/winservice-netfx) to create a Windows Service but as this requires Visual Studio it's faster to continue creating new Windows Service projects within VS.NET using the **ServiceStack Windows Service Empty** Project Template.
+
+## All Apps and Live Demos Upgraded
+
+All existing .NET Core 1.x projects have been upgraded to .NET Core 2.0 and ServiceStack v5, including all [.NET Core Live Demos](https://github.com/NetCoreApps/LiveDemos), all [.NET Core 2.0 Web Apps](https://github.com/NetCoreWebApps/LiveDemos) and all [.NET Framework Live Demos](https://github.com/ServiceStackApps/LiveDemos).
+
+### ServiceStack WebApps
+
+The [.NET Core 2.0 Web Apps](https://github.com/NetCoreWebApps/LiveDemos) now use the default `WebHost.CreateDefaultBuilder()` builder to bootstrap WebApp's letting you use `ASPNETCORE_URLS` to specify which URL and port to bind on, simplifying deployment configurations.
+
+The `ASPNETCORE_ENVIRONMENT` Environment variable can also be used to configure WebApp's to run in `Production` mode. If preferred you can continue using the existing `bind`, `port` and `debug` options in your `web.settings` to override the default configuration. 
+
+### Multi-stage Docker Builds
+
+The [.NET Core Apps deployed using Docker](http://docs.servicestack.net/deploy-netcore-docker-aws-ecs)now use the ASP.NET Team's [recommended multi-stage Docker Builds](https://docs.microsoft.com/en-us/dotnet/core/docker/building-net-docker-images#your-first-aspnet-core-docker-app) where the App is built inside an `aspnetcore-build` Docker container with its published output copied inside a new `aspnetcore` runtime Docker container:
+
+```docker
+FROM microsoft/aspnetcore-build:2.0 AS build-env
+COPY src /app
+WORKDIR /app
+
+RUN dotnet restore --configfile ../NuGet.Config
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+COPY --from=build-env /app/Chat/out .
+ENV ASPNETCORE_URLS http://*:5000
+ENTRYPOINT ["dotnet", "Chat.dll"]
+```
+
+The smaller footprint required by the `aspnetcore` runtime reduced the footprint of [.NET Core Chat](https://github.com/NetCoreApps/Chat) from **567MB** to **126MB** whilst continuing to run flawlessly in AWS ECS at [chat.netcore.io](http://chat.netcore.io).
+
+### .NET Core IAppSettings Adapter
+
+Most .NET Core Templates are also configured to use the new `NetCoreAppSettings` adapter to utilize .NET Core's new `IConfiguration` config model in ServiceStack by initializing the `AppHost` with .NET Core's pre-configured `IConfiguration` that's injected into the [Startup.cs](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/Startup.cs) constructor, e.g:
+
+```csharp
+public class Startup
+{
+    public IConfiguration Configuration { get; }
+    public Startup(IConfiguration configuration) => Configuration = configuration;
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        app.UseServiceStack(new AppHost {
+            AppSettings = new NetCoreAppSettings(Configuration)
+        });
+    }
+}
+```
+
+This lets you use **appsettings.json** and .NET Core's other Configuration Sources from ServiceStack's `IAppSettings` API where it continues to resolve both primitive values and complex Types, e.g:
+
+```csharp
+bool debug = AppSettings.Get<bool>("DebugMode", false);
+MyConfig myConfig = AppSettings.Get<MyConfig>();
+List<string>  ghScopes = AppSettings.Get<List<string>>("oauth.github.Scopes");
+IList<string> fbScopes = AppSettings.GetList("oauth.facebook.Permissions");
+```
+
+But instead of a single JSV string value, you'll need to use the appropriate JSON data type, e.g:
+
+```json
+{
+    "DebugMode": true,
+    "MyConfig": {
+        "Name": "Kurt",
+        "Age": 27
+    },
+    "oauth.facebook.Permissions": ["email"],
+    "oauth.github.Scopes": ["user"]
+}
+```
+
+### PBKDF2 Password Hashing implementation
+
+ServiceStack now uses the same [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) password hashing algorithm ASP.NET Identity v3 uses to hash passwords by default for both new users and successful authentication logins where their password will automatically be re-hashed with the new implementation.
+
+This also means if you wanted to switch, you'll be able to import ASP.NET Identity v3 User Accounts and their Password Hashes into ServiceStack.Auth's `UserAuth` tables and vice-versa.
+
+#### Retain previous Password Hashing implementation
+
+If preferred you can revert to using the existing `SaltedHash` implementation with:
+
+```csharp
+SetConfig(new HostConfig { 
+    UseSaltedHash = true
+});
+```
+
+This also supports "downgrading" passwords that were hashed with the new `IPasswordHasher` provider where it will revert to using the older/weaker `SaltedHash` implementation on successful authentication.
+
+#### Override Password Hashing Strength
+
+The new [PasswordHasher](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/PasswordHasher.cs) implementation can also be made to be computationally stronger or weaker by adjusting the iteration count (default 10000), e.g:
+
+```csharp
+container.Register<IPasswordHasher>(new PasswordHasher(1000));
+```
+
+#### Digest Auth Hashes only created when needed
+
+Digest Auth Hashes are now only populated if the `DigestAuthProvider` is registered. If you ever intend to support Digest access authentication in future but don't want to register the DigestAuthProvider just yet, you can force ServiceStack to continue to maintain Digest Auth Hashes with:
+
+```csharp
+new AuthFeature {
+    CreateDigestAuthHashes = true
+}
+```
+
+Users that don't have Digest Auth Hashes will require logging in again in order to have it populated. If you don't intend to use Digest Auth you can clear the hashes in the `DigestHa1Hash` column in your `UserAuth` table which is otherwise unused.
+
+### JWT AuthProvider
+
+Previously in order to be able to utilize RefreshToken's you would need to be also be using an [Auth Repository](http://docs.servicestack.net/authentication-and-authorization#user-auth-repository) as it's the data source used to populate the JWT Token. 
+
+Now Users who are not using an `IAuthRepository` can instead implement the `IUserSessionSource` interface:
+
+```csharp
+public interface IUserSessionSource
+{
+    IAuthSession GetUserSession(string userAuthId);
+}
+```
+
+On either their Custom AuthProvider, or if preferred register it as a dependency in the IOC as an alternative source for populating Sessions in new JWT Tokens created using RefreshToken's. The implementation should only return a populated `IAuthSession` if the User is allowed to sign-in, i,e. if their account is locked or suspended it should throw an Exception, e.g:
+
+```csharp
+throw HttpError.Forbidden("User is suspended");
+```
+
+#### Send JWTs in HTTP Params
+
+The JWT Auth Provider can **opt-in** to accept JWT's via the Query String or HTML POST FormData with:
+
+```csharp
+new JwtAuthProvider {
+    AllowInQueryString = true,
+    AllowInFormData = true
+}
+```
+
+This is useful for situations where it's not possible to attach the JWT in the HTTP Request Headers or `ss-tok` Cookie. 
+
+#### Runtime JWT Configuration
+
+To allow for dynamic per request configuration as needed in Multi Tenant applications we've added a new [IRuntimeAppSettings](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Configuration/IAppSettings.cs) API which can be registered in your `AppHost` to return custom per request configuration. 
+
+E.g. this can be used to return a custom `AuthKey` that should be used to sign JWT Tokens for that request:
+
+```csharp
+container.Register<IRuntimeAppSettings>(c => new RuntimeAppSettings { 
+    Settings = {
+        { nameof(JwtAuthProvider.AuthKey), req => (byte[]) GetAuthKey(GetTenantId(req)) }
+    }
+});
+```
+
+The following `JwtAuthProvider` properties can be overridden by `IRuntimeAppSettings`:
+
+ - `byte[]` AuthKey
+ - `RSAParameters` PrivateKey
+ - `RSAParameters` PublicKey
+ - `List<byte[]>` FallbackAuthKeys
+ - `List<RSAParameters>` FallbackPublicKeys
+
+### Registration
+
+The JWT `BearerToken` and `RefreshToken` properties added to `RegisterResponse` are now populated on Registrations configured to `AutoLogin=true`.
+
+Previously users could update their info after they've registered using the same built-in `/register` Service used at registration. This feature is now disabled by default as it's not an expected capability for a Registration Service, if needed it can be re-enabled with:
+
+```csharp
+ServiceStack.Auth.RegisterService.AllowUpdates = true;
+```
+
+### Routes with Custom Rules
+
+The new `Matches` property on `[Route]` and `[FallbackRoute]` attributes lets you specify an additional custom Rule that requests need to match. This feature is used in all SPA projects to specify that the `[FallbackRoute]` should only return the SPA `index.html` for unmatched requests which explicitly requests HTML, i.e:
+
+```csharp
+[FallbackRoute("/{PathInfo*}", Matches="AcceptsHtml")]
+public class FallbackForClientRoutes
+{
+    public string PathInfo { get; set; }
+}
+```
+
+This works by matching the `AcceptsHtml` built-in `RequestRules` below where the Route will only match the Request if it includes the explicit `text/html` MimeType in the HTTP Request `Accept` Header. The `AcceptsHtml` rule prevents the home page from being returned for missing resource requests like **favicon** which returns a `404` instead.
+
+The implementation of all built-in Request Rules:
+
+```csharp
+SetConfig(new HostConfig {
+  RequestRules = {
+    {"AcceptsHtml", req => req.Accept?.IndexOf(MimeTypes.Html, StringComparison.Ordinal) >= 0 },
+    {"AcceptsJson", req => req.Accept?.IndexOf(MimeTypes.Json, StringComparison.Ordinal) >= 0 },
+    {"AcceptsXml", req => req.Accept?.IndexOf(MimeTypes.Xml, StringComparison.Ordinal) >= 0 },
+    {"AcceptsJsv", req => req.Accept?.IndexOf(MimeTypes.Jsv, StringComparison.Ordinal) >= 0 },
+    {"AcceptsCsv", req => req.Accept?.IndexOf(MimeTypes.Csv, StringComparison.Ordinal) >= 0 },
+    {"IsAuthenticated", req => req.IsAuthenticated() },
+    {"IsMobile", req => Instance.IsMobileRegex.IsMatch(req.UserAgent) },
+    {"{int}/**", req => int.TryParse(req.PathInfo.Substring(1).LeftPart('/'), out _) },
+    {"path/{int}/**", req => {
+        var afterFirst = req.PathInfo.Substring(1).RightPart('/');
+        return !string.IsNullOrEmpty(afterFirst) && int.TryParse(afterFirst.LeftPart('/'), out _);
+    }},
+    {"**/{int}", req => int.TryParse(req.PathInfo.LastRightPart('/'), out _) },
+    {"**/{int}/path", req => {
+        var beforeLast = req.PathInfo.LastLeftPart('/');
+        return beforeLast != null && int.TryParse(beforeLast.LastRightPart('/'), out _);
+    }},
+ }
+})
+```
+
+Routes that contain a `Matches` rule have a higher precedence then Routes without. We can use this to define multiple idential matching routes to call different Service depending on whether the Path Segment is an integer or not, e.g:
+
+```csharp
+// matches /users/1
+[Route("/users/{Id}", Matches = "**/{int}")]
+public class GetUser
+{
+    public int Id { get; set; }
+}
+
+// matches /users/username
+[Route("/users/{Slug}")]
+public class GetUserBySlug
+{
+    public string Slug { get; set; }
+}
+```
+
+Other examples utilizing `{int}` Request Rules:
+
+```csharp
+// matches /1/profile
+[Route("/{UserId}/profile", Matches = @"{int}/**")]
+public class GetProfile { ... }
+
+// matches /username/profile
+[Route("/{Slug}/profile")]
+public class GetProfileBySlug { ... }
+
+// matches /users/1/profile/avatar
+[Route("/users/{UserId}/profile/avatar", Matches = @"path/{int}/**")]
+public class GetProfileAvatar { ... }
+
+// matches /users/username/profile/avatar
+[Route("/users/{Slug}/profile/avatar")]
+public class GetProfileAvatarBySlug { ... }
+```
+
+Another popular use-case is to call different services depending on whether a Request is from an Authenticated User or not:
+
+```csharp
+[Route("/feed", Matches = "IsAuthenticated")]
+public class ViewCustomizedUserFeed { ... }
+
+[Route("/feed")]
+public class ViewPublicFeed { ... }
+```
+
+This can also be used to call different Services depending if the Request is from a Mobile browser or not:
+
+```csharp
+[Route("/search", Matches = "IsMobile")]
+public class MobileSearch { ... }
+
+[Route("/search")]
+public class DesktopSearch { ... }
+```
+
+Instead of matching on a pre-configured RequestRule you can instead specify a Regular Expression using the format:
+
+    {Property} =~ {RegEx}
+
+Where `{Property}` is an `IHttpRequest` property, e.g:
+
+```csharp
+[Route("/users/{Id}", Matches = @"PathInfo =~ \/[0-9]+$")]
+public class GetUser { ... }
+```
+
+An exact match takes the format:
+
+    {Property} = {Value}
+
+Which you could use to provide a tailored feed for specific clients:
+
+```csharp
+[Route("/feed", Matches = @"UserAgent = specific-client")]
+public class CustomFeedView { ... }
+```
+
+### ServiceStack Templates View Pages
+
+[ServiceStack Templates](http://templates.servicestack.net) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
+
+It works similarly to Razor ViewPages where it uses first matching View Page with the Response DTO is injected as the `Model` property. The View Pages can be in any folder within the `/Views` folder using the format `{PageName}.html` where `PageName` can be either the **Request DTO** or **Response DTO** Name, but all page names within the `/Views` folder need to be unique.
+
+Just like ServiceStack.Razor you can also specify to use different Views or Layouts by returning a custom `HttpResult`, e.g:
+
+```csharp
+public object Any(MyRequest request)
+{
+    ...
+    return new HttpResult(response)
+    {
+        View = "CustomPage",
+        Template = "_custom-layout",
+    };
+}
+```
+
+Or add the `[ClientCanSwapTemplates]` Request Filter attribute to allow clients to specify which View and Template to use via the query string, e.g: `?View=CustomPage&Template=_custom-layout`.
+
+Additional examples of dynamically specifying the View and Template are available in [TemplateViewPagesTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/TemplateTests/TemplateViewPagesTests.cs).
+
+#### Cascading Layouts
+
+One difference from Razor is that it uses a cascading `_layout.html` instead of `/Views/Shared/_Layout.cshtml`. 
+
+So if your view page was in:
+
+    /Views/dir/MyRequest.html
+
+It will use the closest `_layout.html` it can find starting from:
+
+    /Views/dir/_layout.html
+    /Views/_layout.html
+    /_layout.html
+
+### Logging with Context
+
+[Rolf Kristensen](https://github.com/snakefoot) added support for contextual logging with the new `ILogWithContext` interface and `PushProperty` extension method which lets you attach additional data to log messages, e.g:
+
+```csharp
+using (log.PushProperty("Hello", "World"))
+{
+    log.InfoFormat("Message");
+}
+```
+
+Support for the additional context was added to `Log4net`, `NLog` and `Serilog` logging providers.
+
+The new [ILogWithException](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Logging/ILogWithException.cs) interface and extension methods provides additional overloads for logging Exceptions with separate message format and args.
+
+### Validation
+
+Our internal implementation of [FluentValidation](https://github.com/JeremySkinner/FluentValidation) has been upgraded to the latest 7.2 version which will let you take advantage of new features like implementing [Custom Validators](https://github.com/JeremySkinner/FluentValidation/wiki/e.-Custom-Validators#using-a-custom-validator), e.g:
+
+```csharp
+public class CustomValidationValidator : AbstractValidator<CustomValidation>
+{
+    public CustomValidationValidator()
+    {
+        RuleFor(request => request.Code).NotEmpty();
+        RuleFor(request => request)
+            .Custom((request, context) => {
+                if (request.Code?.StartsWith("X-") != true)
+                {
+                    var propName = context.ParentContext.PropertyChain.BuildPropertyName("Code");
+                    context.AddFailure(new ValidationFailure(propName, error:"Incorrect prefix") {
+                        ErrorCode = "NotFound"
+                    });
+                }
+            });
+    }
+}
+```
+
+#### Validators in ServiceAssemblies auto-wired by default
+
+The `ValidationFeature` plugin now scans and auto-wires all validators in the `AppHost.ServiceAssemblies` that's injected in the AppHost constructor so you'll no longer need to manually register validators maintained in your `ServiceInterface.dll` project:
+
+```csharp
+//container.RegisterValidators(typeof(UserValidator).Assembly);
+```
+
+This default behavior can be **disabled** with:
+
+```csharp
+Plugins.Add(new ValidationFeature {
+    ScanAppHostAssemblies = false
+});
+```
+
+### Expanded Async Support
+
+To pre-emptively support .NET Core when they [disable Sync Response writes by default](https://github.com/aspnet/Announcements/issues/252) in a future version, we've rewritten our internal implementations to write to Responses asynchronously. 
+
+New Async filters are now available to match existing sync filters. It's very unlikely the classic ASP.NET Framework will ever disable sync writes, but if you're on .NET Core you may want to consider switching to use the newer async API equivalents on [IAppHost](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/IAppHost.cs) below: 
+
+    GlobalRequestFiltersAsync
+    GlobalResponseFiltersAsync
+    GatewayRequestFiltersAsync
+    GatewayResponseFiltersAsync
+    GlobalMessageRequestFiltersAsync
+    GlobalMessageResponseFiltersAsync
+
+#### Async Attribute Filters
+
+Async Filter Attributes are available by inheriting the new `RequestFilterAsyncAttribute` or `ResponseFilterAsyncAttribute` base classes if you need to call async APIs within Filter Attributes.
+
+All async equivalents follow the same [Order of Operations](http://docs.servicestack.net/order-of-operations) and are executed immediately after any registered sync filters with the same priority.
+
+#### Async Request and Response Converters
+
+As they're not commonly used, the `RequestConverters` and `ResponseConverters` were just converted to utilize an Async API. 
+
+#### Async ContentTypes Formats
+
+There's also new async registration APIs for Content-Type Formats which perform Async I/O, most serialization formats don't except for HTML View Engines which can perform Async I/O when rendering views, so they were changed to use the new `RegisterAsync` APIs:
+
+```csharp
+appHost.ContentTypes.RegisterAsync(MimeTypes.Html, SerializeToStreamAsync, null);
+appHost.ContentTypes.RegisterAsync(MimeTypes.JsonReport, SerializeToStreamAsync, null);
+appHost.ContentTypes.RegisterAsync(MimeTypes.MarkdownText, SerializeToStreamAsync, null);
+```
+
+#### Async HttpWebRequest Service Clients
+
+The Async implementation of the `HttpWebRequest` based Service Clients was rewritten to use the newer .NET 4.5 Async APIs as the older APM APIs were found to have some async request hanging issues in the .NET Standard 2.0 version of Xamarin.iOS.
+
+### Minor Features
+
+ - `ToOptimizedResult()` now supports `HttpResult` responses
+ - `Config.DebugMode` is being initialized with `env.IsDevelopment()` in .NET Core
+ - `MapProjectPath()` uses `env.ContentRoot` in .NET Core
+ - `MetadataDebugTemplate` no longer has dependencies on `jquip` and `ss-utils.js`
+ - `IMeta`, `IHasSessionId` and `IHasVersion` interfaces are now exported in Add ServiceStack Reference
+ - `Html.IncludeFile()` API for embedding file contents in Razor views
+ - `VirtualFiles` and `VirtualFileSources` properties added to base Razor View
+
+## @servicestack npm packages
+
+ServiceStack's npm packages are now being maintained in npm organization scoped `@servicestack` packages, if you were using the previous packages you should uninstall them and use the new scoped packages instead:
+
+    $ npm uninstall servicestack-client
+    $ npm install @servicestack/client
+
+    $ npm uninstall -g servicestack-cli
+    $ npm install -g @servicestack/cli
+
+You'll also need to update your source code references to use the new packages:
+
+```ts
+import { JsonServiceClient } from "@servicestack/client";
+```
+
+## ServiceStack.OrmLite
+
+### Support for MySqlConnector ADO.NET Provider
+
+[@Naragato](https://github.com/Naragato) from the ServiceStack Community contributed a [MySqlConnector](https://github.com/mysql-net/MySqlConnector) for OrmLite providing a true async ADO.NET Provider option for MySql, from their website:
+
+> This is a clean-room reimplementation of the MySQL Protocol and is not based on the official connector.
+It's fully async, supporting the async ADO.NET methods added in .NET 4.5 without blocking (or using Task.Run to run synchronous methods on a background thread). It's also 100% compatible with .NET Core.
+
+To use it, install:
+
+    PM> Install-Package ServiceStack.Ormlite.MySqlConnector
+
+Then initialize your DB Factory with:
+
+```csharp
+var dbFactory = new OrmLiteConnectionFactory(connectionString, MySqlConnectorDialect.Provider);
+
+using (var db = dbFactory.Open()) 
+{
+    ...
+}
+```
+
+### Parametrized IN Values
+
+You can now provide a collection of values and OrmLite will automatically modify the SQL statement and split the values into multiple DB parameters to simplify executing parameterized SQL with multiple IN Values, e.g:
+
+```csharp
+var ids = new[]{ 1, 2, 3};
+var results = db.Select<Table>("Id in (@ids)", new { ids });
+
+var names = new List<string>{ "foo", "bar", "qux" };
+var results = db.SqlList<Table>("SELECT * FROM Table WHERE Name IN (@names)", new { names });
+```
+
+### RowVersion Byte Array
+
+To improve reuse of OrmLite's Data Models in Dapper, [@daleholborow](https://github.com/daleholborow) 
+added support for allowing `byte[] RowVersion` as an alternative to OrmLite's `ulong RowVersion` which lets you use OrmLite Data Models with `byte[] RowVersion` properties in Dapper queries.
+
+### OnOpenConnection Filter
+
+The `OnOpenConnection` filter lets you run custom commands after opening a new DB Connection. This feature can be used to easily enable [Write-Ahead Logging in SQLite](https://www.sqlite.org/wal.html):
+
+```csharp
+var dbFactory = new OrmLiteConnectionFactory("sqlite.db", SqliteDialect.Provider);
+SqliteDialect.Provider.OnOpenConnection = db => db.ExecuteSql("PRAGMA journal_mode=WAL;");
+
+using (var db = dbFactory.Open()) 
+{
+    ...
+}
+```
+
+### OpenAsync APIs
+
+The new `OpenDbConnectionAsync()` and `OpenAsync()` alias APIs can be used to Open DB connections asynchronously.
+
+## ServiceStack.Aws
+
+PocoDynamo was updated to utilize [AWS's recommended Exponential Backoff And Jitter algorithm](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
+
+This is also available to be used independently with:
+
+```csharp
+Thread.Sleep(ExecUtils.CalculateFullJitterBackOffDelay(retriesAttempted));
+
+await Task.Delay(ExecUtils.CalculateFullJitterBackOffDelay(retriesAttempted));
+```
+
 # [v4.5.14 Release Notes](/releases/v4.5.14)
 
 In this release we've added a new simple, fast and highly-versatile alternative to Razor for developing Server generated Websites, official support for .NET Core 2.0, new ServiceStack.Azure NuGet package for deeper integration with ServiceStack Apps hosted on Azure and a number of new features and enhancements across ServiceStack.
