@@ -5,7 +5,7 @@ title: Serialization and Deserialization
 
 ### Passing complex objects in the Query String
 
-ServiceStack uses the [JSV-Format](https://github.com/ServiceStack/ServiceStack.Text/wiki/JSV-Format) (JSON without quotes) to parse QueryStrings.
+ServiceStack uses the [JSV-Format](/jsv-format) (JSON without quotes) to parse QueryStrings.
 
 JSV lets you embed deep object graphs in QueryString as seen [this example url](http://test.servicestack.net/json/reply/StoreLogs?Loggers=%5B%7BId:786,Devices:%5B%7BId:5955,Type:Panel,TimeStamp:1199303309,Channels:%5B%7BName:Temperature,Value:58%7D,%7BName:Status,Value:On%7D%5D%7D,%7BId:5956,Type:Tank,TimeStamp:1199303309,Channels:%5B%7BName:Volume,Value:10035%7D,%7BName:Status,Value:Full%7D%5D%7D%5D%7D%5D):
 
