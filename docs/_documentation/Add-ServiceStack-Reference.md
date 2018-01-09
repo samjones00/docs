@@ -119,10 +119,10 @@ ServiceStackVS offers the generation and updating of these clients through the s
                     </a>
                 </g>
             </g>
-            <g id="csharp" transform="translate(255.000000, 0.000000)" fill="#6A0083" font-size="72" font-weight="normal">
+            <g id="csharp" transform="translate(255.000000, 0.000000)" font-size="72" font-weight="normal">
                 <g id="Group">
                     <a href="/csharp-add-servicestack-reference">
-                    <text id="C#">
+                    <text id="C#" fill="#6A0083">
                         <tspan x="0" y="69">C#</tspan>
                     </text>
                     </a>
