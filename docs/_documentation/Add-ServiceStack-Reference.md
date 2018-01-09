@@ -85,7 +85,7 @@ Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
 
 This will make the following utilities availble from your command-line which will let you download the Server DTO classes for a remote ServiceStack endpoint in your chosen language which you can use with ServiceStack's generic Service clients to be able to make end-to-end API calls.
 
-<table>
+<table class="table table-bordered">
     <tr>
         <th>Script</th>
         <th>Alias</th>
