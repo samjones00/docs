@@ -75,7 +75,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
                     </g>
                 </g>
             </g>
-            <g id="vb.net" transform="translate(731.000000, 285.000000)" font-family="Helvetica" font-weight="normal">
+            <g id="vb.net" transform="translate(731.000000, 285.000000)" font-weight="normal">
                 <a href="/vbnet-add-servicestack-reference">
                 <g id="Group">
                     <text id=".net" fill="#231F20" font-size="32">
@@ -119,7 +119,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
                     </a>
                 </g>
             </g>
-            <g id="csharp" transform="translate(255.000000, 0.000000)" fill="#6A0083" font-family="Helvetica" font-size="72" font-weight="normal">
+            <g id="csharp" transform="translate(255.000000, 0.000000)" fill="#6A0083" font-size="72" font-weight="normal">
                 <g id="Group">
                     <a href="/csharp-add-servicestack-reference">
                     <text id="C#">
@@ -146,7 +146,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
                     </g>
                 </a>
             </g>
-            <g id="typescript" transform="translate(62.000000, 107.000000)" fill="#007ACC" font-family="Helvetica" font-size="38" font-weight="normal">
+            <g id="typescript" transform="translate(62.000000, 107.000000)" fill="#007ACC" font-size="38" font-weight="normal">
                 <a href="/typescript-add-servicestack-reference">
                 <text id="svg_3" font-weight="300" fill="#007ACC">
                     <tspan x="82" y="37">Script</tspan>
