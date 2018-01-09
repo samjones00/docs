@@ -186,7 +186,7 @@ Now we have our TechStacks Server DTOs we can use them with the generic `JsonSer
 
 #### TechStacks Example
 
-Once installed create a `demo.ts` file with the example below using both the `JsonServiceClient` from the **s@servicestack/client** npm package and the Server DTOs we 
+Once installed create a `demo.ts` file with the example below using both the `JsonServiceClient` from the **@servicestack/client** npm package and the Server DTOs we 
 want to use from our local `techstacks.dtos.ts` above:
 
 ```ts
@@ -195,11 +195,15 @@ import { GetTechnology, GetTechnologyResponse } from './techstacks.dtos';
 
 var client = new JsonServiceClient("http://techstacks.io")
 
-let request = new GetTechnology()
-request.Slug = "ServiceStack"
+async function main() {
+    let request = new GetTechnology()
+    request.Slug = "ServiceStack"
 
-client.get(request)
-    .then(r => console.log(r.Technology.VendorUrl))
+    const response = await client.get(request)
+    console.log(response.Technology.VendorUrl)
+}
+
+main()
 ```
 
 The `JsonServiceClient` is populated with the **BaseUrl** of the remote ServiceStack instance we wish to call. Once initialized we can send populated Request DTOs and handle
@@ -219,7 +223,7 @@ Result:
 
 #### Enabling TypeScript async/await 
 
-To make API requests using TypeScript's async/await feature we'll need to create a TypeScript `tsconfig.json` config file that imports ES6 promises and W3C fetch definitions with:
+To make API requests using TypeScript's async/await feature we'll need to create a TypeScript `tsconfig.json` config file that imports ES6 promises and W3C fetch definitions:
 
 ```json
 {
@@ -231,37 +235,6 @@ To make API requests using TypeScript's async/await feature we'll need to create
 }
 ```
 
-Now we can create a new `await-demo.ts` file and start using TypeScript's async/await feature which as it can only be called within an `async` function, we'll need to wrap in an async function:
-
-```ts
-import { JsonServiceClient } from '@servicestack/client';
-import { GetTechnology, GetTechnologyResponse } from './techstacks.dtos';
-
-var client = new JsonServiceClient("http://techstacks.io")
-
-async function main() {
-    let request = new GetTechnology()
-    request.Slug = "ServiceStack"
-
-    const response = await client.get(request)
-    console.log(response.Technology.VendorUrl)
-}
-
-main()
-```
-
-Now that we have a `tsconfig.json` we can just call `tsc` to compile all our TypeScript source files in our folder:
-
-    $ tsc
-
-And then run the compiled `await-demo.js` with node:
-
-    $ node await-demo.js
-
-Result:
-
-    https://servicestack.net
-
 ## Advantages over WCF
 
  - **Simple** Server provides DTOs based on metadata and options provided. No heavy client side tools, just a HTTP request!
@@ -270,7 +243,6 @@ Result:
  - **Resilient** Messaging-based services offer a number of [advantages over RPC Services](/advantages-of-message-based-web-services)
  - **Flexible** DTO generation is customizable, Server and Clients can override built-in defaults
  - **Integrated** Rich Service metadata annotated on DTO's, [Internal Services](/restricting-services) are excluded when accessed externally
-
 
 ## In Contrast with WCF's Add Service Reference
 
