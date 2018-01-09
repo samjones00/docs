@@ -79,7 +79,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
             </g>
             <g id="vb.net" transform="translate(509.000000, 214.000000)">
                 <a href="/vbnet-add-servicestack-reference">
-                <text id="svg_7" stroke="#000000" fill="#212529" class="font" font-size="32" font-weight="300">
+                <text id="svg_7" class="font" font-size="32" font-weight="300" fill="#212529">
                     <tspan x="15" y="59">.net</tspan>
                 </text>
                 <text id="svg_6" class="font" font-size="36" font-weight="bold" fill="#231F20">
@@ -115,9 +115,9 @@ ServiceStackVS offers the generation and updating of these clients through the s
                 </g>
                 </a>
             </g>
-            <g id="csharp" transform="translate(245.000000, 74.000000)" fill="#6A0083" class="font" font-size="72" font-weight="500">
+            <g id="csharp" transform="translate(245.000000, 74.000000)" class="font" font-size="72" font-weight="500">
                 <a href="/csharp-add-servicestack-reference">
-                <text id="svg_1">
+                <text id="svg_1" fill="#6A0083">
                     <tspan x="0" y="59">C#</tspan>
                 </text>
                 </a>
@@ -140,12 +140,12 @@ ServiceStackVS offers the generation and updating of these clients through the s
                 </g>
                 </a>
             </g>
-            <g id="typescript" transform="translate(33.000000, 68.000000)" fill="#007ACC" font-size="38">
+            <g id="typescript" transform="translate(33.000000, 68.000000)" font-size="38">
                 <a href="/typescript-add-servicestack-reference">
-                <text id="svg_3" class="font" font-weight="300">
+                <text id="svg_3" class="font" font-weight="300" fill="#007ACC">
                     <tspan x="82" y="37">Script</tspan>
                 </text>
-                <text id="svg_2" class="font" font-weight="400">
+                <text id="svg_2" class="font" font-weight="400" fill="#007ACC">
                     <tspan x="0" y="37">Type</tspan>
                 </text>
                 </a>
