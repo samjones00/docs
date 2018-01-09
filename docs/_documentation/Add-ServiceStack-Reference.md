@@ -21,13 +21,9 @@ ServiceStackVS offers the generation and updating of these clients through the s
 
 ### Supported Languages
 
-* [C# Add ServiceStack Reference](/csharp-add-servicestack-reference)
-* [TypeScript Add ServiceStack Reference](/typescript-add-servicestack-reference)
-* [Swift Add ServiceStack Reference](/swift-add-servicestack-reference)
-* [Java Add ServiceStack Reference](/java-add-servicestack-reference)
-* [Kotlin Add ServiceStack Reference](/kotlin-add-servicestack-reference)
-* [F# Add ServiceStack Reference](/fsharp-add-servicestack-reference)
-* [VB.NET Add ServiceStack Reference](/vbnet-add-servicestack-reference)
+![](/images/servicestack-reference/add-servicestack-reference.svg) 
+
+> [C#](/csharp-add-servicestack-reference) | [TypeScript](/typescript-add-servicestack-reference) | [Swift](/swift-add-servicestack-reference) | [Java](/java-add-servicestack-reference) | [Kotlin](/kotlin-add-servicestack-reference) | [F#](/fsharp-add-servicestack-reference) | [VB.NET](/vbnet-add-servicestack-reference)
 
 ## Example Usage
 
