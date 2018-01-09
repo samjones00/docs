@@ -62,7 +62,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <style type="text/css">
         <![CDATA[
-            text{font-family:"Segoe UI";"Helvetica Neue";-apple-system;BlinkMacSystemFont;}
+            text{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue"}
             a{cursor:pointer;}
             a:hover{opacity:.7}
         ]]>
