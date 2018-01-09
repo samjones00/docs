@@ -3,7 +3,7 @@ slug: add-servicestack-reference
 title: Add ServiceStack Reference
 ---
 
-ServiceStack's **Add ServiceStack Reference** feature allows adding generated Native Types for the most popular typed languages and client platforms directly from within most major IDE's starting with [ServiceStackVS](/create-your-first-webservice#step-1-download-and-install-servicestackvs) - providing a simpler, cleaner and more versatile alternative to WCF's **Add Service Reference** feature that's built into VS.NET.
+ServiceStack's **Add ServiceStack Reference** feature allows adding generated Native Types for the most popular typed languages and client platforms directly from within most major IDE's starting with [ServiceStackVS](/create-your-first-webservice#step-1-download-and-install-servicestackvs) - providing a simpler, cleaner and more versatile alternative to WCF's legacy **Add Service Reference** feature built into VS.NET.
 
 Add ServiceStack Reference now supports 
 [Swift](/swift-add-servicestack-reference), 
@@ -15,7 +15,7 @@ Add ServiceStack Reference now supports
 [VB.NET](/vbnet-add-servicestack-reference)
 including integration with most leading IDE's to provide a flexible alternative than sharing your DTO assembly with clients. Clients can now easily add a reference to a remote ServiceStack url and update DTOs directly from within VS.NET, Xamarin Studio, Xcode, Android Studio, IntelliJ and Eclipse. We plan on expanding on this foundation into adding seamless, typed, end-to-end integration with other languages - Add a [feature request for your favorite language](http://servicestack.uservoice.com/forums/176786-feature-requests) to prioritize support for it sooner!
 
-Our goal with Native Types is to provide an alternative for sharing DTO dlls, that can enable a better dev workflow for external clients who are now able to generate (and update) Typed APIs for your Services from a single remote url directly within their favorite IDE - reducing the burden and effort required to consume ServiceStack Services whilst benefiting from clients native language strong-typing feedback.
+Native Types provides an alternative for sharing DTO dlls, that can enable a better dev workflow for external clients who are now able to generate (and update) Typed APIs for your Services from a single remote url directly within their favorite IDE - reducing the burden and effort required to consume ServiceStack Services whilst benefiting from clients native language strong-typing feedback.
 
 ServiceStackVS offers the generation and updating of these clients through the same context for all supported languages giving developers a consistent way of creating and updating your DTOs regardless of their preferred language of choice.
 
@@ -31,15 +31,39 @@ ServiceStackVS offers the generation and updating of these clients through the s
 
 ## Example Usage
 
-> C# Android PCL Client example
+> C# Xamarin.Android Example in VS.NET
 
-![C# Android PCL Client example](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/android-add-ref-demo.gif)
+![C# Android Client example](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/android-add-ref-demo.gif)
 
-> VB.NET client talking with C# Server example
+Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
 
-![CSharp server with VB.Net client example](https://github.com/ServiceStack/Assets/raw/master/img/servicestackvs/servicestack%20reference/csharp-server-vb-client.gif)
+## C# Mobile and Desktop Apps
 
-Options for the generated DTOs can be changed by updating the commented section in the header of the file. Each language will have different options based on what is applicable to that language. For details on these options, please see the specific language wiki page.
+[![](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots/splash-900.png)](https://github.com/ServiceStackApps/HelloMobile)
+
+The generated DTOs provides a highly productive development workflow and enables a succinct end-to-end Typed API that can be used in both **.NET Framework** and **.NET Standard 2.0** [Generic Service Clients](/csharp-client) to facilitate Rapid Development in .NET's most popular Mobile and Desktop platforms:
+
+ - WPF
+ - UWP
+ - Xamarin.Android
+ - Xamarin.iOS
+ - Xamarin.OSX
+ - Xamarin.Forms
+   - iOS
+   - Android
+   - UWP
+
+The [HelloMobile](https://github.com/ServiceStackApps/HelloMobile) project contains multiple versions of the same App in all the above platforms demonstrating a number of different calling conventions, service integrations and reuse possibilities.
+
+ServiceStack also allows for the maximum reuse possible by letting you reuse the same POCO DTOs used to define the Services contract with, in Clients Apps to provide its end-to-end typed API without any additional custom build tools, code-gen or any other artificial machinery, using just the DTOs in the shared `ServiceModel.dll` with any of the available highly performant [.NET generic Service Clients](/csharp-client) that be design encourages development of [resilient message-based Services](/what-is-a-message-based-web-service) for enabling [highly decoupled](/service-gateway) and easily [substitutable and mockable](/csharp-client#built-in-clients) Service Integrations.
+
+## Utilize Native SDKs and Languages
+
+Add ServiceStack Reference lets you utilize the native SDK's and development environment whilst maintaining the same productive development experience made possible with native idiomatic Service Clients in Web and across the most popular Mobile and Desktop platforms. App Developers can generate Typed DTOs for any ServiceStack Service in Android Apps using either [Java](/java-add-servicestack-reference) and [Kotlin](/kotlin-add-servicestack-reference), or use the [Swift](/swift-add-servicestack-reference) for development of native iOS or OSX Apps or [TypeScript](/typescript-add-servicestack-reference) for calling Services from [React Native, Node.js or Web Apps](https://github.com/ServiceStackApps/typescript-server-events).
+
+### Flexible Customizations
+
+Options for the generated DTOs can be further customized by updating the commented section in the header of the file. Each language will have different options for leveraging features native to each Language. See the specific language documentation for details on available options:
 
 * [C# Options](/csharp-add-servicestack-reference#change-default-server-configuration)
 * [Swift Options](/swift-add-servicestack-reference#swift-configuration)
@@ -61,16 +85,48 @@ Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
 
 This will make the following utilities availble from your command-line which will let you download the Server DTO classes for a remote ServiceStack endpoint in your chosen language which you can use with ServiceStack's generic Service clients to be able to make end-to-end API calls.
 
-| Script | Alias | Language |
-| ------ | ----- | -------- |
-| csharp-ref | cs-ref | C# |
-| typescript-ref | ts-ref | TypeScript |
-| typescriptd-ref | tsd-ref | TypeScript Declarations |
-| swift-ref | | Swift |
-| java-ref | | Java |
-| kotlin-ref | kt-ref | Kotlin |
-| vbnet-ref | vb-ref | VB.NET |
-| fsharp-ref | fs-ref | F# |
+<table>
+    <tr>
+        <th>Script</th>
+        <th>Alias</th>
+        <th>Language</th>
+    </tr>
+    <tr>
+        <td>csharp-ref</td>
+        <td>cs-ref</td>
+        <td>C#</td>
+    </tr>
+    <tr>
+        <td>typescript-ref</td>
+        <td>ts-ref</td>
+        <td>TypeScript</td>
+    </tr>
+    <tr>
+        <td>java-ref</td>
+        <td></td>
+        <td>Java</td>
+    </tr>
+    <tr>
+        <td>kotlin-ref</td>
+        <td>kt-ref</td>
+        <td>Kotlin</td>
+    </tr>
+    <tr>
+        <td>swift-ref</td>
+        <td></td>
+        <td>Swift</td>
+    </tr>
+    <tr>
+        <td>vbnet-ref</td>
+        <td>vb-ref</td>
+        <td>VB.NET</td>
+    </tr>
+    <tr>
+        <td>fsharp-ref</td>
+        <td>fs-ref</td>
+        <td>F#</td>
+    </tr>
+</table>
 
 ## Usage
 
