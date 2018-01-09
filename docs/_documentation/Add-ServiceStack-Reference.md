@@ -33,7 +33,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
 </tr>
 </table>
 
-<svg style="margin:50px" width="900px" height="600px" viewBox="0 0 900 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg style="margin:50px 10px" width="900px" height="600px" viewBox="0 0 900 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Add ServiceStack Reference</title>
     <defs>
         <linearGradient x1="-11.3342598%" y1="86.4378991%" x2="68.8486982%" y2="6.25496469%" id="linearGradient-1">
@@ -62,13 +62,13 @@ ServiceStackVS offers the generation and updating of these clients through the s
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <style type="text/css">
         <![CDATA[
-            .font{font-family:"Segoe UI";"Helvetica Neue";-apple-system;BlinkMacSystemFont;}
+            text{font-family:"Segoe UI";"Helvetica Neue";-apple-system;BlinkMacSystemFont;}
             a{cursor:pointer;}
             a:hover{opacity:.7}
         ]]>
         </style>    
         <g id="add-servicestack-reference">
-            <g id="logo" transform="translate(272.000000, 258.000000)" fill="#212529" fill-rule="nonzero" stroke="#000000">
+            <g id="logo" transform="translate(272.000000, 258.000000)" fill="#231F20" fill-rule="nonzero" stroke-width="0">
                 <g id="svg_13">
                     <g id="svg_20">
                         <path d="M48.5049398,84.0618495 C93.4373891,89.6836208 199.031406,140.444901 215.69546,211.929583 L0.107676118,211.929583 C54.8295745,207.465242 101.576928,136.421487 48.5049398,84.0618495 Z M66.1039407,0.286434316 C83.8679349,19.9075141 92.3374488,46.5282537 91.6224965,73.9206175 C137.214908,92.4945065 205.631037,142.098367 220.095221,211.929583 L272.892224,211.929583 C250.508496,92.8251931 122.640732,8.82932021 66.1039407,0.286434316 Z" id="svg_19"></path>
@@ -78,10 +78,10 @@ ServiceStackVS offers the generation and updating of these clients through the s
             <g id="vb.net" transform="translate(731.000000, 285.000000)" font-family="Helvetica" font-weight="normal">
                 <a href="/vbnet-add-servicestack-reference">
                 <g id="Group">
-                    <text id=".net" fill="#212529" font-size="32">
+                    <text id=".net" fill="#231F20" font-size="32">
                         <tspan x="15" y="59">.net</tspan>
                     </text>
-                    <text id="VB" fill="#231F20" font-size="36">
+                    <text id="VB" fill="#231F20" font-size="36" font-weight="900">
                         <tspan x="0" y="35">VB</tspan>
                     </text>
                 </g>
@@ -148,10 +148,10 @@ ServiceStackVS offers the generation and updating of these clients through the s
             </g>
             <g id="typescript" transform="translate(62.000000, 107.000000)" fill="#007ACC" font-family="Helvetica" font-size="38" font-weight="normal">
                 <a href="/typescript-add-servicestack-reference">
-                <text id="svg_3" class="font" font-weight="300" fill="#007ACC">
+                <text id="svg_3" font-weight="300" fill="#007ACC">
                     <tspan x="82" y="37">Script</tspan>
                 </text>
-                <text id="svg_2" class="font" font-weight="400" fill="#007ACC">
+                <text id="svg_2" font-weight="400" fill="#007ACC">
                     <tspan x="0" y="37">Type</tspan>
                 </text>
                 </a>
