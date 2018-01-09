@@ -21,7 +21,19 @@ ServiceStackVS offers the generation and updating of these clients through the s
 
 ### Supported Languages
 
-<svg width="578px" height="437px" viewBox="0 0 578 437" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<table class="table table-bordered" style="text-align:center">
+<tr>
+    <td><a href="/csharp-add-servicestack-reference">C#</a></td>
+    <td><a href="/typescript-add-servicestack-reference">TypeScript</a></td>
+    <td><a href="/swift-add-servicestack-reference">Swift</a></td>
+    <td><a href="/java-add-servicestack-reference">Java</a></td>
+    <td><a href="/kotlin-add-servicestack-reference">Kotlin</a></td>
+    <td><a href="/fsharp-add-servicestack-reference">F#</a></td>
+    <td><a href="/vbnet-add-servicestack-reference">VB.NET</a></td>
+</tr>
+</table>
+
+<svg style="margin: 60px 120px;" width="578px" height="437px" viewBox="0 0 578 437" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
     <title>add-servicestack-reference 2</title>
     <desc>Created with Sketch.</desc>
@@ -170,18 +182,6 @@ ServiceStackVS offers the generation and updating of these clients through the s
         </g>
     </g>
 </svg>
-
-<table class="table">
-<tr>
-    <td><a href="/csharp-add-servicestack-reference">C#</a></td>
-    <td><a href="/typescript-add-servicestack-reference">TypeScript</a></td>
-    <td><a href="/swift-add-servicestack-reference">Swift</a></td>
-    <td><a href="/java-add-servicestack-reference">Java</a></td>
-    <td><a href="/kotlin-add-servicestack-reference">Kotlin</a></td>
-    <td><a href="/fsharp-add-servicestack-reference">F#</a></td>
-    <td><a href="/vbnet-add-servicestack-reference">VB.NET</a></td>
-</tr>
-</table>
 
 ## Example Usage
 
