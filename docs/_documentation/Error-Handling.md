@@ -279,10 +279,35 @@ public override void Configure(Container container)
     //Handle Unhandled Exceptions occurring outside of Services
     //E.g. Exceptions during Request binding or in filters:
     this.UncaughtExceptionHandlers.Add((req, res, operationName, ex) => {
-         res.Write("Error: {0}: {1}".Fmt(ex.GetType().Name, ex.Message));
+         res.Write($"Error: {ex.GetType().Name}: {ex.Message}");
          res.EndRequest(skipHeaders: true);
     });
 }
+```
+
+#### Async Exception Handlers
+
+If your handlers need to make any async calls they can use the Async versions instead:
+
+```csharp
+this.ServiceExceptionHandlersAsync.Add(async (httpReq, request, ex) =>
+{
+    await LogServiceExceptionAsync(httpReq, request, ex);
+
+    if (ex is UnhandledException)
+        throw ex;
+
+    if (request is IQueryDb)
+        return DtoUtils.CreateErrorResponse(request, new ArgumentException("AutoQuery request failed"));
+
+    return null;
+});
+
+this.UncaughtExceptionHandlersAsync.Add(async (req, res, operationName, ex) =>
+{
+    await res.WriteAsync($"UncaughtException '{ex.GetType().Name}' at '{req.PathInfo}'");
+    res.EndRequest(skipHeaders: true);
+});
 ```
 
 ### Error handling using a custom ServiceRunner

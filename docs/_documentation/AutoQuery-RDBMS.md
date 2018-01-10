@@ -639,8 +639,7 @@ Once enabled you can use the `_select`, `_from`, `_where` modifiers to append cu
 
 Whilst Raw SqlFilters affect the query executed, they don't change what Response DTO is returned.
 
-
-## Customizable Fields
+## Custom Fields
 
 You can also customize which fields you want returned using the `Fields` property available on all AutoQuery Services, e.g:
 
@@ -660,7 +659,7 @@ Which will remove any value type fields with a **default value** from the JSON r
  - [github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At](http://github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At)
  - [github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At&jsconfig=ExcludeDefaultValues](http://github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At&jsconfig=ExcludeDefaultValues)
 
-#### Wildcards
+### Wildcards
 
 You can use **wildcards** to quickly reference all fields on a table using the `table.*` format, e.g:
 
@@ -679,6 +678,37 @@ public class QueryEmployees : QueryDb<Employee>,
     //...
 }
 ```
+
+### DISTINCT Custom Fields
+
+To query only results with distinct fields you can prefix the custom fields list with `DISTINCT `, e.g
+
+Using QueryString:
+
+    ?Fields=DISTINCT City,Country
+
+Using C# Client:
+
+```csharp
+var response = client.Get(new QueryCustomers { 
+    Fields = "DISTINCT City,Country"
+})
+```
+
+We can use this feature with Northwinds existing [AutoQuery Request DTOs](https://github.com/NetCoreApps/Northwind/blob/master/src/Northwind.ServiceModel/AutoQuery.cs):
+
+```csharp
+[Route("/query/customers")]
+public class QueryCustomers : QueryDb<Customer> { }
+```
+
+To return all unique City and Countries of Northwind Customers with:
+
+ - [northwind.netcore.io/query/customers?Fields=DISTINCT City,Country](http://northwind.netcore.io/query/customers?Fields=DISTINCT%20City,Country)
+
+Or to just return their unique Countries they're in:
+
+ - [northwind.netcore.io/query/customers?Fields=DISTINCT Country](http://northwind.netcore.io/query/customers?Fields=DISTINCT%20Country)
 
 ## Paging and Ordering
 
