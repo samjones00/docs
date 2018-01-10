@@ -65,6 +65,47 @@ isolation with considerably more efficiency than VM's allowing you to pack them 
 For .NET Core Live Demos the single T2 medium instance (**$25 /month**) is hosting 15 Docker Images whilst
 running at **~50% Memory Utilization** and **<1% CPU Utilization** in its current idle state.
 
+### Exceptional Code reuse
+
+Thanks to ServiceStack's high-level host agnostic API and our approach to decouple from concrete HTTP abstractions behind lightweight `IRequest` interfaces, ServiceStack projects enjoy near perfect code reuse, which allows the same ServiceStack Services to be able to run on ASP.NET, HttpListener SelfHosts, SOAP Endpoints, multiple MQ Hosts and .NET Core Apps. The [HelloMobile Server Hosts](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) shows an example of this where the same [AppHost Configuration and WebServices implementation](https://github.com/ServiceStackApps/HelloMobile/blob/master/src/Server.Common/WebServices.cs) is used in all:
+
+ - .NET Core 2.0 Server
+ - ASP.NET Core running on .NET Framework
+ - ASP.NET Web App (.NET Framework)
+ - HttpListener Self-Host (.NET Framework)
+ 
+The primary advantage of this is simplicity, in both effort and cognitive overhead for creating Services that target multiple platforms, reuse of existing knowledge and investments in using ServiceStack libraries and features as well as significantly reduced migration efforts for porting existing .NET Framework code-bases to run on .NET Core where it enjoys near perfect source code compatibility. 
+ 
+ServiceStack's exceptional source compatibility is visible in our new .NET Core 2.0 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
+
+The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
+
+## New .NET Core 2.0 Project Templates
+ 
+There are **11 .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Templates WebApp](http://templates.servicestack.net/docs/web-apps) which is itslef a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
+
+All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](/dotnet-new) command-line utility, installable from npm with:
+ 
+    $ npm install -g @servicestack/cli
+ 
+This makes the `dotnet-new` command globally available which can be run without arguments to view all templates available:
+
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+
+That can be used to create new projects with:
+ 
+    $ dotnet-new <template-name> <project-name>
+ 
+Example of creating a new Vue SPA project called **Acme**:
+ 
+    $ dotnet-new vue-spa Acme
+ 
+The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
+
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
+
+If using JetBrains Rider the npm packages can be installed by opening `package.json` and clicking on the **"npm install"** tooltip on the **bottom right**. In VS Code you'll need to run `npm install` manually from the command-line.
+
 ## .NET Core Live Demos
 
 To showcase ServiceStack features running on .NET Core we've forked several of our existing 
@@ -518,48 +559,11 @@ Web Apps let you develop dynamic websites without needing to write any C# code o
 
 #### [Web App Examples](https://github.com/NetCoreWebApps/LiveDemos#live-demos)
 
-We've developed a number of Web Apps to illustrate the various features available and to showcase the different kind of Web Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/NetCoreWebApps). Each app runs the same unmodified [Web App Binary](https://github.com/NetCoreWebApps/Web) that's also used in the WebAppStarter project above.
+To illustrate the various features available we've developed a number of Web Apps examples to showcase the different kind of Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/NetCoreWebApps). Each app runs the same unmodified [Web App Binary](https://github.com/NetCoreWebApps/Web) that's also used in the WebAppStarter project above.
 
-### Exceptional Code reuse
+You can quickly get started by creating a Web App from the project template:
 
-Thanks to ServiceStack's high-level host agnostic API and our approach to decouple from concrete HTTP abstractions behind lightweight `IRequest` interfaces, ServiceStack projects enjoy near perfect code reuse, which allows the same ServiceStack Services to be able to run on ASP.NET, HttpListener SelfHosts, SOAP Endpoints, multiple MQ Hosts and .NET Core Apps. The [HelloMobile Server Hosts](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) shows an example of this where the same [AppHost Configuration and WebServices implementation](https://github.com/ServiceStackApps/HelloMobile/blob/master/src/Server.Common/WebServices.cs) is used in all:
-
- - .NET Core 2.0 Server
- - ASP.NET Core running on .NET Framework
- - ASP.NET Web App (.NET Framework)
- - HttpListener Self-Host (.NET Framework)
- 
-The primary advantage of this is simplicity, in both effort and cognitive overhead for creating Services that target multiple platforms, reuse of existing knowledge and investments in using ServiceStack libraries and features as well as significantly reduced migration efforts for porting existing .NET Framework code-bases to run on .NET Core where it enjoys near perfect source code compatibility. 
- 
-ServiceStack's exceptional source compatibility is visible in our new .NET Core 2.0 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
-
-The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
-
-## New .NET Core 2.0 and .NET Framework Project Templates!
- 
-There are **11 .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Templates WebApp](http://templates.servicestack.net/docs/web-apps) which is itslef a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
-
-All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](/dotnet-new) command-line utility, installable from npm with:
- 
-    $ npm install -g @servicestack/cli
- 
-This makes the `dotnet-new` command globally available which can be run without arguments to view all templates available:
-
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
-
-That can be used to create new projects with:
- 
-    $ dotnet-new <template-name> <project-name>
- 
-Example of creating a new Vue SPA project called **Acme**:
- 
-    $ dotnet-new vue-spa Acme
- 
-The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
-
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
-
-If using JetBrains Rider the npm packages can be installed by opening `package.json` and clicking on the **"npm install"** tooltip on the **bottom right**. In VS Code you'll need to run `npm install` manually from the command-line.
+    $ dotnet-new templates-webapp ProjectName
 
 ## Run ASP.NET Core Apps on the .NET Framework
 
