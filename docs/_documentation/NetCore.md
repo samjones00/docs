@@ -73,7 +73,7 @@ listed them side-by-side with their original ASP.NET 4.5 code-bases so they can 
 
 The Live Demos cover a broad spectrum of ServiceStack features including:
 
-<table>
+<table class="table">
 <tr>
   <td colspan="2">
     <b>Redis GEO</b> - simple example showing how to make use of Redis 3.2.0 new GEO features

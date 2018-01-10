@@ -2,6 +2,9 @@ h1, h2, h3, h4, strong {
     font-weight: 600;
     color: #2c3e50;
 }
+caption {
+    caption-side: top;
+}
 #content h2[id], #content h3[id], #content h4[id] {
     cursor: pointer;
 }
