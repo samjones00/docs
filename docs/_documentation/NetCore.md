@@ -5,15 +5,13 @@ slug: netcore
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/netcore-banner.png?t)
 
-We've been able to bring over ServiceStack's near entire feature-set over to .NET Core which is all 
-maintained within a single code-base offering high source-code compatibility to maximize existing 
-knowledge and code-reuse and reducing portability efforts, all without breaking changes to existing 
-.NET 4.5 Customers.
+Most of ServiceStack's features are also available on .NET Core, where it's all maintained within a single code-base 
+enabling excellent source-code compatibility to maximize existing knowledge and code-reuse and reducing portability efforts, 
+and released within the same suite of NuGet packages, all without breaking changes to existing .NET 4.5 Customers.
 
 ### .NET Core - the future of .NET on Linux
 
-Whilst the development and tooling experience is still in a transitionary period we believe .NET Core puts 
-.NET Web and Server App development on the cusp of an exciting future - the kind .NET hasn't seen before. 
+.NET Core enables an exciting era of .NET Web and Server App development - the kind .NET hasn't seen before. 
 The existing Windows hosting and VS.NET restraints have been freed, now anyone can develop using .NET's
 productive expertly-designed and statically-typed mainstream C#/F# languages in their preferred editor and 
 host it on the most popular server Operating Systems, in either an all-Linux, all-Windows or mixed ecosystem. 
@@ -127,9 +125,9 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <tr>
   <td colspan="2">
     <b>Features</b> - 
-    Real-time <a href="http://docs.servicestack.net/server-events.html">Server Events</a>
-    and <a href="http://docs.servicestack.net/javascript-server-events-client.html">JavaScript Client</a>,
-    Twitter, Facebook and Github <a href="http://docs.servicestack.net/authentication-and-authorization.html">OAuth Providers</a>
+    Real-time <a href="/server-events">Server Events</a>
+    and <a href="/javascript-server-events-client">JavaScript Client</a>,
+    Twitter, Facebook and Github <a href="/authentication-and-authorization.html">OAuth Providers</a>
   </td>
 </tr>
 <tr>
@@ -171,10 +169,10 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <tr>
   <td colspan="2">
     <b>Features</b> - 
-    Simple <a href="http://docs.servicestack.net/authentication-and-authorization.html">Auth and OAuth Providers</a>,
-    <a href="http://docs.servicestack.net/authentication-and-authorization.html#requiredrole-and-requiredpermission-attributes">Role-based Security</a>,
-    <a href="http://docs.servicestack.net/servicestack-integration.html">MVC Integration</a>,
-    <a href="http://docs.servicestack.net/ss-utils-js.html">ss-utils.js</a>
+    Simple <a href="/authentication-and-authorization.html">Auth and OAuth Providers</a>,
+    <a href="/authentication-and-authorization.html#requiredrole-and-requiredpermission-attributes">Role-based Security</a>,
+    <a href="/servicestack-integration.html">MVC Integration</a>,
+    <a href="/ss-utils-js.html">ss-utils.js</a>
   </td>
 </tr>
 <tr>
@@ -216,7 +214,7 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <tr>
   <td colspan="2">
     <b>Features</b> - 
-    Fully-queryable <a href="http://docs.servicestack.net/autoquery-rdbms.html">RDBMS AutoQuery Services</a>,
+    Fully-queryable <a href="/autoquery-rdbms.html">RDBMS AutoQuery Services</a>,
     <a href="https://github.com/ServiceStack/ServiceStack.OrmLite">OrmLite.Sqlite</a>,
     <a href="http://stackapis.netcore.io/ss_admin/autoquery/">AutoQuery Viewer</a>
   </td>
@@ -261,7 +259,7 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
   <td colspan="2">
     <b>Features</b> - 
     File Uploads, 
-    <a href="http://docs.servicestack.net/http-utils.html">HTTP Utils</a>
+    <a href="/http-utils.html">HTTP Utils</a>
   </td>
 </tr>
 <tr>
@@ -389,7 +387,7 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <tr>
   <td colspan="2">
     <b>Features</b> - 
-    REST File Management and <a href="http://docs.servicestack.net/virtual-file-system.html">Virtual File System</a>
+    REST File Management and <a href="/virtual-file-system.html">Virtual File System</a>
   </td>
 </tr>
 <tr>
@@ -431,10 +429,10 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <tr>
   <td colspan="2">
     <b>Features</b> - 
-    <a href="http://docs.servicestack.net/autoquery-rdbms.html">RDBMS AutoQuery Services</a>,
+    <a href="/autoquery-rdbms.html">RDBMS AutoQuery Services</a>,
     <a href="http://stackapis.netcore.io/ss_admin/autoquery/">AutoQuery Viewer</a>,
-    <a href="http://docs.servicestack.net/http-caching.html">HTTP Caching</a> and 
-    <a href="http://docs.servicestack.net/cacheresponse-attribute.html">CacheResponse attributes</a>
+    <a href="/http-caching.html">HTTP Caching</a> and 
+    <a href="/cacheresponse-attribute.html">CacheResponse attributes</a>
   </td>
 </tr>
 <tr>
@@ -512,55 +510,108 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 </tr>
 </table>
 
+### .NET Core Web Apps
+
+.NET Core 2.0 is also used to enable [Web Apps](http://templates.servicestack.net/docs/web-apps) which is a new approach to dramatically simplify .NET Wep App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
+
+Web Apps let you develop dynamic websites without needing to write any C# code or perform any app builds which dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [ServiceStack Template's Syntax](http://templates.servicestack.net/docs/syntax) and [what filters are available](http://templates.servicestack.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript devs despite calling and binding directly to .NET APIs behind the scenes.
+
+#### [Web App Examples](https://github.com/NetCoreWebApps/LiveDemos#live-demos)
+
+We've developed a number of Web Apps to illustrate the various features available and to showcase the different kind of Web Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/NetCoreWebApps). Each app runs the same unmodified [Web App Binary](https://github.com/NetCoreWebApps/Web) that's also used in the WebAppStarter project above.
+
 ### Exceptional Code reuse
 
-We're especially pleased with how little effort was required to port existing ServiceStack code-bases where 
-essentially **all Service implementations were able to be reused as-is**. 
+Thanks to ServiceStack's high-level host agnostic API and our approach to decouple from concrete HTTP abstractions behind lightweight `IRequest` interfaces, ServiceStack projects enjoy near perfect code reuse, which allows the same ServiceStack Services to be able to run on ASP.NET, HttpListener SelfHosts, SOAP Endpoints, multiple MQ Hosts and .NET Core Apps. The [HelloMobile Server Hosts](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) shows an example of this where the same [AppHost Configuration and WebServices implementation](https://github.com/ServiceStackApps/HelloMobile/blob/master/src/Server.Common/WebServices.cs) is used in all:
 
-The primary changes required were due to supporting .NET Core's new project structure, conventions and bootstrapping, primarily:
+ - .NET Core 2.0 Server
+ - ASP.NET Core running on .NET Framework
+ - ASP.NET Web App (.NET Framework)
+ - HttpListener Self-Host (.NET Framework)
+ 
+The primary advantage of this is simplicity, in both effort and cognitive overhead for creating Services that target multiple platforms, reuse of existing knowledge and investments in using ServiceStack libraries and features as well as significantly reduced migration efforts for porting existing .NET Framework code-bases to run on .NET Core where it enjoys near perfect source code compatibility. 
+ 
+ServiceStack's exceptional source compatibility is visible in our new .NET Core 2.0 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
 
- - Instead of defining NuGet packages in [packages.config](https://github.com/ServiceStackApps/redis-geo/blob/master/src/RedisGeo/RedisGeo/packages.config) 
-   - They're now defined in [project.json](https://github.com/NetCoreApps/redis-geo/blob/master/src/RedisGeo/project.json) 
- - Instead of registering ServiceStack as a [HTTP Handler in Web.config](https://github.com/ServiceStackApps/redis-geo/blob/be11bd1c7ad630faf155d574fb39c25532b4ddb2/src/RedisGeo/RedisGeo/Web.config#L37) 
- and [initialized in Global.asax](https://github.com/ServiceStackApps/redis-geo/blob/be11bd1c7ad630faf155d574fb39c25532b4ddb2/src/RedisGeo/RedisGeo/Global.asax.cs#L9) 
-   - It's now [configured with code](https://github.com/NetCoreApps/redis-geo/blob/4e8869fb00a5085f546539d47f119f952887a96d/src/RedisGeo/Startup.cs#L27) in .NET Core's `IApplicationBuilder` pipeline
- - Instead of configuring [Razor Namespaces and base-class in Web.config](https://github.com/ServiceStackApps/RazorRockstars/blob/f71a3b30f353f1fed1126f36c86d4d59f2235327/src/RazorRockstars.WebHost/Web.config#L28-L44)
-   - It's now [configured in _ViewImports.cshtml](https://github.com/NetCoreApps/RazorRockstars/blob/master/src/RazorRockstars.WebHost/wwwroot/_ViewImports.cshtml) 
-   and [_ViewStart.cshtml](https://github.com/NetCoreApps/RazorRockstars/blob/master/src/RazorRockstars.WebHost/Views/_ViewStart.cshtml)
+The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
 
-Most of the changes ended up resulting from .NET Core's new convention of hosting Websites from the `/wwwroot` 
-WebRoot Folder, requiring copying all servable static resources in `/wwwroot` and fixing all affected 
-path references.
+## New .NET Core 2.0 and .NET Framework Project Templates!
+ 
+There are **11 .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Templates WebApp](http://templates.servicestack.net/docs/web-apps) which is itslef a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
-### .NET Core ServiceStack packages
+All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](/dotnet-new) command-line utility, installable from npm with:
+ 
+    $ npm install -g @servicestack/cli
+ 
+This makes the `dotnet-new` command globally available which can be run without arguments to view all templates available:
 
-We've extended the .NET Core support of the Redis and Service Clients in our last release to now include 
-OrmLite (SQL Server, Sqlite, PostgreSQL, MySql), ServiceStack, MVC Integration with Razor Pages, Swagger API, 
-AutoQuery, AutoQuery Viewer, Stripe, AWS Integration with PocoDynamo and SQS, RedisMq, RabbitMq, ProtoBuf 
-and Wire formats:
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+
+That can be used to create new projects with:
+ 
+    $ dotnet-new <template-name> <project-name>
+ 
+Example of creating a new Vue SPA project called **Acme**:
+ 
+    $ dotnet-new vue-spa Acme
+ 
+The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
+
+![](http://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
+
+If using JetBrains Rider the npm packages can be installed by opening `package.json` and clicking on the **"npm install"** tooltip on the **bottom right**. In VS Code you'll need to run `npm install` manually from the command-line.
+
+## Run ASP.NET Core Apps on the .NET Framework
+
+A primary use-case prevented from having unified NuGet packages containing both **.NET Standard** and **.NET Framework** builds is being able to run ASP.NET Core Apps on the **.NET Framework** which stems from:
+
+  - `net45` - Contains support for running **ASP.NET** Web or Self-Hosting **HttpListener** App Hosts
+  - `netstandard2.0` - Contains support for only running on **ASP.NET Core** App Hosts
+
+Where the `net45` builds always get used when they're added to any **.NET Framework** project. To support running ASP.NET Core Apps on the .NET Framework you can use the `.Core` NuGet packages which contains only the **.NET Standard 2.0** builds in order to force .NET Framework projects to use **.NET Standard 2.0** builds. Currently the complete list of `.Core` packages which contains only **.NET Standard 2.0** builds include:
 
  - ServiceStack.Text.Core
  - ServiceStack.Interfaces.Core
  - ServiceStack.Client.Core
  - ServiceStack.HttpClient.Core
+ - ServiceStack.Core
  - ServiceStack.Common.Core
+ - ServiceStack.Mvc.Core
+ - ServiceStack.Server.Core
  - ServiceStack.Redis.Core
  - ServiceStack.OrmLite.Core
  - ServiceStack.OrmLite.Sqlite.Core
  - ServiceStack.OrmLite.SqlServer.Core
  - ServiceStack.OrmLite.PostgreSQL.Core
  - ServiceStack.OrmLite.MySql.Core
- - ServiceStack.Core
- - ServiceStack.Mvc.Core
- - ServiceStack.Server.Core
- - ServiceStack.ProtoBuf.Core
- - ServiceStack.Wire.Core
+ - ServiceStack.OrmLite.MySqlConnector.Core
  - ServiceStack.Aws.Core
+ - ServiceStack.Azure.Core
  - ServiceStack.RabbitMq.Core
- - ServiceStack.Stripe.Core
+ - ServiceStack.Api.OpenApi.Core
  - ServiceStack.Admin.Core
- - ServiceStack.Api.Swagger.Core
+ - ServiceStack.Stripe.Core
  - ServiceStack.Kestrel
+
+> Ultimately support for whether a **.NET Standard 2.0** library will run on the .NET Framework depends on whether external dependencies also support this scenario which as it's a more niche use-case, will be a less tested scenario. 
+
+Other issues from being a less popular scenario is not being able to reference the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) meta package which only supports .NET Core 2.0 projects, instead ASP.NET .NET Standard packages will need to be referenced individually. 
+
+To make it as easy as possible to get started you can use the [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) containing popular starting templates for running ASP.NET Core Apps on .NET Framework (default v4.7) which as a convention all have the `-corefx` suffix: 
+
+ - [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx) - .NET Framework ASP.NET Core Website
+ - [selfhost-corefx](https://github.com/NetFrameworkCoreTemplates/selfhost-corefx) - .NET Framework ASP.NET Core self-hosting Console App
+ - [mvc-corefx](https://github.com/NetFrameworkCoreTemplates/mvc-corefx) - .NET Framework ASP.NET Core MVC Website
+ - [razor-corefx](https://github.com/NetFrameworkCoreTemplates/razor-corefx) - .NET Framework ASP.NET Core Website with ServiceStack.Razor
+ - [templates-corefx](https://github.com/NetFrameworkCoreTemplates/templates-corefx) - .NET Framework ASP.NET Core Templates Bootstrap Website
+
+This will let you create an ASP.NET Core App running on the .NET Framework v4.7 with:
+
+    $ npm install -g @servicestack/cli
+
+    $ dotnet-new web-corefx AcmeNetFx
+
+Which can then be opened in your preferred VS.NET or Project Rider C# IDE.
 
 ### ServiceStack features that won't be supported in .NET Core
 
@@ -574,7 +625,6 @@ features that we're not able to support, these include:
  - **ServiceStack.Authentication.OAuth2** - DotNetOpenAuth dependency not available in .NET Core
  - **ServiceStack.Authentication.OpenId** - DotNetOpenAuth dependency not available in .NET Core
  - **MVC FluentValidation Validators** - tightly coupled to old System.Web MVC
- - **ServiceStack.Logging** - proxying to .NET Core logging abstractions instead
  - **ServiceStack.Razor** inc all existing `Html.*` helpers - tightly coupled to System.Web Razor
 
 Whilst we lost our beloved **ServiceStack.Razor** support we developed a completely new implementation backed 
@@ -583,50 +633,12 @@ so porting should still be relatively straightforward with some minor syntax and
 This new implementation is available in **ServiceStack.Mvc.Core** package and can be seen in action in 
 the [Razor Rockstars .NET Core demo](http://razor.netcore.io).
 
-### Referencing .NET Core Packages
-
-After this release we'll be bringing any remaining .NET Core compatible packages as well as focusing on
-profiling and performance whilst resolving any issues reported by Customers running on .NET Core. 
-In the meantime the .NET Core packages are kept isolated from .NET 4.5 packages with a `*.Core` suffix 
-which enables us to make frequent .NET Core releases during the next release cycle without affecting 
-existing .NET 4.5 Customers.
-
-As we expect our latest version to be the best version of .NET Core available we recommend referencing 
-ServiceStack packages using the `1.0.*` wildcard scheme, e.g:
-
-```json
-"dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.1",
-      "type": "platform"
-    },
-    "ServiceStack.Core": "1.0.*",
-    "ServiceStack.Redis.Core": "1.0.*",
-    "ServiceStack.Common.Core": "1.0.*",
-    "ServiceStack.Client.Core": "1.0.*",
-    "ServiceStack.Interfaces.Core": "1.0.*",
-    "ServiceStack.Text.Core": "1.0.*"
-  },
-}
-```
-
-This will allow your next `dotnet restore` to fetch the latest version of ServiceStack without config changes. 
-
-#### Merging into main NuGet packages
-
-Once we're satisfied ServiceStack .NET Core has been battle-tested in the wild we'll merge the `.Core`
-packages back into the main NuGet packages and convert them to use NuGet v3 `.nuspec` format and
-bump the major version to **v5.0.0**.
-
 ### AppSelfHostBase Source-compatible Self-Host
 
-**ServiceStack.Kestrel** is a new NuGet package which encapsulates .NET Core's Kestrel HTTP Server dependency 
-behind a source-compatible `AppSelfHostBase` which can be used to create source-compatible Self Hosted Apps.
-This is especially valuable for creating Self Host Integration Tests that can run on both .NET 4.5 and 
-.NET Core platforms. E.g. the stand-alone 
-[CustomerRestExample](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/CustomerRestExample.cs)
-on ServiceStack's [Project Home Page](https://github.com/ServiceStack/ServiceStack/#simple-customer-database-rest-services-example)
-is run as-is on both .NET 4.5 and .NET Core without modification.
+The **ServiceStack.Kestrel** NuGet package encapsulates .NET Core's Kestrel HTTP Server dependency 
+behind a source-compatible `AppSelfHostBase` which can be used to create source-compatible Self Hosted Apps
+and is what enables the exact same .NET Framework Template's [Integration Tests](https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/master/MyApp.Tests/IntegrationTest.cs) to 
+be used in .NET Core Template's [Integration Tests](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp.Tests/IntegrationTest.cs).
 
 ### AppHostBase .NET Core Module
 
@@ -677,6 +689,9 @@ pipeline:
 ```csharp
 public class Startup
 {
+    public IConfiguration Configuration { get; }
+    public Startup(IConfiguration configuration) => Configuration = configuration;
+
     // This method gets called by the runtime. Use this method to add services to the container.
     // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
@@ -693,7 +708,10 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseServiceStack(new AppHost()); //Register your ServiceStack AppHost as a .NET Core module
+        //Register your ServiceStack AppHost as a .NET Core module
+        app.UseServiceStack(new AppHost { 
+            AppSettings = new NetCoreAppSettings(Configuration) // Use **appsettings.json** and config sources
+        }); 
 
         app.Run(async (context) =>
         {
@@ -733,7 +751,7 @@ AppHost's that can be used in both .NET 4.5 and .NET Core platforms, e.g:
 public class AppHost : AppHostBase
 {
     // Initializes your AppHost Instance, with the Service Name and assembly containing the Services
-    public AppHost() : base("Backbone.js TODO", typeof(TodoService).GetAssembly()) { }
+    public AppHost() : base("Backbone.js TODO", typeof(TodoService).Assembly) { }
 
     // Configure your AppHost with the necessary configuration and dependencies your App needs
     public override void Configure(Container container)
@@ -775,7 +793,7 @@ We also agree with this default, .NET Core seems to be centered around embracing
 developer ecosystem where .NET's default **PascalCase** protrudes in a sea of **camelCase** and 
 **snake_case** JSON APIs. This won't have an impact on .NET Service Clients or Text Serialization which 
 supports case-insensitive properties, however Ajax and JS clients will need to be updated to use matching properties.
-You can use [ss-utils normalize()](http://docs.servicestack.net/ss-utils-js.html#normalize-and-normalizekey) methods
+You can use [ss-utils normalize()](/ss-utils-js.html#normalize-and-normalizekey) methods
 to help with handling both conventions by recursively normalizing and converting all properties to **lowercase**.
 
 ### .NET Core Container Adapter
@@ -847,12 +865,24 @@ var foo = container.GetService<IFoo>();
 
 ### ServiceStack.Logging Adapters
 
+The default 
 Logging is an example of an abstraction which didn't make sense to maintain a separate implementation 
 as any adapter would only be able to support logging within ServiceStack. With logging you'll want to
 configure it one place and have it apply to your whole application, so we've instead pre-configured 
 ServiceStack.Logging to proxy all messages to .NET Core's 
 [logging abstraction](https://docs.asp.net/en/latest/fundamentals/logging.html)
 where you'll only need to configure logging once in `Startup` and have it handle all logging solution-wide.
+
+
+### .NET Standard 2.0 Logging Providers
+
+Whilst our recommendation is to use .NET Core's Logging Abstraction, if you prefer you can avoid this abstraction and 
+configure logging with ServiceStack directly with the logging providers below which maintains **.NET Standard 2.0** versions:
+
+ - ServiceStack.Logging.Serilog
+ - ServiceStack.Logging.Slack
+
+> Support for `NLog` will be added once their stable NuGet release contains .NET Standard builds.
 
 ### WebRootPath and ContentRootPath
 
@@ -920,7 +950,7 @@ support HttpListener self-hosts behind ServiceStack's `IRequest` abstractions.
 
 We're happy to report that ServiceStack's HTTP Handlers can also be registered as a .NET Core module in 
 the `IApplicationBuilder` pipeline. This lets you for instance return the same information as ServiceStack's
-[?debug=requestinfo](http://docs.servicestack.net/debugging.html#request-info) route for any unhandled 
+[?debug=requestinfo](/debugging.html#request-info) route for any unhandled 
 requests by registering the `RequestInfoHandler` as the last module in .NET Core's `IApplicationBuilder` 
 pipeline, e.g:
 
