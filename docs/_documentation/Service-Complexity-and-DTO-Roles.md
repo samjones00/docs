@@ -168,7 +168,7 @@ Services are implemented as they're able to bind their application to its concre
 mock their Service client to return test data until the back-end Services are implemented.
 
 As far as rules go, ensuring a well-defined Service Contract (DTOs) decoupled from its implementation 
-goes to very essence of what a Service is and the value it provides. 
+goes to the very essence of what a Service is and the value it provides. 
 
 ### Request and Response DTOs
 
