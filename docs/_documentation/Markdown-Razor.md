@@ -1,13 +1,46 @@
 ---
 slug: markdown-razor
 ---
+
+### Markdown Config
+
+An alternative to enabling the Markdown Razor View Engine is to use new `MarkdownConfig` API to specify which Markdown implementation to use in Razor and ServiceStack Template Markdown partials. By default it uses the built-in fast and lightweight MarkdownDeep implementation:
+
+```csharp
+MarkdownConfig.Transformer = new MarkdownDeep.Markdown();
+```
+
+Providing a static API that can be used to transform Markdown to HTML with:
+
+```csharp
+var markdown = MarkdownConfig.Transform(html);
+```
+
+Alternative Markdown implementations can be used by providing an adapter for the `IMarkdownTransformer` interface:
+
+```csharp
+public interface IMarkdownTransformer
+{
+    string Transform(string markdown);
+}
+```
+
 ## Markdown Razor View Engine
 
 Markdown Razor is the first HTML and Text (i.e. Markdown) view engine built into ServiceStack.
 The pages are simply plain-text Markdown surrounded by MVC Razor-like syntax to provide 
 its enhanced dynamic functionality.
 
+### Configure
+
+Markdown Razor support is available by regitering the `MarkdownFormat` Plugin:
+
+```csharp
+Plugins.Add(new MarkdownFormat());       // In ServiceStack.Razor
+```
+
 ### Extensible with custom base classes and Helpers
+
 Markdown Razor is extensible in much the same way as MVC Razor is with the ability to define and 
 use your own **custom base class**, **Helpers** and **HtmlHelper** extension methods. 
 This allows you to call util methods on your base class or helpers directly from your templates.

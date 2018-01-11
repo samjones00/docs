@@ -14,8 +14,14 @@ As the MVC Mini Profiler is optimized for a .NET 4.0 MVC app, we've made some ch
 
 ### Using the MVC Mini Profiler
 
-Just like the [Normal Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) you can enable it by starting it in your Global.asax, here's how to enable it for local requests:
- 
+Just like the [Normal Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) you can enable it by registering the `MiniProfilerFeature` Plugin:
+
+```csharp
+Plugins.Add(new MiniProfilerFeature());  // In ServiceStack.NetFramework
+```
+
+Then starting it in your Global.asax, here's how to enable it for local requests:
+
 ```csharp
 protected void Application_BeginRequest(object src, EventArgs e)
 {
@@ -28,10 +34,13 @@ protected void Application_EndRequest(object src, EventArgs e)
     Profiler.Stop();
 }
 ```
+
 Now if you also have ServiceStack Razor views you can enable the profiler by putting this into your _Layout.cshtml page:
+
 ```csharp
 @ServiceStack.MiniProfiler.Profiler.RenderIncludes().AsRaw() 
 ```
+
 That's it! Now everytime you view a web service or a razor page in your browser (locally) you'll see a profiler view of your service broken down in different stages:
 
 ![Hello MiniProfiler](/images/advanced/miniprofiler-hello.png)
@@ -43,6 +52,8 @@ By default you get to see how long it took ServiceStack to de-serialize your req
 The profiler includes special support for SQL Profiling that can easily be enabled for OrmLite and Dapper by getting it to use a Profiled Connection using a ConnectionFilter:
 
 ```csharp
+Plugins.Add(new MiniProfilerFeature()); // Register before using ProfiledDbConnection
+
 this.Container.Register<IDbConnectionFactory>(c =>
     new OrmLiteConnectionFactory(
         "~/App_Data/db.sqlite".MapHostAbsolutePath(), SqliteDialect.Provider) {

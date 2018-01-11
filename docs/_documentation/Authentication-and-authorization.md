@@ -823,13 +823,13 @@ public object Any(ImpersonateUser request)
 
 > Your Services can use the new `Request.IsInProcessRequest()` to identify Services that were executed in-process.
 
-#### Custom User Sessions using JWT Tokens
+### Custom User Sessions using JWT Tokens
 
 The [JWT Auth Provider](/jwt-authprovider) allows for a more flexible approach to impersonating users as they allow
 [Manually creating JWT Tokens](/jwt-authprovider#creating-jwt-tokens-manually) to construct a custom User Session with Custom metadata, 
 Roles and Permissions.
 
-#### IAuthMetadataProvider
+### IAuthMetadataProvider
 
 An IAuthMetadataProvider provides a way to customize the authInfo in all AuthProviders. It also allows overriding of how extended Auth metadata like profileUrl is returned.
 
@@ -844,14 +844,79 @@ public interface IAuthMetadataProvider
 
 > To override with a custom implementation, register `IAuthMetadataProvider` in the IOC
 
-### Custom Hash Provider
+### PBKDF2 Password Hashing implementation
 
-The `IHashProvider` used to generate and verify password hashes and salts in each UserAuth Repository can be overridden with:
+ServiceStack uses the same [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) password hashing algorithm ASP.NET Identity v3 by default for both new users and successful authentication logins where their password will automatically be re-hashed with the new implementation.
+
+This also means if you wanted to switch, you'll be able to import ASP.NET Identity v3 User Accounts and their Password Hashes into ServiceStack.Auth's `UserAuth` tables and vice-versa.
+
+#### Retain previous Password Hashing implementation
+
+If preferred you can revert to using the existing `SaltedHash` implementation with:
 
 ```csharp
-container.Register<IHashProvider>(c => 
-    new SaltedHash(HashAlgorithm:new SHA256Managed(), theSaltLength:4));
+SetConfig(new HostConfig { 
+    UseSaltedHash = true
+});
 ```
+
+This also supports "downgrading" passwords that were hashed with the new `IPasswordHasher` provider where it will revert to using the older/weaker `SaltedHash` implementation on successful authentication.
+
+#### Override Password Hashing Strength
+
+The new [PasswordHasher](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/PasswordHasher.cs) implementation can also be made to be computationally stronger or weaker by adjusting the iteration count (default 10000), e.g:
+
+```csharp
+container.Register<IPasswordHasher>(new PasswordHasher(1000));
+```
+
+#### Versionable Password Hashing
+
+The new [IPasswordHasher](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Auth/IPasswordHasher.cs) interface includes support for versioning future Password Hashing algorithms and rehsashing:
+
+```csharp
+public interface IPasswordHasher
+{
+    // First byte marker used to specify the format used. The default implementation uses format:
+    // { 0x01, prf (UInt32), iter count (UInt32), salt length (UInt32), salt, subkey }
+    byte Version { get; }
+
+    // Returns a boolean indicating whether the providedPassword matches the hashedPassword
+    // The needsRehash out parameter indicates whether the password should be re-hashed.
+    bool VerifyPassword(string hashedPassword, string providedPassword, out bool needsRehash);
+
+    // Returns a hashed representation of the supplied password
+    string HashPassword(string password);
+}
+```
+
+Which is implemented in all ServiceStack Auth Repositories where it will rehash passwords that used a different version or weaker strength, by utilizing the new API for verifying passwords:
+
+```csharp
+if (userAuth.VerifyPassword(password, out var needsRehash))
+{
+    this.RecordSuccessfulLogin(userAuth, needsRehash, password);
+    return true;
+}
+```
+
+If you're using a Custom Auth Repository it will need to use the new password verification APIs, please refer to [OrmLiteAuthRepository](https://github.com/ServiceStack/ServiceStack/blob/bed1d900de93f889cca05299df4c33a04b7ad7a7/src/ServiceStack.Server/Auth/OrmLiteAuthRepository.cs#L325-L359) for a complete concrete example.
+
+#### Fallback PasswordHashers
+
+The list of `Config.FallbackPasswordHashers` can be used for migrating to a new Password Hashing algorithm by registering older Password Hashing implementations that were previously used to hash Users passwords. Failed password verifications will fallback to see if the password was hashed with any of the registered `FallbackPasswordHashers`, if any are valid, the password attempt will succeed and the password re-hashed with the registered `IPasswordHasher` implementation.
+
+### Digest Auth Hashes only created when needed
+
+Digest Auth Hashes are only populated if the `DigestAuthProvider` is registered. If you ever intend to support Digest access authentication in future but don't want to register the DigestAuthProvider just yet, you can force ServiceStack to continue to maintain Digest Auth Hashes with:
+
+```csharp
+new AuthFeature {
+    CreateDigestAuthHashes = true
+}
+```
+
+Users that don't have Digest Auth Hashes will require logging in again in order to have it populated. If you don't intend to use Digest Auth you can clear the `DigestHa1Hash` column in your `UserAuth` table which is otherwise unused.
 
 ### Generate New Session Cookies on Authentication 
 

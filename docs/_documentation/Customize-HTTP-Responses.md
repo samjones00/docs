@@ -146,7 +146,7 @@ The [Encrypted Messaging Feature](/encrypted-messaging) takes advantage of Reque
 Request Converters are executed directly after any [Custom Request Binders](/serialization-deserialization#create-a-custom-request-dto-binder):
 
 ```csharp
-appHost.RequestConverters.Add((req, requestDto) => {
+appHost.RequestConverters.Add(async (req, requestDto) => {
     //Return alternative Request DTO or null to retain existing DTO
 });
 ```
@@ -156,7 +156,7 @@ appHost.RequestConverters.Add((req, requestDto) => {
 Response Converters are executed directly after the Service:
 
 ```csharp
-appHost.ResponseConverters.Add((req, response) =>
+appHost.ResponseConverters.Add(async (req, response) =>
     //Return alternative Response or null to retain existing Service response
 });
 ```

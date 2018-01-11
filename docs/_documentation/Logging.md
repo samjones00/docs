@@ -64,6 +64,19 @@ ServiceStack.Logging also includes adapters for the following logging providers:
 * Debug Log
 * Null / Empty Log
 
+### Logging with Context
+
+Support for contextual logging is available with the `ILogWithContext` interface and `PushProperty` extension method which lets you attach additional data to log messages, e.g:
+
+```csharp
+using (log.PushProperty("Hello", "World"))
+{
+    log.InfoFormat("Message");
+}
+```
+
+Support for the additional context was added to `Log4net`, `NLog` and `Serilog` logging providers.
+
 # Registration Examples
 
 Once on your App Startup, either In your `AppHost.cs` or `Global.asax` file inject the concrete logging implementation that your app should use, e.g.

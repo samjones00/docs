@@ -218,12 +218,14 @@ public class MyRequestValidator : AbstractValidator<MyRequest>
 
 ### Register Validators
 
-All validators have to be registered in the IoC container, a convenient way to register all validators whose implementations exist in the same assemblies as your Service implementations is to register the `ValidationFeature` plugin with:
+The `ValidationFeature` plugin automatically scans and auto-wires all validators in the `AppHost.ServiceAssemblies` that's injected in the `AppHost` constructor.
+
+This default behavior can be **disabled** with:
 
 ```csharp
 Plugins.Add(new ValidationFeature {
-    ScanAppHostAssemblies = true
-})
+    ScanAppHostAssemblies = false
+});
 ```
 
 Otherwise if the validators are in other assembles they can be registered using `RegisterValidators()`, e.g:
@@ -282,6 +284,30 @@ If the rule fails, the JSON response will look like that:
         "FieldName": "Name",
         "Message": "'Name' should not be empty."
     }
+
+### Custom Validation
+
+ServiceStack's internal implementation of [FluentValidation](https://github.com/JeremySkinner/FluentValidation) uses the latest 7.2 version which lets you take advantage of new features like implementing [Custom Validators](https://github.com/JeremySkinner/FluentValidation/wiki/e.-Custom-Validators#using-a-custom-validator), e.g:
+
+```csharp
+public class CustomValidationValidator : AbstractValidator<CustomValidation>
+{
+    public CustomValidationValidator()
+    {
+        RuleFor(request => request.Code).NotEmpty();
+        RuleFor(request => request)
+            .Custom((request, context) => {
+                if (request.Code?.StartsWith("X-") != true)
+                {
+                    var propName = context.ParentContext.PropertyChain.BuildPropertyName("Code");
+                    context.AddFailure(new ValidationFailure(propName, error:"Incorrect prefix") {
+                        ErrorCode = "NotFound"
+                    });
+                }
+            });
+    }
+}
+```
 
 ## Use FluentValidation everywhere!
 

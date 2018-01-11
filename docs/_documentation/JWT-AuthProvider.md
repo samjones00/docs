@@ -524,11 +524,26 @@ new JwtAuthProvider {
 These expiry times are use-case specific so you'll want to check what values are appropriate for your System.
 The `ExpireTokensIn` property controls how long a client is allowed to make Authenticated Requests with the same JWT Token, whilst the `ExpireRefreshTokensIn` property controls how long the client can keep requesting new JWT Tokens using the same Refresh Token before needing to re-authenticate and generate a new one.
 
-#### Requires User Auth Repository
+#### Requires User Auth Repository or IUserSessionSource
 
 One limitation for Refresh Tokens support is that it must be configured to use a 
 [User Auth Repository](/authentication-and-authorization#user-auth-repository)
 which is the persisted data source used to rehydrate the User Session that's embedded in the JWT Token.
+
+Users who are not using an `IAuthRepository` can instead implement the `IUserSessionSource` interface:
+
+```csharp
+public interface IUserSessionSource
+{
+    IAuthSession GetUserSession(string userAuthId);
+}
+```
+
+On either their **Custom AuthProvider**, or if preferred register it as a **dependency in the IOC** as an alternative source for populating Sessions in new JWT Tokens created using RefreshToken's. The implementation should only return a populated `IAuthSession` if the User is allowed to sign-in, e.g. if their account is locked or suspended it should throw an Exception:
+
+```csharp
+throw HttpError.Forbidden("User is suspended");
+```
 
 ### Convert Sessions to Tokens
 
@@ -680,6 +695,83 @@ Or in [AppSettings](/appsettings):
     <add key="jwt.PublicKeyXml.2" value="{PublicKeyXml2014Xml}" />
 </appSettings>
 ```
+
+### Send JWTs in HTTP Params
+
+The JWT Auth Provider can **opt-in** to accept JWT's via the Query String or HTML POST FormData with:
+
+```csharp
+new JwtAuthProvider {
+    AllowInQueryString = true,
+    AllowInFormData = true
+}
+```
+
+This is useful for situations where it's not possible to attach the JWT in the HTTP Request Headers or `ss-tok` Cookie. 
+
+For example if you wanted to authenticate via JWT to a real-time [Server Events stream](/server-events) from a token retrieved from a remote auth server (i.e. so the JWT Cookie isn't already configured with the SSE server) you can [call the /session-to-token API](/jwt-authprovider#ajax-clients) to convert the JWT Bearer Token into a JWT Cookie which will configure it with that domain so the subsequent HTTP Requests to the SSE event stream contains the JWT cookie and establishes an authenticated session:
+
+```ts
+var client = new JsonServiceClient(BaseUrl);
+client.setBearerToken(JWT);
+await client.post(new ConvertSessionToToken());
+
+var sseClient = new ServerEventsClient(BaseUrl, ["*"], {
+    handlers: {
+        onConnect: e => { 
+            console.log(e.isAuthenticated /*true*/, e.userId, e.displayName);
+        }
+    }
+}).start();
+```
+
+Unfortunately this wont work in `node.exe` Server Apps (or in integration tests) which doesn't support a central location for configuring domain cookies. One solution that works everywhere is to add the JWT to the `?ss-tok` query string that's used to connect to the `/event-stream` URL, e.g:
+
+```csharp
+var sseClient = new ServerEventsClient(BaseUrl, ["*"], {
+    resolveStreamUrl: url => appendQueryString(url, { "ss-tok": JWT }),
+    handlers: {
+        onConnect: e => { 
+            console.log(e.isAuthenticated /*true*/, e.userId, e.displayName);
+        }
+    }
+}).start();
+```
+
+#### JWT FormData POST
+
+The stateless nature of JWTs makes it highly versatile to be able to use in a number of difference scenarios, e.g. it could be used to make stateless authenticated requests across different domains without JavaScript (HTTP Headers or Cookies), by embedding it in a HTML Form POST:
+
+```html
+<form action="https://remote.org/secure" method="post">
+    <input type="hidden" name="ss-tok" value="{JWT}" />
+    ...
+</form>
+```
+
+Although as this enables cross-domain posts it should be enabled with great care.
+
+#### Runtime JWT Configuration
+
+To allow for dynamic per request configuration as needed in Multi Tenant applications we've added a new [IRuntimeAppSettings](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Configuration/IAppSettings.cs) API which can be registered in your `AppHost` to return custom per request configuration. 
+
+E.g. this can be used to return a custom `AuthKey` that should be used to sign JWT Tokens for that request:
+
+```csharp
+container.Register<IRuntimeAppSettings>(c => new RuntimeAppSettings { 
+    Settings = {
+        { nameof(JwtAuthProvider.AuthKey), req => (byte[]) GetAuthKey(GetTenantId(req)) }
+    }
+});
+```
+
+The following `JwtAuthProvider` properties can be overridden by `IRuntimeAppSettings`:
+
+ - `byte[]` AuthKey
+ - `RSAParameters` PrivateKey
+ - `RSAParameters` PublicKey
+ - `List<byte[]>` FallbackAuthKeys
+ - `List<RSAParameters>` FallbackPublicKeys
 
 ## Adhoc JWT APIs
 

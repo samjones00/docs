@@ -148,6 +148,126 @@ This is enabled on all custom routes and works for all built-in and user-registe
 It can be disabled by setting `Config.AllowRouteContentTypeExtensions = false`.
 
 
+### Custom Rules
+
+The `Matches` property on `[Route]` and `[FallbackRoute]` attributes lets you specify an additional custom Rule that requests need to match. This feature is used in all [SPA project templates](http://docs.servicestack.net/templates-single-page-apps) to specify that the `[FallbackRoute]` should only return the SPA `index.html` for unmatched requests which explicitly requests HTML, i.e:
+
+```csharp
+[FallbackRoute("/{PathInfo*}", Matches="AcceptsHtml")]
+public class FallbackForClientRoutes
+{
+    public string PathInfo { get; set; }
+}
+```
+
+This works by matching the `AcceptsHtml` built-in `RequestRules` below where the Route will only match the Request if it includes the explicit `text/html` MimeType in the HTTP Request `Accept` Header. The `AcceptsHtml` rule prevents the home page from being returned for missing resource requests like **favicon** which returns a `404` instead.
+
+The implementation of all built-in Request Rules:
+
+```csharp
+SetConfig(new HostConfig {
+  RequestRules = {
+    {"AcceptsHtml", req => req.Accept?.IndexOf(MimeTypes.Html, StringComparison.Ordinal) >= 0 },
+    {"AcceptsJson", req => req.Accept?.IndexOf(MimeTypes.Json, StringComparison.Ordinal) >= 0 },
+    {"AcceptsXml", req => req.Accept?.IndexOf(MimeTypes.Xml, StringComparison.Ordinal) >= 0 },
+    {"AcceptsJsv", req => req.Accept?.IndexOf(MimeTypes.Jsv, StringComparison.Ordinal) >= 0 },
+    {"AcceptsCsv", req => req.Accept?.IndexOf(MimeTypes.Csv, StringComparison.Ordinal) >= 0 },
+    {"IsAuthenticated", req => req.IsAuthenticated() },
+    {"IsMobile", req => Instance.IsMobileRegex.IsMatch(req.UserAgent) },
+    {"{int}/**", req => int.TryParse(req.PathInfo.Substring(1).LeftPart('/'), out _) },
+    {"path/{int}/**", req => {
+        var afterFirst = req.PathInfo.Substring(1).RightPart('/');
+        return !string.IsNullOrEmpty(afterFirst) && int.TryParse(afterFirst.LeftPart('/'), out _);
+    }},
+    {"**/{int}", req => int.TryParse(req.PathInfo.LastRightPart('/'), out _) },
+    {"**/{int}/path", req => {
+        var beforeLast = req.PathInfo.LastLeftPart('/');
+        return beforeLast != null && int.TryParse(beforeLast.LastRightPart('/'), out _);
+    }},
+ }
+})
+```
+
+Routes that contain a `Matches` rule have a higher precedence then Routes without. We can use this to define multiple idential matching routes to call different Service depending on whether the Path Segment is an integer or not, e.g:
+
+```csharp
+// matches /users/1
+[Route("/users/{Id}", Matches = "**/{int}")]
+public class GetUser
+{
+    public int Id { get; set; }
+}
+
+// matches /users/username
+[Route("/users/{Slug}")]
+public class GetUserBySlug
+{
+    public string Slug { get; set; }
+}
+```
+
+Other examples utilizing `{int}` Request Rules:
+
+```csharp
+// matches /1/profile
+[Route("/{UserId}/profile", Matches = @"{int}/**")]
+public class GetProfile { ... }
+
+// matches /username/profile
+[Route("/{Slug}/profile")]
+public class GetProfileBySlug { ... }
+
+// matches /users/1/profile/avatar
+[Route("/users/{UserId}/profile/avatar", Matches = @"path/{int}/**")]
+public class GetProfileAvatar { ... }
+
+// matches /users/username/profile/avatar
+[Route("/users/{Slug}/profile/avatar")]
+public class GetProfileAvatarBySlug { ... }
+```
+
+Another popular use-case is to call different services depending on whether a Request is from an Authenticated User or not:
+
+```csharp
+[Route("/feed", Matches = "IsAuthenticated")]
+public class ViewCustomizedUserFeed { ... }
+
+[Route("/feed")]
+public class ViewPublicFeed { ... }
+```
+
+This can also be used to call different Services depending if the Request is from a Mobile browser or not:
+
+```csharp
+[Route("/search", Matches = "IsMobile")]
+public class MobileSearch { ... }
+
+[Route("/search")]
+public class DesktopSearch { ... }
+```
+
+Instead of matching on a pre-configured RequestRule you can instead specify a Regular Expression using the format:
+
+    {Property} =~ {RegEx}
+
+Where `{Property}` is an `IHttpRequest` property, e.g:
+
+```csharp
+[Route("/users/{Id}", Matches = @"PathInfo =~ \/[0-9]+$")]
+public class GetUser { ... }
+```
+
+An exact match takes the format:
+
+    {Property} = {Value}
+
+Which you could use to provide a tailored feed for specific clients:
+
+```csharp
+[Route("/feed", Matches = @"UserAgent = specific-client")]
+public class CustomFeedView { ... }
+```
+
 ## Auto Route Generation Strategies
 
 Also related to this is registering Auto routes via the [Routes.AddFromAssembly](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ServiceRoutesExtensions.cs#L23) extension method, where this single call:

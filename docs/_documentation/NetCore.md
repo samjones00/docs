@@ -551,6 +551,28 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 </tr>
 </table>
 
+### Multi-stage Docker Builds
+
+The [.NET Core Apps deployed using Docker](/deploy-netcore-docker-aws-ecs) use ASP.NET Team's [recommended multi-stage Docker Builds](https://docs.microsoft.com/en-us/dotnet/core/docker/building-net-docker-images#your-first-aspnet-core-docker-app) where the App is built inside an `aspnetcore-build` Docker container with its published output copied inside a new `aspnetcore` runtime Docker container:
+
+```docker
+FROM microsoft/aspnetcore-build:2.0 AS build-env
+COPY src /app
+WORKDIR /app
+
+RUN dotnet restore --configfile ../NuGet.Config
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+COPY --from=build-env /app/Chat/out .
+ENV ASPNETCORE_URLS http://*:5000
+ENTRYPOINT ["dotnet", "Chat.dll"]
+```
+
+The smaller footprint required by the `aspnetcore` runtime reduced the footprint of [.NET Core Chat](https://github.com/NetCoreApps/Chat) from **567MB** to **126MB** whilst continuing to run flawlessly in AWS ECS at [chat.netcore.io](http://chat.netcore.io).
+
 ### .NET Core Web Apps
 
 .NET Core 2.0 is also used to enable [Web Apps](http://templates.servicestack.net/docs/web-apps) which is a new approach to dramatically simplify .NET Wep App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 

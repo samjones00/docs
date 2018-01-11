@@ -59,6 +59,15 @@ GlobalRequestFiltersAsync.Add(async (req,res,dto) => {
 })
 ```
 
+Async versions are available for all Global Request and Response Filters:
+
+    - `GlobalRequestFiltersAsync`
+    - `GlobalResponseFiltersAsync`
+    - `GatewayRequestFiltersAsync`
+    - `GatewayResponseFiltersAsync`
+    - `GlobalMessageRequestFiltersAsync`
+    - `GlobalMessageResponseFiltersAsync`
+
 ### Typed Request Filters
 
 A more typed API to register Global Request and Response filters per Request DTO Type are available under the `RegisterTyped*` API's in AppHost where you can register both typed Request and Response Filters for HTTP and MQ Services independently:

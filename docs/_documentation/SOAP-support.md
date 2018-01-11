@@ -4,6 +4,14 @@ title: SOAP support
 ---
 If you want to support SOAP, you have to ensure you adhere to some additional constraints where each method needs to be defined with the `Any()` endpoint and each DTO needs to be decorated with `[DataContract]` and `[DataMember]` attributes so their metadata is generated in your Services XSD and WSDL metadata.
 
+## Configure
+
+Register the `SoapFormat` Plugin to enable SOAP Support in ServiceStack:
+
+```csharp
+Plugins.Add(new SoapFormat());
+```
+
 ## SOAP + REST
 
 SOAP only supports a single `POST` request but REST services also make use of `GET`, `PUT`, `DELETE`, etc requests, which aren't used in SOAP. So if you want to support SOAP and REST, you need to create one service for each operation which is also the [recommended API structure](http://stackoverflow.com/a/15235822/85785) for creating [message-based Services](http://stackoverflow.com/a/15941229/85785). The difference to be able to support SOAP is that Service implementations need to be defined with `Any()`, e.g:

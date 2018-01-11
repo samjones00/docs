@@ -31,6 +31,17 @@ var deserialize = (Type type, Stream stream) => ...;
 //Pass two delegates for serialization and deserialization
 this.ContentTypes.Register(contentType, serialize, deserialize);	
 ```
+
+#### Async ContentTypes Formats
+
+The async registration APIs are for Content-Type Formats which perform Async I/O, most serialization formats don't except for HTML View Engines which can perform Async I/O when rendering views, which are all registered using the `RegisterAsync` APIs:
+
+```csharp
+appHost.ContentTypes.RegisterAsync(MimeTypes.Html, SerializeToStreamAsync, null);
+appHost.ContentTypes.RegisterAsync(MimeTypes.JsonReport, SerializeToStreamAsync, null);
+appHost.ContentTypes.RegisterAsync(MimeTypes.MarkdownText, SerializeToStreamAsync, null);
+```
+
 The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.servicestack.net/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
 
 ***
