@@ -5,11 +5,26 @@ slug: templates-single-page-apps
 
 The [ServiceStackVS VS.NET extension](https://marketplace.visualstudio.com/items?itemName=Mythz.ServiceStackVS) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
 
- - [Angular4 App](https://angular.io)
- - [Aurelia App](http://aurelia.io)
- - [React App](https://facebook.github.io/react/)
- - [React Desktop Apps](https://facebook.github.io/react/)
- - [Vue App](https://vuejs.org)
+### .NET Framework
+
+ - [Vue App](https://github.com/NetFrameworkTemplates/vue-spa-netfx)
+ - [React App](https://github.com/NetFrameworkTemplates/react-spa-netfx)
+ - [Angular 5 App](https://github.com/NetFrameworkTemplates/angular-cli-netfx)
+ - [Angular 4 Material Design Lite App](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)
+ - [Aurelia App](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx)
+ - [React Desktop Apps](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx)
+
+### .NET Core 2.0
+
+Each of the major JS Framework project templates are also available for .NET Core 2.0 which can be created with [dotnet-new](/dotnet-new):
+
+ - [Vue App](https://github.com/NetCoreTemplates/vue-spa)
+ - [React App](https://github.com/NetCoreTemplates/react-spa)
+ - [Angular 5 App](https://github.com/NetCoreTemplates/angular-cli)
+ - [Angular 4 Material Design Lite App](https://github.com/NetCoreTemplates/angular-lite-spa)
+ - [Aurelia App](https://github.com/NetCoreTemplates/aurelia-spa)
+
+.NET Core 2.0 Templates can be developed in your prefered VS.NET, VS Code or Rider C# IDE.
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
 
@@ -17,7 +32,7 @@ All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js
  
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/webpack-overview.png)](https://webpack.js.org)
  
-Webpack takes care of all packaging and bundling requirements. Gulp is primarily used to provide a GUI to run the [templates npm scripts](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/package.json#L5-L13) in VS.NET's Task Runner Explorer so all templates features can be accessed without leaving VS.NET, or if preferred each npm script can also be run on the command-line with:
+Webpack takes care of all packaging and bundling requirements. Gulp is primarily used to provide a GUI to run the [templates npm scripts](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/package.json#L7-L15) in VS.NET's Task Runner Explorer so all templates features can be accessed without leaving VS.NET, or if preferred each npm script can also be run on the command-line with:
  
     $ npm run {script name}
  
@@ -36,41 +51,89 @@ We'll quickly touch on each of Webpack's concepts by seeing how the React App's 
  
 ### [Entry points](https://webpack.js.org/concepts/entry-points/)
  
-Webpack builds a graph of your App's dependencies which it traverses starting from its entry points, this is the input into Webpack where its given the App's entry point, we also tell Webpack we want to create a separate **vendor** entry point referencing our App's 3rd party dependencies so their outputs can be configured independently:
- 
+Webpack builds a graph of your App's dependencies which it traverses starting from its entry points, this is the input into Webpack where its given the App's entry point. 
+
+#### [webpack.config.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/webpack.config.js)
+
 ```js
-entry: {
+entry: isTest ? NONE : {
     app: [
-        './src/app.tsx'
-    ],
-    vendor: [
-        'es6-shim',
-        'classnames',
-        'react',
-        'react-dom',
-        'react-router-dom',
-        '@servicestack/client'
+        './src/main.ts'
     ]
 },
 ```
  
+#### [webpack.config.vendor.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/webpack.config.vendor.js)
+
+A separate **vendor** Webpack configuration is maintained for 3rd party Vendor dependencies independent from your App's code-base so they only need to be compiled once when adding a new dependency instead of each time your App changes. To include another vendor library in the vendor build, add the module name or the resource your App uses in the `VENDOR` collection, e.g:
+
+```js
+const VENDOR = [
+    'bootstrap/dist/css/bootstrap.css',
+    'font-awesome/css/font-awesome.css',
+    'es6-shim',
+    '@servicestack/client',
+    'vue',
+    'vue-router'
+];
+
+entry: { vendor: VENDOR },
+```
+
 ### [Output](https://webpack.js.org/concepts/output/)
  
 On the opposite end of Webpack's build are its outputs where we tell it where to bundle our App:
  
 ```js
 output: {
-    path: isProd ? root('wwwroot/dist') : root('dist'),
+    path: root('wwwroot/dist'),
     publicPath: '/dist/',
     filename: isProd ? '[name].[chunkhash].bundle.js' : '[name].bundle.js',
     chunkFilename: isProd ? '[name].[chunkhash].js' : '[name].js',
 },
 ```
+
+Here we can see that our Webpack config supports multiple [isProd and isDev](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/webpack.config.js#L5-L6) configurations, `isDev` is used for development builds where Webpack bundles our website in the `/dist` folder whilst `isProd` is used for production builds which is instead bundled in the `/wwwroot/dist` folder with each `.js` bundle including a **[chunkhash]** cache-breaker in its filename. 
  
-Here we can see that our Webpack config supports multiple [isProd and isDev](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/webpack.config.js#L22-L23) configurations, `isDev` is used for development builds where Webpack bundles our website in the `/dist` folder whilst `isProd` is used for production builds which is instead bundled in the `/wwwroot/dist` folder with each `.js` bundle including a **[chunkhash]** cache-breaker in its filename. 
+> The `root()` and `when()` functions used are basic [helpers used to simplify webpack configuration](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/webpack.config.js#L158-L164)
  
-> The `root()` and `when()` functions used are basic [helpers used to simplify webpack configuration](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/webpack.config.js#L159-L174)
- 
+### Vendor Output
+
+The Vendor Webpack configuration utilizes [Webpack's DllPlugin](https://webpack.js.org/plugins/dll-plugin/) to generate a `vendor.dll.css` and a `vendor.dll.js` containing the Vendor's compiled `.css` and `.js` bundles:
+
+```js
+const extractCSS = new ExtractTextPlugin('vendor.dll.css');
+
+output: {
+    path: root('wwwroot/dist'),
+    publicPath: 'dist/',
+    filename: '[name].dll.js',
+    library: '[name]_[hash]',
+},
+plugins: [
+    extractCSS,
+    new webpack.DllPlugin({
+        path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
+        name: '[name]_[hash]'
+    })
+]
+```
+
+It also generates `vendor-manifest.json` which is referenced in the App's [webpack.config.js](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/webpack.config.js#L134-L136) to tell it which dependencies are included in the vendor bundles so they don't need to be compiled with the App:
+
+```js
+plugins: [
+    ...when(!isTest, [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('./wwwroot/dist/vendor-manifest.json')
+        }),
+    ]),
+]
+```
+
+Utilizing Webpack .dll's plugin for your vendor dependencies allows for faster compilation times as they don't need to be recompiled when your App changes.
+
 ### [Loaders](https://webpack.js.org/concepts/loaders/)
  
 Loaders are the flexible engine that sets Webpack apart where it's able to leverage its [vast ecosystem](https://webpack.github.io/docs/list-of-loaders.html) where there's a loader for every kind of web asset typically used when developing Web Apps. 
