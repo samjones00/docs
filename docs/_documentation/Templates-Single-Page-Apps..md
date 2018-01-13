@@ -16,7 +16,7 @@ The [ServiceStackVS VS.NET extension](https://marketplace.visualstudio.com/items
 
 ### .NET Core 2.0
 
-Each of the major JS Framework project templates are also available for .NET Core 2.0 which can be created with [dotnet-new](/dotnet-new):
+The major JS Framework project templates are also available for .NET Core 2.0 and can be created with [dotnet-new](/dotnet-new):
 
  - [Vue App](https://github.com/NetCoreTemplates/vue-spa)
  - [React App](https://github.com/NetCoreTemplates/react-spa)
@@ -24,7 +24,7 @@ Each of the major JS Framework project templates are also available for .NET Cor
  - [Angular 4 Material Design Lite App](https://github.com/NetCoreTemplates/angular-lite-spa)
  - [Aurelia App](https://github.com/NetCoreTemplates/aurelia-spa)
 
-.NET Core 2.0 Templates can be developed in your prefered VS.NET, VS Code or Rider C# IDE.
+Each of the .NET Core 2.0 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your prefered VS.NET, VS Code or Rider C# IDE.
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
 
