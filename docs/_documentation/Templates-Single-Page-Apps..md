@@ -3,35 +3,43 @@ title: Webpack Single Page App Templates
 slug: templates-single-page-apps
 ---
 
-The [ServiceStackVS VS.NET extension](https://marketplace.visualstudio.com/items?itemName=Mythz.ServiceStackVS) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
+The [ServiceStackVS VS.NET extension](https://github.com/ServiceStack/ServiceStackVS) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
 
-![](/images/ssvs/new-spa-project.png)
+[![](/images/ssvs/new-spa-project.png)](/create-your-first-webservice#step-1-download-and-install-servicestackvs)
 
-### .NET Framework
+The Single Page App (SPA) project templates can also be created using the [dotnet-new](/dotnet-new) command line tool:
 
- - [Vue App](https://github.com/NetFrameworkTemplates/vue-spa-netfx)
- - [React App](https://github.com/NetFrameworkTemplates/react-spa-netfx)
- - [Angular 5 App](https://github.com/NetFrameworkTemplates/angular-cli-netfx)
- - [Angular 4 Material Design Lite App](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)
- - [Aurelia App](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx)
- - [React Desktop Apps](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx)
+    $ npm install -g @servicestack/cli
+
+    $ dotnet-new <template-name> ProjectName
+
+Click on the template name below to view a Live Demo and contents of each project template:
 
 ### .NET Core 2.0
 
-The major JS Framework project templates are also available for .NET Core 2.0 and can be created with [dotnet-new](/dotnet-new):
+ - [vue-spa](https://github.com/NetCoreTemplates/vue-spa) - Vue App
+ - [react-spa](https://github.com/NetCoreTemplates/react-spa) - React App
+ - [angular-cli](https://github.com/NetCoreTemplates/angular-cli) - Angular 5 App
+ - [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa) - Angular 4 Material Design Lite App
+ - [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa) - Aurelia App
 
- - [Vue App](https://github.com/NetCoreTemplates/vue-spa)
- - [React App](https://github.com/NetCoreTemplates/react-spa)
- - [Angular 5 App](https://github.com/NetCoreTemplates/angular-cli)
- - [Angular 4 Material Design Lite App](https://github.com/NetCoreTemplates/angular-lite-spa)
- - [Aurelia App](https://github.com/NetCoreTemplates/aurelia-spa)
+The .NET Core 2.0 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your prefered C# IDE of VS.NET, VS Code or Rider.
 
-Each of the .NET Core 2.0 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your prefered VS.NET, VS Code or Rider C# IDE.
+### .NET Framework
+
+ - [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx) - Vue App
+ - [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx) - React App
+ - [angular-cli-netfx](https://github.com/NetFrameworkTemplates/angular-cli-netfx) - Angular 5 App
+ - [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx) - Angular 4 Material Design Lite App
+ - [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx) - Aurelia App
+ - [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) - React Desktop Apps
+
+The .NET Framework Templates utilize MSBuild's classic project format which can be developed using either VS.NET or Rider.
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
 
 All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. 
- 
+
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/webpack-overview.png)](https://webpack.js.org)
  
 Webpack takes care of all packaging and bundling requirements. Gulp is primarily used to provide a GUI to run the [templates npm scripts](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/package.json#L7-L15) in VS.NET's Task Runner Explorer so all templates features can be accessed without leaving VS.NET, or if preferred each npm script can also be run on the command-line with:
