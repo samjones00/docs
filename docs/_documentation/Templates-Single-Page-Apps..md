@@ -5,6 +5,8 @@ slug: templates-single-page-apps
 
 The [ServiceStackVS VS.NET extension](https://marketplace.visualstudio.com/items?itemName=Mythz.ServiceStackVS) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
 
+![](/images/ssvs/new-spa-project.png)
+
 ### .NET Framework
 
  - [Vue App](https://github.com/NetFrameworkTemplates/vue-spa-netfx)
@@ -43,7 +45,7 @@ Webpack works natively with npm packages and is used to handle **all client asse
  
 ## Quick tour of Webpack
  
-Webpack has been pre-configured in all Single Page App templates to enable a flexible and feature-rich development model whose defaults in **webpack.config.js** will be able to support a large number of Web Apps without modification, leaving you free to focus on developing your App.
+Webpack has been pre-configured in all Single Paeege App templates to enable a flexible and feature-rich development model whose defaults in **webpack.config.js** will be able to support a large number of Web Apps without modification, leaving you free to focus on developing your App.
  
 Although as Webpack is the central hub powering each template you'll still want to become familiar with its [four high-level concepts](https://webpack.js.org/concepts/) to understand how it's new approach to Single Page App development works and how it can handle all your App's dependencies and resources.
  
