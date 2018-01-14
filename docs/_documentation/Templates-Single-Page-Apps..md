@@ -148,72 +148,85 @@ Utilizing Webpack .dll's plugin for your vendor dependencies allows for faster c
  
 Loaders are the flexible engine that sets Webpack apart where it's able to leverage its [vast ecosystem](https://webpack.github.io/docs/list-of-loaders.html) where there's a loader for every kind of web asset typically used when developing Web Apps. 
  
-Loaders are configured in the `rules` section and invoked using node's `require()` statement or ES6/TypeScript's `import` statement. Rules use the `test` regex to specify which files they should apply to whilst the `loader` property tells Webpack which loader to load them with. Each loader is self-contained in a separate npm package that needs to be made available to your project by adding them to your [package.json devDependencies](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/package.json#L43). 
+Loaders are configured in the `rules` section and invoked using node's `require()` statement or ES6/TypeScript's `import` statement. Rules use the `test` regex to specify which files they should apply to whilst the `loader` property tells Webpack which loader to load them with. Each loader is self-contained in a separate npm package that needs to be made available to your project by adding them to your [package.json devDependencies](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/package.json#L31). 
  
-Lets checkout React's loader configuration for a typical example:
+Lets checkout Vue's loader configuration for a typical example:
  
 ```js
-var postcssLoader = {
+const postcssLoader = {
     loader: 'postcss-loader',
-    options: { plugins: [ require('precss'), require('autoprefixer') ] }
+    options: { plugins: [require('precss'), require('autoprefixer')] }
 };
  
-rules: [
-    {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
-    },
-    {
-        test: /\.html$/,
-        loader: 'html-loader'
-    },
-    {
-        enforce: "pre",
-        test: /\.js$/, 
-        loader: "source-map-loader"
-    },
-    {
-        test: /\.(jpe?g|gif|png|ico|svg|wav|mp3)$/i,
-        loader: 'file-loader' + (isProd 
-            ? '?hash=sha512&digest=hex&name=img/[name].[hash].[ext]' 
-            : '?name=img/[name].[ext]')
-    },
-    {
-        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: isProd 
-            ? 'url-loader?limit=10000&name=img/[name].[hash].[ext]' 
-            : 'file-loader?name=img/[name].[ext]'
-    },
-    ...when(isDev, [
+module: {
+    rules: [
         {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader', postcssLoader ]
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: {
+                loaders: {
+                    scss: 'vue-style-loader!css-loader!sass-loader',
+                    sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                }
+            }
         },
         {
-            test: /\.(sass|scss)$/,
-            use: [ 'style-loader', 'css-loader', postcssLoader, 'sass-loader' ] 
-        },            
-    ]),
-    ...when(isProd, [
-        {
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: ['css-loader?minimize', postcssLoader],
-            }),
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
+            options: {
+                appendTsSuffixTo: [/\.vue$/],
+                transpileOnly: isTest
+            },
+            exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules/]
         },
         {
-            test: /\.(sass|scss)$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: ['css-loader?minimize', postcssLoader, 'sass-loader'],
-            }),
-        }
-    ])
-]
+            test: /\.html$/,
+            loader: 'html-loader'
+        },
+        {
+            enforce: "pre",
+            test: /\.js$/, 
+            loader: "source-map-loader"
+        },
+        {
+            test: /\.(jpe?g|gif|png|ico|svg|wav|mp3)$/i,
+            loader: 'file-loader' + (isProd ? '?hash=sha512&digest=hex&name=img/[name].[hash].[ext]' : '?name=img/[name].[ext]')
+        },
+        {
+            test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: isProd ? 'url-loader?limit=10000&name=img/[name].[hash].[ext]' : 'file-loader?name=img/[name].[ext]'
+        },
+        ...when(isDev || isTest, [
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader', postcssLoader ]
+            },
+            {
+                test: /\.(sass|scss)$/,
+                use: [ 'style-loader', 'css-loader', postcssLoader, 'sass-loader' ] 
+            },            
+        ]),
+        ...when(isProd, [
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader?minimize', postcssLoader],
+                }),
+            },
+            {
+                test: /\.(sass|scss)$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader?minimize', postcssLoader, 'sass-loader'],
+                }),
+            }
+        ])
+    ]
+},
 ```
  
-This configuration instructs Webpack to load any `.ts` or `.tsx` files using the [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader) which is then responsible for compiling the source files with TypeScript's compiler. 
+This configuration instructs Webpack to load any `.ts` or `.tsx` files using the [TypeScript loader for webpack](https://www.npmjs.com/package/ts-loader) which is then responsible for compiling the source files with TypeScript's compiler. 
  
 Loaders are also chainable as seen in the `.css` and `.scss` rules which starts from right-to-left where the output of the rightmost loader is passed into the next loader on its left and so on. 
 
@@ -254,55 +267,60 @@ There's a separate configuration needed for Production builds which is configure
 Loaders only loads and transforms files on a **per-file** basis, anything more advanced requires using plugins. In this template plugins are used to:
  
  1. Set type of Webpack build so other loaders/plugins can optimize accordingly
- 2. Deletes the output folder
- 3. Exports common dependencies into a **vendor** `bundle.js`
- 4. Generate the WebApps `index.html`, based on [index.template.ejs](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/index.template.ejs) and compiled with [lodash template](https://lodash.com/docs/4.17.4#template), which also takes care of injecting any `.css` and `.js` output bundle references
+ 2. Ignores watching the `/wwwroot` folder for any changes during watched builds
+ 3. References the **vendor** `.js` and `.css` bundles in the App's Webpack build
+ 4. Generate the WebApps `index.html`, based on [index.template.ejs](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/index.template.ejs) and compiled with [lodash template](https://lodash.com/docs/4.17.4#template), which also takes care of injecting any `.css` and `.js` output bundle references
+ 5. Injects the vendor  `.js` and `.css` bundles in the generated `wwwroot/index.html`
   
 ```js
 plugins: [
-    new webpack.DefinePlugin({
-        'process.env': {
-            'NODE_ENV': JSON.stringify(isProd ? 'production' : 'development')
-        }
-    }),
-    new Clean([isProd ? root('wwwroot/*') : root('dist')]),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: isProd ? 'vendor.[chunkhash].bundle.js' : 'vendor.bundle.js'
-    }),
-    new HtmlWebpackPlugin({
-        template: 'index.template.ejs',
-        filename: '../index.html',
-        inject: true
-    }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': isDev ? '"development"' : '"production"' }),
+    new webpack.WatchIgnorePlugin([root("wwwroot")]),
+    ...when(!isTest, [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('./wwwroot/dist/vendor-manifest.json')
+        }),
+        new HtmlWebpackPlugin({
+            template: 'index.template.ejs',
+            filename: '../index.html',
+            inject: true
+        }),
+        new AddAssetHtmlPlugin({ filepath: root('wwwroot/dist/*.dll.js') }),
+        new AddAssetHtmlPlugin({ filepath: root('wwwroot/dist/*.dll.css'), typeOfAsset: 'css' })
+    ]),
     ...when(isProd, [
-        new ExtractTextPlugin({ filename: '[name].[chunkhash].css', allChunks: true }),            
-        new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
-        new CopyWebpackPlugin(COPY_FILES)
+        new webpack.LoaderOptionsPlugin({ minimize: true }),
+        new ExtractTextPlugin({ filename: '[name].[chunkhash].css', allChunks: true }),
+        new webpack.optimize.UglifyJsPlugin({ sourceMap: true, compress: { warnings: false } })
     ]),
 ]
 ```
- 
-In production builds, `.css` files are written using [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) and the resulting `.js` files minified with UglifyJS. The [CopyWebpackPlugin](https://github.com/kevlened/copy-webpack-plugin) is then used to copy the [.NET Web Apps Server assets and binaries](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/webpack.config.js#L3-L14), completing the full production build of the WebApp in `/wwwroot` that's all ready to be deployed to any [MS WebDeploy](https://www.iis.net/downloads/microsoft/web-deploy) enabled Server using the `03-deploy-app` Gulp task.
+
+Run the `publish` Gulp task or npm script to create a production build of your App where the `.css` files are written using [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) and the resulting `.js` files minified with UglifyJS. The full production build is generated in in `/wwwroot/dist` folder where it's ready to be deployed using .NET's standard deployment toolsL 
+
+In the .NET Framework templates you can deploy to any [MS WebDeploy](https://www.iis.net/downloads/microsoft/web-deploy) enabled Server by clicking **Publish...** in the ASP.NET's project Context Menu item which makes use of the existing [https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/master/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml](/PublishProfiles/PublishToIIS.pubxml) which [includes an instruction](https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/2e8c208982561695275b451a9ece35522d9739d9/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml#L23-L36) to include the `/wwwroot` folder in deployments.
+
+In .NET Core 2.0 projects the `publish` npm script runs `dotnet publish -c Release` to Publish a Release build of your App in the `/bin/netcoreapp2.0/publish` folder which can then copied to remote server or an included in a Docker container to deploy your App.
  
 ### Loading Dependencies
  
 Now that we've covered how Webpack is configured, the next step is showing how to make use of it, by loading your App's resources using node's `require()` or TypeScript's `import` statement. 
 
-This can be seen in the App's [app.tsx](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/src/app.tsx) starting point where it imports **bootstrap.css** and **font-awesome.css** directly from the installed **bootstrap** and **font-awesome** npm packages as well as a local [./app.scss](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/src/app.scss) SASS file which lives side-by-side next to TypeScript source files:
+This can be seen in the App's [main.ts](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/main.ts) starting point where it imports **bootstrap.css** and **font-awesome.css** directly from the installed **bootstrap** and **font-awesome** npm packages as well as a local [./app.scss](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/app.scss) SASS file which lives side-by-side next to TypeScript source files:
  
 ```ts
 import 'bootstrap/dist/css/bootstrap.css';
 import "font-awesome/css/font-awesome.css";
 import './app.scss';
- 
-import "es6-shim";
-import * as ReactDOM from 'react-dom';
-import * as React from 'react';
- 
-import Home from './home/Home';
-import View1 from './view1/View';
-import View2 from './view2/View';
+import 'es6-shim';
+
+import Vue from 'vue';
+import Router from 'vue-router';
+import App from './App.vue';
+import Home from './home/Home.vue';
+import View1 from './view1/View1.vue';
+import View2 from './view2/View2.vue';
 ```
  
 Importing **bootstrap** and **font-awesome** also imports their references, including any images, fonts, svg and other .css files. These are all transparently added to the webpack build and bundled with the rest of your app. 
@@ -322,15 +340,16 @@ In production builds the `file-loader` copies their references to the output fol
         ? 'url-loader?limit=10000&name=img/[name].[hash].[ext]' 
         : 'file-loader?name=img/[name].[ext]'
 },
+
 ```
 
-`require()` can also be used to load resources in other files which is how images can be imported in the [index.template.ejs](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/Angular4App/Angular4App/index.template.ejs) home page template:
+`require()` can also be used to load resources in other files which is how images can be imported in the [index.template.ejs](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/index.template.ejs) home page template:
  
 ```html
-<link rel="shortcut icon" href="<%=require('./src/assets/img/favicon.png')%>">
+<img src="<%=require('./src/assets/img/logo.png')%>" />
 ```
  
-Or inside [App components](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/Angular4App/Angular4App/src/app.component.ts#L32), both of which returns the image url after it has been processed by Webpack's loaders, e.g:
+Or inside [App components](https://github.com/NetCoreTemplates/angular-lite-spa/blob/4d3ad89c57a7243c6c00758a4de779ba5222de8d/MyApp/src/app.component.ts#L32), both of which returns the image url after it has been processed by Webpack's loaders, e.g:
  
 ```csharp
 constructor() {
@@ -350,15 +369,17 @@ You'll use development builds when developing your app locally which you can run
  
     $ npm run build
  
-This will generate your App in the [/dist](https://github.com/ServiceStack/Templates/tree/master/src/SinglePageApps/ReactApp/ReactApp/dist) folder similar to:
+This will generate your App in the `/wwwroot/dist` folder similar to:
  
-    /dist
-        /img
-            logo.png
-            fontawesome-webfont.ttf
-            ...
-        app.bundle.js
-        vendor.bundle.js
+    /wwwroot
+        /dist
+            /img
+                logo.png
+                ...
+            app.bundle.js
+            vendor.dll.css
+            vendor.dll.js
+            vendor-manifest.json
     index.html
  
 The lack of `.css` files or source-maps are due to being embedded in the `.js` bundles and injected in the browser's DOM within `<style></style>` tags. 
@@ -377,14 +398,18 @@ This will bundle and generate your WebApp in the **/wwwroot/dist** folder with c
         /dist
             /img
                 logo.36166adfacf0c8cc11d493f2161164fd.png
-                fontawesome-webfont.b06871f281fee6b241d60582ae9369b9.ttf
-                ...
-            app.0f14847405ac6f9ebc18.bundle.js
-            app.0f14847405ac6f9ebc18.bundle.js.map
-            app.0f14847405ac6f9ebc18.css
-            app.0f14847405ac6f9ebc18.css.map
-            vendor.dca56d88046f8443277c.bundle.js
-            vendor.dca56d88046f8443277c.bundle.js.map
+            674f50d287a8c48dc19ba404d20fe713.eot
+            912ec66d7572ff821749319396470bde.svg
+            b06871f281fee6b241d60582ae9369b9.ttf
+            app.3728b4547755ace1f489.bundle.js
+            app.3728b4547755ace1f489.bundle.js.map
+            app.3728b4547755ace1f489.css
+            app.3728b4547755ace1f489.css.map
+            vendor.dll.css
+            vendor.dll.css.map
+            vendor.dll.js
+            vendor.dll.js.map
+            vendor-manifest.json
         index.html
  
 ## Development workflow
@@ -397,49 +422,31 @@ The `00-webpack-dev` and `00-webpack-watch` gulp tasks facilitate the 2 popular 
 
 ### Gulp Tasks
  
- - **00-webpack-dev** - Run Webpack Dev Server proxy on port **3000** and watch for changes
- - **00-webpack-watch** - Run Webpack watch to automatically build, watch and process changed files
- - **01-package-server** - Used for building and staging the server components of your application
- - **02-package-client** - Used to compile and stage your client side resources ready for deployment
- - **03-deploy-app** - Deploys your application using msdeploy and **config.json** found in `wwwroot_build/publish`
- - **package-and-deploy** - Perform all tasks to build, stage and deploy your application
- - **test-coverage** - View test coverage of your existing TypeScript/JS tests
+ - **dev** - Run Webpack watch to automatically build, watch and process changed files
+ - **dtos** - Run **typescript-ref** npm script to import latest TypeScript Server DTOs
+ - **webpack-build** - Run a Webpack development build to bundle and output your app to `/dist`
+ - **webpack-build-prod** - Run a Webpack production build to bundle and output your app to `/wwwroot/dist`
+ - **webpack-build-vendor** - Run a Webpack production build to bundle the Vendor libraries to `/wwwroot/dist`
+ - **package** - Perform all tasks to build the client so your App is ready for deployment
  - **tests-run** - Run all TypeScript/JS unit and integration tests
  - **tests-watch** - Rerun all TypeScript/JS tests as source code changes are made
- - **update-dtos** - Run **typescript-ref** npm script to import latest TypeScript Server DTOs
- - **webpack-build** - Run a Webpack development build to bundle and output your app to `/dist`
- - **webpack-build-prod** - Run a Webpack development build to bundle and output your app to `/wwwroot/dist`
+ - **tests-coverage** - View test coverage of your existing TypeScript/JS tests
 
-> Tip: as both **00-webpack-dev** and **00-webpack-watch** tasks are used to build your App during development, 
-[commenting out the one you don't use](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/gulpfile.js#L4-L5) 
-in your gulpfile.js is a nice time saver as it will then only show your preferred option that's always at the top, e.g:
-
-```js
-var SCRIPTS = {
-//    '00-webpack-dev': 'npm run dev',
-    '00-webpack-watch': 'npm run watch',
-    'webpack-build': 'npm run build',
-    'webpack-build-prod': 'npm run build-prod',
-    'tests-run': 'npm run test',
-    'tests-watch': 'npm run test-watch',
-    'tests-coverage': 'npm run test-coverage',
-    'update-dtos': 'npm run typescript-ref'
-};
-```
+Whilst we recommend running the `dev` Gulp or npm script during development to run a live watched development, you can instead run the `npm run dev-server` npm script to run a development build of your app through Webpack's dev-server which has it's own built-in hot reloading for when your Client Apps source code changes. The 2 
 
 ### Webpack watch
  
-Our recommendation is to run the `00-webpack-watch` Gulp task and leave it running in the background, or if preferred, run the **watch** npm script on the command-line with:
+Our recommendation is to run the `dev` Gulp task and leave it running in the background, or if preferred, run the **dev** npm script on the command-line with:
  
-    $ npm run watch
+    $ npm run dev
  
-Webpack **watch** works as you'd expect where it initially generates a full development build of your Web App then stays running in the background to process files as they're changed. This enables the normal dev workflow of running your ASP.NET Web App from VS.NET, saving changes locally then hitting **F5** to refresh the page and view them.
+Webpack **dev**  initially generates a full development build of your Web App then stays running in the background to process files as they're changed. This enables the normal dev workflow of running your ASP.NET Web App from VS.NET, saving changes locally which are then reloaded using ServiceStack's built-in hot reloading. Alternatively hitting **F5** will refresh the page and view the latest changes.
  
-Each change updates the output dev resources so even if you stop the **watch** task your Web App remains in a working state that's viewable when running the ASP.NET Web App.
+Each change updates the output dev resources so even if you stop the **dev** task your Web App remains in a working state that's viewable when running the ASP.NET Web App.
  
 ### Live reload with Webpack Dev Server
  
-The alternative dev workflow is to run the `00-webpack-dev` Gulp task to run the [Webpack dev server](https://webpack.js.org/configuration/dev-server/#devserver), or you can run it from the command-line with:
+The alternative dev workflow is to run the `dev-server` npm script to run the [Webpack dev server](https://webpack.js.org/configuration/dev-server/#devserver):
  
     $ npm run dev
  
@@ -457,7 +464,7 @@ With these goals in mind we've hand-picked and integrated a number of simple bes
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/bootstrap-fontawesome-material.png)
  
-React, Vue and Aurelia are pre-configured with [Bootstrap v4](https://v4-alpha.getbootstrap.com/) and [font-awesome vector font icons](http://fontawesome.io/icons/) whilst Angular 4 is preconfigured to use [Material Design Lite](https://getmdl.io/) and [Material Design Icons](https://material.io/icons/) which are the more natural choice for Angular Apps where they're all developed and maintained by Google.
+Vue, React, Angular 5 and Aurelia are pre-configured with [Bootstrap v4](https://getbootstrap.com/) and [font-awesome vector font icons](http://fontawesome.io/icons/) whilst Angular 4 is preconfigured to use [Material Design Lite](https://getmdl.io/) and [Material Design Icons](https://material.io/icons/) providing a solution for utilizing resources which are all developed and maintained by Google.
 
 ### TypeScript and Sass
  
@@ -471,31 +478,31 @@ Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY 
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/servicestack-ts.png)
  
-ServiceStack is seamlessly [integrated with TypeScript](/typescript-add-servicestack-reference) where all templates are pre-configured to use the Server's TypeScript DTOs and [@servicestack/client](https://github.com/ServiceStack/servicestack-client) generic `JsonServiceClient` to make the [Typed API request below](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/src/home/Hello.tsx) which displays a Welcome message on each key-press:
+ServiceStack is seamlessly [integrated with TypeScript](/typescript-add-servicestack-reference) where all templates are pre-configured to use the Server's TypeScript DTOs and [@servicestack/client](https://github.com/ServiceStack/servicestack-client) generic `JsonServiceClient` to make the [Typed API request below](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/home/Home.vue) which displays a Welcome message on each key-press:
  
 ```ts
 import { client } from '../shared';
 import { Hello } from '../dtos';
  
-async nameChanged(name:string) {
+async nameChanged(name: string) {
     if (name) {
         let request = new Hello();
         request.name = name;
         let r = await client.get(request);
-        this.setState({ result: r.result });
+        this.result = r.result;
     } else {
-        this.setState({ result: '' });
+        this.result = '';
     }
 }
 ```
  
-The imported `client` is an instance of `JsonServiceClient` declared in [shared.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/src/shared.tsx) module, configured with the BaseUrl at `/`:
+The imported `client` is an instance of `JsonServiceClient` declared in [shared.ts](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/shared.ts) module, configured with the BaseUrl at `/`:
  
 ```ts
 export var client = new JsonServiceClient(global.BaseUrl || '/');
 ```
  
-The `global.BaseUrl` is defined in [package.json](https://github.com/ServiceStack/Templates/blob/9e5bd421decffda43fcc46f4cf112b3999888e53/src/SinglePageApps/ReactApp/ReactApp/package.json#L17) and injected by [Jest](https://facebook.github.io/jest/) in order to be able to run end-to-end Integration tests.
+The `global.BaseUrl` is defined in [package.json](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/package.json#L19) and injected by [Jest](https://facebook.github.io/jest/) or [Karma](https://karma-runner.github.io/2.0/index.html) in order to be able to run end-to-end Integration tests.
  
 #### Updating Server TypeScript DTOs
  
@@ -503,9 +510,9 @@ To get the latest Server DTOs, build the ASP.NET Web App then either right-click
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/typescript-update-reference.png)
  
-Or alternatively you can run the `update-dtos` Gulp task in Task Runner Explorer GUI, or if preferred, run the script on the command-line with:
+Or alternatively you can run the `dtos` Gulp task in Task Runner Explorer GUI, or if preferred, run the script on the command-line with:
  
-    $ npm run typescript-ref
+    $ npm run dtos
  
 ### Routing Enabled, Multi-page Layout
   
@@ -521,7 +528,7 @@ All Single Page Apps are configured to use Pretty URLs (i.e. without `#!`) and a
  
 Aurelia, React and React Desktop Apps are configured to use [Facebook's Jest Testing Framework](https://facebook.github.io/jest/) with the React Templates configured to use [AirBnb's enzyme virtual React DOM](https://github.com/airbnb/enzyme) to enable fast, browser-less tests and includes a few different examples of client/server integration tests.
  
-Angular4 and Vue are configured to use the [Karma test runner](https://karma-runner.github.io/1.0/index.html) with the headless phantomjs WebKit browser so the behavior of Components are tested in a real browser.
+Angular and Vue are configured to use the [Karma test runner](https://karma-runner.github.io/1.0/index.html) with the headless phantomjs WebKit browser so the behavior of Components are tested in a real browser.
  
 Tests can be run with the `tests-run` gulp task, or on the command-line using any of npm's testing conventions:
  
@@ -540,27 +547,12 @@ Live testing automatically re-runs JavaScript tests after each change to provide
  
 #### Test Coverage
  
-Angular4, Aurelia and React are also pre-configured to be able to show test coverage, viewable by running the `tests-coverage` Gulp task or on the command-line with:
+Angular, Aurelia and React are also pre-configured to be able to show test coverage, viewable by running the `tests-coverage` Gulp task or on the command-line with:
  
     $ npm run test-coverage
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/gulp-tests-coverage.png)
  
-#### Single Click Deployments
- 
-All templates continue to include our one-click deploy functionality by running the `package-and-deploy` Gulp task which will perform a full ASP.NET server release build and Webpack client production build then runs MS WebDeploy to package and deploy the bundled App to the remote server configured in `wwwroot_build/publish/config.json`. If you already have a production build you wish to deploy you can run `03-deploy-app` Gulp task instead to just perform the MS WebDeploy step.
- 
-> publish/config.json
-
-```json
-{
-    "iisApp": "SiteName",
-    "serverAddress": "remote.server.org",
-    "userName": "{WebDeployUserName}",
-    "password" : "{WebDeployPassword}"
-}
-```
-
 #### Multi-Project Solution Layout
 
 All templates follow our [Recommended Physical Project Structure](/physical-project-structure) ensuring ServiceStack projects starts off from an optimal logical project layout, laying the foundation for growing into a more maintainable, cohesive and reusable code-base.
@@ -571,13 +563,13 @@ The Single Page App templates sources their client dependencies from npm which c
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/npm-progress.png)
 
-You'll be able to detect when it's finished by waiting for the original contents of **index.html**:
+You'll be able to detect when it's finished by waiting for the original contents of **wwwroot/index.html**:
 
 ```html
 <!-- auto-generated by webpack -->
 ```
 
-to be replaced with a [Webpack generated html template](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp/ReactApp/index.html).
+to be replaced with a [Webpack generated html template](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/wwwroot/index.html).
 
 ### Keep Desktop node and VS.NET in sync
  
