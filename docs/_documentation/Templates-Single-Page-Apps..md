@@ -34,11 +34,13 @@ The .NET Core 2.0 project templates utilizes MSBuild's newer and human-friendly 
  - [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx) - Aurelia App
  - [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) - React Desktop Apps
 
-The .NET Framework Templates utilize MSBuild's classic project format which can be developed using either VS.NET or Rider.
+.NET Framework Templates utilize MSBuild's classic project format which can be developed using either VS.NET or Rider.
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
 
 All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. 
+
+The [Angular 5](https://angular.io) template built and managed using Angular's default [angular-cli](https://cli.angular.io) tooling. All other SPA Templates (inc. Angular 4) utilize a modernized Webpack build system, pre-configured with npm scripts to perform all necessary debug, production and live watched builds and testing. 
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/webpack-overview.png)](https://webpack.js.org)
  
@@ -50,7 +52,85 @@ Webpack works natively with npm packages and is used to handle **all client asse
 [vast ecosystem](https://webpack.github.io/docs/list-of-loaders.html) of 
 [loaders](https://webpack.js.org/concepts/loaders/) and 
 [plugins](https://webpack.js.org/concepts/plugins/) to handle every kind of web asset, performing the necessary transformations to transpile it into the native formats browsers understand, loading it in browsers and generating source maps so their original source files can be debugged. The Webpack configuration is customized per build type where the optimal configuration is used in development for faster builds and easier debuggability whilst production builds are optimized for performance, size and cacheability.
+
+### TypeScript and Sass
  
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/sass-ts.png)
+ 
+All templates are configured with TypeScript which we believe provides the greatest value in enabling a highly-productive and maintainable code-base. TypeScript lets you utilize the latest ES6/7 features including terse ES6 modules and async/await support whilst being able to target down-level browsers. Other benefits include better documented typed APIs, instant compiler feedback, rich intellisense and refactoring support in a graceful superset of JavaScript that scales well to be able develop prototypes quickly then easily go back to harden existing code-bases with optional Type information, catching common errors at compile-time whilst annotating modules with valuable documentation other developers can benefit from.
+ 
+Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY and reuse features we take for granted in a general purpose programming language. [SASS](http://sass-lang.com/) is designed to close that gap with a number of useful extensions to CSS aimed at enabling a highly-maintainable, modular and configurable css code-base. If you prefer to avoid learning SASS you can continue using vanilla css which has been enhanced with [autoprefixer](https://github.com/postcss/autoprefixer) and [precss](https://github.com/jonathantneal/precss) support.
+
+### End-to-end Typed APIs
+ 
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/servicestack-ts.png)
+ 
+Each template is seamlessly integrated with ServiceStack's [TypeScript Add Reference](/typescript-add-servicestack-reference) and generic TypeScript [@servicestack/client](https://github.com/ServiceStack/servicestack-client) to provide an end-to-end Typed API to call your Services that can be synced with your Server DTOs by running the npm (or Gulp) `dtos` script. 
+
+The [Typed API request below](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/home/Home.vue) uses the Server Generated 
+[dtos.ts](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/dtos.ts) and generic `JsonServiceClient` to display a Welcome message on each key-press:
+ 
+```ts
+import { client } from '../shared';
+import { Hello } from '../dtos';
+ 
+async nameChanged(name: string) {
+    if (name) {
+        let request = new Hello();
+        request.name = name;
+        let r = await client.get(request);
+        this.result = r.result;
+    } else {
+        this.result = '';
+    }
+}
+```
+ 
+The imported `client` is an instance of `JsonServiceClient` declared in [shared.ts](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/shared.ts) module, configured with the BaseUrl at `/`:
+ 
+```ts
+export var client = new JsonServiceClient(global.BaseUrl || '/');
+```
+ 
+The `global.BaseUrl` is defined in [package.json](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/package.json#L19) and injected by [Jest](https://facebook.github.io/jest/) or [Karma](https://karma-runner.github.io/2.0/index.html) in order to be able to run end-to-end Integration tests.
+ 
+### Angular 5 HTTP Client
+
+The Angular 5 template is also configured to use Angular's built-in Rx-enabled HTTP Client with ServiceStack's ambient TypeScript declarations, as it's often preferable to utilize Angular's built-in dependencies when available. 
+
+ServiceStack's ambient TypeScript interfaces are leveraged to enable a Typed API, whilst the `createUrl(route,args)` helper lets you reuse your APIs Route definitions (emitted in comments above each Request DTO) to provide a pleasant UX for making API calls using Angular's HTTP Client:
+
+```ts
+import { createUrl } from '@servicestack/client';
+...
+
+this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r => {
+    this.result = r.result;
+});
+```
+
+### Optimal Dev Workflow with Hot Reloading
+
+The templates include a hot-reload feature which works similar to [ServiceStack Templates hot-reloading](http://templates.servicestack.net/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. 
+
+Hot Reloading works by leveraging [ServiceStack Templates](http://templates.servicestack.net) which works seamlessly with Webpack's generated `index.html` where it evaluates server Template Expressions when returning the SPA home page. This is leveraged to enable Hot Reloading support by [including the expression](https://github.com/NetCoreTemplates/vue-spa/blob/0c13183b6a5ae20564f650e50d29b9d4e36cbd0c/MyApp/index.template.ejs#L8):
+
+```html
+{% raw %}{{ ifDebug | select: <script>{ '/js/hot-fileloader.js' | includeFile }</script> }}{% endraw %}
+```
+
+Which renders the contents of [/js/hot-fileloader.js](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/js/hot-fileloader.js) when running the Web App during development.
+
+Although optional, ServiceStack Templates is useful whenever you need to render any server logic in the SPA home page, e.g:
+
+```html 
+{% raw %}<div>Copyright &copy; {{ now | dateFormat('yyyy') }}</div>{% endraw %}
+```
+
+Will be evaluated on the server and render the expected:
+ 
+    Copyright © 2017
+
 ## Quick tour of Webpack
  
 Webpack has been pre-configured in all Single Paeege App templates to enable a flexible and feature-rich development model whose defaults in **webpack.config.js** will be able to support a large number of Web Apps without modification, leaving you free to focus on developing your App.
@@ -190,11 +270,15 @@ module: {
         },
         {
             test: /\.(jpe?g|gif|png|ico|svg|wav|mp3)$/i,
-            loader: 'file-loader' + (isProd ? '?hash=sha512&digest=hex&name=img/[name].[hash].[ext]' : '?name=img/[name].[ext]')
+            loader: 'file-loader' + (isProd 
+                ? '?hash=sha512&digest=hex&name=img/[name].[hash].[ext]' 
+                : '?name=img/[name].[ext]')
         },
         {
             test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-            loader: isProd ? 'url-loader?limit=10000&name=img/[name].[hash].[ext]' : 'file-loader?name=img/[name].[ext]'
+            loader: isProd 
+                ? 'url-loader?limit=10000&name=img/[name].[hash].[ext]' 
+                : 'file-loader?name=img/[name].[ext]'
         },
         ...when(isDev || isTest, [
             {
@@ -297,7 +381,23 @@ plugins: [
 ]
 ```
 
-Run the `publish` Gulp task or npm script to create a production build of your App where the `.css` files are written using [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) and the resulting `.js` files minified with UglifyJS. The full production build is generated in in `/wwwroot/dist` folder where it's ready to be deployed using .NET's standard deployment toolsL 
+### /wwwroot WebRoot Path for .NET Framework Templates
+
+To simplify migration efforts of ServiceStack projects between .NET Core and .NET Framework, all SPA and Website Templates are configured to use .NET Core's convention of `/wwwroot` for its public WebRoot Path. The 2 adjustments needed to support this was configuring ServiceStack to use the `/wwwroot` path in AppHost:
+
+```csharp
+SetConfig(new HostConfig {
+    WebHostPhysicalPath = MapProjectPath("~/wwwroot"),
+});
+```
+
+### Deployments
+
+When your App is ready to deploy, run the `publish` npm (or Gulp) script to package your App for deployment:
+
+    npm run publish
+
+Which creates a production build of your App where the `.css` files are written using [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) and the resulting `.js` files minified with UglifyJS. The full production build is generated in in `/wwwroot/dist` folder where it's ready for an XCOPY, rsync or MSDeploy deployment.
 
 In the .NET Framework templates you can deploy to any [MS WebDeploy](https://www.iis.net/downloads/microsoft/web-deploy) enabled Server by clicking **Publish...** in the ASP.NET's project Context Menu item which makes use of the existing [https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/master/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml](/PublishProfiles/PublishToIIS.pubxml) which [includes an instruction](https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/2e8c208982561695275b451a9ece35522d9739d9/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml#L23-L36) to include the `/wwwroot` folder in deployments.
 
@@ -466,44 +566,6 @@ With these goals in mind we've hand-picked and integrated a number of simple bes
  
 Vue, React, Angular 5 and Aurelia are pre-configured with [Bootstrap v4](https://getbootstrap.com/) and [font-awesome vector font icons](http://fontawesome.io/icons/) whilst Angular 4 is preconfigured to use [Material Design Lite](https://getmdl.io/) and [Material Design Icons](https://material.io/icons/) providing a solution for utilizing resources which are all developed and maintained by Google.
 
-### TypeScript and Sass
- 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/sass-ts.png)
- 
-All templates are configured with TypeScript which we believe provides the greatest value in enabling a highly-productive and maintainable code-base. TypeScript lets you utilize the latest ES6/7 features including terse ES6 modules and async/await support whilst being able to target down-level browsers. Other benefits include better documented typed APIs, instant compiler feedback, rich intellisense and refactoring support in a graceful superset of JavaScript that scales well to be able develop prototypes quickly then easily go back to harden existing code-bases with optional Type information, catching common errors at compile-time whilst annotating modules with valuable documentation other developers can benefit from.
- 
-Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY and reuse features we take for granted in a general purpose programming language. [SASS](http://sass-lang.com/) is designed to close that gap with a number of useful extensions to CSS aimed at enabling a highly-maintainable, modular and configurable css code-base. If you prefer to avoid learning SASS you can continue using vanilla css which has been enhanced with [autoprefixer](https://github.com/postcss/autoprefixer) and [precss](https://github.com/jonathantneal/precss) support.
- 
-### End-to-end Typed APIs
- 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/servicestack-ts.png)
- 
-ServiceStack is seamlessly [integrated with TypeScript](/typescript-add-servicestack-reference) where all templates are pre-configured to use the Server's TypeScript DTOs and [@servicestack/client](https://github.com/ServiceStack/servicestack-client) generic `JsonServiceClient` to make the [Typed API request below](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/home/Home.vue) which displays a Welcome message on each key-press:
- 
-```ts
-import { client } from '../shared';
-import { Hello } from '../dtos';
- 
-async nameChanged(name: string) {
-    if (name) {
-        let request = new Hello();
-        request.name = name;
-        let r = await client.get(request);
-        this.result = r.result;
-    } else {
-        this.result = '';
-    }
-}
-```
- 
-The imported `client` is an instance of `JsonServiceClient` declared in [shared.ts](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/shared.ts) module, configured with the BaseUrl at `/`:
- 
-```ts
-export var client = new JsonServiceClient(global.BaseUrl || '/');
-```
- 
-The `global.BaseUrl` is defined in [package.json](https://github.com/NetCoreTemplates/vue-spa/blob/9f4c81c9f6dc5e1e812238357853eb0ea08bac51/MyApp/package.json#L19) and injected by [Jest](https://facebook.github.io/jest/) or [Karma](https://karma-runner.github.io/2.0/index.html) in order to be able to run end-to-end Integration tests.
- 
 #### Updating Server TypeScript DTOs
  
 To get the latest Server DTOs, build the ASP.NET Web App then either right-click on `dtos.ts` and select **Update ServiceStack Reference** from the Context Menu:
@@ -559,7 +621,7 @@ All templates follow our [Recommended Physical Project Structure](/physical-proj
 
 ### Track progress whilst templates are being created
 
-The Single Page App templates sources their client dependencies from npm which can take up to few minutes to finish downloading and installing. You'll be able to see its progress by looking at the **Bower/npm** Output Window in VS.NET:
+The Single Page App templates sources their client dependencies from npm which can take up to few minutes to finish downloading and installing. You'll be able to see its progress by looking at the `Bower/npm` Output Window in VS.NET:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/npm-progress.png)
 

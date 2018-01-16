@@ -33,6 +33,24 @@ The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains 
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](/templates-single-page-apps)
 
+## [Website Templates](/templates-websites)
+
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/web.png)
+
+Popular starting Templates for creating Server HTML Generated Websites and HTTP APIs with ServiceStack.
+
+## [Empty Starting Templates](/templates-websites)
+
+Empty Web and Self Hosting Console and Windows Service Templates.
+
+## [ASP.NET Core Web Apps on .NET Framework](/templates-corefx)
+
+Popular starting templates for creating ASP.NET Core templates on the .NET Framework.
+
+## [Desktop Templates](/templates-desktop)
+
+Desktop Templates for packaging your ServiceStack Web App into different Native Desktop GUIs.
+
 ## ServiceStackVS VS.NET Extension
 
 [ServiceStackVS](https://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7) supports Visual Studio 2017, 2015 and 2013 and can be installed from within VS.NET:

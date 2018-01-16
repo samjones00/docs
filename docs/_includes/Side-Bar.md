@@ -18,6 +18,10 @@
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [Webpack Single Page Apps](/templates-single-page-apps)
+    - [Website Templates](/templates-websites)
+    - [Empty Starting Templates](/templates-empty-starting)
+    - [ASP.NET Core on .NET Framework](/templates-corefx)
+    - [Desktop Templates](/templates-desktop)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
