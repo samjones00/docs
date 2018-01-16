@@ -29,7 +29,7 @@ Which will create a new .NET Core 2.0 MVC Project called **AcmeMvc**. The Templa
         The <code class="highlighter-rouge">mvc</code> template differentiates the most between .NET Core and ASP.NET versions as ASP.NET Core MVC and ASP.NET MVC 5 are completely different implementations. With <code class="highlighter-rouge">mvc</code> ServiceStack is configured within the same .NET Core pipeline and shares the same request pipeline and “route namespace” but in ASP.NET MVC 5, ServiceStack is hosted at the <code class="highlighter-rouge">/api</code> Custom Path. Use MVC if you prefer to create different Controllers and View Models for your Website UI independently from your HTTP APIs or if you prefer to generate <strong>server HTML validation errors</strong> within MVC Controllers.
     </td>
     <td align="center">
-        <a href="http://mvc.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvc.png" width="500" /></a>
+        <a href="http://mvc.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvc.png" width="450" /></a>
         <p><a href="http://mvc.web-templates.io">mvc.web-templates.io</a></p>
     </td>
 </tr>
@@ -45,7 +45,7 @@ Which will create a new .NET Core 2.0 MVC Project called **AcmeMvc**. The Templa
         The <code class="highlighter-rouge">razor</code> Template is configured to develop Websites using <a href="http://razor.servicestack.net">ServiceStack.Razor</a> for developing server-generated Websites using Razor without MVC Controllers which lets you create Content Razor Pages that can be called directly or View Pages for generating HTML Views for existing Services. The source code for .NET Core and ASP.NET Framework projects are nearly identical despite being completely different implementations with the .NET Core version being retrofitted on top of .NET Core MVC Views. Use <code class="highlighter-rouge">razor</code> templates if you like Razor and prefer the <a href="/releases/v4.5.14#end-user-language-with-low-roi">API First Development model</a> or plan on developing Websites for both .NET Core and ASP.NET and would like to be easily able to migrate between them.
     </td>
     <td align="center">
-        <a href="http://razor.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor.png" width="500" /></a>
+        <a href="http://razor.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor.png" width="450" /></a>
         <p><a href="http://razor.web-templates.io">razor.web-templates.io</a></p>
     </td>
 </tr>
@@ -61,7 +61,7 @@ Which will create a new .NET Core 2.0 MVC Project called **AcmeMvc**. The Templa
         The <code class="highlighter-rouge">templates</code> Project Template is configured to develop Websites using <a href="http://templates.servicestack.net">ServiceStack Templates</a>, a simpler and cleaner alternative to Razor that lets you utilize simple Template Expressions for evaluating Server logic in <code class="highlighter-rouge">.html</code> pages. Templates doesn’t require any precompilation, is easier to learn and more intuitive for non-programmers that’s more suitable for a <a href="http://templates.servicestack.net/usecases/">number of use-cases</a>. Use templates if you want an <a href="/releases/v4.5.14#why-templates">alternative to Razor</a> syntax and the heavy machinery required to support it.
     </td>
     <td align="center">
-        <a href="http://templates.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates.png" width="500" /></a>
+        <a href="http://templates.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates.png" width="450" /></a>
         <p><a href="http://templates.web-templates.io">templates.web-templates.io</a></p>
     </td>
 </tr>
@@ -83,7 +83,7 @@ The .NET Core 2.0 [templates-webapp](https://github.com/NetCoreTemplates/templat
 <tr>
     <td><a href="https://github.com/NetCoreTemplates/templates-webapp">templates-webapp</a></td>
     <td align="center">
-        <a href="http://templates-webapp.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates-webapp.png" width="500" /></a>
+        <a href="http://templates-webapp.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates-webapp.png" width="650" /></a>
         <p><a href="http://templates-webapp.web-templates.io">templates-webapp.web-templates.io</a></p>
     </td>
 </tr>
