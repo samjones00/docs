@@ -3,6 +3,8 @@ title: Desktop Templates
 slug: templates-desktop
 ---
 
+[![React Desktop Apps](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/gap/react-desktop-splash.png)](https://github.com/ServiceStackApps/ReactDesktopApps)
+
 ### React Desktop Apps Template
 
 The React Desktop Template lets you take advantage the adaptiveness, navigation and deep-linking benefits of a 
@@ -10,8 +12,6 @@ Web-based UI, the productivity and responsiveness of the
 [React framework](https://reactjs.org) in a rich 
 native experience and OS Integration possible from a Native Desktop App - all in a single VS .NET template which 
 supports packaging your Web App into 4 different ASP.NET, Winforms, OSX Cocoa and cross-platform Console App Hosts:
-
-![React Desktop Apps](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/gap/react-desktop-splash.png)
 
 <table class="table">
 <tr>
