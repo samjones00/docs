@@ -3,6 +3,8 @@ title: Run ASP.NET Core Apps on the .NET Framework
 slug: templates-corefx
 ---
 
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/web.png)
+
 Use the [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) to create ASP.NET Core Apps on the .NET Framework which contains popular starting templates for running ASP.NET Core Apps on .NET Framework (default v4.7) which as a convention all have the `-corefx` suffix: 
 
  - [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx) - .NET Framework ASP.NET Core Website
