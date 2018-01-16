@@ -143,6 +143,10 @@ pre.highlight {
     display: none;
 }
 
+.tpl-desc {
+    font-size: 14px;
+}
+
 ::-webkit-scrollbar { width:7px; height:5px }
 ::-webkit-scrollbar-thumb { background-color:#ccc; }
 
