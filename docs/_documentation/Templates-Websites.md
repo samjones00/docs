@@ -21,7 +21,7 @@ The `templates` Project Template is configured to develop Websites using [Servic
 
 Both `razor` and `templates` project enjoy Hot Reloading where in development a long poll is used to detect and reload changes in the current Template Page or static files in `/wwwroot`.
 
-<table>
+<table class="table">
 <tr>
     <th>.NET Core 2.0</th>
     <th>.NET Framework</th>
@@ -61,7 +61,7 @@ Both `razor` and `templates` project enjoy Hot Reloading where in development a 
 
 The .NET Core 2.0 [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp) project template is a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
-<table>
+<table class="table">
 <tr>
     <th>.NET Core 2.0</th>
     <th>ServiceStack Templates WebApp</th>

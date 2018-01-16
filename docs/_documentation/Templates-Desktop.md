@@ -13,7 +13,7 @@ supports packaging your Web App into 4 different ASP.NET, Winforms, OSX Cocoa an
 
 ![React Desktop Apps](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/gap/react-desktop-splash.png)
 
-<table>
+<table class="table">
 <tr>
     <th>.NET Framework</th>
     <th>React Desktop Apps Template</th>
