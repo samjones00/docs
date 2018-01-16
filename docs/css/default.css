@@ -143,6 +143,9 @@ pre.highlight {
     display: none;
 }
 
+.tpl th {
+    text-align: center;
+}
 .tpl-desc {
     font-size: 14px;
 }
