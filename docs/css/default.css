@@ -25,10 +25,12 @@ h4 {
     font-size: 1.4rem;
 }
 blockquote {
-    margin-bottom: 10px;
     padding: 10px;
     background-color: #FFF8DC;
     border-left: 2px solid #ffeb8e;
+}
+blockquote p {
+    margin-bottom: 0;
 }
 
 .ref {
