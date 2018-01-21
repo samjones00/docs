@@ -51,7 +51,7 @@ matches:
 
 And will populate the public property **Name** on the Request DTO with **foo**.
 
-*Note: The QueryString, FormData and HTTP Request Body isn't apart of the Route (i.e. only the /path/info is) but they can all be used in addition to every web service call to further populate the Request DTO.*
+> Note: The QueryString, FormData and HTTP Request Body isn't apart of the Route (i.e. only the /path/info is) but they can all be used in addition to every web service call to further populate the Request DTO.
 
 ### Wildcard paths
 
