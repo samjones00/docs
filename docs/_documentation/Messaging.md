@@ -7,7 +7,7 @@ ServiceStack provides a [high-level Messaging API](https://github.com/ServiceSta
 
 ![Messaging API](https://raw.github.com/mythz/rabbitmq-windows/master/img/messaging-api.png)
 
-There are currently 4 supported MQ Server options:
+There are currently 5 supported MQ Server options:
 
   - [Rabbit MQ Server](/rabbit-mq)
   - [Redis MQ Server](/redis-mq)
