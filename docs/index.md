@@ -3,7 +3,7 @@ layout: default
 title: ServiceStack Resources
 ---
 
-- [servicestack.net](http://www.servicestack.net/) - See ServiceStack's Website for product info and pricing 
+- [servicestack.net](https://servicestack.net/) - See ServiceStack's Website for product info and pricing 
 - [StackOverflow](http://stackoverflow.com/search?q=servicestack) - Ask questions on StackOverflow using the `servicestack` tag
 - [Customer Forums](https://forums.servicestack.net/) - Customers can get Technical Support in the Customer Forums
 - [Issue Tracker](https://github.com/ServiceStack/Issues) - Report issues on our Issue Tracker
