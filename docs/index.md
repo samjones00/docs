@@ -8,7 +8,7 @@ title: ServiceStack Resources
 - [Customer Forums](https://forums.servicestack.net/) - Customers can get Technical Support in the Customer Forums
 - [Issue Tracker](https://github.com/ServiceStack/Issues) - Report issues on our Issue Tracker
 - [Feature Requests](http://servicestack.uservoice.com/forums/176786-feature-requests) - Request features on UserVoice
-- [Release Notes](https://servicestack.net/release-notes) - Stay up to date with ServiceStack's latest features
+- [Release Notes](http://docs.servicestack.net/release-notes-history) - Stay up to date with ServiceStack's latest features
 
 ## ServiceStack Examples and Live Demos
 
