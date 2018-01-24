@@ -548,12 +548,18 @@ Each change updates the output dev resources so even if you stop the **dev** tas
  
 The alternative dev workflow is to run the `dev-server` npm script to run the [Webpack dev server](https://webpack.js.org/configuration/dev-server/#devserver):
  
-    $ npm run dev
+    $ npm run dev-server
  
 This launches the Webpack dev server listening at `http://localhost:3000/` and configured to proxy all non-Webpack HTTP requests to the ASP.NET Web App where it handles all Server API requests. The benefit of viewing your App through the Webpack dev server is its built-in Live Reload feature where it will automatically reload the page as resources are updated. We've found the Webpack dev server ideal when developing UI's where your Web App is running side-by-side VS.NET, where every change saved triggers the dev server to reload the current page so changes are visible immediately. 
  
 The disadvantage of the dev server is that all transformations are kept in memory so when the dev server is stopped, the Web Apps resources are lost, so it requires a `webpack-build` in order to generate a current build. There's also a slight lag in API requests resulting from each server request being handled by both Webpack's Dev Server and ASP.NET's IIS Express.
  
+### Watched .NET Core builds
+
+.NET Core projects can also benefit from [Live Coding using dotnet watch](https://dotnetcoretutorials.com/2017/01/31/live-coding-net-core-using-dotnet-watch/) which performs a "watched build" where it automatically stops, recompiles and restarts your .NET Core App when it detects source file changes. You can start a watched build from the command-line with:
+
+    $ dotnet watch run
+
 ## Single Page App Features
  
 Our goals with the Single Page Templates is to provide a highly productive base that's ideal for developing small to medium-sized JavaScript Web Apps including just the core essentials that pack the most productive punch whilst adding minimal complexity and required configuration, whilst still remaining open-ended to easily plug-in other tools into your Webpack configuration you believe will improve your development workflow. 

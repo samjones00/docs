@@ -71,6 +71,12 @@ Which will create a new .NET Core 2.0 MVC Project called **AcmeMvc**. The Templa
 
 Both `razor` and `templates` project enjoy Hot Reloading where in development a long poll is used to detect and reload changes in the current Template Page or static files in `/wwwroot`.
 
+### Watched .NET Core builds
+
+.NET Core projects can also benefit from [Live Coding using dotnet watch](https://dotnetcoretutorials.com/2017/01/31/live-coding-net-core-using-dotnet-watch/) which performs a "watched build" where it automatically stops, recompiles and restarts your .NET Core App when it detects source file changes. You can start a watched build from the command-line with:
+
+    $ dotnet watch run
+
 ### .NET Core 2.0 ServiceStack WebApp Template
 
 The .NET Core 2.0 [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp) project template is a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
