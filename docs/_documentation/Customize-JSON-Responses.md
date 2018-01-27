@@ -99,7 +99,7 @@ value in which case they will be set to `false`, e.g:
 
 For a quick reference the following **bool** customizations are supported:
 
-<table>
+<table class="table">
     <thead>
         <tr><th>Name</th><th>Alias</th></tr>
     </thead>
@@ -129,7 +129,7 @@ For a quick reference the following **bool** customizations are supported:
 
 ### DateHandler (dh)
 
-<table>
+<table class="table">
     <tr><td>TimestampOffset</td><td>to</td></tr>
     <tr><td>DCJSCompatible</td><td>dcjsc</td></tr>
     <tr><td>ISO8601</td><td>iso8601</td></tr>
@@ -142,14 +142,14 @@ For a quick reference the following **bool** customizations are supported:
 
 ### TimeSpanHandler (tsh)
 
-<table>
+<table class="table">
     <tr><td>DurationFormat</td><td>df</td></tr>
     <tr><td>StandardFormat</td><td>sf</td></tr>
 </table>
 
 ### PropertyConvention (pc)
 
-<table>
+<table class="table">
     <tr><td>Strict</td><td>s</td></tr>
     <tr><td>Lenient</td><td>l</td></tr>
 </table>

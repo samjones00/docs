@@ -64,7 +64,7 @@ Plugins.Add(new RequestLogsFeature {
 
 Like other ServiceStack [Plugins](/plugins) the `RequestLogsFeature` has a number of configuration options that can be specified at registration to customize Request Logging:
 
-<table>
+<table class="table">
 <thead>
 <tr>
     <th>Name</th>

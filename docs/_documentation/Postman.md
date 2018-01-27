@@ -51,7 +51,7 @@ Here are some examples using the example definition below:
 public class GetContact { ... }
 ```
 
-<table>
+<table class="table">
 <tr>
     <td><b>/postman?label=type</b></td>
     <td>GetContact</td>
