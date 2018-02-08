@@ -442,10 +442,12 @@ To skip the extra hop when you know you're accessing a secure service, you can t
 client.AlwaysSendBasicAuthHeader = true;
 ```
 
-The alternative way to Authenticate is to make an explicit call to the `Auth` service (this requires CredentialsAuthProvider enabled) e.g:
+### Sending Authenticate Request DTO
+
+The alternative way to Authenticate is to make an explicit call to the `Authenticate` service (this requires CredentialsAuthProvider enabled) e.g:
 
 ```csharp
-AuthResponse authResponse = client.Post(new Auth {
+AuthenticateResponse authResponse = client.Post(new Authenticate {
     provider = CredentialsAuthProvider.Name,
     UserName = "user",
     Password = "p@55word",
@@ -456,7 +458,7 @@ var request = new Secured { Name = "test" };
 var response = client.Send<SecureResponse>(request);    
 ```
 
-After a successful call to the `Auth` service the client is Authenticated and if **RememberMe** is set, the client will retain the Session Cookies added by the Server on subsequent requests which is what enables future requests from that client to be authenticated.
+After a successful call to the `Authenticate` service the client is Authenticated and if **RememberMe** is set, the client will retain the Session Cookies added by the Server on subsequent requests which is what enables future requests from that client to be authenticated.
 
 ### Upload and Download Progress on Async API's
 
