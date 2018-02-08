@@ -448,10 +448,10 @@ The alternative way to Authenticate is to make an explicit call to the `Authenti
 
 ```csharp
 AuthenticateResponse authResponse = client.Post(new Authenticate {
-    provider = CredentialsAuthProvider.Name,
+    provider = CredentialsAuthProvider.Name, //= provider
     UserName = "user",
     Password = "p@55word",
-    RememberMe = true,  //important tell client to retain permanent cookies
+    RememberMe = true,                       //important tell client to retain permanent cookies
 });
 
 var request = new Secured { Name = "test" };
