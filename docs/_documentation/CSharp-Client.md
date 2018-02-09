@@ -444,11 +444,11 @@ client.AlwaysSendBasicAuthHeader = true;
 
 ### Sending Authenticate Request DTO
 
-The alternative way to Authenticate is to make an explicit call to the `Authenticate` service (this requires CredentialsAuthProvider enabled) e.g:
+The alternative way to Authenticate is to make an explicit call to the `Authenticate` service (this requires `CredentialsAuthProvider` enabled) e.g:
 
 ```csharp
 AuthenticateResponse authResponse = client.Post(new Authenticate {
-    provider = CredentialsAuthProvider.Name, //= provider
+    provider = CredentialsAuthProvider.Name, //= credentials
     UserName = "user",
     Password = "p@55word",
     RememberMe = true,                       //important tell client to retain permanent cookies
