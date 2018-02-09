@@ -522,8 +522,6 @@ This will bundle and generate your WebApp in the **/wwwroot/dist** folder with c
  
 Executing a development build of Webpack is all that's required to be able to see our changes but it can take a while to run a full dev build which negatively impacts our fast iterative dev workflow. It's instead recommended to leave webpack running in the background and have it watch for changes so it only needs to rebuild assets that have changed, which it's able to do very quickly. 
  
-The `00-webpack-dev` and `00-webpack-watch` gulp tasks facilitate the 2 popular development modes for running webpack during development:
- 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/gulp-tasks.png)
 
 ### Gulp Tasks
@@ -538,11 +536,11 @@ The `00-webpack-dev` and `00-webpack-watch` gulp tasks facilitate the 2 popular 
  - **tests-watch** - Rerun all TypeScript/JS tests as source code changes are made
  - **tests-coverage** - View test coverage of your existing TypeScript/JS tests
 
-Whilst we recommend running the `dev` Gulp or npm script during development to run a live watched development, you can instead run the `npm run dev-server` npm script to run a development build of your app through Webpack's dev-server which has it's own built-in hot reloading for when your Client Apps source code changes. The 2 
+Whilst we recommend running the `dev` Gulp or npm script during development to run a live watched development, you can instead run the `npm run dev-server` npm script to run a development build of your app through Webpack's dev-server which has it's own built-in hot reloading for when your Client Apps source code changes.
 
 ### Webpack watch
  
-Our recommendation is to run the `dev` Gulp task and leave it running in the background, or if preferred, run the **dev** npm script on the command-line with:
+Our recommendation during development is to run the `dev` Gulp task and leave it running in the background, or if preferred, run the **dev** npm script on the command-line with:
  
     $ npm run dev
  
