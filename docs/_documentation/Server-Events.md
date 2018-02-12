@@ -124,7 +124,7 @@ public interface IServerEvents : IDisposable
     void NotifySubscription(string subscriptionId, string selector, object message, string channel = null);
     void NotifyUserId(string userId, string selector, object message, string channel = null);
     void NotifyUserName(string userName, string selector, object message, string channel = null);
-    void NotifySession(string sspid, string selector, object message, string channel = null);
+    void NotifySession(string sessionId, string selector, object message, string channel = null);
 
     SubscriptionInfo GetSubscriptionInfo(string id);
     List<SubscriptionInfo> GetSubscriptionInfosByUserId(string userId);
@@ -159,7 +159,7 @@ The API's your Services predominantly deal with are the **External API's** which
 ```csharp
 NotifyUserId()   // UserAuthId
 NotifyUserName() // UserName
-NotifySession()  // Permanent Session Id (ss-pid)
+NotifySession()  // Session Id
 ```
 
 Whilst these all provide different ways to send a message to a single authenticated user, any user can be connected to multiple subscriptions at any one time (e.g. by having multiple tabs open). Each one of these subscriptions is uniquely identified by a `subscriptionId` which you can send a message with using: 
