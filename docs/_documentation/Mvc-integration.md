@@ -142,7 +142,7 @@ public HelloController : ServiceStackController
     public void Index(string name) 
     {
         using (var hello = HostContext.
-            ResolveService<HelloService>(base.HttpContext))
+            ResolveService<HelloService>(base.ServiceStackRequest))
         {
            ViewBag.GreetResult = hello.Get(name).Result;
            return View();
