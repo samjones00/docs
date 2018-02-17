@@ -85,7 +85,7 @@ The `JwtAuthProvider` is our integrated stateless Auth solution for the popular 
   - [Azure Active Directory via Azure Graph for ServiceStack](https://github.com/ticky74/ServiceStack.Authentication.Azure)
   - [ServiceStack.Authentication.IdentityServer](https://github.com/MacLeanElectrical/servicestack-authentication-identityserver) - Integration with ASP.NET IdentityServer and provides OpenIDConnect / OAuth 2.0 Single Sign-On Authentication
 
-Find more info about [OpenId 2.0 providers on the wiki](/openId).
+Find more info about see [OpenId 2.0 providers docs](/openid).
 
 ### OAuth Configuration
 
