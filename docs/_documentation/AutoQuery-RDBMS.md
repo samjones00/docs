@@ -1064,10 +1064,10 @@ There's also a lighter weight option by registering a typed Query Filter, e.g:
 
 ```csharp
 var autoQuery = new AutoQueryFeature()
-  .RegisterQueryFilter<QueryRockstarsFilter, Rockstar>((req, q, dto) =>
+  .RegisterQueryFilter<QueryRockstarsFilter, Rockstar>((q, dto, req) =>
       q.And(x => x.LastName.EndsWith("son"))
   )
-  .RegisterQueryFilter<IFilterRockstars, Rockstar>((req, q, dto) =>
+  .RegisterQueryFilter<IFilterRockstars, Rockstar>((q, dto, req) =>
       q.And(x => x.LastName.EndsWith("son"))
   );
 
