@@ -218,7 +218,7 @@ public virtual void OnExceptionTypeFilter(
 
 ### Custom HTTP Errors
 
-In Any Request or Response Filter you can short-circuit the [Request Pipeline](?/order-of-operations) by emitting a Custom HTTP Response and Ending the request, e.g:
+In Any Request or Response Filter you can short-circuit the [Request Pipeline](/order-of-operations) by emitting a Custom HTTP Response and Ending the request, e.g:
 
 ```csharp
 this.PreRequestFilters.Add((req,res) => 

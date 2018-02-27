@@ -561,7 +561,7 @@ class MyService : MyServiceBase {
 
 ### Using a Global Request Filter
 
-Otherwise you can use a [global Request Filter](?/request-and-response-filters) if you wanted to restrict all requests any other way, e.g something like:
+Otherwise you can use a [global Request Filter](/request-and-response-filters) if you wanted to restrict all requests any other way, e.g something like:
 
 ```csharp
 GlobalRequestFilters.Add((req, res, requestDto) =>

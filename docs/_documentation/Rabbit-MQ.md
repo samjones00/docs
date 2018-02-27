@@ -276,7 +276,7 @@ public class HelloService : Service
 }
 ```
 
-In addition to executing your service implementation, all Services processed via a MQ Server goes through ServiceStack's standard [MQ Request Pipeline](?/order-of-operations#wiki-mq-non-http-custom-hooks).
+In addition to executing your service implementation, all Services processed via a MQ Server goes through ServiceStack's standard [MQ Request Pipeline](/order-of-operations#wiki-mq-non-http-custom-hooks).
 
 With everything in place, initialize ServiceStack's AppHost to start the Rabbit MQ Server to listen for any messages published to the Request DTO's **.inq**:
 
@@ -319,7 +319,7 @@ using (var mqClient = appHost.Resolve<IMessageService>().CreateMessageQueueClien
 }
 ```
 
-In this way, ServiceStack's AppHost is being used as a pure "logic server", hosting auto-wired services within [its MQ Request Pipeline](?/order-of-operations#wiki-mq-non-http-custom-hooks), whilst taking advantage of ServiceStack's flexibility and extensibility options and its plugin ecosystem.
+In this way, ServiceStack's AppHost is being used as a pure "logic server", hosting auto-wired services within [its MQ Request Pipeline](/order-of-operations#wiki-mq-non-http-custom-hooks), whilst taking advantage of ServiceStack's flexibility and extensibility options and its plugin ecosystem.
 
 Run-able examples of these code-samples are available in the [RabbitMqServerIntroTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Server.Tests/Messaging/MqServerIntroTests.cs#L13).
 

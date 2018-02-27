@@ -185,7 +185,7 @@ This is fairly inaccurate considering ServiceStack's mission is close to the exa
 
 Not only do all ServiceStack services accept a Request DTO populated with any combination of Custom Routes, QueryString and HTML FormData. You can also POST the serialized Request DTO in any of the in-built formats: i.e. XML, JSON, JSV, SOAP 1.1/1.2, ProtoBuf (when enabled) or your own [custom format](http://northwind.servicestack.net/vcard-format.htm). All services immediately support JSONP and its trivial to [enable CORS on all services](http://stackoverflow.com/questions/8211930/servicestack-rest-api-and-cors). Should you wish, you're also able to have all HTTP Verbs execute the same service. 
 
-Support is included for registering raw custom IHttpHandler's, [Request / Response Filters](?/request-and-response-filters) and HttpResult/HttpError results - giving you a multitude of options to maintain full control over the entire HTTP Output - should you need to meet any extraneous external requirements. 
+Support is included for registering raw custom IHttpHandler's, [Request / Response Filters](/request-and-response-filters) and HttpResult/HttpError results - giving you a multitude of options to maintain full control over the entire HTTP Output - should you need to meet any extraneous external requirements. 
 
 ### Text serializers are fast, resilient and idiomatic
 

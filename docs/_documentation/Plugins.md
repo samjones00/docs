@@ -230,7 +230,7 @@ If you're **not** using the AuthFeature above and you still want Session support
 Plugins.Add(new SessionFeature());
 ```
 
-This will add a [Request Filter](?/request-and-response-filters) to instruct any HTTP client calling a ServiceStack web service to create a Temporary (ss-id) and Permanent (ss-pid) cookie if not already done so.
+This will add a [Request Filter](/request-and-response-filters) to instruct any HTTP client calling a ServiceStack web service to create a Temporary (ss-id) and Permanent (ss-pid) cookie if not already done so.
 
 ### Registration
 

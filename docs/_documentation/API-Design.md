@@ -391,7 +391,7 @@ The Route on the Action that was declared first gets selected, i.e:
 
 ### Custom Hooks
 
-The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customisation feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](?/request-and-response-filters).
+The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customisation feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](/request-and-response-filters).
 
 The [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/ServiceHost/IServiceRunner.cs) decouples the execution of your service from the implementation of it which provides an alternative custom hook which lets you add custom behavior to all Services without needing to use a base Service class. 
 

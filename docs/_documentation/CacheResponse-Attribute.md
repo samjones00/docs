@@ -126,7 +126,7 @@ enhance it with custom logic.
 is just a wrapper around initializing a populated 
 [CacheInfo](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/CacheInfo.cs) POCO
 that it drops into the `IRequest.Items` dictionary where it's visible to your Service and any remaining Filters 
-in ServiceStack's [Request Pipeline](?/order-of-operations). 
+in ServiceStack's [Request Pipeline](/order-of-operations). 
 Essentially it's just doing this:
 
 ```csharp

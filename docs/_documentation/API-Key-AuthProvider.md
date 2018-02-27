@@ -48,7 +48,7 @@ ApiKey apiKey = req.GetApiKey();
 ```
 
 The `ApiKey` can be later inspected throughout the 
-[request pipeline](?/order-of-operations) 
+[request pipeline](/order-of-operations) 
 to determine which API Key, Type and Environment was used.
 
 #### Interoperable

@@ -3,14 +3,14 @@ slug: multitenancy
 title: Multitenancy
 ---
 
-ServiceStack provides a number of ways of changing the database connection used at runtime based on an incoming Request. You can use a [Request Filter](?/request-and-response-filters#global-request-filters), use the `[ConnectionInfo]` [Request Filter Attribute](/filter-attributes#request-filter-attributes), use the `[NamedConnection]` attribute on [Auto Query](/autoquery) Services, access named connections in Custom Service implementations or override `GetDbConnection(IRequest)` in your AppHost.
+ServiceStack provides a number of ways of changing the database connection used at runtime based on an incoming Request. You can use a [Request Filter](/request-and-response-filters#global-request-filters), use the `[ConnectionInfo]` [Request Filter Attribute](/filter-attributes#request-filter-attributes), use the `[NamedConnection]` attribute on [Auto Query](/autoquery) Services, access named connections in Custom Service implementations or override `GetDbConnection(IRequest)` in your AppHost.
 
 ### Change Database Connection at Runtime
 
 The default implementation of `IAppHost.GetDbConnection(IRequest)` includes an easy way to change the DB Connection that can be done by populating the 
 [ConnectionInfo](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ConnectionInfo.cs) 
 POCO in any
-[Request Filter in the Request Pipeline](?/order-of-operations):
+[Request Filter in the Request Pipeline](/order-of-operations):
 
 ```csharp
 req.Items[Keywords.DbInfo] = new ConnectionInfo {
@@ -84,7 +84,7 @@ GlobalRequestFilters.Add((req, res, dto) => {
 
 Since our `IChangeDb` interface shares the same property names as `ConnectionInfo`, the above code can be 
 further condensed using a 
-[Typed Request Filter](?/request-and-response-filters#typed-request-filters)
+[Typed Request Filter](/request-and-response-filters#typed-request-filters)
 and ServiceStack's built-in [AutoMapping](/auto-mapping)
 down to just:
 

@@ -7,7 +7,7 @@ AutoQuery RDBMS enables the rapid development of high-performance, fully-queryab
 
 ### AutoQuery Services are ServiceStack Services
 
-An important point to highlight is that AutoQuery Services are just normal ServiceStack Services, utilizing the same [Request Pipeline](?/order-of-operations), which can be mapped to any [user-defined route](/routing), is available in all [registered formats](/formats) and can be [consumed from existing typed Service Clients](/clients-overview). 
+An important point to highlight is that AutoQuery Services are just normal ServiceStack Services, utilizing the same [Request Pipeline](/order-of-operations), which can be mapped to any [user-defined route](/routing), is available in all [registered formats](/formats) and can be [consumed from existing typed Service Clients](/clients-overview). 
 
 In addition to leveraging ServiceStack's existing functionality, maximizing re-use in this way reduces the cognitive overhead required for developers who can re-use their existing knowledge in implementing, customizing, introspecting and consuming ServiceStack services. 
 
