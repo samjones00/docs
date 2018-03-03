@@ -6,7 +6,7 @@ If you want to support SOAP, you have to ensure you adhere to some additional co
 
 ## Configure
 
-Register the `SoapFormat` Plugin to enable SOAP Support in ServiceStack:
+Register the `SoapFormat` Plugin to enable SOAP Support in ServiceStack (Requires ASP.NET Framework):
 
 ```csharp
 Plugins.Add(new SoapFormat());
