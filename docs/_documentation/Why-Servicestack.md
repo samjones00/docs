@@ -266,7 +266,7 @@ client.Delete(new DeleteCustomer { Id = customer.Id });
 all = client.Get(new GetCustomers());                             // Count = 0
 ```
 
-Same code also works with [PCL Clients in Xamarin iOS/Android, Windows Store Apps](https://github.com/ServiceStackApps/HelloMobile)
+Same code also works with [Android, iOS, Xamarin.Forms, UWP and WPF clients](https://github.com/ServiceStackApps/HelloMobile).
 
 > [F#](/fsharp-add-servicestack-reference.html) and 
 [VB.NET](/vbnet-add-servicestack-reference.html) can re-use same 
@@ -276,11 +276,7 @@ Same code also works with [PCL Clients in Xamarin iOS/Android, Windows Store App
 
 ```ts
 const client = new JsonServiceClient(baseUrl);
-
-client.get(new GetCustomers())
-    .then(r => {
-        const results = r.results;
-    });
+const { results } = await client.get(new GetCustomers());
 ```
 
 ### [Calling from Swift](/swift-add-servicestack-reference.html#jsonserviceclientswift)
