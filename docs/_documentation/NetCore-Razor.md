@@ -56,7 +56,7 @@ Overall we're ecstatic with the end-result, we retain our Controller-free develo
 You can find .NET Core Razor features documented in [razor.netcore.io](http://razor.netcore.io) which 
 is maintained in our MVC NuGet package that can be installed with: 
 
-    PM> Install-Package ServiceStack.Mvc.Core 
+    PM> Install-Package ServiceStack.Mvc
 
 Then to enable, register the `RazorFormat` plugin:
 
