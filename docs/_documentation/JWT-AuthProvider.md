@@ -206,8 +206,17 @@ new JwtAuthProvider(AppSettings)
 }
 ```
 
-Likewise you can modify JWT Headers with the `CreateHeaderFilter` delegate and modify how the Users Session
-is populated with the `PopulateSessionFilter`.
+Likewise you can modify how the Users Session is populated from the custom JWT with the `PopulateSessionFilter`, e.g:
+
+```csharp
+new JwtAuthProvider(AppSettings) 
+{
+    PopulateSessionFilter = (session,payload,req) => 
+        session.CreatedAt = long.Parse(payload["CreatedAt"]).FromUnixTime();
+}
+```
+
+If needed you can also modify JWT Headers with the `CreateHeaderFilter` delegate.
 
 ### JWT Signature
 
