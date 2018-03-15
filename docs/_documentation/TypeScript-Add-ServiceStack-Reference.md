@@ -421,6 +421,31 @@ interface GetAnswers extends IReturn<GetAnswersResponse>
 }
 ```
 
+### IncludeTypes
+
+Is used as a Whitelist to specify only the types you would like to have code-generated:
+
+```
+/* Options:
+IncludeTypes: GetTechnology,GetTechnologyResponse
+```
+
+Will only generate `GetTechnology` and `GetTechnologyResponse` DTO's:
+
+```csharp
+export class class GetTechnology { ... }
+export class class GetTechnologyResponse { ... }
+```
+
+### ExcludeTypes
+Is used as a Blacklist to specify which types you would like excluded from being generated:
+
+```
+/* Options:
+ExcludeTypes: GetTechnology,GetTechnologyResponse
+```
+
+Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
 This lets you know what Version of the Service Contract that existing clients are using making it easy 
 to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
 
