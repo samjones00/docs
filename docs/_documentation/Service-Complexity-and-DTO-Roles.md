@@ -128,7 +128,7 @@ ServiceStack sources) you can happily re-use them as DTOs and freely refactor th
 as-and-when you need to. But when you are re-using Data Models as DTOs they should still be maintained in the 
 **ServiceModel** project (aka DTO .dll) which should contain **all the types** that your Service returns.
 DTOs should be logic and dependency-free so the only dependency the ServiceModel project references is the 
-impl-free  `ServiceStack.Interfaces.dll` which as it's a PCL .dll, can be freely referenced from all 
+impl-free  `ServiceStack.Interfaces.dll` which as it's a .NET v4.5 and .NET Standard 2.0 .dll, can be freely referenced from all 
 [.NET Mobile and Desktop platforms](https://github.com/ServiceStackApps/HelloMobile).
 
 You want to ensure all types your Services return are in the DTO .dll since this, along with the base url of 
