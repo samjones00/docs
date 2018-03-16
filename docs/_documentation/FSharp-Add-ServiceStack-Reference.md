@@ -80,7 +80,10 @@ BaseUrl: http://stackapis.servicestack.net
 //AddGeneratedCodeAttributes: False
 //AddResponseStatus: False
 //AddImplicitVersion: 
+//IncludeTypes: 
+//ExcludeTypes: 
 //InitializeCollections: True
+//AddNamespaces: 
 *)
 ```
 
@@ -184,6 +187,49 @@ type GetAnswers() =
 ```
 
 This lets you know what Version of the Service Contract that existing clients are using making it easy to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
+
+### IncludeTypes
+Is used as a Whitelist that can be used to specify only the types you would like to have code-generated:
+```
+/* Options:
+IncludeTypes: GetTechnology,GetTechnologyResponse
+```
+Will only generate `GetTechnology` and `GetTechnologyResponse` DTO's, e.g:
+
+```fsharp
+type GetTechnology() = ...
+type GetTechnologyResponse() = ...
+```
+
+#### Include Request DTO and its dependent types
+
+You can include a Request DTO and all its dependent types with a `.*` suffix on the Request DTO, e.g:
+
+```
+/* Options:
+IncludeTypes: GetTechnology.*
+```
+
+Which will include the `GetTechnology` Request DTO, the `GetTechnologyResponse` Response DTO and all Types that they both reference.
+
+#### Include All Types within a C# namespace
+
+If your DTOs are grouped into different namespaces they can be all included using the `/*` suffix, e.g:
+
+```
+/* Options:
+IncludeTypes: MyApp.ServiceModel.Admin/*
+```
+
+This will incllude all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+
+### ExcludeTypes
+Is used as a Blacklist where you can specify which types you would like to exclude from being generated:
+```
+/* Options:
+ExcludeTypes: GetTechnology,GetTechnologyResponse
+```
+Will exclude `GetTechnology` and `GetTechnologyResponse` DTO's from being generated.
 
 ### InitializeCollections
 
