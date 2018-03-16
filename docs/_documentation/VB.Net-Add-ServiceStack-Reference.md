@@ -70,6 +70,10 @@ To override these options on the client, the comment has to be changed to start 
 '''AddResponseStatus: False
 '''AddImplicitVersion: 
 '''InitializeCollections: True
+'''ExportValueTypes: False
+'''IncludeTypes: 
+'''ExcludeTypes: 
+'''AddNamespaces: 
 '''AddDefaultXmlNamespace: http://schemas.servicestack.net/types
 ```
 Options that do not start with a `'''` are sent to the server to override any defaults set by the server.
@@ -221,6 +225,50 @@ Public Partial Class SearchQuestions
     ...
 }
 ```
+
+### IncludeTypes
+Is used as a Whitelist that can be used to specify only the types you would like to have code-generated:
+```
+/* Options:
+IncludeTypes: GetTechnology,GetTechnologyResponse
+```
+Will only generate `GetTechnology` and `GetTechnologyResponse` DTO's, e.g:
+
+```vbnet
+Public Partial Class GetTechnology ...
+Public Partial Class GetTechnologyResponse ...
+```
+
+#### Include Request DTO and its dependent types
+
+You can include a Request DTO and all its dependent types with a `.*` suffix on the Request DTO, e.g:
+
+```
+/* Options:
+IncludeTypes: GetTechnology.*
+```
+
+Which will include the `GetTechnology` Request DTO, the `GetTechnologyResponse` Response DTO and all Types that they both reference.
+
+#### Include All Types within a C# namespace
+
+If your DTOs are grouped into different namespaces they can be all included using the `/*` suffix, e.g:
+
+```
+/* Options:
+IncludeTypes: MyApp.ServiceModel.Admin/*
+```
+
+This will incllude all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+
+### ExcludeTypes
+Is used as a Blacklist where you can specify which types you would like to exclude from being generated:
+```
+/* Options:
+ExcludeTypes: GetTechnology,GetTechnologyResponse
+```
+Will exclude `GetTechnology` and `GetTechnologyResponse` DTO's from being generated.
+
 ### AddDefaultXmlNamespace
 
 This lets you change the default DataContract XML namespace used for all namespaces:

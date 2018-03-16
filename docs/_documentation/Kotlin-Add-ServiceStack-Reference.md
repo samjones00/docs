@@ -833,6 +833,28 @@ open class GetTechnology : IReturn<GetTechnologyResponse> { ... }
 open class GetTechnologyResponse { ... }
 ```
 
+#### Include Request DTO and its dependent types
+
+You can include a Request DTO and all its dependent types with a `.*` suffix on the Request DTO, e.g:
+
+```
+/* Options:
+IncludeTypes: GetTechnology.*
+```
+
+Which will include the `GetTechnology` Request DTO, the `GetTechnologyResponse` Response DTO and all Types that they both reference.
+
+#### Include All Types within a C# namespace
+
+If your DTOs are grouped into different namespaces they can be all included using the `/*` suffix, e.g:
+
+```
+/* Options:
+IncludeTypes: MyApp.ServiceModel.Admin/*
+```
+
+This will incllude all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+
 ### ExcludeTypes
 Is used as a Blacklist where you can specify which types you would like to exclude from being generated:
 ```
