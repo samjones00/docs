@@ -384,19 +384,21 @@ container.Adapter = new UnityIocAdapter(unityContainer);
 ### Disposing of your services
 
 The `AppHost.Release(instance)` method gets called for every resolved service right after it's used. 
-This is the [default implementation](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ServiceStackHost.cs#L422-L439) (which can be overridden):
+This is the [default implementation](https://github.com/ServiceStack/ServiceStack/blob/f2d8eadaf5f4eecf1eadae918243472b039e5dfe/src/ServiceStack/ServiceStackHost.cs#L787-L805) (which can be overridden):
 
-    var iocAdapterReleases = Container.Adapter as IRelease;
-    if (iocAdapterReleases != null)
-    {
-        iocAdapterReleases.Release(instance);
-    }
-    else 
-    {
-        var disposable = instance as IDisposable;
-        if (disposable != null)
-            disposable.Dispose();
-    }
+```csharp
+var iocAdapterReleases = Container.Adapter as IRelease;
+if (iocAdapterReleases != null)
+{
+    iocAdapterReleases.Release(instance);
+}
+else 
+{
+    var disposable = instance as IDisposable;
+    if (disposable != null)
+        disposable.Dispose();
+}
+```
 
 Which will first try to call your ContainerAdapter if it implements `IRelease` otherwise if the service is `IDisposable` it will just dispose of it itself.
 
