@@ -23,7 +23,7 @@ This will register the CSV Request logger with the following overridable default
 ```csharp
 Plugins.Add(new RequestLogsFeature {
     RequestLogger = new CsvRequestLogger(
-        files: new FileSystemVirtualPathProvider(this, Config.WebHostPhysicalPath),
+        files: new FileSystemVirtualFiles(HostContext.Config.WebHostPhysicalPath),
         requestLogsPattern: "requestlogs/{year}-{month}/{year}-{month}-{day}.csv",
         errorLogsPattern: "requestlogs/{year}-{month}/{year}-{month}-{day}-errors.csv",
         appendEvery: TimeSpan.FromSeconds(1)
