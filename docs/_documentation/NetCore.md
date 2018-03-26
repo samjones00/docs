@@ -866,6 +866,48 @@ public override void Configure(Container container)
 > Note: any dependencies registered .NET Core Startup are also available to ServiceStack but dependencies 
 registered in ServiceStack's IOC are **only** visible to ServiceStack.
 
+### .NET Core IAppSettings Adapter
+
+Most .NET Core Templates are also configured to use the new `NetCoreAppSettings` adapter to utilize .NET Core's new `IConfiguration` config model in ServiceStack by initializing the `AppHost` with .NET Core's pre-configured `IConfiguration` that's injected into the [Startup.cs](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/Startup.cs) constructor, e.g:
+
+```csharp
+public class Startup
+{
+    public IConfiguration Configuration { get; }
+    public Startup(IConfiguration configuration) => Configuration = configuration;
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        app.UseServiceStack(new AppHost {
+            AppSettings = new NetCoreAppSettings(Configuration)
+        });
+    }
+}
+```
+
+This lets you use **appsettings.json** and .NET Core's other Configuration Sources from ServiceStack's `IAppSettings` API where it continues to resolve both primitive values and complex Types, e.g:
+
+```csharp
+bool debug = AppSettings.Get<bool>("DebugMode", false);
+MyConfig myConfig = AppSettings.Get<MyConfig>();
+List<string>  ghScopes = AppSettings.Get<List<string>>("oauth.github.Scopes");
+IList<string> fbScopes = AppSettings.GetList("oauth.facebook.Permissions");
+```
+
+But instead of a single JSV string value, you'll need to use the appropriate JSON data type, e.g:
+
+```json
+{
+    "DebugMode": true,    
+    "MyConfig": {
+        "Name": "Kurt",
+        "Age": 27
+    },
+    "oauth.facebook.Permissions": ["email"],
+    "oauth.github.Scopes": ["user"]
+}
+```
+
 ### Consistent Registration APIs
 
 To retain the same nomenclature that .NET Core uses to register dependencies we've added several 
