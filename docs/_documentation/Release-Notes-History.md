@@ -3,9 +3,13 @@ title: Release Notes History
 slug: release-notes-history
 ---
 
+### 2018
+
+ - [v5.0.2](/releases/v5.0.0)
+
 ### 2017
 
- - [v5.0.0](/releases/v5.0.0)
+ - [v5.0.0](/releases/v5.0.0#v5-release-notes)
  - [v4.5.14](/releases/v4.5.14)
  - [v4.5.10](/releases/v4.5.10)
  - [v4.5.8](/releases/v4.5.8)
