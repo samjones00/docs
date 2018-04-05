@@ -439,6 +439,15 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
 - **OSX**
   - [Hosted inside Mac OSX Cocoa App with Xmarain.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
 
+### Target Multiple platforms
+
+With multi-targeted projects creating both .NET Framework and .NET Standard builds you can optionally run your same ServiceStack App on multiple platforms as seen with the [Hello Mobile Shared Gateway](http://docs.servicestack.net/releases/v5.0.0#run-aspnet-core-apps-on-the-net-framework) project where its same shared [ServiceStack Server.Common project](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) is used to host the same App running on:
+
+ - [Server.NetCore](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.NetCore) - hosting the ServiceStack Services in a **ASP.NET Core 2.0 App**
+ - [Server.NetCoreFx](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.NetCoreFx) - hosting in a **ASP.NET Core App** on the **.NET Framework**
+ - [Server.AspNet](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.AspNet) - hosting classic **ASP.NET Framework** Web Applications
+ - [Server.HttpListener](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.HttpListener) - host in a .NET Framework Self-Hosting **HttpListener** AppHost
+
 ### VS.NET Templates
 
 There's a [VS.NET Template](/templates-overview) for creating solutions targeting most of the above platforms.
