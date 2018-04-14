@@ -25,7 +25,8 @@ var requests = new[]
 List<Response> responses = client.SendAll(requests);
 ```
 
-The API works as you would expect where multiple requests can be sent together and the Service Client will return a list of all responses in the same order as the requests were sent. 
+The API works as you would expect where multiple requests can be sent together and the Service Client will return a list of all responses in the same order as the requests were sent. ServiceStack also adds the `X-AutoBatch-Completed` HTTP Response Header containing the **number** of Requests that were executed. E.g. if 
+one of the Requests threw an Exception it will contain the number of requests that were processed before the Exception was thrown, which short-circuits processing the remaining Auto Batched requests and returns a populated [structured Error Response](/error-handling) of the Exception.
 
 And on the back-end, your Services are none the wiser, remaining focused on handling a single Request DTO. In the case below the Service does some work then stores the response in Redis before returning it:
 
