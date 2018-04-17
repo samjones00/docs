@@ -21,7 +21,7 @@ public class AppHost : AppHostBase
             .AddAttributes(new MyRequestFilter());
 
         typeof(MyPoco)
-            .GetProperty("LastName")
+            .GetProperty(nameof(MyPoco.LastName))
             .AddAttributes(new DataMemberAttribute { Name = "Surname" });
     }
 }
