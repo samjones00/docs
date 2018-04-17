@@ -20,6 +20,9 @@ public class AppHost : AppHostBase
             .AddAttributes(new RestrictAttribute(RequestAttributes.Json))
             .AddAttributes(new MyRequestFilter());
 
+        typeof(MyPoco)
+            .GetProperty("LastName")
+            .AddAttributes(new DataMemberAttribute { Name = "Surname" });
     }
 }
 ```
