@@ -106,3 +106,16 @@ var tuple = ((string s, int i))oTuple;
 tuple.s //= bar
 tuple.i //= 2
 ```
+
+### Converting Instances from an Object Dictionary
+
+The `ToObjectDictionary` and `FromObjectDictionary` extension methods lets you convert instances into a loosely-typed Object Dictionary where it can be dynamically accessed and manipulated before being used to create and populate an instance of any type, e.g:
+
+```csharp
+var customer = new Customer { FirstName = "John", LastName = "Doe" };
+var map = customer.MergeIntoObjectDictionary(new { Initial = "Z" });
+map["DisplayName"] = map["FirstName"] + " " + map["Initial"] + " " + map["LastName"];
+var employee = map.FromObjectDictionary<Employee>();
+
+employee.DisplayName //= John Z Doe
+```
