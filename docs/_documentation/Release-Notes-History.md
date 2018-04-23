@@ -5,6 +5,7 @@ slug: release-notes-history
 
 ### 2018
 
+ - [v5.1.0](/releases/v5.1.0)
  - [v5.0.2](/releases/v5.0.0)
 
 ### 2017
