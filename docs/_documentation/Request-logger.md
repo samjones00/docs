@@ -39,6 +39,28 @@ errors are also written to a separate `YYYY-MM-DD-errors.csv` format, in additio
 
 The AutoQuery Service example shows you can quickly create an AutoQuery Data Service that lets you inspect your CSV Request and Error Logs with AutoQuery, which in addition to the rich querying benefits also gives you access to an instant UI in [AutoQuery Viewer](https://github.com/ServiceStack/Admin) to be able to [View your Request Logs](/autoquery-service#view-request-logs-in-autoquery-viewerhttpsgithubcomservicestackadmin).
 
+## Rollbar Request Logger
+
+The [iayos.ServiceStack.RollbarPlugin](https://github.com/daleholborow/iayos.ServiceStack.RollbarPlugin) integrates with [Rollbar](https://rollbar.com) real-time error monitoring solution which has a free tier to log up to 5,000 requests per month.
+
+### Install
+
+To use `RollbarLoggerPlugin` install the [iayos.ServiceStack.RollbarPlugin](https://www.nuget.org/packages/iayos.ServiceStack.RollbarPlugin) NuGet package:
+
+    PM> Install-Package iayos.ServiceStack.RollbarPlugin
+
+Sign Up for a new account on [Rollbar](https://rollbar.com). Then register `RollbarLoggerPlugin` with the your API Key:
+
+```csharp
+Plugins.Add(new RollbarLoggerPlugin
+{
+    ApiKey = rollbarApiKey,
+    //..
+}
+```
+
+Please see the [iayos.ServiceStack.RollbarPlugin](https://github.com/daleholborow/iayos.ServiceStack.RollbarPlugin) project for additional customization options.
+
 ## Redis Request Logger
 
 The HTTP Request logs can also be configured to persist to a distributed [Redis](redis.io) data store instead by configuring the `RequestLogsFeature` plugin to use the `RedisRequestLogger`. Persisting logs in redis will allow them to survive and be view-able across App Domain restarts.
@@ -59,6 +81,7 @@ Plugins.Add(new RequestLogsFeature {
 ```
 
 > The optional `capacity` configures the Redis Request Logger to work as a rolling log where it will only keep the most recent 1000 entries.
+
 
 ### Configuration
 
