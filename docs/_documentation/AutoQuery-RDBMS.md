@@ -537,6 +537,8 @@ Which allows multiple values to be specified on the QueryString:
     /rockstars?FirstNamesIn=Jim,Kurt
     /rockstars?FirstNameBetween=A,F
 
+### Advanced Conventions
+
 More advanced conventions can be specified directly on the `StartsWithConventions` and `EndsWithConventions` dictionaries which allow customizations using the full `[QueryDbField]` attribute, e.g:
 
 ```csharp
