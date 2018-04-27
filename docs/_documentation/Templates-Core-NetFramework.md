@@ -51,6 +51,8 @@ In order to run ASP.NET Core Apps on the .NET Framework it needs to only referen
  - ServiceStack.Api.OpenApi.Core
  - ServiceStack.Admin.Core
  - ServiceStack.Stripe.Core
+ - ServiceStack.Logging.Log4Net.Core
+ - ServiceStack.Logging.NLog.Core
  - ServiceStack.Kestrel
 
 > Ultimately support for whether a **.NET Standard 2.0** library will run on the .NET Framework depends on whether external dependencies also support this scenario which as it's a more niche use-case, will be a less tested scenario. 
