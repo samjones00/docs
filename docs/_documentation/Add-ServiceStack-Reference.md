@@ -228,10 +228,11 @@ Add ServiceStack Reference lets you utilize the native SDK's and development env
 Options for the generated DTOs can be further customized by updating the commented section in the header of the file. Each language will have different options for leveraging features native to each Language. See the specific language documentation for details on available options:
 
 * [C# Options](/csharp-add-servicestack-reference#change-default-server-configuration)
+* [TypeScript Options](/typescript-add-servicestack-reference#change-default-server-configuration)
 * [Swift Options](/swift-add-servicestack-reference#swift-configuration)
 * [Java Options](/java-add-servicestack-reference#java-configuration)
 * [Kotlin Options](/kotlin-add-servicestack-reference#kotlin-configuration)
-* [TypeScript Options](/typescript-add-servicestack-reference#change-default-server-configuration)
+* [Dart Options](/dart-add-servicestack-reference#change-default-server-configuration)
 * [F# Options](/fsharp-add-servicestack-reference#change-default-server-configuration)
 * [VB.Net Options](/vbnet-add-servicestack-reference)
 
@@ -241,11 +242,9 @@ The `@servicestack/cli` provides simple command-line utilities to easily Add and
 
 ## Installation
 
-Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
-
     $ npm install -g @servicestack/cli
 
-This will make the following utilities availble from your command-line which will let you download the Server DTO classes for a remote ServiceStack endpoint in your chosen language which you can use with ServiceStack's generic Service clients to be able to make end-to-end API calls.
+This will make the following utilities available from your command-line which will let you download the Server DTO classes for a remote ServiceStack endpoint in your chosen language which you can use with ServiceStack's generic Service clients to be able to make end-to-end API calls.
 
 <table class="table table-bordered">
     <tr>
@@ -277,6 +276,11 @@ This will make the following utilities availble from your command-line which wil
         <td>swift-ref</td>
         <td></td>
         <td>Swift</td>
+    </tr>
+    <tr>
+        <td>dart-ref</td>
+        <td></td>
+        <td>Dart</td>
     </tr>
     <tr>
         <td>vbnet-ref</td>
@@ -527,11 +531,12 @@ The Add ServiceStack Reference dialog just takes the URL provided and requests t
 #### Language Paths
 
 - `/types/csharp` - C# 
+- `/types/typescript` - TypeScript 
+- `/types/typescript.d` - Ambient TypeScript Definitions
 - `/types/swift` - Swift 
 - `/types/java` - Java 
 - `/types/kotlin` - Kotlin 
-- `/types/typescript` - TypeScript 
-- `/types/typescript.d` - Ambient TypeScript Definitions
+- `/types/dart` - Dart
 - `/types/fsharp` - F# 
 - `/types/vbnet` - VB.NET 
 - `/types/metadata` - Metadata 
