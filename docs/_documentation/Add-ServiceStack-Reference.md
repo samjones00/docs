@@ -11,6 +11,7 @@ Add ServiceStack Reference now supports
 [Kotlin](/kotlin-add-servicestack-reference), 
 [C#](/csharp-add-servicestack-reference), 
 [TypeScript](/typescript-add-servicestack-reference), 
+[Dart](/dart-add-servicestack-reference), 
 [F#](/fsharp-add-servicestack-reference) and 
 [VB.NET](/vbnet-add-servicestack-reference)
 including integration with most leading IDE's to provide a flexible alternative than sharing your DTO assembly with clients. Clients can now easily add a reference to a remote ServiceStack url and update DTOs directly from within VS.NET, Xamarin Studio, Xcode, Android Studio, IntelliJ and Eclipse. We plan on expanding on this foundation into adding seamless, typed, end-to-end integration with other languages - Add a [feature request for your favorite language](http://servicestack.uservoice.com/forums/176786-feature-requests) to prioritize support for it sooner!
@@ -28,6 +29,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
     <td><a href="/swift-add-servicestack-reference">Swift</a></td>
     <td><a href="/java-add-servicestack-reference">Java</a></td>
     <td><a href="/kotlin-add-servicestack-reference">Kotlin</a></td>
+    <td><a href="/dart-add-servicestack-reference">Dart</a></td>
     <td><a href="/fsharp-add-servicestack-reference">F#</a></td>
     <td><a href="/vbnet-add-servicestack-reference">VB.NET</a></td>
 </tr>

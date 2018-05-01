@@ -58,6 +58,7 @@
     - [Swift Add Reference](/swift-add-servicestack-reference)
     - [Java Add Reference](/java-add-servicestack-reference)
     - [Kotlin Add Reference](/kotlin-add-servicestack-reference)
+    - [Dart Add Reference](/dart-add-servicestack-reference)
     - [F# Add Reference](/fsharp-add-servicestack-reference)
     - [VB.NET Add Reference](/vbnet-add-servicestack-reference)
 - ##### Formats

@@ -323,15 +323,17 @@ to override any server defaults.
 
 ```ts
 /* Options:
-Date: 2015-11-21 00:32:00
-Version: 4.048
-BaseUrl: 
+Date: 2018-05-01 08:09:43
+Version: 5.10
+Tip: To override a DTO option, remove "//" prefix before updating
+BaseUrl: https://www.techstacks.io
 
-GlobalNamespace: dtos
+//GlobalNamespace: 
 //MakePropertiesOptional: True
 //AddServiceStackTypes: True
 //AddResponseStatus: False
 //AddImplicitVersion: 
+//AddDescriptionAsComments: True
 //IncludeTypes: 
 //ExcludeTypes: 
 //DefaultImports: 
