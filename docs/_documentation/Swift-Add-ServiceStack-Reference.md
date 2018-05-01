@@ -174,7 +174,7 @@ If your DTOs are grouped into different namespaces they can be all included usin
 IncludeTypes: MyApp.ServiceModel.Admin/*
 ```
 
-This will incllude all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+This will include all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
 
 ### ExcludeTypes
 Is used as a Blacklist where you can specify which types you would like to exclude from being generated:

@@ -679,15 +679,18 @@ class  GetAnswers implements IReturn<GetAnswersResponse>
 
 ### AddImplicitVersion
 
-Lets you specify the Version number to be automatically populated in all Request DTO's sent from the client: 
+Lets you specify the Version number to be automatically populated in all Request DTOs sent from the client: 
 
 ```dart
 class GetAnswers implements IReturn<GetAnswersResponse>
 {
-    Version: number; //1
+    int version = 1;
     ...
 }
 ```
+
+This lets you know what Version of the Service Contract that existing clients are using making it easy 
+to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
 
 ### IncludeTypes
 
@@ -701,8 +704,8 @@ IncludeTypes: GetTechnology,GetTechnologyResponse
 Will only generate `GetTechnology` and `GetTechnologyResponse` DTOs:
 
 ```csharp
-export class class GetTechnology { ... }
-export class class GetTechnologyResponse { ... }
+class class GetTechnology { ... }
+class class GetTechnologyResponse { ... }
 ```
 
 #### Include Request DTO and its dependent types
@@ -725,7 +728,7 @@ If your DTOs are grouped into different namespaces they can be all included usin
 IncludeTypes: MyApp.ServiceModel.Admin/*
 ```
 
-This will incllude all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+This will include all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
 
 ### ExcludeTypes
 Is used as a Blacklist to specify which types you would like excluded from being generated:
@@ -736,5 +739,4 @@ ExcludeTypes: GetTechnology,GetTechnologyResponse
 ```
 
 Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
-This lets you know what Version of the Service Contract that existing clients are using making it easy 
-to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
+

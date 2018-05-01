@@ -423,6 +423,9 @@ interface GetAnswers extends IReturn<GetAnswersResponse>
 }
 ```
 
+This lets you know what Version of the Service Contract that existing clients are using making it easy 
+to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
+
 ### IncludeTypes
 
 Is used as a Whitelist to specify only the types you would like to have code-generated:
@@ -459,7 +462,7 @@ If your DTOs are grouped into different namespaces they can be all included usin
 IncludeTypes: MyApp.ServiceModel.Admin/*
 ```
 
-This will incllude all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+This will include all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
 
 ### ExcludeTypes
 Is used as a Blacklist to specify which types you would like excluded from being generated:
@@ -470,8 +473,6 @@ ExcludeTypes: GetTechnology,GetTechnologyResponse
 ```
 
 Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
-This lets you know what Version of the Service Contract that existing clients are using making it easy 
-to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
 
 ## TypeScript Interface Definitions
 
