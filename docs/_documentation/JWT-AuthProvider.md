@@ -422,6 +422,7 @@ var authResponse = authClient.Post(new Authenticate {
     provider = "credentials",
     UserName = "user",
     Password = "pass",
+    RememberMe = true,
 });
 
 var client = new JsonServiceClient(BaseUrl) {
