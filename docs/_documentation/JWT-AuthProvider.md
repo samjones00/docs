@@ -411,11 +411,41 @@ public override void Configure(Container container)
 }
 ```
 
-With this setup we can Authenticate using any of the supported Auth Providers with our central Auth Server,
-retrieve the generated Token and use it to communicate with any our Microservices configured to 
-validate tokens:
+With this setup we can Authenticate using any of the supported Auth Providers with our central Auth Server, retrieve the generated Token and use it to communicate with any our Microservices configured to validate tokens:
+
+### Retrieve Token with Central Auth Server Issuing Tokens
+
+```csharp
+var authClient = new JsonServiceClient(authBaseUrl);
+
+var authResponse = authClient.Post(new Authenticate {
+    provider = "credentials",
+    UserName = "user",
+    Password = "pass",
+});
+
+var client = new JsonServiceClient(BaseUrl) {
+    BearerToken = authResponse.BearerToken //Send JWT in HTTP Authorization Request Header
+};
+var response = client.Get(new Secured { ... });
+```
+
+Once the ServiceClient is configured it can also optionally be converted to send the JWT Token using the `ss-tok` Cookie instead by [calling `ConvertSessionToToken`](/jwt-authprovider#sending-jwt-with-service-clients), e.g:
+
+```csharp
+
+client.Send(new ConvertSessionToToken());
+
+client.BearerToken = null; // No longer needed as JWT is automatically sent in ss-tok Cookie
+
+var response = client.Get(new Secured { ... });
+```
 
 #### Retrieve Token with API Key 
+
+You can also choose to Authenticate with any AuthProvider and the `Authenticate` Service will return the JWT Token if Authentication was successful. 
+
+The example below uses the JWT Token authenticates with the central Auth Server via its configured [API Key Auth Provider](/api-key-authprovider). If successful the generated JWT can be populated in any of your Service Clients as normal, e.g:
 
 ```csharp
 var authClient = new JsonServiceClient(centralAuthBaseUrl) {
