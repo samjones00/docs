@@ -413,10 +413,10 @@ public override void Configure(Container container)
 
 With this setup we can Authenticate using any of the supported Auth Providers with our central Auth Server, retrieve the generated Token and use it to communicate with any our Microservices configured to validate tokens:
 
-### Retrieve Token with Central Auth Server Issuing Tokens
+### Retrieve Token from Central Auth Server using Credentials Auth
 
 ```csharp
-var authClient = new JsonServiceClient(authBaseUrl);
+var authClient = new JsonServiceClient(centralAuthBaseUrl);
 
 var authResponse = authClient.Post(new Authenticate {
     provider = "credentials",
@@ -441,7 +441,7 @@ client.BearerToken = null; // No longer needed as JWT is automatically sent in s
 var response = client.Get(new Secured { ... });
 ```
 
-#### Retrieve Token with API Key 
+#### Retrieve Token from Central Auth Server using API Key
 
 You can also choose to Authenticate with any AuthProvider and the `Authenticate` Service will return the JWT Token if Authentication was successful. 
 
