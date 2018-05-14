@@ -48,8 +48,8 @@
     - [JavaScript Client](/javascript-client)
     - [Java Client](/java-add-servicestack-reference#jsonserviceclient-api)
     - [Swift Client](/swift-add-servicestack-reference#swift-client-usage)
+    - [Dart Client](/dart-add-servicestack-reference#example-usage)
     - [Silverlight Client](/silverlight-client)
-    - [Dart Client](/dart-client)
     - [MQ Clients](/messaging#mq-client-architecture)
 - ##### Add ServiceStack Reference
     - [Overview](/add-servicestack-reference)
@@ -87,6 +87,7 @@
     - [Self-hosting](/self-hosting)
 - ##### MQ Messaging
     - [Overview](/messaging)
+    - [Background MQ](/background-mq)
     - [Rabbit MQ](/rabbit-mq)
     - [Redis MQ](/redis-mq)
     - [Amazon SQS MQ](/amazon-sqs-mq)
@@ -97,6 +98,7 @@
     - [.NET Core Clients](/netcore-clients)
     - [.NET Core Redis](/netcore-redis)
     - [Deploy .NET Core Apps to AWS ECS](/deploy-netcore-docker-aws-ecs)
+    - [Deploy .NET Core Apps using rsync](/netcore-deploy-rsync)
 - ##### Security
     - [Overview](/security)
     - [Authentication & Authorization](/authentication-and-authorization)
