@@ -7,7 +7,9 @@ The **recommended** way to get Silverlight builds of ServiceStack client librari
 
 [![ServiceStack Silverlight Client on NuGet](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/nuget-servicestack.client.silverlight.png)](https://nuget.org/packages/ServiceStack.Client)
 
-These binaries are custom builds of the full ServiceStack Service Clients providing JSON, JSV and XML ServiceClients.
+These binaries are custom builds of the full ServiceStack Service Clients providing JSON, JSV and XML ServiceClients. 
+
+#### Requires PCL support in v4.x [ServiceStack.Client](https://nuget.org/packages/ServiceStack.Client) NuGet package.
 
 > Note: Due to restrictions in Silverlight only the Async operations are supported.
 
