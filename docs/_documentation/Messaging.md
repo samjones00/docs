@@ -9,11 +9,11 @@ ServiceStack provides a [high-level Messaging API](https://github.com/ServiceSta
 
 There are currently 5 supported MQ Server options:
 
+  - [Background MQ Service](/background-mq)
   - [Rabbit MQ Server](/rabbit-mq)
   - [Redis MQ Server](/redis-mq)
   - [Amazon SQS MQ Server](/amazon-sqs-mq)
   - [Azure Service Bus MQ](/azure-service-bus-mq)
-  - [InMemory MQ Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Messaging/InMemoryTransientMessageService.cs)
 
 Like other ServiceStack providers, all MQ Servers are interchangeable, visible in the shared MQ Server tests below:
 
