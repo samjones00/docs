@@ -189,6 +189,24 @@ public override void Configure(Container container)
 }
 ```
 
+### Call Internal and External Services from URLs
+
+The `Metadata.CreateRequestFromUrl()` API lets you create Request DTOs from absolute or relative URLs. This is useful if you need a generic routine to be able to execute a number of different Services from a collection or URL's, e.g:
+
+```csharp
+var processUrls = new []{ "https://example.org/invoices/generate?userId=1", "/assets/1/generate" };
+foreach (var url in processUrls) 
+{
+    var request = HostContext.Metadata.CreateRequestFromUrl(url);
+    var responseType = HostContext.Metadata.GetResponseTypeByRequest(request.GetType());
+    var response = HostContext.AppHost.GetServiceGateway().Send(responseType, request);
+
+    db.Insert(new Task { Url = url, Response = response.ToJson(), Completed = DateTime.UtcNow });
+}
+```
+
+The Service Gateway provides an optimal way for executing Services where it will transparently execute local requests in process or external requests remotely using either the configured [Service Gateway](#substitutable-service-gateways) or [Service Discovery Solution](/service-discovery).
+
 ## [Service Discovery](/service-discovery)
 
 This demonstrates the underpinnings by which we can plug into and intercept all intra-Service calls and apply our own high-level custom logic which sets the foundation for other value-added functionality like [Service Discovery](/service-discovery) which can transparently route service calls to the most appropriate available remote endpoint at run-time, automatically without additional configuration or code-maintenance overhead.
