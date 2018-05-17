@@ -81,11 +81,26 @@ Plugins.Add(new AuthFeature(() => new CustomUserSession(), ...));
 Inheriting from the AuthUserSession also lets you add custom logic for different events in the User Session life-cycle:
 
 ```csharp
+// Fired when a new Session is created
 virtual void OnCreated(IRequest httpReq) {}
+
+// Called after new sessions are hydrated, can be used to populate session with more info at runtime
+public virtual void OnLoad(IRequest httpReq) {}
+
+// Called when the user is registered or on the first OAuth login
 virtual void OnRegistered(IServiceBase registrationService) {}
+
+// Called after the user has successfully authenticated
 virtual void OnAuthenticated(IServiceBase authService, IAuthSession session, 
     IAuthTokens tokens, Dictionary<string, string> authInfo) {}
+
+// Fired before the session is removed after the /auth/logout Service is called
 virtual void OnLogout(IServiceBase authService) {}
+
+// Override with Custom Validation logic to Assert if User is allowed to Authenticate. 
+// Returning a non-null response invalidates Authentication with IHttpResult response returned to client.
+IHttpResult Validate(IServiceBase authService, IAuthSession session, 
+    IAuthTokens tokens, Dictionary<string, string> authInfo);
 ```
 
 ### Auth Events
