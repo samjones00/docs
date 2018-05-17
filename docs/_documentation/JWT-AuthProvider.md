@@ -813,6 +813,24 @@ The following `JwtAuthProvider` properties can be overridden by `IRuntimeAppSett
  - `List<byte[]>` FallbackAuthKeys
  - `List<RSAParameters>` FallbackPublicKeys
 
+### Multiple Audiences
+
+With the JWT support for issuing and validating JWT's with multiple audiences, you could for example configure the JWT Auth Provider to issue tokens allowing users to access **search** and **analytics** system functions by configuring its `Audiences` property: 
+
+```csharp
+new JwtAuthProvider {
+    Audiences = { "search", "analytics" }
+}
+```
+
+This will include both audiences in new JWT's as a JSON Array (if only 1 audience was configured it will continue to be embedded as a string).
+
+When validating a JWT with multiple audiences it only needs to match a single Audience configured with the `JwtAuthProvider`, e.g given the above configuration users that authenticate with a JWT containing:
+
+    JWT[aud] = null           //= Valid: No Audience specified
+    JWT[aud] = admin          //= NOT Valid: Wrong Audience specified
+    JWT[aud] = [search,admin] //= Valid: Partial Audience match
+
 ## Adhoc JWT APIs
 
 You can retrieve the JWT Token string from the current `IRequest` with:
@@ -869,6 +887,25 @@ client.SetTokenCookie(jwtToken);
 
 var response = client.Get(new Secured { ... });
 ```
+
+### Validating JWT Manually
+
+The `IsValidJwt()` and `GetValidJwtPayload()` APIs lets you validate and inspect the contents of a JWT stand-alone, i.e. outside the context of a Request. Given an invalid `expiredJwt` and a `validJwt` you can test the validity and inspect the contents of each with:
+
+```csharp
+var jwtProvider = AuthenticateService.GetJwtAuthProvider();
+
+jwtProvider.IsValidJwt(expiredJwt);          //= false
+jwtProvider.GetValidJwtPayload(expiredJwt);  //= null
+
+
+jwtProvider.IsValidJwt(validJwt);            //= true
+JsonObject payload = jwtProvider.GetValidJwtPayload(validJwt);
+
+var userId = payload["sub"];
+```
+
+For cases where you don't have access to HTTP Client Cookies you can use the new opt-in `IncludeJwtInConvertSessionToTokenResponse` option on `JwtAuthProvider` to include JWTs in `ConvertSession` Service Responses which are otherwise only available in the `ss-tok` Cookie. 
 
 ## JWT Configuration
 
