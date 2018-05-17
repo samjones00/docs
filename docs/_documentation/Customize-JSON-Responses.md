@@ -167,3 +167,44 @@ using (JsConfig.CreateScope("EmitLowercaseUnderscoreNames,ExcludeDefaultValues,d
 
 If you don't wish for consumers to be able to customize JSON responses this feature can be disabled with 
 `Config.AllowJsConfig=false`.
+
+### Accept arbitrary JavaScript or JSON Objects
+
+Whilst we recommend creating well-defined, Typed Service Contracts for your Services, there are rare situations where you'd want to be able to accept an arbitrary JSON payload, an example of this is with integration hooks with a 3rd party provider that calls back into your Service with a custom JSON payload, e.g:
+
+```csharp
+[Route("/callback")]
+public class Callback : IReturn<CallbackResponse>
+{
+    public object Payload { get; set; }
+}
+```
+
+ServiceStack `object` properties are now deserialized using ServiceStack Templates [JS Utils](/js-utils) which can parse any JavaScript or JSON data structure. So if a POST callback was sent to the above service containing: 
+
+```
+POST /callback
+
+{"payload": {"id":1,"name":"foo", "List": [{"id":2,"name":"bar"}], "Dictionary": {"key":{"id":3,"name":"bax"}} }}
+```
+
+It will parsed into the appropriate .NET Types and generic collections which can be accessed with:
+
+```csharp
+public object Any(Callback request)
+{
+    var payload = request.Object as Dictionary<string,object>;
+    var id = payload["id"];                             //= 1
+    var name = payload["name"];                         //= foo
+    var list = payload["List"] as List<object>;
+    var firstListItem = list[0] as Dictionary<string, object>;
+    var firstListName = firstListItem["name"];          //= bar
+    var dictionary = payload["Dictionary"] as Dictionary<string, object>;
+    var dictionaryValue = dictionary["Key"] as Dictionary<string, object>;
+    var dictionaryValueName = dictionaryValue["name"];  //= baz
+}
+```
+
+As it's using [JS Utils](/js-utils) it can also accept JavaScript object literal syntax, e.g: `{ payload: { id: 1 } }`.
+
+Whilst this feature enables some flexibility by effectively poking a hole in your Service Contract as a placeholder for any arbitrary JS data structure, we still recommend only using `object` properties sparingly when it's needed as it only works with JSON/JSV Services, can't be documented in Metadata Services and isn't supported in most [Add ServiceStack Reference](/add-servicestack-reference) languages.
