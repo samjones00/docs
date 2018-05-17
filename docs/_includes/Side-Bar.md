@@ -22,6 +22,8 @@
     - [Empty Starting Templates](/templates-empty-starting)
     - [ASP.NET Core on .NET Framework](/templates-corefx)
     - [Desktop Templates](/templates-desktop)
+    - [Vuetify Templates](/templates-vuetify)
+    - [Nuxt Templates](/templates-nuxt)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
@@ -82,6 +84,9 @@
     - [API Pages](http://templates.servicestack.net/docs/api-pages)
     - [Web Apps](http://templates.servicestack.net/docs/web-apps)
     - [ServiceStack Filters](http://templates.servicestack.net/docs/servicestack-filters)
+- ##### JavaScript Web Apps
+    - [Vue Components](/vue-components)
+    - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - ##### Hosts
     - [IIS](/iis)
     - [Self-hosting](/self-hosting)
@@ -136,7 +141,6 @@
     - [Reflection Utils](/reflection-utils)
     - [JS Utils](/js-utils)
     - [Simple IOC](/simple-ioc)
-    - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - ##### Caching
     - [Overview](/caching)
     - [HTTP Caching](/http-caching)

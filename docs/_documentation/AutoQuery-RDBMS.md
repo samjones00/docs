@@ -920,7 +920,79 @@ Plugins.Add(new AutoQueryFeature {
 
 #### Aggregate Query Performance
 
-AutoQuery combineds all other aggregate functions like `Total` and executes them in the same a single query for optimal performance.
+AutoQuery combines all other aggregate functions like `Total` and executes them in the same a single query for optimal performance.
+
+### Hybrid AutoQuery Services
+
+AutoQuery Services can be easily enhanced by creating a custom Service implementation that modifies the `SqlExpression` Query that AutoQuery auto populates from the incoming request. In addition to using OrmLite's typed API to perform standard DB queries you can also take advantage of advanced RDBMS features with custom SQL fragments. As an example we'll look at the implementation of [techstacks.io](https://github.com/NetCoreApps/TechStacks) fundamental 
+[QueryPosts Service](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks.ServiceInterface/PostPublicServices.cs) 
+which powers every Post feed in TechStacks where its custom implementation inherits all queryable functionality of its `QueryDb<Post>` AutoQuery Service and adds high-level functionality for `AnyTechnologyIds` and `Is` custom high-level properties that's used to query multiple columns behind-the-scenes.
+
+In addition to inheriting all default Querying functionality in a `QueryDb<Post>` AutoQuery Service, the custom implementation also:
+
+ - Prevents returning any `Deleted` Posts
+ - Prevents returning any posts with a `closed` status unless the query specifically targets a closed label or status
+ - Avoids any table joins by using PostgreSQL advanced Array data type for querying post `string` **labels** or `int` **technology ids**
+ - Uses `AnyTechnologyIds` to return any posts in **an Organization linked to** or **tagged with** the specified technologies
+
+```csharp
+[Route("/posts", "GET")]
+public class QueryPosts : QueryDb<Post>
+{
+    // Handled by AutoQuery
+    public int[] Ids { get; set; }
+    public int? OrganizationId { get; set; }
+    public int[] OrganizationIds { get; set; }
+    public string[] Types { get; set; }
+
+    // Handled by Custom Implementation
+    public int[] AnyTechnologyIds { get; set; }
+    public string[] Is { get; set; }
+}
+
+[CacheResponse(Duration = 600)]
+public class PostPublicServices : PostServicesBase
+{
+    public IAutoQueryDb AutoQuery { get; set; }
+
+    public object Any(QueryPosts request)
+    {
+        var q = AutoQuery.CreateQuery(request, Request.GetRequestParams()); //Populated SqlExpression
+        q.Where(x => x.Deleted == null);
+        
+        var states = request.Is ?? TypeConstants.EmptyStringArray;
+        if (states.Contains("closed") || states.Contains("completed") || states.Contains("declined"))
+            q.And(x => x.Status == "closed");
+        else
+            q.And(x => x.Hidden == null && (x.Status == null || x.Status != "closed"));
+
+        if (states.Length > 0)
+        {
+            var labelSlugs = states.Where(x => x != "closed" && x != "open")
+                .Map(x => x.GenerateSlug());
+            if (labelSlugs.Count > 0)
+                q.And($"ARRAY[{new SqlInValues(labelSlugs).ToSqlInString()}] && labels");
+        }
+
+        if (!request.AnyTechnologyIds.IsEmpty())
+        {
+            var techIds = request.AnyTechnologyIds.Join(",");
+            var orgIds = request.AnyTechnologyIds.Map(id => GetOrganizationByTechnologyId(Db, id))
+                .Where(x => x != null)
+                .Select(x => x.Id)
+                .Join(",");
+            if (string.IsNullOrEmpty(orgIds))
+                orgIds = "NULL";
+
+            q.And($"(ARRAY[{techIds}] && technology_ids OR organization_id in ({orgIds}))");
+        }
+
+        return AutoQuery.Execute(request, q);
+    }
+}
+```
+
+The above implementation also caches all `QueryPosts` responses as a result of being defined in a Service annotated with [`[CacheResponse]` attribute](/cacheresponse-attribute).
 
 ### AutoQuery Response Filters
 
