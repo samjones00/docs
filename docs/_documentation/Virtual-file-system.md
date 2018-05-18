@@ -5,7 +5,7 @@ title: Virtual File System
 
 In order to access physical files in view engines from multiple sources, ServiceStack includes its own pluggable virtual file system API that lets it support multiple filesystem backends. 
 
-The virtual file system (VFS) is what allows ServiceStack to support view engines in a standard ASP.NET websites (e.g. serving directories from the root directory) as well in self-hosting stand-alone HttpListener websites and Windows Services serving from the output `/bin` directory as well as embedded resources inside .dlls, [in memory filesystems](/html-css-and-javascript-minification#minify-static-js-css-and-html-files) populated at runtime, [remote datastores like AWS S3](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualpathprovider), or in a [remote Azure Blob Storage](https://github.com/ServiceStack/ServiceStack.Azure) or any combination of either.
+The virtual file system (VFS) is what allows ServiceStack to support view engines in a standard ASP.NET websites (e.g. serving directories from the root directory) as well in self-hosting stand-alone HttpListener websites and Windows Services serving from the output `/bin` directory as well as embedded resources inside .dlls, [in memory filesystems](/html-css-and-javascript-minification#minify-static-js-css-and-html-files) populated at runtime, [remote datastores like AWS S3](https://github.com/ServiceStack/ServiceStack.Aws#S3VirtualFiles), or in a [remote Azure Blob Storage](https://github.com/ServiceStack/ServiceStack.Azure) or any combination of either.
 
 ## Virtual File Systems Available
 
@@ -56,18 +56,51 @@ This will let you access File System Resources under the custom `/img` and `/doc
  - http://host/img/the-image.jpg
  - http://host/docs/word.doc
 
-### Registering additional Virtual Path Providers
+### Register additional Virtual File Sources in a Plugin
 
-An easy way to register additional VirtualPath Providers in ServiceStack is to override the `GetVirtualFileSources()` method in your AppHost where you can add, remove, or re-order existing providers to change their priority. E.g. we can use this to provide an elegant solution for minifying static `.html`, `.css` and `.js` resources by simply pre-loading a new **InMemory Virtual FileSystem** with minified versions of existing files and giving the Memory FS a higher precedence so any matching requests serve up the minified version first with:
+As plugins can't override methods in your AppHost, plugins will need to register any additional Virtual File Sources in the AppHost's `AddVirtualFileSources` List. As Virtual File Sources are initialized before plugins are registered your plugin will need to implement `IPreInitPlugin` so any VFS sources are registered in its `Configure()` method, e.g:
+
+```csharp
+public class Disk1Plugin : IPlugin, IPreInitPlugin
+{
+    public void Configure(IAppHost appHost)
+    {
+        appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk1", appHost.MapProjectPath("~/App_Data/mount/hdd")));
+        appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk2", "d:\\hdd"));
+    }
+
+    public void Register(IAppHost appHost) {}
+}
+```
+
+If needed you can use the `MapProjectPath()` API to resolve a physical file path from your projects ContentPath folder. 
+
+Then you can register the plugin with your AppHost as normal, e.g:
+
+```csharp
+public override void Configure(Container container)
+{
+    Plugins.Add(new Disk1Plugin());
+}
+```
+
+Where your AppHost will serve static files from your plugin's registered path mappings, e.g:
+
+    /disk1/file.html -> /path/to/project/App_Data/mount/hdd/file.html
+    /disk2/file.html -> d:\hdd\file.html
+
+### Register additional Virtual File Sources 
+
+Another easy way to register additional Virtual Path Providers in ServiceStack is to override the `GetVirtualFileSources()` method in your AppHost where you can add, remove, or re-order existing providers to change their priority. E.g. we can use this to provide an elegant solution for minifying static `.html`, `.css` and `.js` resources by simply pre-loading a new **Memory Virtual FileSystem** with minified versions of existing files and giving the Memory FS a higher precedence so any matching requests serve up the minified version first with:
 
 ```csharp
 public override List<IVirtualPathProvider> GetVirtualFileSources()
 {
     var existingProviders = base.GetVirtualFileSources();
-    var memFs = new InMemoryVirtualPathProvider(this);
+    var memFs = new MemoryVirtualFiles();
 
     //Get FileSystem Provider
-    var fs = existingProviders.First(x => x is FileSystemVirtualPathProvider);
+    var fs = existingProviders.First(x => x is FileSystemVirtualFiles);
 
     //Process all .html files:
     foreach (var file in fs.GetAllMatchingFiles("*.html"))
@@ -113,14 +146,14 @@ public override List<IVirtualPathProvider> GetVirtualFileSources()
 You can also globally replace the VFS used by setting it in your AppHost, e.g. If you only want to use an InMemory File System:
 
 ```csharp
-base.VirtualPathProvider = new InMemoryVirtualPathProvider(this);
+base.VirtualPathProvider = new MemoryVirtualFiles(this);
 ```
 
 Fine-grained control on which VFS to use can also be specified on any [Plugins](/plugins) requiring access to the FileSystem like ServiceStack's built-in HTML ViewEngines, here's how you could override the VFS used in ServiceStack's Razors support:
 
 ```csharp
 Plugins.Add(new RazorFormat { 
-  VirtualPathProvider = new InMemoryVirtualPathProvider(this) 
+  VirtualPathProvider = new MemoryVirtualFiles(this) 
 });
 ```
 
@@ -174,9 +207,9 @@ public interface IVirtualFiles : IVirtualPathProvider
 
 The new `IVirtualFiles` API is available in local FileSystem, In Memory and S3 Virtual path providers:
 
- - FileSystemVirtualPathProvider
- - InMemoryVirtualPathProvider
- - S3VirtualPathProvider
+ - FileSystemVirtualFiles
+ - MemoryVirtualFiles
+ - S3VirtualFiles
 
 All `IVirtualFiles` providers share the same 
 [VirtualPathProviderTests](https://github.com/ServiceStack/ServiceStack.Aws/blob/master/tests/ServiceStack.Aws.Tests/S3/VirtualPathProviderTests.cs)
