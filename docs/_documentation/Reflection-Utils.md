@@ -107,6 +107,76 @@ tuple.s //= bar
 tuple.i //= 2
 ```
 
+### Convert into different Types
+
+Underlying [ServiceStack's AutoMapping support](/auto-mapping) is the `object.ConvertTo<T>` extension method which is able to convert any Type into a different Type, e.g:
+
+```csharp
+double two = "2".ConvertTo<double>();
+```
+
+It's a highly versatile feature were its able to co-erce into different types as expected, e.g. strings into Value and serialized complex Reference Types, between different number types, between different C# collections, etc.
+
+### Call any method dynamically
+
+One of the features in [ServiceStack Templates](http://templates.servicestack.net) is being able to call any .NET method dynamically with unknown types at runtime which it does using the `MethodInfo.GetInvoker()` extension method which returns a cached compiled delegate that's able to genericize access to any .NET method by transforming `MethodInfo` into the `MethodInvoker` delegate signature below:
+
+```csharp
+public delegate object MethodInvoker(object instance, params object[] args);
+```
+
+As an example lets call the simple method below dynamically:
+
+```csharp
+class TransformDouble
+{
+    public double Target { get; }
+    public TransformDouble(double target) => Target = target;
+
+    public double Add(double value) => Target + value;
+}
+```
+
+First use Reflection to resolve the `Add` method then call the `GetInvoker()` extension method to resolve a cached `MethodInvoker` delegate:
+
+```csharp
+var method = typeof(TransformDouble).GetMethod("Add");
+var add = method.GetInvoker();
+```
+
+Now we're able to to call the `add` method on any `TransformDouble` instance, e.g:
+
+```csharp
+object instance = new TransformDouble(1.0);
+
+add(instance, 2.0) //= 3.0
+```
+
+If the argument types the method signature it calls the method directly, otherwise it calls `ConvertTo<T>` above to transform the parameter into the method argument type. So we can call the same `add` invoker with an `int` or a `string` argument and it will return the same value despite the method only being defined to accept a `double`, e.g:
+
+```csharp
+invoker(instance, 2)   //= 3.0
+invoker(instance, "2") //= 3.0
+```
+
+### Call any constructor dynamically
+
+In a similar way of how we can genericize any method we can also genericize any Constructor in the same way using the `ConstructorInfo.GetActivator()` extension method which returns a cached compiled delegate for any object constructor, e.g:
+
+```csharp
+var ctor = typeof(TransformDouble).GetConstructors()[0];
+var activator = ctor.GetActivator();
+```
+
+Likewise we can use the `activator` to create new instances of `TransformDouble` with different runtime types, e.g:
+
+```csharp
+((TransformDouble)acivator(1.0)).Target //= 1.0
+
+((TransformDouble)acivator(1)).Target   //= 1.0
+((TransformDouble)acivator("1")).Target //= 1.0
+```
+
 ### Converting Instances from an Object Dictionary
 
 The `ToObjectDictionary` and `FromObjectDictionary` extension methods lets you convert instances into a loosely-typed Object Dictionary where it can be dynamically accessed and manipulated before being used to create and populate an instance of any type, e.g:

@@ -179,13 +179,16 @@ abstracts the rest of the API away so you're only tasked with returning the appr
 the specified Request DTO. 
 
 Capturing the current `IRequest` makes the Gateway factory instance non-suitable to use as a singleton, 
-so we'll need to register it with a `ReuseScope.None` scope so a new instance is resolved each time:
+so we'll need to register it with `AddTransient` or `ReuseScope.None` scope so a new instance is resolved each time:
 
 ```csharp
 public override void Configure(Container container)
 {
-    container.Register<IServiceGatewayFactory>(x => new CustomServiceGatewayFactory())
-        .ReusedWithin(ReuseScope.None);
+    container.AddTransient<IServiceGatewayFactory>(() => new CustomServiceGatewayFactory());
+    
+// Equivalent to:
+//    container.Register<IServiceGatewayFactory>(x => new CustomServiceGatewayFactory())
+//        .ReusedWithin(ReuseScope.None);
 }
 ```
 
