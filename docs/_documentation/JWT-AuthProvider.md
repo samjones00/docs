@@ -848,7 +848,7 @@ var userSession = JwtAuthProviderReader.CreateSessionFromJwt(base.Request);
 Which is essentially a shorthand for:
  
 ```csharp
-var jwtProvider = (JwtAuthProviderReader)AuthenticateService.GetAuthProvider("jwt");
+var jwtProvider = AuthenticateService.GetJwtAuthProvider();
 var userSession = jwtProvider.ConvertJwtToSession(base.Request, req.GetJwtToken());
 ```
 
