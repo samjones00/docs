@@ -78,6 +78,14 @@ All Sync and Async Filter Attributes follow the same [Order of Operations](/orde
 
 Filter attributes annotated on methods are always executed immediately before or after the Service, i.e. the Priority is only scoped and sorted between other method-level attributes.
 
+```csharp
+public class MyServices : Service
+{
+    [CustomRequestFilter]
+    public object Any(Request request) => ...;
+}
+```
+
 ## Filter Attributes Example
 
 The method signatures for Filter Attributes are the same as Global Request/Response Filters with the `IRequest`, `IResponse` and Request or Response DTO. Filter attributes can change the DTO, the http response (e.g status code) or look for a specific header in the http request. You can also attach any data to this request via the `IHttpRequest.Items` dictionary which all subsequent filters and services can access.
