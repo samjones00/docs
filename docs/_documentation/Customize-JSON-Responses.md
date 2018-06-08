@@ -207,4 +207,6 @@ public object Any(Callback request)
 
 As it's using [JS Utils](/js-utils) it can also accept JavaScript object literal syntax, e.g: `{ payload: { id: 1 } }`.
 
+#### Avoid unknown Types in ServiceContracts
+
 Whilst this feature enables some flexibility by effectively poking a hole in your Service Contract as a placeholder for any arbitrary JS data structure, we still recommend only using `object` properties sparingly when it's needed as it only works with JSON/JSV Services, can't be documented in Metadata Services and isn't supported in most [Add ServiceStack Reference](/add-servicestack-reference) languages.
