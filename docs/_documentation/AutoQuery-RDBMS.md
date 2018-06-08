@@ -283,7 +283,7 @@ public class QueryRockstars : QueryDb<Rockstar>
                 Field="FirstName")]
     public string[] FirstNameBetween { get; set; }
 
-    [QueryDbField(Type = QueryTerm.Or)]
+    [QueryDbField(Term = QueryTerm.Or)]
     public string LastName { get; set; }
 }
 ```
