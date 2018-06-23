@@ -156,8 +156,46 @@ The Authentication module allows you to use your own persistence back-ends but f
   - **Marten**: `MartenAuthRepository` in [ServiceStack.Authentication.Marten](https://www.nuget.org/packages/ServiceStack.Authentication.Marten) - [GitHub project](https://github.com/migajek/ServiceStack.Authentication.Marten)
   - **LiteDB**: `LiteDBAuthRepository` in [ServiceStack.Authentication.LiteDB](https://github.com/CaveBirdLabs/ServiceStack.Authentication.LiteDB)
 
-Use the OrmLite adapter if you want to store the Users Authentication information in any of the RDBMS's that 
-[OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) supports. 
+#### Registering an Auth Repository
+
+The `OrmLiteAuthRepository` is the most common Auth Repository which will let you persist User Info in any of the [RDBMS's that OrmLite supports](https://github.com/ServiceStack/ServiceStack.OrmLite#8-flavours-of-ormlite-is-on-nuget). All Auth Repositories are registered by adding a `IAuthRepository` dependency in your IOC, e.g:
+
+```csharp
+container.Register<IDbConnectionFactory>(c =>
+    new OrmLiteConnectionFactory(connectionString, SqlServer2012Dialect.Provider));
+
+container.Register<IAuthRepository>(c =>
+    new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>()));
+
+container.Resolve<IAuthRepository>().InitSchema();
+```
+
+Calling `InitSchema()` will create the necessary RDBMS `UserAuth` and `UserAuthDetails` tables if they don't already exist. By default the Users Roles and Permissions are blobbed on the `UserAuth` table, but if preferred they can optionally be maintained in a separate `UserAuthRole` table with:
+
+```csharp
+container.Register<IAuthRepository>(c =>
+    new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>()) {
+        UseDistinctRoleTables = true
+    });
+```
+
+#### Extending UserAuth tables
+
+There are a number of [different extensibility options](https://stackoverflow.com/a/11118747/85785) for extending ServiceStack Authentication by linking to external tables with its `RefId` and `RefIdStr` fields or storing custom info in the `Meta` Dictionaries. 
+
+Some Auth Repositories like OrmLite also supports utilizing custom `UserAuth` tables with extended fields which can be configured using its generic Constructor, e.g:
+
+```csharp
+public class MyUserAuth : UserAuth { .... }
+public class MyUserAuthDetails : UserAuthDetails { .... }
+```
+
+```csharp
+container.Register<IAuthRepository>(c =>
+    new OrmLiteAuthRepository<MyUserAuth, MyUserAuthDetails>(c.Resolve<IDbConnectionFactory>()) {
+        UseDistinctRoleTables = true
+    });
+```
 
 ### Session Persistence
 
