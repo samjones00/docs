@@ -310,6 +310,45 @@ new AuthFeature = {
 };
 ```
 
+### Assigning Roles and Permissions
+
+Super Users with the **Admin** role or Requests with an [AdminAuthSecret](/debugging#authsecret) can call the built-in `/assignroles` and `/unassignroles` Services to add Roles/Permissions to existing users from an external Request, e.g:
+
+```csharp
+var client = new JsonServiceClient(baseUrl);
+var response = client.Post(new AssignRoles
+{
+    UserName = userName,
+    Roles = new List<string> { "TheRole" },
+    Permissions = new List<string> { "ThePermission" }
+});
+```
+
+Inside ServiceStack you can use the `AssignRoles` API to add Roles and Permissions to an existing User:
+
+```csharp
+var userAuth = base.AuthRepository.GetUserAuthByUserName(userName);
+if (userAuth == null)
+    throw HttpError.NotFound(userName);
+
+base.AuthRepository.AssignRoles(userAuth, new List<string> { "TheRole" }, new List<string> { "ThePermission" });
+```
+
+Alternatively you can add Roles when creating a new User with:
+
+```csharp
+base.AuthRepository.CreateUserAuth(new UserAuth
+{
+    UserName = userName,
+    FirstName = "John",
+    LastName = "Doe",
+    DisplayName = "John Doe",
+    Roles = new List<string>() { "TheRole" }
+}, userPassword);
+```
+
+> You can use `HostContext.AppHost.GetAuthRepository(Request)` to access the registered `IAuthRepository` outside of a ServiceStack Service.
+
 ## Auth Provider Routes
 
 The `AuthService` is registered at paths `/auth` and `/auth/{provider}` where the Provider maps to the `IAuthProvider.Provider` property of the registered AuthProviders. The urls for clients authenticating against the built-in AuthProviders are:
