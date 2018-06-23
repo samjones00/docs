@@ -331,7 +331,7 @@ var userAuth = base.AuthRepository.GetUserAuthByUserName(userName);
 if (userAuth == null)
     throw HttpError.NotFound(userName);
 
-base.AuthRepository.AssignRoles(userAuth, new List<string> { "TheRole" }, new List<string> { "ThePermission" });
+base.AuthRepository.AssignRoles(userAuth, new [] { "TheRole" }, new [] { "ThePermission" });
 ```
 
 Alternatively you can add Roles when creating a new User with:
@@ -343,7 +343,7 @@ base.AuthRepository.CreateUserAuth(new UserAuth
     FirstName = "John",
     LastName = "Doe",
     DisplayName = "John Doe",
-    Roles = new List<string>() { "TheRole" }
+    Roles = new List<string> { "TheRole" }
 }, userPassword);
 ```
 
