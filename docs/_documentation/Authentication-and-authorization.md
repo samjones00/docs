@@ -245,7 +245,7 @@ To illustrate Authentication integration with ServiceStack, see the authenticati
   - [HttpBenchmarks Application](https://github.com/ServiceStackApps/HttpBenchmarks)
     - [Step-by-Step Authentication Guide](https://github.com/ServiceStackApps/HttpBenchmarks#authentication)
     - Twitter, Facebook, Google, LinkedIn and Credentials Auth
-  - [TechStacks](https://github.com/ServiceStackApps/TechStacks)
+  - [Angular TechStacks](https://github.com/ServiceStackApps/TechStacks)
     - Twitter, GitHub and JWT Auth
   - [Gistlyn](https://github.com/ServiceStack/Gistlyn)
     - GitHub and JWT Auth
