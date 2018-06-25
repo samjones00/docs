@@ -240,17 +240,41 @@ ServiceStack's Authentication, Caching and Session providers are completely new,
 To illustrate Authentication integration with ServiceStack, see the authentication-enabled 
 [Live Demos](https://github.com/ServiceStackApps/LiveDemos) below:
 
+### .NET Framework
+
   - [HttpBenchmarks Application](https://github.com/ServiceStackApps/HttpBenchmarks)
     - [Step-by-Step Authentication Guide](https://github.com/ServiceStackApps/HttpBenchmarks#authentication)
     - Twitter, Facebook, Google, LinkedIn and Credentials Auth
+  - [TechStacks](https://github.com/ServiceStackApps/TechStacks)
+    - Twitter, GitHub and JWT Auth
+  - [Gistlyn](https://github.com/ServiceStack/Gistlyn)
+    - GitHub and JWT Auth
   - [AWS Auth](http://awsapps.servicestack.net/awsauth/) 
     - Twitter, Facebook, GitHub, Google, Yahoo, LinkedIn, and Credentials Auth
   - [MVC and WebForms Example](/servicestack-integration) 
     - Twitter, Facebook, GitHub, Google, Yahoo, LinkedIn, VK, Credentials and Windows Auth
   - [Chat](https://github.com/ServiceStackApps/LiveDemos#chat)
-    - Twitter and GitHub OAuth
+    - Twitter, Facebook and GitHub Auth
+  - [React Chat](https://github.com/ServiceStackApps/ReactChat)
+    - Twitter, Facebook and GitHub Auth
   - [SocialBootstrap Api](https://github.com/ServiceStackApps/LiveDemos#social-bootstrap-api)
     - Twitter, Facebook, Yahoo and Credentials Auth
+
+### .NET Core
+
+  - [New TechStacks](https://github.com/NetCoreApps/TechStacks)
+    - GitHub, Twitter and JWT Auth
+  - [SimpleAuth.Mvc](https://github.com/NetCoreApps/SimpleAuth.Mvc)
+    - Twitter, Facebook, GitHub, VK, Yandex and Credentials Auth
+  - [Chat](https://github.com/NetCoreApps/Chat)
+    - Twitter, Facebook and GitHub Auth
+
+### Mobile
+
+  - [Android Java Chat](https://github.com/ServiceStackApps/AndroidJavaChat)
+    - Facebook, Twitter and Google Auth
+  - [Android Xamarin Chat](https://github.com/ServiceStackApps/AndroidXamarinChat)
+    - Twitter Auth
 
 ## Custom authentication and authorization
 
