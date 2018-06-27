@@ -26,7 +26,7 @@ slug: community-resources
   - [Message based architectures empower polyglot developers](http://www.layoric.org/2015/10/message-based-architectures-empower.html) by [@layoric](https://twitter.com/layoric)
   - [How to send push notifications to mobile devices with ServiceStack and PushSharp](https://alistefano.wordpress.com/2015/10/02/how-to-send-push-notifications-to-mobile-devices-with-servicestack-and-pushsharp/) by [@DistefanoAlex](https://twitter.com/DistefanoAlex)
   - [Synchronizing Redis local caches for distributed multi-subscriber scenarios](http://toreaurstad.blogspot.no/2015/09/synchronizing-redis-local-caches-for.html) by [@Tore_Aurstad](https://twitter.com/Tore_Aurstad)
-  - [Creating A Simple Service Using ServiceStack](http://shashijeevan.net/2015/09/20/creating-a-simple-service-using-servicestack/) by [Shashi Jeevan](http://shashijeevan.net/author/shashijeevan/)
+  - [Creating A Simple Service Using ServiceStack](https://shashijeevan.com/creating-simple-service-using-servicestack/) by [Shashi Jeevan](https://shashijeevan.com/author/shashijeevan/)
   - [Azure Active Directory Authentication plugin for ServiceStack](https://github.com/jfoshee/ServiceStack.Authentication.Aad) by [@82unpluggd](https://twitter.com/82unpluggd)
   - [ServiceStack.Redis C# client demo](http://toreaurstad.blogspot.no/2015/09/servicestackredis-c-client-demo.html) by [@tore_aurstad](https://twitter.com/Tore_Aurstad)
   - [Simple URL shortening service using .NET, Azure and ServiceStack](https://github.com/Durwella/UrlShortening) by [@82unpluggd](https://twitter.com/82unpluggd)
