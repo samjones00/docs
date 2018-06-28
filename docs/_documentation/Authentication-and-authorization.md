@@ -20,9 +20,9 @@ public override void Configure(Container container)
 
     container.Register<ICacheClient>(new MemoryCacheClient());
     var userRep = new InMemoryAuthRepository();
-    container.Register<IUserAuthRepository>(userRep);
+    container.Register<IAuthRepository>(userRep);
     
-    //The IUserAuthRepository is used to store the user credentials etc.
+    //The IAuthRepository is used to store the user credentials etc.
     //Implement this interface to adjust it to your app's data storage
 }
 ```
@@ -138,13 +138,13 @@ Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {
 
 ### Built-In Auth Providers
 
-By default the `CredentialsAuthProvider` and `BasicAuthProvider` validate against users stored in the UserAuth repository. The registration service at `/register` allow users to register new users with your service and stores them in your preferred `IUserAuthRepository` provider (below). The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) uses this to allow new users (without Twitter/Facebook accounts) to register with the website.
+By default the `CredentialsAuthProvider` and `BasicAuthProvider` validate against users stored in the UserAuth repository. The registration service at `/register` allow users to register new users with your service and stores them in your preferred `AuthRepository` provider (below). The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) uses this to allow new users (without Twitter/Facebook accounts) to register with the website.
 
 A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` hook so you can add in your own implementation. If you want to make this available via BasicAuth as well you will also need to subclass `BasicAuthProvider` with your own custom implementation.
 
 ### User Auth Repository
 
-The Authentication module allows you to use your own persistence back-ends but for the most part you should be able to reuse one of the existing [IUserAuthRepository](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/IAuthRepository.cs): 
+The Authentication module allows you to use your own persistence back-ends but for the most part you should be able to reuse one of the existing [IAuthRepository](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/IAuthRepository.cs): 
 
   - **OrmLite**: `OrmLiteAuthRepository` in [ServiceStack.Server](https://nuget.org/packages/ServiceStack.Server)
     - [OrmLiteAuthRepositoryMultitenancy](/multitenancy#multitenancy-rdbms-authprovider)
