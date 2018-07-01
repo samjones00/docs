@@ -132,22 +132,53 @@ void Configure(Funq.Container container)
 }
 ```
 
-### Calling ServiceStack Services from MVC Controllers
+## Calling ServiceStack Services from MVC Controllers
 
-Just like in ServiceStack, you can retrieve an auto-wired Service and execute it using `HostContext.ResolveService<TService>()`, e.g:
+
+### Using the Service Gateway
+
+The preferred method for calling ServiceStack Services is via the loosely-coupled Service Gateway:
 
 ```csharp
 public HelloController : ServiceStackController 
 {
     public void Index(string name) 
     {
-        using (var hello = HostContext.
-            ResolveService<HelloService>(base.ServiceStackRequest))
+        ViewBag.GreetResult = base.Gateway.Send(new Hello { Name = name }).Result;
+        return View();
+    }        
+}
+```
+
+### Calling Services Directly
+
+Alternatively just like in ServiceStack, you can retrieve an autowired Service and execute it directly using `base.ResolveService<TService>()`, e.g:
+
+```csharp
+public HelloController : ServiceStackController 
+{
+    public void Index(string name) 
+    {
+        using (var service = base.ResolveService<HelloService>())
         {
-           ViewBag.GreetResult = hello.Get(name).Result;
+           ViewBag.GreetResult = service.Get(new Hello { Name = name }).Result;
            return View();
         }
     }        
+}
+```
+
+For any other external methods or MVC Controllers that don't inherit `ServiceStackController` you can execute Services with:
+
+```csharp
+//Using Gateway
+var gateway = HostContext.AppHost.GetServiceGateway(base.HttpContext.ToRequest());
+ViewBag.GreetResult = gateway.Send(new Hello { Name = name }).Result;
+
+//Calling Service Directly
+using (var service = HostContext.ResolveService<HelloService>(base.HttpContext.ToRequest()))
+{
+    ViewBag.GreetResult = service.Get(new Hello { Name = name }).Result;
 }
 ```
 
