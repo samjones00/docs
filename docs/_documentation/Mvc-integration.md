@@ -137,7 +137,7 @@ void Configure(Funq.Container container)
 
 ### Using the Service Gateway
 
-The preferred method for calling ServiceStack Services is via the loosely-coupled Service Gateway:
+The preferred method for calling ServiceStack Services is via the loosely-coupled [Service Gateway](/service-gateway):
 
 ```csharp
 public HelloController : ServiceStackController 
