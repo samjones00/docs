@@ -48,7 +48,7 @@ The smallest ServiceStack AppHost for MVC would look something like:
 ```csharp
 public class AppHost : AppHostBase
 {
-    public AppHost() : base("MVC 4", typeof(MyServices).Assembly) {}
+    public AppHost() : base("MVC", typeof(MyServices).Assembly) {}
 
     public override void Configure(Container container)
     {            
@@ -161,7 +161,7 @@ public HelloController : ServiceStackController
     {
         using (var service = base.ResolveService<HelloService>())
         {
-           ViewBag.GreetResult = service.Get(new Hello { Name = name }).Result;
+           ViewBag.GreetResult = service.Any(new Hello { Name = name }).Result;
            return View();
         }
     }        
@@ -178,7 +178,7 @@ ViewBag.GreetResult = gateway.Send(new Hello { Name = name }).Result;
 //Calling Service Directly
 using (var service = HostContext.ResolveService<HelloService>(base.HttpContext.ToRequest()))
 {
-    ViewBag.GreetResult = service.Get(new Hello { Name = name }).Result;
+    ViewBag.GreetResult = service.Any(new Hello { Name = name }).Result;
 }
 ```
 
