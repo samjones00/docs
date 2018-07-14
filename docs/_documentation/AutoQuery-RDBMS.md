@@ -1129,7 +1129,7 @@ public class MyQueryServices : Service
     public object Any(FindMovies dto)
     {
         var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams());
-        return AutoQuery.Execute(request, q);
+        return AutoQuery.Execute(dto, q);
     }
 }
 ```
