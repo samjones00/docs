@@ -196,3 +196,4 @@ Or use it to populate a late-bound type:
 Type managerType = typeof(Manager);
 var manager = (Employee)map.FromObjectDictionary(managerType);
 ```
+ 
