@@ -189,3 +189,10 @@ var employee = map.FromObjectDictionary<Employee>();
 
 employee.DisplayName //= John Z Doe
 ```
+
+Or use it to populate a late-bound type:
+
+```csharp
+Type managerType = typeof(Manager);
+var manager = (Employee)map.FromObjectDictionary(managerType);
+```
