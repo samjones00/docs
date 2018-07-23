@@ -42,10 +42,7 @@ The above service can be called with **Any** HTTP Verb (e.g. GET, POST,..) from 
 ```csharp
 public class HelloService : Service
 {
-    public object Get(Hello  request)
-    {
-        return new HelloResponse { Result = "Hello, " + request.Name };
-    }
+    public object Get(Hello  request) => new HelloResponse { Result = $"Hello, {request.Name}" };
 }
 ```
 
