@@ -37,7 +37,9 @@ public class HelloService : Service
 }
 ```
 
-The above service can be called with **Any** HTTP Verb (e.g. GET, POST,..) from any endpoint or format (e.g. JSON, XML, etc). You can also choose to handle a specific Verb by changing the method name to suit, e.g. here's how to limit the Service to only handle HTTP **GET** requests:
+The above service can be called with **Any** HTTP Verb (e.g. GET, POST,..) from any endpoint or format (e.g. JSON, XML, etc). You can also choose to handle a specific Verb by changing the method name to suit. 
+
+E.g. you can limit the Service to only handle HTTP **GET** requests by using the `Get` method:
 
 ```csharp
 public class HelloService : Service
