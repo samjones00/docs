@@ -308,7 +308,14 @@ val response = client.get(GetCustomers())
 val results = response.results
 ```
 
-### [Calling from jQuery using TypeScript Defintions](/typescript-add-servicestack-reference.html#typescript-interface-definitions)
+### Calling the from [Dart](/dart-add-servicestack-reference#example-usage)
+
+```dart
+var client = new JsonServiceClient(baseUri);
+var response = await client.get(new GetCustomers());
+```
+
+### [Calling from jQuery using TypeScript Definitions](/typescript-add-servicestack-reference.html#typescript-interface-definitions)
 
 ```js
 $.getJSON($.ss.createUrl("/customers", request), request, 
@@ -323,14 +330,6 @@ $.getJSON($.ss.createUrl("/customers", request), request,
 $.getJSON(baseUri + "/customers", function(r) {
 	alert(r.Results.length == 1);
 });
-```
-
-### Calling the from [Dart JsonClient](https://github.com/dartist/json_client)
-
-```dart
-var client = new JsonClient(baseUri);
-client.customers()
-	.then((r) => alert(r.Results.length == 1)); 
 ```
 
 That's all the application code required to create and consume a simple database-enabled REST Web Service!
@@ -385,9 +384,13 @@ Our generic Service clients covers the most popular Mobile, Desktop and Server p
     - [Swift Package Manager Apps](https://github.com/ServiceStackApps/swift-techstacks-console)
  - [JavaScript (jQuery)](/ss-utils-js)
    - Web
- - [Dart](/dart-client)
-   - Web
+ - [Dart](/dart-add-servicestack-reference)
+   - Flutter
+        - iOS
+        - Android
+   - Web / Angular.dart
  - [MQ Clients](/messaging#mq-client-architecture)
+   - Background MQ
    - Rabbit MQ
    - Redis MQ
    - Amazon SQS
