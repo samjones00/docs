@@ -44,7 +44,7 @@ E.g. you can limit the Service to only handle HTTP **GET** requests by using the
 ```csharp
 public class HelloService : Service
 {
-    public object Get(Hello  request) => new HelloResponse { Result = $"Hello, {request.Name}" };
+    public object Get(Hello request) => new HelloResponse { Result = $"Hello, {request.Name}" };
 }
 ```
 
