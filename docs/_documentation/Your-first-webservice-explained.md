@@ -3,7 +3,7 @@ slug: your-first-webservice-explained
 title: Your first Web Service Explained
 ---
 
-Let's look a bit deeper into the Hello World service you created:
+Let's look a bit deeper into the [Hello World service](/create-your-first-webservice#how-does-it-work) you created:
 
 As you have seen, the convention for response DTO is `RequestDTO` and  `RequestDTOResponse`. **Note, request and response DTO should be in the same namespace if you want ServiceStack to recognize the DTO pair**.
 
