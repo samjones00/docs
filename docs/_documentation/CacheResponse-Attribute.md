@@ -145,16 +145,30 @@ the base CacheKey used which is just a matter retrieving the populated the `Cach
 
 ```csharp
 [CacheResponse(Duration = 60)]
-public object Get(MyRequest request)
+public async Task<object> Get(MyRequest request)
 {
     var cacheInfo = (CacheInfo)base.Request.GetItem(Keywords.CacheInfo);
     cacheInfo.KeyBase = request.ToGetUrl(); //custom cache key
-    if (Request.HandleValidCache(cacheInfo))
+    if (await Request.HandleValidCache(cacheInfo))
         return null;
     ...
 
     return response;
 }
+```
+
+Or generically for all cached Services by using a [Global Request Filter](/request-and-response-filters):
+
+```csharp
+this.GlobalRequestFiltersAsync.Add(async (req, res, requestDto) =>
+{
+    var cacheInfo = req.GetItem(Keywords.CacheInfo) as CacheInfo;
+    if (cacheInfo?.KeyBase != null)
+    {
+        cacheInfo.KeyBase = request.ToGetUrl(); //custom cache key
+        await req.HandleValidCache(cacheInfo);
+    }
+});
 ```
 
 `HandleValidCache()` is used to re-validate the client's request with the new Cache Key and if it's determined
