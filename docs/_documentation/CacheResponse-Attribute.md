@@ -171,5 +171,12 @@ this.GlobalRequestFiltersAsync.Add(async (req, res, requestDto) =>
 });
 ```
 
+When using a Global Request Filter to customize caching behavior as above, your `[CacheResponse]` should have a priority `<0` in order for it to be executed before any Global Request Filters, e.g:
+
+```csharp
+[CacheResponse(Priority = -1, Duration = 10 * 60)]
+public class MyCachedServices : Service { ... }
+```
+
 `HandleValidCache()` is used to re-validate the client's request with the new Cache Key and if it's determined
 the Client has a valid cache, will short-circuit the Service and return a **304 NotModified** Response.
