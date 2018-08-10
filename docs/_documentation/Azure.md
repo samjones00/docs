@@ -25,7 +25,8 @@ container.Register<IMessageService>(c => new ServiceBusMqServer(ConnectionString
 
 var mqServer = container.Resolve<IMessageService>();
 mqServer.RegisterHandler<ServiceDto>(ExecuteMessage);
-mqServer.Start();
+
+AfterInitCallbacks.Add(appHost => mqServer.Start());
 ```
 
 Where ConnectionString is connection string to Service Bus, how to obtain it from Azure Portal you can find in [Get Started with Service Bus queues](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues) article

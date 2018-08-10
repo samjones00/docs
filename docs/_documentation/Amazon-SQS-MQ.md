@@ -17,7 +17,8 @@ container.Register<IMessageService>(c => new SqsMqServer(
 
 var mqServer = container.Resolve<IMessageService>();
 mqServer.RegisterHandler<MyRequest>(ExecuteMessage);
-mqServer.Start();
+
+AfterInitCallbacks.Add(appHost => mqServer.Start());
 ```
 
 When an MQ Server is registered, ServiceStack automatically publishes Requests accepted on the "One Way" [pre-defined route](https://github.com/ServiceStack/ServiceStack/wiki/Routing#pre-defined-routes) to the registered MQ broker. The message is later picked up and executed by a Message Handler on a background Thread.
@@ -67,5 +68,6 @@ container.Register<IMessageService>(c => new SqsMqServer(
 
 var mqServer = container.Resolve<IMessageService>();
 mqServer.RegisterHandler<EmailContacts.EmailContact>(ExecuteMessage);
-mqServer.Start();
+
+AfterInitCallbacks.Add(appHost => mqServer.Start());
 ```

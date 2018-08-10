@@ -14,5 +14,6 @@ container.Register<IMessageService>(c => new ServiceBusMqServer(ConnectionString
 
 var mqServer = container.Resolve<IMessageService>();
 mqServer.RegisterHandler<MyRequest>(ExecuteMessage);
-mqServer.Start();
+
+AfterInitCallbacks.Add(appHost => mqServer.Start());
 ```

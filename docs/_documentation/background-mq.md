@@ -18,9 +18,10 @@ var mqServer = container.Resolve<IMessageService>();
 mqServer.RegisterHandler<SendNotification>(ExecuteMessage, 4);
 mqServer.RegisterHandler<SendSystemEmail>(ExecuteMessage);
 
-mqServer.Start();
-
-AfterInitCallbacks.Add(host => ExecuteService(new RetryPendingNotifications()));
+AfterInitCallbacks.Add(host => {
+    mqServer.Start();
+    ExecuteService(new RetryPendingNotifications());
+});
 ```
 
 The one difference is that we also register an `AfterInitCallbacks` to Execute the [RetryPendingNotifications](https://github.com/NetCoreApps/TechStacks/blob/c89920d92e1e11a5495bf88a45fea60aea9d199e/src/TechStacks.ServiceInterface/Admin/NotificationServices.cs#L51) Service after the AppHost has started. We'll look at the implementation later, but it's for re-queueing any incomplete Background Jobs that failed to complete.

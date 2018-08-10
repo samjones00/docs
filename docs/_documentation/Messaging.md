@@ -300,7 +300,7 @@ public class AppHost : AppSelfHostBase
         });
 
         //Start the Rabbit MQ Server listening for incoming MQ Requests
-        mqServer.Start();
+        AfterInitCallbacks.Add(appHost => mqServer.Start());
     }
 }
 ```
