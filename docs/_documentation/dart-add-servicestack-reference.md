@@ -34,7 +34,7 @@ To make API calls we need to use the `JsonServiceClient`, installed by adding th
 
 ```yaml
 dependencies:
-  servicestack: ^1.0.4
+  servicestack: ^1.0.5
 ```
 
 Saving `pubspec.yaml` in VS Code with the [Dart Code Extension](https://dartcode.org) automatically calls `flutter packages get` to add any new dependencies to your project.
@@ -123,20 +123,12 @@ Behind the scenes `JsonServiceClient` leverages the optimal [`HttpClient` in dar
 
 ### JsonWebClient
 
-To make API calls we need to use the `JsonWebClient`, installed by adding the [servicestack_web](https://pub.dartlang.org/packages/servicestack_web#-installing-tab-) package to our Dart projects `pubspec.yaml`:
-
-```yaml
-dependencies:
-  servicestack_web: ^0.0.2
-```
-
 The `JsonWebClient` performs HTTP Requests using [dart:html BrowserClient](https://webdev.dartlang.org/angular/guide/server-communication) to use the browsers built-in `XMLHttpRequest` object. Despite their implementation differences `JsonWebClient` also supports the same feature-set as the Dart VM's `JsonServiceClient` above. 
 
-AngularDart or Dart Web Apps can use `JsonWebClient` by importing `servicestack_web/client.dart`, e.g: 
+AngularDart or Dart Web Apps can use `JsonWebClient` by importing `web_client.dart`, e.g: 
 
 ```dart
-import 'package:servicestack/client.dart';
-import 'package:servicestack_web/client.dart';
+import 'package:servicestack/web_client.dart';
 
 var client = new JsonWebClient("https://www.techstacks.io");
 ```
@@ -207,7 +199,7 @@ This creates a basic Flutter App which you can run in your Android Device or And
 Then to use `JsonServiceClient` add the `servicestack` dependency to your apps [pubspec.yaml](https://github.com/ServiceStackApps/HelloFlutter/blob/master/pubspec.yaml):
 
   dependencies:
-    servicestack: ^1.0.4
+    servicestack: ^1.0.5
 
 Saving `pubspec.yaml` automatically runs [flutter packages get](https://flutter.io/using-packages/) to install any new dependencies in your App. 
 
@@ -494,10 +486,10 @@ To display the image we assign the response to the `imageBytes` field within the
 
 The [HelloAngularDart](https://github.com/ServiceStackApps/HelloAngularDart) project demonstrates the same functionality in an AngularDart Web App running inside a Web Browser.
 
-The only difference is having to also import `servicestack_web/client.dart` containing the `JsonWebClient`:
+The only difference is having to import `web_client.dart` containing the `JsonWebClient`:
 
 ```dart
-import 'package:servicestack_web/client.dart';
+import 'package:servicestack/web_client.dart';
 ```
 
 and changing the clients to use the `JsonWebClient` instead, e.g:
@@ -518,8 +510,7 @@ import 'dart:typed_data';
 import 'dart:convert';
 
 import 'package:angular/angular.dart';
-import 'package:servicestack/client.dart';
-import 'package:servicestack_web/client.dart';
+import 'package:servicestack/web_client.dart';
 
 import '../dtos/test.dtos.dart';
 import '../dtos/techstacks.dtos.dart';
