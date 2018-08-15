@@ -25,7 +25,7 @@ SetConfig(new HostConfig {
 | EnableFeatures         | Feature.All   | Defines the formats which the webservice should understand                  |    
 | DebugMode              | false         | If true, stack traces will be shown in service responses during development |   
 | WriteErrorsToResponse  |    true       |
-| DefaultContentType     | ContentType.Json |     
+| DefaultContentType     | MimeTypes.Json |     
 | AllowJsonpRequests      |  true |
 | GlobalResponseHeaders | | Sets global headers which will be added to every request response. ([Example](http://stackoverflow.com/questions/8211930/servicestack-rest-api-and-cors)) |
 
