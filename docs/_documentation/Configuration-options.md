@@ -15,7 +15,7 @@ SetConfig(new HostConfig {
     EnableFeatures = Feature.All.Remove(disableFeatures), //all formats except of JSV and SOAP
     DebugMode = true, //Show StackTraces in service responses during development
     WriteErrorsToResponse = false, //Disable exception handling
-    DefaultContentType = ContentType.Json, //Change default content type
+    DefaultContentType = MimeTypes.Json, //Change default content type
     AllowJsonpRequests = true //Enable JSONP requests
 });
 ```
