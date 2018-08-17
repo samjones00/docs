@@ -673,8 +673,13 @@ Likewise this API lets you convert Sessions created by any of the OAuth provider
 
 ### Switching existing Sites to JWT
 
-Thanks to the flexibility and benefits of using stateless JWT Tokens, we've upgraded both our Single Page App
-[techstacks.io](http://techstacks.io) Website which uses Twitter and Github OAuth to [use JWT with a single Ajax call](https://github.com/ServiceStackApps/TechStacks/blob/78ecd5e390e585c14f616bb27b24e0072b756040/src/TechStacks/TechStacks/js/user/services.js#L30):
+Thanks to the flexibility and benefits of using stateless JWT Tokens, the new [techstacks.io](http://techstacks.io) uses the TypeScript `JsonServiceClient` and generated TypeScript DTOs to [convert their existing Authenticated Sesssion](https://github.com/NetCoreApps/TechStacks/blob/3b1c85398c03293bbae0675257e33f847a35da77/src/TechStacks/src/shared/gateway.js#L96) after Signing in with Twitter or GitHub:
+
+```ts
+const authResponse = await authClient.post(new ConvertSessionToToken());
+```
+
+The older Angular TechStacks [angular.techstacks.io](http://angular.techstacks.io) also uses Twitter and Github OAuth to [use JWT with a single jQuery Ajax call](https://github.com/ServiceStackApps/TechStacks/blob/78ecd5e390e585c14f616bb27b24e0072b756040/src/TechStacks/TechStacks/js/user/services.js#L30):
 
 ```javascript
 $.post("/session-to-token");
