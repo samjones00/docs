@@ -655,7 +655,7 @@ If you still want to preserve your existing Session you can indicate this with:
 var tokenResponse = client.Send(new ConvertSessionToToken { PreserveSession = true });
 ```
 
-For cases where you don't have access to HTTP Client Cookies you can use the new opt-in `IncludeJwtInConvertSessionToTokenResponse` option on `JwtAuthProvider` to include JWTs in `ConvertSession` Service Responses which are otherwise only available in the `ss-tok` Cookie. 
+For cases where you don't have access to HTTP Client Cookies you can use the new opt-in `IncludeJwtInConvertSessionToTokenResponse` option on `JwtAuthProvider` to also include the JWT in `AccessToken` property of `ConvertSessionToTokenResponse` Responses which are otherwise only available in the `ss-tok` Cookie.
 
 ### Ajax Clients
 
