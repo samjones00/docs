@@ -71,7 +71,7 @@ the most productive development experience for developing .NET to .NET Web Servi
 ServiceStack now [integrates with all Major IDE's](/add-servicestack-reference.html) used for creating the best native experiences 
 on the most popular platforms to enable a highly productive dev workflow for consuming Web Services, making ServiceStack the ideal 
 back-end choice for powering rich, native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on the Android platform 
-with Java, OSX Desktop Appications as well as targetting the most popular .NET PCL platforms including Xamarin.iOS, Xamarin.Android, 
+with Java, OSX Desktop Applications as well as targeting the most popular .NET PCL platforms including Xamarin.iOS, Xamarin.Android, 
 Windows Store, WPF, WinForms and Silverlight: 
 
 <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/ide-ss-plugin-logos.png" align="right" />
@@ -108,11 +108,11 @@ native iOS and OSX Applications - directly from within Xcode!
 
 Providing [an instant Native Typed API in Java](/java-add-servicestack-reference.html) 
 and [Kotlin](/kotlin-add-servicestack-reference.html)
-including idiomatic Java Generic Service Clients supporting Sync and Async Requests by levaraging Android's AsyncTasks to enable the creation of services-rich and responsive native Java or Kotlin Mobile Apps on the Android platform - directly from within Android Studio!
+including idiomatic Java Generic Service Clients supporting Sync and Async Requests by leveraging Android's AsyncTasks to enable the creation of services-rich and responsive native Java or Kotlin Mobile Apps on the Android platform - directly from within Android Studio!
 
 #### [IntelliJ integration with ServiceStackIDEA](/java-add-servicestack-reference.html#install-servicestack-idea-from-the-plugin-repository)
 
-The ServiceStack IDEA plugin is installable directly from IntelliJ's Plugin repository and enables seamless integration with IntelliJ Java Maven projects for genearting a Typed API to quickly and effortlessly consume remote ServiceStack Web Services from pure cross-platform Java or Kotlin Clients.
+The ServiceStack IDEA plugin is installable directly from IntelliJ's Plugin repository and enables seamless integration with IntelliJ Java Maven projects for generating a Typed API to quickly and effortlessly consume remote ServiceStack Web Services from pure cross-platform Java or Kotlin Clients.
 
 #### [Eclipse integration with ServiceStackEclipse](https://github.com/ServiceStack/ServiceStack.Java/tree/master/src/ServiceStackEclipse#eclipse-integration-with-servicestack)
 
@@ -152,7 +152,7 @@ public class AppHost : AppSelfHostBase
     }
 }
 
-//Web Service DTO's
+//Web Service DTOs
 [Route("/customers", "GET")]
 public class GetCustomers : IReturn<GetCustomersResponse> {}
 
@@ -270,7 +270,7 @@ Same code also works with [Android, iOS, Xamarin.Forms, UWP and WPF clients](htt
 
 > [F#](/fsharp-add-servicestack-reference.html) and 
 [VB.NET](/vbnet-add-servicestack-reference.html) can re-use same 
-[.NET Service Clients](/csharp-client.html) and DTO's
+[.NET Service Clients](/csharp-client.html) and DTOs
 
 ### [Calling from TypeScript](/typescript-add-servicestack-reference.html#ideal-typed-message-based-api)
 
@@ -354,7 +354,7 @@ the implementation just needs to inherit from a testable and dependency-free `IS
 As a bonus for keeping your DTO's in a separate dependency-free .dll, you're able to re-use them in 
 your C#/.NET clients providing a strongly-typed API without any code-gen what-so-ever. Also your DTO's 
 *define everything* ServiceStack does not pollute your web services with any additional custom 
-artefacts or markup.
+artifacts or markup.
 
 ### Multiple Clients
 
@@ -398,7 +398,7 @@ Our generic Service clients covers the most popular Mobile, Desktop and Server p
 
 ### Multiple pluggable Formats
 
-ServiceStack re-uses the custom artefacts above and with zero-config and without imposing any extra 
+ServiceStack re-uses the custom artifacts above and with zero-config and without imposing any extra 
 burden on the developer adds discoverability and provides hosting of your web service on a number 
 of different formats, including: 
  
@@ -427,7 +427,7 @@ Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can 
 
 ### Multiple Hosting Options
 
-In addition to supporting multiple formats and endpoints, ServiceStack can also be hosted within a multitude of differeint hosting options:
+In addition to supporting multiple formats and endpoints, ServiceStack can also be hosted within a multitude of different hosting options:
 
 - **Windows, OSX or Linux**
   - **.NET Framework or Mono**
@@ -441,7 +441,7 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
   - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
   - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
 - **OSX**
-  - [Hosted inside Mac OSX Cocoa App with Xmarain.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
+  - [Hosted inside Mac OSX Cocoa App with Xamarin.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
 
 ### Target Multiple platforms
 

@@ -925,7 +925,7 @@ public void Configure(Container container)
 ```
 
 ServiceStack's `Container` also implements .NET Core's `IServiceProvider` interface giving it access to 
-.NET Core's conveneince extension methods for resolving dependencies, e.g:
+.NET Core's convenience extension methods for resolving dependencies, e.g:
 
 ```csharp
 var foo = container.GetService<IFoo>();

@@ -614,7 +614,7 @@ Normally ServiceStack calls the method `bool HasPermission(string permission)` i
 
 > [IAuthSession](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ServiceInterface/Auth/IAuthSession.cs) is stored in a cache client as explained above
 
-You can fill this list in the method `OnAuthenticated` you've overriden in the first part of this tutorial.
+You can fill this list in the method `OnAuthenticated` you've overridden in the first part of this tutorial.
 
 As with `Authenticate`, you can mark services (instead of DTO) with `RequiredPermission` attribute, too.
 
@@ -973,7 +973,7 @@ container.Register<IPasswordHasher>(new PasswordHasher(1000));
 
 #### Versionable Password Hashing
 
-The new [IPasswordHasher](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Auth/IPasswordHasher.cs) interface includes support for versioning future Password Hashing algorithms and rehsashing:
+The new [IPasswordHasher](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Auth/IPasswordHasher.cs) interface includes support for versioning future Password Hashing algorithms and rehashing:
 
 ```csharp
 public interface IPasswordHasher
