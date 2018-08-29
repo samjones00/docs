@@ -45,3 +45,222 @@ JS.eval("itemsOf(3, padRight(reverse(arg), 8, '_'))", scope) //= ["eulav___", "e
 //= { a: ["eulav___", "eulav___", "eulav___"] }
 JS.eval("{a: itemsOf(3, padRight(reverse(arg), 8, '_')) }", scope)
 ```
+
+### JavaScript Expressions
+
+The JavaScript Expressions support in ServiceStack follows the [syntax tree used by Esprima](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html), JavaScript's leading lexical language parser for JavaScript, but adapted to suit C# conventions using PascalCase properties and each AST Type prefixed 
+with `Js*` to avoid naming collisions with C#'s LINQ Expression Types which often has the same name. 
+
+So Esprima's [MemberExpression](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html#member-expression) maps to [JsMemberExpression](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/Templates/JsMemberExpression.cs) in Templates. 
+
+In addition to adopting Esprima's AST data structures, Templates can also [emit the same serialized Syntax Tree](http://templates.servicestack.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205) that Esprima generates from any AST Expression, e.g:
+
+```csharp
+// Create AST from JS Expression
+JsToken expr = JS.expression("1 - 2 + 3 * 4 / 5");
+
+// Convert to Object Dictionary in Esprima's Syntax Tree Format
+Dictionary<string, object> esprimaAst = expr.ToJsAst();
+
+// Serialize as Indented JSON
+esprimaAst.ToJson().IndentJson().Print();
+```
+
+Which will display the same output as seen in the new [JS Expression Viewer](http://templates.servicestack.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205):
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/expression-viewer.png)](http://templates.servicestack.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205)
+
+From the AST output we can visualize how the different operator precedence is applied to an Expression. 
+Expression viewer also lets us explore and evaluate different JavaScript Expressions with custom arguments:
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/logical-expression.png)](http://templates.servicestack.net/docs/expression-viewer#expression=1%20%3C%202%20%26%26%20(t%20%7C%7C%203%20%3E%204)%20%26%26%20f&t=true&f=false)
+
+An [abusage Brendan Eich regrets](https://brendaneich.com/2012/04/the-infernal-semicolon/) that is enforced is limiting
+the `||` and `&&` binary operators to boolean expressions, which themselves always evaluate to a boolean value.
+
+Instead to replicate `||` coalescing behavior on falsy values you can use C#'s `??` null coalescing operator as seen in:
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/ternary-expression.png)](http://templates.servicestack.net/docs/expression-viewer#expression=a%20%3E%20(c%20%3F%3F%20b)%20%3F%20a%20%3A%20b&a=1&b=2)
+
+#### Lambda Expressions
+
+You can use lambda expressions in all functional filters:
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/lambda-expression.png)](http://templates.servicestack.net/docs/expression-viewer#expression=map(range(1%2Ccount)%2C%20x%20%3D%3E%20x%20*%20x)&count=5)
+
+Using either normal lambda expression syntax:
+
+```hbs
+{% raw %}{{ customers | zip(x => x.Orders)
+   | let(x => { c: x[0], o: x[1] })
+   | where(_ => o.Total < 500)
+   | map(_ => o)
+   | htmlDump }}{% endraw %}
+```
+
+Or shorthand syntax for single argument lambda expressions which can instead use `=>` without brackets or named arguments where it will 
+be implicitly assigned to the `it` binding:
+
+```hbs
+{% raw %}{{ customers | zip => it.Orders
+   | let => { c: it[0], o: it[1] }
+   | where => o.Total < 500
+   | map => o
+   | htmlDump }}{% endraw %}
+```
+
+As it's results in more wrist-friendly and readable code, [most LINQ Examples](http://templates.servicestack.net/linq/projection-operators#linq15-selectmany---compound-from-2) use the shorthand lambda expression syntax above.
+
+#### Shorthand properties
+
+Other language enhancements include support for [JavaScript's shorthand property names](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Syntax):
+
+```hbs
+{% raw %}{{ {name,age} }}{% endraw %}
+```
+
+But like C# also lets you use member property names:
+
+```hbs
+{% raw %}{{ people | let => { it.Name, it.Age } | select: {Name},{Age} }}{% endraw %}
+```
+
+#### Template Literals
+
+Many of ES6/7 features are also implemented like Template Literals:
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/template-literals.png)](http://templates.servicestack.net/docs/expression-viewer#expression=%60Hello%2C%20%24%7Bname%7D!%20%24%7Ba%20%3F%20pow(1%2B2%2Ca)%20%3A%20''%7D%60&name='World'&a=3)
+
+> Backtick quoted strings also adopt the same [escaping behavior of JavaScript strings](http://templates.servicestack.net/docs/syntax#template-literals) 
+whilst all other quoted strings preserve unescaped string values.
+
+#### Spread Operators
+
+Other advanced ES6/7 features supported include the object spread, array spread and argument spread operators:
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/object-spread.png)](http://templates.servicestack.net/docs/expression-viewer#expression=keys(%7B%20...a%2C%20c%3A3%2C%20...%7Bd%3A%204%7D%20%7D)&a=%7B%20b%3A%202%20%7D)
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/array-spread.png)](http://templates.servicestack.net/docs/expression-viewer#expression=%5B1%2C%20...%5Brange(2%2Cpow(...%5B3%2Ce%5D))%5D%2C%201%5D&e=2)
+
+#### Bitwise Operators
+
+All JavaScript Bitwise operators are also supported:
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/bitwise-operators.png)](http://templates.servicestack.net/docs/expression-viewer#expression=%5B3%251%2C%203%261%2C%203%7C1%2C%203%5E1%2C%203%3C%3C1%2C%203%20%3E%3E%201%2C%20~1%5D&e=2)
+
+Essentially Templates supports most JavaScript Expressions, not statements which are covered with 
+[Templates Blocks support](http://templates.servicestack.net/docs/blocks) 
+or mutations using Assignment Expressions and Operators. All assignments still need to be explicitly performed through an 
+[Assignment Filter](http://templates.servicestack.net/docs/default-filters#assignment).
+
+#### Evaluating JavaScript Expressions
+
+The built-in JavaScript expressions support is also useful outside of Templates where they can be evaluated with `JS.eval()`:
+
+```csharp
+JS.eval("pow(2,2) + pow(4,2)") //= 20
+```
+
+The difference over JavaScript's eval being that methods are calling [C# method filters](http://templates.servicestack.net/docs/filters-reference) in a sandboxed context.
+
+By default expressions are executed in an empty scope, but can also be executed within a custom scope which can be used to define the 
+arguments expressions are evaluated with:
+
+```csharp
+var scope = JS.CreateScope(args: new Dictionary<string, object> {
+    ["a"] = 2,
+    ["b"] = 4,
+}); 
+JS.eval("pow(a,2) + pow(b,2)", scope) //= 20
+```
+
+Custom methods can also be introduced into the scope which can override existing filters by using the same name and args count, e.g:
+
+```csharp
+class MyFilters : TemplateFilter {
+    public double pow(double arg1, double arg2) => arg1 / arg2;
+}
+var scope = JS.CreateScope(functions: new MyFilters());
+JS.eval("pow(2,2) + pow(4,2)", scope); //= 3
+```
+
+An alternative to injecting arguments by scope is to wrap the expression in a lambda expression, e.g:
+
+```csharp
+var expr = (JsArrowFunctionExpression)JS.expression("(a,b) => pow(a,2) + pow(b,2)");
+```
+
+Which can then be invoked with positional arguments by calling `Invoke()`, e.g:
+
+```csharp
+expr.Invoke(2,4)        //= 20
+expr.Invoke(2,4, scope) //= 3
+```
+
+#### Parsing JS Expressions
+
+Evaluating JS expressions with `JS.eval()` is a wrapper around parsing the JS expression into an AST tree then evaluating it, e.g:
+
+```csharp
+var expr = JS.expression("pow(2,2) + pow(4,2)");
+expr.Evaluate(); //= 20
+```
+
+When needing to evaluate the same expression multiple times you can cache and execute the AST to save the cost of parsing the expression again.
+
+#### DSL example
+
+If implementing a DSL containing multiple expressions as done in many of the [Block argument expressions](http://templates.servicestack.net/docs/blocks) 
+you can instead use the `ParseJsExpression()` extension method to return a literal Span advanced to past the end of the expression with the parsed 
+AST token returned in an `out` parameter.
+
+This is what the Each block implementation uses to parse its argument expression which can contain a number of LINQ-like expressions:
+
+```csharp
+var literal = "where c.Age == 27 take 1 + 2".AsSpan();
+if (literal.StartsWith("where "))
+{
+    literal = literal.Advance("where ".Length);     // 'c.Age == 27 take 1 + 2'
+    literal = literal.ParseJsExpression(out where); // ' take 1 + 2'
+}
+literal = literal.AdvancePastWhitespace();          // 'take 1 + 2'
+if (literal.StartsWith("take "))
+{
+    literal = literal.Advance("take ".Length);      // '1 + 2'
+    literal = literal.ParseJsExpression(out take);  // ''
+}
+```
+
+Resulting in `where` populated with the [c.Age == 27](http://templates.servicestack.net/docs/expression-viewer#expression=c.Age%20%3D%3D%2027&c=%7B%20Age%3A27%20%7D) `BinaryExpression` and `take` with the [1 + 2](http://templates.servicestack.net/docs/expression-viewer#expression=1%20%2B%202)
+`BinaryExpression`.
+
+#### Immutable and Comparable
+
+Unlike C#'s LINQ Expressions which can't be compared for equality, Template Expressions are both Immutable and Comparable which can be used 
+in caches and compared to determine if 2 Expressions are equivalent, e.g:
+
+```csharp
+var expr = new JsLogicalExpression(
+    new JsBinaryExpression(new JsIdentifier("a"), JsGreaterThan.Operator, new JsLiteral(1)),
+    JsAnd.Operator,
+    new JsBinaryExpression(new JsIdentifier("b"), JsLessThan.Operator, new JsLiteral(2))
+);
+
+expr.Equals(JS.expression("a > 1 && b < 2"));  //= true
+
+expr.Equals(new JsLogicalExpression(
+    JS.expression("a > 1"), JsAnd.Operator, JS.expression("b < 2")
+));                                            //= true
+```
+
+Showing Expressions whether created programmatically, entirely from strings or any combination of both can be compared for equality and 
+evaluated in the same way:
+
+```csharp
+var scope = JS.CreateScope(args:new Dictionary<string, object> {
+    ["a"] = 2,
+    ["b"] = 1
+});
+
+expr.Evaluate(scope) //= true
+```
