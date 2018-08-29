@@ -16,7 +16,7 @@
     - [Design Message-based APIs](/design-message-based-apis)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
-    - [Webpack Single Page Apps](/templates-single-page-apps)
+    - [Single Page App Templates](/templates-single-page-apps)
     - [Website Templates](/templates-websites)
     - [Empty Starting Templates](/templates-empty-starting)
     - [ASP.NET Core on .NET Framework](/templates-corefx)

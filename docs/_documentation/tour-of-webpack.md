@@ -20,7 +20,7 @@ We'll quickly touch on each of Webpack's concepts by seeing how the React App's 
  
 Webpack builds a graph of your App's dependencies which it traverses starting from its entry points, this is the input into Webpack where its given the App's entry point. 
 
-#### [webpack.config.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/webpack.config.js)
+#### [webpack.config.js](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx/blob/master/MyApp/webpack.config.js)
 
 ```js
 entry: isTest ? NONE : {
@@ -30,7 +30,7 @@ entry: isTest ? NONE : {
 },
 ```
  
-#### [webpack.config.vendor.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/webpack.config.vendor.js)
+#### [webpack.config.vendor.js](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx/blob/master/MyApp/webpack.config.vendor.js)
 
 A separate **vendor** Webpack configuration is maintained for 3rd party Vendor dependencies independent from your App's code-base so they only need to be compiled once when adding a new dependency instead of each time your App changes. To include another vendor library in the vendor build, add the module name or the resource your App uses in the `VENDOR` collection, e.g:
 
@@ -230,7 +230,7 @@ Loaders only loads and transforms files on a **per-file** basis, anything more a
  1. Set type of Webpack build so other loaders/plugins can optimize accordingly
  2. Ignores watching the `/wwwroot` folder for any changes during watched builds
  3. References the **vendor** `.js` and `.css` bundles in the App's Webpack build
- 4. Generate the WebApps `index.html`, based on [index.template.ejs](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/index.template.ejs) and compiled with [lodash template](https://lodash.com/docs/4.17.4#template), which also takes care of injecting any `.css` and `.js` output bundle references
+ 4. Generate the WebApps `index.html`, based on [index.template.ejs](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx/blob/master/MyApp/index.template.ejs) and compiled with [lodash template](https://lodash.com/docs/4.17.4#template), which also takes care of injecting any `.css` and `.js` output bundle references
  5. Injects the vendor  `.js` and `.css` bundles in the generated `wwwroot/index.html`
   
 ```js
