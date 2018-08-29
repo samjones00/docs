@@ -119,7 +119,7 @@ The templates include a hot-reload feature which works similar to [ServiceStack 
 Hot Reloading works by leveraging [ServiceStack Templates](http://templates.servicestack.net) which works seamlessly with Webpack's generated `index.html` where it evaluates server Template Expressions when returning the SPA home page. This is leveraged to enable Hot Reloading support by [including the expression](https://github.com/NetCoreTemplates/vue-spa/blob/0c13183b6a5ae20564f650e50d29b9d4e36cbd0c/MyApp/index.template.ejs#L8):
 
 ```html
-{% raw %}<i hidden>{{ '/js/hot-loader.js' | ifDebugIncludeScript }}</i>{% endraw %}
+{% raw %}<i hidden>{{ '/js/hot-fileloader.js' | ifDebugIncludeScript }}</i>{% endraw %}
 ```
 
 Which renders the contents of [/js/hot-fileloader.js](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/js/hot-fileloader.js) when running the Web App during development.
