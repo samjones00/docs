@@ -23,6 +23,7 @@
     - [Desktop Templates](/templates-desktop)
     - [Vuetify Templates](/templates-vuetify)
     - [Nuxt Templates](/templates-nuxt)
+    - [Tour of Webpack](/tour-of-webpack)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
