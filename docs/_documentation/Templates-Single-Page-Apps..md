@@ -21,6 +21,7 @@ Click on the template name below to view a Live Demo and contents of each projec
  - [react-spa](https://github.com/NetCoreTemplates/react-spa) - React App
  - [angular-cli](https://github.com/NetCoreTemplates/angular-cli) - Angular 5 App
  - [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa) - Aurelia App
+ - [parcel](https://github.com/NetCoreTemplates/parcel) - Parcel App
  - [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa) - Vuetify Vue App
  - [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt) - Nuxt.js Vue App
  - [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt) - Nuxt.js Vuetify App
