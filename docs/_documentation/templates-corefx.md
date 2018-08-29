@@ -23,7 +23,7 @@ Which can then be opened in your preferred VS.NET or Project Rider C# IDE.
 
 ### Reference .Core packages
 
-The primary difference between ASP.NET Core Apps on **.NET Core 2.0** vs **.NET Framework** is needing to reference the `.Core` packages to force referencing ServiceStack **.NET Standard 2.0** libraries, which otherwise when installed in a .NET Framework project would install `net45` libraries. The differences between the 2 builds include:
+The primary difference between ASP.NET Core Apps on **.NET Core 2.1** vs **.NET Framework** is needing to reference the `.Core` packages to force referencing ServiceStack **.NET Standard 2.0** libraries, which otherwise when installed in a .NET Framework project would install `net45` libraries. The differences between the 2 builds include:
 
   - `net45` - Contains support for running **ASP.NET** Web or Self-Hosting **HttpListener** App Hosts
   - `netstandard2.0` - Contains support for only running on **ASP.NET Core** App Hosts

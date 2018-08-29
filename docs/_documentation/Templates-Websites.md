@@ -9,11 +9,11 @@ There are 3 templates for each of the different technologies that can be used wi
 
     $ dotnet-new mvc AcmeMvc
 
-Which will create a new .NET Core 2.0 MVC Project called **AcmeMvc**. The Template Names, Source Code and Live Demos for each Website Template is available below:
+Which will create a new .NET Core 2.1 MVC Project called **AcmeMvc**. The Template Names, Source Code and Live Demos for each Website Template is available below:
 
 <table class="table tpl">
 <tr>
-    <th>.NET Core 2.0</th>
+    <th>.NET Core 2.1</th>
     <th>.NET Framework</th>
     <th>Single Page App Templates</th>
 </tr>
@@ -77,13 +77,13 @@ Both `razor` and `templates` project enjoy Hot Reloading where in development a 
 
     $ dotnet watch run
 
-### .NET Core 2.0 ServiceStack WebApp Template
+### .NET Core 2.1 ServiceStack WebApp Template
 
-The .NET Core 2.0 [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp) project template is a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+The .NET Core 2.1 [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp) project template is a pre-built .NET Core 2.1 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
 <table class="table">
 <tr>
-    <th>.NET Core 2.0</th>
+    <th>.NET Core 2.1</th>
     <th>ServiceStack Templates WebApp</th>
 </tr>
 <tr>

@@ -15,7 +15,7 @@ The Single Page App (SPA) project templates can also be created using the [dotne
 
 Click on the template name below to view a Live Demo and contents of each project template:
 
-### .NET Core 2.0
+### .NET Core 2.1
 
  - [vue-spa](https://github.com/NetCoreTemplates/vue-spa) - Vue App
  - [react-spa](https://github.com/NetCoreTemplates/react-spa) - React App
@@ -26,7 +26,7 @@ Click on the template name below to view a Live Demo and contents of each projec
  - [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt) - Nuxt.js Vuetify App
  - [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa) - Angular 4 Material Design Lite App
 
-The .NET Core 2.0 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your prefered C# IDE of VS.NET, VS Code or Rider.
+The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your prefered C# IDE of VS.NET, VS Code or Rider.
 
 ### .NET Framework
 
@@ -407,7 +407,7 @@ Which creates a production build of your App where the `.css` files are written 
 
 In the .NET Framework templates you can deploy to any [MS WebDeploy](https://www.iis.net/downloads/microsoft/web-deploy) enabled Server by clicking **Publish...** in the ASP.NET's project Context Menu item which makes use of the existing [/PublishProfiles/PublishToIIS.pubxml](https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/master/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml) which [includes an instruction](https://github.com/NetFrameworkTemplates/vue-spa-netfx/blob/2e8c208982561695275b451a9ece35522d9739d9/MyApp/Properties/PublishProfiles/PublishToIIS.pubxml#L23-L36) to include the `/wwwroot` folder in deployments.
 
-In .NET Core 2.0 projects the `publish` npm script runs `dotnet publish -c Release` to Publish a Release build of your App in the `/bin/netcoreapp2.0/publish` folder which can then copied to remote server or an included in a Docker container to deploy your App.
+In .NET Core 2.1 projects the `publish` npm script runs `dotnet publish -c Release` to Publish a Release build of your App in the `/bin/netcoreapp2.0/publish` folder which can then copied to remote server or an included in a Docker container to deploy your App.
  
 ### Loading Dependencies
  
