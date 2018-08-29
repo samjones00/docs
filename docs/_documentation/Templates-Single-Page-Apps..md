@@ -56,13 +56,8 @@ on the command-line with:
  
     $ npm run {script name}
 
-### TypeScript and Sass
- 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/sass-ts.png)
- 
-All templates are configured with TypeScript which we believe provides the greatest value in enabling a highly-productive and maintainable code-base. TypeScript lets you utilize the latest ES6/7 features including terse ES6 modules and async/await support whilst being able to target down-level browsers. Other benefits include better documented typed APIs, instant compiler feedback, rich intellisense and refactoring support in a graceful superset of JavaScript that scales well to be able develop prototypes quickly then easily go back to harden existing code-bases with optional Type information, catching common errors at compile-time whilst annotating modules with valuable documentation other developers can benefit from.
- 
-Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY and reuse features we take for granted in a general purpose programming language. [SASS](http://sass-lang.com/) is designed to close that gap with a number of useful extensions to CSS aimed at enabling a highly-maintainable, modular and configurable css code-base. If you prefer to avoid learning SASS you can continue using vanilla css which has been enhanced with [autoprefixer](https://github.com/postcss/autoprefixer) and [precss](https://github.com/jonathantneal/precss) support.
+All templates also follow our [Recommended Physical Project Structure](/physical-project-structure) ensuring ServiceStack projects starts off from 
+an optimal logical project layout, laying the foundation for growing into a more maintainable, cohesive and reusable code-base.
 
 ### End-to-end Typed APIs
  
@@ -111,6 +106,14 @@ this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r =
     this.result = r.result;
 });
 ```
+
+### TypeScript and Sass
+ 
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/sass-ts.png)
+ 
+All templates are configured with TypeScript which we believe provides the greatest value in enabling a highly-productive and maintainable code-base. TypeScript lets you utilize the latest ES6/7 features including terse ES6 modules and async/await support whilst being able to target down-level browsers. Other benefits include better documented typed APIs, instant compiler feedback, rich intellisense and refactoring support in a graceful superset of JavaScript that scales well to be able develop prototypes quickly then easily go back to harden existing code-bases with optional Type information, catching common errors at compile-time whilst annotating modules with valuable documentation other developers can benefit from.
+ 
+Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY and reuse features we take for granted in a general purpose programming language. [SASS](http://sass-lang.com/) is designed to close that gap with a number of useful extensions to CSS aimed at enabling a highly-maintainable, modular and configurable css code-base. If you prefer to avoid learning SASS you can continue using vanilla css which has been enhanced with [autoprefixer](https://github.com/postcss/autoprefixer) and [precss](https://github.com/jonathantneal/precss) support.
 
 ### Optimal Dev Workflow with Hot Reloading
 
@@ -197,18 +200,6 @@ Live testing automatically re-runs JavaScript tests after each change to provide
  
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/gulp-tests-watch.png)
  
-#### Test Coverage
- 
-Angular, Aurelia and React are also pre-configured to be able to show test coverage, viewable by running the `tests-coverage` Gulp task or on the command-line with:
- 
-    $ npm run test-coverage
- 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/gulp-tests-coverage.png)
- 
-#### Multi-Project Solution Layout
-
-All templates follow our [Recommended Physical Project Structure](/physical-project-structure) ensuring ServiceStack projects starts off from an optimal logical project layout, laying the foundation for growing into a more maintainable, cohesive and reusable code-base.
-
 ### Track progress whilst templates are being created
 
 The Single Page App templates sources their client dependencies from npm which can take up to few minutes to finish downloading and installing. You'll be able to see its progress by looking at the `Bower/npm` Output Window in VS.NET:
