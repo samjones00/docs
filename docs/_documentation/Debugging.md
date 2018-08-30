@@ -135,7 +135,7 @@ The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered 
 
 ```csharp
 Plugins.Add(new TemplatePagesFeature { 
-    EnableDebugTemplate = true
+    MetadataDebugAdminRole = RoleNames.Admin,        // Only allow Admin users
 })
 ```
 
@@ -148,11 +148,12 @@ SetConfig(new HostConfig { AdminAuthSecret = "secret" })
 
 Which will let you access it by appending the authsecret to the querystring: `/metadata/debug?authsecret=secret`
 
-Alternatively if preferred you can make the Debug Template Service available to all users with:
+Alternatively if preferred you can make the Debug Template Service available to:
 
 ```csharp
 Plugins.Add(new TemplatePagesFeature { 
-    EnableDebugTemplateToAll = true
+    MetadataDebugAdminRole = RoleNames.AllowAnyUser,  // Allow Authenticated Users
+    MetadataDebugAdminRole = RoleNames.AllowAnon,     // Allow anyone
 })
 ```
 
