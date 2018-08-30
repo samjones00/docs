@@ -967,13 +967,13 @@ class JwtAuthProviderReader
 
     // The RSA Private Key used to Sign the JWT Token when RSA is used
     RSAParameters? PrivateKey
-    // Convenient overload to intialize the Private Key via exported XML
+    // Convenient overload to initialize the Private Key via exported XML
     string PrivateKeyXml
 
     // The RSA Public Key used to Verify the JWT Token when RSA is used
     RSAParameters? PublicKey
 
-    // Convenient overload to intialize the Public Key via exported XML
+    // Convenient overload to initialize the Public Key via exported XML
     string PublicKeyXml
 
     // How long should JWT Tokens be valid for. (default 14 days)
