@@ -4,20 +4,30 @@ slug: order-of-operations
 
 ## HTTP Custom hooks
 
-This list shows the order in which any user-defined custom hooks are executed:
+This list shows the order in which any user-defined custom hooks are executed.
+
+The first set of filters is used to return the matching `IHttpHandler` for the request:
 
   1. `HostContext.RawHttpHandlers` are executed before anything else, i.e. returning any ASP.NET `IHttpHandler` by-passes ServiceStack completely and processes your custom `IHttpHandler` instead.
-  2. If the Request doesn't match any existing Routes it will search `IAppHost.CatchAllHandlers` for a match
-  3. The `IAppHost.PreRequestFilters` gets executed before the Request DTO is deserialized
-  4. Default Request DTO Binding or [Custom Request Binding][4] _(if registered)_
-  5. Any [Request Converters](/customize-http-responses#request-converters) are executed
-  5. [Request Filter Attributes][3] with **Priority < 0** gets executed
-  6. Then any [Global Request Filters][1] get executed
-  7. Followed by [Request Filter Attributes][3] with **Priority >= 0**
-  8. Action Request Filters
-  9. Then your **Service is executed** with the configured [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and its **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
-  10. Action Response Filters
-  11. Any [Response Converters](/customize-http-responses#response-converters) are executed
+  2. Request is checked if matches any registered routes or static files and directories
+  3. If the Request doesn't match it will search `IAppHost.CatchAllHandlers` for a match
+  4. `IAppHost.FallbackHandlers` is the last handler executed for finding a handler to handle the request
+
+Any unmatched requests will not be handled by ServiceStack and either returns a 404 NotFound Response in **ASP.NET** or **HttpListener** AppHosts or 
+executes the next middleware in-line in **.NET Core** Apps.
+
+Requests handled by ServiceStack execute the custom hooks and filters in the following order:
+
+  1. The `IAppHost.PreRequestFilters` gets executed before the Request DTO is deserialized
+  2. Default Request DTO Binding or [Custom Request Binding][4] _(if registered)_
+  3. Any [Request Converters](/customize-http-responses#request-converters) are executed
+  4. [Request Filter Attributes][3] with **Priority < 0** gets executed
+  5. Then any [Global Request Filters][1] get executed
+  6. Followed by [Request Filter Attributes][3] with **Priority >= 0**
+  7. Action Request Filters
+  8. Then your **Service is executed** with the configured [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and its **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
+  9. Action Response Filters
+  10. Any [Response Converters](/customize-http-responses#response-converters) are executed
   11. Followed by [Response Filter Attributes][3] with **Priority < 0** 
   12. Then [Global Response Filters][1] 
   13. Followed by [Response Filter Attributes][3] with **Priority >= 0** 
