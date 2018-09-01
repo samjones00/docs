@@ -15,13 +15,57 @@ The [@servicestack/cli command-line utils](https://github.com/ServiceStack/servi
 
 ### Install swift-ref
 
-Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
+Prerequisites: Install [Node.js](https://nodejs.org/en/download/).
 
     $ npm install -g @servicestack/cli
 
 This will make the `swift-ref` script available in your `$PATH` which can now be used from within a **Terminal window** at your Xcode project folder.
 
-#### Add a new ServiceStack Reference
+To use the latest `JsonServiceClient` with [PromiseKit v6](https://promisekit.org/news/2018/02/PromiseKit-6.0-Released/) you'll need to add
+a reference to ServiceStack Swift library using your preferred package manager:
+
+#### CocoaPods
+
+In your [Podfile](https://guides.cocoapods.org/syntax/podfile.html):
+
+```ruby
+use_frameworks!
+
+# Pods for Project
+pod "ServiceStack", '~> 1.0'
+```
+
+#### Carthage
+
+```ruby
+github "ServiceStack/ServiceStack.Swift" ~> 1.0
+```
+
+#### SwiftPM
+
+```swift
+package.dependencies.append(
+    .Package(url: "ServiceStack/ServiceStack.Swift", majorVersion: 1)
+)
+```
+
+### Inline JsonServiceClient.swift
+
+Prior to PromiseKit v6 you can use 
+[JsonServiceClient.swift](https://github.com/ServiceStack/ServiceStack.Swift/blob/master/dist/JsonServiceClient.swift)
+available as a single source file which you can drop in your project.
+
+The only change to the generated DTOs [overriding the DefaultImports](#defaultimports) to exclude `ServiceStack` module, e.g:
+
+```swift
+/*Options:
+...
+
+DefaultImports: Foundation
+*/
+```
+
+### Add a new ServiceStack Reference
 
 To Add a new ServiceStack Reference, call `swift-ref` with the Base URL to a remote ServiceStack instance:
 
@@ -268,6 +312,14 @@ Will import the `UIKit` and `Foundation` frameworks:
 ```swift
 import UIKit;
 import Foundation;
+```
+
+### Swift style enums
+
+You can override code-generation to emit Swift Style **camelCase** enums in your AppHost with:
+
+```csharp
+SwiftGenerator.EnumNameStrategy = SwiftGenerator.SwiftStyleEnums;
 ```
 
 ## Swift Client Usage
