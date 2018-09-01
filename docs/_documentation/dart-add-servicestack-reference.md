@@ -9,7 +9,7 @@ ServiceStack's **Add ServiceStack Reference** feature allows clients to generate
 
 ### Dart ServiceStack Reference
 
-Dart ServiceStack Reference supports **all Dart platforms**, including Flutter and AngularDart or Dart Web Apps with and without Dart 2's Strong Mode - in the same optimal development workflow pioneered in [Add ServiceStack Reference](/add-servicestack-reference) where it doesn't requiring any additional tooling, transformers or build steps. 
+Dart ServiceStack Reference supports **all Dart 2.0 platforms**, including Flutter and AngularDart or Dart Web Apps - in the same optimal development workflow pioneered in [Add ServiceStack Reference](/add-servicestack-reference) where it doesn't requiring any additional tooling, transformers or build steps. 
 
 Due to the lack of reflection and Mirror support, consuming JSON APIs can be quite [cumbersome in Flutter](https://flutter.io/cookbook/networking/fetch-data/). But we've been able to achieve the same productive development experience available in [all supported languages](/add-servicestack-reference) where you can use the generated Dart DTOs from any remote v5.1+ ServiceStack endpoint with ServiceStack's Smart generic
 [JsonServiceClient](https://pub.dartlang.org/documentation/servicestack/0.0.7/client/JsonServiceClient-class.html) available in the [servicestack Dart package](https://pub.dartlang.org/packages/servicestack#-installing-tab-), to enable an end-to-end Typed API for calling Services by [sending and receiving native DTOs](/architecture-overview#client-architecture).
@@ -41,6 +41,8 @@ Saving `pubspec.yaml` in VS Code with the [Dart Code Extension](https://dartcode
 
 We now have everything we need to be able to make typed API requests to any of [TechStacks APIs](https://www.techstacks.io/metadata) with a shared `JsonServiceClient` instance populated with the base URL of the remote endpoint, e.g:
 
+#### Flutter and Dart VM Usage
+
 ```dart
 import 'package:servicestack/client.dart';
 
@@ -54,7 +56,41 @@ main() async {
 }
 ```
 
+See the [HelloFlutter](https://github.com/ServiceStackApps/HelloFlutter) project for a working example.
+
 Like C#, Dart has Generics and Type Inference so the `response` returned is the typed `HelloResponse` DTO giving us rich intelli-sense and compiler type safety. 
+
+#### AngularDart and Dart Web Usage
+
+For AngularDart or Dart Web Apps import `web_client.dart` and use the `JsonWebClient`:
+
+```dart
+import 'package:servicestack/web_client.dart';
+
+import 'techstacks.dtos.dart';              // Add ServiceStack Reference DTOs
+
+//...
+var client = new JsonWebClient("https://www.techstacks.io");
+var response = await client.get(new GetTechnology(slug: "flutter"));
+```
+
+See the [HelloAngularDart](https://github.com/ServiceStackApps/HelloAngularDart) project for a working example.
+
+#### Platform agnostic Usage
+
+For creating libraries that can be consumed in any Dart platform reference `servicestack.dart` and use the `IServiceClient` interface which
+is implemented by both `JsonServiceClient` and `JsonWebClient`:
+
+```dart
+import 'package:servicestack/servicestack.dart';
+
+import 'techstacks.dtos.dart';              // Add ServiceStack Reference DTOs
+
+//...
+fetchTechnologies(IServiceClient client) async {
+    var response = await client.get(new GetTechnology(slug: "flutter"));
+}
+```
 
 ### Rich Generated Models
 
