@@ -777,6 +777,21 @@ Plugins.Add(new AuthFeature(...){
 })
 ```
 
+#### AccountLocked Validator
+
+Use `AccountLockedValidator` to override logic to determine when an account is locked, e.g. by default an Account is Locked when it has a `LockedDate` but
+can be changed to allow locking accounts at a future date with:
+
+```csharp
+new CredentialsAuthProvider {
+    AccountLockedValidator = (authRepo, userAuth, tokens) => 
+        userAuth.LockedDate != null && userAuth.LockedDate <= DateTime.UtcNow;
+}
+```
+
+Alternatively if you're using a Custom Auth Provider you can just override `IsAccountLocked()` to override this behavior.
+
+
 #### Saving Extended OAuth Metadata
 
 The new `SaveExtendedUserInfo` property (enabled by default) on all OAuth providers let you control whether to save the extended OAuth metadata available (into `UserAuthDetails.Items`) when logging in via OAuth.
@@ -789,6 +804,20 @@ The `MaxLoginAttempts` feature lets you lock a User Account after multiple inval
 Plugins.Add(new AuthFeature(...) {
     MaxLoginAttempts = 5   // Lock user after 5 Invalid attempts
 });
+```
+
+### Adding AuthProviders with Plugins
+
+Plugins can register AuthProviders by calling `RegisterAuthProvider()` before the `AuthFeature` plugin is registered, which can be achieved in Plugins by having them implement `IPreInitPlugin`:
+
+```csharp
+public class MyPlugin : IPreInitPlugin
+{
+    public void Configure(IAppHost appHost)
+    {
+        appHost.GetPlugin<AuthFeature>().RegisterAuthProvider(new MyAuthProvider());
+    }
+}
 ```
 
 ### AuthFilterContext

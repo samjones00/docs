@@ -165,6 +165,13 @@ public class Sales { ... }
 public class QuerySales : QueryDb<Sales> {}
 ```
 
+Which can also be added on the Request DTO itself:
+
+```csharp
+[NamedConnection("Reporting")]
+public class ViewSales : IReturn<ViewSalesResponse> { }
+```
+
 ### Resolving Named Connections in Services
 
 Whilst inside a Service you can change which DB connection to use by passing in the NamedConnection when opening a DB Connection. E.g. The example below allows the user to change which database to retrieve all sales records for otherwise fallbacks to "Reporting" database by default:
