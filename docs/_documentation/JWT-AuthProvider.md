@@ -94,6 +94,29 @@ client.SetTokenCookie(jwtToken);
 We'll walk through an example of how you can access JWT Tokens as well as how you can convert Authenticated
 Sessions into JWT Tokens and assign it to use a **Secure** and **HttpOnly** Cookie later on.
 
+#### Sending JWT in Request DTOs
+
+Similar to the `IHasSessionId` interface Request DTOs can also implement `IHasBearerToken` to send Bearer Tokens as an alternative for sending them in HTTP Headers or Cookies, e.g:
+
+```csharp
+public class Secure : IHasBearerToken
+{
+    public string BearerToken { get; set; }
+    public string Name { get; set; }
+}
+
+var response = client.Get(new Secure { BearerToken = jwtToken, Name = "World" });
+```
+
+Alternatively you can set the `BearerToken` property on the Service Client once where it will automatically populate all Request DTOs 
+that implement `IHasBearerToken`, e.g:
+
+```csharp
+client.BearerToken = jwtToken;
+
+var response = client.Get(new Secure { Name = "World" });
+```
+
 ### JWT Overview
 
 A nice property of JWT tokens is that they allow for truly stateless authentication where API Keys and user 

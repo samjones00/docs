@@ -326,6 +326,22 @@ This lets you change the default DataContract XML namespace used for all C# name
 
 > Requires AddDataContractAttributes=true
 
+### Customize DTO Type generation 
+
+The `PreTypeFilter` available in all languages can be used to inject custom code in the generated DTOs output. 
+
+E.g. you can use this feature to add the `[Serializable]` attribute on all C# DTO Types with:
+
+```csharp
+CSharpGenerator.PreTypeFilter = (sb, type) => 
+{
+    if (!type.IsEnum.GetValueOrDefault() && !type.IsInterface.GetValueOrDefault())
+    {
+        sb.AppendLine("[Serializable]");
+    }
+};
+```
+
 ## Xamarin Studio
 
 With the new [ServiceStackXS Add-In](http://addins.monodevelop.com/Project/Index/154) your Service Consumers can now generate typed DTOs of your remote ServiceStack Services directly from within Xamarin Studio, which together with the **ServiceStack.Client** NuGet package provides an effortless way to enable an end-to-end Typed API from within Xamarin C# projects.

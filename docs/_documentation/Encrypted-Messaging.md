@@ -177,7 +177,33 @@ After which the ServiceClient "establishes an authenticated session" and can be 
 var response = await client.GetAsync(new HelloAuthenticated { Name = "World" });
 ```
 
-> Note: EncryptedServiceClient is unavailable in PCL Clients
+### BearerToken in Request DTOs
+
+Similar to the `IHasSessionId` interface Request DTOs can also implement `IHasBearerToken` to send Bearer Tokens as an alternative for sending them in HTTP Headers or Cookies.
+
+This lets you authenticate with Auth Providers like [API Key](/api-key-authprovider) and [JWT](/jwt-authprovider) in [Encrypted Messaging](/encrypted-messaging) requests, e.g:
+
+```csharp
+public class Secure : IHasBearerToken
+{
+    public string BearerToken { get; set; }
+    public string Name { get; set; }
+}
+
+IEncryptedClient encryptedClient = client.GetEncryptedClient(publicKey);
+var response = encryptedClient.Get(new Secure { BearerToken = apiKey, Name = "World" });
+```
+
+Where it will be embedded and encrypted along with all content in the Request DTO so it can be sent securely over an unsecured HTTP Request.
+
+Alternatively you can set the `BearerToken` property on the `IEncryptedClient` once where it will automatically populate all Request DTOs 
+that implement `IHasBearerToken`, e.g:
+
+```csharp
+encryptedClient.BearerToken = apiKey;
+
+var response = encryptedClient.Get(new Secure { Name = "World" });
+```
 
 ### RSA and AES Hybrid Encryption verified with HMAC SHA-256
 
