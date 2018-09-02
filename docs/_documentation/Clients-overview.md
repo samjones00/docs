@@ -7,13 +7,12 @@ Although in addition to this the [ServiceStack.Client](http://nuget.org/packages
 
 ### ServiceStack Clients
 
-  * [C# Client](/csharp-client)
+  * [C#/.NET Client](/csharp-client)
   * [TypeScript Client](/typescript-add-servicestack-reference)
   * [Java/Kotlin Client](/java-add-servicestack-reference)
   * [Swift Client](/swift-add-servicestack-reference)
-  * [Silverlight Client](/silverlight-client)
+  * [Dart Client](/dart-add-servicestack-reference#example-usage)
   * [JavaScript Client](/javascript-client)
-  * [Dart Client](/dart-client)
   * [MQ Clients](/redis-mq)
 
 ### Add ServiceStack Reference
@@ -28,6 +27,7 @@ You can also use [ServiceStackVS](/create-your-first-webservice#step-1-download-
 * [Swift Add ServiceStack Reference](/swift-add-servicestack-reference)
 * [Java Add ServiceStack Reference](/java-add-servicestack-reference)
 * [Kotlin Add ServiceStack Reference](/kotlin-add-servicestack-reference)
+* [Dart Add ServiceStack Reference](/dart-add-servicestack-reference)
 * [F# Add ServiceStack Reference](/fsharp-add-servicestack-reference)
 * [VB.NET Add ServiceStack Reference](/vbnet-add-servicestack-reference)
 
