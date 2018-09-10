@@ -283,7 +283,7 @@ The VS.NET Templates inside [ServiceStackVS](https://github.com/ServiceStack/Ser
 
 ### .NET Core 2.0 TypeScript Webpack Templates
 
-There's a project template for each of the most popular Single Page Application JavaScript frameworks, including a new [Angular 5.1](https://angular.io) template built and managed using Angular's new [angular-cli](https://cli.angular.io) tooling. All other SPA Templates (inc. Angular 4) utilize a modernized Webpack build system, pre-configured with npm scripts to perform all necessary debug, production and live watched builds and testing. The included [gulpfile.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/gulpfile.js) provides a Gulp script around each npm script so they can be run without the command-line, by running them using VS.NET's built-in Task Runner Explorer GUI. 
+There's a project template for each of the most popular Single Page Application JavaScript frameworks, including a new [Angular 5.1](https://angular.io) template built and managed using Angular's new [angular-spa](https://cli.angular.io) tooling. All other SPA Templates (inc. Angular 4) utilize a modernized Webpack build system, pre-configured with npm scripts to perform all necessary debug, production and live watched builds and testing. The included [gulpfile.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/gulpfile.js) provides a Gulp script around each npm script so they can be run without the command-line, by running them using VS.NET's built-in Task Runner Explorer GUI. 
 
 All SPA templates are configured to use Typed DTOs from [TypeScript Add Reference](http://docs.servicestack.net/typescript-add-servicestack-reference) with the generic [@servicestack/client](https://github.com/ServiceStack/servicestack-client) `JsonServiceClient` with concrete Type Definitions except for the Angular 5 template which uses Angular's built-in Rx-enabled HTTP Client with ServiceStack's ambient TypeScript declarations, as it's often preferable to utilize Angular's built-in dependencies when available. 
 
@@ -291,9 +291,9 @@ All Single Page App Templates are available for both .NET Core 2.0 and ASP.NET F
 
 #### Angular 5 CLI Bootstrap Template
 
- - .NET Core: [angular-cli](https://github.com/NetCoreTemplates/angular-cli)
- - .NET Framework: [angular-cli-netfx](https://github.com/NetFrameworkTemplates/angular-cli-netfx)
- - Live Preview: [angular-cli.web-templates.io](http://angular-cli.web-templates.io)
+ - .NET Core: [angular-spa](https://github.com/NetCoreTemplates/angular-spa)
+ - .NET Framework: [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)
+ - Live Preview: [angular-spa.web-templates.io](http://angular-spa.web-templates.io)
 
 #### Angular 4 Material Design Lite Template
 

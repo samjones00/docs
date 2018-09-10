@@ -19,7 +19,7 @@ Click on the template name below to view a Live Demo and contents of each projec
 
  - [vue-spa](https://github.com/NetCoreTemplates/vue-spa) - Vue App
  - [react-spa](https://github.com/NetCoreTemplates/react-spa) - React App
- - [angular-cli](https://github.com/NetCoreTemplates/angular-cli) - Angular 5 App
+ - [angular-spa](https://github.com/NetCoreTemplates/angular-spa) - Angular 5 App
  - [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa) - Aurelia App
  - [parcel](https://github.com/NetCoreTemplates/parcel) - Parcel App
  - [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa) - Vuetify Vue App
@@ -33,7 +33,7 @@ The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly 
 
  - [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx) - Vue App
  - [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx) - React App
- - [angular-cli-netfx](https://github.com/NetFrameworkTemplates/angular-cli-netfx) - Angular 5 App
+ - [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx) - Angular 5 App
  - [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx) - Aurelia App
  - [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx) - Angular 4 Material Design Lite App
  - [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) - React Desktop Apps
