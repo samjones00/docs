@@ -1156,7 +1156,7 @@ IList<string> allowedUsers = AppSettings.GetList("AllowedUsers");
 
 The major change added in order for Templates to be isolated from the ServiceStack Web Framework was to decouple the [Virtual File System providers](http://docs.servicestack.net/virtual-file-system) from ServiceStack's AppHost and move them to `ServiceStack.Common`. 
 
-This separation makes it easier to use VFS providers outside of ServiceStack AppHost which is a useful abstraction for copying files from different file sources as done in the [copy-files](https://github.com/NetCoreWebApps/WebApp/tree/master/src/support/copy-files) project to upload files to AWS S3 or Azure Blob Storage.
+This separation makes it easier to use VFS providers outside of ServiceStack AppHost which is a useful abstraction for copying files from different file sources as done in the [copy-files](https://github.com/ServiceStack/dotnet-app/tree/master/src/support/copy-files) project to upload files to AWS S3 or Azure Blob Storage.
 
 ### AddVirtualFileSources
 

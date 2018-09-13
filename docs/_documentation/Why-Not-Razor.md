@@ -66,7 +66,7 @@ This configuration is needed in every ServiceStack Razor project despite not hav
 
 We're very disappointed to see this practice of bundling magic behavior with the underlying platform has continued in .NET Core. Usually we just live with the defaults the ASP.NET team decides to adopt, their choices always have a detrimental effect to the surrounding .NET ecosystem maintaining alternative solutions but at least if you're not using their defaults libraries they won't affect your project, but the special handling to support Razor is actively harmful to all .NET Core 2.0 projects not using it and continues to perpetuate the stigma that ASP.NET is an opinionated, bloated and unnecessarily complex platform, something that .NET Core is trying hard to eradicate, but is tainted with practices like this.
 
-The magic behavior has leaked to negatively impact .NET Core Web projects not using Razor and has prevented us from publishing our [Web App](https://github.com/NetCoreWebApps/WebApp) binaries, a project that explicitly has no references to Razor or MVC and no .cshtml pages as its very purpose is to be able to build .NET Core Web Apps without Razor, but still fails when running:
+The magic behavior has leaked to negatively impact .NET Core Web projects not using Razor and has prevented us from publishing our [Web App](https://github.com/ServiceStack/dotnet-app) binaries, a project that explicitly has no references to Razor or MVC and no .cshtml pages as its very purpose is to be able to build .NET Core Web Apps without Razor, but still fails when running:
 
     dotnet publish -c Release
 
