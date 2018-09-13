@@ -581,7 +581,7 @@ Web Apps let you develop dynamic websites without needing to write any C# code o
 
 #### [Web App Examples](https://github.com/NetCoreWebApps/LiveDemos#live-demos)
 
-To illustrate the various features available we've developed a number of Web Apps examples to showcase the different kind of Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/NetCoreWebApps). Each app runs the same unmodified [Web App Binary](https://github.com/NetCoreWebApps/Web) that's also used in the WebAppStarter project above.
+To illustrate the various features available we've developed a number of Web Apps examples to showcase the different kind of Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/NetCoreWebApps). Each app runs the same unmodified [Web App Binary](https://github.com/ServiceStack/Web) that's also used in the Bare Web App project above.
 
 You can quickly get started by creating a Web App from the project template:
 
