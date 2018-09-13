@@ -1006,7 +1006,7 @@ Web Apps leverages Templates to develop entire content-rich, data-driven website
 
 Not having to write any C# code or perform any app builds dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [Template's syntax](http://templates.servicestack.net/docs/syntax) and what [filters are available](http://templates.servicestack.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript developers despite calling and binding directly to .NET APIs behind the scenes.
 
-All complexity with C#, .NET, namespaces, references, .dlls, strong naming, packages, MVC, Razor, build tools, IDE environments, etc has been eliminated leaving all Web Developers needing to do is run a cross-platform [web/app.dll](https://github.com/NetCoreWebApps/Web) .NET Core 2.0 executable and configure a simple [web.settings](https://github.com/NetCoreTemplates/bare-webapp/blob/master/app.settings) text file to specify which website folder to use, which ServiceStack features to enable, which db or redis providers to connect to, etc. 
+All complexity with C#, .NET, namespaces, references, .dlls, strong naming, packages, MVC, Razor, build tools, IDE environments, etc has been eliminated leaving all Web Developers needing to do is run a cross-platform [web/app.dll](https://github.com/ServiceStack/Web) .NET Core 2.0 executable and configure a simple [web.settings](https://github.com/NetCoreTemplates/bare-webapp/blob/master/app.settings) text file to specify which website folder to use, which ServiceStack features to enable, which db or redis providers to connect to, etc. 
 
 ### Rapid Development Workflow
 
@@ -1014,11 +1014,11 @@ The iterative development experience is also unparalleled for a .NET App, no com
 
 ### Pure Cloud Apps
 
-Web Apps also enable the development of [Pure Cloud Apps](http://templates.servicestack.net/docs/web-apps#pure-cloud-apps) where the same Web App can be developed and run entirely on **AWS S3 and RDS** or **Azure Blob Storage and SQL Server** by just changing the `web.settings` that's deployed with the pre-compiled [Web App Binary](https://github.com/NetCoreWebApps/Web).
+Web Apps also enable the development of [Pure Cloud Apps](http://templates.servicestack.net/docs/web-apps#pure-cloud-apps) where the same Web App can be developed and run entirely on **AWS S3 and RDS** or **Azure Blob Storage and SQL Server** by just changing the `web.settings` that's deployed with the pre-compiled [Web App Binary](https://github.com/ServiceStack/Web).
 
 ## Example Web Apps 
 
-We've developed a number of [Web Apps](http://templates.servicestack.net/docs/web-apps) to illustrate the various features available and to showcase its strengths and the different kind of Web Apps that can easily be developed with it. The source code for each app is maintained in [NetCoreWebApps](https://github.com/NetCoreWebApps) and each Web App runs the same [pre-compiled web/app.dll binary](https://github.com/NetCoreWebApps/Web).
+We've developed a number of [Web Apps](http://templates.servicestack.net/docs/web-apps) to illustrate the various features available and to showcase its strengths and the different kind of Web Apps that can easily be developed with it. The source code for each app is maintained in [NetCoreWebApps](https://github.com/NetCoreWebApps) and each Web App runs the same [pre-compiled web/app.dll binary](https://github.com/ServiceStack/Web).
 
 ## Metadata Debug Templates
 
