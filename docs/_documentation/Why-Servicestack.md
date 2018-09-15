@@ -43,8 +43,10 @@ XML,
 as well as XSD/WSDL for [SOAP endpoints](/soap-support) and 
 [Rabbit MQ](/rabbit-mq), 
 [Redis MQ](/redis-mq),
-[Azure Service Bus](/azure-service-bus-mq) and
-[Amazon SQS](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver) MQ hosts. 
+[Azure Service Bus](/azure-service-bus-mq),
+[Amazon SQS](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver) and
+[Background MQ](/background-mq),
+MQ hosts. 
 
 Its design and simplicity focus offers an unparalleled suite of productivity features that can be declaratively enabled 
 without code, from creating fully queryable Web API's with just a single Typed Request DTO with
@@ -423,7 +425,7 @@ Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can 
   - [Rabbit MQ Server](/rabbit-mq)
   - [Redis MQ Server](/redis-mq)
   - [Amazon SQS MQ Server](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver)
-  - [InMemory MQ Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Messaging/InMemoryTransientMessageService.cs)
+  - [Background MQ Service](/background-mq)
 
 ### Multiple Hosting Options
 
