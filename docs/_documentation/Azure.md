@@ -73,7 +73,7 @@ public class AppHost : AppHostBase
 
 ### Deploying to Azure
 
-See [Rockwind.Azure](https://github.com/NetCoreWebApps/Rockwind.Azure) for a working configuration and step-by-step guide to deploy .NET Core Web Apps to Azure using Docker.
+See [Rockwind.Azure](https://github.com/NetCoreWebApps/rockwind-azure) for a working configuration and step-by-step guide to deploy .NET Core Web Apps to Azure using Docker.
 
 # Community Resources
 
