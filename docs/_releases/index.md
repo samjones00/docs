@@ -1020,11 +1020,11 @@ Web Apps also enable the development of [Pure Cloud Apps](http://templates.servi
 
 We've developed a number of [Web Apps](http://templates.servicestack.net/docs/web-apps) to illustrate the various features available and to showcase its strengths and the different kind of Web Apps that can easily be developed with it. The source code for each app is maintained in [NetCoreWebApps](https://github.com/NetCoreWebApps) and each Web App runs the same [pre-compiled web/app.dll binary](https://github.com/ServiceStack/Web).
 
-## Metadata Debug Templates
+## Metadata Debug Inspector
 
 [![](http://templates.servicestack.net/assets/img/screenshots/metadata-debug.png)](http://templates.servicestack.net/metadata/debug)
 
-All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Template](http://templates.servicestack.net/docs/info-filters#debug-template).
+All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Inspector](http://templates.servicestack.net/docs/info-filters#debug-template).
 
 The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
 

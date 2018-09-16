@@ -125,11 +125,11 @@ work properly it can be hard to determine the cause was due to an Exception occu
 
 Alternatively enable [StrictMode](#strictmode) to have StartUp Exceptions thrown on StartUp.
 
-## Metadata Debug Template
+## Debug Inspector
 
 [![](http://templates.servicestack.net/assets/img/screenshots/metadata-debug.png)](http://templates.servicestack.net/metadata/debug)
 
-All ServiceStack Apps have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Template](http://templates.servicestack.net/docs/info-filters#debug-template).
+All ServiceStack Apps have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Debug Template](http://templates.servicestack.net/docs/info-filters#debug-template).
 
 The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
 
