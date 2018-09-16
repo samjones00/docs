@@ -428,15 +428,15 @@ The `ASPNETCORE_ENVIRONMENT` Environment variable can also be used to configure 
 The [.NET Core Apps deployed using Docker](http://docs.servicestack.net/deploy-netcore-docker-aws-ecs)now use the ASP.NET Team's [recommended multi-stage Docker Builds](https://docs.microsoft.com/en-us/dotnet/core/docker/building-net-docker-images#your-first-aspnet-core-docker-app) where the App is built inside an `aspnetcore-build` Docker container with its published output copied inside a new `aspnetcore` runtime Docker container:
 
 ```docker
-FROM microsoft/aspnetcore-build:2.0 AS build-env
+FROM microsoft/dotnet:2.1-sdk AS build-env
 COPY src /app
 WORKDIR /app
 
-RUN dotnet restore --configfile ../NuGet.Config
+RUN dotnet restore --configfile NuGet.Config
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/aspnetcore:2.0
+FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
 COPY --from=build-env /app/Chat/out .
 ENV ASPNETCORE_URLS http://*:5000
