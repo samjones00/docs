@@ -15,7 +15,7 @@ ServiceStack's [Recommended Physical Project Structure](/physical-project-struct
 
 See the documentation in each project for more info on features of each template:
 
-### [vue-spa](https://github.com/NetCoreTemplates/vue-spa)
+### [Vue 2.5 SPA Template](https://github.com/NetCoreTemplates/vue-spa)
 
 Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
@@ -31,7 +31,7 @@ Create new Vue 2.5 Project for .NET Framework:
 
     $ dotnet-new vue-spa-netfx ProjectName
 
-### [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)
+### [Vuetify SPA Template](https://github.com/NetCoreTemplates/vuetify-spa)
 
 Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/) and the [vuetify cli plugin](https://github.com/vuetifyjs/vue-cli-plugin-vuetify).
 
@@ -47,7 +47,7 @@ Create new Vuetify Project for .NET Framework:
 
     $ dotnet-new vuetify-spa-netfx ProjectName
 
-### [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)
+### [Nuxt SPA Template](https://github.com/NetCoreTemplates/vue-nuxt)
 
 Bootstrapped with [Nuxt.js starter template](https://nuxtjs.org/guide/installation).
 
@@ -63,7 +63,7 @@ Create new Nuxt.js v1.4.2 Project for .NET Framework:
 
     $ dotnet-new vue-nuxt-netfx ProjectName
 
-### [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)
+### [Nuxt and Vuetify SPA Template](https://github.com/NetCoreTemplates/vuetify-nuxt)
 
 Bootstrapped with [Nuxt.js + Vuetify.js starter template](https://github.com/vuetifyjs/nuxt).
 

@@ -13,7 +13,7 @@ ServiceStack's [Recommended Physical Project Structure](/physical-project-struct
 
 See the documentation in each project for more info on features of each template:
 
-### [angular-spa](https://github.com/NetCoreTemplates/angular-spa)
+### [Angular 6.1 SPA Template](https://github.com/NetCoreTemplates/angular-spa)
 
 .NET Core 2.1 Angular 6.1 project generated with [Angular CLI](https://github.com/angular/angular-spa).
 
@@ -29,7 +29,7 @@ Create new Angular 6.1 Project for .NET Framework:
 
     $ dotnet-new angular-spa-netfx ProjectName
 
-### [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)
+### [Angular4 and Material Design Lite SPA Template](https://github.com/NetCoreTemplates/angular-lite-spa)
 
 .NET Core 2.1 Angular4 and Material Design Lite Webpack App Template:
 

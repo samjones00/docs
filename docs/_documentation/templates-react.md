@@ -15,7 +15,7 @@ ServiceStack's [Recommended Physical Project Structure](/physical-project-struct
 
 See the documentation in each project for more info on features of each template:
 
-### [react-spa](https://github.com/NetCoreTemplates/react-spa)
+### [React 16 SPA Template](https://github.com/NetCoreTemplates/react-spa)
 
 Bootstrapped with [create-react-app](https://github.com/facebook/create-react-app).
 
@@ -31,7 +31,7 @@ Create new React 16 Project for .NET Framework:
 
     $ dotnet-new react-spa-netfx ProjectName
 
-### React Desktop Apps Template
+### [React Desktop Apps Template](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx)
 
 The React Desktop Template is a single VS .NET template which supports packaging your Web App into 4 different ASP.NET, Winforms, OSX Cocoa 
 and cross-platform Console App Hosts:
