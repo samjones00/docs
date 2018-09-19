@@ -44,6 +44,8 @@ Create new React Project for .NET Framework:
 
     $ dotnet-new react-desktop-apps-netfx ProjectName
 
+---
+
 # React Examples
 
 ## [Gistlyn](https://github.com/ServiceStack/Gistlyn) - a C# Gist IDE powered by Roslyn

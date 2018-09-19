@@ -45,11 +45,13 @@ Create new Angular 4 Project for .NET Framework:
 
     $ dotnet-new angular-lite-spa-netfx ProjectName
 
+---
+
 # Angular Examples
 
 ## [TechStacks](https://github.com/ServiceStackApps/TechStacks)
 
-> TechStacks is an AngularJS App that lets you explore TechStacks of popular StartUps using your favorite techology
+TechStacks is an AngularJS App that lets you explore TechStacks of popular StartUps using your favorite techology
 
 [![TechStacks](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/screenshots/techstacks.png)](http://angular.techstacks.io)
 

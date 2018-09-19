@@ -79,6 +79,8 @@ Create new Nuxt Vuetify Project for .NET Framework:
 
     $ dotnet-new vuetify-nuxt-netfx ProjectName
 
+---
+
 # Vue Examples
 
 ## [New TechStacks](https://github.com/NetCoreApps/TechStacks)
@@ -87,7 +89,7 @@ TechStacks makes it easy to find, discuss and share information on your favorite
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/techstacks-new.png)](https://techstacks.io)
 
-> Live Demo: https://techstacks.io
+> Live Demo: [techstacks.io](https://techstacks.io)
 
 #### Features
 
