@@ -23,6 +23,9 @@
     - [Desktop Templates](/templates-desktop)
     - [Vuetify Templates](/templates-vuetify)
     - [Nuxt Templates](/templates-nuxt)
+    - [Vue Templates](/templates-vue)
+    - [Angular Templates](/templates-angular)
+    - [React Templates](/templates-react)
     - [Tour of Webpack](/tour-of-webpack)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
