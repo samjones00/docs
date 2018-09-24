@@ -441,7 +441,7 @@ Which will replace their existing version with the latest release.
 
 Now that we've seen how easy it is to Install and use existing Web Apps, lets walk through how easy it to create one of our own.
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/Cf-vstYXrmY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="896" height="525" src="https://www.youtube.com/embed/Cf-vstYXrmY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 For this example we'll create a small App that leverages one of the advanced Web technologies in SVG that would be cumbersome to create using a native GUI toolkit. To start let's create a folder for our app called `spirals` and initialize and empty Web App with `app init`:
 
