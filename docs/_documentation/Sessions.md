@@ -244,6 +244,20 @@ This API is also available in MVC Controllers that inherit `ServiceStackControll
 base.SaveSession(session);
 ```
 
+### Intercept Saving Sessions
+
+Each time the Session is saved it's saved again with the default Session Expiry which can be specified on the top-level `AuthFeature.SessionExpiry` for temp Sessions or `AuthFeature.PermanentSessionExpiry` for permanent "Remember Me" Sessions.
+
+For fine-grained control you can intercept each time a Session is saved and change what Session Expiry it's saved with by overriding `OnSaveSession` in your AppHost:
+
+```csharp
+public override void OnSaveSession(IRequest httpReq, IAuthSession session, TimeSpan? expiresIn=null)
+{
+    var customExpiry = ...
+    base.OnSaveSession(httpReq, session, customExpiry);
+}
+```
+
 ### Sliding Sessions
 
 You can extend existing User Sessions in ServiceStack by just re-saving the Users Session.
