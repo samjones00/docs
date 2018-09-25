@@ -460,6 +460,34 @@ var response = client.Send<SecureResponse>(request);
 
 After a successful call to the `Authenticate` service the client is Authenticated and if **RememberMe** is set, the client will retain the Session Cookies added by the Server on subsequent requests which is what enables future requests from that client to be authenticated.
 
+### Request and Response Filters
+
+When needing to execute custom logic before and after requests are sent and received you can use Global Request/Response Filters:
+
+```csharp
+// Executed for all .NET HttpWebRequest ServiceClient instances like JsonServiceClient:
+ServiceClientBase.GlobalRequestFilter = (HttpWebRequest req) => { ... };
+ServiceClientBase.GlobalResponseFilter = (HttpWebResponse res) => { ... };
+
+// Executed for all JsonHttpClient instances
+JsonHttpClient.GlobalRequestFilter = (HttpRequestMessage req) => { ... };
+JsonHttpClient.GlobalResponseFilter = (HttpResponseMessage res) => { ... };
+```
+
+Or use instance Request/Response Filters if you only want to run custom logic for a specific instances:
+
+```csharp
+var client = new JsonServiceClient(baseUrl) {
+    RequestFilter = req => { ... },
+    ResponseFilter = res => { ... },
+}
+
+var client = new JsonHttpClient(baseUrl) {
+    RequestFilter = req => { ... },
+    ResponseFilter = res => { ... },
+}
+```
+
 ### Upload and Download Progress on Async API's
 
 The Async API's support on progress updates with the `OnDownloadProgress` and `OnUploadProgress` callbacks which can be used to provide UX Progress updates, e.g:
