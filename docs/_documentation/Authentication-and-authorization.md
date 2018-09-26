@@ -45,8 +45,9 @@ From the overview we can see the built-in AuthProviders that are included:
 
 ### OAuth Providers
 
-  * **Twitter OAuth** - Allow users to Register and Authenticate with Twitter
   * **Facebook OAuth** - Allow users to Register and Authenticate with Facebook 
+  * **Twitter OAuth** - Allow users to Register and Authenticate with Twitter
+  * **Google OAuth** - Allow users to Register and Authenticate with Google
   * **GitHub OAuth** - Allow users to Register and Authenticate with GitHub 
   * **Yammer OAuth** - Allow users to Register and Authenticate with Yammer
   * **Yandex OAuth** - Allow users to Register and Authenticate with Yandex
@@ -58,7 +59,6 @@ From the overview we can see the built-in AuthProviders that are included:
 The [ServiceStack.Authentication.OAuth2](https://nuget.org/packages/ServiceStack.Authentication.OAuth2) NuGet package provides OAuth2 Providers support to ServiceStack that includes:
 
   * **Instagram OAuth2** - Allow users to Register and Authenticate with Instagram OAuth2
-  * **Google OAuth2** - Allow users to Register and Authenticate with Google OAuth2
   * **LinkedIn OAuth2** - Allow users to Register and Authenticate with LinkedIn OAuth2
   * **Microsoft Live OAuth2** - Allow users to Register and Authenticate with Microsoft Live OAuth2
 
@@ -66,7 +66,6 @@ The [ServiceStack.Authentication.OAuth2](https://nuget.org/packages/ServiceStack
 
 The [ServiceStack.Authentication.OpenId](https://nuget.org/packages/ServiceStack.Authentication.OpenId) NuGet package provides OpenId Auth Providers support to ServiceStack that includes:
 
-  * **Google OpenId** - Allow users to Register and Authenticate with Google
   * **Yahoo OpenId** - Allow users to Register and Authenticate with Yahoo
   * **MyOpenId** - Allow users to Register and Authenticate with MyOpenId
   * **OpenId** - Allow users to Register and Authenticate with **any** custom OpenId provider
@@ -91,14 +90,14 @@ Find more info about see [OpenId 2.0 providers docs](/openid).
 
 The OAuth providers below require you to register your application with them in order to get the `ConsumerKey` and `ConsumerSecret` required, at the urls below:
 
-  - **Twitter** [dev.twitter.com/apps](https://dev.twitter.com/apps)
   - **Facebook** [developers.facebook.com/apps](https://developers.facebook.com/apps)
+  - **Twitter** [dev.twitter.com/apps](https://dev.twitter.com/apps)
+  - **Google** [console.developers.google.com](https://console.developers.google.com)
+  - **GitHub** [github.com/settings/applications/new](https://github.com/settings/applications/new)
   - **Instagram** [instagram.com/developer/authentication](http://instagram.com/developer/authentication/)
-  - **Google OAuth2** [code.google.com/apis/console/](https://code.google.com/apis/console/)
   - **LinkedIn OAuth2** [www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer)
   - **Microsoft Live OAuth2** [account.live.com/developers/applications](https://account.live.com/developers/applications)
   - **Yammer** [www.yammer.com/client_applications](http://www.yammer.com/client_applications)
-  - **GitHub** [github.com/settings/applications/new](https://github.com/settings/applications/new)
   - **Yandex** [oauth.yandex.ru/client/new](https://oauth.yandex.ru/client/new)
   - **VK** [vk.com/editapp?act=create](http://vk.com/editapp?act=create)
   - **Odnoklassniki** [www.odnoklassniki.ru/devaccess](http://www.odnoklassniki.ru/devaccess)
@@ -383,16 +382,15 @@ The `AuthService` is registered at paths `/auth` and `/auth/{provider}` where th
   * `/auth/basic` - BasicAuthProvider
   * `/auth/twitter` - TwitterAuthProvider
   * `/auth/facebook` - FacebookAuthProvider
+  * `/auth/google` - GoogleAuthProvider
   * `/auth/instagram` - InstagramOAuth2Provider
   * `/auth/github` - GithubAuthProvider
   * `/auth/microsoftlive` - MicrosoftLiveOAuth2Provider
   * `/auth/yammer` - YammerAuthProvider
-  * `/auth/googleopenid` - GoogleOpenIdOAuthProvider
   * `/auth/yahooopenid` - YahooOpenIdOAuthProvider
   * `/auth/myopenid` - MyOpenIdOAuthProvider
   * `/auth/openid` - OpenIdOAuthProvider (Any Custom OpenId provider)
   * `/auth/linkedin` - LinkedInOAuth2Provider
-  * `/auth/googleoauth` - GoogleOAuth2Provider
   * `/auth/yandex` - YandexAuthProvider
   * `/auth/vkcom` - VkAuthProvider
   * `/auth/odnoklassniki` - OdnoklassnikiAuthProvider
