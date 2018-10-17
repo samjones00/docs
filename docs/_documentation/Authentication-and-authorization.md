@@ -937,14 +937,18 @@ public class ImpersonateUser
     public string UserName { get; set; }
 }
 
-public object Any(ImpersonateUser request)
+public class MyAdminServices : Service
 {
-    using (var service = base.ResolveService<AuthenticateService>()) //In Process
+    public object Any(ImpersonateUser request)
     {
-        return service.Post(new Authenticate {
-            provider = AuthenticateService.CredentialsProvider,
-            UserName = request.UserName,
-        });
+        using (var service = base.ResolveService<AuthenticateService>()) //In Process
+        {
+            return service.Post(new Authenticate {
+                provider = AuthenticateService.CredentialsProvider,
+                UserName = request.UserName,
+                UseTokenCookie = true, // if using JWT
+            });
+        }
     }
 }
 ```
