@@ -772,3 +772,17 @@ ExcludeTypes: GetTechnology,GetTechnologyResponse
 
 Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
 
+### DefaultImports
+Add additional import statements to the generated DTO's:
+
+```
+/* Options:
+DefaultImports: package:servicestack/client.dart,package:flutter/material.dart
+```
+
+Will import the `servicestack/client.dart` and `flutter/material.dart` packages:
+
+```swift
+import 'package:servicestack/client.dart';
+import 'package:flutter/material.dart';
+```

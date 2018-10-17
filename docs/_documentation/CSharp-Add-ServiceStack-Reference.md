@@ -313,6 +313,22 @@ ExcludeTypes: GetTechnology,GetTechnologyResponse
 
 Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
 
+### AddNamespaces
+
+Include additional C# namespaces, e.g:
+
+```
+/* Options:
+AddNamespaces: AddNamespaces: System.Drawing,MyApp
+```
+
+Where it will generate the specified namespaces in the generated Types:
+
+```csharp
+using System.Drawing;
+using MyApp;
+```
+
 ### AddDefaultXmlNamespace
 
 This lets you change the default DataContract XML namespace used for all C# namespaces:

@@ -240,3 +240,19 @@ type SearchQuestions() =
     interface IReturn<SearchQuestionsResponse>
     member val Tags:List<String> = new List<String>() with get,set
 ```
+
+### AddNamespaces
+
+Include additional F# namespaces, e.g:
+
+```
+/* Options:
+AddNamespaces: AddNamespaces: System.Drawing,MyApp
+```
+
+Where it will generate the specified namespaces in the generated Types:
+
+```csharp
+open System.Drawing
+open MyApp
+```

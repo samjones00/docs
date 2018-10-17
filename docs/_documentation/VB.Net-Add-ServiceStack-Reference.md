@@ -269,6 +269,22 @@ ExcludeTypes: GetTechnology,GetTechnologyResponse
 ```
 Will exclude `GetTechnology` and `GetTechnologyResponse` DTO's from being generated.
 
+### AddNamespaces
+
+Include additional VB.NET namespaces, e.g:
+
+```
+' Options:
+'AddNamespaces: System.Drawing,MyApp
+```
+
+Where it will generate the specified namespaces in the generated Types:
+
+```csharp
+Imports System.Drawing
+Imports MyApp
+```
+
 ### AddDefaultXmlNamespace
 
 This lets you change the default DataContract XML namespace used for all namespaces:
