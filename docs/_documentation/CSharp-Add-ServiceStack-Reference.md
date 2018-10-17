@@ -319,7 +319,7 @@ Include additional C# namespaces, e.g:
 
 ```
 /* Options:
-AddNamespaces: AddNamespaces: System.Drawing,MyApp
+AddNamespaces: System.Drawing,MyApp
 ```
 
 Where it will generate the specified namespaces in the generated Types:
