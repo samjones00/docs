@@ -226,6 +226,7 @@ If your logic is outside a ServiceStack service you can save your typed session 
 ```csharp
 IHttpRequest httpReq = aspCtx.ToRequest(); //HttpContext
 IHttpRequest httpReq = aspReq.ToRequest(); //MVC HttpRequestBase
+IHttpRequest httpReq = netCoreCtx.ToRequest(); //.NET Core HttpContext
 IHttpRequest httpReq = listenerCtx.ToRequest(); //HttpListenerContext
 
 //In ASP.NET hosts via the singleton
