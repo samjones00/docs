@@ -435,6 +435,44 @@ client.ServiceClient.Post(new Authenticate {
 });
 ```
 
+## Custom Authentication
+
+When using a [JWT](/jwt-authprovider) or [API Key](t/api-key-authprovider) AuthProvider you can [send it inside a Cookie](/jwt-authprovider#sending-jwt-using-cookies) so it gets sent with client Web Requests. Otherwise you can add the JWT Token or API Key using the `EventStreamRequestFilter` which gets executed before establishing the Server Events connection, e.g:
+
+```csharp
+new ServerEventsClient(...) {
+    EventStreamRequestFilter = req => req.AddBearerToken(jwt)
+}
+```
+
+Alternatively you can use `ResolveStreamUrl` which will let you modify the URL used to establish the Server Events connection which will also allow you to add the JWT Token to the QueryString as, e.g:
+
+```csharp
+var sseClient = new ServerEventsClient(baseUrl, channels) 
+{
+    ResolveStreamUrl = url => url.AddQueryParam("ss-tok", JWT),
+    OnConnect = e => {
+        $"{e.IsAuthenticated}, {e.UserId}, {e.DisplayName}".Print();
+    }
+}.Start();
+```
+
+This requires that your JWT AuthProvider to accept JWT Tokens via the QueryString which you can enable in ServiceStack's JWT AuthProvider with:
+
+```csharp
+new JwtAuthProvider {
+    AllowInQueryString = true
+}
+```
+
+To configure API Key AuthProvider to accept API Key in Request Params like QueryString or FormData:
+
+```csharp
+new ApiKeyAuthProvider {
+    AllowInHttpParams = true
+}
+```
+
 ## Troubleshooting
 
 The Server Events Client uses .NET's `HttpWebRequest` internally for its long-running SSE connection and periodic heartbeats where if you're also using 
