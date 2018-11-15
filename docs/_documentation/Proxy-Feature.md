@@ -13,7 +13,7 @@ The example configuration below registers multiple proxies which proxies all req
 ```csharp
 Plugins.Add(new ProxyFeature(
     matchingRequests: req => req.PathInfo.StartsWith("/techstacks"),
-    resolveUrl:req => $"http://${resolve(req)}.techstacks.io" + req.RawUrl.Replace("/techstacks","/")))
+    resolveUrl:req => $"http://{resolve(req)}.techstacks.io" + req.RawUrl.Replace("/techstacks","/")))
  
 Plugins.Add(new ProxyFeature(
     matchingRequests: req => req.PathInfo.StartsWith("/marketing"),
@@ -84,7 +84,7 @@ So you could use the `TransformResponse` delegate for instance to rewrite any in
 ```csharp
 Plugins.Add(new ProxyFeature(
     matchingRequests: req => req.PathInfo.StartsWith("/techstacks"),
-    resolveUrl: req => $"http://${resolve(req)}.techstacks.io" + req.RawUrl.Replace("/techstacks","/"))
+    resolveUrl: req => $"http://{resolve(req)}.techstacks.io" + req.RawUrl.Replace("/techstacks","/"))
     {
         TransformResponse = async (res, responseStream) => 
         {
