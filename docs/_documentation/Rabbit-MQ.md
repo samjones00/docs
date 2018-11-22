@@ -98,7 +98,7 @@ mqServer.RegisterHandler<Hello>(m => {
 });
 ```
 
-Each handler receives an [IMessage<T>](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Messaging/IMessage.cs)
+Each handler receives an [IMessage](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Messaging/IMessage.cs)
 which is just the body of the message that was sent (i.e. `T`) wrapped inside an `IMessage` container containing the metadata of the received message.
 Inside your handler you can use `IMessage.GetBody()` to extract the typed body, and in this case we signify the service has no response by returning `null`. 
 
@@ -192,7 +192,15 @@ mqClient.Ack(responseMsg);
 responseMsg.GetBody().Result //= Hello, World!
 ```
 
+#### ReplyTo addresses can be URLs
+
 A nice feature unique in ServiceStack is that the ReplyTo address can even be a **HTTP Uri**, in which case ServiceStack will attempt to **POST** the raw response at that address. This works nicely with ServiceStack Services which excel at accepting serialized DTO's.
+
+```csharp
+mqClient.Publish(new Message<Hello>(new Hello { Name = "World" }) {
+    ReplyTo = "http://example.org/hello/callback"
+});
+```
 
 ### Messages that generate exceptions can be re-tried, then published to the dead-letter-queue (.dlq)
 

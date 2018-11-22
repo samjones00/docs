@@ -143,9 +143,17 @@ mqClient.Ack(responseMsg);
 responseMsg.GetBody().Result //= Hello, World!
 ```
 
+#### ReplyTo addresses can be URLs
+
 A nice feature unique in ServiceStack is that the ReplyTo address can even be a **HTTP Uri**, 
 in which case ServiceStack will attempt to **POST** the raw response at that address. 
 This works nicely with ServiceStack Services which excel at accepting serialized DTO's.
+
+```csharp
+mqClient.Publish(new Message<Hello>(new Hello { Name = "World" }) {
+    ReplyTo = "http://example.org/hello/callback"
+});
+```
 
 ### Messages with exceptions are re-tried then published to the dead-letter-queue (.dlq)
 
