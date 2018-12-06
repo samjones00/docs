@@ -44,14 +44,14 @@ need to manually delete the NuGet `/packages` folder for NuGet to pull down the 
 
 ### Clear NuGet Package Cache
 
-To clear NuGet Package Cache go to `Tools -> Options` and click **Clear Package Cache**:
+You can clear your local NuGet packages cache in any OS by running the command-line below in your favorite Terminal:
+
+    $ nuget locals all -clear
+
+If you're using VS.NET you can also clear them from `Tools -> Options -> NuGet Package Manager` and click **Clear All NuGet Cache(s)**:
 
 ![Clear Packages Cache](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/myget/clear-package-cache.png)
 
-This option is not available in VS 2015+, instead delete the Cached Nuget packages with:
+Alternatively on Windows you can delete the Cached NuGet packages manually with:
 
-    del %LOCALAPPDATA%\NuGet\Cache\*.nupkg /q
-
-If the above options do not work, try running the following command:
-
-    nuget locals all -clear
+    $ del %LOCALAPPDATA%\NuGet\Cache\*.nupkg /q
