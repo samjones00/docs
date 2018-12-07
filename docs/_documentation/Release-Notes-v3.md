@@ -636,11 +636,11 @@ SetConfig(new EndpointHostConfig {
 });
 ```
 
-Use `Config.CustomHttpHandlers` for specifying custom HttpHandlers to use with specific error status codes, e.g:
+Use `Config.CustomErrorHttpHandlers` for specifying custom HttpHandlers to use with specific error status codes, e.g:
 
 ```csharp
 SetConfig(new EndpointHostConfig {
-    CustomHttpHandlers = {
+    CustomErrorHttpHandlers = {
         { HttpStatusCode.NotFound, new RazorHandler("/notfound") },
         { HttpStatusCode.Unauthorized, new RazorHandler("/login") },
     }

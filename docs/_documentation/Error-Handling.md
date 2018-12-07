@@ -246,14 +246,14 @@ public override void Configure(Container container)
 }
 ```
 
-For more fine-grained control, use `IAppHost.CustomHttpHandlers` for specifying custom HttpHandlers to use with specific error status codes, e.g.:
+For more fine-grained control, use `IAppHost.CustomErrorHttpHandlers` for specifying custom HttpHandlers to use with specific error status codes, e.g.:
 
 ```csharp 
 public override void Configure(Container container)
 {
-    this.CustomHttpHandlers[HttpStatusCode.NotFound] = 
+    this.CustomErrorHttpHandlers[HttpStatusCode.NotFound] = 
         new RazorHandler("/notfound");
-    this.CustomHttpHandlers[HttpStatusCode.Unauthorized] = 
+    this.CustomErrorHttpHandlers[HttpStatusCode.Unauthorized] = 
         new RazorHandler("/login");
 }
 ```
