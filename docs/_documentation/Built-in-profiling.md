@@ -6,7 +6,7 @@ title: Built-in Mini Profiler
 ServiceStack's [HTML5 JSON Report Format](/html5reportformat) also includes the excellent [Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) - by [@jarrod_dixon](https://twitter.com/jarrod_dixon) and [@samsaffron](https://twitter.com/samsaffron).
 It's the same profiler used to profile and help speed up sites like [Stack Overflow](http://www.stackoverflow.com) and more recently the much faster [NuGet v2.0](http://nuget.org) website.
 
-As the MVC Mini Profiler is optimized for a .NET 4.0 MVC app, we've made some changes in order to integrate it into ServiceStack:
+As the MVC Mini Profiler was designed for a .NET v4.0 MVC app, we've made some changes in order to integrate it into ServiceStack ASP.NET Framework projects:
   
   - Switched to using ServiceStack's much faster [Json Serializer](https://github.com/ServiceStack/ServiceStack.Text)
   - Reduced the overall footprint by replacing the use of jQuery and jQuery.tmpl with a much smaller [jquip (jQuery-in-parts)](https://github.com/mythz/jquip) dependency.
@@ -17,7 +17,8 @@ As the MVC Mini Profiler is optimized for a .NET 4.0 MVC app, we've made some ch
 Just like the [Normal Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) you can enable it by registering the `MiniProfilerFeature` Plugin:
 
 ```csharp
-Plugins.Add(new MiniProfilerFeature());  // In ServiceStack.NetFramework
+// In ServiceStack.NetFramework package, not available for .NET Core
+Plugins.Add(new MiniProfilerFeature());  
 ```
 
 Then starting it in your Global.asax, here's how to enable it for local requests:
