@@ -29,6 +29,21 @@ Create new Angular 6.1 Project for .NET Framework:
 
     $ dotnet-new angular-spa-netfx ProjectName
 
+#### Angular HTTP Client
+
+The Angular template uses Angular's built-in Rx-enabled HTTP Client with ServiceStack's ambient TypeScript declarations, as it's often preferable to utilize Angular's built-in dependencies when available.
+
+ServiceStack's ambient TypeScript interfaces are leveraged to enable a Typed API, whilst the `createUrl(route,args)` helper lets you reuse your APIs Route definitions (emitted in comments above each Request DTO) to provide a pleasant UX for making API calls using Angular's HTTP Client:
+
+```ts
+import { createUrl } from '@servicestack/client';
+...
+
+this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r => {
+    this.result = r.result;
+});
+```
+
 ### [Angular4 and Material Design Lite SPA Template](https://github.com/NetCoreTemplates/angular-lite-spa)
 
 .NET Core 2.1 Angular4 and Material Design Lite Webpack App Template:
@@ -44,6 +59,7 @@ Create new Angular 4 Project for .NET Core 2.1:
 Create new Angular 4 Project for .NET Framework:
 
     $ dotnet-new angular-lite-spa-netfx ProjectName
+
 
 ---
 
