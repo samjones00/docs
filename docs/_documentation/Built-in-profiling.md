@@ -6,11 +6,9 @@ title: Built-in Mini Profiler
 ServiceStack's [HTML5 JSON Report Format](/html5reportformat) also includes the excellent [Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) - by [@jarrod_dixon](https://twitter.com/jarrod_dixon) and [@samsaffron](https://twitter.com/samsaffron).
 It's the same profiler used to profile and help speed up sites like [Stack Overflow](http://www.stackoverflow.com) and more recently the much faster [NuGet v2.0](http://nuget.org) website.
 
-As the MVC Mini Profiler was designed for a .NET v4.0 MVC app, we've made some changes in order to integrate it into ServiceStack ASP.NET Framework projects:
-  
-  - Switched to using ServiceStack's much faster [Json Serializer](https://github.com/ServiceStack/ServiceStack.Text)
-  - Reduced the overall footprint by replacing the use of jQuery and jQuery.tmpl with a much smaller [jquip (jQuery-in-parts)](https://github.com/mythz/jquip) dependency.
-  - Moved to the **ServiceStack.MiniProfiler** namespace and renamed to **Profiler** to avoid clashing with another Mvc Mini Profiler in the same project
+The MVC Mini Profiler plugin is only available for classic ASP.NET Framework Web Apps, for .NET Core Apps you can use the official [MiniProfiler.AspNetCore.Mvc](https://www.nuget.org/packages/MiniProfiler.AspNetCore.Mvc) NuGet package, please see this community post for details:
+
+ - [Servicestack + Miniprofiler + .NET Core + Angular](http://inayearorso.io/2018/04/18/servicestack-miniprofiler-dotnetcore-angular2/)
 
 ### Using the MVC Mini Profiler
 
@@ -42,7 +40,7 @@ Now if you also have ServiceStack Razor views you can enable the profiler by put
 @ServiceStack.MiniProfiler.Profiler.RenderIncludes().AsRaw() 
 ```
 
-That's it! Now everytime you view a web service or a razor page in your browser (locally) you'll see a profiler view of your service broken down in different stages:
+That's it! Now every time you view a web service or a razor page in your browser (locally) you'll see a profiler view of your service broken down in different stages:
 
 ![Hello MiniProfiler](/images/advanced/miniprofiler-hello.png)
 
