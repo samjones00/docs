@@ -117,6 +117,17 @@ public object Post(RawBytes request)
 }
 ```
 
+### Buffering the Request and Response Streams
+
+ServiceStack's Request and Response stream are non-buffered (i.e. forward-only) by default. This can be changed at runtime using a PreRequestFilter to allow the Request Body and Response Output stream to be re-read multiple times should your Services need it:
+
+```csharp
+appHost.PreRequestFilters.Add((httpReq, httpRes) => {
+    httpReq.UseBufferedStream = true;
+    httpRes.UseBufferedStream = true;    
+});
+```
+
 ### Raw SOAP Message
 
 You can access raw WCF Message when accessed with the SOAP endpoints in your Service with `IHttpRequest.GetSoapMessage()` extension method, e.g:
@@ -135,15 +146,4 @@ public class RawWcfMessage : IRequiresSoapMessage {
 public object Post(RawWcfMessage request) { 
     request.Message... //Raw WCF SOAP Message
 }
-```
-
-### Buffering the Request and Response Streams
-
-ServiceStack's Request and Response stream are non-buffered (i.e. forward-only) by default. This can be changed at runtime using a PreRequestFilter to allow the Request Body and Response Output stream to be re-read multiple times should your Services need it:
-
-```csharp
-appHost.PreRequestFilters.Add((httpReq, httpRes) => {
-    httpReq.UseBufferedStream = true;
-    httpRes.UseBufferedStream = true;    
-});
 ```
