@@ -6,7 +6,25 @@ From a birds-eye view ServiceStack can return any of:
   - Any DTO object -> serialized to Response ContentType
   - HttpResult, HttpError, CompressedResult (IHttpResult) for Customized HTTP response
 
+### Services should only return Reference Types
+
+Services should never return a Value Type like an `int` or `long`. If a ValueType response is needed it's recommended to wrap it in a Response DTO, e.g:
+
+```csharp
+public class MyResponse
+{
+    public int Result { get; set; }
+}
+```
+
+Alternatively you can return a naked response by returning it as a `string`, e.g:
+
+```csharp
+public object Any(MyRequest request) => "1";
+```
+
 ## Different Return Types
+
 The following types are not converted (to different Content-Types) but get written directly to the Response Stream:
 
   - `String`
