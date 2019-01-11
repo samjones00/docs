@@ -8,7 +8,7 @@ From a birds-eye view ServiceStack can return any of:
 
 ### Services should only return Reference Types
 
-Services should never return a Value Type like an `int` or `long`. If a ValueType response is needed it's recommended to wrap it in a Response DTO, e.g:
+If a Value Type like `int` or `long` response is needed, it's recommended to wrap the Value Type in a Response DTO, e.g:
 
 ```csharp
 public class MyResponse
@@ -17,7 +17,7 @@ public class MyResponse
 }
 ```
 
-Alternatively you can return a naked response by returning it as a `string`, e.g:
+Alternatively you can return a naked Value Type response by returning it as a `string`, e.g:
 
 ```csharp
 public object Any(MyRequest request) => "1";
