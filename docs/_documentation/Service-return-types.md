@@ -6,7 +6,7 @@ From a birds-eye view ServiceStack can return any of:
   - Any DTO object -> serialized to Response ContentType
   - HttpResult, HttpError, CompressedResult (IHttpResult) for Customized HTTP response
 
-### Services should only return Reference Types
+#### Services should only return Reference Types
 
 If a Value Type like `int` or `long` response is needed, it's recommended to wrap the Value Type in a Response DTO, e.g:
 
