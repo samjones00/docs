@@ -219,17 +219,69 @@ ServiceStack's [Virtual File System](/virtual-file-system) supports multiple fil
       index.html
       swagger-ui.js
 
+#### Injecting custom JavaScript
+
+As part of the customization you can add custom `patch.js` and `patch-preload.js`:
+
+    /swagger-ui
+      patch.js
+      patch-preload.js
+
+which will be injected in the `/swagger-ui` index page, `patch-preload.js` is embedded before `swaggerUi.load()` is called:
+
+```js
+// contents of patch-preload.js
+
+window.swaggerUi.load();
+```
+
+So you can use it to customize the `swaggerUi` configuration object before it's loaded, whilst `patch.js` is embedded just before the end of the `</body>` tag, e.g:
+
+```html
+<script type='text/javascript'>
+// contents of patch.js
+</script>
+</body>
+```
+
+### Swagger UI Security
+
+There are 2 custom security methods supported **Bearer** and **Basic Auth**. 
+
+You can specify to use Swagger's support for API Key Authentication with:
+
+```csharp
+Plugins.Add(new OpenApiFeature
+{
+    UseBearerSecurity = true,
+});
+```
+
+This will instruct Swagger to use their API Key Authentication when clicking the **Authorize** button which will be sent in API requests to your Authenticated Services. As the **value** field is for the entire Authorization HTTP Header you'd need to add your JWT Token or API Key prefixed with `Bearer `:
+
+![](/images/openapi/bearer-auth.png)
+
+Which you can use to use to Authenticate with "Bearer token" Auth Providers like [API Key](/api-key-authprovider) and [JWT Auth Providers](/jwt-authprovider).
+
 ### Basic Auth in OpenAPI
 
-Users can call protected Services using the Username and Password fields in Swagger UI. 
-Swagger UI sends these credentials with every API request using HTTP Basic Auth, 
-which can be enabled in your AppHost with:
+You can instruct Swagger to use HTTP Basic Auth with:
+
+```csharp
+Plugins.Add(new OpenApiFeature
+{
+    UseBasicSecurity = true,
+});
+```
+
+This lets Users call protected Services using the Username and Password fields in Swagger UI. 
+Swagger UI sends these credentials with every API request using HTTP Basic Auth, which can be enabled in your AppHost with:
 
 ```csharp
 Plugins.Add(new AuthFeature(...,
-      new IAuthProvider[] { 
+    new IAuthProvider[] { 
         new BasicAuthProvider(), //Allow Sign-ins with HTTP Basic Auth
-      }));
+    }));
 ```
 
 To login, you need to click "Authorize" button.
