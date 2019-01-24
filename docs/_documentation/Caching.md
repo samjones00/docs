@@ -125,9 +125,9 @@ If now for example an order gets updated and the order was cached before the upd
 So there are two options:
 
 - Use **time based** caching (and expire cache earlier)
-- Cache on **validility** 
+- Cache on **validity** 
 
-> When the cache is based on **validility** the caches are invalidated manually (e.g. when a user modified his profile, > clear his cache) which means you always get the latest version and you never need to hit the database again to rehydrate the cache if it hasn't changed, which will save resources.
+> When the cache is based on **validity** the caches are invalidated manually (e.g. when a user modified his profile, > clear his cache) which means you always get the latest version and you never need to hit the database again to rehydrate the cache if it hasn't changed, which will save resources.
 
 So if the order gets updated, you should delete the cache manually:
 
@@ -145,15 +145,14 @@ public class CachedOrdersService : Service
 
 If now the client calls the webservice to request the order, he'll get the latest version.
 
-### Local MemoryCacheClient
+### LocalCache 
 
 As it sometimes beneficial to have access to a local in-memory Cache in addition to your registered `ICacheClient` 
-[Caching Provider](/caching)
-we also pre-register a `MemoryCacheClient` that all your Services now have access to from the `LocalCache` 
+[Caching Provider](/caching) we also pre-register a `MemoryCacheClient` that all your Services now have access to from the `LocalCache` 
 property, i.e:
 
 ```csharp
-    MemoryCacheClient LocalCache { get; }
+MemoryCacheClient LocalCache { get; }
 ```
 
 This doesn't affect any existing functionality that utilizes a cache like Sessions which continue to use
@@ -166,7 +165,14 @@ return base.Request.ToOptimizedResultUsingCache(LocalCache, cacheKey, () => {
 });
 ```
 
-If you don't register a `ICacheClient` ServiceStack automatically registers a `MemoryCacheClient` for you 
+Or if you're using the [CacheResponse](/cacheresponse-attribute) attribute you can specify to cache responses in the local cache with:
+
+```csharp
+[CacheResponse(LocalCache = true)]
+public object Any(MyRequest request) { ... }
+```
+
+> If you don't register a `ICacheClient` ServiceStack automatically registers a `MemoryCacheClient` for you 
 which will also refer to the same instance registered for `LocalCache`.
 
 ## [ICacheClientExtended](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Caching/ICacheClientExtended.cs)
