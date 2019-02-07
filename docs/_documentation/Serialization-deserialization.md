@@ -32,6 +32,16 @@ var deserialize = (Type type, Stream stream) => ...;
 this.ContentTypes.Register(contentType, serialize, deserialize);	
 ```
 
+The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.servicestack.net/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
+
+For reference see registration examples of ServiceStack's different Formats:
+
+ - [CSV](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Formats/CsvFormat.cs)
+ - [MsgPack](https://github.com/ServiceStack/ServiceStack/blob/6e584877125fa0750db10700a6f1a271a7ef918a/src/ServiceStack.MsgPack/MsgPackFormat.cs#L67)
+ - [Protobuf](https://github.com/ServiceStack/ServiceStack/blob/6e584877125fa0750db10700a6f1a271a7ef918a/src/ServiceStack.ProtoBuf/ProtoBufFormat.cs#L12)
+ - [Wire](https://github.com/ServiceStack/ServiceStack/blob/6e584877125fa0750db10700a6f1a271a7ef918a/src/ServiceStack.Wire/WireServiceClient.cs#L64)
+ - [SOAP](https://github.com/ServiceStack/ServiceStack/blob/6e584877125fa0750db10700a6f1a271a7ef918a/src/ServiceStack/Formats/SoapFormat.cs#L29)
+
 #### Async ContentTypes Formats
 
 The async registration APIs are for Content-Type Formats which perform Async I/O, most serialization formats don't except for HTML View Engines which can perform Async I/O when rendering views, which are all registered using the `RegisterAsync` APIs:
@@ -41,10 +51,6 @@ appHost.ContentTypes.RegisterAsync(MimeTypes.Html, SerializeToStreamAsync, null)
 appHost.ContentTypes.RegisterAsync(MimeTypes.JsonReport, SerializeToStreamAsync, null);
 appHost.ContentTypes.RegisterAsync(MimeTypes.MarkdownText, SerializeToStreamAsync, null);
 ```
-
-The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.servicestack.net/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
-
-***
 
 ## Reading in and De-Serializing ad-hoc custom requests
 
