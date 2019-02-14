@@ -35,6 +35,70 @@ Hosted on unpkg.com CDN:
  - [index.js](https://unpkg.com/@servicestack/client/src/index.js)
  - [index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts)
 
+### Using TypeScript JsonServiceClient in JavaScript projects
+
+Despite its name the TypeScript JsonServiceClient can also be used in non-TypeScript projects. 
+The [/@servicestack/client](https://www.npmjs.com/package/@servicestack/client) follows the recommended guidance for TypeScript modules which doesn't 
+bundle any TypeScript `.ts` source files, just the generated [index.js](https://unpkg.com/@servicestack/client/src/index.js) and 
+[index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript
+npm projects as any other module, e.g:
+
+
+```js
+import { JsonServiceClient } from "@servicestack/client";
+```
+
+Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded
+and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [@servicestack/cli][4] npm tool:
+
+    $ npm install -g @servicestack/cli
+
+Then download the DTOs of a remote ServiceStack API with:
+
+    $ typescript-ref http://yourdomain.org dtos.ts
+
+For JavaScript projects that haven't configured transpilation of TypeScript, you'll need to use TypeScript to generate the `dtos.js` JavaScript version
+which can be used instead:
+
+    $ tsc dtos.ts 
+
+Use the [--module compiler flag](https://www.typescriptlang.org/docs/handbook/compiler-options.html) if needing to generate a specific module version, e.g:
+
+    $ tsc -m ES6 dtos.ts
+
+The generated `dtos.js` can then be used with the `JsonServiceClient` to provide a succinct Typed API:
+
+```js
+import { GetConfig } from './dtos';
+
+let client = new JsonServiceClient('/');
+
+let response = await client.get(new GetConfig());
+```
+
+#### Updating DTOs
+
+To update your generated DTOs when your server API changes, run `typescript-ref` without any arguments:
+
+    $ typescript-ref 
+
+Which will update to the latest version of `dtos.ts`. This can be easily automated with an [npm script][5], e.g:
+
+```json
+{
+  "scripts": {
+    "dtos": "cd path/to/dtos && typescript-ref && tsc -m ES6 dtos.ts",
+    }
+}
+```
+
+Which will let you update and compile the dtos with:
+
+    $ npm run dtos
+
+The [TechStacks][6] (Vue/Nuxt) and [React Native Mobile App][7] (React) are examples of JavaScript-only projects using the TypeScript `JsonServiceClient` in this way.
+
+
 ### jQuery JsonServiceClient
 
 We also provide our older jQuery JsonServiceClient which mimics the [.NET Clients](/clients-overview) in functionality that we make use of in our [Redis Admin UI](http://www.servicestack.net/RedisAdminUI/AjaxClient/) and suitable for use when needing to support older browsers without W3C's fetch or a polyfill:
