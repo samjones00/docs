@@ -24,16 +24,27 @@ client.get(request)
   .then(r => console.log(r.Result));
 ```
 
-### Using JavaScript JsonServiceClient
+The generated JavaScript of the TypeScript Service Client has no dependencies other than [fetch-everywhere](https://github.com/lucasfeliciano/fetch-everywhere) 
+polyfill for W3C's [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) available:
 
-We also provide our own JsonServiceClients which mimics the [.NET Clients](/clients-overview) in functionality that we make use of in our [Redis Admin UI](http://www.servicestack.net/RedisAdminUI/AjaxClient/):
+ - [index.js](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.js) - The @servicestack/client JavaScript library
+ - [index.d.ts](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.d.ts) - Type declarations (for IDEs tooling and TypeScript)
 
-  - [JsonServiceClient.js](https://github.com/ServiceStack/ServiceStack/tree/master/lib/js/JsonServiceClient.js) - Pure JavaScript client
-  - [JsonServiceClient.closure.js](https://github.com/ServiceStack/ServiceStack/tree/master/lib/js/JsonServiceClient.closure.js) - a [Google Closure](https://developers.google.com/closure/) enabled version of the client allowing compilation and bundling within a Closure project
+Hosted on unpkg.com CDN:
+
+ - [index.js](https://unpkg.com/@servicestack/client/src/index.js)
+ - [index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts)
+
+### jQuery JsonServiceClient
+
+We also provide our older jQuery JsonServiceClient which mimics the [.NET Clients](/clients-overview) in functionality that we make use of in our [Redis Admin UI](http://www.servicestack.net/RedisAdminUI/AjaxClient/) and suitable for use when needing to support older browsers without W3C's fetch or a polyfill:
+
+  - [JsonServiceClient.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4/lib/js/JsonServiceClient.js) - Pure JavaScript client
+  - [JsonServiceClient.closure.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4/lib/js/JsonServiceClient.closure.js) - a [Google Closure](https://developers.google.com/closure/) enabled version of the client allowing compilation and bundling within a Closure project
 
 Although most dynamic languages like JavaScript already include support for HTTP and JSON where in most cases it's easier to just use the libraries already provided. Here are a couple of examples from [Backbones Todos](http://todos.servicestack.net) and [Redis StackOverflow](http://redisstackoverflow.servicestack.net) that uses jQuery to talk to back-end ServiceStack JSON services:
 
-### Using jQuery:
+### Using jQuery Ajax APIs:
 
 ```javascript
 $.getJSON("http://localhost/Backbone.Todo/todos", function(todos) {
