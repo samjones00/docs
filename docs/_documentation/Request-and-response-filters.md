@@ -3,7 +3,8 @@ slug: request-and-response-filters
 title: Request & Response filters
 ---
 
-A recent addition to ServiceStack is the ability to register custom Request and Response filters. These should be registered in your `AppHost.Configure()` onload script: 
+ServiceStack's Global Request and Response filter lets you apply your own generic custom behavior to ServiceStack Requests.
+These should be registered in your `AppHost.Configure()` Startup: 
 
 ### Global Request Filters
 
@@ -11,8 +12,9 @@ The Request Filters are applied before the service gets called and accepts:
 ([IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs), [IResponse](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IResponse.cs), RequestDto) e.g:
     
 ```csharp
-//Add a request filter to check if the user has a session initialized
-this.GlobalRequestFilters.Add((req, res, requestDto) => {
+//Global Request Filter to check if the user has a session initialized
+this.GlobalRequestFilters.Add((req, res, requestDto) => 
+{
     var sessionId = req.GetCookieValue("user-session");
     if (sessionId == null)
     {
@@ -21,28 +23,33 @@ this.GlobalRequestFilters.Add((req, res, requestDto) => {
 });
 ```
 
-### Global Response Filters
+#### Async 
 
-The Response Filters are applied after your service is called and accepts:
-([IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs), [IResponse](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IResponse.cs), ResponseDto) e.g:
+Use `GlobalRequestFiltersAsync` when you need to make async requests in your Global Request Filters, e.g:
+
+Simplified example of ServiceStack's [Validation Feature](/validation):
 
 ```csharp
-//Add a response filter to add a 'Content-Disposition' header so browsers treat it as a native .csv file
-this.GlobalResponseFilters.Add((req, res, responseDto) => {
-    if (req.ResponseContentType == ContentType.Csv)
-    {
-        res.AddHeader(HttpHeaders.ContentDisposition,
-        string.Format("attachment;filename={0}.csv", req.OperationName));
-    }
+//Global Async Request Filter to automatically validate a Request DTO
+this.GlobalRequestFiltersAsync.Add(async (req, res, requestDto) => 
+{    
+    var validator = ValidatorCache.GetValidator(req, requestDto.GetType());
+    if (validator == null)
+        return;
+
+    var validationResult = await Validate(validator, req, requestDto);
+    if (validationResult.IsValid)
+        return;
+
+    var errorResponse = DtoUtils.CreateErrorResponse(requestDto, validationResult.ToErrorResult());
+    
+    await res.WriteToResponse(req, errorResponse);
 });
 ```
 
-Tip: If you're writing your own response to the response stream inside the response filter, add `res.EndRequest();` to signal to ServiceStack not to do anymore processing for this request.
+> Tip: If you're writing your own response to the response stream inside the response filter, add `res.EndRequest();` to signal to ServiceStack not to do anymore processing for this request.
 
-
-### Async Global Request Filters
-
-Use `GlobalRequestFiltersAsync` when you need to make async requests in your Global Request Filters, e.g:
+Simple Rate-limiting example:
 
 ```csharp
 GlobalRequestFiltersAsync.Add(async (req,res,dto) => {
@@ -59,14 +66,41 @@ GlobalRequestFiltersAsync.Add(async (req,res,dto) => {
 })
 ```
 
-Async versions are available for all Global Request and Response Filters:
+### Global Response Filters
 
-    - `GlobalRequestFiltersAsync`
-    - `GlobalResponseFiltersAsync`
-    - `GatewayRequestFiltersAsync`
-    - `GatewayResponseFiltersAsync`
-    - `GlobalMessageRequestFiltersAsync`
-    - `GlobalMessageResponseFiltersAsync`
+The Response Filters are applied after your service is called and accepts:
+([IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs), [IResponse](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IResponse.cs), ResponseDto) e.g:
+
+```csharp
+//Add a response filter to add a 'Content-Disposition' header so browsers treat it as a native .csv file
+this.GlobalResponseFilters.Add((req, res, responseDto) => 
+{
+    if (req.ResponseContentType == ContentType.Csv)
+    {
+        res.AddHeader(HttpHeaders.ContentDisposition,
+        string.Format("attachment;filename={0}.csv", req.OperationName));
+    }
+});
+```
+
+### Global Request and Response Filters
+
+  - `PreRequestFilters` - Global Filter executed at the start for all ServiceStack Requests
+  - `GlobalRequestFilters` - Global Request Filter for ServiceStack Service Requests
+  - `GlobalResponseFilters` - Global Response Filter for ServiceStack Service Requests
+  - `GatewayRequestFilters` - Request Filter for [Service Gateway](/service-gateway) Requests
+  - `GatewayResponseFilters` - Response Filter for [Service Gateway](/service-gateway) Requests
+  - `GlobalMessageRequestFilters` - Request Filter for [Service MQ](/messaging) Requests
+  - `GlobalMessageResponseFilters` - Response Filter for [Service MQ](/messaging) Requests
+
+Async versions are also available:
+
+  - `GlobalRequestFiltersAsync` - Global Request Filter for ServiceStack Service Requests
+  - `GlobalResponseFiltersAsync` - Global Response Filter for ServiceStack Service Requests
+  - `GatewayRequestFiltersAsync` - Request Filter for [Service Gateway](/service-gateway) Requests
+  - `GatewayResponseFiltersAsync` - Response Filter for [Service Gateway](/service-gateway) Requests
+  - `GlobalMessageRequestFiltersAsync` - Request Filter for [Service MQ](/messaging) Requests
+  - `GlobalMessageResponseFiltersAsync` - Response Filter for [Service MQ](/messaging) Requests
 
 ### Typed Request Filters
 
