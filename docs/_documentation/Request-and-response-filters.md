@@ -85,7 +85,7 @@ this.GlobalResponseFilters.Add((req, res, responseDto) =>
 
 ### Global Request and Response Filters
 
-  - `PreRequestFilters` - Global Filter executed at the start for all ServiceStack Requests
+  - `PreRequestFilters` - Global Filter executed at the start of all ServiceStack Requests
   - `GlobalRequestFilters` - Global Request Filter for ServiceStack Service Requests
   - `GlobalResponseFilters` - Global Response Filter for ServiceStack Service Requests
   - `GatewayRequestFilters` - Request Filter for [Service Gateway](/service-gateway) Requests
