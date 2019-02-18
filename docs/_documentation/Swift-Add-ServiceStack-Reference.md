@@ -4,10 +4,10 @@ slug: swift-add-servicestack-reference
 
 ![Swift iOS, XCode and OSX Banner](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/swift-logo-banner.jpg)
 
-## Swift 3
+## Swift
 
 ServiceStack's **Add ServiceStack Reference** feature lets iOS/OSX developers easily generate an native 
-typed Swift 3 API for your ServiceStack Services using the `swift-ref` OSX command-line utility.
+typed Swift API for your ServiceStack Services using the `swift-ref` OSX command-line utility.
 
 ## @servicestack/cli - Simple command-line utils for ServiceStack
 
