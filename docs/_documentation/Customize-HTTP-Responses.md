@@ -10,7 +10,7 @@ ServiceStack provides multiple ways to customize your services HTTP response. Ea
   3. Returning a `HttpError`
   4. Using a Request or Response [Filter Attribute](/filter-attributes) like the built-in `[AddHeader]` (or your own) or using a [Global Request or Response Filter](/request-and-response-filters).
   5. Modifying output by accessing your services `base.Response` [IHttpResponse API](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IHttpResponse.cs)
-  6. Return a `HttpResult`
+  6. Returning responses in a decorated `HttpResult`
 
 Here are some code examples below using these different approaches:
 
@@ -44,7 +44,7 @@ public class HelloService : Service
         return $"Hello, {request.Name}!";
     }
 
-    //6. Returning responses in a decorated HTTP Result
+    //6. Returning responses in a decorated HttpResult
     public object Get(Hello request)
     {
         return new HttpResult($"Hello, {request.Name}!") {
