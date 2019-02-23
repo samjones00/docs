@@ -393,7 +393,7 @@ The Route on the Action that was declared first gets selected, i.e:
 
 The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customisation feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](/request-and-response-filters).
 
-The [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/ServiceHost/IServiceRunner.cs) decouples the execution of your service from the implementation of it which provides an alternative custom hook which lets you add custom behavior to all Services without needing to use a base Service class. 
+The [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) decouples the execution of your service from the implementation of it which provides an alternative custom hook which lets you add custom behavior to all Services without needing to use a base Service class. 
 
 To add your own Service Hooks you just need to override the default Service Runner in your AppHost from its default implementation:
 
@@ -418,15 +418,20 @@ Where `MyServiceRunner<T>` is just a custom class implementing the custom hooks 
 ```csharp
 public class MyServiceRunner<T> : ServiceRunner<T> 
 {
-    public override void OnBeforeExecute(IRequestContext requestContext, TRequest request) {
+    public override void OnBeforeExecute(IRequest req, TRequest requestDto) {
       // Called just before any Action is executed
     }
 
-    public override object OnAfterExecute(IRequestContext requestContext, object response) {
+    public override Task<object> ExecuteAsync(IRequest req, object serviceInstance, TRequest requestDto) {
+        // Called to execute the Service instance with the requestDto
+        return base.ExecuteAsync(req, serviceInstance, requestDto);
+    }
+
+    public override object OnAfterExecute(IRequest req, object response) {
       // Called just after any Action is executed, you can modify the response returned here as well
     }
 
-    public override object HandleException(IRequestContext requestContext, TRequest request, Exception ex) {
+    public override Task<object> HandleExceptionAsync(IRequest req, TRequest requestDto, Exception ex) {
       // Called whenever an exception is thrown in your Services Action
     }
 }
