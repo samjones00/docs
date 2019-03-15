@@ -439,6 +439,7 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
    - [Any ASP.NET host](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
    - [Stand-alone, Self-Hosted HttpListener](/self-hosting)
    - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
+
 #### Windows
  - [Stand-alone Windows Service](/templates-windows-service)
  - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
