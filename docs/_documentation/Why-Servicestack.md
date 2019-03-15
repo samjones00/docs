@@ -422,28 +422,30 @@ of different formats, including:
 
 Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can also be consumed from [SOAP 1.1 and 1.2](/soap-support) endpoints as well as a number of [MQ Servers](/messaging):
 
+  - [Background MQ Service](/background-mq)
   - [Rabbit MQ Server](/rabbit-mq)
   - [Redis MQ Server](/redis-mq)
-  - [Amazon SQS MQ Server](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver)
-  - [Background MQ Service](/background-mq)
+  - [Amazon SQS MQ Server](/amazon-sqs-mq)
+  - [Azure Service Bus MQ](/azure-service-bus-mq)
 
 ### Multiple Hosting Options
 
 In addition to supporting multiple formats and endpoints, ServiceStack can also be hosted within a multitude of different hosting options:
 
-- **Windows, OSX or Linux**
-  - **.NET Framework or Mono**
-    - [Any ASP.NET host](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
-    - [Stand-alone, Self-Hosted HttpListener](/self-hosting)
-    - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
-  - **.NET Core**
-    - [Web App or SelfHost](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
-- **Windows**
-  - [Stand-alone Windows Service](/templates-windows-service)
-  - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
-  - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
-- **OSX**
-  - [Hosted inside Mac OSX Cocoa App with Xamarin.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
+#### Windows, OSX or Linux
+ - **.NET Core**
+   - [Web App or SelfHost](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
+ - **.NET Framework or Mono**
+   - [Any ASP.NET host](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
+   - [Stand-alone, Self-Hosted HttpListener](/self-hosting)
+   - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
+#### Windows
+ - [Stand-alone Windows Service](/templates-windows-service)
+ - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
+ - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
+
+#### OSX
+ - [Hosted inside Mac OSX Cocoa App with Xamarin.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
 
 ### Target Multiple platforms
 
