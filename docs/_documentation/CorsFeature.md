@@ -34,7 +34,7 @@ Use `allowOriginWhitelist` when you want to only allow CORS access by specific s
 
 ```csharp
 Plugins.Add(new CorsFeature(
-    allowOriginWhitelist: new[] { "http://localhost","http://localhost:5000","http://null.jsbin.com","http://run.plnkr.co" },
+    allowOriginWhitelist: new[] { "http://localhost","http://localhost:5000","http://run.plnkr.co" },
     allowCredentials: true,
     allowedHeaders: "Content-Type, Allow, Authorization, X-Args"));
 ```
