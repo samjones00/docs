@@ -28,6 +28,17 @@ You can leave out any of the values matching the default. E.g. if you just wante
 Plugins.Add(CorsFeature(allowedMethods:"GET, POST"));
 ```
 
+### Allow specific origins
+
+Use `allowOriginWhitelist` when you want to only allow CORS access by specific sites:
+
+```csharp
+Plugins.Add(new CorsFeature(
+    allowOriginWhitelist: new[] { "http://localhost","http://localhost:5000","http://null.jsbin.com","http://run.plnkr.co" },
+    allowCredentials: true,
+    allowedHeaders: "Content-Type, Allow, Authorization, X-Args"));
+```
+
 ### Enabling CORS per-service support
 
 Instead of using the plugin above, ServiceStack also allows you to enable CORS on a per-service basis by using **[EnableCors]** [Response Filter attribute][2] which has the same defaults as above. E.g. You can enable just GET, POST as above with:
