@@ -306,6 +306,136 @@ client.get<GetTechnologyResponse>("http://techstacks.io/technology/ServiceStack"
 client.get<GetTechnologyResponse>("/technology", { Slug: "ServiceStack" }) 
 ```
 
+as well as POST Request DTOs to custom urls:
+
+```ts
+client.postToUrl("/custom-path", request, { Slug: "ServiceStack" });
+
+client.putToUrl("http://example.org/custom-path", request);
+```
+
+### Raw Data Responses
+
+The `JsonServiceClient` also supports Raw Data responses like `string` and `byte[]` which also get a Typed API 
+once declared on Request DTOs using the `IReturn<T>` marker:
+
+```csharp
+public class ReturnString : IReturn<string> {}
+public class ReturnBytes : IReturn<byte[]> {}
+```
+
+Which can then be accessed as normal, with their Response typed to a JavaScript `string` or `Uint8Array` for 
+raw `byte[]` responses:
+
+```ts
+let str:string = await client.get(new ReturnString());
+
+let data:Uint8Array = await client.get(new ReturnBytes());
+```
+
+### Authenticating using Basic Auth
+
+Basic Auth support is implemented in `JsonServiceClient` and follows the same API made available in the C# 
+Service Clients where the `userName/password` properties can be set individually, e.g:
+
+```ts
+var client = new JsonServiceClient(baseUrl);
+client.userName = user;
+client.password = pass;
+
+const response = await client.get(new SecureRequest());
+```
+
+Or use `client.setCredentials()` to have them set both together.
+
+### Authenticating using Credentials
+
+Alternatively you can authenticate using userName/password credentials by 
+[adding a TypeScript Reference](http://docs.servicestack.net/typescript-add-servicestack-reference#add-typescript-reference) 
+to your remote ServiceStack Instance and sending a populated `Authenticate` Request DTO, e.g:
+
+```ts
+let request = new Authenticate();
+request.provider = "credentials";
+request.userName = userName;
+request.password = password;
+request.rememberMe = true;
+
+const response = await client.post(request);
+```
+
+This will populate the `JsonServiceClient` with 
+[Session Cookies](http://docs.servicestack.net/sessions#cookie-session-ids) 
+which will transparently be sent on subsequent requests to make authenticated requests.
+
+### Authenticating using JWT
+
+Use the `bearerToken` property to Authenticate with a [ServiceStack JWT Provider](http://docs.servicestack.net/jwt-authprovider) using a JWT Token:
+
+```ts
+client.bearerToken = jwtToken;
+```
+
+Alternatively you can use a [Refresh Token](http://docs.servicestack.net/jwt-authprovider#refresh-tokens) instead:
+
+```ts
+client.refreshToken = refreshToken;
+```
+
+### Authenticating using an API Key
+
+Use the `bearerToken` property to Authenticate with an [API Key](http://docs.servicestack.net/api-key-authprovider):
+
+```ts
+client.bearerToken = apiKey;
+```
+
+### Transparently handle 401 Unauthorized Responses
+
+If the server returns a 401 Unauthorized Response either because the client was Unauthenticated or the 
+configured Bearer Token or API Key used had expired or was invalidated, you can use `onAuthenticationRequired`
+callback to re-configure the client before automatically retrying the original request, e.g:
+
+```ts
+client.onAuthenticationRequired = async () => {
+    const authClient = new JsonServiceClient(authBaseUrl);
+    authClient.userName = userName;
+    authClient.password = password;
+    const response = await authClient.get(new Authenticate());
+    client.bearerToken = response.bearerToken;
+};
+
+//Automatically retries requests returning 401 Responses with new bearerToken
+var response = await client.get(new Secured());
+```
+
+### Automatically refresh Access Tokens
+
+With the [Refresh Token support in JWT](http://docs.servicestack.net/jwt-authprovider#refresh-tokens) 
+you can use the `refreshToken` property to instruct the Service Client to automatically fetch new 
+JWT Tokens behind the scenes before automatically retrying failed requests due to invalid or expired JWTs, e.g:
+
+```ts
+//Authenticate to get new Refresh Token
+const authClient = new JsonServiceClient(authBaseUrl);
+authClient.userName = userName;
+authClient.password = password;
+const authResponse = await authClient.get(new Authenticate());
+
+//Configure client with RefreshToken
+client.refreshToken = authResponse.RefreshToken;
+
+//Call authenticated Services and clients will automatically retrieve new JWT Tokens as needed
+const response = await client.get(new Secured());
+```
+
+Use the `refreshTokenUri` property when refresh tokens need to be sent to a different ServiceStack Server, e.g:
+
+```ts
+client.refreshToken = refreshToken;
+client.refreshTokenUri = authBaseUrl + "/access-token";
+```
+
 ## DTO Customization Options 
 
 In most cases you'll just use the generated TypeScript DTO's as-is, however you can further customize how
