@@ -33,7 +33,7 @@ title: ztest
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-sharp/gist94729979.html %}
+    {% include validation/server/sharp.html %}
   </div>
 
   <div class="tab-pane fade" id="pills-server-ts" role="tabpanel" aria-labelledby="pills-server-ts-tab">
@@ -41,7 +41,7 @@ title: ztest
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-ts/gist94730097.html %}        
+    {% include validation/server/ts.html %}
   </div>
 
   <div class="tab-pane fade" id="pills-server-jquery" role="tabpanel" aria-labelledby="pills-server-jquery-tab">
@@ -49,7 +49,7 @@ title: ztest
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-jquery/gist94730189.html %}        
+    {% include validation/server/jquery.html %}        
   </div>
 
   <div class="tab-pane fade" id="pills-server-razor" role="tabpanel" aria-labelledby="pills-server-razor-tab">
@@ -57,7 +57,7 @@ title: ztest
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-razor/gist94730361.html %}        
+    {% include validation/server/razor.html %}        
   </div>
 </div>
 
