@@ -44,7 +44,6 @@ title: ztest
     </div>
     <h3>Source Code and References</h3>
 
-    {% include validation/server/ts.html %}
 
   </div>
 
@@ -54,7 +53,6 @@ title: ztest
     </div>
     <h3>Source Code and References</h3>
 
-    {% include validation/server/jquery.html %}
 
   </div>
 
@@ -64,7 +62,6 @@ title: ztest
     </div>
     <h3>Source Code and References</h3>
 
-    {% include validation/server/razor.html %}
 
   </div>
 </div>
