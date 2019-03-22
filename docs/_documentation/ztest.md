@@ -3,27 +3,27 @@ slug: ztest
 title: ztest
 ---
 
-### Bootstrap Tabs
+## Client
 
 <ul class="nav nav-pills mb-3" id="contacts-server" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="contacts-vuetify-tab" data-toggle="pill" href="#contacts-vuetify" role="tab" aria-controls="contacts-vuetify" aria-selected="true">
-        Sharp Pages
+        Vuetify
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="contacts-client-ts-tab" data-toggle="pill" href="#contacts-client-ts" role="tab" aria-controls="contacts-client-ts" aria-selected="false">
-        Server TypeScript
+        Client TypeScript
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="contacts-client-jquery-tab" data-toggle="pill" href="#contacts-client-jquery" role="tab" aria-controls="contacts-client-jquery" aria-selected="false">
-        Server jQuery
+        Client jQuery
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="contacts-client-razor-tab" data-toggle="pill" href="#contacts-client-razor" role="tab" aria-controls="contacts-client-razor" aria-selected="true">
-        Server Razor
+        Client Razor
     </a>
   </li>
 </ul>
@@ -60,6 +60,65 @@ title: ztest
     {% include validation/contacts/client-razor.html %}
   </div>
 </div>
+
+## Server
+
+<ul class="nav nav-pills mb-3" id="contacts-server" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="contacts-server-sharp-tab" data-toggle="pill" href="#contacts-server-sharp" role="tab" aria-controls="contacts-server-sharp" aria-selected="true">
+        Sharp Pages
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contacts-server-ts-tab" data-toggle="pill" href="#contacts-server-ts" role="tab" aria-controls="contacts-server-ts" aria-selected="false">
+        Server TypeScript
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contacts-server-jquery-tab" data-toggle="pill" href="#contacts-server-jquery" role="tab" aria-controls="contacts-server-jquery" aria-selected="false">
+        Server jQuery
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contacts-server-razor-tab" data-toggle="pill" href="#contacts-server-razor" role="tab" aria-controls="contacts-server-razor" aria-selected="true">
+        Server Razor
+    </a>
+  </li>
+</ul>
+<div class="tab-content" id="contacts-serverContent">
+  <div class="tab-pane fade show active" id="contacts-server-sharp" role="tabpanel" aria-labelledby="contacts-server-sharp-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/contacts/index.html">/server/contacts/index.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/contacts/server-sharp.html %}
+  </div>
+
+  <div class="tab-pane fade" id="contacts-server-ts" role="tabpanel" aria-labelledby="contacts-server-ts-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-ts/contacts/index.html">/server-ts/contacts/index.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/contacts/server-ts.html %}
+  </div>
+
+  <div class="tab-pane fade" id="contacts-server-jquery" role="tabpanel" aria-labelledby="contacts-server-jquery-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-jquery/contacts/index.html">/server-jquery/contacts/index.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/contacts/server-jquery.html %}
+  </div>
+
+  <div class="tab-pane fade" id="contacts-server-razor" role="tabpanel" aria-labelledby="contacts-server-razor-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-razor/contacts/default.cshtml">/server-razor/contacts/default.cshtml</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/contacts/server-razor.html %}
+  </div>
+</div>
+
 
 { % gist 166272f4b106cf254fd30448f7054440 % }
 
