@@ -34,8 +34,6 @@ title: ztest
     </div>
     <h3>Source Code and References</h3>
 
-    {% include validation/server/sharp.html %}
-
   </div>
 
   <div class="tab-pane fade" id="pills-server-ts" role="tabpanel" aria-labelledby="pills-server-ts-tab">
@@ -44,6 +42,7 @@ title: ztest
     </div>
     <h3>Source Code and References</h3>
 
+    {% include validation/server-ts.html %}
 
   </div>
 
