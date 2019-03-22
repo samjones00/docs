@@ -7,19 +7,42 @@ title: ztest
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+    <a class="nav-link active" id="pills-server-sharp-tab" data-toggle="pill" href="#pills-server-sharp" role="tab" aria-controls="pills-server-sharp" aria-selected="true">
+        Sharp Pages
+    </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+    <a class="nav-link" id="pills-server-ts-tab" data-toggle="pill" href="#pills-server-ts" role="tab" aria-controls="pills-server-ts" aria-selected="false">
+        Server TypeScript
+    </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+    <a class="nav-link" id="pills-server-jquery-tab" data-toggle="pill" href="#pills-server-jquery" role="tab" aria-controls="pills-server-jquery" aria-selected="false">
+        Server jQuery
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-server-razor-tab" data-toggle="pill" href="#pills-server-razor" role="tab" aria-controls="pills-server-razor" aria-selected="true">
+        Server Razor
+    </a>
   </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+  <div class="tab-pane fade show active" id="pills-server-sharp" role="tabpanel" aria-labelledby="pills-server-sharp-tab">
+        Sharp Pages Content
+  </div>
+
+  <div class="tab-pane fade" id="pills-server-ts" role="tabpanel" aria-labelledby="pills-server-ts-tab">
+        Server TypeScript Content
+  </div>
+
+  <div class="tab-pane fade" id="pills-server-jquery" role="tabpanel" aria-labelledby="pills-server-jquery-tab">
+        Server jQuery Content
+  </div>
+
+  <div class="tab-pane fade show active" id="pills-server-razor" role="tabpanel" aria-labelledby="pills-server-razor-tab">
+        Server Razor Content
+  </div>
 </div>
 
 ### Server Gists
