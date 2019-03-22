@@ -22,26 +22,42 @@ title: ztest
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" id="pills-server-razor-tab" data-toggle="pill" href="#pills-server-razor" role="tab" aria-controls="pills-server-razor" aria-selected="true">
+    <a class="nav-link" id="pills-server-razor-tab" data-toggle="pill" href="#pills-server-razor" role="tab" aria-controls="pills-server-razor" aria-selected="true">
         Server Razor
     </a>
   </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-server-sharp" role="tabpanel" aria-labelledby="pills-server-sharp-tab">
-        Sharp Pages Content
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/server-sharp/gist94729979.html %}
   </div>
 
   <div class="tab-pane fade" id="pills-server-ts" role="tabpanel" aria-labelledby="pills-server-ts-tab">
-        Server TypeScript Content
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/server-sharp/gist94730097.html %}        
   </div>
 
   <div class="tab-pane fade" id="pills-server-jquery" role="tabpanel" aria-labelledby="pills-server-jquery-tab">
-        Server jQuery Content
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/server-jquery/gist94730189.html %}        
   </div>
 
   <div class="tab-pane fade" id="pills-server-razor" role="tabpanel" aria-labelledby="pills-server-razor-tab">
-        Server Razor Content
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/server-razor/gist94730361.html %}        
   </div>
 </div>
 
