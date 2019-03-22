@@ -34,6 +34,7 @@ title: ztest
     </div>
     <h3>Source Code and References</h3>
 
+    {% include validation/services/gist94750992.html %}
 
   </div>
 
