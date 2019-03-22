@@ -61,6 +61,8 @@ title: ztest
   </div>
 </div>
 
+{% gist 166272f4b106cf254fd30448f7054440 %}
+
 ### Server Gists
 
 All Auth Configuration is encapsulated within a "no-touch" `IConfigureAppHost` plugin that's run once on Startup:
