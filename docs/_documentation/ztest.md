@@ -41,7 +41,7 @@ title: ztest
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-sharp/gist94730097.html %}        
+    {% include validation/server-ts/gist94730097.html %}        
   </div>
 
   <div class="tab-pane fade" id="pills-server-jquery" role="tabpanel" aria-labelledby="pills-server-jquery-tab">
