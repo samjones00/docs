@@ -7,57 +7,57 @@ title: ztest
 
 <ul class="nav nav-pills mb-3" id="contacts-server" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="contacts-server-sharp-tab" data-toggle="pill" href="#contacts-server-sharp" role="tab" aria-controls="contacts-server-sharp" aria-selected="true">
+    <a class="nav-link active" id="contacts-vuetify-tab" data-toggle="pill" href="#contacts-vuetify" role="tab" aria-controls="contacts-vuetify" aria-selected="true">
         Sharp Pages
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contacts-server-ts-tab" data-toggle="pill" href="#contacts-server-ts" role="tab" aria-controls="contacts-server-ts" aria-selected="false">
+    <a class="nav-link" id="contacts-client-ts-tab" data-toggle="pill" href="#contacts-client-ts" role="tab" aria-controls="contacts-client-ts" aria-selected="false">
         Server TypeScript
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contacts-server-jquery-tab" data-toggle="pill" href="#contacts-server-jquery" role="tab" aria-controls="contacts-server-jquery" aria-selected="false">
+    <a class="nav-link" id="contacts-client-jquery-tab" data-toggle="pill" href="#contacts-client-jquery" role="tab" aria-controls="contacts-client-jquery" aria-selected="false">
         Server jQuery
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contacts-server-razor-tab" data-toggle="pill" href="#contacts-server-razor" role="tab" aria-controls="contacts-server-razor" aria-selected="true">
+    <a class="nav-link" id="contacts-client-razor-tab" data-toggle="pill" href="#contacts-client-razor" role="tab" aria-controls="contacts-client-razor" aria-selected="true">
         Server Razor
     </a>
   </li>
 </ul>
 <div class="tab-content" id="contacts-serverContent">
-  <div class="tab-pane fade show active" id="contacts-server-sharp" role="tabpanel" aria-labelledby="contacts-server-sharp-tab">
+  <div class="tab-pane fade show active" id="contacts-vuetify" role="tabpanel" aria-labelledby="contacts-vuetify-tab">
     <div class="float-right">
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/contacts.html">/server/contacts.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/contacts/server-sharp.html %}
+    {% include validation/contacts/vuetify.html %}
   </div>
 
-  <div class="tab-pane fade" id="contacts-server-ts" role="tabpanel" aria-labelledby="contacts-server-ts-tab">
+  <div class="tab-pane fade" id="contacts-client-ts" role="tabpanel" aria-labelledby="contacts-client-ts-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-ts/contacts.html">/server-ts/contacts.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-ts/contacts.html">/client-ts/contacts.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/contacts/server-ts.html %}
+    {% include validation/contacts/client-ts.html %}
   </div>
 
-  <div class="tab-pane fade" id="contacts-server-jquery" role="tabpanel" aria-labelledby="contacts-server-jquery-tab">
+  <div class="tab-pane fade" id="contacts-client-jquery" role="tabpanel" aria-labelledby="contacts-client-jquery-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-jquery/contacts.html">/server-jquery/contacts.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-jquery/contacts.html">/client-jquery/contacts.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/contacts/server-jquery.html %}
+    {% include validation/contacts/client-jquery.html %}
   </div>
 
-  <div class="tab-pane fade" id="contacts-server-razor" role="tabpanel" aria-labelledby="contacts-server-razor-tab">
+  <div class="tab-pane fade" id="contacts-client-razor" role="tabpanel" aria-labelledby="contacts-client-razor-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-razor/contacts.cshtml">/server-razor/contacts.cshtml</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-razor/contacts.cshtml">/client-razor/contacts.cshtml</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/contacts/server-razor.html %}
+    {% include validation/contacts/client-razor.html %}
   </div>
 </div>
 
