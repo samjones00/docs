@@ -1,3 +1,7 @@
+---
+slug: ztest
+title: ztest
+---
 
 All Auth Configuration is encapsulated within a "no-touch" `IConfigureAppHost` plugin that's run once on Startup:
 
