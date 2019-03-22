@@ -63,8 +63,6 @@ title: ztest
 
 ### Server Gists
 
-{% gist 9c6c0b8a7df4ef0c908077595dac3eaf %}
-
 All Auth Configuration is encapsulated within a "no-touch" `IConfigureAppHost` plugin that's run once on Startup:
 
 {% include validation/services/gist94750992.html %}
