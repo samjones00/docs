@@ -5,63 +5,65 @@ title: ztest
 
 ### Bootstrap Tabs
 
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+<ul class="nav nav-pills mb-3" id="pills-server" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-server-sharp-tab" data-toggle="pill" href="#pills-server-sharp" role="tab" aria-controls="pills-server-sharp" aria-selected="true">
-        Sharp Pages
+    <a class="nav-link active" id="pills-vuetify-tab" data-toggle="pill" href="#pills-vuetify" role="tab" aria-controls="pills-vuetify" aria-selected="true">
+        Vuetify
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-server-ts-tab" data-toggle="pill" href="#pills-server-ts" role="tab" aria-controls="pills-server-ts" aria-selected="false">
-        Server TypeScript
+    <a class="nav-link" id="pills-client-ts-tab" data-toggle="pill" href="#pills-client-ts" role="tab" aria-controls="pills-client-ts" aria-selected="false">
+        Client TypeScript
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-server-jquery-tab" data-toggle="pill" href="#pills-server-jquery" role="tab" aria-controls="pills-server-jquery" aria-selected="false">
-        Server jQuery
+    <a class="nav-link" id="pills-client-jquery-tab" data-toggle="pill" href="#pills-client-jquery" role="tab" aria-controls="pills-client-jquery" aria-selected="false">
+        Client jQuery
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-server-razor-tab" data-toggle="pill" href="#pills-server-razor" role="tab" aria-controls="pills-server-razor" aria-selected="true">
-        Server Razor
+    <a class="nav-link" id="pills-client-razor-tab" data-toggle="pill" href="#pills-client-razor" role="tab" aria-controls="pills-client-razor" aria-selected="true">
+        Client Razor
     </a>
   </li>
 </ul>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-server-sharp" role="tabpanel" aria-labelledby="pills-server-sharp-tab">
+<div class="tab-content" id="pills-serverContent">
+  <div class="tab-pane fade show active" id="pills-vuetify" role="tabpanel" aria-labelledby="pills-vuetify-tab">
     <div class="float-right">
         <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/login.html">/server/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-sharp.html %}
+    {% include validation/vuetify.html %}
   </div>
 
-  <div class="tab-pane fade" id="pills-server-ts" role="tabpanel" aria-labelledby="pills-server-ts-tab">
+  <div class="tab-pane fade" id="pills-client-ts" role="tabpanel" aria-labelledby="pills-client-ts-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-ts/login.html">/server-ts/login.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-ts/login.html">/client-ts/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-ts.html %}
+    {% include validation/client-ts.html %}
   </div>
 
-  <div class="tab-pane fade" id="pills-server-jquery" role="tabpanel" aria-labelledby="pills-server-jquery-tab">
+  <div class="tab-pane fade" id="pills-client-jquery" role="tabpanel" aria-labelledby="pills-client-jquery-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-jquery/login.html">/server-jquery/login.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-jquery/login.html">/client-jquery/login.html</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-jquery.html %}
+    {% include validation/client-jquery.html %}
   </div>
 
-  <div class="tab-pane fade" id="pills-server-razor" role="tabpanel" aria-labelledby="pills-server-razor-tab">
+  <div class="tab-pane fade" id="pills-client-razor" role="tabpanel" aria-labelledby="pills-client-razor-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-razor/login.cshtml">/server-razor/login.cshtml</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-razor/login.cshtml">/client-razor/login.cshtml</a>
     </div>
     <h3>Source Code and References</h3>
-    {% include validation/server-razor.html %}
+    {% include validation/client-razor.html %}
   </div>
 </div>
 
 ### Server Gists
+
+{% gist 9c6c0b8a7df4ef0c908077595dac3eaf %}
 
 All Auth Configuration is encapsulated within a "no-touch" `IConfigureAppHost` plugin that's run once on Startup:
 
