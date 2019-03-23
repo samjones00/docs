@@ -119,8 +119,9 @@ title: ztest
   </div>
 </div>
 
+{% include apply.md.html %}
 
-{% gist f3fa8c016bbd253badc61d80afe399d9 %}
+{ % gist f3fa8c016bbd253badc61d80afe399d9 % }
 
 ### Server Gists
 
