@@ -3,6 +3,10 @@ title: Release Notes History
 slug: release-notes-history
 ---
 
+### 2019
+
+ - [v5.5](/releases/v5.5)
+
 ### 2018
 
  - [v5.4](/releases/v5.4)
