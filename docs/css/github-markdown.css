@@ -228,13 +228,13 @@
   content: "";
 }
 
-.markdown-body table {
+.markdown-body table, .language-md table {
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-.markdown-body td,
-.markdown-body th {
+.markdown-body td, .language-md td,
+.markdown-body th, .language-md th {
   padding: 0;
 }
 
@@ -379,7 +379,7 @@
 .markdown-body ul,
 .markdown-body ol,
 .markdown-body dl,
-.markdown-body table,
+.markdown-body table, .language-md table,
 .markdown-body pre {
   margin-top: 0;
   margin-bottom: 16px;
@@ -529,7 +529,7 @@
   margin-bottom: 16px;
 }
 
-.markdown-body table {
+.markdown-body table, .language-md table {
   display: block;
   width: 100%;
   overflow: auto;
@@ -537,22 +537,22 @@
   word-break: keep-all;
 }
 
-.markdown-body table th {
+.markdown-body table th, .language-md table th {
   font-weight: bold;
 }
 
-.markdown-body table th,
-.markdown-body table td {
+.markdown-body table th, .language-md table th,
+.markdown-body table td, .language-md table td {
   padding: 6px 13px;
   border: 1px solid #ddd;
 }
 
-.markdown-body table tr {
+.markdown-body table tr, .language-md table tr {
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
 
-.markdown-body table tr:nth-child(2n) {
+.markdown-body table tr:nth-child(2n), .language-md table tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
 
