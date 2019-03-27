@@ -8,4 +8,4 @@
 | formDictionary        | -> Dictionary  | FormData.ToObjectDictionary()                                        |
 | formValue(name)       | -> string      | if (hasError) FormData[name] ?? QueryString[name]                    |
 | formValues(name)      | -> string[]    | if (hasError) FormData[name] ?? QueryString[name]                    |
-| formCheckValue(name)  | -> bool        | formValue(name) == "true" || "t" || "on" || "1"                      |
+| formCheckValue(name)  | -> bool        | formValue(name) in [ "true", "t", "on", "1" ]                        |
