@@ -414,7 +414,7 @@ of different formats, including:
  - [SOAP 1.1/1.2](/soap-support)
  - HTML
    - [HTML5 Report Format](/html5reportformat)
-   - [ServiceStack Templates](http://templates.servicestack.net)
+   - [Sharp Pages](https://sharpscript.net/docs/sharp-pages)
    - [Razor](http://razor.servicestack.net/)
    - [Markdown Razor](/markdown-razor)
 

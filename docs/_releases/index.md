@@ -253,7 +253,7 @@ ServiceStack's maintains exceptional source compatibility between .NET Core and 
 
 The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
 
-v5 includes **11 new .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Templates WebApp](http://templates.servicestack.net/docs/web-apps) which is itslef a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
+v5 includes **11 new .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
 All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](http://docs.servicestack.net/dotnet-new) command-line utility, installable from npm with:
  
@@ -325,7 +325,7 @@ The Webpack templates have been updated to utilize [Webpack's DllPlugin](https:/
  
     $ npm run dev
 
-Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [ServiceStack Templates hot-reloading](http://templates.servicestack.net/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port http://localhost:3000 
+Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [Sharp Pages hot-reloading](https://sharpscript.net/docs/sharp-apps/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port http://localhost:3000 
 
 ### Deployments
 
@@ -333,7 +333,7 @@ When your App is ready to deploy, run the `publish` npm (or Gulp) script to pack
 
     npm run publish
  
-Which generates a production Webpack client build and `dotnet publish` release Server build to package your App ready for an XCOPY, rsync or MSDeploy deployment. We used [rsync and supervisord to deploy](http://templates.servicestack.net/docs/deploying-web-apps) each packaged Web template to our Ubuntu Server at the following URL:
+Which generates a production Webpack client build and `dotnet publish` release Server build to package your App ready for an XCOPY, rsync or MSDeploy deployment. We used [rsync and supervisord to deploy](https://sharpscript.net/docs/sharp-apps/docs/deploying-sharp-apps) each packaged Web template to our Ubuntu Server at the following URL:
 
     http://<template-name>.web-templates.io
 
@@ -365,11 +365,11 @@ There are 3 templates for each of the different technologies that can be used wi
  - .NET Framework: [](https://github.com/NetFrameworkTemplates/)
  - Live Preview: [.web-templates.io](http://.web-templates.io)
  
-#### ServiceStack Templates
+#### Sharp Pages
 
- - .NET Core: [templates](https://github.com/NetCoreTemplates/templates)
- - .NET Framework: [templates-netfx](https://github.com/NetFrameworkTemplates/templates-netfx)
- - Live Preview: [templates.web-templates.io](http://templates.web-templates.io)
+ - .NET Core: [sharp](https://github.com/NetCoreTemplates/sharp)
+ - .NET Framework: [sharp-netfx](https://github.com/NetFrameworkTemplates/sharp-netfx)
+ - Live Preview: [sharp.web-templates.io](http://sharp.web-templates.io)
 
 #### Hot Reloading
 
@@ -393,12 +393,12 @@ Those who prefer starting from an Empty slate can use the `web` template to crea
 
 ### .NET Core 2.0 ServiceStack WebApp Template
 
-The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [sharp-webapp](https://github.com/NetCoreTemplates/sharp-webapp) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
- - .NET Core: [templates-webapp](https://github.com/NetCoreTemplates/templates-webapp)
- - Live Preview: [templates-webapp.web-templates.io](http://.templates-webappweb-templates.io)
+ - .NET Core: [sharp-webapp](https://github.com/NetCoreTemplates/sharp-webapp)
+ - Live Preview: [rockwind-webapp.web-templates.io](http://rockwind-webapp.web-templates.io)
  
-See [templates.servicestack.net/docs/web-apps](http://templates.servicestack.net/docs/web-apps) to learn the different use-cases made possible with Web Apps.
+See [sharpscript.net/docs/sharp-apps](https://sharpscript.net/docs/sharp-apps) to learn the different use-cases made possible with Web Apps.
 
 ### .NET Framework Templates
 
@@ -415,11 +415,11 @@ You can use [winservice-netfx](https://github.com/NetFrameworkTemplates/winservi
 
 ## All Apps and Live Demos Upgraded
 
-All existing .NET Core 1.x projects have been upgraded to .NET Core 2.0 and ServiceStack v5, including all [.NET Core Live Demos](https://github.com/NetCoreApps/LiveDemos), all [.NET Core 2.0 Web Apps](https://github.com/NetCoreWebApps/LiveDemos) and all [.NET Framework Live Demos](https://github.com/ServiceStackApps/LiveDemos).
+All existing .NET Core 1.x projects have been upgraded to .NET Core 2.0 and ServiceStack v5, including all [.NET Core Live Demos](https://github.com/NetCoreApps/LiveDemos), all [.NET Core 2.0 Sharp Apps](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos) and all [.NET Framework Live Demos](https://github.com/ServiceStackApps/LiveDemos).
 
 ### ServiceStack WebApps
 
-The [.NET Core 2.0 Web Apps](https://github.com/NetCoreWebApps/LiveDemos) now use the default `WebHost.CreateDefaultBuilder()` builder to bootstrap WebApp's letting you use `ASPNETCORE_URLS` to specify which URL and port to bind on, simplifying deployment configurations.
+The [.NET Core 2.0 Web Apps](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos) now use the default `WebHost.CreateDefaultBuilder()` builder to bootstrap WebApp's letting you use `ASPNETCORE_URLS` to specify which URL and port to bind on, simplifying deployment configurations.
 
 The `ASPNETCORE_ENVIRONMENT` Environment variable can also be used to configure WebApp's to run in `Production` mode. If preferred you can continue using the existing `bind`, `port` and `debug` options in your `app.settings` to override the default configuration. 
 
@@ -709,9 +709,9 @@ Which you could use to provide a tailored feed for specific clients:
 public class CustomFeedView { ... }
 ```
 
-### ServiceStack Templates View Pages
+### Sharp Pages
 
-[ServiceStack Templates](http://templates.servicestack.net) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
+[Sharp Pages](https://sharpscript.net/docs/sharp-pages) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
 
 It works similarly to Razor ViewPages where it uses first matching View Page with the Response DTO is injected as the `Model` property. The View Pages can be in any folder within the `/Views` folder using the format `{PageName}.html` where `PageName` can be either the **Request DTO** or **Response DTO** Name, but all page names within the `/Views` folder need to be unique.
 
@@ -946,17 +946,17 @@ Please see the full release notes for what's in this Release: http://docs.servic
 
 Firstly we’d like to announce this Release adds support for the newly released .NET Core 2.0. Our test suites have been upgraded to run .NET Core 2.0 as well as some of our existing .NET Core Apps. All new Web Apps created in this release were developed on .NET Core 2.0 which we believe is the first .NET Core release that should be given first consideration for development of new greenfield .NET Web Apps to see if it’s able to meet your requirements. 
 
-## ServiceStack Templates!
+## #Script!
 
-We're super excited to announce [ServiceStack Templates](http://templates.servicestack.net). At its core ServiceStack Templates is a simple, fast and versatile general-purpose dynamic templating language for .NET and .NET Core. It requires no pre-compilation, is lazily loaded and Starts up instantly with fast runtime performance, is late-bound with no binary coupling, is highly extensible and is evaluated in a Sandbox with complete fine-grain control over what functionality is available to templates running in different contexts.
+We're super excited to announce [#Script](https://sharpscript.net). At its core `#Script` is a simple, fast and versatile general-purpose dynamic templating language for .NET and .NET Core. It requires no pre-compilation, is lazily loaded and Starts up instantly with fast runtime performance, is late-bound with no binary coupling, is highly extensible and is evaluated in a Sandbox with complete fine-grain control over what functionality is available to templates running in different contexts.
 
-These characteristics opens up Templates into a number of exciting new use-cases, some of which we cover in our comprehensive and interactive documentation at [templates.servicestack.net](http://templates.servicestack.net).
+These characteristics opens up Templates into a number of exciting new use-cases, some of which we cover in our comprehensive and interactive documentation at [sharpscript.net/](https://sharpscript.net).
 
 ### Starter Projects
 
 The Starter Projects below provide a quick way to get started with a pre-configured ServiceStack Template App:
 
-#### [.NET Core 2.0 Boostrap Starter](https://github.com/NetCoreApps/TemplatesBootstrapStarter)
+#### [.NET Core 2.0 Bootstrap Starter](https://github.com/NetCoreApps/TemplatesBootstrapStarter)
 
 Clone the [TemplatesBootstrapStarter](https://github.com/NetCoreApps/TemplatesBootstrapStarter) GitHub project to start from a Bootstrap v4 and jQuery .NET Core 2.0 App:
 
@@ -966,7 +966,7 @@ Clone the [TemplatesBootstrapStarter](https://github.com/NetCoreApps/TemplatesBo
 
 For ASP.NET v4.5 projects create a new **ServiceStack ASP.NET Templates with Bootstrap** from the VS.NET Templates in [ServiceStackVS VS.NET Extension](http://docs.servicestack.net/templates-overview#servicestackvs-vsnet-extension) to create an ASP.NET v4.5 Project using [ServiceStack's recommended project structure](http://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution):
 
-[![](http://templates.servicestack.net/assets/img/screenshots/ssvs-bootstrap.png)](https://github.com/ServiceStack/ServiceStackVS)
+[![](https://sharpscript.net/assets/img/screenshots/ssvs-bootstrap.png)](https://github.com/ServiceStack/ServiceStackVS)
 
 ## Why Templates?
 
@@ -976,15 +976,15 @@ We developed Templates because we want to be able to offer a simple, clean, high
 
 So we set out to build the server templating language we wanted, one without the complexity, issues, design problems and static coupling of Razor, with great Startup and runtime performance, is highly-extensible and promotes reuse, integrates cleanly with .NET but still adopts the strengths that make the premier JavaScript frameworks enjoyable and productive to build HTML UIs with. 
 
-We didn't want to invent a new syntax so we evaluated various syntax from multiple JavaScript frameworks and ultimately settled on [Vue.js Filters syntax](https://vuejs.org/v2/guide/filters.html) which has optimal syntax for a templating language, we also share Vue's primary focus on simplicity and its incremental approach to layering advanced functionality, a goal that drove the design and development of ServiceStack Templates. The [Syntax](http://templates.servicestack.net/docs/syntax) is essentially compatible with Vue.js filters including supporting JavaScript's syntax for its native data types and function calls.
+We didn't want to invent a new syntax so we evaluated various syntax from multiple JavaScript frameworks and ultimately settled on [Vue.js Filters syntax](https://vuejs.org/v2/guide/filters.html) which has optimal syntax for a templating language, we also share Vue's primary focus on simplicity and its incremental approach to layering advanced functionality, a goal that drove the design and development of `#Script`. The [Syntax](https://sharpscript.net/docs/syntax) is essentially compatible with Vue.js filters including supporting JavaScript's syntax for its native data types and function calls.
 
-Within this minimal syntax we've been able to achieve a highly versatile dynamic template language whose expressive power comes from its [filters](http://templates.servicestack.net/docs/filters) of which we've included a [comprehensive suite](http://templates.servicestack.net/docs/filters-reference) to handle many of the tasks commonly required in Templates and Web Apps.
+Within this minimal syntax we've been able to achieve a highly versatile dynamic template language whose expressive power comes from its [filters](https://sharpscript.net/docs/methods) of which we've included a [comprehensive suite](https://sharpscript.net/docs/filters-reference) to handle many of the tasks commonly required in Templates and Web Apps.
 
-### Meet ServiceStack Templates
+### Meet `#Script`
 
-Even in this initial release we're extremely pleased with its current form. It's not coupled to any external tooling or susceptible to any of the external factors that has plagued us with Razor. It's highly testable by design with unit tests being trivial to write that it's our most tested feature with over 350 new tests added to support its current feature-set, it's also our [most documented feature](http://templates.servicestack.net). 
+Even in this initial release we're extremely pleased with its current form. It's not coupled to any external tooling or susceptible to any of the external factors that has plagued us with Razor. It's highly testable by design with unit tests being trivial to write that it's our most tested feature with over 350 new tests added to support its current feature-set, it's also our [most documented feature](https://sharpscript.net). 
 
-It's small, lightweight footprint and built-in Hot Reloading provides a fun, clean and productive alternative to MVC Razor that's easily integrated into any web framework and runs identically in every platform ServiceStack runs on, it can also be returned in ASP.NET MVC and ASP.NET MVC Core Controllers - in all cases, using the same [high-performance implementation](http://templates.servicestack.net/docs/introduction#instant-startup) to asynchronously write to a forward-only OutputStream for max performance and maximum potential reuse of your code.
+It's small, lightweight footprint and built-in Hot Reloading provides a fun, clean and productive alternative to MVC Razor that's easily integrated into any web framework and runs identically in every platform ServiceStack runs on, it can also be returned in ASP.NET MVC and ASP.NET MVC Core Controllers - in all cases, using the same [high-performance implementation](https://sharpscript.net/docs/introduction#instant-startup) to asynchronously write to a forward-only OutputStream for max performance and maximum potential reuse of your code.
 
 Templates are lazily loaded and late-bound for Instant Startup, doesn't require any pre-compilation, have coupling to any external configuration files, build tools, designer tooling or have any special deployment requirements. It can be used as a general purpose templating language to enhance any text format and includes built-in support for `.html`.
 
@@ -994,37 +994,37 @@ Templates are designed to be incrementally adoptable where its initial form is i
 
 ### Surrounding Ecosystem
 
-These qualities opens Templates up to a number of [new use-cases](http://templates.servicestack.net/usecases/) tthat's better suited than Razor for maintaining content-heavy websites, live documents, Email Templates and can easily introspect the state of running .NET Apps where they provide valuable insight at a glance with support for Adhoc querying.
+These qualities opens Templates up to a number of [new use-cases](https://sharpscript.net/usecases/) that's better suited than Razor for maintaining content-heavy websites, live documents, Email Templates and can easily introspect the state of running .NET Apps where they provide valuable insight at a glance with support for Adhoc querying.
 
 ## Web Apps
 
-One use-case made possible by Templates we're extremely excited about is [Web Apps](http://templates.servicestack.net/docs/web-apps) - a new approach to dramatically simplify .NET Web App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
+One use-case made possible by Templates we're extremely excited about is [Web Apps](https://sharpscript.net/docs/sharp-apps) - a new approach to dramatically simplify .NET Web App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
 
 Web Apps leverages Templates to develop entire content-rich, data-driven websites without needing to write any C#, compile projects or manually refresh pages - resulting in the easiest and fastest way to develop Web Apps in .NET!
 
 ### Ultimate Simplicity
 
-Not having to write any C# code or perform any app builds dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [Template's syntax](http://templates.servicestack.net/docs/syntax) and what [filters are available](http://templates.servicestack.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript developers despite calling and binding directly to .NET APIs behind the scenes.
+Not having to write any C# code or perform any app builds dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [Template's syntax](https://sharpscript.net/docs/syntax) and what [filters are available](https://sharpscript.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript developers despite calling and binding directly to .NET APIs behind the scenes.
 
 All complexity with C#, .NET, namespaces, references, .dlls, strong naming, packages, MVC, Razor, build tools, IDE environments, etc has been eliminated leaving all Web Developers needing to do is run a cross-platform [web/app.dll](https://github.com/ServiceStack/Web) .NET Core 2.0 executable and configure a simple [app.settings](https://github.com/NetCoreTemplates/bare-webapp/blob/master/app.settings) text file to specify which website folder to use, which ServiceStack features to enable, which db or redis providers to connect to, etc. 
 
 ### Rapid Development Workflow
 
-The iterative development experience is also unparalleled for a .NET App, no compilation is required so you can just leave the `web/app.dll` running whilst you add the template `.html` files needed to build your App and thanks to the built-in [Hot Reloading](http://templates.servicestack.net/docs/hot-reloading) support, pages will refresh automatically as you save. You'll just need to do a full page refresh when modifying external .css/.js files to bypass the browser's cache and you'll need to restart `web/app.dll` to pick up any changes to your `app.settings` or .dlls to your `/plugins` folder.
+The iterative development experience is also unparalleled for a .NET App, no compilation is required so you can just leave the `web/app.dll` running whilst you add the template `.html` files needed to build your App and thanks to the built-in [Hot Reloading](https://sharpscript.net/docs/hot-reloading) support, pages will refresh automatically as you save. You'll just need to do a full page refresh when modifying external .css/.js files to bypass the browser's cache and you'll need to restart `web/app.dll` to pick up any changes to your `app.settings` or .dlls to your `/plugins` folder.
 
 ### Pure Cloud Apps
 
-Web Apps also enable the development of [Pure Cloud Apps](http://templates.servicestack.net/docs/web-apps#pure-cloud-apps) where the same Web App can be developed and run entirely on **AWS S3 and RDS** or **Azure Blob Storage and SQL Server** by just changing the `app.settings` that's deployed with the pre-compiled [Web App Binary](https://github.com/ServiceStack/Web).
+Web Apps also enable the development of [Pure Cloud Apps](https://sharpscript.net/docs/sharp-apps#pure-cloud-apps) where the same Web App can be developed and run entirely on **AWS S3 and RDS** or **Azure Blob Storage and SQL Server** by just changing the `app.settings` that's deployed with the pre-compiled [Web App Binary](https://github.com/ServiceStack/Web).
 
 ## Example Web Apps 
 
-We've developed a number of [Web Apps](http://templates.servicestack.net/docs/web-apps) to illustrate the various features available and to showcase its strengths and the different kind of Web Apps that can easily be developed with it. The source code for each app is maintained in [NetCoreWebApps](https://github.com/NetCoreWebApps) and each Web App runs the same [pre-compiled web/app.dll binary](https://github.com/ServiceStack/Web).
+We've developed a number of [Web Apps](https://sharpscript.net/docs/sharp-apps) to illustrate the various features available and to showcase its strengths and the different kind of Web Apps that can easily be developed with it. The source code for each app is maintained in [NetCoreWebApps](https://github.com/sharp-apps) and each Web App runs the same [pre-compiled web/app.dll binary](https://github.com/ServiceStack/Web).
 
 ## Metadata Debug Inspector
 
-[![](http://templates.servicestack.net/assets/img/screenshots/metadata-debug.png)](http://templates.servicestack.net/metadata/debug)
+[![](https://sharpscript.net/assets/img/screenshots/metadata-debug.png)](https://sharpscript.net/metadata/debug)
 
-All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Inspector](http://templates.servicestack.net/docs/info-filters#debug-template).
+All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Inspector](https://sharpscript.net/docs/servicestack-scripts#debug-template).
 
 The Debug Template is a Service in `SharpPagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
 
@@ -1052,7 +1052,7 @@ Plugins.Add(new SharpPagesFeature {
 })
 ```
 
-Which is the configuration that allows [templates.servicestack.net/metadata/debug](http://templates.servicestack.net/metadata/debug) to be accessible to anyone.
+Which is the configuration that allows [sharpscript.net/metadata/debug](https://sharpscript.net/metadata/debug) to be accessible to anyone.
 
 ## JavaScript Utils
 
@@ -1071,7 +1071,7 @@ It can be used to parse dynamic JSON and any primitive JavaScript data type. The
 
 ### Eval
 
-Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [Templates Sandbox](http://templates.servicestack.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
+Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [Templates Sandbox](https://sharpscript.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
 
 ```csharp
 public class CustomFilter : TemplateFilter
@@ -1129,7 +1129,7 @@ var hasFoo = container.Exists<IFoo>();
 ```
 
 Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which 
-[ServiceStack's SharpPagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
+[ServiceStack's SharpPagesFeature](https://sharpscript.net/docs/sharp-pages) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
 
 ### Fast, small, dependency-free IOC
 

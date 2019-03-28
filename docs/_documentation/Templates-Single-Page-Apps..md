@@ -117,7 +117,7 @@ Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY 
 
 ### Optimal Dev Workflow with Hot Reloading
 
-The templates include a hot-reload feature which works similar to [ServiceStack Templates hot-reloading](https://sharpscript.net/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. 
+The templates include a hot-reload feature which works similar to [Sharp Pages hot-reloading](https://sharpscript.net/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. 
 
 Hot Reloading works by leveraging [ServiceStack Sharp Pages](https://sharpscript.net/docs/sharp-pages) which works seamlessly with Webpack's generated `index.html` where it evaluates server Template Expressions when returning the SPA home page. This is leveraged to enable Hot Reloading support by [including the expression](https://github.com/NetCoreTemplates/vue-spa/blob/0c13183b6a5ae20564f650e50d29b9d4e36cbd0c/MyApp/index.template.ejs#L8):
 
@@ -127,7 +127,7 @@ Hot Reloading works by leveraging [ServiceStack Sharp Pages](https://sharpscript
 
 Which renders the contents of [/js/hot-fileloader.js](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/js/hot-fileloader.js) when running the Web App during development.
 
-Although optional, ServiceStack Templates is useful whenever you need to render any server logic in the SPA home page, e.g:
+Although optional, `#Script` is useful whenever you need to render any server logic in the SPA home page, e.g:
 
 ```html 
 {% raw %}<div>Copyright &copy; {{ now | dateFormat('yyyy') }}</div>{% endraw %}
@@ -439,7 +439,7 @@ The Parcel Template also includes customizations to integrate it with .NET Core 
 when needed. See the [Parcel Template docs](https://github.com/NetCoreTemplates/parcel#development-workflow) for information on the
 available `dev`, `build`, `dtos` and `publish` npm scripts used to manage the Development workflow.
 
-Seamless Parcel integration is another example of the benefits of ServiceStack Templates layered approach and non-intrusive handlebars syntax which 
+Seamless Parcel integration is another example of the benefits of `#Script` layered approach and non-intrusive handlebars syntax which 
 can be cleanly embedded in existing `.html` pages without interfering with static HTML analyzers like parcel and Webpack HTML plugins and their 
 resulting HTML minification in optimized production builds - enabling simplified development workflows and integration that's not possible with Razor.
 

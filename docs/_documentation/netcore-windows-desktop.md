@@ -73,11 +73,11 @@ The app tool also makes it easy to install .NET Core Apps where you can `list` a
 
     $ app list
 
-By default this will list all [NetCoreWebApps](https://github.com/NetCoreWebApps) available, ordered by popularity:
+By default this will list all [NetCoreWebApps](https://github.com/sharp-apps) available, ordered by popularity:
 
 ```
    1. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + API pages
+   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + Sharp APIs
    3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
    5. blog            Minimal multi-user Twitter OAuth blogging platform that creates living powerful pages
@@ -108,19 +108,19 @@ NetCoreTemplates:
    7. react-spa         .NET Core 2.1 React Create App CLI Bootstrap App
    8. angular-lite-spa  .NET Core 2.1 Angular 4 Material Design Lite Webpack App
    9. web               .NET Core 2.1 Empty Website
-  10. rockwind-webapp   .NET Core 2.1 Rockwind Templates WebApp
+  10. rockwind-webapp   .NET Core 2.1 Rockwind Sharp Apps
   11. selfhost          .NET Core 2.1 self-hosting Console App
   12. mvc               .NET Core 2.1 MVC Website
   13. templates         .NET Core 2.1 Templates Bootstrap Website
   14. razor             .NET Core 2.1 Website with ServiceStack.Razor
   15. parcel            .NET Core 2.1 Parcel TypeScript App
-  16. parcel-webapp     .NET Core 2.1 Parcel Templates WebApp
-  17. bare-webapp       .NET Core 2.1 Bare Templates WebApp
+  16. parcel-webapp     .NET Core 2.1 Parcel Sharp Apps
+  17. bare-webapp       .NET Core 2.1 Bare Sharp Apps
 
 NetCoreWebApps:
 
    1. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + API pages
+   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + Sharp APIs
    3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
    5. blog            Minimal multi-user Twitter OAuth blogging platform that creates living powerful pages
@@ -287,7 +287,7 @@ contains the shared binaries that all Web Apps use - making them easier to deplo
 
 ### Installing Web Apps
 
-As [NetCoreWebApps](https://github.com/NetCoreWebApps/spirals) is the default `APP_SOURCE`, running:
+As [NetCoreWebApps](https://github.com/sharp-apps/spirals) is the default `APP_SOURCE`, running:
 
     $ app list
 
@@ -295,7 +295,7 @@ Will return the list of publicly available Web Apps:
 
 ```
    1. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + API pages
+   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + Sharp APIs
    3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
    5. blog            Minimal multi-user Twitter OAuth blogging platform that creates living powerful pages
@@ -316,7 +316,7 @@ We've also made it easy to list your App in the App gallery, by running:
 
 Which opens the [Web App Gallery Gist](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098) where you can request for your Web App
 to be listed in the gallery by commenting on the gist with a link to your project. We'll review it and if it's acceptable we'll fork it in 
-[NetCoreWebApps](https://github.com/NetCoreWebApps) which creates a "link" to your project where it will be automatically listed. 
+[NetCoreWebApps](https://github.com/sharp-apps) which creates a "link" to your project where it will be automatically listed. 
 
 All existing `app` installs will be immediately able to install your App, which either installs the latest published release or from **master** if it 
 hasn't published any releases.
@@ -367,7 +367,7 @@ From SQLite powered blog, lets install something entirely different - a Redis Ad
     $ app install redis
 
 The `redis` app includes some additional customizations which controls how the App looks and behaves when run as a Desktop App in its 
-[app.settings](https://github.com/NetCoreWebApps/redis/blob/master/app.settings):
+[app.settings](https://github.com/sharp-apps/redis/blob/master/app.settings):
 
     debug true
     name Redis Web App
@@ -402,7 +402,7 @@ To run the production version of our app we can either set `debug false` in the 
 
     $ app -r
 
-This flag changes whether to use `vue.js` or `vue.min.js` in the [_layout.html](https://github.com/NetCoreWebApps/redis/blob/master/_layout.html) page:
+This flag changes whether to use `vue.js` or `vue.min.js` in the [_layout.html](https://github.com/sharp-apps/redis/blob/master/_layout.html) page:
 
 ```html
 {% raw %}<script src="../assets/js/vue{{ '.min' | if(!debug) }}.js"></script>{% endraw %}
@@ -423,11 +423,11 @@ The `redis` App has all the features you'd expect from a Redis Admin UI:
   - Breadcrumbs
   - Deep Linking + Browser Navigation (ALT+LEFT Back, ALT+RIGHT Forward, F5 Refresh)
 
-What differs this from other Redis Admin UI's is its terse implementation where its entire custom UI is contained within a single [index.html](https://github.com/NetCoreWebApps/redis/blob/master/index.html) page thanks to the expressiveness of both Vue and ServiceStack Templates.
+What differs this from other Redis Admin UI's is its terse implementation where its entire custom UI is contained within a single [index.html](https://github.com/sharp-apps/redis/blob/master/index.html) page thanks to the expressiveness of both Vue and `#Script`.
 
 Its minimal size makes it easy for curious and advanced Users to customize and add features since they can make them locally and see their changes 
 in real-time. Its simpler implementation makes contributions easier as they only have 1 page to edit and can paste their changes directly using 
-[GitHub's Edit UI](https://github.com/NetCoreWebApps/redis/edit/master/index.html) to easily create a pull-request where it can be reviewed and merged.
+[GitHub's Edit UI](https://github.com/sharp-apps/redis/edit/master/index.html) to easily create a pull-request where it can be reviewed and merged.
 
 ### Simple Updates
 
@@ -821,7 +821,7 @@ This publishing option includes a self-contained .NET Core with all `app` binari
 ### Publish to the world
 
 To maximize reach and accessibility of your App leave a comment on the [App Gallery](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098)
-where after we link to it on [NetCoreWebApps](https://github.com/NetCoreWebApps) it will available to all users when they look for available apps in:
+where after we link to it on [NetCoreWebApps](https://github.com/sharp-apps) it will available to all users when they look for available apps in:
 
     $ app list
 

@@ -178,7 +178,7 @@ public class Callback : IReturn<CallbackResponse>
 }
 ```
 
-ServiceStack `object` properties are now deserialized using ServiceStack Templates [JS Utils](/js-utils) which can parse any JavaScript or JSON data structure. So if a POST callback was sent to the above service containing: 
+ServiceStack `object` properties are now deserialized using `#Script` [JS Utils](/js-utils) which can parse any JavaScript or JSON data structure. So if a POST callback was sent to the above service containing: 
 
 ```
 POST /callback

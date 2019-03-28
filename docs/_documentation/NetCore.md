@@ -579,13 +579,13 @@ The smaller footprint required by the `aspnetcore` runtime reduced the footprint
 
 Web Apps let you develop dynamic websites without needing to write any C# code or perform any app builds which dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [ServiceStack #Script Syntax](https://sharpscript.net/docs/syntax) and [what scripts are available](https://sharpscript.net/docs/filters-reference) to call. Because of #Script's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript devs despite calling and binding directly to .NET APIs behind the scenes.
 
-#### [Web App Examples](https://github.com/NetCoreWebApps/LiveDemos#live-demos)
+#### [Web App Examples](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos#live-demos)
 
-To illustrate the various features available we've developed a number of Web Apps examples to showcase the different kind of Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/NetCoreWebApps). Each app runs the same unmodified [Web App Binary](https://github.com/ServiceStack/Web) that's also used in the Bare Web App project above.
+To illustrate the various features available we've developed a number of Web Apps examples to showcase the different kind of Apps that can easily be developed. The source code for each app is available from [github.com/NetCoreWebApps](https://github.com/sharp-apps). Each app runs the same unmodified [Web App Binary](https://github.com/ServiceStack/Web) that's also used in the Bare Web App project above.
 
 You can quickly get started by creating a Web App from the project template:
 
-    $ dotnet-new templates-webapp ProjectName
+    $ dotnet-new sharp-webapp ProjectName
 
 ## Run ASP.NET Core Apps on the .NET Framework
 
