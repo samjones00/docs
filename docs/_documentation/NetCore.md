@@ -82,7 +82,7 @@ The primary difference between the .NET Core and .NET Framework project template
 
 ## New .NET Core 2.1 Project Templates
  
-There are **11 .NET Core 2.1 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.1 template has an equivalent .NET Framework template except for [ServiceStack's Templates WebApp](http://templates.servicestack.net/docs/web-apps) which is itself a pre-built .NET Core 2.1 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
+There are **11 .NET Core 2.1 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.1 template has an equivalent .NET Framework template except for ServiceStack [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 2.1 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
 All .NET Core 2.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](/dotnet-new) command-line utility, installable from npm with:
  
@@ -575,9 +575,9 @@ The smaller footprint required by the `aspnetcore` runtime reduced the footprint
 
 ### .NET Core Web Apps
 
-.NET Core 2.1 is also used to enable [Web Apps](http://templates.servicestack.net/docs/web-apps) which is a new approach to dramatically simplify .NET Wep App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
+.NET Core 2.1 is also used to enable [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is a new approach to dramatically simplify .NET Wep App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
 
-Web Apps let you develop dynamic websites without needing to write any C# code or perform any app builds which dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [ServiceStack Template's Syntax](http://templates.servicestack.net/docs/syntax) and [what filters are available](http://templates.servicestack.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript devs despite calling and binding directly to .NET APIs behind the scenes.
+Web Apps let you develop dynamic websites without needing to write any C# code or perform any app builds which dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [ServiceStack #Script Syntax](https://sharpscript.net/docs/syntax) and [what scripts are available](https://sharpscript.net/docs/filters-reference) to call. Because of #Script's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript devs despite calling and binding directly to .NET APIs behind the scenes.
 
 #### [Web App Examples](https://github.com/NetCoreWebApps/LiveDemos#live-demos)
 

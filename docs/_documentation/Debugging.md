@@ -127,14 +127,14 @@ Alternatively enable [StrictMode](#strictmode) to have StartUp Exceptions thrown
 
 ## Debug Inspector
 
-[![](http://templates.servicestack.net/assets/img/screenshots/metadata-debug.png)](http://templates.servicestack.net/metadata/debug)
+[![](https://sharpscript.net/assets/img/screenshots/metadata-debug.png)](https://sharpscript.net/metadata/debug)
 
-All ServiceStack Apps have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Debug Template](http://templates.servicestack.net/docs/info-filters#debug-template).
+All ServiceStack Apps have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Debug Inspector](https://sharpscript.net/docs/servicestack-scripts#debug-template).
 
-The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
+The Debug Template is a Service in `SharpPagesFeature` that's pre-registered in [DebugMode](#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
 
 ```csharp
-Plugins.Add(new TemplatePagesFeature { 
+Plugins.Add(new SharpPagesFeature { 
     MetadataDebugAdminRole = RoleNames.Admin,        // Only allow Admin users
 })
 ```
@@ -151,13 +151,13 @@ Which will let you access it by appending the authsecret to the querystring: `/m
 Alternatively if preferred you can make the Debug Template Service available to:
 
 ```csharp
-Plugins.Add(new TemplatePagesFeature { 
+Plugins.Add(new SharpPagesFeature { 
     MetadataDebugAdminRole = RoleNames.AllowAnyUser,  // Allow Authenticated Users
     MetadataDebugAdminRole = RoleNames.AllowAnon,     // Allow anyone
 })
 ```
 
-Which is the configuration that allows [templates.servicestack.net/metadata/debug](http://templates.servicestack.net/metadata/debug) to be accessible to anyone.
+Which is the configuration that allows [sharpscript.net/metadata/debug](https://sharpscript.net/metadata/debug) to be accessible to anyone.
 
 ### Request Info
 

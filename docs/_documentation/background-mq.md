@@ -124,7 +124,7 @@ The creation of Email Template is split into different steps to ensure all users
 Each template follows the same approach:
 
  - Work out all users the email should be sent to 
- - Retrieve all data required by the template and inject it into a new [ServiceStack Templates Context](http://templates.servicestack.net/docs/installation) 
+ - Retrieve all data required by the template and inject it into a new [ServiceStack ScriptContext](https://sharpscript.net/docs/installation) 
  - Use the context to render the specified [email template](https://github.com/NetCoreApps/TechStacks/tree/master/src/TechStacks/emails). 
  
  In this case it renders the [post-new.html](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks/emails/post-new.html) Template inside the [_layout.html](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks/emails/_layout.html) - which is based on the [Email Bootstrap Template](https://github.com/seanpowell/Email-Boilerplate/blob/master/email_commentsremoved.html) and used as the layout for all email templates.

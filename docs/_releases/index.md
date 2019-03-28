@@ -1026,10 +1026,10 @@ We've developed a number of [Web Apps](http://templates.servicestack.net/docs/we
 
 All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Inspector](http://templates.servicestack.net/docs/info-filters#debug-template).
 
-The Debug Template is a Service in `TemplatePagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
+The Debug Template is a Service in `SharpPagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
 
 ```csharp
-Plugins.Add(new TemplatePagesFeature { 
+Plugins.Add(new SharpPagesFeature { 
     MetadataDebugAdminRole = RoleNames.Admin,        // Only allow Admin users
 })
 ```
@@ -1046,7 +1046,7 @@ Which will let you access it by appending the authsecret to the querystring: `/m
 Alternatively if preferred you can make the Debug Template Service available to all users with:
 
 ```csharp
-Plugins.Add(new TemplatePagesFeature { 
+Plugins.Add(new SharpPagesFeature { 
     MetadataDebugAdminRole = RoleNames.AllowAnyUser,  // Allow Authenticated Users
     MetadataDebugAdminRole = RoleNames.AllowAnon,     // Allow anyone
 })
@@ -1129,7 +1129,7 @@ var hasFoo = container.Exists<IFoo>();
 ```
 
 Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which 
-[ServiceStack's TemplatePagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
+[ServiceStack's SharpPagesFeature](http://templates.servicestack.net/docs/view-engine) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
 
 ### Fast, small, dependency-free IOC
 

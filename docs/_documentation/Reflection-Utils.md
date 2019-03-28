@@ -119,7 +119,7 @@ It's a highly versatile feature were its able to co-erce into different types as
 
 ### Call any method dynamically
 
-One of the features in [ServiceStack Templates](http://templates.servicestack.net) is being able to call any .NET method dynamically with unknown types at runtime which it does using the `MethodInfo.GetInvoker()` extension method which returns a cached compiled delegate that's able to genericize access to any .NET method by transforming `MethodInfo` into the `MethodInvoker` delegate signature below:
+One of the features in [#Script](https://sharpscript.net) is being able to call any .NET method dynamically with unknown types at runtime which it does using the `MethodInfo.GetInvoker()` extension method which returns a cached compiled delegate that's able to genericize access to any .NET method by transforming `MethodInfo` into the `MethodInvoker` delegate signature below:
 
 ```csharp
 public delegate object MethodInvoker(object instance, params object[] args);

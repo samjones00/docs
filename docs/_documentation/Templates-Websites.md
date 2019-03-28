@@ -53,12 +53,12 @@ Which will create a new .NET Core 2.1 MVC Project called **AcmeMvc**. The Templa
     <td><a href="https://github.com/NetCoreTemplates/templates">templates</a></td>
     <td><a href="https://github.com/NetFrameworkTemplates/templates-netfx">templates-netfx</a></td>
     <th align="center">
-        ServiceStack Templates Bootstrap Template
+        ServiceStack Sharp Pages Bootstrap Template
     </th>
 </tr>
 <tr>
     <td class="tpl-desc" colspan="2">
-        The <code class="highlighter-rouge">templates</code> Project Template is configured to develop Websites using <a href="http://templates.servicestack.net">ServiceStack Templates</a>, a simpler and cleaner alternative to Razor that lets you utilize simple Template Expressions for evaluating Server logic in <code class="highlighter-rouge">.html</code> pages. Templates doesn’t require any precompilation, is easier to learn and more intuitive for non-programmers that’s more suitable for a <a href="http://templates.servicestack.net/usecases/">number of use-cases</a>. Use templates if you want an <a href="/releases/v4.5.14#why-templates">alternative to Razor</a> syntax and the heavy machinery required to support it.
+        The <code class="highlighter-rouge">templates</code> Project Template is configured to develop Websites using <a href="https://sharpscript.net">#Script</a>, a simpler and cleaner alternative to Razor that lets you utilize simple Template Expressions for evaluating Server logic in <code class="highlighter-rouge">.html</code> pages. Templates doesn’t require any precompilation, is easier to learn and more intuitive for non-programmers that’s more suitable for a <a href="https://sharpscript.net/usecases/">number of use-cases</a>. Use templates if you want an <a href="/releases/v4.5.14#why-templates">alternative to Razor</a> syntax and the heavy machinery required to support it.
     </td>
     <td align="center">
         <a href="http://templates.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates.png" width="450" /></a>
@@ -87,12 +87,12 @@ The .NET Core 2.1 [templates-webapp](https://github.com/NetCoreTemplates/templat
     <th>ServiceStack Templates WebApp</th>
 </tr>
 <tr>
-    <td><a href="https://github.com/NetCoreTemplates/templates-webapp">templates-webapp</a></td>
+    <td><a href="https://github.com/NetCoreTemplates/rockwind-webapp">rockwind-webapp</a></td>
     <td align="center">
-        <a href="http://templates-webapp.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates-webapp.png" width="650" /></a>
-        <p><a href="http://templates-webapp.web-templates.io">templates-webapp.web-templates.io</a></p>
+        <a href="http://rockwind-webapp.web-templates.io/"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates-webapp.png" width="650" /></a>
+        <p><a href="http://rockwind-webapp.web-templates.io/">templates-webapp.web-templates.io</a></p>
     </td>
 </tr>
 </table>
 
-See [templates.servicestack.net/docs/web-apps](http://templates.servicestack.net/docs/web-apps) to learn the different use-cases made possible with Web Apps.
+See [sharpscript.net/docs/sharp-apps](https://sharpscript.net/docs/sharp-apps) to learn the different use-cases made possible with Sharp Apps.

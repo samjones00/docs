@@ -12,7 +12,7 @@ ServiceStack has its strong foundations as a Web and MQ Services framework whose
  - [ServiceStack ASP.NET Empty](/create-your-first-webservice)
  - [ServiceStack ASP.NET MVC4](https://github.com/ServiceStackApps/SocialBootstrapApi)
  - [ServiceStack ASP.NET Razor with Bootstrap](https://github.com/ServiceStackApps/EmailContacts)
- - [ServiceStack ASP.NET Templates with Bootstrap](http://templates.servicestack.net)
+ - [ServiceStack ASP.NET Sharp Pages with Bootstrap](https://sharpscript.net/docs/sharp-pages)
  - [Self Host Empty](/self-hosting)
  - [Self Host with Razor](http://razor.servicestack.net/#runs-everywhere)
  - [Windows Service Empty](/templates-windows-service)

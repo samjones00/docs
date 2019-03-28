@@ -83,11 +83,12 @@
     - [Compiled Razor Views](/compiled-razor-views)
     - [Razor Views vs Content Pages](/razor-views-vs-content-pages)
     - [Markdown Razor](/markdown-razor)
-- ##### Templates
-    - [Overview](http://templates.servicestack.net)
-    - [API Pages](http://templates.servicestack.net/docs/api-pages)
-    - [Web Apps](http://templates.servicestack.net/docs/web-apps)
-    - [ServiceStack Filters](http://templates.servicestack.net/docs/servicestack-filters)
+- ##### #Script
+    - [Overview](https://sharpscript.net)
+    - [Sharp Pages](https://sharpscript.net/docs/sharp-pages)
+    - [Sharp APIs](https://sharpscript.net/docs/sharp-apis)
+    - [Sharp Apps](https://sharpscript.net/docs/sharp-apps)
+    - [ServiceStack Scripts](https://sharpscript.net/docs/servicestack-scripts)
 - ##### JavaScript Web Apps
     - [Vue Components](/vue-components)
     - [ss-utils.js JavaScript Client Library](/ss-utils-js)

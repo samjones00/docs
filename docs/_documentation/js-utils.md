@@ -5,11 +5,11 @@ title: JavaScript Utils
 
 The ServiceStack.Text JSON Serializers are only designed for serializing Typed POCOs, but you can still use it to [deserialize dynamic JSON](https://github.com/ServiceStack/ServiceStack.Text#supports-dynamic-json) but you'd need to specify the Type to deserialize into on the call-site otherwise the value would be returned as a string.
 
-A more flexible approach to read any arbitrary JavaScript or JSON data structures is to use the high-performance and memory efficient JSON utils in [ServiceStack Templates](http://templates.servicestack.net) implementation of JavaScript.
+A more flexible approach to read any arbitrary JavaScript or JSON data structures is to use the high-performance and memory efficient JSON utils in [#Script](https://sharpscript.net) implementation of JavaScript.
 
 ### Install
 
-The Templates JSON and JS Utils are available from the [ServiceStack.Common](https://www.nuget.org/packages/ServiceStack.Common) NuGet package:
+The `#Script` JSON and JS Utils are available from the [ServiceStack.Common](https://www.nuget.org/packages/ServiceStack.Common) NuGet package:
 
     PM> Install-Package ServiceStack.Common
 
@@ -26,7 +26,7 @@ It can be used to parse dynamic JSON and any primitive JavaScript data type. The
 
 ### Eval
 
-Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [Templates Sandbox](http://templates.servicestack.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
+Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [#Script Sandbox](https://sharpscript.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
 
 ```csharp
 public class CustomFilter : TemplateFilter
@@ -53,7 +53,7 @@ with `Js*` to avoid naming collisions with C#'s LINQ Expression Types which ofte
 
 So Esprima's [MemberExpression](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html#member-expression) maps to [JsMemberExpression](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/Templates/JsMemberExpression.cs) in Templates. 
 
-In addition to adopting Esprima's AST data structures, Templates can also [emit the same serialized Syntax Tree](http://templates.servicestack.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205) that Esprima generates from any AST Expression, e.g:
+In addition to adopting Esprima's AST data structures, Templates can also [emit the same serialized Syntax Tree](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205) that Esprima generates from any AST Expression, e.g:
 
 ```csharp
 // Create AST from JS Expression
@@ -66,27 +66,27 @@ Dictionary<string, object> esprimaAst = expr.ToJsAst();
 esprimaAst.ToJson().IndentJson().Print();
 ```
 
-Which will display the same output as seen in the new [JS Expression Viewer](http://templates.servicestack.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205):
+Which will display the same output as seen in the new [JS Expression Viewer](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205):
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/expression-viewer.png)](http://templates.servicestack.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/expression-viewer.png)](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205)
 
 From the AST output we can visualize how the different operator precedence is applied to an Expression. 
 Expression viewer also lets us explore and evaluate different JavaScript Expressions with custom arguments:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/logical-expression.png)](http://templates.servicestack.net/docs/expression-viewer#expression=1%20%3C%202%20%26%26%20(t%20%7C%7C%203%20%3E%204)%20%26%26%20f&t=true&f=false)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/logical-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=1%20%3C%202%20%26%26%20(t%20%7C%7C%203%20%3E%204)%20%26%26%20f&t=true&f=false)
 
 An [abusage Brendan Eich regrets](https://brendaneich.com/2012/04/the-infernal-semicolon/) that is enforced is limiting
 the `||` and `&&` binary operators to boolean expressions, which themselves always evaluate to a boolean value.
 
 Instead to replicate `||` coalescing behavior on falsy values you can use C#'s `??` null coalescing operator as seen in:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/ternary-expression.png)](http://templates.servicestack.net/docs/expression-viewer#expression=a%20%3E%20(c%20%3F%3F%20b)%20%3F%20a%20%3A%20b&a=1&b=2)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/ternary-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=a%20%3E%20(c%20%3F%3F%20b)%20%3F%20a%20%3A%20b&a=1&b=2)
 
 #### Lambda Expressions
 
 You can use lambda expressions in all functional filters:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/lambda-expression.png)](http://templates.servicestack.net/docs/expression-viewer#expression=map(range(1%2Ccount)%2C%20x%20%3D%3E%20x%20*%20x)&count=5)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/lambda-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=map(range(1%2Ccount)%2C%20x%20%3D%3E%20x%20*%20x)&count=5)
 
 Using either normal lambda expression syntax:
 
@@ -109,7 +109,7 @@ be implicitly assigned to the `it` binding:
    | htmlDump }}{% endraw %}
 ```
 
-As it's results in more wrist-friendly and readable code, [most LINQ Examples](http://templates.servicestack.net/linq/projection-operators#linq15-selectmany---compound-from-2) use the shorthand lambda expression syntax above.
+As it's results in more wrist-friendly and readable code, [most LINQ Examples](https://sharpscript.net/linq/projection-operators#linq15-selectmany---compound-from-2) use the shorthand lambda expression syntax above.
 
 #### Shorthand properties
 
@@ -129,29 +129,29 @@ But like C# also lets you use member property names:
 
 Many of ES6/7 features are also implemented like Template Literals:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/template-literals.png)](http://templates.servicestack.net/docs/expression-viewer#expression=%60Hello%2C%20%24%7Bname%7D!%20%24%7Ba%20%3F%20pow(1%2B2%2Ca)%20%3A%20''%7D%60&name='World'&a=3)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/template-literals.png)](https://sharpscript.net/docs/expression-viewer#expression=%60Hello%2C%20%24%7Bname%7D!%20%24%7Ba%20%3F%20pow(1%2B2%2Ca)%20%3A%20''%7D%60&name='World'&a=3)
 
-> Backtick quoted strings also adopt the same [escaping behavior of JavaScript strings](http://templates.servicestack.net/docs/syntax#template-literals) 
+> Backtick quoted strings also adopt the same [escaping behavior of JavaScript strings](https://sharpscript.net/docs/syntax#template-literals) 
 whilst all other quoted strings preserve unescaped string values.
 
 #### Spread Operators
 
 Other advanced ES6/7 features supported include the object spread, array spread and argument spread operators:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/object-spread.png)](http://templates.servicestack.net/docs/expression-viewer#expression=keys(%7B%20...a%2C%20c%3A3%2C%20...%7Bd%3A%204%7D%20%7D)&a=%7B%20b%3A%202%20%7D)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/object-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=keys(%7B%20...a%2C%20c%3A3%2C%20...%7Bd%3A%204%7D%20%7D)&a=%7B%20b%3A%202%20%7D)
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/array-spread.png)](http://templates.servicestack.net/docs/expression-viewer#expression=%5B1%2C%20...%5Brange(2%2Cpow(...%5B3%2Ce%5D))%5D%2C%201%5D&e=2)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/array-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B1%2C%20...%5Brange(2%2Cpow(...%5B3%2Ce%5D))%5D%2C%201%5D&e=2)
 
 #### Bitwise Operators
 
 All JavaScript Bitwise operators are also supported:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/bitwise-operators.png)](http://templates.servicestack.net/docs/expression-viewer#expression=%5B3%251%2C%203%261%2C%203%7C1%2C%203%5E1%2C%203%3C%3C1%2C%203%20%3E%3E%201%2C%20~1%5D&e=2)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/templates/bitwise-operators.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B3%251%2C%203%261%2C%203%7C1%2C%203%5E1%2C%203%3C%3C1%2C%203%20%3E%3E%201%2C%20~1%5D&e=2)
 
 Essentially Templates supports most JavaScript Expressions, not statements which are covered with 
-[Templates Blocks support](http://templates.servicestack.net/docs/blocks) 
+[Templates Blocks support](https://sharpscript.net/docs/blocks) 
 or mutations using Assignment Expressions and Operators. All assignments still need to be explicitly performed through an 
-[Assignment Filter](http://templates.servicestack.net/docs/default-filters#assignment).
+[Assignment Filter](https://sharpscript.net/docs/default-scripts#assignment).
 
 #### Evaluating JavaScript Expressions
 
@@ -161,7 +161,7 @@ The built-in JavaScript expressions support is also useful outside of Templates 
 JS.eval("pow(2,2) + pow(4,2)") //= 20
 ```
 
-The difference over JavaScript's eval being that methods are calling [C# method filters](http://templates.servicestack.net/docs/filters-reference) in a sandboxed context.
+The difference over JavaScript's eval being that methods are calling [C# script methods](https://sharpscript.net/docs/filters-reference) in a sandboxed context.
 
 By default expressions are executed in an empty scope, but can also be executed within a custom scope which can be used to define the 
 arguments expressions are evaluated with:
@@ -210,7 +210,7 @@ When needing to evaluate the same expression multiple times you can cache and ex
 
 #### DSL example
 
-If implementing a DSL containing multiple expressions as done in many of the [Block argument expressions](http://templates.servicestack.net/docs/blocks) 
+If implementing a DSL containing multiple expressions as done in many of the [Block argument expressions](https://sharpscript.net/docs/blocks) 
 you can instead use the `ParseJsExpression()` extension method to return a literal Span advanced to past the end of the expression with the parsed 
 AST token returned in an `out` parameter.
 
@@ -231,7 +231,7 @@ if (literal.StartsWith("take "))
 }
 ```
 
-Resulting in `where` populated with the [c.Age == 27](http://templates.servicestack.net/docs/expression-viewer#expression=c.Age%20%3D%3D%2027&c=%7B%20Age%3A27%20%7D) `BinaryExpression` and `take` with the [1 + 2](http://templates.servicestack.net/docs/expression-viewer#expression=1%20%2B%202)
+Resulting in `where` populated with the [c.Age == 27](https://sharpscript.net/docs/expression-viewer#expression=c.Age%20%3D%3D%2027&c=%7B%20Age%3A27%20%7D) `BinaryExpression` and `take` with the [1 + 2](https://sharpscript.net/docs/expression-viewer#expression=1%20%2B%202)
 `BinaryExpression`.
 
 #### Immutable and Comparable

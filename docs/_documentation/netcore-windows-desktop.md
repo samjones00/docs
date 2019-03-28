@@ -271,14 +271,14 @@ by using the same tested Chrome rendering engine to run your App, mitigating any
 ## Desktop Web Apps
 
 Whilst `app` is useful for running any Windows .NET Core Desktop App, it provides the greatest value for running 
-[ServiceStack .NET Core Web Apps](http://templates.servicestack.net/docs/web-apps) - a revolutionary new simplified development model 
+[ServiceStack .NET Core Web Apps](https://sharpscript.net/docs/sharp-apps) - a revolutionary new simplified development model 
 for developing .NET Core Apps which eliminates much of the friction .NET developers have historically had to face. Web Apps require no 
 builds/compilation, wait times, complicated build tooling, configuration, incompatible dependencies, dev tools or IDE's. 
 
 The simplicity of being able to use the same executable for running all Web Apps allows us more flexibility to provide even greater 
 value-added functionality than what's otherwise possible. By contrast Web Apps can be developed with any text editor in an iterative, 
 live-development environment that updates itself on save, whilst the App is running. It utilizes a familiar 
-[JavaScript and Handlebars syntax](http://templates.servicestack.net) in a high-level dynamic language that late-binds to .NET APIs using 
+[JavaScript and Handlebars syntax](https://sharpscript.net) in a high-level dynamic language that late-binds to .NET APIs using 
 Compiled Expressions for avoiding runtime reflection.
 
 Web Apps are highly customizable by nature as they're delivered and run in source code form, requires no external dependencies or dev tools as they 
@@ -352,7 +352,7 @@ Running the **blog** App for the first time will create a new `blog.sqlite` data
 Despite it's small `36kb` size it [packs a punch](http://blog.web-app.io/#blog-app-features): 
 
  - Multi User Blogging Platform - Authenticated with Twitter
- - Rich Dynamic Content - Each post can contain the same [powerful language](http://templates.servicestack.net) used to build the app
+ - Rich Dynamic Content - Each post can contain the same [powerful language](https://sharpscript.net) used to build the app
  - Rich Markdown Editor
  - Auto saved drafts
  - Live Previews - showing rendered content as you type
@@ -448,7 +448,7 @@ For this example we'll create a small App that leverages one of the advanced Web
     $ md spirals
     $ cd spirals && app init
 
-We could have started from one of the [more complete Web App Templates](http://templates.servicestack.net/docs/web-apps#getting-started) but this gives
+We could have started from one of the [more complete Sharp App Templates](https://sharpscript.net/docs/sharp-apps#getting-started) but this gives
 us a minimal App generated from [this gist](https://gist.github.com/gistlyn/5c9ee9031e53cd8f85bd0e14881ddaa8).
 
 Now let's open the folder up for editing in our preferred text editor, VS Code:
