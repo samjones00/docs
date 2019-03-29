@@ -21,8 +21,7 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
 [NetFrameworkTemplates](https://github.com/NetFrameworkTemplates) and 
 [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organizations:
 
-```
-.NET Core C# Templates:
+### .NET Core C# Templates:
 
    1. angular-lite-spa   .NET Core 2.1 Angular 4 Material Design Lite Webpack App
    2. angular-spa        .NET Core 2.1 Angular 7 CLI Bootstrap App
@@ -47,7 +46,7 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
   21. vuetify-spa        .NET Core 2.1 Vue CLI App with Material Vuetify
   22. web                .NET Core 2.1 Empty Website
 
-.NET Framework C# Templates:
+### .NET Framework C# Templates:
 
    1. angular-lite-spa-netfx    .NET Framework Angular 4 Material Design Lite Webpack App
    2. angular-spa-netfx         .NET Framework Angular 7 Bootstrap cli.angular.io App
@@ -65,7 +64,7 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
   14. web-netfx                 .NET Framework Empty Website
   15. winservice-netfx          .NET Framework Windows Service
 
-ASP.NET Core Framework Templates:
+### ASP.NET Core Framework Templates:
 
    1. mvc-corefx         .NET Framework ASP.NET Core MVC Website
    2. razor-corefx       .NET Framework ASP.NET Core Website with ServiceStack.Razor
@@ -75,6 +74,7 @@ ASP.NET Core Framework Templates:
    6. vue-lite-corefx    .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading
    7. web-corefx         .NET Framework ASP.NET Core Website
 
+```
 Usage: web new <template> <name>
 ```
 
