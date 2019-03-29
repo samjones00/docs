@@ -17,14 +17,14 @@ To view a list of projects run:
 
     $ web new
 
-Where it will display all repositories in the [NetCoreTemplates](https://github.com/NetCoreTemplates), 
-[NetFrameworkTemplates](https://github.com/NetFrameworkTemplates) and 
-[NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organizations:
+Where it will display all repositories in [.NET Core](https://github.com/NetCoreTemplates), 
+[.NET Framework](https://github.com/NetFrameworkTemplates) and 
+[ASP.NET Core Framework](https://github.com/NetFrameworkCoreTemplates):
 
 {% capture projects %}
 | .NET Core C# Templates ||
 |-|-|
-| angular-lite-spa   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
+| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
 | angular-spa        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
 | aurelia-spa        | .NET Core 2.1 Aurelia CLI Bootstrap App |
 | bare-webapp        | .NET Core 2.1 Bare Sharp Apps |
@@ -80,7 +80,7 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
 {{ projects | markdownify }}
 </div>
 
-    Usage: web new <template> <name>
+Usage: web new `<template>` `<name>`
 
 For example to create a new **Vue Single Page App**, run:
 
