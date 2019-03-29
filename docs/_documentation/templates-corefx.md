@@ -66,7 +66,7 @@ meta-package reference, as a result we recommend starting from one of our [ASP.N
       <a href="https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx">vue-lite-corefx</a>
     </td>
     <td>
-      .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading
+      .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript
     </td>
   </tr>
   <tr>
@@ -74,7 +74,7 @@ meta-package reference, as a result we recommend starting from one of our [ASP.N
       <a href="https://github.com/NetFrameworkCoreTemplates/react-lite-corefx">react-lite-corefx</a>
     </td>
     <td>
-      .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript inc bundling + hot reloading
+      .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript
     </td>
   </tr>
   <tr>
@@ -164,7 +164,7 @@ that throw `FileNotFoundException` "Could not load file or assembly ..." Excepti
 
 Some solutions that have been known to resolve these issues include:
 
- 1. Adding a `System.Runtime.CompilerServices.Unsafe` reference directly on the Host project
+ 1. Adding the package, e.g. `System.Runtime.CompilerServices.Unsafe` reference directly on the Host project
  2. Manually Adding Binding Redirect, see:
    - [System.Runtime](https://stackoverflow.com/a/52250140/85785)
    - [System.Runtime.CompilerServices.Unsafe](https://stackoverflow.com/a/55329952/85785)
