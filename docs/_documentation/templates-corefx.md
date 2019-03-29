@@ -155,12 +155,12 @@ In order to run ASP.NET Core Apps on the .NET Framework it needs to only referen
 Many of Microsoft's core **.NET Standard 2.0** packages have been reported to have runtime Assembly loading issues 
 that throw `FileNotFoundException` "Could not load file or assembly ..." Exceptions in .NET Framework projects, including:
 
- - System.Runtime
- - System.Runtime.CompilerServices.Unsafe
- - System.Runtime.InteropServices.RuntimeInformation
- - System.Memory
- - System.Buffers
- - System.Numerics.Vectors
+ - `System.Runtime`
+ - `System.Runtime.CompilerServices.Unsafe`
+ - `System.Runtime.InteropServices.RuntimeInformation`
+ - `System.Memory`
+ - `System.Buffers`
+ - `System.Numerics.Vectors`
 
 Some solutions that have been known to resolve these issues include:
 
