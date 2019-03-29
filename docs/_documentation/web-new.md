@@ -1,6 +1,6 @@
 ---
 slug: web-new
-title: Create new Projects with `web new`  
+title: Create new Projects with web new
 ---
 
 All ServiceStack Projects can be created using the .NET Core [web](https://www.nuget.org/packages/web) tool:
@@ -80,7 +80,9 @@ Where it will display all repositories in [.NET Core](https://github.com/NetCore
 {{ projects | markdownify }}
 </div>
 
-Usage: web new `<template>` `<name>`
+### Usage
+
+    web new `<template>` `<name>`
 
 For example to create a new **Vue Single Page App**, run:
 
@@ -96,12 +98,12 @@ and create and test new projects is measured in hours not minutes. To top off th
 reached the limits of the number of Project Templates we can bundle in our 5MB **ServiceStackVS.vsix** VS.NET Extension as a 
 number of Customers have reported seeing VS.NET warning messages that ServiceStackVS is taking too long to load.
 
-## How it works
-
 Given all the scenarios ServiceStack can be used in, we needed a quicker way to create, update and test our growing **47 starting project templates**. 
 In the age of simple command-line dev tools like git and .NET Core's light weight text/human friendly projects, maintaining and creating 
 new .NET project templates still feels archaic & legacy requiring packaging projects as binary blobs in NuGet packages which become stale 
 the moment they're created.
+
+## How it works
 
 ### GitHub powered Project Templates
 
