@@ -7,9 +7,9 @@ slug: templates-corefx
 
 ### Status of ASP.NET Core on .NET Framework
 
-The last important announcement Microsoft made concerning the future of ASP.NET Core 2.1 was that it would stop supporting 
+The last important Microsoft announcement concerning the future of ASP.NET Core 2.1 was that it would stop supporting 
 [new versions of ASP.NET Core on the .NET Framework](https://github.com/aspnet/AspNetCore/issues/3753).
-Whilst we strongly disagreed against this decision which would've put out a large class of the existing ecosystems from participating 
+Whilst we disagreed against this decision which would've put out a large class of the existing ecosystems from participating 
 in the new ASP.NET Core development model and many from staged migrations to .NET Core from commencing, we're happy to see 
 [ASP.NET Core 2.1 LTS will enjoy the same indefinite level of support](https://github.com/aspnet/AspNetCore/issues/3753#issuecomment-438046364)
 as the rest of the .NET Framework - which should come as great news to the 1/3 of our Customers who are still creating new 
@@ -26,8 +26,8 @@ as it's cleaner, lighter, more flexible and future proof. Unlike Microsoft web f
 supports running on [multiple platforms](/why-servicestack#multiple-hosting-options) so your ServiceStack Services can enjoy near perfect 
 source-code compatibility when and if you choose to **move to .NET Core** in future.
 
-So whilst Microsoft is stopping new development of ASP.NET Core on .NET Framework, we're not, our supported packages have standardized to
-multi-target both **.NET v4.5+** and **.NET Standard 2.0** which is supported natively on **ASP.NET Core 2.1 LTS**.
+Whilst Microsoft is stopping new development of ASP.NET Core on .NET Framework, we're not, our supported packages have standardized to
+multi-target both **.NET v4.5+** and **.NET Standard 2.0** which is supported natively on **ASP.NET Core 2.1**.
 
 ### Future proofed and continually developed
 
@@ -41,7 +41,7 @@ shared code-base which will enable seamless migrations to .NET Core should you w
 
 #### No Meta data packages
 
-Also you'll miss out on some niceties like the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App)
+Ultimately you'll miss out on some niceties like the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App)
 meta-package reference, as a result we recommend starting from one of our [ASP.NET Core Framework project Templates](https://github.com/NetFrameworkCoreTemplates) which as a convention all have the `-corefx` suffix: 
 
 <table class="table table-bordered">
