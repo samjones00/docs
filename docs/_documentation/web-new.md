@@ -1,6 +1,6 @@
 ---
-slug: web-new - .NET's missing project template system
-title: .NET 
+slug: web-new
+title: web-new - .NET's missing project template system
 ---
 
 All ServiceStack Projects can be created using the .NET Core [web](https://www.nuget.org/packages/web) tool:
