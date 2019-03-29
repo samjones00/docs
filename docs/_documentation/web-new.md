@@ -21,6 +21,7 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
 [NetFrameworkTemplates](https://github.com/NetFrameworkTemplates) and 
 [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organizations:
 
+{% capture projects %}
 | .NET Core C# Templates ||
 |-|-|
 | angular-lite-spa   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
@@ -34,12 +35,12 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
 | parcel             | .NET Core 2.1 Parcel TypeScript App |
 | parcel-webapp      | .NET Core 2.1 Parcel Sharp Apps |
 | razor              | .NET Core 2.1 Website with ServiceStack.Razor |
-| react-lite         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript inc bundling + hot reloading |
+| react-lite         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript |
 | react-spa          | .NET Core 2.1 React Create App CLI Bootstrap App |
 | rockwind-webapp    | .NET Core 2.1 Rockwind Sharp Apps |
 | selfhost           | .NET Core 2.1 self-hosting Console App |
 | sharp              | .NET Core 2.1 Sharp Pages Bootstrap Website |
-| vue-lite           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading |
+| vue-lite           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript |
 | vue-nuxt           | .NET Core 2.1 Nuxt.js SPA App with Bootstrap |
 | vue-spa            | .NET Core 2.1 Vue CLI Bootstrap App |
 | vuetify-nuxt       | .NET Core 2.1 Nuxt.js SPA App with Material Vuetify |
@@ -68,11 +69,16 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
 |-|-|
 | mvc-corefx        | .NET Framework ASP.NET Core MVC Website |
 | razor-corefx      | .NET Framework ASP.NET Core Website with ServiceStack.Razor |
-| react-lite-corefx | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript inc bundling + hot reloading |
+| react-lite-corefx | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript |
 | selfhost-corefx   | .NET Framework ASP.NET Core self-hosting Console App |
 | sharp-corefx      | .NET Framework ASP.NET Core Templates Bootstrap Website |
-| vue-lite-corefx   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading |
+| vue-lite-corefx   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
 | web-corefx        | .NET Framework ASP.NET Core Website |
+{% endcapture %}
+
+<div class='markdown-body'>
+{{ projects | markdownify }}
+</div>
 
     Usage: web new <template> <name>
 
