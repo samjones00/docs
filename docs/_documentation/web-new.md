@@ -21,68 +21,60 @@ Where it will display all repositories in the [NetCoreTemplates](https://github.
 [NetFrameworkTemplates](https://github.com/NetFrameworkTemplates) and 
 [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organizations:
 
-### .NET Core C# Templates:
+| .NET Core C# Templates ||
+|-|-|
+| angular-lite-spa   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
+| angular-spa        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
+| aurelia-spa        | .NET Core 2.1 Aurelia CLI Bootstrap App |
+| bare-webapp        | .NET Core 2.1 Bare Sharp Apps |
+| mvc                | .NET Core 2.1 MVC Website |
+| mvcauth            | .NET Core 2.2 MVC Website integrated with ServiceStack Auth |
+| mvcidentity        | .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth |
+| mvcidentityserver  | .NET Core 2.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth |
+| parcel             | .NET Core 2.1 Parcel TypeScript App |
+| parcel-webapp      | .NET Core 2.1 Parcel Sharp Apps |
+| razor              | .NET Core 2.1 Website with ServiceStack.Razor |
+| react-lite         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript inc bundling + hot reloading |
+| react-spa          | .NET Core 2.1 React Create App CLI Bootstrap App |
+| rockwind-webapp    | .NET Core 2.1 Rockwind Sharp Apps |
+| selfhost           | .NET Core 2.1 self-hosting Console App |
+| sharp              | .NET Core 2.1 Sharp Pages Bootstrap Website |
+| vue-lite           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading |
+| vue-nuxt           | .NET Core 2.1 Nuxt.js SPA App with Bootstrap |
+| vue-spa            | .NET Core 2.1 Vue CLI Bootstrap App |
+| vuetify-nuxt       | .NET Core 2.1 Nuxt.js SPA App with Material Vuetify |
+| vuetify-spa        | .NET Core 2.1 Vue CLI App with Material Vuetify |
+| web                | .NET Core 2.1 Empty Website |
 
-```
- 1. angular-lite-spa   .NET Core 2.1 Angular 4 Material Design Lite Webpack App
- 2. angular-spa        .NET Core 2.1 Angular 7 CLI Bootstrap App
- 3. aurelia-spa        .NET Core 2.1 Aurelia CLI Bootstrap App
- 4. bare-webapp        .NET Core 2.1 Bare Sharp Apps
- 5. mvc                .NET Core 2.1 MVC Website
- 6. mvcauth            .NET Core 2.2 MVC Website integrated with ServiceStack Auth
- 7. mvcidentity        .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth
- 8. mvcidentityserver  .NET Core 2.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
- 9. parcel             .NET Core 2.1 Parcel TypeScript App
-10. parcel-webapp      .NET Core 2.1 Parcel Sharp Apps
-11. razor              .NET Core 2.1 Website with ServiceStack.Razor
-12. react-lite         .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript inc bundling + hot reloading
-13. react-spa          .NET Core 2.1 React Create App CLI Bootstrap App
-14. rockwind-webapp    .NET Core 2.1 Rockwind Sharp Apps
-15. selfhost           .NET Core 2.1 self-hosting Console App
-16. sharp              .NET Core 2.1 Sharp Pages Bootstrap Website
-17. vue-lite           .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading
-18. vue-nuxt           .NET Core 2.1 Nuxt.js SPA App with Bootstrap
-19. vue-spa            .NET Core 2.1 Vue CLI Bootstrap App
-20. vuetify-nuxt       .NET Core 2.1 Nuxt.js SPA App with Material Vuetify
-21. vuetify-spa        .NET Core 2.1 Vue CLI App with Material Vuetify
-22. web                .NET Core 2.1 Empty Website
-```
+| .NET Framework C# Templates ||
+|-|-|
+| angular-lite-spa-netfx   | .NET Framework Angular 4 Material Design Lite Webpack App |
+| angular-spa-netfx        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
+| aurelia-spa-netfx        | .NET Framework Aurelia Bootstrap Webpack App |
+| mvc-netfx                | .NET Framework MVC Website |
+| razor-netfx              | .NET Framework Website with ServiceStack.Razor |
+| react-desktop-apps-netfx | .NET Framework React Desktop Apps |
+| react-spa-netfx          | .NET Framework React Bootstrap Webpack App |
+| selfhost-netfx           | .NET Framework self-hosting HttpListener Console App |
+| sharp-netfx              | .NET Framework Templates Bootstrap WebApp |
+| vue-nuxt-netfx           | .NET Framework Vue Nuxt.js SPA Web App |
+| vue-spa-netfx            | .NET Framework Vue Bootstrap Webpack App |
+| vuetify-nuxt-netfx       | .NET Framework Vuetify Material Nuxt.js SPA Web App |
+| vuetify-spa-netfx        | .NET Framework Vuetify Material Webpack App |
+| web-netfx                | .NET Framework Empty Website |
+| winservice-netfx         | .NET Framework Windows Service |
 
-### .NET Framework C# Templates:
+| ASP.NET Core Framework Templates ||
+|-|-|
+| mvc-corefx        | .NET Framework ASP.NET Core MVC Website |
+| razor-corefx      | .NET Framework ASP.NET Core Website with ServiceStack.Razor |
+| react-lite-corefx | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript inc bundling + hot reloading |
+| selfhost-corefx   | .NET Framework ASP.NET Core self-hosting Console App |
+| sharp-corefx      | .NET Framework ASP.NET Core Templates Bootstrap Website |
+| vue-lite-corefx   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading |
+| web-corefx        | .NET Framework ASP.NET Core Website |
 
-```
- 1. angular-lite-spa-netfx    .NET Framework Angular 4 Material Design Lite Webpack App
- 2. angular-spa-netfx         .NET Framework Angular 7 Bootstrap cli.angular.io App
- 3. aurelia-spa-netfx         .NET Framework Aurelia Bootstrap Webpack App
- 4. mvc-netfx                 .NET Framework MVC Website
- 5. razor-netfx               .NET Framework Website with ServiceStack.Razor
- 6. react-desktop-apps-netfx  .NET Framework React Desktop Apps
- 7. react-spa-netfx           .NET Framework React Bootstrap Webpack App
- 8. selfhost-netfx            .NET Framework self-hosting HttpListener Console App
- 9. sharp-netfx               .NET Framework Templates Bootstrap WebApp
-10. vue-nuxt-netfx            .NET Framework Vue Nuxt.js SPA Web App
-11. vue-spa-netfx             .NET Framework Vue Bootstrap Webpack App
-12. vuetify-nuxt-netfx        .NET Framework Vuetify Material Nuxt.js SPA Web App
-13. vuetify-spa-netfx         .NET Framework Vuetify Material Webpack App
-14. web-netfx                 .NET Framework Empty Website
-15. winservice-netfx          .NET Framework Windows Service
-```
-
-### ASP.NET Core Framework Templates:
-
-```
- 1. mvc-corefx         .NET Framework ASP.NET Core MVC Website
- 2. razor-corefx       .NET Framework ASP.NET Core Website with ServiceStack.Razor
- 3. react-lite-corefx  .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript inc bundling + hot reloading
- 4. selfhost-corefx    .NET Framework ASP.NET Core self-hosting Console App
- 5. sharp-corefx       .NET Framework ASP.NET Core Templates Bootstrap Website
- 6. vue-lite-corefx    .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript inc bundling + hot reloading
- 7. web-corefx         .NET Framework ASP.NET Core Website
-```
-
-```
-Usage: web new <template> <name>
-```
+    Usage: web new <template> <name>
 
 For example to create a new **Vue Single Page App**, run:
 
