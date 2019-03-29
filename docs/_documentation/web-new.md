@@ -1,6 +1,6 @@
 ---
 slug: web-new
-title: web-new - .NET's missing project template system
+title: Create new Projects with `web new`  
 ---
 
 All ServiceStack Projects can be created using the .NET Core [web](https://www.nuget.org/packages/web) tool:
@@ -86,7 +86,7 @@ For example to create a new **Vue Single Page App**, run:
 
     $ web new vue-spa ProjectName
 
-## Why?
+## Why a new project template system?
 
 It's not often that a tool causes enough friction that it ends up requiring less effort to develop a replacement than 
 it is to continue using the tool. But this has been our experience with maintaining our VS.NET Templates in the 
