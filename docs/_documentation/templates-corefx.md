@@ -174,5 +174,5 @@ Some solutions that have been known to resolve these issues include:
  3. If you had an existing binding redirect, try removing it
  4. Adding `<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>` to your project's .csproj 
  5. Uninstalling and Reinstalling the problem packages from your projects
- 6. Cleaning Solution and clearing out project artifact caches, including deleting Nuget `/packages` and projects `/bin` and `/obj` folders
+ 6. Clean Solution and remove project artifacts, including Nuget `/packages` and project `/bin` and `/obj` folders
  7. Upgrading to the latest version of the .NET Framework (v4.7.2+)
