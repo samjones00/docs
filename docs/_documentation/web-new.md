@@ -11,7 +11,7 @@ If you had a previous version installed, update with:
 
     $ dotnet tool update -g web
 
-## Usage
+### Usage
 
 To view a list of projects run:
 
