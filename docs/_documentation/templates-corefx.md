@@ -61,7 +61,9 @@ which by convention all have the `-corefx` suffix:
 {{ projects | markdownify }}
 </div>
 
-This will let you create an ASP.NET Core App running on the .NET Framework v4.7 with:
+#### Usage
+
+This will let you create an ASP.NET Core App running on the .NET Framework v4.7 using [web new](/web-new) with:
 
     $ dotnet tool install --global web 
 

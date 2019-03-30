@@ -15,7 +15,7 @@ All features from the cross-platform `web` .NET Core tool are also available fro
 
     $ dotnet tool install --global app 
 
-### Usage
+#### Usage
 
 To view a list of projects run:
 
@@ -30,9 +30,9 @@ Where it will display all repositories in [.NET Core](https://github.com/NetCore
 {{ projects | markdownify }}
 </div>
 
-### Usage
+#### Usage
 
-    web new `<template>` `<name>`
+web new `<template>` `<name>`
 
 For example to create a new **Vue Single Page App**, run:
 

@@ -10,8 +10,9 @@ We can use `web +` (read as "apply gist") to create light-weight customized proj
 One of the major benefits of this approach is that it's not only limited at project creation time as it's also a great way to easily add 
 "layered functionality" to existing projects.
 
-We saw an example of this earlier with how we can use this to [easily update dependencies in "lite" projects](#updating-lite-project-dependencies)
-which is just applying the **vue-lite-lib** and **react-lite-lib** to your existing "lite" projects:
+We cam see an example of this earlier with how we can use this to 
+[easily update dependencies in "lite" projects](/templates-lite#updating-lite-project-dependencies)
+which is just applying the **vue-lite-lib** and **react-lite-lib** gists to your existing "lite" projects:
 
     $ web +vue-lite-lib
 
@@ -225,9 +226,9 @@ happy to maintain a curated list of gists that can **help any .NET Core project*
 ```
 Results matching tag [config]:
 
-   1. nginx       by @ServiceStack  Nginx reverse proxy config for .NET Core Apps              to: /etc/nginx/sites-available/  [config]
-   2. supervisor  by @ServiceStack  Supervisor config for managed execution of .NET Core Apps  to: /etc/supervisor/conf.d/      [config]
-   3. docker      by @ServiceStack  Dockerfile example for .NET Core Web Apps                  to: .                            [config]
+   1. nginx       Nginx reverse proxy config for .NET Core Apps              to: /etc/nginx/sites-available/  by @ServiceStack  [config]
+   2. supervisor  Supervisor config for managed execution of .NET Core Apps  to: /etc/supervisor/conf.d/      by @ServiceStack  [config]
+   3. docker      Dockerfile example for .NET Core Web Apps                  to: .                            by @ServiceStack  [config]
 ```
 
 Where being able to apply pre-configured configuration files like this reduces the required steps and effort to 
