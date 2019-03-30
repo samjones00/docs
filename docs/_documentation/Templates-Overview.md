@@ -31,7 +31,7 @@ Then run `dotnet-new` to view the list of available project templates:
 
 To upgrade to the latest version, run:
 
-  $ npm install -g @servicestack/cli@latest
+    $ npm install -g @servicestack/cli@latest
 
 ## VS.NET Templates
 
