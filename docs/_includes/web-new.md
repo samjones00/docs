@@ -25,28 +25,28 @@
 
 | .NET Framework C# Templates ||
 |-|-|
-| [angular-lite-spa-netfx](https://github.com/NetCoreTemplates/angular-lite-spa-netfx)   | .NET Framework Angular 4 Material Design Lite Webpack App |
-| [angular-spa-netfx](https://github.com/NetCoreTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
-| [aurelia-spa-netfx](https://github.com/NetCoreTemplates/aurelia-spa-netfx)        | .NET Framework Aurelia Bootstrap Webpack App |
-| [mvc-netfx](https://github.com/NetCoreTemplates/mvc-netfx)                | .NET Framework MVC Website |
-| [razor-netfx](https://github.com/NetCoreTemplates/razor-netfx)              | .NET Framework Website with ServiceStack.Razor |
-| [react-desktop-apps-netfx](https://github.com/NetCoreTemplates/react-desktop-apps-netfx) | .NET Framework React Desktop Apps |
-| [react-spa-netfx](https://github.com/NetCoreTemplates/react-spa-netfx)          | .NET Framework React Bootstrap Webpack App |
-| [selfhost-netfx](https://github.com/NetCoreTemplates/selfhost-netfx)           | .NET Framework self-hosting HttpListener Console App |
-| [sharp-netfx](https://github.com/NetCoreTemplates/sharp-netfx)              | .NET Framework Templates Bootstrap WebApp |
-| [vue-nuxt-netfx](https://github.com/NetCoreTemplates/vue-nuxt-netfx)           | .NET Framework Vue Nuxt.js SPA Web App |
-| [vue-spa-netfx](https://github.com/NetCoreTemplates/vue-spa-netfx)            | .NET Framework Vue Bootstrap Webpack App |
-| [vuetify-nuxt-netfx](https://github.com/NetCoreTemplates/vuetify-nuxt-netfx)       | .NET Framework Vuetify Material Nuxt.js SPA Web App |
-| [vuetify-spa-netfx](https://github.com/NetCoreTemplates/vuetify-spa-netfx)        | .NET Framework Vuetify Material Webpack App |
-| [web-netfx](https://github.com/NetCoreTemplates/web-netfx)                | .NET Framework Empty Website |
-| [winservice-netfx](https://github.com/NetCoreTemplates/winservice-netfx)         | .NET Framework Windows Service |
+| [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)   | .NET Framework Angular 4 Material Design Lite Webpack App |
+| [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
+| [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx)        | .NET Framework Aurelia Bootstrap Webpack App |
+| [mvc-netfx](https://github.com/NetFrameworkTemplates/mvc-netfx)                | .NET Framework MVC Website |
+| [razor-netfx](https://github.com/NetFrameworkTemplates/razor-netfx)              | .NET Framework Website with ServiceStack.Razor |
+| [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) | .NET Framework React Desktop Apps |
+| [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx)          | .NET Framework React Bootstrap Webpack App |
+| [selfhost-netfx](https://github.com/NetFrameworkTemplates/selfhost-netfx)           | .NET Framework self-hosting HttpListener Console App |
+| [sharp-netfx](https://github.com/NetFrameworkTemplates/sharp-netfx)              | .NET Framework Templates Bootstrap WebApp |
+| [vue-nuxt-netfx](https://github.com/NetFrameworkTemplates/vue-nuxt-netfx)           | .NET Framework Vue Nuxt.js SPA Web App |
+| [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx)            | .NET Framework Vue Bootstrap Webpack App |
+| [vuetify-nuxt-netfx](https://github.com/NetFrameworkTemplates/vuetify-nuxt-netfx)       | .NET Framework Vuetify Material Nuxt.js SPA Web App |
+| [vuetify-spa-netfx](https://github.com/NetFrameworkTemplates/vuetify-spa-netfx)        | .NET Framework Vuetify Material Webpack App |
+| [web-netfx](https://github.com/NetFrameworkTemplates/web-netfx)                | .NET Framework Empty Website |
+| [winservice-netfx](https://github.com/NetFrameworkTemplates/winservice-netfx)         | .NET Framework Windows Service |
 
 | ASP.NET Core Framework Templates ||
 |-|-|
-| [mvc-corefx](https://github.com/NetCoreTemplates/mvc-corefx)        | .NET Framework ASP.NET Core MVC Website |
-| [razor-corefx](https://github.com/NetCoreTemplates/razor-corefx)      | .NET Framework ASP.NET Core Website with ServiceStack.Razor |
-| [react-lite-corefx](https://github.com/NetCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript |
-| [selfhost-corefx](https://github.com/NetCoreTemplates/selfhost-corefx)   | .NET Framework ASP.NET Core self-hosting Console App |
-| [sharp-corefx](https://github.com/NetCoreTemplates/sharp-corefx)      | .NET Framework ASP.NET Core Templates Bootstrap Website |
-| [vue-lite-corefx](https://github.com/NetCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
-| [web-corefx](https://github.com/NetCoreTemplates/web-corefx)        | .NET Framework ASP.NET Core Website |
+| [mvc-corefx](https://github.com/NetFrameworkCoreTemplates/mvc-corefx)        | .NET Framework ASP.NET Core MVC Website |
+| [razor-corefx](https://github.com/NetFrameworkCoreTemplates/razor-corefx)      | .NET Framework ASP.NET Core Website with ServiceStack.Razor |
+| [react-lite-corefx](https://github.com/NetFrameworkCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript |
+| [selfhost-corefx](https://github.com/NetFrameworkCoreTemplates/selfhost-corefx)   | .NET Framework ASP.NET Core self-hosting Console App |
+| [sharp-corefx](https://github.com/NetFrameworkCoreTemplates/sharp-corefx)      | .NET Framework ASP.NET Core Templates Bootstrap Website |
+| [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
+| [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx)        | .NET Framework ASP.NET Core Website |
