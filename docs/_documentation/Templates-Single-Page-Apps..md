@@ -31,7 +31,7 @@ Click on the template name below to view a Live Demo and contents of each projec
 | [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
 {% endcapture %}
 
-<div class='markdown-body'>
+<div class='markdown-body py-3'>
 {{ netcore | markdownify }}
 </div>
 
@@ -52,10 +52,11 @@ The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly 
 
 | ASP.NET Core Framework Templates ||
 |-|-|
-| [react-lite-corefx](https://github.com/NetFrameworkCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript | [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
+| [react-lite-corefx](https://github.com/NetFrameworkCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript |
+| [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
 {% endcapture %}
 
-<div class='markdown-body'>
+<div class='markdown-body py-3'>
 {{ netfx | markdownify }}
 </div>
 

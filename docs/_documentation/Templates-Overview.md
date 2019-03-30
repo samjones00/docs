@@ -7,11 +7,31 @@ ServiceStack has its strong foundations as a Web and MQ Services framework whose
 
 ## web new
 
-All ServiceStack Project Templates can be found and installed using the [web new](/web-new) .NET Core tool. 
+All ServiceStack Project Templates can be found and installed using the [web new](/web-new) .NET Core tool that can be installed with:
+
+    $ dotnet tool install --global web 
+
+Then run `web new` to view the list of available project templates:
+
+    $ web new
+
+To upgrade to the latest version, run:
+
+    $ dotnet tool update -g web
 
 #### dotnet-new
 
-If you don't have .NET Core installed you can find and create all project templates using the [dotnet-new](/dotnet-new) npm tool.
+If you don't have .NET Core installed you can find and create all project templates using the [dotnet-new](/dotnet-new) npm tool that can be installed with
+
+    $ npm install -g @servicestack/cli
+
+Then run `dotnet-new` to view the list of available project templates:
+
+    $ dotnet-new
+
+To upgrade to the latest version, run:
+
+  $ npm install -g @servicestack/cli@latest
 
 ## VS.NET Templates
 
