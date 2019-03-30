@@ -84,21 +84,24 @@ The primary difference between the .NET Core and .NET Framework project template
  
 There are **11 .NET Core 2.1 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.1 template has an equivalent .NET Framework template except for ServiceStack [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 2.1 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
-All .NET Core 2.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](/dotnet-new) command-line utility, installable from npm with:
+All .NET Core 2.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [web-new](/web-new) command-line utility, installable from npm with:
  
-    $ npm install -g @servicestack/cli
+    $ dotnet tool install --global web 
  
-This makes the `dotnet-new` command globally available which can be run without arguments to view all templates available:
+This makes the `web` .NET Core tool globally available which can be run without arguments to view all templates available:
 
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+<div class='markdown-body'>
+{% capture projects %}{% include web-new.md %}{% endcapture %}
+{{ projects | markdownify }}
+</div>
 
 That can be used to create new projects with:
  
-    $ dotnet-new <template-name> <project-name>
+    $ web new <template-name> <project-name>
  
-Example of creating a new Vue SPA project called **Acme**:
+Example of creating a new **Vue SPA** project called **Acme**:
  
-    $ dotnet-new vue-spa Acme
+    $ web new vue-spa Acme
  
 The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
 

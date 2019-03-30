@@ -39,70 +39,27 @@ This is to say that **ASP.NET Core 2.1 LTS** is still a fantastic rock-solid pla
 which will continue to receive enhancements and new features with each ServiceStack release courtesy of being derived from the same 
 shared code-base which will enable seamless migrations to .NET Core should you wish to in future.
 
-#### No Meta data packages
+#### Start from pre-configured Project Templates
 
-Ultimately you'll miss out on some niceties like the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App)
-meta-package reference, as a result we recommend starting from one of our [ASP.NET Core Framework project Templates](https://github.com/NetFrameworkCoreTemplates) which as a convention all have the `-corefx` suffix: 
+Ultimately you'll miss out on niceties like the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App)
+meta-package, as a result we recommend starting from one of our [ASP.NET Core Framework project Templates](https://github.com/NetFrameworkCoreTemplates) 
+which by convention all have the `-corefx` suffix: 
 
-<table class="table table-bordered">
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/mvc-corefx">mvc-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core MVC Website
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/web-corefx">web-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core Website
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx">vue-lite-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/react-lite-corefx">react-lite-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/selfhost-corefx">selfhost-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core self-hosting Console App
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/sharp-corefx">sharp-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core 
-      <a href="https://sharpscript.net/docs/sharp-pages">Sharp Pages</a> Bootstrap Website
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/NetFrameworkCoreTemplates/razor-corefx">razor-corefx</a>
-    </td>
-    <td>
-      .NET Framework ASP.NET Core Website with ServiceStack.Razor
-    </td>
-  </tr>
-</table>
+{% capture projects %}
+| ASP.NET Core Framework Templates ||
+|-|-|
+| [mvc-corefx](https://github.com/NetCoreTemplates/mvc-corefx)        | .NET Framework ASP.NET Core MVC Website |
+| [razor-corefx](https://github.com/NetCoreTemplates/razor-corefx)      | .NET Framework ASP.NET Core Website with ServiceStack.Razor |
+| [react-lite-corefx](https://github.com/NetCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript |
+| [selfhost-corefx](https://github.com/NetCoreTemplates/selfhost-corefx)   | .NET Framework ASP.NET Core self-hosting Console App |
+| [sharp-corefx](https://github.com/NetCoreTemplates/sharp-corefx)      | .NET Framework ASP.NET Core Templates Bootstrap Website |
+| [vue-lite-corefx](https://github.com/NetCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
+| [web-corefx](https://github.com/NetCoreTemplates/web-corefx)        | .NET Framework ASP.NET Core Website |
+{% endcapture %}
+
+<div class='markdown-body'>
+{{ projects | markdownify }}
+</div>
 
 This will let you create an ASP.NET Core App running on the .NET Framework v4.7 with:
 

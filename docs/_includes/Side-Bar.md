@@ -21,6 +21,7 @@
     - [Website Templates](/templates-websites)
     - [Empty Starting Templates](/templates-empty-starting)
     - [ASP.NET Core on .NET Framework](/templates-corefx)
+    - [Vue and React "lite" Templates](/templates-lite)
     - [Vuetify Templates](/templates-vuetify)
     - [Nuxt Templates](/templates-nuxt)
     - [Vue Templates](/templates-vue)
