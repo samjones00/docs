@@ -14,32 +14,37 @@ The Single Page App (SPA) project templates can also be created using the [dotne
     $ dotnet-new <template-name> ProjectName
 
 Click on the template name below to view a Live Demo and contents of each project template:
+| .NET Core C# Templates ||
+|-|-|
+| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
+| [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 2.1 Aurelia CLI Bootstrap App |
+| [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET Core 2.1 Parcel TypeScript App |
+| [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript |
+| [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET Core 2.1 React Create App CLI Bootstrap App |
+| [vue-lite](https://github.com/NetCoreTemplates/vue-lite)           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript |
+| [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)           | .NET Core 2.1 Nuxt.js SPA App with Bootstrap |
+| [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET Core 2.1 Vue CLI Bootstrap App |
+| [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)       | .NET Core 2.1 Nuxt.js SPA App with Material Vuetify |
+| [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET Core 2.1 Vue CLI App with Material Vuetify |
+| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
 
-### .NET Core 2.1
+The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your preferred C# IDE of VS.NET, VS Code or Rider.
 
- - [vue-spa](https://github.com/NetCoreTemplates/vue-spa) - Vue App
- - [react-spa](https://github.com/NetCoreTemplates/react-spa) - React App
- - [angular-spa](https://github.com/NetCoreTemplates/angular-spa) - Angular 5 App
- - [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa) - Aurelia App
- - [parcel](https://github.com/NetCoreTemplates/parcel) - Parcel App
- - [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa) - Vuetify Vue App
- - [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt) - Nuxt.js Vue App
- - [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt) - Nuxt.js Vuetify App
- - [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa) - Angular 4 Material Design Lite App
+| .NET Framework C# Templates ||
+|-|-|
+| [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
+| [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx)        | .NET Framework Aurelia Bootstrap Webpack App |
+| [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) | .NET Framework React Desktop Apps |
+| [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx)          | .NET Framework React Bootstrap Webpack App |
+| [vue-nuxt-netfx](https://github.com/NetFrameworkTemplates/vue-nuxt-netfx)           | .NET Framework Vue Nuxt.js SPA Web App |
+| [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx)            | .NET Framework Vue Bootstrap Webpack App |
+| [vuetify-nuxt-netfx](https://github.com/NetFrameworkTemplates/vuetify-nuxt-netfx)       | .NET Framework Vuetify Material Nuxt.js SPA Web App |
+| [vuetify-spa-netfx](https://github.com/NetFrameworkTemplates/vuetify-spa-netfx)        | .NET Framework Vuetify Material Webpack App |
+| [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)   | .NET Framework Angular 4 Material Design Lite Webpack App |
 
-The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your prefered C# IDE of VS.NET, VS Code or Rider.
-
-### .NET Framework
-
- - [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx) - Vue App
- - [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx) - React App
- - [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx) - Angular 5 App
- - [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx) - Aurelia App
- - [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx) - Angular 4 Material Design Lite App
- - [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) - React Desktop Apps
- - [vuetify-spa-netfx](https://github.com/NetFrameworkTemplates/vuetify-spa-netfx) - Vuetify Vue App
- - [vue-nuxt-netfx](https://github.com/NetFrameworkTemplates/vue-nuxt-netfx) - Nuxt.js Vue App
- - [vuetify-nuxt-netfx](https://github.com/NetFrameworkTemplates/vuetify-nuxt-netfx) - Nuxt.js Vuetify App
+| ASP.NET Core Framework Templates ||
+|-|-|
+| [react-lite-corefx](https://github.com/NetFrameworkCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript | [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
 
 .NET Framework Templates utilize MSBuild's classic project format which can be developed using either VS.NET or Rider.
 

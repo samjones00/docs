@@ -5,9 +5,20 @@ slug: templates-overview
 
 ServiceStack has its strong foundations as a Web and MQ Services framework whose [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Backend Systems and Web APIs, Websites, Single Page Apps, Windows Services, Self-Hosting Console Apps and Rich OSX and Winforms Desktop Apps.
 
-![ServiceStack VS.NET Templates Dialog](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-projects-dialog.png)
+## web new
+
+All ServiceStack Project Templates can be found and installed using the [web new](/web-new) .NET Core tool. 
+
+#### dotnet-new
+
+If you don't have .NET Core installed you can find and create all project templates using the [dotnet-new](/dotnet-new) npm tool.
 
 ## VS.NET Templates
+
+A limited selection of project templates can be created inside VS.NET using the 
+[ServiceStackVS VS.NET Extension](/templates-overview#servicestackvs-vsnet-extension)
+
+![ServiceStack VS.NET Templates Dialog](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-projects-dialog.png)
 
  - [ServiceStack ASP.NET Empty](/create-your-first-webservice)
  - [ServiceStack ASP.NET MVC4](https://github.com/ServiceStackApps/SocialBootstrapApi)
@@ -19,38 +30,42 @@ ServiceStack has its strong foundations as a Web and MQ Services framework whose
  - [ASP.NET Empty](/templates-aspnet-empty)
  - [AngularJS 1.5 App](/templates-angularjs-v15)
 
-## [Webpack-powered Single Page App Templates](/templates-single-page-apps)
+## Available Project Templates
 
-All VS.NET Single Page App templates are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. See the [Webpack Template Docs](/templates-single-page-apps) for an overview for how to utilize the templates features.
+ServiceStack is available in a number of popular starting configurations below:
+
+### Webpack-powered Single Page App Templates
+
+All [VS.NET Single Page App templates](/templates-single-page-apps) are powered by [Webpack](https://webpack.js.org) which handles the development, testing and production builds of your Web App. See the [Webpack Template Docs](/templates-single-page-apps) for an overview for how to utilize the templates features.
 
 The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains a pre-configured Single Page App VS.NET template for each of the popular JavaScript frameworks:
 
- - Angular5 App
- - Angular4 App
+ - Angular App
  - Aurelia App
  - React App
  - React Desktop Apps
  - Vue App
+ - AngularJS 1.5 Lite App
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](/templates-single-page-apps)
 
-## [Website Templates](/templates-websites)
+### Website Templates
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/web.png)
 
-Popular starting Templates for creating Server HTML Generated Websites and HTTP APIs with ServiceStack.
+[Website Templates](/templates-websites) contain popular starting Templates for creating Server HTML Generated Websites and HTTP APIs with ServiceStack.
 
-## [Empty Starting Templates](/templates-websites)
+### Empty Starting Templates
 
-Empty Web and Self Hosting Console and Windows Service Templates.
+[Empty Web and Self Hosting Console and Windows Service Templates](/templates-websites).
 
-## [ASP.NET Core Web Apps on .NET Framework](/templates-corefx)
+### ASP.NET Core Web Apps on .NET Framework
 
-Popular starting templates for creating ASP.NET Core templates on the .NET Framework.
+Popular starting templates for creating [ASP.NET Core templates on the .NET Framework](/templates-corefx).
 
-## [Desktop Templates](/templates-desktop)
+### Desktop Templates
 
-Desktop Templates for packaging your ServiceStack Web App into different Native Desktop GUIs.
+[Desktop Templates](/templates-desktop) for packaging your ServiceStack Web App into different Native Desktop UIs.
 
 ## ServiceStackVS VS.NET Extension
 
@@ -74,29 +89,29 @@ Optionally it can be downloaded and installed from the [VS.NET Gallery](http://v
 
 The Example projects below contain a working demo including further documentation about each of their templates they were built with:
 
-### [TypeScript React VS.NET Template](https://github.com/ServiceStackApps/typescript-react-template/)
+### TypeScript React VS.NET Template
 
-TypeScript React incorporates today's best-in-class technologies for developing rich, complex
-JavaScript Apps within VS.NET and encapsulated within ServiceStack's new
+[TypeScript React Template](https://github.com/ServiceStackApps/typescript-react-template/) incorporates today's best-in-class 
+technologies for developing rich, complex JavaScript Apps within VS.NET and encapsulated within ServiceStack's new
 [TypeScript React VS.NET Template](https://github.com/ServiceStackApps/typescript-react-template/)
 providing an instant integrated client and .NET server solution where you'll be immediately productive 
 out-of-the-box whilst enabling an optimal iterative development experience with pre-configured Gulp tasks 
 that takes care of effortlessly packaging, bundling and deploying your next App. 
 
-### [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps)
+### React Desktop Apps
 
-React Desktop Apps take advantage of the adaptability, navigation and deep-linking benefits of a Web-based UI, the productivity and responsiveness of the 
+[React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps) take advantage of the adaptability, navigation and deep-linking benefits of a Web-based UI, the productivity and responsiveness of the 
 [React framework](https://facebook.github.io/react/),
 the performance, rich features and functionality contained in 
 [ServiceStack](https://github.com/ServiceStack/ServiceStack/wiki) and the .NET Framework combined with the native experience and OS Integration possible from a Native Desktop App - all within a single VS .NET template!
 
-### [React App Template](https://github.com/ServiceStackApps/ReactChat)
+### React App Template
 
-The ReactJS App VS.NET Template enables an optimal iterative dev experience for creating optimized Single Page React.js Apps. It shares the same approach for developing modern Single Page Apps in VS.NET as the [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md) by leveraging the node.js ecosystem for managing all aspects of Client App development and using the best-in-class libraries.
+The [ReactJS App VS.NET Template](https://github.com/ServiceStackApps/ReactChat) enables an optimal iterative dev experience for creating optimized Single Page React.js Apps. It shares the same approach for developing modern Single Page Apps in VS.NET as the [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md) by leveraging the node.js ecosystem for managing all aspects of Client App development and using the best-in-class libraries.
 
-### [AngularJS App Template](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md)
+### AngularJS App Template
 
-AngularJS App is a new template in [ServiceStackVS](/create-your-first-webservice) that provides a modern opinionated web technology stack for developing rich Single Page Apps with [AngularJS](https://angularjs.org) and ServiceStack.
+The [AngularJS App](https://github.com/ServiceStack/ServiceStackVS/blob/master/docs/angular-spa.md) template in [ServiceStackVS](/create-your-first-webservice) provides a modern opinionated web technology stack for developing rich Single Page Apps with [AngularJS](https://angularjs.org) and ServiceStack.
 
 ### [Integrated HTML, CSS and JavaScript Minifiers](/html-css-and-javascript-minification)
 
