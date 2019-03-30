@@ -99,7 +99,7 @@ This makes the `web` .NET Core tool globally available which can be run without 
 
 That can be used to create new projects with:
  
-    $ web new <template-name> <project-name>
+web new `<template-name>` `<project-name>`
  
 Example of creating a new **Vue SPA** project called **Acme**:
  
