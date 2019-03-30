@@ -11,8 +11,7 @@ If you had a previous version installed, update with:
 
     $ dotnet tool update -g web
 
-All features from the cross-platform `web` .NET Core tool are also available from the 
-[.NET Core Windows Desktop app](/netcore-windows-desktop) tool, which can be used instead:
+All features from the cross-platform `web` .NET Core tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
 
     $ dotnet tool install --global app 
 
