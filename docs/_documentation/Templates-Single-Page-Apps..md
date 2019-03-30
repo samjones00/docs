@@ -14,6 +14,8 @@ The Single Page App (SPA) project templates can also be created using the [dotne
     $ dotnet-new <template-name> ProjectName
 
 Click on the template name below to view a Live Demo and contents of each project template:
+
+{% capture netcore %}
 | .NET Core C# Templates ||
 |-|-|
 | [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
@@ -27,9 +29,15 @@ Click on the template name below to view a Live Demo and contents of each projec
 | [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)       | .NET Core 2.1 Nuxt.js SPA App with Material Vuetify |
 | [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET Core 2.1 Vue CLI App with Material Vuetify |
 | [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
+{% endcapture %}
+
+<div class='markdown-body'>
+{{ netcore | markdownify }}
+</div>
 
 The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your preferred C# IDE of VS.NET, VS Code or Rider.
 
+{% capture netfx %}
 | .NET Framework C# Templates ||
 |-|-|
 | [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
@@ -45,6 +53,11 @@ The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly 
 | ASP.NET Core Framework Templates ||
 |-|-|
 | [react-lite-corefx](https://github.com/NetFrameworkCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript | [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
+{% endcapture %}
+
+<div class='markdown-body'>
+{{ netfx | markdownify }}
+</div>
 
 .NET Framework Templates utilize MSBuild's classic project format which can be developed using either VS.NET or Rider.
 
