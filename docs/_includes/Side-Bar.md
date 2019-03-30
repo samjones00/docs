@@ -17,6 +17,7 @@
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [web new](/web-new)
+    - [web +](/web-apply)
     - [Single Page App Templates](/templates-single-page-apps)
     - [Website Templates](/templates-websites)
     - [Empty Starting Templates](/templates-empty-starting)
