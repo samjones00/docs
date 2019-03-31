@@ -32,10 +32,6 @@ SetConfig(new HostConfig {
 
 By default ServiceStack automatically includes the Assembly where your `AppHost` is defined which since it's typically the same top-level assembly where all your Website assets are maintained, no configuration is required to serve any embedded resources which are accessible from the same path as it's defined in your VS.NET project. E.g. if you have an embedded resource in your project at `/dir/file.js` it would be available from the same path where ServiceStack is mounted, e.g `http://localhost:1337/dir/file.js`.
 
-### [ServiceStack.Gap](https://github.com/ServiceStack/ServiceStack.Gap)
-
-See the ServiceStack.Gap project for different examples of how to create single **.exe** ILMerged applications with Embedded Resources and Compiled Razor Views.
-
 ### FileSystem Mappings
 
 Custom FileSystem mappings can be easily registered under a specific alias by overriding your AppHost's 
@@ -65,6 +61,11 @@ public class Disk1Plugin : IPlugin, IPreInitPlugin
 {
     public void Configure(IAppHost appHost)
     {
+        // Insert higher priority Virtual Files and the start of VirtualFileSources
+        var s3Client = new AmazonS3Client(AwsAccessKey, AwsSecretKey, RegionEndpoint.USEast1);
+        appHost.InsertVirtualFileSources.Add(new S3VirtualFiles(s3Client, AwsConfig.S3BucketName));
+
+        // Add additional low priority Virtual Files and the end of VirtualFileSources
         appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk1", appHost.MapProjectPath("~/App_Data/mount/hdd")));
         appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk2", "d:\\hdd"));
     }
@@ -146,14 +147,14 @@ public override List<IVirtualPathProvider> GetVirtualFileSources()
 You can also globally replace the VFS used by setting it in your AppHost, e.g. If you only want to use an InMemory File System:
 
 ```csharp
-base.VirtualPathProvider = new MemoryVirtualFiles(this);
+base.VirtualPathProvider = new MemoryVirtualFiles();
 ```
 
 Fine-grained control on which VFS to use can also be specified on any [Plugins](/plugins) requiring access to the FileSystem like ServiceStack's built-in HTML ViewEngines, here's how you could override the VFS used in ServiceStack's Razors support:
 
 ```csharp
 Plugins.Add(new RazorFormat { 
-  VirtualPathProvider = new MemoryVirtualFiles(this) 
+  VirtualPathProvider = new MemoryVirtualFiles() 
 });
 ```
 
@@ -251,6 +252,9 @@ filesystem at your host project's root directory.
  - [AWS RazorRockstars](https://github.com/ServiceStack/ServiceStack.Aws#maintain-website-content-in-s3) - Serving all Razor Views and Markdown Content from a S3 bucket
  - [AWS Imgur and REST Files](https://github.com/ServiceStack/ServiceStack.Aws#aws-imgur) - 1 line configuration switch between saving files to local files or S3 Bucket
 
+### [ServiceStack.Gap](https://github.com/ServiceStack/ServiceStack.Gap)
+
+See the ServiceStack.Gap project for different examples of how to create single **.exe** ILMerged applications with Embedded Resources and Compiled Razor Views.
 
 ## Implementing a new Virtual File System
 
