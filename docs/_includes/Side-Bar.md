@@ -51,7 +51,7 @@
 - ##### Error Handling
     - [Overview](/error-handling)
     - [Validation](/validation)
-    - [World Validation](/validation-world)
+    - [World Validation](/world-validation)
     - [Debugging](/debugging)
 - ##### Clients
     - [Overview](/clients-overview)

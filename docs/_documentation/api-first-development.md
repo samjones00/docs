@@ -47,7 +47,7 @@ the same Services and declarative [Fluent Validation](/validation).
 It should be noted that these are just examples of different HTML UIs, with no additional effort, all ServiceStack Services automatically
 provide native integrations into **all popular Mobile and Desktop Apps** with [Add ServiceStack Reference](/add-servicestack-reference). 
 
-## [World Validation](/validation-world)
+## [World Validation](/world-validation)
 
-The annotated [World Validation Docs](/validation-world) walks through and showcases the implementation of how the most popular **Server HTML rendered**
+The annotated [World Validation Docs](/world-validation) walks through and showcases the implementation of how the most popular **Server HTML rendered**
 approaches and **Client UI rendered** technologies which are able all to use the same single suite of ServiceStack Services.
