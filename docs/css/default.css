@@ -159,7 +159,9 @@ pre.highlight {
 }
 
 ::-webkit-scrollbar { width:7px; height:5px }
-::-webkit-scrollbar-thumb { background-color:#ccc; }
+::-webkit-scrollbar-thumb { 
+    background-color: #f8f8f8;
+}
 
 @media (max-width: 1580px) {
     #content {

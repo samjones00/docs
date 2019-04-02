@@ -36,6 +36,7 @@
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
     - [Why Remote Services should use DTOs](/why-remote-services-use-dtos)
     - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
+    - [API First Development](/api-first-development)
 - ##### Reference
     - [IOC](/ioc)
     - [Routing](/routing)
@@ -44,12 +45,14 @@
     - [Service return types](/service-return-types)
     - [Customize HTTP Responses](/customize-http-responses)
     - [Customize JSON Responses](/customize-json-responses)
-    - [Validation](/validation)
-    - [Error Handling](/error-handling)
     - [Metadata page](/metadata-page)
-    - [Debugging](/debugging)
     - [REST, SOAP & default endpoints](/endpoints)
     - [SOAP support](/soap-support)
+- ##### Error Handling
+    - [Overview](/error-handling)
+    - [Validation](/validation)
+    - [World Validation](/validation-world)
+    - [Debugging](/debugging)
 - ##### Clients
     - [Overview](/clients-overview)
     - [C#/.NET Client](/csharp-client)
