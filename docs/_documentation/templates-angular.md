@@ -1,6 +1,6 @@
 ---
 slug: templates-angular
-title: Angular Templates
+title: Angular Project Templates
 ---
 
 [Angular](https://angular.io) is the premier JavaScript framework developed by Google for building applications that live on the web, mobile, or the desktop.

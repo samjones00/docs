@@ -1,5 +1,5 @@
 ---
-title: Empty Web and SelfHost Starting Templates
+title: Empty Web and SelfHost Starting Project Templates
 slug: templates-empty-starting
 ---
 

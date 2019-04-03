@@ -207,3 +207,25 @@ and debuggability:
 ![Request Logs Usage](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/request-logs-02.png)
 
 The [RequestLogsService](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Admin/RequestLogsService.cs) is just a simple C# service under-the-hood but is a good example of how a little bit of code can provide a lot of value in ServiceStack's by leveraging its generic, built-in features.
+
+## SourceLink Enabled Packages 
+
+To maximize the debuggability of ServiceStack packages all ServiceStack projects utilize **MSBuild generated NuGet packages** 
+where all packages are embed **pdb symbols** and are configured with [support for SourceLink](https://github.com/dotnet/sourcelink/) 
+to improve the debugging experience of ServiceStack Apps as source files can be downloaded on-the-fly from GitHub as you debug.
+
+Scott Hanselman has written a [nice post on Source Link](https://www.hanselman.com/blog/ExploringNETCoresSourceLinkSteppingIntoTheSourceCodeOfNuGetPackagesYouDontOwn.aspx) 
+and how it can be enabled inside VS.NET by turning on **Enable source link support**:
+
+[![](https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/7e5fb7b6dad8_140AA/image_0c73cb8d-bd5a-406e-a51d-a2eb4af12117.png)](https://www.hanselman.com/blog/ExploringNETCoresSourceLinkSteppingIntoTheSourceCodeOfNuGetPackagesYouDontOwn.aspx)
+
+When enabled it should let you debug into the ServiceStack framework implementation, downloading the correct source files version from GitHub as and when needed.
+
+### All ServiceStack GitHub projects now use CI NuGet feed
+
+In addition to using MSBuild generated packages all projects also utilize CI NuGet package feeds for external dependencies instead of copying 
+.dll's in `/lib` folders. As a consequence you'll no longer have to build external ServiceStack GitHub projects or use GitHub published releases, 
+as now the **master** repo of all GitHub projects can be built from a clean checkout at anytime.
+
+The pre-release packages are still published using the **same version number** so if you get a build error from having a cached stale package
+you'll need to [clear your local packages cache](/myget#redownloading-myget-packages) to download the latest build packages from the CI NuGet packages feed.

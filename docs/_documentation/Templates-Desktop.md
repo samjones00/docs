@@ -1,5 +1,5 @@
 ---
-title: Desktop Templates
+title: Desktop Project Templates
 slug: templates-desktop
 ---
 

@@ -1,6 +1,6 @@
 ---
 slug: templates-react
-title: React Templates
+title: React Project Templates
 ---
 
 [React](https://reactjs.org) is a very popular JavaScript Library developed by Facebook to simplify creating complex UIs through use of 

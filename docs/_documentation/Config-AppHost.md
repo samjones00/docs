@@ -1,6 +1,6 @@
 ---
 slug: host-configuration
-title: AppHost
+title: AppHost Configuration
 ---
 
 ### Anatomy of a ServiceStack AppHost
@@ -39,7 +39,7 @@ public class AppHost
 
 ### Physical Project Structure
 
-To learn about ServiceStack's Solution layout see [Physical Project Structure](/physical-project-structure) docs.
+See [Physical Project Structure](/physical-project-structure) docs to learn about ServiceStack's Solution layout.
 
 ### Register AppHost in .NET Core
 
@@ -57,7 +57,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-See docs for more info on using [ServiceStack in .NET Core](/netcore)
+See [.NET Core docs](/netcore) for more info on using ServiceStack on .NET Core.
 
 ### Run AppHost in .NET Framework
 
@@ -67,11 +67,11 @@ new AppHost().Init();
 
 ### IOC Registration
 
-For an overview of the APIs and behavior of ServiceStack's built-in Funq IOC see [IOC docs](/ioc).
+See [IOC docs](/ioc) for an overview of the APIs and behavior of ServiceStack's built-in Funq IOC.
 
 ### Modularizing Services
 
-For info on Modularizing functionality in your AppHost see [Modularizing Services](/modularizing-services).
+See [Modularizing Services](/modularizing-services) for info on Modularizing functionality in your AppHost.
 
 ### Default HostConfig
 
@@ -227,8 +227,8 @@ LogManager.LogFactory = new ConsoleLogFactory();
 new AppHost().Init();
 ```
 
-For more info, see [Logging docs](/logging).
+See [Logging docs](/logging) for info on the various logging providers available.
 
 ## Testing
 
-See testing docs for [Unit and Integration Testing](/testing) with ServiceStack.
+See [Unit and Integration Testing](/testing) docs for testing with ServiceStack.

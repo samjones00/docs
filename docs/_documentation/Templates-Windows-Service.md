@@ -1,5 +1,5 @@
 ---
-title: Windows Service VS.NET Templates
+title: Windows Service VS.NET Project Templates
 slug: templates-windows-service
 ---
 

@@ -6,6 +6,10 @@ title: API First Development
 One message we continually try to re-iterate is the importance of Services (aka APIs) having a well-defined coarse-grained Services Contract 
 which serves as the interface into your system by which all external consumers bind to - making it the most important contract in your system.
 
+A strategy we recommend for maximizing re-use of your Services is to design them from an API-first point of view where all consumers 
+(e.g. Desktop, Mobile and Web UIs) have equal accessibility to your services since they all consume the same published API's for all of 
+their functionality.
+
 ### Benefits of Services
 
 This is the development model ServiceStack has always promoted and what most of its features are centered around, where your Services Contract is 
@@ -32,6 +36,9 @@ Whereas in ServiceStack there are only Services, which are written with pure log
 clean **Request DTOs** received as Inputs that typically return clean **Response DTOs** as outputs. HTML is then just another serialization format, 
 providing a View of your Services or serving as a bundled UI that works on top of your existing Services, in all cases calling the same 
 well tested and defined Services that all other clients use.
+
+For web development this means that UI logic and Error handling should ideally be utilizing the pure API Error Responses rather than behind 
+server-side pages which gets easily coupled to your server implementation rather than your external published APIs. 
 
 ### Validation by all the things
 

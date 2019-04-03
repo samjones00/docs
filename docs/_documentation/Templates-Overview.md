@@ -1,5 +1,5 @@
 ---
-title: VS.NET Templates
+title: VS.NET Project Templates
 slug: templates-overview
 ---
 

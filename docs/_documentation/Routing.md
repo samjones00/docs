@@ -477,6 +477,65 @@ Most of the metadata ServiceStack knows about your services are accessible inter
 
 Since [Routing in ASP.NET MVC can be slow](http://samsaffron.com/archive/2011/10/13/optimising-asp-net-mvc3-routing) when you have a large number of Routes, it's worthwhile pointing out ServiceStack's Routing implementation is implemented with hash lookups so doesn't suffer the linear performance regression issues you might have had with MVC. So you don't have to worry about degraded performance when registering a large number of Routes.
 
+### Consider "pretty-urls" for public pages
+
+A constant eyesore that hurts my aesthetic eye when surfing the web is how you can immediately tell that a Website is written in ASP.NET
+by its `/{Controller}/{Action}` routing convention or `.aspx` suffix. This forces URL abnormalities where instead of choosing
+the ideal identifier for your public resource, the path tends to adopt internal method and class names that typically makes more sense
+to its developers than to external users. These dictated conventions also results in the `?queryString` becoming a data bag of params
+that should otherwise be hidden or included as part of its public URI identifier.
+
+#### Permalinks important for SEO, usability and refactorability
+
+In general it's not a good idea to let a technology to dictate what your public routes end up being. Ideally your external routes 
+should be regarded as permalinks and decoupled from their internal implementations as you don't want internal refactors to cause
+link rot, break existing inbound navigation or lose any SEO weight they've accumulated. 
+
+If you adopt the ideal URL from the start, you'll never have a reason to change it and the decoupling frees you from being able
+to refactor it's mapped implementation or even replacing the underlying technology completely as the ideal routes are already at what 
+they should be that's free from any technology bias.
+
+Pretty URLs or [Clean URLs](https://en.wikipedia.org/wiki/Clean_URL) also provide important usability and accessibility benefits to 
+non technical users where their prominent location in browsers is a valuable opportunity to add meaningful context on where they are in your Website. 
+
+#### Pre-defined Routes are optimal for machines
+
+In ServiceStack all Services are automatically available using the [pre-defined routes](/routing#pre-defined-routes) which is optimal 
+for automated tooling and machinery as they can be predicted without requiring any server meta information.
+
+#### Optimize Custom Routes for humans
+
+Use [Custom Routes](/routing#custom-routes) to also make your **Services** available at the optimal Clean URLs for humans. For **Content Pages** 
+you can take advantage of **Page Based Routing** in both **Sharp Pages** and now in **Razor** to specify the ideal route for your page which 
+in addition to requiring less effort to define (as they're implicitly defined) they're also less effort to implement as **no Controller or Service**
+are needed. They also benefit from being immediately inferrible by looking at the intuitively mapped directory and file names alone which works 
+equally well in reverse where the page for a route will be exactly where you think it will be.
+
+#### Designing Clean URLs
+
+Some great references on designing RESTful Pretty URLs are the [Clean URL examples in Wikipedia](https://en.wikipedia.org/wiki/Clean_URL#Structure):
+
+| Uncleaned URL                                                   |  Clean URL                                |
+|-----------------------------------------------------------------|-------------------------------------------|
+| http://example.com/index.php?page=name                          | http://example.com/name                   |
+| http://example.com/about.html                                   | http://example.com/about                  |
+| http://example.com/index.php?page=consulting/marketing          | http://example.com/consulting/marketing   |
+| http://example.com/products?category=12&pid=25                  | http://example.com/products/12/25         |
+| http://example.com/cgi-bin/feed.cgi?feed=news&frm=rss           | http://example.com/news.rss               |
+| http://example.com/services/index.jsp?category=legal&id=patents | http://example.com/services/legal/patents |
+| http://example.com/kb/index.php?cat=8&id=41                     | http://example.com/kb/8/41                |
+| http://example.com/index.php?mod=profiles&id=193                | http://example.com/profiles/193           |
+| http://en.wikipedia.org/w/index.php?title=Clean_URL             | http://en.wikipedia.org/wiki/Clean_URL    |
+
+#### Get Inspired by GitHub
+
+For some real-world inspiration look to [github.com](https://github.com) who are masters at it. You can tell a lot of thought went into 
+meticulously choosing the ideal routes they want for all of their sites functionality. This has added tremendous value to GitHub's usability 
+whose intuitive routes have made deep navigation possible where you can jump directly to the page you want without always having to navigate 
+from their home page as needed in most websites with framework-generated routes who are more susceptible to negatively impacting user engagement
+in home page redesigns that move around existing links and navigation. GitHub's logically grouped routes also gets a natural assist
+from Autocomplete in browsers who are better able to complete previously visited GitHub URLs.
+
 # Community Resources
 
   - [Use routes to customize service endpoints](http://dilanperera.wordpress.com/2014/02/23/servicestack-use-routes-to-customise-service-endpoints/)

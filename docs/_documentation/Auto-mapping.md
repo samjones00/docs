@@ -43,9 +43,36 @@ var safeUpdate = db.SingleById<MyTable>(id)
     .PopulateFromPropertiesWithoutAttribute(dto, typeof(ReadOnlyAttribute));
 ```
 
+### Advanced mapping using Converters
+
+You can register a custom Converter mapping using the `AutoMapping.RegisterConverter()` APIs, e.g:
+
+```csharp
+// Data.User -> DTO User
+AutoMapping.RegisterConverter((Data.User from) => {
+    var to = from.ConvertTo<User>(skipConverters:true); // avoid infinite recursion
+    to.FirstName = from.GivenName;
+    to.LastName = from.Surname;
+    return to;
+});
+
+// Car -> String
+AutoMapping.RegisterConverter((Car from) => $"{from.Model} ({from.Year})");
+
+// WrappedDate -> DateTime
+AutoMapping.RegisterConverter((WrappedDate from) => from.ToDateTime());
+// DateTime    -> WrappedDate
+AutoMapping.RegisterConverter((DateTime from) => new WrappedDate(from));
+```
+
+Where it will be called whenever a conversion between `Data.User -> User` or `Car -> String` is needed, inc. nested types and collections.
+
+Converters can also be used when you want to "take over" and override the default conversion behavior.
+
 ### Advanced mapping using custom extension methods
 
-When mapping logic becomes more complicated we like to use extension methods to keep code DRY and maintain the mapping in one place that's easily consumable from within your application, e.g:
+When mapping logic becomes more complicated we like to use extension methods to keep code DRY and maintain the mapping in one place 
+that's easily consumable from within your application, e.g:
 
 ```csharp
 public static class ConvertExtensions
@@ -65,6 +92,55 @@ Which is now easily consumable with just:
 ```csharp
 var dto = viewModel.ToDto();
 ```
+
+Using C# methods ensures conversion is explicit, discoverable, debuggable, fast and flexible with access to the full C# language at your disposal
+whose conversion logic can be further DRY'ed behind reusable extension methods.
+
+If you find you need to call this extension method manually in many places you may want to consider registering a Custom Converter instead.
+
+### Ignore Mapping
+
+Use the `AutoMapping.IgnoreMapping()` API to specify mappings you want to skip entirely, e.g:
+
+```csharp
+// Ignore Data.User -> User
+AutoMapping.IgnoreMapping<Data.User, User>();
+// Ignore List<Data.User> -> List<User>
+AutoMapping.IgnoreMapping<List<Data.User>, List<User>>();
+```
+
+### Support for Implicit / Explicit Type Casts
+
+The built-in Auto Mapping also supports using any `implicit` or `explicit` Value Type Casts when they exists, e.g:
+
+```csharp
+struct A
+{
+    public int Id { get; }
+    public A(int id) => Id = id;
+    public static implicit operator B(A from) => new B(from.Id);
+}
+
+struct B
+{
+    public int Id { get; }
+    public B(int id) => Id = id;
+    public static implicit operator A(B from) => new A(from.Id);
+}
+
+var b = new A(1).ConvertTo<B>();
+```
+
+### Powerful and Capable
+
+Due to its heavy reliance in [#Script](https://sharpscript.net) and other parts in ServiceStack, the built-in Auto Mapping is a 
+sophisticated implementation that covers a large number of use-cases and corner cases when they can be intuitively mapped.
+
+To see a glimpse of its available capabilities check out some of the examples in the docs where it's able to 
+[call any method or construct any type dynamically](/reflection-utils#call-any-method-dynamically) using different Types.
+
+Or how it's able to [convert any Reference Type into and out of an Object Dictionary](/reflection-utils#converting-instances-from-an-object-dictionary), 
+providing a simple approach to dynamically manipulating Types.
 
 ### Populating Types from an Object Dictionary
 

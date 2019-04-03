@@ -1,5 +1,5 @@
 ---
-title: AngularJS v1.5 VS.NET Template
+title: AngularJS v1.5 VS.NET Project Template
 slug: templates-angularjs-v15
 ---
 

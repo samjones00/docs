@@ -3,14 +3,29 @@ title: Smart MVC Razor Pages
 slug: netcore-razor
 ---
 
-Driven by our preference for 
-[API-first style of Web Development](https://github.com/ServiceStackApps/EmailContacts#api-first-development)
+Driven by our preference for [API-first style of Web Development](/api-first-development)
 we've developed our own [ServiceStack Razor Pages](http://razor.netcore.io) which lets you develop dynamic
 Web Pages using Razor to generate the HTML view of your existing Services - saving you from maintaining a 
 parallel Controller implementation that's limited to just Web Pages. The benefits of an API-first
 approach is that you'll naturally get a well-defined servicified interface which can be consumed by all 
 consumers including Web, Native Mobile and Desktop Apps whilst also enabling simplified B2B Integrations, 
 Automation, Integration testing, etc.
+
+### RazorFormat Usage
+
+You can find .NET Core Razor features documented in [razor.netcore.io](http://razor.netcore.io) which 
+is maintained in our MVC NuGet package that can be installed with: 
+
+    PM> Install-Package ServiceStack.Mvc
+
+Then to enable, register the `RazorFormat` plugin:
+
+```csharp
+public override void Configure(Container container)
+{
+    Plugins.Add(new RazorFormat());
+}
+```
 
 #### [No Ceremony Dynamic Pages without Controllers](http://razor.netcore.io/#no-ceremony)
 
@@ -51,18 +66,39 @@ which can be resolved by installing the latest EAP or disabling its **ASP.NET Ra
 Overall we're ecstatic with the end-result, we retain our Controller-free development model whilst Razor under 
 .NET Core executes noticeably quicker than ASP.NET and significantly faster on Linux vs using Mono.
 
-### RazorFormat Usage
+## Page Based Routing in Razor!
 
-You can find .NET Core Razor features documented in [razor.netcore.io](http://razor.netcore.io) which 
-is maintained in our MVC NuGet package that can be installed with: 
+Another value-added feature of ServiceStack.Razor is support for Page Based Routing in [ASP.NET Core Razor](/netcore-razor) 
+which lets you use a `_` prefix to declare a variable placeholder for dynamic routes defined solely by directory and file names.
 
-    PM> Install-Package ServiceStack.Mvc
+With this feature we can use a `_id` directory name to declare an `id` variable place holder:
 
-Then to enable, register the `RazorFormat` plugin:
+ - [/contacts/_id/edit.cshtml](https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-razor/contacts/_id/edit.cshtml)
+
+This will let you navigate to the `edit.cshtml` page directly to edit a contact using the ideal "pretty url" we want:
+
+ - [/contacts/1/edit](http://validation.web-app.io/server-razor/contacts/1/edit)
+
+Placeholders can be on both directory or file names, e.g:
+
+ - `/contacts/edit/_id.cshtml` -> **/contacts/edit/1**
+
+Inside your Razor page you can fetch any populated placeholders from the `ViewBag`:
 
 ```csharp
-public override void Configure(Container container)
-{
-    Plugins.Add(new RazorFormat());
-}
+var id = int.Parse(ViewBag.id);
+var contact = Html.Exec(() => Gateway.Send(new GetContact { Id = id }).Result, out var error);
+```
+
+Which [/_id/edit.cshtml](https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server-razor/contacts/_id/edit.cshtml) 
+uses to call the `GetContact` Service using the [Service Gateway](/service-gateway).
+
+> `Html.Exec()` is a UX-friendly alternative to using `try/catch` boilerplate in Razor
+
+#### Limitation
+
+One drawback of page based routing is that MVC is unable to resolve Page Based Routes when pre-compiled and will need to disabled with:
+
+```xml
+<MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
 ```

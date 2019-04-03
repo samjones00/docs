@@ -14,6 +14,7 @@
     - [ServiceStack's API Design](/api-design)
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)
+    - [web tool](/web-tool)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [web new](/web-new)
@@ -38,7 +39,7 @@
     - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
     - [API First Development](/api-first-development)
 - ##### Reference
-    - [AppHost Configuration](/host-configuration)
+    - [AppHost](/host-configuration)
     - [IOC](/ioc)
     - [Routing](/routing)
     - [Order of Operations](/order-of-operations)

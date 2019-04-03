@@ -1,6 +1,6 @@
 ---
 slug: templates-vuetify
-title: Vuetify Templates
+title: Vuetify Project Templates
 ---
 
 Quite simply Vuetify is a suite of rich high-level reusable Vue Components that makes it easy to develop beautiful Material designed applications. In many ways it realizes the promise that [Web Components](https://www.webcomponents.org/introduction) were meant to deliver by being able to quickly compose rich Applications from a pre-set of reusable high-level components which have often been marred by their poor integration with the premier JavaScript frameworks Apps are built with. 

@@ -1,5 +1,5 @@
 ---
-title: Website Templates
+title: Website Project Templates
 slug: templates-websites
 ---
 

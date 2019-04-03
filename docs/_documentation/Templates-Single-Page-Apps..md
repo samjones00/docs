@@ -1,5 +1,5 @@
 ---
-title: Single Page App Templates
+title: Single Page App Project Templates
 slug: templates-single-page-apps
 ---
 

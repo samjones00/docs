@@ -1,6 +1,6 @@
 ---
 slug: templates-nuxt
-title: Nuxt Templates
+title: Nuxt Project Templates
 ---
 
 [Nuxt.js](https://nuxtjs.org) is an exciting opinionated structured framework for rapidly developing Web Applications in a single unified solution pre-configured with Vue's high-quality components that abstracts away the complex build systems of Webpack powered JS Apps.

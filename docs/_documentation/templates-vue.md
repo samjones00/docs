@@ -1,6 +1,6 @@
 ---
 slug: templates-vue
-title: Vue Templates
+title: Vue Project Templates
 ---
 
 [Vue.js](https://vuejs.org) is a very popular incrementally adoptable JavaScript Framework designed for simplicity so it's easy to learn but 

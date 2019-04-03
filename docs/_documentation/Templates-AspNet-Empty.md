@@ -1,5 +1,5 @@
 ---
-title: Truly Empty ASP.NET Template
+title: Truly Empty ASP.NET Project Template
 slug: templates-aspnet-empty
 ---
 
