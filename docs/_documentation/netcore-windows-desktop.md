@@ -79,7 +79,7 @@ The app tool also makes it easy to install .NET Core Apps where you can `list` a
 
     $ app list
 
-By default this will list all [NetCoreWebApps](https://github.com/sharp-apps) available, ordered by popularity:
+By default this will list all [sharp-apps](https://github.com/sharp-apps) available, ordered by popularity:
 
 ```
    1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
@@ -98,12 +98,12 @@ Usage: app install <name>
 
 The source can be customized with the `APP_SOURCE` Environment Variable where you could list multiple GitHub Organizations by setting:
 
-    $ SET APP_SOURCE=NetCoreTemplates;NetCoreWebApps
+    $ SET APP_SOURCE=NetCoreTemplates .NET Core Templates;sharp-apps Sharp Apps
 
 Where `app list` will now return:
 
 ```
-NetCoreTemplates:
+.NET Core Templates:
 
    1. angular-lite-spa   .NET Core 2.1 Angular 4 Material Design Lite Webpack App
    2. angular-spa        .NET Core 2.1 Angular 7 CLI Bootstrap App
@@ -128,7 +128,7 @@ NetCoreTemplates:
   21. vuetify-spa        .NET Core 2.1 Vue CLI App with Material Vuetify
   22. web                .NET Core 2.1 Empty Website
 
-NetCoreWebApps:
+Sharp Apps:
 
    1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
    2. blog            Minimal, multi-user Twitter OAuth blogging platform that can create living, powerful pages
