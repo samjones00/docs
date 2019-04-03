@@ -88,9 +88,9 @@ By default this will list all [sharp-apps](https://github.com/sharp-apps) availa
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
    5. redis           Redis Admin Viewer developed as Vue Client Single Page App
    6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   7. rockwind        Example Web App combining multi-layout Rockstars website + data-driven Northwind Browser
-   8. rockwind-aws    Rockwind Cloud Web App on AWS
-   9. rockwind-azure  Rockwind Cloud Web App on Azure
+   7. rockwind        Example Sharp App combining multi-layout Rockstars website + data-driven Northwind Browser
+   8. rockwind-aws    Rockwind Cloud Sharp App on AWS
+   9. rockwind-azure  Rockwind Cloud Sharp App on Azure
   10. spirals         Explore and generate different Spirals with SVG
 
 Usage: app install <name>
@@ -136,9 +136,9 @@ Sharp Apps:
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
    5. redis           Redis Admin Viewer developed as Vue Client Single Page App
    6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   7. rockwind        Example Web App combining multi-layout Rockstars website + data-driven Northwind Browser
-   8. rockwind-aws    Rockwind Cloud Web App on AWS
-   9. rockwind-azure  Rockwind Cloud Web App on Azure
+   7. rockwind        Example Sharp App combining multi-layout Rockstars website + data-driven Northwind Browser
+   8. rockwind-aws    Rockwind Cloud Sharp App on AWS
+   9. rockwind-azure  Rockwind Cloud Sharp App on Azure
   10. spirals         Explore and generate different Spirals with SVG
 
 Usage: app install <name>
@@ -154,7 +154,7 @@ For a better visual description of each App you can run `gallery` to view a rich
 
     $ app gallery
 
-Which by default opens [.NET Core Web Apps Gallery](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos) in a CEF browser
+Which by default opens [Sharp Apps Gallery](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos) in a CEF browser
 or can also be customized to open any URL by changing the `APP_GALLERY` environment variable.
 
 ## Custom .NET Core Desktop Apps
@@ -276,7 +276,7 @@ Where it will list available gists in [apply.md](/web-apply#apply.md):
   14. react-lite-lib       Update react-lite projects libraries                                   to: $HOST                        by @ServiceStack  [lib,react]
   15. nginx                Nginx reverse proxy config for .NET Core Apps                          to: /etc/nginx/sites-available/  by @ServiceStack  [config]
   16. supervisor           Supervisor config for managed execution of .NET Core Apps              to: /etc/supervisor/conf.d/      by @ServiceStack  [config]
-  17. docker               Dockerfile example for .NET Core Web Apps                              to: .                            by @ServiceStack  [config]
+  17. docker               Dockerfile example for .NET Core Sharp Apps                            to: .                            by @ServiceStack  [config]
 
  Usage:  app +<name>
          app +<name> <UseName>
@@ -311,55 +311,55 @@ access to Native Desktop features, local computing and infrastructure resources 
 Places where you're using Windows Services could be better served as a unified Packaged Desktop App where you can ensure consistent behavior
 by using the same tested Chrome rendering engine to run your App, mitigating any environment, versions and cross-browser issues.
 
-## Desktop Web Apps
+## Desktop Sharp Apps
 
-Whilst `app` is useful for running any Windows .NET Core Desktop App, it provides the greatest value for running 
-[ServiceStack .NET Core Web Apps](https://sharpscript.net/docs/sharp-apps) - a revolutionary new simplified development model 
-for developing .NET Core Apps which eliminates much of the friction .NET developers have historically had to face. Web Apps require no 
-builds/compilation, wait times, complicated build tooling, configuration, incompatible dependencies, dev tools or IDE's. 
+Whilst `app` is useful for running any Windows .NET Core Desktop App, it provides the greatest value for running .NET Core 
+[Sharp Apps](https://sharpscript.net/docs/sharp-apps) - a revolutionary new simplified development model for developing .NET Core Apps 
+which eliminates much of the friction .NET developers have historically had to face. [Sharp Apps](https://sharpscript.net/docs/sharp-apps) 
+require no builds/compilation, wait times, complicated build tooling, configuration, incompatible dependencies, dev tools or IDE's. 
 
-The simplicity of being able to use the same executable for running all Web Apps allows us more flexibility to provide even greater 
-value-added functionality than what's otherwise possible. By contrast Web Apps can be developed with any text editor in an iterative, 
-live-development environment that updates itself on save, whilst the App is running. It utilizes a familiar 
-[JavaScript and Handlebars syntax](https://sharpscript.net) in a high-level dynamic language that late-binds to .NET APIs using 
+The simplicity of being able to use the same executable for running all [Sharp Apps](https://sharpscript.net/docs/sharp-apps) allows us more 
+flexibility to provide even greater value-added functionality than what's otherwise possible. By contrast Sharp Apps can be developed with any 
+text editor in an iterative, live-development environment that updates itself on save, whilst the App is running. It utilizes a familiar 
+[JavaScript and Handlebars syntax](https://sharpscript.net/docs/syntax) in a high-level dynamic language that late-binds to .NET APIs using 
 Compiled Expressions for avoiding runtime reflection.
 
-Web Apps are highly customizable by nature as they're delivered and run in source code form, requires no external dependencies or dev tools as they 
+Sharp Apps are highly customizable by nature as they're delivered and run in source code form, requires no external dependencies or dev tools as they 
 can be edited by any text editor whilst the app is running. They're also significantly smaller than normal Web Apps since the `app` tool already 
-contains the shared binaries that all Web Apps use - making them easier to deploy, install and update.
+contains the shared binaries that all Sharp Apps use - making them easier to deploy, install and update.
 
-### Installing Web Apps
+### Installing Sharp Apps
 
-As [NetCoreWebApps](https://github.com/sharp-apps/spirals) is the default `APP_SOURCE`, running:
+As [sharp-apps](https://github.com/sharp-apps) is the default `APP_SOURCE`, running:
 
     $ app list
 
-Will return the list of publicly available Web Apps:
+Will return the list of publicly available Sharp Apps:
 
 ```
-   1. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + Sharp APIs
+   1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
+   2. blog            Minimal, multi-user Twitter OAuth blogging platform that can create living, powerful pages
    3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
-   5. blog            Minimal multi-user Twitter OAuth blogging platform that creates living powerful pages
-   6. rockwind-aws    Rockwind Cloud Web App on AWS
-   7. rockwind-azure  Rockwind Cloud Web App on Azure
-   8. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   9. spirals         Explore and generate different Spirals with SVG
-  10. rockwind        Web App combining multi-layout Rockstars website + data-driven Northwind Browser
+   5. redis           Redis Admin Viewer developed as Vue Client Single Page App
+   6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
+   7. rockwind        Example Sharp App combining multi-layout Rockstars website + data-driven Northwind Browser
+   8. rockwind-aws    Rockwind Cloud Sharp App on AWS
+   9. rockwind-azure  Rockwind Cloud Sharp App on Azure
+  10. spirals         Explore and generate different Spirals with SVG
 
 Usage: app install <name>
 ```
 
-### Include your Web App in the Gallery
+### Include your Sharp App in the Gallery
 
 We've also made it easy to list your App in the App gallery, by running:
 
     $ app gallery
 
-Which opens the [Web App Gallery Gist](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098) where you can request for your Web App
+Which opens the [Sharp App Gallery Gist](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098) where you can request for your Web App
 to be listed in the gallery by commenting on the gist with a link to your project. We'll review it and if it's acceptable we'll fork it in 
-[NetCoreWebApps](https://github.com/sharp-apps) which creates a "link" to your project where it will be automatically listed. 
+[sharp-apps](https://github.com/sharp-apps) which creates a "link" to your project where it will be automatically listed. 
 
 All existing `app` installs will be immediately able to install your App, which either installs the latest published release or from **master** if it 
 hasn't published any releases.
@@ -480,13 +480,14 @@ Thanks to the easy distribution all users can update to the latest version of an
  
 Which will replace their existing version with the latest release. 
 
-## Creating Desktop Web Apps
+## Creating Desktop Sharp Apps
 
-Now that we've seen how easy it is to Install and use existing Web Apps, lets walk through how easy it to create one of our own.
+Now that we've seen how easy it is to Install and use existing [Sharp Apps](https://sharpscript.net/docs/sharp-apps), 
+lets walk through how easy it to create one of our own.
 
 <iframe width="896" height="525" src="https://www.youtube.com/embed/Cf-vstYXrmY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-For this example we'll create a small App that leverages one of the advanced Web technologies in SVG that would be cumbersome to create using a native GUI toolkit. To start let's create a folder for our app called `spirals` and initialize and empty Web App with `app init`:
+For this example we'll create a small App that leverages one of the advanced Web technologies in SVG that would be cumbersome to create using a native GUI toolkit. To start let's create a folder for our app called `spirals` and initialize and empty Sharp App with `app init`:
 
     $ md spirals
     $ cd spirals && app init
@@ -830,7 +831,7 @@ Which installs instantly thanks to the `7kb` .zip download that can then be open
 
 ### Publishing your App with binaries
 
-The unique characteristics of Web Apps affords us different ways of publishing your App, e.g. to save users from needing to install the 
+The unique characteristics of Sharp Apps affords us different ways of publishing your App, e.g. to save users from needing to install the 
 `app` tool you can run `publish` in your App's directory:
 
     $ app publish
@@ -845,7 +846,7 @@ If you know it will be in a fixed location you can update the **Target** and **S
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-shortcut-properties.png)
 
-This includes all `app` binaries needed to run Web Apps which compresses to **89 MB** in a `.zip` or **61 MB** in 7-zip `.7z` archive.
+This includes all `app` binaries needed to run Sharp Apps which compresses to **89 MB** in a `.zip` or **61 MB** in 7-zip `.7z` archive.
 
 ### Publishing a self-contained Windows 64 executable
 
