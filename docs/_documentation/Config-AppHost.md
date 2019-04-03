@@ -1,6 +1,6 @@
 ---
 slug: host-configuration
-title: AppHost Configuration
+title: AppHost
 ---
 
 ### Anatomy of a ServiceStack AppHost
