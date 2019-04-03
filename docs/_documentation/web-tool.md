@@ -84,7 +84,7 @@ Options:
 ### Add/Update ServiceStack References
 
 This shows us we can Add a ServiceStack Reference with `web <lang> <baseurl>` which will let us create a TypeScript Reference 
-to the new [World Validation](#world-validation) App using its `ts` file extension alias:
+to the new [World Validation](/world-validation) App using its `ts` file extension alias:
 
     $ web ts http://validation.web-app.io
 
