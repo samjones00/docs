@@ -241,9 +241,9 @@ after running the `list`, `gallery` and `-v` commands.
 
 ## Additional Features
 
-The `app` dotnet tool is a versatile utility belt packed with a number of features to simplify discovering, installing, running and deploying 
-.NET Core Apps. You can view the full list of supported commands by running `app ?`, e.g. another useful command is using `app init` for generating 
-pre-set templates:
+The `app` dotnet tool is a [versatile utility belt packed with a number of features](/web-tool) to simplify discovering, installing, running and deploying 
+.NET Core Apps. You can view the full list of supported commands by running `app ?`, e.g. another useful command is using [`app +`](/web-apply)
+for generating pre-set templates:
 
 ```
 app +                       Show available gists
@@ -316,7 +316,8 @@ by using the same tested Chrome rendering engine to run your App, mitigating any
 Whilst `app` is useful for running any Windows .NET Core Desktop App, it provides the greatest value for running .NET Core 
 [Sharp Apps](https://sharpscript.net/docs/sharp-apps) - a revolutionary new simplified development model for developing .NET Core Apps 
 which eliminates much of the friction .NET developers have historically had to face. [Sharp Apps](https://sharpscript.net/docs/sharp-apps) 
-require no builds/compilation, wait times, complicated build tooling, configuration, incompatible dependencies, dev tools or IDE's. 
+are built with [#Script](https://sharpscript.net) and require no builds/compilation, wait times, complicated build tooling, configuration, 
+incompatible dependencies, dev tools or IDE's. 
 
 The simplicity of being able to use the same executable for running all [Sharp Apps](https://sharpscript.net/docs/sharp-apps) allows us more 
 flexibility to provide even greater value-added functionality than what's otherwise possible. By contrast Sharp Apps can be developed with any 
@@ -324,7 +325,7 @@ text editor in an iterative, live-development environment that updates itself on
 [JavaScript and Handlebars syntax](https://sharpscript.net/docs/syntax) in a high-level dynamic language that late-binds to .NET APIs using 
 Compiled Expressions for avoiding runtime reflection.
 
-Sharp Apps are highly customizable by nature as they're delivered and run in source code form, requires no external dependencies or dev tools as they 
+**Sharp Apps** are highly customizable by nature as they're delivered and run in source code form, requires no external dependencies or dev tools as they 
 can be edited by any text editor whilst the app is running. They're also significantly smaller than normal Web Apps since the `app` tool already 
 contains the shared binaries that all Sharp Apps use - making them easier to deploy, install and update.
 
