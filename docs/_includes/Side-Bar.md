@@ -15,6 +15,7 @@
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)
     - [web tool](/web-tool)
+    - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [web new](/web-new)
@@ -29,7 +30,6 @@
     - [Vue Templates](/templates-vue)
     - [React Templates](/templates-react)
     - [Angular Templates](/templates-angular)
-    - [.NET Core Windows Desktop](/netcore-windows-desktop)
     - [Desktop Templates](/templates-desktop)
     - [Tour of Webpack](/tour-of-webpack)
 - ##### Background Concepts
