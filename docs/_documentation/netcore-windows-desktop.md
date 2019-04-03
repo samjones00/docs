@@ -10,7 +10,13 @@ The [app](https://www.nuget.org/packages/app) dotnet build tool contains feature
 
     $ dotnet tool install -g app
 
-then using it to run your .NET Core Web App's `.dll`, e.g:
+If you already have `app` tool installed make sure you're running the latest version with:
+
+    $ dotnet tool update -g app
+
+### Launch .NET Core App inside a Windows Chromium Desktop App
+
+Then run your .NET Core Web App with:
 
     $ app MyApp.dll
 
