@@ -66,3 +66,89 @@ With everything encapsulated inside a plugin, your users can easily enable them 
 ```csharp
 Plugins.Add(new BasicAuthFeature { HtmlRedirect = "~/login" });
 ```
+
+## "No touch" Host Configuration
+
+To improve modularization and reuse the configuration logic for a ServiceStack AppHost can be split over multiple files as 
+seen with [World Validation's](/world-validation) AppHost where all it's Auth registration is maintained inside 
+[Configure.Auth.cs](https://github.com/NetCoreApps/Validation/blob/master/world/Configure.Auth.cs):
+
+```csharp
+public class ConfigureAuth : IConfigureAppHost
+{
+    public void Configure(IAppHost appHost)
+    {
+        var AppSettings = appHost.AppSettings;
+        appHost.Plugins.Add(new AuthFeature(() => new CustomUserSession(),
+            new IAuthProvider[] {
+            new CredentialsAuthProvider(), //Enable UserName/Password Credentials Auth
+        }));
+
+        appHost.Plugins.Add(new RegistrationFeature()); //Enable /register Service
+
+        //override the default registration validation with your own custom implementation
+        appHost.RegisterAs<CustomRegistrationValidator, IValidator<Register>>();
+
+        appHost.Register<ICacheClient>(new MemoryCacheClient()); //Store User Sessions in Memory
+
+        appHost.Register<IAuthRepository>(new InMemoryAuthRepository()); //Store Authenticated Users in Memory
+   }
+}
+```
+
+This modular approach makes it easy to "layer on" functionality with tools like [web +](/web-apply).
+
+### ConfigureAppHost Interfaces
+
+You can use this to refactor out different cohesive parts your Host configuration over multiple files and decouple them from your concrete `AppHost` which
+ServiceStack automatically runs all `IPreConfigureAppHost`, `IConfigureAppHost` and `IPostConfigureAppHost` interfaces on Startup it 
+can find in either your `AppHost` Assembly or **Service Assemblies** specified in your AppHost constructor.
+
+This opens up a number of re-use benefits where you'll be able to use the same AppHost configuration if your Services are being hosted
+in [different Hosting Options](/why-servicestack#multiple-hosting-options), it makes it easy to maintain a standardized configuration 
+across many of your ServiceStack projects, e.g. you can easily replace `Configure.Auth.cs` in all your projects to ensure they're running
+the same Auth Configuration without impacting any of the projects other bespoke host configuration.
+
+It also allows you to maintain any necessary Startup configuration that your Services implementation needs alongside the Services themselves.
+
+E.g. This is used to register the `Data.Contact` to DTO `Contact` [Auto Mapping](/auto-mapping):
+
+```csharp
+// Register Custom Auto Mapping for converting Contact Data Model to Contact DTO
+public class ContactsHostConfig : IConfigureAppHost 
+{
+    public void Configure(IAppHost appHost) =>
+        AutoMapping.RegisterConverter((Data.Contact from) => from.ConvertTo<Contact>(skipConverters:true));
+}
+```
+
+There are **3 different Startup interfaces** you can use depending on when you want your configuration to run.
+
+Use `IPreConfigureAppHost` for Startup logic you want to run before the AppHost starts initialization, this is
+run before `AppHost.Config` is initialized or Services are registered so has limited configurability but is useful
+if you want to register additional Service Assemblies with ServiceStack, e.g:
+
+```csharp
+public class ConfigureContactsServices : IPreConfigureAppHost
+{
+    public void Configure(IAppHost host) => host.ServiceAssemblies.AddIfNotExists(typeof(MyServices).Assembly);
+}
+```
+
+Use `IConfigureAppHost` for Startup logic you want to run immediately **before** `AppHost.Configure()`:
+
+```csharp
+public interface IConfigureAppHost
+{
+    void Configure(IAppHost appHost);
+}
+```
+
+Use `IPostConfigureAppHost` for Startup logic you want to run immediately **after** `AppHost.Configure()`:
+
+```csharp
+public interface IPostConfigureAppHost
+{
+    void Configure(IAppHost appHost);
+}
+```

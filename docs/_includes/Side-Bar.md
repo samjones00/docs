@@ -38,6 +38,7 @@
     - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
     - [API First Development](/api-first-development)
 - ##### Reference
+    - [AppHost Configuration](/host-configuration)
     - [IOC](/ioc)
     - [Routing](/routing)
     - [Order of Operations](/order-of-operations)
@@ -143,7 +144,6 @@
     - [Run side-by-side with another fx](/servicestack-side-by-side-with-another-web-framework)
     - [Versioning](/versioning)
     - [Config API](/config-api)
-    - [Configuration options](/configuration-options)
     - [Concurrency Model](/concurrency-model)
     - [Form Hijacking Prevention](/form-hijacking-prevention)
  - ##### Utils

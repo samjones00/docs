@@ -364,3 +364,11 @@ public class SomeService : Service
 ## Populating the Response DTO Manually  
 
 All the error handling methods illustrated above are just sugar coating for serializing exceptions into your Response DTOs [ResponseStatus](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/ServiceInterface.ServiceModel/ResponseStatus.cs) property. You don't have use any of this as you can simply populate the ResponseStatus property yourself, coupled with the HttpResult class you have complete control of your HTTP Response - this gives you the necessary freedom so you are able to define your own Error handling API and helpers if you have an existing validation library that you would like to use instead.
+
+# Examples
+
+## [World Validation](/world-validation)
+
+See the annotated [World Validation Docs](/world-validation) for a detailed example of Fluent Validation that walks through and showcases the implementation 
+of how the most popular **Server HTML rendered** approaches and **Client UI rendered** technologies which are able all to use the same 
+single suite of Fluent Validators and ServiceStack Services.

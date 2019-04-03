@@ -33,7 +33,7 @@ clean **Request DTOs** received as Inputs that typically return clean **Response
 providing a View of your Services or serving as a bundled UI that works on top of your existing Services, in all cases calling the same 
 well tested and defined Services that all other clients use.
 
-### Validation of all the things
+### Validation by all the things
 
 To better demonstrate the benefits of this approach and and show how there's no loss of flexibility, we've created the 
 [World Validation](https://github.com/NetCoreApps/Validation) .NET Core App which uses the same pure unopinionated ServiceStack Services to support 
