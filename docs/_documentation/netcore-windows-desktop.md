@@ -82,16 +82,16 @@ The app tool also makes it easy to install .NET Core Apps where you can `list` a
 By default this will list all [NetCoreWebApps](https://github.com/sharp-apps) available, ordered by popularity:
 
 ```
-   1. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + Sharp APIs
+   1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
+   2. blog            Minimal, multi-user Twitter OAuth blogging platform that can create living, powerful pages
    3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
-   5. blog            Minimal multi-user Twitter OAuth blogging platform that creates living powerful pages
-   6. rockwind-aws    Rockwind Cloud Web App on AWS
-   7. rockwind-azure  Rockwind Cloud Web App on Azure
-   8. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   9. spirals         Explore and generate different Spirals with SVG
-  10. rockwind        Web App combining multi-layout Rockstars website + data-driven Northwind Browser
+   5. redis           Redis Admin Viewer developed as Vue Client Single Page App
+   6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
+   7. rockwind        Example Web App combining multi-layout Rockstars website + data-driven Northwind Browser
+   8. rockwind-aws    Rockwind Cloud Web App on AWS
+   9. rockwind-azure  Rockwind Cloud Web App on Azure
+  10. spirals         Explore and generate different Spirals with SVG
 
 Usage: app install <name>
 ```
@@ -105,36 +105,41 @@ Where `app list` will now return:
 ```
 NetCoreTemplates:
 
-   1. vue-nuxt          .NET Core 2.1 Nuxt.js SPA App with Bootstrap
-   2. vue-spa           .NET Core 2.1 Vue CLI Bootstrap App
-   3. vuetify-nuxt      .NET Core 2.1 Nuxt.js SPA App with Material Vuetify
-   4. aurelia-spa       .NET Core 2.1 Aurelia CLI Bootstrap App
-   5. angular-spa       .NET Core 2.1 Angular 6.1 CLI Bootstrap App
-   6. vuetify-spa       .NET Core 2.1 Vue CLI App with Material Vuetify
-   7. react-spa         .NET Core 2.1 React Create App CLI Bootstrap App
-   8. angular-lite-spa  .NET Core 2.1 Angular 4 Material Design Lite Webpack App
-   9. web               .NET Core 2.1 Empty Website
-  10. rockwind-webapp   .NET Core 2.1 Rockwind Sharp Apps
-  11. selfhost          .NET Core 2.1 self-hosting Console App
-  12. mvc               .NET Core 2.1 MVC Website
-  13. templates         .NET Core 2.1 Templates Bootstrap Website
-  14. razor             .NET Core 2.1 Website with ServiceStack.Razor
-  15. parcel            .NET Core 2.1 Parcel TypeScript App
-  16. parcel-webapp     .NET Core 2.1 Parcel Sharp Apps
-  17. bare-webapp       .NET Core 2.1 Bare Sharp Apps
+   1. angular-lite-spa   .NET Core 2.1 Angular 4 Material Design Lite Webpack App
+   2. angular-spa        .NET Core 2.1 Angular 7 CLI Bootstrap App
+   3. aurelia-spa        .NET Core 2.1 Aurelia CLI Bootstrap App
+   4. bare-webapp        .NET Core 2.1 Bare Sharp Apps
+   5. mvc                .NET Core 2.1 MVC Website
+   6. mvcauth            .NET Core 2.2 MVC Website integrated with ServiceStack Auth
+   7. mvcidentity        .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth
+   8. mvcidentityserver  .NET Core 2.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
+   9. parcel             .NET Core 2.1 Parcel TypeScript App
+  10. parcel-webapp      .NET Core 2.1 Parcel Sharp Apps
+  11. razor              .NET Core 2.1 Website with ServiceStack.Razor
+  12. react-lite         .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript
+  13. react-spa          .NET Core 2.1 React Create App CLI Bootstrap App
+  14. rockwind-webapp    .NET Core 2.1 Rockwind Sharp Apps
+  15. selfhost           .NET Core 2.1 self-hosting Console App
+  16. sharp              .NET Core 2.1 Sharp Pages Bootstrap Website
+  17. vue-lite           .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript
+  18. vue-nuxt           .NET Core 2.1 Nuxt.js SPA App with Bootstrap
+  19. vue-spa            .NET Core 2.1 Vue CLI Bootstrap App
+  20. vuetify-nuxt       .NET Core 2.1 Nuxt.js SPA App with Material Vuetify
+  21. vuetify-spa        .NET Core 2.1 Vue CLI App with Material Vuetify
+  22. web                .NET Core 2.1 Empty Website
 
 NetCoreWebApps:
 
-   1. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   2. bare            Bootstrap + jQuery multi-page Website with dynamic Menu Navigation + Sharp APIs
+   1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
+   2. blog            Minimal, multi-user Twitter OAuth blogging platform that can create living, powerful pages
    3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
    4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
-   5. blog            Minimal multi-user Twitter OAuth blogging platform that creates living powerful pages
-   6. rockwind-aws    Rockwind Cloud Web App on AWS
-   7. rockwind-azure  Rockwind Cloud Web App on Azure
-   8. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   9. spirals         Explore and generate different Spirals with SVG
-  10. rockwind        Web App combining multi-layout Rockstars website + data-driven Northwind Browser
+   5. redis           Redis Admin Viewer developed as Vue Client Single Page App
+   6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
+   7. rockwind        Example Web App combining multi-layout Rockstars website + data-driven Northwind Browser
+   8. rockwind-aws    Rockwind Cloud Web App on AWS
+   9. rockwind-azure  Rockwind Cloud Web App on Azure
+  10. spirals         Explore and generate different Spirals with SVG
 
 Usage: app install <name>
 ```
@@ -241,13 +246,45 @@ The `app` dotnet tool is a versatile utility belt packed with a number of featur
 pre-set templates:
 
 ```
-app init                    Create basic .NET Core Web App
-app init nginx              Create nginx example config
-app init supervisor         Create supervisor example config
+app +                       Show available gists
+app +<name>                 Write gist files locally, e.g:
+app +init                   Create empty .NET Core 2.2 ServiceStack App
+app + #<tag>                Search available gists
 app gist <gist-id>          Write all Gist text files to current directory
 ```
 
-Where you can use `app init nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring Linux
+View available gists with:
+
+  $ app +
+
+Where it will list available gists in [apply.md](/web-apply#apply.md):
+
+```
+   1. init                 Empty .NET Core 2.2 ServiceStack App                                   to: .                            by @ServiceStack  [project]
+   2. init-lts             Empty .NET Core 2.1 LTS ServiceStack App                               to: .                            by @ServiceStack  [project]
+   3. init-corefx          Empty ASP.NET Core 2.1 LTS on .NET Framework                           to: .                            by @ServiceStack  [project]
+   4. init-sharp-app       Empty ServiceStack Sharp App                                           to: .                            by @ServiceStack  [project]
+   5. bootstrap-sharp      Bootstrap + Sharp Pages Starter Template                               to: $HOST                        by @ServiceStack  [ui,sharp]
+   6. sqlserver            Use OrmLite with SQL Server                                            to: $HOST                        by @ServiceStack  [db]
+   7. sqlite               Use OrmLite with SQLite                                                to: $HOST                        by @ServiceStack  [db]
+   8. postgres             Use OrmLite with PostgreSQL                                            to: $HOST                        by @ServiceStack  [db]
+   9. mysql                Use OrmLite with MySql                                                 to: $HOST                        by @ServiceStack  [db]
+  10. auth-db              AuthFeature with OrmLite AuthRepository, CacheClient (requires ui,db)  to: $HOST                        by @ServiceStack  [auth]
+  11. auth-memory          AuthFeature with Memory AuthRepository, CacheClient (requires ui)      to: $HOST                        by @ServiceStack  [auth]
+  12. validation-contacts  Contacts Validation Example                                            to: $HOST                        by @ServiceStack  [example,sharp]
+  13. vue-lite-lib         Update vue-lite projects libraries                                     to: $HOST                        by @ServiceStack  [lib,vue]
+  14. react-lite-lib       Update react-lite projects libraries                                   to: $HOST                        by @ServiceStack  [lib,react]
+  15. nginx                Nginx reverse proxy config for .NET Core Apps                          to: /etc/nginx/sites-available/  by @ServiceStack  [config]
+  16. supervisor           Supervisor config for managed execution of .NET Core Apps              to: /etc/supervisor/conf.d/      by @ServiceStack  [config]
+  17. docker               Dockerfile example for .NET Core Web Apps                              to: .                            by @ServiceStack  [config]
+
+ Usage:  app +<name>
+         app +<name> <UseName>
+
+Search:  app + #<tag>      Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
+```
+
+Where you can use `app +nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring Linux
 deployment servers for your .NET Core Apps less tedious. 
 
 In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 

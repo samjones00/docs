@@ -59,6 +59,8 @@ Which as of this writing lists:
 Search:  web + #<tag>      Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
 ```
 
+### apply.md
+
 The way we populate this list is by extending the multi-purpose functionality of Markdown and using it as an "Executable Document" 
 where the human-friendly [apply.md](https://gist.github.com/gistlyn/f3fa8c016bbd253badc61d80afe399d9) document below is also 
 reused as the datasource to populate the above list:
