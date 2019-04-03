@@ -101,3 +101,11 @@ To update run `web <lang>` which will recursively update all existing ServiceSta
     $ web ts
 
     Updated: dtos.ts
+
+### Create new Projects with `web new`
+
+See [web new](/web-new) for info on how to create new projects.
+
+### Mix/Match ASP.NET Core projects with `web +`
+
+See [web +](/web-apply) for how to mix/match gists to "layer on" functionality to create customized ASP.NET Core projects.
