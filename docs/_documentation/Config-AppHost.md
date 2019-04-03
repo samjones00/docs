@@ -24,6 +24,9 @@ public class AppHost
             DebugMode = AppSettings.Get(nameof(HostConfig.DebugMode), false)
         });
 
+        //Register IOC Dependencies
+        container.Register<IRedisClientsManager>(c => new RedisManagerPool());
+
         // Add Plugins to extend your App with additional functionality
         Plugins.Add(new AutoQueryFeature { 
             MaxLimit = 100  // Feature specific configuration
@@ -61,6 +64,10 @@ See docs for more info on using [ServiceStack in .NET Core](/netcore)
 ```csharp
 new AppHost().Init();
 ```
+
+### IOC Registration
+
+For an overview of the APIs and behavior of ServiceStack's built-in Funq IOC see [IOC docs](/ioc).
 
 ### Modularizing Services
 
