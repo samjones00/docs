@@ -284,11 +284,11 @@ Where it will list available gists in [apply.md](/web-apply#applymd):
 Search:  app + #<tag>      Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
 ```
 
-Where you can use `app +nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring Linux
-deployment servers for your .NET Core Apps less tedious. 
+Where you can use `app +nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
+[Linux deployment servers for your .NET Core Apps](/netcore-deploy-rsync) less tedious. 
 
 In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 
-for your Environment that anyone can write to their current directory with:
+for your Environment that anyone can write to their current directory with **the gist id** or **gist URL**:
 
     $ app gist <gist-id>
 
