@@ -255,9 +255,9 @@ app gist <gist-id>          Write all Gist text files to current directory
 
 View available gists with:
 
-  $ app +
+    $ app +
 
-Where it will list available gists in [apply.md](/web-apply#apply.md):
+Where it will list available gists in [apply.md](/web-apply#applymd):
 
 ```
    1. init                 Empty .NET Core 2.2 ServiceStack App                                   to: .                            by @ServiceStack  [project]
