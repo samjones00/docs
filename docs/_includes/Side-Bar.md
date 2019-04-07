@@ -18,12 +18,12 @@
     - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
+    - [ASP.NET Core on .NET Framework](/templates-corefx)
     - [web new](/web-new)
     - [web +](/web-apply)
     - [Single Page App Templates](/templates-single-page-apps)
     - [Website Templates](/templates-websites)
     - [Empty Starting Templates](/templates-empty-starting)
-    - [ASP.NET Core on .NET Framework](/templates-corefx)
     - [Vue and React "lite" Templates](/templates-lite)
     - [Vuetify Templates](/templates-vuetify)
     - [Nuxt Templates](/templates-nuxt)
