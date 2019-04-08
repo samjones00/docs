@@ -40,7 +40,7 @@ well tested and defined Services that all other clients use.
 For web development this means that UI logic and Error handling should ideally be utilizing the pure API Error Responses rather than behind 
 server-side pages which gets easily coupled to your server implementation rather than your external published APIs. 
 
-### Validation by all the things
+### Validation from all the things
 
 To better demonstrate the benefits of this approach and and show how there's no loss of flexibility, we've created the 
 [World Validation](https://github.com/NetCoreApps/Validation) .NET Core App which uses the same pure unopinionated ServiceStack Services to support 
