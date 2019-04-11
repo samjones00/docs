@@ -50,6 +50,12 @@ A limited selection of project templates can be created inside VS.NET using the
  - [ASP.NET Empty](/templates-aspnet-empty)
  - [AngularJS 1.5 App](/templates-angularjs-v15)
 
+### Visual Studio 2019
+
+The latest **ServiceStackVS** v2.0 includes support for Visual Studio 2010:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/vs2019-install.vue.gif)
+
 ## Available Project Templates
 
 ServiceStack is available in a number of popular starting configurations below:
