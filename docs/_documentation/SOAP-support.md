@@ -21,19 +21,25 @@ SOAP only supports a single `POST` request but REST services also make use of `G
 [DataContract]
 [Route("/customers", "GET")]
 [Route("/customers/{Id}", "GET")]
-public class GetCustomers {...}
+public class GetCustomers : IReturn<GetCustomersResponse> {...}
+
+public class GetCustomersResponse
+{
+    public List<Customer> Results { get; set; }
+    public ResponseStatus ResponseStatus { get; set; }
+}
 
 [DataContract]
 [Route("/customers", "POST")]
-public class AddCustomer {...}
+public class AddCustomer : IReturn<GetCustomersResponse> {...}
 
 [DataContract]
 [Route("/customers/{Id}", "PUT")]
-public class UpdateCustomer {...}
+public class UpdateCustomer : IReturn<GetCustomersResponse> {...}
 
 [DataContract]
 [Route("/customers/{Id}", "DELETE")]
-public class DeleteCustomer {...}
+public class DeleteCustomer : IReturn<GetCustomersResponse> {...}
 
 //Service
 public class CustomersService : Service 
@@ -46,6 +52,38 @@ public class CustomersService : Service
 ```
 
 Using `Any` will allow the Service to be executed on each HTTP Verb which is required for SOAP since all SOAP Requests are made with a HTTP POST Request wrapped inside a SOAP message and sent to the fixed `/soap11` or `/soap12` endpoints. You also want to make sure that **all DTO models** have `[DataContract]` attribute (and `[DataMember]` attribute for **all properties**) otherwise the XSD-schema embedded within the WSDL will be partially incomplete.  
+
+## Consuming SOAP Services
+
+Ideally the nicest experience for consuming SOAP Services would be to use a generic [C# ServiceClients](/csharp-client#httpwebrequest-service-clients), e.g:
+
+```csharp
+var client = new Soap12ServiceClient(BaseUrl);
+
+var response = client.Send(new GetCustomers());
+```
+
+Although if you could use a generic ServiceClient, you'd typically be better off using the other cleaner and faster endpoints like JSON instead:
+
+```csharp
+var client = new JsonServiceClient(BaseUrl);
+
+var response = client.Get(new GetCustomers());
+```
+
+In either case you can share your DTOs in your `*.ServiceModel.dll` to use the same DTOs without code-gen or use 
+[C# Add ServiceStack Reference](/csharp-add-servicestack-reference) to easily generate DTOs on the client.
+
+### Visual Studios Add Service Reference
+
+Since VS.NET's `Add Service Reference` is optimized for consuming **.asmx** or **WCF** RPC method calls it doesn't properly support multiple return values (e.g. when you also want a ResponseStatus property) where it will generate an ugly proxy API complete with **out** parameters.
+
+If you want to ensure a *pretty proxy* is generated you should only have 1 first-level property which contains all the data you want to return.
+
+### Using XSD.exe
+
+One way around it is to share your services DTO's and use any of the typed [Generic Service Clients](/csharp-client#httpwebrequest-service-clients) that are in-built into ServiceStack. Alternatively you can use the `XSD.exe` command-line utility to generate your types on the client and use those in the typed Service Clients.
+
 
 ### REST-ful registration of multiple services
 
@@ -204,13 +242,3 @@ public override WriteSoapMessage(Message message, Stream outputStream)
 ```
 
 > The default [WriteSoapMessage](https://github.com/ServiceStack/ServiceStack/blob/fb08f5cb408ece66f203f677a4ec14ee9aad78ae/src/ServiceStack/ServiceStackHost.Runtime.cs#L484) implementation also raises a ServiceException and writes any returned response to a buffered Response Stream (if configured).
-
-### Visual Studios Add Service Reference
-
-Since VS.NET's `Add Service Reference` is optimized for consuming **.asmx** or **WCF** RPC method calls it doesn't properly support multiple return values (e.g. when you also want a ResponseStatus property) where it will generate an ugly proxy API complete with **out** parameters.
-
-If you want to ensure a *pretty proxy* is generated you should only have 1 first-level property which contains all the data you want to return.
-
-### Using XSD.exe
-
-One way around it is to share your services DTO's and use any of the typed [Generic Service Clients](/clients-overview) that are in-built into ServiceStack. Alternatively you can use the `XSD.exe` command-line utility to generate your types on the client and use those in the typed Service Clients.
