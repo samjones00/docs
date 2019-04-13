@@ -109,3 +109,6 @@ See [web new](/web-new) for info on how to create new projects.
 ### Mix/Match ASP.NET Core projects with `web +`
 
 See [web +](/web-apply) for how to mix/match gists to "layer on" functionality to create customized ASP.NET Core projects.
+
+{% capture trouble %}{% include web-trouble.md %}{% endcapture %}
+{{ trouble | markdownify }}
