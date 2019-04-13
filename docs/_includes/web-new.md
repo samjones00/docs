@@ -1,4 +1,4 @@
-| .NET Core C# Templates ||
+|| .NET Core C# Templates |
 |-|-|
 | [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
 | [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
@@ -23,7 +23,7 @@
 | [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET Core 2.1 Vue CLI App with Material Vuetify |
 | [web](https://github.com/NetCoreTemplates/web)                | .NET Core 2.1 Empty Website |
 
-| ASP.NET Core Framework Templates ||
+|| ASP.NET Core Framework Templates |
 |-|-|
 | [mvc-corefx](https://github.com/NetFrameworkCoreTemplates/mvc-corefx)        | .NET Framework ASP.NET Core MVC Website |
 | [razor-corefx](https://github.com/NetFrameworkCoreTemplates/razor-corefx)      | .NET Framework ASP.NET Core Website with ServiceStack.Razor |
@@ -33,7 +33,7 @@
 | [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
 | [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx)        | .NET Framework ASP.NET Core Website |
 
-| .NET Framework C# Templates ||
+|| .NET Framework C# Templates |
 |-|-|
 | [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)   | .NET Framework Angular 4 Material Design Lite Webpack App |
 | [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
