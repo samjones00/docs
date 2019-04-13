@@ -6,7 +6,7 @@
 ### web: command not found
 
 If after installing the `dotnet` web tool it fails with `bash: web: command not found` you'll need to add **dotnet tools** to your `PATH` 
-which you can do in Linux using Bash with:
+which you can do in Linux Bash with:
 
     $ echo "export PATH=\$HOME/.dotnet/tools:\$PATH" >> ~/.bashrc
     $ . ~/.bashrc
