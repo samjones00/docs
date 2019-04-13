@@ -32,5 +32,3 @@ Finally you can run the `web` tool with the `--ignore-ssl-errors` switch, e.g:
 
     $ web new vue-lite VueLite --ignore-ssl-errors
 
-{% capture trouble %}{% include web-trouble.md %}{% endcapture %}
-{{ trouble | markdownify }}
