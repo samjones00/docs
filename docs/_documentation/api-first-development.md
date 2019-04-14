@@ -33,12 +33,12 @@ logic in your MVC Controllers and Razor pages becomes another entry point into y
 to all clients, some are only available when using a browser to navigate MVC pages.
 
 Whereas if you develop your APIs first, focusing instead of exposing your System's functionality behind pure-logic APIs, all clients 
-including Web, Mobile, Desktop clients and B2B integrations will be able to utilize the same well-tested APIs.
+including Web, Mobile, Desktop clients and B2B integrations will be able to utilize your same well-tested System Interfaces.
 
-In ServiceStack there are only Services, which are written with pure logic that's unopinionated as to what clients are calling it, with 
-clean **Request DTOs** received as Inputs that typically return clean **Response DTOs** as outputs. HTML is then just another serialization format, 
-providing a View of your Services or serving as a bundled UI that works on top of your existing Services, in all cases calling the same 
-well tested and defined Services that all other clients use.
+In ServiceStack there are no "MVC Controllers" just for HTML pages, there are only Services, which are written with pure logic that's unopinionated 
+as to what clients are calling it, with clean **Request DTOs** received as Inputs that typically return clean **Response DTOs** as outputs. 
+HTML is then just another serialization format, providing a View of your Services or serving as a bundled UI that works on top of your 
+existing Services, in all cases calling the same well tested and defined Services that all other clients use.
 
 For web development this means that UI logic and Error handling should ideally be utilizing the pure API Error Responses rather than behind 
 server-side pages which gets easily coupled to your server implementation rather than your external published APIs. 
