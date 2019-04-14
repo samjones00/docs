@@ -18,7 +18,7 @@ infinite complexity and make it available remotely to all consumers with never a
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dtos-role.png)
 
-This is where the **true value** of Services are derived, they're the ultimate form of encapsulating complexity and offers the highest level 
+This is ultimately where most of the value of Services are derived, they're the ultimate form of encapsulating complexity and offers the highest level 
 of software reuse. ServiceStack amplifies your Services capabilities by making them available in multiple [Hosting Options](/why-servicestack#multiple-hosting-options), 
 [serialization formats](/why-servicestack#multiple-pluggable-formats), [MQ and SOAP endpoints](/why-servicestack#multiple-endpoints) to
 enable more seamless integrations in a variety of different scenarios including native end-to-end Typed APIs for the most popular 
@@ -27,12 +27,15 @@ in all consumers - multiplicatively increasing the value provided.
 
 ### API First Development Model
 
-The practice .NET has always dictated was that you need to maintain **separate controllers** and logic for your **HTML UIs** and a **different controller** 
-for your **HTTP APIs**. Apart from forcing code duplication, doing this breaks your systems well-defined Service Contracts where any custom
+The typical practice .NET has been you need to maintain **separate controllers** and logic for your **HTML UIs** and **API controllers** 
+for your **HTTP APIs**. This approach forces code duplication and breaks your systems well-defined Service Contracts where any custom
 logic in your MVC Controllers and Razor pages becomes another entry point into your system where no longer are all your system capabilities available 
 to all clients, some are only available when using a browser to navigate MVC pages.
 
-Whereas in ServiceStack there are only Services, which are written with pure logic that's unopinionated as to what clients are calling it, with 
+Whereas if you develop your APIs first, focusing instead of exposing your System's functionality behind pure-logic APIs, all clients 
+including Web, Mobile, Desktop clients and B2B integrations will be able to utilize the same well-tested APIs.
+
+In ServiceStack there are only Services, which are written with pure logic that's unopinionated as to what clients are calling it, with 
 clean **Request DTOs** received as Inputs that typically return clean **Response DTOs** as outputs. HTML is then just another serialization format, 
 providing a View of your Services or serving as a bundled UI that works on top of your existing Services, in all cases calling the same 
 well tested and defined Services that all other clients use.
