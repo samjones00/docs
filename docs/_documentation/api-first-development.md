@@ -43,7 +43,7 @@ existing Services, in all cases calling the same well tested and defined Service
 For web development this means that UI logic and Error handling should ideally be utilizing the pure API Error Responses rather than behind 
 server-side pages which gets easily coupled to your server implementation rather than your external published APIs. 
 
-### Validation from all the things
+### Validation examples of multiple Web UIs using same Service
 
 To better demonstrate the benefits of this approach and and show how there's no loss of flexibility, we've created the 
 [World Validation](https://github.com/NetCoreApps/Validation) .NET Core App which uses the same pure unopinionated ServiceStack Services to support 
