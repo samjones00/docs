@@ -901,7 +901,7 @@ var body = JwtAuthProvider.CreateJwtPayload(new AuthUserSession
     },
     issuer: jwtProvider.Issuer,
     expireIn: jwtProvider.ExpireTokensIn,
-    audience: jwtProvider.Audience,
+    audience: new[]{ jwtProvider.Audience },
     roles: new[] {"TheRole"},
     permissions: new[] {"ThePermission"});
 
