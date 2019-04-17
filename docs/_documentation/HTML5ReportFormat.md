@@ -92,3 +92,15 @@ No code-changes were required in order to take advantage of the new formats, the
 Being able to generically provide new features like this shows the advantage of ServiceStack's strong-typed, code-first approach to developing web services that lets you focus on your app-specific logic as you only need to return C#/.NET objects or throw C#/.NET exceptions which gets automatically handled, and hosted on a number of different endpoints in a variety of different formats.
  
 Out of the box REST, RPC and SOAP endpoints types are automatically provided, in JSON, XML, CSV, JSV and now the new HTML report format above.
+
+### Disable Auto HTML Pages
+
+ServiceStack's fallback [Auto HTML Report Pages](/html5reportformat) can be disabled with:
+
+```csharp
+SetConfig(new HostConfig {
+    EnableAutoHtmlResponses = false
+})
+```
+
+When disabled it will render Response DTOs from Browser requests (i.e. `Accept:text/html`) in the next `Config.PreferredContentTypes` - (JSON by default).

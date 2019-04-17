@@ -1071,6 +1071,36 @@ OAuth Providers can use `ClientId` and `ClientSecret` aliases instead of `Consum
 </appSettings>
 ```
 
+### Override Authorization HTTP Header
+
+Request Filters can override the Authorization HTTP Header used in Auth Providers with:
+
+```csharp
+httpReq.Items[Keywords.Authorization] = $"Bearer {token}";
+```
+
+### GET Authenticate Requests are disabled by default
+
+**GET** `/auth/{provider}` requests are disabled by default to discourage sending confidential information in the URL.
+
+The current exceptions which still allow **GET** requests include:
+
+ - `/auth` - Used to check if a User is Authenticated
+ - `/auth/logout` - Logging Out
+ - All OAuth Providers who starts their OAuth flow by navigating to `/auth/{provider}`
+
+You can allow **GET** Authentication requests with:
+
+```csharp
+new AuthFeature {
+    AllowGetAuthenticateRequests = req => true
+}
+```
+
+Although it's recommended to change your code to use `POST` instead of `GET` requests. 
+Otherwise you can use the `IRequest req` parameter to check against a white list of known requests types.
+
+
 <a name="community"></a>
 
 # Community Resources

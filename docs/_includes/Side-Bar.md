@@ -139,6 +139,7 @@
     - [Physical Project Structure](/physical-project-structure)
     - [Modularizing Services](/modularizing-services)
     - [Built-in profiling](/built-in-profiling)
+    - [Hot Reloading](/hot-reloading)
     - [HTML, CSS and JS Minifiers](/html-css-and-javascript-minification)
     - [MVC Integration](/mvc-integration)
     - [ServiceStack Integration](/servicestack-integration)
@@ -152,7 +153,8 @@
     - [Dump Utils](/dump-utils)
     - [Reflection Utils](/reflection-utils)
     - [JS Utils](/js-utils)
-    - [Simple IOC](/simple-ioc)
+    - [Adhoc Utils](/adhoc-utils)
+    - [Simple IOC](/simple-ioc)    
 - ##### Caching
     - [Overview](/caching)
     - [HTTP Caching](/http-caching)

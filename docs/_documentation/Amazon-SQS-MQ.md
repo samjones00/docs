@@ -71,3 +71,26 @@ mqServer.RegisterHandler<EmailContacts.EmailContact>(ExecuteMessage);
 
 AfterInitCallbacks.Add(appHost => mqServer.Start());
 ```
+
+### Intercepting Filters
+
+A number of new filters are available on `SqsMqServer` and `SqsMqClient` which will let you intercept and apply custom logic before SQS messages are 
+sent and received:
+
+```csharp
+Action<SendMessageRequest,IMessage> SendMessageRequestFilter
+Action<ReceiveMessageRequest> ReceiveMessageRequestFilter
+Action<Amazon.SQS.Model.Message, IMessage> ReceiveMessageResponseFilter
+Action<DeleteMessageRequest> DeleteMessageRequestFilter
+Action<ChangeMessageVisibilityRequest> ChangeMessageVisibilityRequestFilter
+```
+
+### Polling Duration
+
+The polling duration used to poll SQS queues can be configured with:
+
+```csharp
+new SqsMqServer {
+    PollingDuration = TimeSpan.FromMilliseconds(1000) //default
+}
+```

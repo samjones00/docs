@@ -281,6 +281,31 @@ console.log(`${tech.Name} by ${tech.VendorName} (${tech.ProductUrl})`);
 console.log(`${tech.Name} TechStacks:`, r.TechnologyStacks);
 ```
 
+### Partial Constructors
+
+All TypeScript Reference DTOs also includes support for **Partial Constructors**
+making them much nicer to populate using object initializer syntax we're used to in C#, so instead of:
+
+```ts
+const request = new Authenticate();
+request.provider = 'credentials'
+request.userName = this.userName;
+request.password = this.password;
+request.rememberMe = this.rememberMe;
+const response = await client.post(request);
+```
+
+You can populate DTOs with object literal syntax without any loss of TypeScript's Type Safety benefits:
+
+```ts
+const response = await client.post(new Authenticate({
+    provider: 'credentials',
+    userName: this.userName,
+    password: this.password,
+    rememberMe: this.rememberMe,
+}));
+```
+
 ### Sending additional arguments with Typed API Requests
 
 Many AutoQuery Services utilize [implicit conventions](/autoquery-rdbms#implicit-conventions) to 
@@ -603,6 +628,24 @@ ExcludeTypes: GetTechnology,GetTechnologyResponse
 ```
 
 Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
+
+### DefaultImports
+
+The `Symbol:module` short-hand syntax can be used for specifying additional imports in your generated TypeScript DTOs, e.g:
+
+```ts
+/* Options:
+...
+DefaultImports: Symbol:module,Zip:./ZipValidator
+*/
+```
+
+Which will generate the popular import form of:
+
+```ts
+import { Symbol } from "module";
+import { Zip } from "./ZipValidator";
+```
 
 ## TypeScript Interface Definitions
 

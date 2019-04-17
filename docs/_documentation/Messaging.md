@@ -232,6 +232,20 @@ IOneWayClient client = GetClient();
 client.SendOneWay(new RequestDto { ... });
 ```
 
+### Disable 'outq' notification messages
+
+All MQ Servers support the ability to specify a whitelist of Requests you **only** want to publish `.outq` for:
+
+```csharp
+PublishToOutqWhitelist = new[]{ nameof(MyRequest) }
+```
+
+Alternatively all `.outq` messages can be disabled with:
+
+```csharp
+DisablePublishingToOutq = true
+```
+
 ## Authenticated Requests via MQ
 
 As MQ Requests aren't executed within the Context of a HTTP Request they don't have access to any HTTP Info like HTTP Cookies, Headers, FormData, etc. This also means the Users Session isn't typically available as it's based on the [ss-id Session Ids in Cookies](/sessions).

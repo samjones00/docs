@@ -173,6 +173,67 @@ appHost.ResponseConverters.Add(async (req, response) =>
 });
 ```
 
+### Intercept Service Requests
+
+As an alternative to creating a [Custom Service Runner](#using-a-custom-servicerunner) to intercept
+different events when processing ServiceStack Requests, you can instead override the `OnBeforeExecute()`, `OnAfterExecute()` and `OnExceptionAsync()`
+callbacks in your `Service` class (or base class) to intercept and modify Request DTOs, Responses or Error Responses, e.g:
+
+```csharp
+class MyServices : Service
+{
+    // Log all Request DTOs that implement IHasSessionId
+    public override void OnBeforeExecute(object requestDto)
+    {
+        if (requestDto is IHasSessionId dtoSession)
+        {
+            Log.Debug($"{nameof(OnBeforeExecute)}: {dtoSession.SessionId}");
+        }
+    }
+
+    //Return Response DTO Name in HTTP Header with Response
+    public override object OnAfterExecute(object response)
+    {
+        return new HttpResult(response) {
+            Headers = {
+                ["X-Response"] = response.GetType().Name
+            }
+        };
+    }
+
+    //Return custom error with additional metadata
+    public override Task<object> OnExceptionAsync(object requestDto, Exception ex)
+    {
+        Assert.That(Request, Is.Not.Null);
+        var error = DtoUtils.CreateErrorResponse(requestDto, ex);
+        if (error is IHttpError httpError)
+        {                
+            var errorStatus = httpError.Response.GetResponseStatus();
+            errorStatus.Meta = new Dictionary<string,string> {
+                ["InnerType"] = ex.InnerException?.GetType().Name
+            };
+        }
+        return Task.FromResult(error);
+    }
+}
+```
+
+If you're implementing `IService` instead of inheriting the concrete `Service` class, you can implement the interfaces directly:
+
+```csharp
+// Handle all callbacks
+public class MyServices : IService, IServiceFilters
+{
+    //..
+}
+
+// Or individually, just the callbacks you want
+public class MyServices : IService, IServiceBeforeFilter, IServiceAfterFilter, IServiceErrorFilter
+{
+    //..
+}
+```
+
 ### Using a Custom ServiceRunner
 
 The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customization feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](/request-and-response-filters).

@@ -122,3 +122,26 @@ public class MyServices : Service
 ```
 
 More examples of Auto Batched Requests and its behavior can be found in the [ReplyAllTests suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/ReplyAllTests.cs).
+
+### Auto Batch Index
+
+The current index of the Auto Batched Request being processed is now being maintained in `IRequest.Items[Keywords.AutoBatchIndex]`.
+
+In Error Responses the index of the request that failed is now being populated in your Response DTO's `ResponseStatus.Meta["AutoBatchIndex"]`.
+
+To also maintain the active `AutoBatchIndex` in [Custom Batched Requests Implementations](#custom-batched-requests-implementations) 
+you can use the `IRequest.EachRequest()` extension method, e.g:
+
+```csharp
+public object Any(GetCustomAutoBatchIndex[] requests)
+{
+    var responses = new List<GetAutoBatchIndexResponse>();
+
+    Request.EachRequest<GetCustomAutoBatchIndex>(dto =>
+    {
+        responses.Add(Any(dto));
+    });
+
+    return responses;
+}
+```

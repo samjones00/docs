@@ -155,6 +155,26 @@ public class LogAuthEvents : AuthEvents
 }
 ```
 
+### UserSession validation
+
+Custom User Sessions can override `AuthUserSession.Validate()` to add additional logic for validating whether to allow a User to Authenticate, e.g:
+
+```csharp
+public class CustomUserSession : AuthUserSession
+{
+    public override IHttpResult Validate(IServiceBase authService, IAuthSession session, 
+        IAuthTokens tokens, Dictionary<string, string> authInfo)
+    {
+        if (!ValidateEmail(session.Email))
+            return HttpError.BadRequest($"{nameof(session.Email)} is invalid") as IHttpResult;
+        
+        return null;
+    }
+}
+```
+
+Returning any `IHttpResult` will cause Authentication to fail with the returned `IHttpResult` written to the response.
+
 ### Accessing Typed Session
 
 You can access your custom UserAuth session inside your service using the `SesssionAs<T>()` extension method, e.g:
@@ -185,6 +205,48 @@ public abstract class AppServiceBase : Service {
 ```
 
 This will then enable you to access your users Session in your ServiceStack services with `base.UserSession`.
+
+### Cookie Filters
+
+Customization of Cookies can be enabled by overriding the host-specific methods in your `AppHost`:
+
+```csharp
+//ASP.NET Core
+public override void CookieOptionsFilter(Cookie cookie, Microsoft.AspNetCore.Http.CookieOptions cookieOptions) {}
+
+//Classic ASP.NET
+public override void HttpCookieFilter(HttpCookie cookie) {}
+```
+
+### Enable Same Site Cookies
+
+[Same Site Cookies](https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/) are a good default to use 
+in your Apps which restricts cookies from being sent cross-site in order to prevent against cross-site request forgery (CSRF) attacks. 
+
+It can be configured in your `AppHost` with:
+
+```csharp
+SetConfig(new HostConfig
+{
+    UseSameSiteCookies = true
+});
+```
+
+This restriction will prevent features reliant on cross-site cookies from working so you'll need to verify it's safe to enable in your Apps.
+This restriction works with most Auth Providers except for `TwitterAuthProvider` who doesn't yet support the OAuth `state` callback that 
+could be used instead of Session cookies.
+
+### Secure Cookies enabled by default
+
+[Secure Cookies](https://en.wikipedia.org/wiki/Secure_cookie) ensure that Cookies added over HTTPS are only resent in subsequent secure connections.
+
+They're **enabled by default** for **Cookies added over SSL**, they can be disabled with:
+
+```csharp
+Plugins.Add(new HostConfig {
+    UseSecureCookies = false
+});
+```
 
 ## Sharing ServiceStack's Typed Sessions in MVC and ASP.NET
 

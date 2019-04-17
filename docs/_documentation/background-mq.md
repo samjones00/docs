@@ -124,6 +124,7 @@ The creation of Email Template is split into different steps to ensure all users
 Each template follows the same approach:
 
  - Work out all users the email should be sent to 
+
  - Retrieve all data required by the template and inject it into a new [ServiceStack ScriptContext](https://sharpscript.net/docs/installation) 
  - Use the context to render the specified [email template](https://github.com/NetCoreApps/TechStacks/tree/master/src/TechStacks/emails). 
  
@@ -397,4 +398,43 @@ STATS for SendSystemEmail:
   TotalFailed:                    0
   LastMessageProcessed:           4/9/18 7:44:47 PM
 ------------------------------
+```
+
+
+### MQ Collection Stats
+
+You can also get info on the Queue Collection for a specific DTO Type with:
+
+```csharp
+var bgService = (BackgroundMqService)HostContext.Resolve<IMessageService>();
+var mqCollection = bgService.GetCollection(typeof(Poco));
+Dictionary<string, long> statsMap = mqCollection.GetDescriptionMap();
+```
+
+Which returns the text info that [mqCollection.GetDescription()][/background-mq#mq-status] returns, but in a structured Dictionary using the keys:
+
+ - `ThreadCount`
+ - `TotalMessagesAdded`
+ - `TotalMessagesTaken`
+ - `TotalOutQMessagesAdded`
+ - `TotalDlQMessagesAdded`
+
+The dictionary also includes each the snapshot counts of each queue in the MQ Collection, e.g:
+
+ - `mq:Poco.inq`
+ - `mq:Poco.priorityq`
+ - `mq:Poco.outq`
+ - `mq:Poco.dlq`
+
+You can also get the Stats of each MQ Worker, or if you have multiple workers for a Request Type you can access them with:
+
+```csharp
+IMqWorker[] workers = bgService.GetWorkers(QueueNames<Type>.In);
+List<IMessageHandlerStats> stats = workers.Map(x => x.GetStats());
+```
+
+Then combine them to get their cumulative result:
+
+```csharp
+IMessageHandlerStats combinedStats = stats.CombineStats();
 ```
