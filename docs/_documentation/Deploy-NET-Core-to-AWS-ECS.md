@@ -340,6 +340,23 @@ If successful you'll get an output similar to:
 For the curious you can run `docker ps` at this point to see the running Docker Containers which should 
 include this **nginx-proxy** and AWS's ECS agent.
 
+### Enable support for SSL
+
+If you wanted to host any of your Apps under SSL you'll instead need to run your `jwilder/nginx-proxy` container with:
+
+    $ docker run --detach --name nginx-proxy --publish 80:80 --publish 443:443 \
+      --volume /etc/nginx/certs --volume /etc/nginx/vhost.d --volume /usr/share/nginx/html \
+      --volume /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+
+You'll also need to run the [letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion)
+companion Docker container for `nginx-proxy` with:
+
+    $ docker run --detach --name nginx-proxy-letsencrypt --volumes-from nginx-proxy \
+      --volume /var/run/docker.sock:/var/run/docker.sock:ro jrcs/letsencrypt-nginx-proxy-companion
+
+SSL Requires additional info added via environment variables included your .NET Core Docker App's deployment script
+which are documented in [Configure support for SSL](#configure-support-for-ssl).
+
 ## 6. Fork redis-geo Demo
 
 With all the prep work for setting up our Docker Server out of the way, we can now get to the fun part 
@@ -401,6 +418,79 @@ our Docker App we also need an instance of `redis:3.2` that's made available to 
 Hostname that we make available to our App via the `REDIS_HOST` Environment variable:
 
 ![](http://docs.servicestack.net/images/aws/ecs/code-04.png)
+
+## Configure support for SSL
+
+If you want to host your .NET Core Apps under SSL you'll need to include some additional information in your 
+deployment scripts that will be passed to the [docker-letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion)
+container which is a run as a companion Docker container to [nginx-proxy](https://github.com/jwilder/nginx-proxy) which will
+automate the creation/renewal of Lets Encrypt SSL Certificates and the necessary nginx configuration to redirect HTTP Requests
+to SSL Requests which are "SSL terminated" at the nginx reverse proxy and proxied as HTTP to your downstream .NET Core App.
+
+Instead of starting with `redis-geo` you'll want to start with the deployment scripts in [/ServiceStack/sharpscript](https://github.com/ServiceStack/sharpscript)
+which contain a working example of a .NET Core App hosted under SSL at [https://sharpscript.net](https://sharpscript.net).
+
+Essentially your [deploy-envs.sh](https://github.com/ServiceStack/sharpscript/blob/master/deploy-envs.sh) deployment configuration
+script needs to include `LETSENCRYPT_HOST` and `LETSENCRYPT_EMAIL` variables:
+
+```sh
+#!/bin/bash
+
+# set environment variables used in deploy.sh and AWS task-definition.json:
+export IMAGE_NAME=netcoreapps-sharpscript
+export IMAGE_VERSION=latest
+
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_ECS_CLUSTER_NAME=default
+export AWS_VIRTUAL_HOST=sharpscript.net
+export LETSENCRYPT_HOST=$AWS_VIRTUAL_HOST
+export LETSENCRYPT_EMAIL=team@servicestack.net
+```
+
+The only other change required is to pass these environment variables to your App's Docker container defined in 
+[task-definition.json](https://github.com/ServiceStack/sharpscript/blob/master/scripts/task-definition.json):
+
+```json
+{
+    "family": "${ECS_TASK}",
+    "networkMode": "bridge",
+    "containerDefinitions": [
+        {
+            "image": "${AWS_ECS_REPO_DOMAIN}/${IMAGE_NAME}:${IMAGE_VERSION}",
+            "name": "${IMAGE_NAME}",
+            "cpu": 128,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 0,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "VIRTUAL_HOST",
+                    "value": "${AWS_VIRTUAL_HOST}"
+                },
+                {
+                    "name": "LETSENCRYPT_HOST",
+                    "value": "${LETSENCRYPT_HOST}"
+                },
+                {
+                    "name": "LETSENCRYPT_EMAIL",
+                    "value": "${LETSENCRYPT_EMAIL}"
+                }
+            ]
+        }
+    ]
+}
+```
+
+Otherwise all other deployment scripts remain the same as a normal ECS .NET Core Docker App, the primary difference being 
+that after it's deployed by AWS ECS, it triggers the nginx-proxy-companion to retrieve and auto-configure 
+an SSL Certificate from [Lets Encrypt](https://letsencrypt.org) for the App's external domain defined in `LETSENCRYPT_HOST`
+which it registers with nginx to enable its SSL-terminated `https` support for that domain.
 
 ## Create project in Travis-CI
 
