@@ -264,3 +264,31 @@ var scope = JS.CreateScope(args:new Dictionary<string, object> {
 
 expr.Evaluate(scope) //= true
 ```
+
+### Helper Types
+
+As scripting makes prevalent usage of Object Dictionaries and Key/Value pairs there's a couple of UX Friendly Generic collections to
+reduce boilerplate if you're repeatedly using these collections:
+
+```csharp
+var objDict = new ObjectDictionary { //inherits Dictionary<string,object>
+    ["one"] = 1,
+    ["foo"] = "bar"
+}
+
+var strDict = new StringDictionary { //inherits Dictionary<string,string>
+    ["one"] = "1",
+    ["foo"] = "bar"
+}
+
+var kvps = new KeyValuePairs {
+    KeyValuePairs.Create("one",1),
+    KeyValuePairs.Create("foo","bar"),
+};
+
+//instead of
+var kvps = new List<KeyValuePair<string,object>> {
+    new KeyValuePair<string,object>("one",1),
+    new KeyValuePair<string,object>("foo","bar"),
+}
+```

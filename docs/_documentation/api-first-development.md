@@ -27,7 +27,7 @@ in all consumers - multiplicatively increasing the value provided.
 
 ### API First Development Model
 
-The typical practice .NET has been you need to maintain **separate controllers** and logic for your **HTML UIs** and **API controllers** 
+The typical practice in .NET has been you need to maintain **separate controllers** and logic for your **HTML UIs** and **API controllers** 
 for your **HTTP APIs**. This approach forces code duplication and breaks your systems well-defined Service Contracts where any custom
 logic in your MVC Controllers and Razor pages becomes another entry point into your system where no longer are all your system capabilities available 
 to all clients, some are only available when using a browser to navigate MVC pages.
