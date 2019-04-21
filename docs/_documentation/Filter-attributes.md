@@ -12,20 +12,20 @@ For example, ServiceStack uses `[Authenticate]` and `[RequiredPermission]` filte
 Request Filters are executed before Services are called. You can create a Filter Attribute by inheriting from the built-in RequestFilterAttribute's:
 
 ```csharp
-public class CustomRequestFilterAttribute : RequestFilterAttribute 
+//Async:
+public class CustomAsyncRequestFilterAttribute : RequestFilterAsyncAttribute 
 {
-    public override void Execute(IRequest req, IResponse res, object requestDto)
+    public override async Task ExecuteAsync(IRequest req, IResponse res, object requestDto) 
     {
-        //This code is executed before the service
         string userAgent = req.UserAgent;
         StatisticManager.SaveUserAgent(userAgent);
     }
 }
 
-//Async:
-public class CustomAsyncRequestFilterAttribute : RequestFilterAsyncAttribute 
+//Sync:
+public class CustomRequestFilterAttribute : RequestFilterAttribute 
 {
-    public override async Task ExecuteAsync(IRequest req, IResponse res, object requestDto) { ... }
+    public override void Execute(IRequest req, IResponse res, object requestDto) { ... }
 }
 ```
 
@@ -54,19 +54,20 @@ public interface IHasRequestFilterAsync : IRequestFilterBase
 Response Filters are called after Services are executed. 
 
 ```csharp
-public class CustomResponseFilterAttribute : ResponseFilterAttribute
+//Async:
+public class CustomAsyncResponseFilterAttribute : ResponseFilterAsyncAttribute
 {
-    public override void Execute(IRequest req, IResponse res, object responseDto)
+    public override async Task ExecuteAsync(IRequest req, IResponse res, object responseDto) 
     {
         //This code is executed after the service
         res.AddHeader("Cache-Control", "max-age=3600");
     }
 }
 
-//Async:
-public class CustomAsyncResponseFilterAttribute : ResponseFilterAsyncAttribute
+//Sync:
+public class CustomResponseFilterAttribute : ResponseFilterAttribute
 {
-    public override async Task ExecuteAsync(IRequest req, IResponse res, object responseDto) { ... }
+    public override void Execute(IRequest req, IResponse res, object responseDto) { ... }
 }
 ```
 
