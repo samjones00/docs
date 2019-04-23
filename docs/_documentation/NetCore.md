@@ -223,7 +223,7 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 </tr>
 <tr>
     <td>
-        <a href="http://mvc.netcore.io">
+        <a href="https://mvc.netcore.io">
           <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/mvc.png" width="350"/>
         </a>
     </td>
@@ -232,7 +232,7 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
             <caption>.NET Core</caption>
             <tr>
               <td>Live Demo:</td>
-              <td><a href="http://mvc.netcore.io">mvc.netcore.io</a></td>
+              <td><a href="https://mvc.netcore.io">mvc.netcore.io</a></td>
             </tr>
             <tr>
               <td>Github:</td>
