@@ -88,11 +88,11 @@ void OnCreated(IRequest httpReq) {}
 void OnLoad(IRequest httpReq) {}
 
 // Called when the user is registered or on the first OAuth login
-void OnRegistered(IServiceBase registrationService) {}
+void OnRegistered(IRequest httpReq, IAuthSession session, IServiceBase service) {}
 
 // Called after the user has successfully authenticated
-void OnAuthenticated(IServiceBase authService, IAuthSession session, 
-    IAuthTokens tokens, Dictionary<string, string> authInfo) {}
+void OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, 
+    Dictionary<string, string> authInfo) {}
 
 // Fired before the session is removed after the /auth/logout Service is called
 void OnLogout(IServiceBase authService) {}
