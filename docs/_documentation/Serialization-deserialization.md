@@ -125,13 +125,21 @@ public object Post(RawBytes request)
 
 ### Buffering the Request and Response Streams
 
-ServiceStack's Request and Response stream are non-buffered (i.e. forward-only) by default. This can be changed at runtime using a PreRequestFilter to allow the Request Body and Response Output stream to be re-read multiple times should your Services need it:
+ServiceStack's Request and Response stream are non-buffered (i.e. forward-only) by default. This can be changed at runtime using a `PreRequestFilters` to allow the Request Body and Response Output stream to be re-read multiple times should your Services need it:
 
 ```csharp
 appHost.PreRequestFilters.Add((httpReq, httpRes) => {
     httpReq.UseBufferedStream = true;
     httpRes.UseBufferedStream = true;    
 });
+```
+
+Which you'll then be able to re-read the Request Input Stream with:
+
+```csharp
+string textBody = httpReq.GetRawBody(); //read as string
+
+ReadOnlySpan<byte> bytes = ((MemoryStream)httpReq.InputStream).GetBufferAsSpan(); //read as bytes
 ```
 
 ### Raw SOAP Message
