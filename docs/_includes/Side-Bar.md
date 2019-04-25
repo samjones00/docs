@@ -29,6 +29,7 @@
     - [Nuxt Templates](/templates-nuxt)
     - [Vue Templates](/templates-vue)
     - [React Templates](/templates-react)
+    - [Svelte Templates](/templates-svelte)
     - [Angular Templates](/templates-angular)
     - [Desktop Templates](/templates-desktop)
     - [Tour of Webpack](/tour-of-webpack)
