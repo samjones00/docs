@@ -7,23 +7,24 @@ As caching is an essential technology in the development of high-performance web
 [common client interface (ICacheClient)](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Caching/ICacheClient.cs)
 for the following cache providers:
 
+  * [Memory Cache](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Caching/MemoryCacheClient.cs) - Useful for single host web services and enabling unit tests to run without needing access to a cache server.
   * [Redis](https://github.com/ServiceStack/ServiceStack.Redis) - A very fast key-value store that has  non-volatile persistent storage and support for rich data structures such as lists and sets.
   * [OrmLiteCacheClient](https://www.nuget.org/packages/ServiceStack.Server) - Supports all [OrmLite's RDBMS providers](https://github.com/ServiceStack/ServiceStack.OrmLite/#download) for using an existing RDBMS as a distributed cache.
-  * [Memcached](https://nuget.org/packages/ServiceStack.Caching.Memcached) - The tried and tested most widely used cache provider.
-  * [In Memory Cache](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Caching/MemoryCacheClient.cs) - Useful for single host web services and enabling unit tests to run without needing access to a cache server.
-  * [Aws DynamoDB Cache Client](https://www.nuget.org/packages/ServiceStack.Aws/) - For using with Amazon's Dynamo DB backend hosted on Amazon Web Services
-  * [Azure Cache Client](https://nuget.org/packages/ServiceStack.Caching.Azure) - For using the Azure DataCache client when your application is hosted on Azure.
+  * [Memcached](https://nuget.org/packages/ServiceStack.Caching.Memcached) - The original, tried and tested distributed memory caching provider.
+  * [Aws DynamoDB](https://www.nuget.org/packages/ServiceStack.Aws/) - Uses Amazon's Dynamo DB backend hosted on Amazon Web Services
+  * [Azure Table Storage](/azure#virtual-filesystem-backed-by-azure-blob-storage) - Uses Azure Table Storage for when your application is hosted on Azure.
 
 To configure which cache should be used, the particular client has to be registered in the IoC container:
 
-#### In-memory cache:
+### Memory cache:
 ```csharp 
+//Optional: ServiceStack uses MemoryCacheClient if no `ICacheClient` is registered
 container.Register<ICacheClient>(new MemoryCacheClient());
 ```
 
 ##### NuGet Package: [ServiceStack](http://www.nuget.org/packages/ServiceStack)
 
-#### Redis
+### Redis
 
 ```csharp 
 container.Register<IRedisClientsManager>(c => 
@@ -34,7 +35,7 @@ container.Register(c => c.Resolve<IRedisClientsManager>().GetCacheClient());
 
 ##### NuGet Package: [ServiceStack.Redis](http://www.nuget.org/packages/ServiceStack.Redis)
 
-#### OrmLite
+### OrmLite
 
 ```csharp 
 //Register OrmLite Db Factory if not already
@@ -59,7 +60,7 @@ container.Register<ICacheClient>(c =>
 
 ##### NuGet Package: [ServiceStack.Server](http://www.nuget.org/packages/ServiceStack.Server)
 
-#### Memcached:
+### Memcached:
 ```csharp 
 container.Register<ICacheClient>(
     new MemcachedClientCache(new[] { "127.0.0.0" }); //Add Memcached hosts
@@ -67,7 +68,7 @@ container.Register<ICacheClient>(
 
 ##### NuGet Package: [ServiceStack.Caching.Memcached](http://www.nuget.org/packages/ServiceStack.Caching.Memcached)
 
-#### AWS DynamoDB:
+### AWS DynamoDB:
 
 ```csharp
 var awsDb = new AmazonDynamoDBClient(
@@ -77,13 +78,14 @@ cache.InitSchema();
 ```
 ##### NuGet Package: [ServiceStack.Aws](http://www.nuget.org/packages/ServiceStack.Aws)
 
-#### Azure:
+### Azure:
+
 ```csharp 
-container.Register<ICacheClient>(
-    new AzureCacheClient("MyAppCache")); //Add your Azure CacheName if any
+container.Register<ICacheClient>(new AzureTableCacheClient(cacheConnStr));
 ```
 
-##### NuGet Package: [ServiceStack.Caching.Azure](http://www.nuget.org/packages/ServiceStack.Caching.Azure)
+##### NuGet Package: [ServiceStack.Azure](http://www.nuget.org/packages/ServiceStack.Azure)
+
 
 ## Cache a response of a service
 
@@ -185,6 +187,7 @@ API is used to to provide additional non-core functionality to our most popular
  - OrmLite RDBMS
  - In Memory
  - AWS
+ - Azure
  
 The new API's are added as Extension methods on `ICacheClient` so they're easily accessible without casting, the new API's available include: 
   
