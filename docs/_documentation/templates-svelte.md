@@ -1,6 +1,6 @@
 ---
-slug: templates-vue
-title: Vue Project Templates
+slug: templates-svelte
+title: Svelte Project Templates
 ---
 
 [Svelte](https://svelte.dev/) is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.
