@@ -7,8 +7,8 @@ As caching is an essential technology in the development of high-performance web
 [common client interface (ICacheClient)](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Caching/ICacheClient.cs)
 for the following cache providers:
 
-  * [Memory Cache](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Caching/MemoryCacheClient.cs) - Useful for single host web services and enabling unit tests to run without needing access to a cache server.
-  * [Redis](https://github.com/ServiceStack/ServiceStack.Redis) - A very fast key-value store that has  non-volatile persistent storage and support for rich data structures such as lists and sets.
+  * [Memory Cache](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Caching/MemoryCacheClient.cs) - Useful for single host web services without needing any infrastructure dependencies.
+  * [Redis](https://github.com/ServiceStack/ServiceStack.Redis) - A fast key-value store that has non-volatile persistent storage with support for rich data structures such as lists and sets.
   * [OrmLiteCacheClient](https://www.nuget.org/packages/ServiceStack.Server) - Supports all [OrmLite's RDBMS providers](https://github.com/ServiceStack/ServiceStack.OrmLite/#download) for using an existing RDBMS as a distributed cache.
   * [Memcached](https://nuget.org/packages/ServiceStack.Caching.Memcached) - The original, tried and tested distributed memory caching provider.
   * [Aws DynamoDB](https://www.nuget.org/packages/ServiceStack.Aws/) - Uses Amazon's Dynamo DB backend hosted on Amazon Web Services
@@ -18,7 +18,7 @@ To configure which cache should be used, the particular client has to be registe
 
 ### Memory cache:
 ```csharp 
-//Optional: ServiceStack uses MemoryCacheClient if no `ICacheClient` is registered
+//Optional: ServiceStack registers an MemoryCacheClient by default when no `ICacheClient` is registered
 container.Register<ICacheClient>(new MemoryCacheClient());
 ```
 
