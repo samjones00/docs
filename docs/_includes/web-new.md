@@ -15,8 +15,8 @@
 | [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET Core 2.1 React Create App CLI Bootstrap App |
 | [rockwind-webapp](https://github.com/NetCoreTemplates/rockwind-webapp)    | .NET Core 2.1 Rockwind Sharp Apps |
 | [selfhost](https://github.com/NetCoreTemplates/selfhost)           | .NET Core 2.1 self-hosting Console App |
-| [svelte-spa](https://github.com/NetCoreTemplates/svelte-spa)            | .NET Core 2.1 Svelte v3 Rollup Bootstrap App |
 | [sharp](https://github.com/NetCoreTemplates/sharp)              | .NET Core 2.1 Sharp Pages Bootstrap Website |
+| [svelte-spa](https://github.com/NetCoreTemplates/svelte-spa)            | .NET Core 2.1 Svelte v3 Rollup Bootstrap App |
 | [vue-lite](https://github.com/NetCoreTemplates/vue-lite)           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript |
 | [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)           | .NET Core 2.1 Nuxt.js SPA App with Bootstrap |
 | [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET Core 2.1 Vue CLI Bootstrap App |
