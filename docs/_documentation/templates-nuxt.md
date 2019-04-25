@@ -42,9 +42,9 @@ There are 2 variants of Nuxt templates available for both .NET Core and .NET Fra
 
 ### Getting Started 
 
-To experience App development with Nuxt.js, create a new Nuxt Project using [dotnet-new](/dotnet-new):
+To experience App development with Nuxt.js, create a new Nuxt Project using [web new](/web-new):
 
-    $ dotnet-new vue-nuxt ProjectName
+    $ web new vue-nuxt ProjectName
 
 Download npm and .NET Core dependencies:
 

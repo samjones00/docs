@@ -25,11 +25,11 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
 Create new Vue 2.5 Project for .NET Core 2.1:
 
-    $ dotnet-new vue-spa ProjectName
+    $ web new vue-spa ProjectName
 
 Create new Vue 2.5 Project for .NET Framework:
 
-    $ dotnet-new vue-spa-netfx ProjectName
+    $ web new vue-spa-netfx ProjectName
 
 ### [Vuetify SPA Template](https://github.com/NetCoreTemplates/vuetify-spa)
 
@@ -41,11 +41,11 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/) and the [vuetify cli plugi
 
 Create new Vuetify Project for .NET Core 2.1:
 
-    $ dotnet-new vuetify-spa ProjectName
+    $ web new vuetify-spa ProjectName
 
 Create new Vuetify Project for .NET Framework:
 
-    $ dotnet-new vuetify-spa-netfx ProjectName
+    $ web new vuetify-spa-netfx ProjectName
 
 ### [Nuxt SPA Template](https://github.com/NetCoreTemplates/vue-nuxt)
 
@@ -57,11 +57,11 @@ Bootstrapped with [Nuxt.js starter template](https://nuxtjs.org/guide/installati
 
 Create new Nuxt.js v1.4.2 Project for .NET Core 2.1:
 
-    $ dotnet-new vue-nuxt ProjectName
+    $ web new vue-nuxt ProjectName
 
 Create new Nuxt.js v1.4.2 Project for .NET Framework:
 
-    $ dotnet-new vue-nuxt-netfx ProjectName
+    $ web new vue-nuxt-netfx ProjectName
 
 ### [Nuxt and Vuetify SPA Template](https://github.com/NetCoreTemplates/vuetify-nuxt)
 
@@ -73,11 +73,11 @@ Bootstrapped with [Nuxt.js + Vuetify.js starter template](https://github.com/vue
 
 Create new Nuxt Vuetify Project for .NET Core 2.1:
 
-    $ dotnet-new vuetify-nuxt ProjectName
+    $ web new vuetify-nuxt ProjectName
 
 Create new Nuxt Vuetify Project for .NET Framework:
 
-    $ dotnet-new vuetify-nuxt-netfx ProjectName
+    $ web new vuetify-nuxt-netfx ProjectName
 
 ---
 

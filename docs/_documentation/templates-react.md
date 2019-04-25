@@ -25,11 +25,11 @@ Bootstrapped with [create-react-app](https://github.com/facebook/create-react-ap
 
 Create new React 16 Project for .NET Core 2.1:
 
-    $ dotnet-new react-spa ProjectName
+    $ web new react-spa ProjectName
 
 Create new React 16 Project for .NET Framework:
 
-    $ dotnet-new react-spa-netfx ProjectName
+    $ web new react-spa-netfx ProjectName
 
 ### [React Desktop Apps Template](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx)
 
@@ -42,7 +42,7 @@ and cross-platform Console App Hosts:
 
 Create new React Project for .NET Framework:
 
-    $ dotnet-new react-desktop-apps-netfx ProjectName
+    $ web new react-desktop-apps-netfx ProjectName
 
 ---
 

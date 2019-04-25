@@ -19,15 +19,15 @@ See the documentation in each project for more info on features of each template
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/angular-spa.png)](http://angular-spa.web-templates.io/)
 
-> Browse [source code](https://github.com/NetCoreTemplates/angular-spa), view live demo [angular-spa.web-templates.io](http://angular-spa.web-templates.io) and install with [dotnet-new](http://docs.servicestack.net/dotnet-new):
+> Browse [source code](https://github.com/NetCoreTemplates/angular-spa), view live demo [angular-spa.web-templates.io](http://angular-spa.web-templates.io) and install with [web new](/web-new):
 
 Create new Angular 6.1 Project for .NET Core 2.1:
 
-    $ dotnet-new angular-spa ProjectName
+    $ web new angular-spa ProjectName
 
 Create new Angular 6.1 Project for .NET Framework:
 
-    $ dotnet-new angular-spa-netfx ProjectName
+    $ web new angular-spa-netfx ProjectName
 
 #### Angular HTTP Client
 
@@ -50,15 +50,15 @@ this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r =
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/angular-lite-spa.png)](http://angular-lite-spa.web-templates.io/)
 
-> Browse [source code](https://github.com/NetCoreTemplates/angular-lite-spa), view Live Demo [angular-lite-spa.web-templates.io](http://angular-lite-spa.web-templates.io) and install with [dotnet-new](http://docs.servicestack.net/dotnet-new):
+> Browse [source code](https://github.com/NetCoreTemplates/angular-lite-spa), view Live Demo [angular-lite-spa.web-templates.io](http://angular-lite-spa.web-templates.io) and install with [web new](/web-new):
 
 Create new Angular 4 Project for .NET Core 2.1:
 
-    $ dotnet-new angular-lite-spa ProjectName
+    $ web new angular-lite-spa ProjectName
 
 Create new Angular 4 Project for .NET Framework:
 
-    $ dotnet-new angular-lite-spa-netfx ProjectName
+    $ web new angular-lite-spa-netfx ProjectName
 
 
 ---
