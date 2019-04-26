@@ -21,7 +21,7 @@ Instead of using techniques like virtual DOM diffing, Svelte writes code that su
 
     $ web new svelte-spa ProjectName
 
-![](https://github.com/ServiceStack/Assets/blob/master/img/screencasts/svelte-spa.gif)
+![](https://github.com/ServiceStack/Assets/raw/master/img/screencasts/svelte-spa.gif)
 
 ## Development workflow
 
