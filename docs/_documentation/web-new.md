@@ -26,7 +26,13 @@ Where it will display all repositories in [.NET Core](https://github.com/NetCore
 [ASP.NET Core Framework](https://github.com/NetFrameworkCoreTemplates) GitHub Orgs:
 
 <div class='markdown-body'>
-{% capture projects %}{% include web-new.md %}{% endcapture %}
+{% capture projects %}{% include web-new-netcore.md %}{% endcapture %}
+{{ projects | markdownify }}
+
+{% capture projects %}{% include web-new-corefx.md %}{% endcapture %}
+{{ projects | markdownify }}
+
+{% capture projects %}{% include web-new-netfx.md %}{% endcapture %}
 {{ projects | markdownify }}
 </div>
 

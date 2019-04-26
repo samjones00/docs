@@ -91,7 +91,7 @@ All .NET Core 2.1 Templates can be developed using your preferred choice of eith
 This makes the `web` .NET Core tool globally available which can be run without arguments to view all templates available:
 
 <div class='markdown-body'>
-{% capture projects %}{% include web-new.md %}{% endcapture %}
+{% capture projects %}{% include web-new-netcore.md %}{% endcapture %}
 {{ projects | markdownify }}
 </div>
 

@@ -94,11 +94,30 @@ The OAuth providers below require you to register your application with them in 
 Once you have the `ConsumerKey` and `ConsumerSecret` you need to configure it with your ServiceStack host, via [Web.config](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/Web.config), e.g:
 
 ```xml
-<add key="oauth.twitter.RedirectUrl"    value="http://yourhostname.com/"/>
-<add key="oauth.twitter.CallbackUrl"    value="http://yourhostname.com/auth/twitter"/>    
+<add key="oauth.RedirectUrl"            value="https://yourhostname.com"/>
+<add key="oauth.CallbackUrl"            value="https://yourhostname.com/auth/{0}"/>    
 <add key="oauth.twitter.ConsumerKey"    value="3H1FHjGbA1N0n0aT5yApA"/>
 <add key="oauth.twitter.ConsumerSecret" value="MLrZ0ujK6DwyjlRk2YLp6HwSdoBjtuqwXeHDQLv0Q"/>
 ```
+
+For [.NET Core](/web-new) or [ASP.NET Core Apps](/templates-corefx) you can add the same keys to your `appsettings.json`, e.g:
+
+```json
+{
+    "oauth.RedirectUrl":            "https://yourhostname.com",
+    "oauth.CallbackUrl":            "https://yourhostname.com/auth/{0}",
+    "oauth.twitter.ConsumerKey":    "3H1FHjGbA1N0n0aT5yApA",
+    "oauth.twitter.ConsumerSecret": "MLrZ0ujK6DwyjlRk2YLp6HwSdoBjtuqwXeHDQLv0Q",
+}
+```
+
+
+
+```xml
+<add key="oauth.twitter.RedirectUrl"    value="https://yourhostname.com"/>
+<add key="oauth.twitter.CallbackUrl"    value="https://yourhostname.com/auth/twitter"/>    
+```
+
 
 > Note: Each OAuth Config option fallbacks to the configuration without the provider name. This is useful for reducing repetitive configuration that's shared by all OAuth providers like the `RedirectUrl` or `CallbackUrl`, e.g:
 
