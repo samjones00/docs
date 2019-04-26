@@ -37,8 +37,8 @@ These Auth Providers include authentication with each request so the Authenticat
 {% capture table %}
 | Provider          | Class Name                   | Auth Method       | Description |
 |-|-|-|-|
-| **JWT**           | `JwtAuthProvider`            | HTTP Bearer Token | Stateless Auth Provider that uses [JSON Web Tokens](https://jwt.io). See [JWT docs](/jwt-authprovider)  |
-| **API Keys**      | `ApiKeyAuthProvider`         | HTTP Bearer Token | Allow 3rd Parties access to authenticate without a password. See [API Key docs](/api-key-authprovider) |
+| **JWT**           | `JwtAuthProvider`            | HTTP Bearer Token | Stateless Auth Provider using [JSON Web Tokens](https://jwt.io). See [JWT docs](/jwt-authprovider)  |
+| **API Keys**      | `ApiKeyAuthProvider`         | HTTP Bearer Token | Allow 3rd Parties access to [authenticate without a password](/api-key-authprovider) |
 | **Basic Auth**    | `BasicAuthProvider`          | HTTP Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
 {% endcapture %}
 {{ table | markdownify }}
@@ -59,7 +59,7 @@ The following OAuth Providers are built into ServiceStack and can be used in bot
 |-|-|-|-|
 | **Facebook**      | `FacebookAuthProvider`       | **/auth/facebook**       | [developers.facebook.com/apps](https://developers.facebook.com/apps) |
 | **Twitter**       | `TwitterAuthProvider`        | **/auth/twitter**        | [dev.twitter.com/apps](https://dev.twitter.com/apps) |
-| **Google**        | `GoogleAuthProvider`         | **/auth/google**         | [console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) |
+| **Google**        | `GoogleAuthProvider`         | **/auth/google**         | [console.developers.google.com](https://console.developers.google.com/apis/credentials) |
 | **GitHub**        | `GithubAuthProvider`         | **/auth/github**         | [github.com/settings/applications/new](https://github.com/settings/applications/new) |
 | **Microsoft**     | `MicrosoftGraphAuthProvider` | **/auth/microsoftgraph** | [apps.dev.microsoft.com](https://apps.dev.microsoft.com) |
 | **LinkedIn**      | `LinkedInAuthProvider`       | **/auth/linkedin**       | [www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer) |
