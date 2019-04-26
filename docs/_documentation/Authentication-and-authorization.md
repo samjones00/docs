@@ -35,11 +35,11 @@ These Auth Providers include authentication with each request so the Authenticat
 
 <div class='markdown-body pb-3'>
 {% capture table %}
-| Provider          | Class Name                   | Auth Method       | Description |
+| Provider          | Class Name                   | Auth Method  | Description |
 |-|-|-|-|
-| **JWT**           | `JwtAuthProvider`            | HTTP Bearer Token | Stateless Auth Provider using [JSON Web Tokens](https://jwt.io). See [JWT docs](/jwt-authprovider)  |
-| **API Keys**      | `ApiKeyAuthProvider`         | HTTP Bearer Token | Allow 3rd Parties access to [authenticate without a password](/api-key-authprovider) |
-| **Basic Auth**    | `BasicAuthProvider`          | HTTP Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
+| **JWT**           | `JwtAuthProvider`            | Bearer Token | Stateless Auth Provider using [JSON Web Tokens](/jwt-authprovider)  |
+| **API Keys**      | `ApiKeyAuthProvider`         | Bearer Token | Allow 3rd Parties access to [authenticate without a password](/api-key-authprovider) |
+| **Basic Auth**    | `BasicAuthProvider`          | Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
 {% endcapture %}
 {{ table | markdownify }}
 </div>
