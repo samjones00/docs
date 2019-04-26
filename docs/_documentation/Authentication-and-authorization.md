@@ -12,15 +12,14 @@ public override void Configure(Container container)
 {
     Plugins.Add(new AuthFeature(() => new AuthUserSession(),
       new IAuthProvider[] { 
-        new BasicAuthProvider(), //Sign-in with HTTP Basic Auth
+        new BasicAuthProvider(),       //Sign-in with HTTP Basic Auth
         new CredentialsAuthProvider(), //HTML Form post of UserName/Password credentials
       }));
 
-    Plugins.Add(new RegistrationFeature());
-
     container.Register<ICacheClient>(new MemoryCacheClient());
-    var userRep = new InMemoryAuthRepository();
-    container.Register<IAuthRepository>(userRep);
+
+    var userRepo = new InMemoryAuthRepository();
+    container.Register<IAuthRepository>(userRepo);
     
     //The IAuthRepository is used to store the user credentials etc.
     //Implement this interface to adjust it to your app's data storage
@@ -29,7 +28,7 @@ public override void Configure(Container container)
 
 The high-level overview below shows how all the different parts fit together and which parts are customizable:
 
-![Authentication Overview](/images/security/auth-overview.png)
+![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/Assets/master/svg/diagrams/auth.svg)
 
 ### Auth Providers
 
