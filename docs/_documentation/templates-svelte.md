@@ -9,7 +9,7 @@ Instead of using techniques like virtual DOM diffing, Svelte writes code that su
 
 [Read the introductory blog post](https://svelte.dev/blog/svelte-3-rethinking-reactivity) to learn more.
 
-## Svelte .NET Core and .NET Framework Single Page App Templates
+## Svelte .NET Core Single Page App Templates
 
 .NET Core 2.1 svelte v3 rollup App Project Template integrated with ServiceStack Services and built-in Routing, User Registration and Sign Up forms.
 
