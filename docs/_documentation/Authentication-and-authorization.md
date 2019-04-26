@@ -28,7 +28,7 @@ public override void Configure(Container container)
 
 The high-level overview below shows how all the different parts fit together and which parts are customizable:
 
-![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/Assets/master/svg/diagrams/auth.svg)
+![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/Assets/master/svg/diagrams/auth.svg?sanitize=true)
 
 ### Auth Providers
 
