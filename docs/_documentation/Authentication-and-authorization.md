@@ -5,6 +5,76 @@ title: Authentication and Authorization
 
 Built into ServiceStack is an optional Authentication feature you can use to add Authentication to your services by providing web services to Authenticate existing users, Register new users as well Assign/UnAssign Roles to existing users (if you need them). It's highly pluggable and customizable where you can plug-in your own Auth logic, change the caching and session providers as well as what RDBMS is used to persist UserAuth data.
 
+### High Level Overview
+
+![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/Assets/master/svg/diagrams/auth.svg?sanitize=true)
+
+The `AuthenticateService` is registered at paths `/auth` and `/auth/{provider}` where the Provider maps to the `IAuthProvider.Provider` property of the registered AuthProviders. 
+The urls for clients authenticating against the built-in AuthProviders are:
+
+### Built-In Auth Providers
+
+By default the `CredentialsAuthProvider` and `BasicAuthProvider` validate against users stored in the UserAuth repository. 
+The registration service at `/register` allow users to register new users with your service and stores them in your preferred `AuthRepository` provider (below). 
+The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) uses this to allow new users (without Twitter/Facebook accounts) to register with the website.
+
+| Provider          | Class Name                  | Route                    | Description |
+|-|-|-|-|
+| **Credentials**   | `CredentialsAuthProvider`   | **/auth/credentials**    | Authentication using standard username/password credentials |
+
+A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` hook so you can add in your own implementation. If you want to make this available via BasicAuth as well you will also need to subclass `BasicAuthProvider` with your own custom implementation.
+
+### IAuthWithRequest Auth Providers
+
+These Auth Providers include authentication with each request so the Authenticated User Session is only populated on the HTTP `IRequest` and not saved in the registered Cache Client.
+
+| Provider          | Class Name                   | Auth Method       | Description |
+|-|-|-|-|
+| **JWT**           | `JwtAuthProvider`            | HTTP Bearer Token | Stateless Auth Provider that uses [JSON Web Tokens](https://jwt.io). See [JWT docs](/jwt-authprovider)  |
+| **API Keys**      | `ApiKeyAuthProvider`         | HTTP Bearer Token | Allow 3rd Parties access to protected Services without a password. See [API Key docs](/api-key-authprovider) |
+| **Basic Auth**    | `BasicAuthProvider`          | HTTP Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
+| **Windows Auth**  | `AspNetWindowsAuthProvider`  | NTLM  | Authentication using [Windows Auth](https://support.microsoft.com/en-us/help/323176/how-to-implement-windows-authentication-and-authorization-in-asp-net) built into ASP.NET |
+| **Claims Auth**   | `NetCoreIdentityAuthProvider`| Claims based Auth | Pass through Auth Provider that delegates to ASP.NET Core Identity Auth or Identity Server |
+
+### OAuth Providers
+
+The following OAuth Providers are built into ServiceStack and can be used in both ASP.NET Core and .NET Framework Apps:
+
+| Provider          | Class Name                   | Route                    | Create OAuth App Link |
+|-|-|-|-|
+| **Facebook**      | `FacebookAuthProvider`       | **/auth/facebook**       | [developers.facebook.com/apps](https://developers.facebook.com/apps) |
+| **Twitter**       | `TwitterAuthProvider`        | **/auth/twitter**        | [dev.twitter.com/apps](https://dev.twitter.com/apps) |
+| **Google**        | `GoogleAuthProvider`         | **/auth/google**         | [console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) |
+| **GitHub**        | `GithubAuthProvider`         | **/auth/github**         | [github.com/settings/applications/new](https://github.com/settings/applications/new) |
+| **Microsoft**     | `MicrosoftGraphAuthProvider` | **/auth/microsoftgraph** | [apps.dev.microsoft.com](https://apps.dev.microsoft.com) |
+| **LinkedIn**      | `LinkedInAuthProvider`       | **/auth/linkedin**       | [www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer) |
+| **Yammer**        | `YammerAuthProvider`         | **/auth/yammer**         | [www.yammer.com/client_applications](http://www.yammer.com/client_applications) |
+| **Yandex**        | `YandexAuthProvider`         | **/auth/yandex**         | [oauth.yandex.ru/client/new](https://oauth.yandex.ru/client/new) |
+| **VK**            | `VkAuthProvider`             | **/auth/vkcom**          | [vk.com/editapp?act=create](http://vk.com/editapp?act=create) |
+| **Odnoklassniki** | `OdnoklassnikiAuthProvider`  | **/auth/odnoklassniki**  | [www.odnoklassniki.ru/devaccess](http://www.odnoklassniki.ru/devaccess) |
+
+### Legacy OAuth and Open ID Auth Providers
+
+These Auth Providers have a dependency on `DotNetOpenAuth` that can only be used in classic ASP.NET System.Web projects:
+
+| Provider          | Class Name                   | Route                    | Create OAuth App Link |
+|-|-|-|-|
+| **Instagram**     | `InstagramOAuth2Provider`    | **/auth/instagram**      | [instagram.com/developer/authentication](http://instagram.com/developer/authentication/) |
+| **Custom OpenId** | `OpenIdOAuthProvider`        | **/auth/openid**         | |
+| **My OpenId**     | `MyOpenIdOAuthProvider`      | **/auth/myopenid**       | |
+| **Yahoo OpenId**  | `YahooOpenIdOAuthProvider`   | **/auth/yahooopenid**    | |
+
+The OAuth2 Providers are in [ServiceStack.Authentication.OAuth2](https://www.nuget.org/packages/ServiceStack.Authentication.OAuth2/) whilst the Open ID providers 
+are in [ServiceStack.Authentication.OpenId](https://www.nuget.org/packages/ServiceStack.Authentication.OpenId/) NuGet packages. More info available in [OAuth2 and OpenId 2.0 docs](/openid).
+
+### Community Auth Providers
+
+  - [Azure Active Directory](https://github.com/jfoshee/ServiceStack.Authentication.Aad) - Allow Custom App to login with Azure Active Directory
+  - [Azure Active Directory via Azure Graph for ServiceStack](https://github.com/ticky74/ServiceStack.Authentication.Azure)
+  - [ServiceStack.Authentication.IdentityServer](https://github.com/MacLeanElectrical/servicestack-authentication-identityserver) - Integration with ASP.NET IdentityServer and provides OpenIDConnect / OAuth 2.0 Single Sign-On Authentication
+
+### Basic Configuration
+
 A minimal configuration needed to get Basic Authentication up and running is the following in `AppHost.Config()` (derived from the [AuthTests unit test](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/AuthTests.cs)):
 
 ```csharp 
@@ -26,69 +96,9 @@ public override void Configure(Container container)
 }
 ```
 
-The high-level overview below shows how all the different parts fit together and which parts are customizable:
-
-![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/Assets/master/svg/diagrams/auth.svg?sanitize=true)
-
-### Auth Providers
-
-From the overview we can see the built-in AuthProviders that are included:
-
-  * **Credentials** - For authenticating with username/password credentials by posting to the `/auth/credentials` service
-  * **API Keys** - Allowing users to authenticate with API Keys
-  * **JWT Tokens** - Allowing users to authenticate with JWT Tokens
-  * **Basic Auth** - Allowing users to authenticate with HTTP Basic Auth
-  * **Digest Auth** - Allowing users to authenticate with HTTP Digest Authentication 
-  * **Custom Credentials** - Inheriting CredentialsAuthProvider and providing your own Username/Password impl
-  * **AspNetWindowsAuthProvider** - Allowing users to authenticate with Windows Authentication
-
-### OAuth Providers
-
-  * **Facebook OAuth** - Allow users to Register and Authenticate with Facebook 
-  * **Twitter OAuth** - Allow users to Register and Authenticate with Twitter
-  * **Google OAuth** - Allow users to Register and Authenticate with Google
-  * **Microsoft OAuth** - Allow users to Register and Authenticate with Microsoft Graph
-  * **GitHub OAuth** - Allow users to Register and Authenticate with GitHub 
-  * **Yammer OAuth** - Allow users to Register and Authenticate with Yammer
-  * **Yandex OAuth** - Allow users to Register and Authenticate with Yandex
-  * **VK OAuth** - Allow users to Register and Authenticate with VK
-  * **Odnoklassni OAuth** - Allow users to Register and Authenticate with Odnoklassni
-  * **LinkedIn OAuth2** - Allow users to Register and Authenticate with LinkedIn OAuth2
-  * **Microsoft Live OAuth2** - Allow users to Register and Authenticate with Microsoft Live OAuth2
-
-### [API Key AuthProvider](/api-key-authprovider)
-
-The `ApiKeyAuthProvider` provides an alternative method for allowing external 3rd Parties access to your protected Services without needing to specify a password. 
-
-### [JWT AuthProvider](/jwt-authprovider)
-
-The `JwtAuthProvider` is our integrated stateless Auth solution for the popular [JSON Web Tokens](https://jwt.io/) (JWT) industry standard.
-
-### Community Auth Providers
-
-  - [Azure Active Directory](https://github.com/jfoshee/ServiceStack.Authentication.Aad) - Allow Custom App to login with Azure Active Directory
-  - [Azure Active Directory via Azure Graph for ServiceStack](https://github.com/ticky74/ServiceStack.Authentication.Azure)
-  - [ServiceStack.Authentication.IdentityServer](https://github.com/MacLeanElectrical/servicestack-authentication-identityserver) - Integration with ASP.NET IdentityServer and provides OpenIDConnect / OAuth 2.0 Single Sign-On Authentication
-
-Find more info about see [OpenId 2.0 providers docs](/openid).
+[AuthWebTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/) is a simple project that shows all Auth Providers configured and working in the same app. See the [AppHost](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/AppHost.cs) for an example of the code and the [Web.config](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/Web.config) for an example of the configuration required to enable each Auth Provider.
 
 ### OAuth Configuration
-
-The OAuth providers below require you to register your application with them in order to get the `ConsumerKey` and `ConsumerSecret` required, at the urls below:
-
-  - **Facebook** [developers.facebook.com/apps](https://developers.facebook.com/apps)
-  - **Twitter** [dev.twitter.com/apps](https://dev.twitter.com/apps)
-  - **Google** [console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials)
-  - **Microsoft Graph** [apps.dev.microsoft.com](https://apps.dev.microsoft.com)
-  - **GitHub** [github.com/settings/applications/new](https://github.com/settings/applications/new)
-  - **LinkedIn** [www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer)
-  - **Instagram** [instagram.com/developer/authentication](http://instagram.com/developer/authentication/)
-  - **Yammer** [www.yammer.com/client_applications](http://www.yammer.com/client_applications)
-  - **Yandex** [oauth.yandex.ru/client/new](https://oauth.yandex.ru/client/new)
-  - **VK** [vk.com/editapp?act=create](http://vk.com/editapp?act=create)
-  - **Odnoklassniki** [www.odnoklassniki.ru/devaccess](http://www.odnoklassniki.ru/devaccess)
-
-[AuthWebTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/) is a simple project that shows all Auth Providers configured and working in the same app. See the [AppHost](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/AppHost.cs) for an example of the code and the [Web.config](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/Web.config) for an example of the configuration required to enable each Auth Provider.
 
 Once you have the `ConsumerKey` and `ConsumerSecret` you need to configure it with your ServiceStack host, via [Web.config](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.AuthWeb.Tests/Web.config), e.g:
 
@@ -132,12 +142,6 @@ Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {
 ```
 
 > Note: The Callback URL in each Application should match the CallbackUrl for your application which is typically: http://yourhostname.com/auth/{Provider}, e.g. http://yourhostname.com/auth/twitter for Twitter.
-
-### Built-In Auth Providers
-
-By default the `CredentialsAuthProvider` and `BasicAuthProvider` validate against users stored in the UserAuth repository. The registration service at `/register` allow users to register new users with your service and stores them in your preferred `AuthRepository` provider (below). The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) uses this to allow new users (without Twitter/Facebook accounts) to register with the website.
-
-A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` hook so you can add in your own implementation. If you want to make this available via BasicAuth as well you will also need to subclass `BasicAuthProvider` with your own custom implementation.
 
 ### User Auth Repository
 
@@ -369,32 +373,6 @@ base.AuthRepository.CreateUserAuth(new UserAuth
 ```
 
 > You can use `HostContext.AppHost.GetAuthRepository(Request)` to access the registered `IAuthRepository` outside of a ServiceStack Service.
-
-## Auth Provider Routes
-
-The `AuthService` is registered at paths `/auth` and `/auth/{provider}` where the Provider maps to the `IAuthProvider.Provider` property of the registered AuthProviders. The urls for clients authenticating against the built-in AuthProviders are:
-
-  * `/auth/credentials` - CredentialsAuthProvider
-  * `/auth/apikey` - ApiKeyAuthProvider
-  * `/auth/jwt` - JwtAuthProvider
-  * `/auth/basic` - BasicAuthProvider
-  * `/auth/twitter` - TwitterAuthProvider
-  * `/auth/facebook` - FacebookAuthProvider
-  * `/auth/google` - GoogleAuthProvider
-  * `/auth/github` - GithubAuthProvider
-  * `/auth/microsoftgraph` - MicrosoftGraphAuthProvider
-  * `/auth/linkedin` - LinkedInOAuth2Provider
-
-### Legacy OAuth and Open ID Auth Providers
-
-  * `/auth/yammer` - YammerAuthProvider
-  * `/auth/instagram` - InstagramOAuth2Provider
-  * `/auth/openid` - OpenIdOAuthProvider (Any Custom OpenId provider)
-  * `/auth/myopenid` - MyOpenIdOAuthProvider
-  * `/auth/yahooopenid` - YahooOpenIdOAuthProvider
-  * `/auth/yandex` - YandexAuthProvider
-  * `/auth/vkcom` - VkAuthProvider
-  * `/auth/odnoklassniki` - OdnoklassnikiAuthProvider
 
 ### Logout
 
