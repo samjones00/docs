@@ -18,9 +18,14 @@ By default the `CredentialsAuthProvider` and `BasicAuthProvider` validate agains
 The registration service at `/register` allow users to register new users with your service and stores them in your preferred `AuthRepository` provider (below). 
 The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) uses this to allow new users (without Twitter/Facebook accounts) to register with the website.
 
+<div class='markdown-body pb-3'>
+{% capture table %}
 | Provider          | Class Name                  | Route                    | Description |
 |-|-|-|-|
 | **Credentials**   | `CredentialsAuthProvider`   | **/auth/credentials**    | Authentication using standard username/password credentials |
+{% endcapture %}
+{{ table | markdownify }}
+</div>
 
 A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` hook so you can add in your own implementation. If you want to make this available via BasicAuth as well you will also need to subclass `BasicAuthProvider` with your own custom implementation.
 
@@ -28,18 +33,28 @@ A good starting place to create your own Auth provider that relies on username/p
 
 These Auth Providers include authentication with each request so the Authenticated User Session is only populated on the HTTP `IRequest` and not saved in the registered Cache Client.
 
+<div class='markdown-body pb-3'>
+{% capture table %}
 | Provider          | Class Name                   | Auth Method       | Description |
 |-|-|-|-|
 | **JWT**           | `JwtAuthProvider`            | HTTP Bearer Token | Stateless Auth Provider that uses [JSON Web Tokens](https://jwt.io). See [JWT docs](/jwt-authprovider)  |
-| **API Keys**      | `ApiKeyAuthProvider`         | HTTP Bearer Token | Allow 3rd Parties access to protected Services without a password. See [API Key docs](/api-key-authprovider) |
+| **API Keys**      | `ApiKeyAuthProvider`         | HTTP Bearer Token | Allow 3rd Parties access to authenticate without a password. See [API Key docs](/api-key-authprovider) |
 | **Basic Auth**    | `BasicAuthProvider`          | HTTP Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
-| **Windows Auth**  | `AspNetWindowsAuthProvider`  | NTLM  | Authentication using [Windows Auth](https://support.microsoft.com/en-us/help/323176/how-to-implement-windows-authentication-and-authorization-in-asp-net) built into ASP.NET |
-| **Claims Auth**   | `NetCoreIdentityAuthProvider`| Claims based Auth | Pass through Auth Provider that delegates to ASP.NET Core Identity Auth or Identity Server |
+{% endcapture %}
+{{ table | markdownify }}
+</div>
+
+There are 2 other Auth Providers that Authenticate per-request:
+
+ - **Windows Auth** in `AspNetWindowsAuthProvider`  - Authentication using [Windows Auth](https://support.microsoft.com/en-us/help/323176/how-to-implement-windows-authentication-and-authorization-in-asp-net) built into ASP.NET.
+ - **Claims Auth** in `NetCoreIdentityAuthProvider` - Pass through Auth Provider that delegates to ASP.NET Core Identity Auth or Identity Server.
 
 ### OAuth Providers
 
 The following OAuth Providers are built into ServiceStack and can be used in both ASP.NET Core and .NET Framework Apps:
 
+<div class='markdown-body pb-3'>
+{% capture table %}
 | Provider          | Class Name                   | Route                    | Create OAuth App Link |
 |-|-|-|-|
 | **Facebook**      | `FacebookAuthProvider`       | **/auth/facebook**       | [developers.facebook.com/apps](https://developers.facebook.com/apps) |
@@ -52,17 +67,25 @@ The following OAuth Providers are built into ServiceStack and can be used in bot
 | **Yandex**        | `YandexAuthProvider`         | **/auth/yandex**         | [oauth.yandex.ru/client/new](https://oauth.yandex.ru/client/new) |
 | **VK**            | `VkAuthProvider`             | **/auth/vkcom**          | [vk.com/editapp?act=create](http://vk.com/editapp?act=create) |
 | **Odnoklassniki** | `OdnoklassnikiAuthProvider`  | **/auth/odnoklassniki**  | [www.odnoklassniki.ru/devaccess](http://www.odnoklassniki.ru/devaccess) |
+{% endcapture %}
+{{ table | markdownify }}
+</div>
 
 ### Legacy OAuth and Open ID Auth Providers
 
 These Auth Providers have a dependency on `DotNetOpenAuth` that can only be used in classic ASP.NET System.Web projects:
 
+<div class='markdown-body pb-3'>
+{% capture table %}
 | Provider          | Class Name                   | Route                    | Create OAuth App Link |
 |-|-|-|-|
 | **Instagram**     | `InstagramOAuth2Provider`    | **/auth/instagram**      | [instagram.com/developer/authentication](http://instagram.com/developer/authentication/) |
 | **Custom OpenId** | `OpenIdOAuthProvider`        | **/auth/openid**         | |
 | **My OpenId**     | `MyOpenIdOAuthProvider`      | **/auth/myopenid**       | |
 | **Yahoo OpenId**  | `YahooOpenIdOAuthProvider`   | **/auth/yahooopenid**    | |
+{% endcapture %}
+{{ table | markdownify }}
+</div>
 
 The OAuth2 Providers are in [ServiceStack.Authentication.OAuth2](https://www.nuget.org/packages/ServiceStack.Authentication.OAuth2/) whilst the Open ID providers 
 are in [ServiceStack.Authentication.OpenId](https://www.nuget.org/packages/ServiceStack.Authentication.OpenId/) NuGet packages. More info available in [OAuth2 and OpenId 2.0 docs](/openid).
@@ -81,10 +104,10 @@ A minimal configuration needed to get Basic Authentication up and running is the
 public override void Configure(Container container)
 {
     Plugins.Add(new AuthFeature(() => new AuthUserSession(),
-      new IAuthProvider[] { 
-        new BasicAuthProvider(),       //Sign-in with HTTP Basic Auth
-        new CredentialsAuthProvider(), //HTML Form post of UserName/Password credentials
-      }));
+        new IAuthProvider[] { 
+            new BasicAuthProvider(),       //Sign-in with HTTP Basic Auth
+            new CredentialsAuthProvider(), //HTML Form post of UserName/Password credentials
+        }));
 
     container.Register<ICacheClient>(new MemoryCacheClient());
 
