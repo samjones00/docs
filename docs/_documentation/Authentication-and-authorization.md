@@ -40,7 +40,7 @@ From the overview we can see the built-in AuthProviders that are included:
   * **JWT Tokens** - Allowing users to authenticate with JWT Tokens
   * **Basic Auth** - Allowing users to authenticate with HTTP Basic Auth
   * **Digest Auth** - Allowing users to authenticate with HTTP Digest Authentication 
-  * **Custom Credentials** - By inheriting CredentialsAuthProvider and providing your own Username/Password `TryAuthenticate` implementation
+  * **Custom Credentials** - Inheriting CredentialsAuthProvider and providing your own Username/Password impl
   * **AspNetWindowsAuthProvider** - Allowing users to authenticate with Windows Authentication
 
 ### OAuth Providers
@@ -48,27 +48,14 @@ From the overview we can see the built-in AuthProviders that are included:
   * **Facebook OAuth** - Allow users to Register and Authenticate with Facebook 
   * **Twitter OAuth** - Allow users to Register and Authenticate with Twitter
   * **Google OAuth** - Allow users to Register and Authenticate with Google
+  * **Microsoft OAuth** - Allow users to Register and Authenticate with Microsoft Graph
   * **GitHub OAuth** - Allow users to Register and Authenticate with GitHub 
   * **Yammer OAuth** - Allow users to Register and Authenticate with Yammer
   * **Yandex OAuth** - Allow users to Register and Authenticate with Yandex
   * **VK OAuth** - Allow users to Register and Authenticate with VK
   * **Odnoklassni OAuth** - Allow users to Register and Authenticate with Odnoklassni
-
-### OAuth2 Providers
-
-The [ServiceStack.Authentication.OAuth2](https://nuget.org/packages/ServiceStack.Authentication.OAuth2) NuGet package provides OAuth2 Providers support to ServiceStack that includes:
-
-  * **Instagram OAuth2** - Allow users to Register and Authenticate with Instagram OAuth2
   * **LinkedIn OAuth2** - Allow users to Register and Authenticate with LinkedIn OAuth2
   * **Microsoft Live OAuth2** - Allow users to Register and Authenticate with Microsoft Live OAuth2
-
-### [OpenId Auth Providers](/openId)
-
-The [ServiceStack.Authentication.OpenId](https://nuget.org/packages/ServiceStack.Authentication.OpenId) NuGet package provides OpenId Auth Providers support to ServiceStack that includes:
-
-  * **Yahoo OpenId** - Allow users to Register and Authenticate with Yahoo
-  * **MyOpenId** - Allow users to Register and Authenticate with MyOpenId
-  * **OpenId** - Allow users to Register and Authenticate with **any** custom OpenId provider
 
 ### [API Key AuthProvider](/api-key-authprovider)
 
@@ -92,11 +79,11 @@ The OAuth providers below require you to register your application with them in 
 
   - **Facebook** [developers.facebook.com/apps](https://developers.facebook.com/apps)
   - **Twitter** [dev.twitter.com/apps](https://dev.twitter.com/apps)
-  - **Google** [console.developers.google.com](https://console.developers.google.com)
+  - **Google** [console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials)
+  - **Microsoft Graph** [apps.dev.microsoft.com](https://apps.dev.microsoft.com)
   - **GitHub** [github.com/settings/applications/new](https://github.com/settings/applications/new)
+  - **LinkedIn** [www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer)
   - **Instagram** [instagram.com/developer/authentication](http://instagram.com/developer/authentication/)
-  - **LinkedIn OAuth2** [www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer)
-  - **Microsoft Live OAuth2** [account.live.com/developers/applications](https://account.live.com/developers/applications)
   - **Yammer** [www.yammer.com/client_applications](http://www.yammer.com/client_applications)
   - **Yandex** [oauth.yandex.ru/client/new](https://oauth.yandex.ru/client/new)
   - **VK** [vk.com/editapp?act=create](http://vk.com/editapp?act=create)
