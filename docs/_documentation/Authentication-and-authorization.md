@@ -111,22 +111,15 @@ For [.NET Core](/web-new) or [ASP.NET Core Apps](/templates-corefx) you can add 
 }
 ```
 
-
+Each OAuth Config option fallbacks to the configuration without the provider name. If needed you provide OAuth specific configuration
+by including the Auth Provider Name in the configuration, e.g:
 
 ```xml
 <add key="oauth.twitter.RedirectUrl"    value="https://yourhostname.com"/>
 <add key="oauth.twitter.CallbackUrl"    value="https://yourhostname.com/auth/twitter"/>    
 ```
 
-
-> Note: Each OAuth Config option fallbacks to the configuration without the provider name. This is useful for reducing repetitive configuration that's shared by all OAuth providers like the `RedirectUrl` or `CallbackUrl`, e.g:
-
-```xml
-<add key="oauth.RedirectUrl"    value="http://yourhostname.com/"/>
-<add key="oauth.CallbackUrl"    value="http://yourhostname.com/auth/{0}"/>    
-```
-
-Or via configuration in code when you register the `AuthFeature` in your AppHost, e.g:
+Configuration can also be specified in code when registering the Auth Provider in the `AuthFeature` plugin in your AppHost, e.g:
 
 ```csharp
 Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {
