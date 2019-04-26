@@ -22,7 +22,7 @@ The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) use
 {% capture table %}
 | Provider          | Class Name                  | Route                    | Description |
 |-|-|-|-|
-| **Credentials**   | `CredentialsAuthProvider`   | **/auth/credentials**    | Authentication using standard username/password credentials |
+| **Credentials**   | `CredentialsAuthProvider`   | **/auth/credentials**    | Standard Authentication using Username/Password |
 {% endcapture %}
 {{ table | markdownify }}
 </div>
