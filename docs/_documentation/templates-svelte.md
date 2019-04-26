@@ -21,9 +21,11 @@ Instead of using techniques like virtual DOM diffing, Svelte writes code that su
 
     $ web new svelte-spa ProjectName
 
-![](https://github.com/ServiceStack/Assets/raw/master/img/screencasts/svelte-spa.gif)
-
 ## Development workflow
+
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/screencasts/svelte-spa-youtube.png)](https://youtu.be/cKlFABFECnQ)
+
+> [YouTube Demo](https://youtu.be/cKlFABFECnQ)
 
 Run the `dev` npm script or Gulp task and leave it running in the background:
 
