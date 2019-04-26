@@ -147,7 +147,7 @@ The Authentication module allows you to use your own persistence back-ends but f
   - **OrmLite**: `OrmLiteAuthRepository` in [ServiceStack.Server](https://nuget.org/packages/ServiceStack.Server)
     - [OrmLiteAuthRepositoryMultitenancy](/multitenancy#multitenancy-rdbms-authprovider)
   - **Redis**: `RedisAuthRepository` in [ServiceStack](https://nuget.org/packages/ServiceStack)
-  - **In Memory**: `InMemoryAuthRepository` in [ServiceStack](https://nuget.org/packages/ServiceStack)
+  - **Memory**: `InMemoryAuthRepository` in [ServiceStack](https://nuget.org/packages/ServiceStack)
   - **AWS DynamoDB**: `DynamoDbAuthRepository` in [ServiceStack.Aws](https://nuget.org/packages/ServiceStack.Aws)
   - **Mongo DB**: `MongoDBAuthRepository` in [ServiceStack.Authentication.MongoDB](https://nuget.org/packages/ServiceStack.Authentication.MongoDB)
   - **Raven DB**: `RavenUserAuthRepository` in [ServiceStack.Authentication.RavenDB](https://nuget.org/packages/ServiceStack.Authentication.RavenDB)
@@ -201,12 +201,12 @@ Once authenticated the **AuthUserSession** model is populated and stored in the 
 [ICacheClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Caching/ICacheClient.cs)
 API so any new provider added can be used for both Session and Caching, which currently includes:
 
-  - **In Memory**: `MemoryCacheClient` in [ServiceStack](https://nuget.org/packages/ServiceStack)
+  - **Memory**: `MemoryCacheClient` in [ServiceStack](https://nuget.org/packages/ServiceStack)
   - **Redis**: `RedisClient`, `PooledRedisClientManager` or `BasicRedisClientManager` in [ServiceStack.Redis](https://nuget.org/packages/ServiceStack.Redis)
   - **OrmLite**: `OrmLiteCacheClient` in [ServiceStack.Server](https://nuget.org/packages/ServiceStack.Server)
-  - **Memcached**: `MemcachedClientCache` in [ServiceStack.Caching.Memcached](https://nuget.org/packages/ServiceStack.Caching.Memcached)
   - **AWS DynamoDB**: `DynamoDbCacheClient` in [ServiceStack.Aws](https://nuget.org/packages/ServiceStack.Aws)
-  - **Azure**: `AzureCacheClient` in [ServiceStack.Caching.Azure](https://nuget.org/packages/ServiceStack.Caching.Azure)
+  - **Memcached**: `MemcachedClientCache` in [ServiceStack.Caching.Memcached](https://nuget.org/packages/ServiceStack.Caching.Memcached)
+  - **Azure**: `AzureTableCacheClient` in [ServiceStack.Azure](https://nuget.org/packages/ServiceStack.Azure)
 
 The Auth Feature also allows you to specify your own custom `IUserAuthSession` type where you can capture additional metadata with your users session which will also get persisted and hydrated from the cache, e.g: 
 
@@ -382,14 +382,17 @@ The `AuthService` is registered at paths `/auth` and `/auth/{provider}` where th
   * `/auth/twitter` - TwitterAuthProvider
   * `/auth/facebook` - FacebookAuthProvider
   * `/auth/google` - GoogleAuthProvider
-  * `/auth/instagram` - InstagramOAuth2Provider
   * `/auth/github` - GithubAuthProvider
-  * `/auth/microsoftlive` - MicrosoftLiveOAuth2Provider
-  * `/auth/yammer` - YammerAuthProvider
-  * `/auth/yahooopenid` - YahooOpenIdOAuthProvider
-  * `/auth/myopenid` - MyOpenIdOAuthProvider
-  * `/auth/openid` - OpenIdOAuthProvider (Any Custom OpenId provider)
+  * `/auth/microsoftgraph` - MicrosoftGraphAuthProvider
   * `/auth/linkedin` - LinkedInOAuth2Provider
+
+### Legacy OAuth and Open ID Auth Providers
+
+  * `/auth/yammer` - YammerAuthProvider
+  * `/auth/instagram` - InstagramOAuth2Provider
+  * `/auth/openid` - OpenIdOAuthProvider (Any Custom OpenId provider)
+  * `/auth/myopenid` - MyOpenIdOAuthProvider
+  * `/auth/yahooopenid` - YahooOpenIdOAuthProvider
   * `/auth/yandex` - YandexAuthProvider
   * `/auth/vkcom` - VkAuthProvider
   * `/auth/odnoklassniki` - OdnoklassnikiAuthProvider
