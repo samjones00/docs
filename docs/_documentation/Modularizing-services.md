@@ -109,6 +109,8 @@ in [different Hosting Options](/why-servicestack#multiple-hosting-options), it m
 across many of your ServiceStack projects, e.g. you can easily replace `Configure.Auth.cs` in all your projects to ensure they're running
 the same Auth Configuration without impacting any of the projects other bespoke host configuration.
 
+#### Bundle Startup Logic in your Services Assembly
+
 It also allows you to maintain any necessary Startup configuration that your Services implementation needs alongside the Services themselves.
 
 E.g. This is used to register the `Data.Contact` to DTO `Contact` [Auto Mapping](/auto-mapping):
@@ -124,6 +126,8 @@ public class ContactsHostConfig : IConfigureAppHost
 
 There are **3 different Startup interfaces** you can use depending on when you want your configuration to run.
 
+#### Register additional ServiceAssemblies on Startup
+
 Use `IPreConfigureAppHost` for Startup logic you want to run before the AppHost starts initialization, this is
 run before `AppHost.Config` is initialized or Services are registered so has limited configurability but is useful
 if you want to register additional Service Assemblies with ServiceStack, e.g:
@@ -134,6 +138,8 @@ public class ConfigureContactsServices : IPreConfigureAppHost
     public void Configure(IAppHost host) => host.ServiceAssemblies.AddIfNotExists(typeof(MyServices).Assembly);
 }
 ```
+
+#### Register no-touch Startup before and after your AppHost's Configure
 
 Use `IConfigureAppHost` for Startup logic you want to run immediately **before** `AppHost.Configure()`:
 
