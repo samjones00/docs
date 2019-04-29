@@ -7,7 +7,7 @@ Built into ServiceStack is an optional Authentication feature you can use to add
 
 ### High Level Overview
 
-![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/Assets/master/svg/diagrams/auth.svg?sanitize=true)
+![Authentication Overview](https://github.com/ServiceStack/docs/blob/master/docs/images/security/auth-highlevel-overview.svg?sanitize=true)
 
 The `AuthenticateService` is registered at paths `/auth` and `/auth/{provider}` where the Provider maps to the `IAuthProvider.Provider` property of the registered AuthProviders. 
 The urls for clients authenticating against the built-in AuthProviders are:
