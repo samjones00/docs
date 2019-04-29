@@ -32,7 +32,7 @@ public class AppHost : AppHostBase
     protected override ServiceController CreateServiceController(
         params Assembly[] assembliesWithServices)
     {       
-        return new ServiceController(this, () => assembliesWithServices.ToList().SelectMany(x => x.GetTypes()));
+        return new ServiceController(this, () => assembliesWithServices.ToList().SelectMany(x =>x.GetTypes()));
     }
 }
 ```
@@ -126,7 +126,7 @@ public class ContactsHostConfig : IConfigureAppHost
 
 There are **3 different Startup interfaces** you can use depending on when you want your configuration to run.
 
-#### Register additional ServiceAssemblies on Startup
+#### Register additional Service Assemblies on Startup
 
 Use `IPreConfigureAppHost` for Startup logic you want to run before the AppHost starts initialization, this is
 run before `AppHost.Config` is initialized or Services are registered so has limited configurability but is useful
