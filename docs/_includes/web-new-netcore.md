@@ -1,6 +1,6 @@
 || .NET Core C# Templates |
 |-|-|
-| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
+| [web](https://github.com/NetCoreTemplates/web)                | .NET Core 2.1 Empty Website |
 | [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 2.1 Aurelia CLI Bootstrap App |
 | [bare-webapp](https://github.com/NetCoreTemplates/bare-webapp)        | .NET Core 2.1 Bare Sharp Apps |
@@ -22,4 +22,4 @@
 | [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET Core 2.1 Vue CLI Bootstrap App |
 | [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)       | .NET Core 2.1 Nuxt.js SPA App with Material Vuetify |
 | [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET Core 2.1 Vue CLI App with Material Vuetify |
-| [web](https://github.com/NetCoreTemplates/web)                | .NET Core 2.1 Empty Website |
+| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
