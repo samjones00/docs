@@ -3,7 +3,27 @@ slug: authentication-and-authorization
 title: Authentication and Authorization
 ---
 
-Built into ServiceStack is an optional Authentication feature you can use to add Authentication to your services by providing web services to Authenticate existing users, Register new users as well Assign/UnAssign Roles to existing users (if you need them). It's highly pluggable and customizable where you can plug-in your own Auth logic, change the caching and session providers as well as what RDBMS is used to persist UserAuth data.
+Built into ServiceStack is a simple and extensible Authentication Model that implements standard HTTP Session Authentication where 
+[Session Cookies](/sessions) are used to send Authenticated Requests which reference Users Custom UserSession POCO's in your App's 
+registered [Caching Provider](/caching). 
+
+ServiceStack also includes a number of Auth Providers which "Authenticate per-request" in this case the Authenticated User Session
+is only attached to and lasts during the lifetime of the current `IRequest`. The implementation details of each Auth Provider are 
+transparent to your Application where the same Attributes and APIs are used to retrieve, validate, authenticate and authorize Users.
+
+ServiceStack's Authentication support is encapsulated in the optional `AuthFeature` plugin which provides an easy way to declaratively 
+register and configure multiple Auth Providers you want to allow in your Application. It's highly configurable with a number of 
+additional features like whether to enable built-in Registration for Registering new Users as well as Assign/UnAssign Roles Services
+that Admins can use to assign Roles/Permissions to existing users.
+
+### Highly customizable and versatile
+
+ServiceStack's Authentication is also highly customizable and versatile from being able to choose from the plethora of Auth Providers
+available or inheriting from them to create your own customized Auth Provider, inheriting `AuthUserSession` to use your own Custom POCO
+with additional info you want to maintain for your Users, storing User Sessions in any of the available [Caching Providers](/caching), 
+adding custom logic by handling any of the [Auth and Session Events](/sessions#session-events) raised throughout the Auth lifecycle,
+to specifying which back-end Auth Repository you want to persist your Authenticated Users in - supporting most popular RDBMS's and 
+popular NoSQL data stores as seen in the high-level overview below:
 
 ### High Level Overview
 
@@ -29,26 +49,6 @@ The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) use
 
 A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` hook so you can add in your own implementation. If you want to make this available via BasicAuth as well you will also need to subclass `BasicAuthProvider` with your own custom implementation.
 
-### IAuthWithRequest Auth Providers
-
-These Auth Providers include authentication with each request so the Authenticated User Session is only populated on the HTTP `IRequest` and not saved in the registered Cache Client.
-
-<div class='markdown-body pb-3'>
-{% capture table %}
-| Provider          | Class Name                   | Auth Method  | Description |
-|-|-|-|-|
-| **JWT**           | `JwtAuthProvider`            | Bearer Token | Stateless Auth Provider using [JSON Web Tokens](/jwt-authprovider)  |
-| **API Keys**      | `ApiKeyAuthProvider`         | Bearer Token | Allow 3rd Parties access to [authenticate without a password](/api-key-authprovider) |
-| **Basic Auth**    | `BasicAuthProvider`          | Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
-{% endcapture %}
-{{ table | markdownify }}
-</div>
-
-There are 2 other Auth Providers that Authenticate per-request:
-
- - **Windows Auth** in `AspNetWindowsAuthProvider`  - Authentication using [Windows Auth](https://support.microsoft.com/en-us/help/323176/how-to-implement-windows-authentication-and-authorization-in-asp-net) built into ASP.NET.
- - **Claims Auth** in `NetCoreIdentityAuthProvider` - Pass through Auth Provider that delegates to ASP.NET Core Identity Auth or Identity Server.
-
 ### OAuth Providers
 
 The following OAuth Providers are built into ServiceStack and can be used in both ASP.NET Core and .NET Framework Apps:
@@ -71,9 +71,31 @@ The following OAuth Providers are built into ServiceStack and can be used in bot
 {{ table | markdownify }}
 </div>
 
+
+### IAuthWithRequest Auth Providers
+
+These Auth Providers include authentication with each request so the Authenticated User Session is only populated on the HTTP `IRequest` and not saved in the registered Cache Client.
+
+<div class='markdown-body pb-3'>
+{% capture table %}
+| Provider          | Class Name                   | Auth Method  | Description |
+|-|-|-|-|
+| **JWT**           | `JwtAuthProvider`            | Bearer Token | Stateless Auth Provider using [JSON Web Tokens](/jwt-authprovider)  |
+| **API Keys**      | `ApiKeyAuthProvider`         | Bearer Token | Allow 3rd Parties access to [authenticate without a password](/api-key-authprovider) |
+| **Basic Auth**    | `BasicAuthProvider`          | Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
+{% endcapture %}
+{{ table | markdownify }}
+</div>
+
+There are 2 other Auth Providers that Authenticate per-request:
+
+ - **Windows Auth** in `AspNetWindowsAuthProvider`  - Authentication using [Windows Auth](https://support.microsoft.com/en-us/help/323176/how-to-implement-windows-authentication-and-authorization-in-asp-net) built into ASP.NET.
+ - **Claims Auth** in `NetCoreIdentityAuthProvider` - Pass through Auth Provider that delegates to ASP.NET Core Identity Auth or Identity Server.
+
+
 ### Legacy OAuth and Open ID Auth Providers
 
-These Auth Providers have a dependency on `DotNetOpenAuth` that can only be used in classic ASP.NET System.Web projects:
+There are also a number Auth Providers have a dependency on `DotNetOpenAuth` that can only be used in classic ASP.NET System.Web projects:
 
 <div class='markdown-body pb-3'>
 {% capture table %}
@@ -88,7 +110,7 @@ These Auth Providers have a dependency on `DotNetOpenAuth` that can only be used
 </div>
 
 The OAuth2 Providers are in [ServiceStack.Authentication.OAuth2](https://www.nuget.org/packages/ServiceStack.Authentication.OAuth2/) whilst the Open ID providers 
-are in [ServiceStack.Authentication.OpenId](https://www.nuget.org/packages/ServiceStack.Authentication.OpenId/) NuGet packages. More info available in [OAuth2 and OpenId 2.0 docs](/openid).
+are in [ServiceStack.Authentication.OpenId](https://www.nuget.org/packages/ServiceStack.Authentication.OpenId/) NuGet packages. More info available in [OAuth2 and OpenId 2.0 docs](/openid). Although they should be considered legacy as DotNetOpenAuth is no longer maintained and can't be used in ASP.NET Core projects.
 
 ### Community Auth Providers
 
