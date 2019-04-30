@@ -121,10 +121,13 @@
 - ##### Security
     - [Overview](/security)
     - [Authentication & Authorization](/authentication-and-authorization)
+    - [Using ServiceStack Auth in MVC](/authentication-identity-servicestack)
+    - [Using ASP.NET Identity Auth](/authentication-identity-aspnet)
+    - [Using IdentityServer4 Auth](/authentication-identityserver)
+    - [Sessions](/sessions)
     - [JWT AuthProvider](/jwt-authprovider)
     - [API Key AuthProvider](/api-key-authprovider)
     - [Open Id 2.0 Support](/openid)
-    - [Sessions](/sessions)
     - [Restricting Services](/restricting-services)
     - [Anti Forgery](/anti-forgery)
 - ##### Advanced

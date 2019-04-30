@@ -43,6 +43,11 @@ code {
     background-color: rgba(0,0,0,0.04);
     border-radius: 3px;    
 }
+pre>code {
+    background-color: none; 
+    padding: 0;
+    border-radius: unset;
+}
 #content em {
     font-style: normal;
     line-height: 1.5em;

@@ -29,25 +29,34 @@ popular NoSQL data stores as seen in the high-level overview below:
 
 ![Authentication Overview](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-highlevel-overview.svg?sanitize=true)
 
-The `AuthenticateService` is registered at paths `/auth` and `/auth/{provider}` where the Provider maps to the `IAuthProvider.Provider` property of the registered AuthProviders. 
-The urls for clients authenticating against the built-in AuthProviders are:
+The `AuthenticateService` is the primary Service that manages Authentication which delegates to the specified Auth Provider that 
+performs the Authentication, made available via its following endpoints:
 
-### Built-In Auth Providers
+ - `/auth/{provider}` - Authenticate against a specific Auth Provider
+ - `/auth` - API to check if a Request is authenticated: returns **200** with basic session info if authenticated or **401** if not.
+ - `/auth/logout` - Removes the Authenticated Session from the registered cache and clears Session Cookies.
 
-By default the `CredentialsAuthProvider` and `BasicAuthProvider` validate against users stored in the UserAuth repository. 
-The registration service at `/register` allow users to register new users with your service and stores them in your preferred `AuthRepository` provider (below). 
-The [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootstrapApi) uses this to allow new users (without Twitter/Facebook accounts) to register with the website.
+### Credentials Auth Providers
+
+If you would like ServiceStack to manage your Apps entire Authentication and persistence of Users you would use one of the available Auth Repositories
+and authenticate against one of the following Auth Providers:
 
 <div class='markdown-body pb-3'>
 {% capture table %}
 | Provider          | Class Name                  | Route                    | Description |
 |-|-|-|-|
 | **Credentials**   | `CredentialsAuthProvider`   | **/auth/credentials**    | Standard Authentication using Username/Password |
+| **Basic Auth**    | `BasicAuthProvider`         | HTTP Basic Auth          | Username/Password sent via [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
+| **Digest Auth**   | `DigestAuthProvider`        | HTTP Digest Auth         | Username/Password hash via [HTTP Digest Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
 {% endcapture %}
 {{ table | markdownify }}
 </div>
 
-A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` hook so you can add in your own implementation. If you want to make this available via BasicAuth as well you will also need to subclass `BasicAuthProvider` with your own custom implementation.
+New Users can be created via the `/register` Registration Service which be enabled with:
+
+```csharp
+Plugins.Add(new RegistrationFeature());
+```
 
 ### OAuth Providers
 
@@ -71,10 +80,49 @@ The following OAuth Providers are built into ServiceStack and can be used in bot
 {{ table | markdownify }}
 </div>
 
+### Session Authentication Overview
 
-### IAuthWithRequest Auth Providers
+The diagram below outlines how standard session based Authentication works and how the different providers interact in more detail:
 
-These Auth Providers include authentication with each request so the Authenticated User Session is only populated on the HTTP `IRequest` and not saved in the registered Cache Client.
+![Session Based Authentication](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-session-auth.svg?sanitize=true)
+
+Where the **Auth Provider** are unique for each Auth Provider but otherwise adopt the same Authentication process that results
+in the same end result where an Authenticated `AuthUserSession` is persisted in the registered `ICacheClient` against the `ss-pid` Permanent Cookie
+if the `Authenticate` request `RememberMe=true` otherwise against `ss-id` Temporary Session Cookie if not.
+
+After a Request is Authenticated its Session Cookies are sent on subsequent requests and validated by ServiceStack's built in `[Authenticate]` and 
+other `[Require*]` attributes to restrict access to valid users:
+
+![Session Requests](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-session-requests?sanitize=true)
+
+Once authenticated the Users Session can be accessed in your **Services** using the Typed and minimal `IAuthSession` APIs:
+
+```csharp
+AuthUserSession session = base.SessionAs<AuthUserSession>();
+IAuthSession session = base.GetSession();
+```
+
+Of if you've registered to use a Custom UserSession POCO in the `AuthFeature` constructor use that instead of `AuthUserSession`.
+
+Typed User Sessions also accessible in all Filters and handlers that have access to the current `IRequest` with:
+
+```csharp
+AuthUserSession session = req.SessionAs<AuthUserSession>();
+IAuthSession session = req.GetSession();
+```
+
+See the [Session docs](/sessions) for more info about customizing Sessions and handling different Session and Auth events.
+
+### Authentication per Request Auth Providers
+
+These Auth Providers include authentication with each request so the Authenticated User Session is only populated on the HTTP `IRequest` and not saved in the registered Cache Client. Unlike traditional Auth Providers above where there is a separate "Authentication" request to establish authentication, 
+Auth Providers that implement `IAuthWithRequest` instead send their Authentication "per-request" where it's only populated on the current `IRequest`:
+
+![Auth with Request Auth Providers](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-auth-with-request-providers.svg?sanitize=true)
+
+Whilst the Authentication Process is different you'd continue to use the same APIs and Attributes to access and validate the Users Session. 
+
+The following Auth Providers below implement `IAuthWithRequest` and Authenticate per-request:
 
 <div class='markdown-body pb-3'>
 {% capture table %}
@@ -83,15 +131,25 @@ These Auth Providers include authentication with each request so the Authenticat
 | **JWT**           | `JwtAuthProvider`            | Bearer Token | Stateless Auth Provider using [JSON Web Tokens](/jwt-authprovider)  |
 | **API Keys**      | `ApiKeyAuthProvider`         | Bearer Token | Allow 3rd Parties access to [authenticate without a password](/api-key-authprovider) |
 | **Basic Auth**    | `BasicAuthProvider`          | Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
+| **Digest Auth**   | `DigestAuthProvider`         | Digest Auth  | Authentication using [HTTP Digest Auth](https://en.wikipedia.org/wiki/Digest_access_authentication) |
 {% endcapture %}
 {{ table | markdownify }}
 </div>
 
-There are 2 other Auth Providers that Authenticate per-request:
+Some other special Auth Providers that Authenticate per-request include:
 
  - **Windows Auth** in `AspNetWindowsAuthProvider`  - Authentication using [Windows Auth](https://support.microsoft.com/en-us/help/323176/how-to-implement-windows-authentication-and-authorization-in-asp-net) built into ASP.NET.
  - **Claims Auth** in `NetCoreIdentityAuthProvider` - Pass through Auth Provider that delegates to ASP.NET Core Identity Auth or Identity Server.
 
+### Integrated ASP.NET Core Authentication
+
+The `NetCoreIdentityAuthProvider` is a bi-directional Authentication adapter that enables ServiceStack to use the same Authentication as the 
+rest of your ASP.NET Core and MVC Application where it enables the following popular scenarios:
+
+ - [Using ServiceStack Auth in MVC](/authentication-identity-servicestack) - Use ServiceStack Auth to power ASP.NET Identity Auth, pre-configured in the [mvcauth](https://github.com/NetCoreTemplates/mvcauth) project template. 
+ - [Using ASP.NET Identity Auth in ServiceStack](/authentication-identity-aspnet) - Use ASP.NET Identity Auth to Authenticate ServiceStack Services, pre-configured in the [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity) project template.
+ - [Using IdentityServer4 Auth in ServiceStack](/authentication-identityserver) - Use IdentityServer4 to Authenticate ASP.NET Core and ServiceStack Services, 
+pre-configured in the [mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver) project template.
 
 ### Legacy OAuth and Open ID Auth Providers
 
@@ -324,7 +382,10 @@ To illustrate Authentication integration with ServiceStack, see the authenticati
 
 ## Custom authentication and authorization
 
-The classes in ServiceStack have been designed to provide default behavior out the box (convention over configuration). They are also highly customizable. Both the default [BasicAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/BasicAuthProvider.cs) and [CredentialsAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/CredentialsAuthProvider.cs) (which it extends) can be extended, and their behavior overwritten. An example is below:
+A good starting place to create your own Auth provider that relies on username/password validation is to subclass `CredentialsAuthProvider` and override the `bool TryAuthenticate(service, username, password)` method where you can provide your custom implementation. If you instead wanted to authenticate via HTTP Basic Auth
+you would subclass `BasicAuthProvider` instead.
+
+Both the default [BasicAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/BasicAuthProvider.cs) and [CredentialsAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/CredentialsAuthProvider.cs) (which it extends) can be extended, and their behavior overwritten. An example is below:
 
 ```csharp
 using ServiceStack;
@@ -368,14 +429,14 @@ Plugins.Add(new AuthFeature(() => new AuthUserSession(),
 ));
 ```
 
-By default the AuthFeature plugin automatically registers the following (overrideable) Service Routes:
+By default the AuthFeature plugin automatically registers the following (overridable) Service Routes:
 
 ```csharp
 new AuthFeature = {
   ServiceRoutes = new Dictionary<Type, string[]> {
-    { typeof(AuthenticateService), new[]{"/auth", "/auth/{provider}"} },
-    { typeof(AssignRolesService), new[]{"/assignroles"} },
-    { typeof(UnAssignRolesService), new[]{"/unassignroles"} },
+    { typeof(AuthenticateService),  new[]{ "/auth", "/auth/{provider}" }},
+    { typeof(AssignRolesService),   new[]{ "/assignroles" }},
+    { typeof(UnAssignRolesService), new[]{ "/unassignroles" }},
   }
 };
 ```
