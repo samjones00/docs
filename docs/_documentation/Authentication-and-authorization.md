@@ -93,7 +93,7 @@ if the `Authenticate` request `RememberMe=true` otherwise against `ss-id` Tempor
 After a Request is Authenticated its Session Cookies are sent on subsequent requests and validated by ServiceStack's built in `[Authenticate]` and 
 other `[Require*]` attributes to restrict access to valid users:
 
-![Session Requests](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-session-requests?sanitize=true)
+![Session Requests](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-session-requests.svg?sanitize=true)
 
 Once authenticated the Users Session can be accessed in your **Services** using the Typed and minimal `IAuthSession` APIs:
 

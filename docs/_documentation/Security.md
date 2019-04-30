@@ -17,7 +17,7 @@ store Authenticated User Sessions:
 
 Once Authentication is established [Session Cookies](/sessions) are used to reference a Users typed Authenticated User Session:
 
-![Session Requests](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-session-requests?sanitize=true)
+![Session Requests](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/security/auth-session-requests.svg?sanitize=true)
 
 ServiceStack also supports Auth Providers that "Authenticate per request" where both Authentication and Validation are performed within the same request:
 
@@ -92,7 +92,7 @@ Additional documentation for specific Auth Providers:
   - [API Key Auth Provider](/api-key-authprovider)
   - [Open Id 2.0 Support](/openid)     
 
-## Project Templates with Pre-configured Auth 
+## ASP.NET Core Project Templates with integrated Auth 
 
     - [Using ServiceStack Auth in MVC](/authentication-identity-servicestack) - using the [mvcauth](https://github.com/NetCoreTemplates/mvcauth) project template
     - [Using ASP.NET Identity Auth](/authentication-identity-aspnet) - using the [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity) project template
