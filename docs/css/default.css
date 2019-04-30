@@ -44,7 +44,7 @@ code {
     border-radius: 3px;    
 }
 pre>code {
-    background-color: none; 
+    background: none; 
     padding: 0;
     border-radius: unset;
 }
