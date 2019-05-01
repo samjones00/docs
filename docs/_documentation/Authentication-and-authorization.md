@@ -339,6 +339,12 @@ public class SecuredService : Service
 
 ServiceStack's Authentication, Caching and Session providers are completely new, clean, dependency-free testable APIs that doesn't rely on and is devoid of ASP.NET's existing membership, caching or session provider models. 
 
+## World Validation
+
+See the annotated [World Validation Docs](/world-validation) for a detailed walks through and showcases the implementation 
+of how the most popular **Server HTML rendered** approaches and **Client UI rendered** technologies use the same built-in
+Authentication, Registration and protected Services.
+
 ## Live Demos
 
 To illustrate Authentication integration with ServiceStack, see the authentication-enabled 
