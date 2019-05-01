@@ -125,7 +125,8 @@ If you're not using OrmLite you can utilize EF's configured **DB Connection** by
 public static class AppExtensions
 {
     public static T DbExec<T>(this IServiceProvider services, Func<IDbConnection, T> fn) => services
-        .DbContextExec<ApplicationDbContext,T>(x => { x.Database.OpenConnection(); return x.Database.GetDbConnection(); }, fn);
+        .DbContextExec<ApplicationDbContext,T>(x => { 
+            x.Database.OpenConnection(); return x.Database.GetDbConnection(); }, fn);
 }
 ```
 
@@ -179,8 +180,8 @@ Plugins.Add(new AuthFeature(() => new CustomUserSession(),
                 //Example of populating ServiceStack Session Roles + Custom Info from EF Identity DB
                 var user = req.GetMemoryCacheClient().GetOrCreate(
                     IdUtils.CreateUrn(nameof(ApplicationUser), session.Id),
-                    TimeSpan.FromMinutes(5), // return cached results before refreshing cache from db every 5mins
-                    () => ApplicationServices.DbExec(db => db.GetIdentityUserById<ApplicationUser>(session.Id)));
+                    TimeSpan.FromMinutes(5), //return cached results before refreshing cache from db /5mins
+                    () => ApplicationServices.DbExec(db=>db.GetIdentityUserById<ApplicationUser>(session.Id)));
 
                 session.Email = session.Email ?? user.Email;
                 session.FirstName = session.FirstName ?? user.FirstName;
@@ -190,7 +191,7 @@ Plugins.Add(new AuthFeature(() => new CustomUserSession(),
 
                 session.Roles = req.GetMemoryCacheClient().GetOrCreate(
                     IdUtils.CreateUrn(nameof(session.Roles), session.Id),
-                    TimeSpan.FromMinutes(5), // return cached results before refreshing cache from db every 5mins
+                    TimeSpan.FromMinutes(5), //return cached results before refreshing cache from db /5mins
                     () => ApplicationServices.DbExec(db => db.GetIdentityUserRolesById(session.Id)));
             }
         }, 
