@@ -5,7 +5,7 @@ The quickest way to create a Self-Hosting application is to Create a new self-ho
 
 Otherwise it's very easy to host ServiceStack in a Console App or Windows Service. You just have to Install the [ServiceStack NuGet package](https://www.nuget.org/packages/ServiceStack) and derive your AppHost from `AppSelfHostBase` instead of `AppHostBase`:
 
-If using this in a .NET standard console app, you should reference ServiceStack.Kestrel NuGet package](https://www.nuget.org/packages/ServiceStack.Kestrel).
+If using this in a .NET standard console app, you should reference [ServiceStack.Kestrel](https://www.nuget.org/packages/ServiceStack.Kestrel) NuGet package.
 
 ### Complete C# Console Host Example
 
