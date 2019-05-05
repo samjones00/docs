@@ -9,13 +9,16 @@ including **Login** and **Registration Forms** to **Sign In** and **Register** n
 It's a compact example that tries to cover a lot of use-cases typical in a real-world App, including maintaining a separate Data and DTO Model 
 and using C# idioms like Enum's for defining a finite list of options which are re-used to populate its HTML UI.
 
-The UI for the same App is re-implemented in **8 popular Web Development approaches**, each integrated with ServiceStack's validation.
+The UI for the same App is re-implemented in **10 popular Web Development approaches**, each integrated with ServiceStack's validation.
 
 As of this writing there **4 different server HTML** generated strategies that use HTML Form Posts to call back-end Services:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/home.png)](https://github.com/NetCoreApps/Validation)
 
-<h4 align="center">View Source on GitHub <a href="https://github.com/NetCoreApps/Validation">NetCoreApps/Validation</a></h4>
+<h4 align="center">
+  View Source on GitHub <a href="https://github.com/NetCoreApps/Validation">NetCoreApps/Validation</a> - 
+  Live Demo <a href="http://validation.web-app.io">validation.web-app.io</a>
+</h4>
 
 ### Server Rendered HTML UIs
 
@@ -33,6 +36,8 @@ to send TypeScript [dtos.ts](https://github.com/NetCoreApps/Validation/blob/mast
  - [/client-ts](https://github.com/NetCoreApps/Validation/tree/master/world/wwwroot/client-ts) - TypeScript UI using Ajax Forms and ServiceClient Requests
  - [/client-jquery](https://github.com/NetCoreApps/Validation/tree/master/world/wwwroot/client-jquery) - JavaScript UI using jQuery Ajax Requests
  - [/client-razor](https://github.com/NetCoreApps/Validation/tree/master/world/wwwroot/client-razor) - Client jQuery Ajax Requests rendered by Razor pages
+ - [/client-vue](https://github.com/NetCoreApps/Validation/tree/master/world/wwwroot/client-vue) - Vue UI using TypeScript and ServiceClient Requests
+ - [/client-react](https://github.com/NetCoreApps/Validation/tree/master/world/wwwroot/client-react) - React UI using TypeScript and ServiceClient Requests
 
 The source code for all different strategies are encapsulated within their folders above except for the Razor examples which need to
 maintain their shared resources in the [/Views](https://github.com/NetCoreApps/Validation/tree/master/world/Views) folder 
@@ -195,6 +200,16 @@ In contrast to full page reloads all Client UIs submit Ajax forms and bind their
         Client Razor
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="login-client-vue-tab" data-toggle="pill" href="#login-client-vue" role="tab" aria-controls="login-client-vue" aria-selected="false">
+        Client Vue
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="login-client-react-tab" data-toggle="pill" href="#login-client-react" role="tab" aria-controls="login-client-react" aria-selected="false">
+        Client React
+    </a>
+  </li>
 </ul>
 <div class="tab-content" id="pills-serverContent">
   <div class="tab-pane fade show active" id="login-vuetify" role="tabpanel" aria-labelledby="login-vuetify-tab">
@@ -228,6 +243,23 @@ In contrast to full page reloads all Client UIs submit Ajax forms and bind their
     <h3>Source Code and References</h3>
     {% include validation/login/client-razor.html %}
   </div>
+
+  <div class="tab-pane fade" id="login-client-vue" role="tabpanel" aria-labelledby="login-client-vue-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-vue/login.ts">/client-vue/login.ts</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/login/client-vue.html %}
+  </div>
+
+  <div class="tab-pane fade" id="login-client-react" role="tabpanel" aria-labelledby="login-client-react-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-react/login.tsx">/client-react/login.tsx</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/login/client-react.html %}
+  </div>
+
 </div>
 
 ### About Client Implementations
@@ -382,11 +414,21 @@ Razor equivalents, either in the base `ViewPage<T>` class like `RedirectIfNotAut
         Client Razor
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contacts-client-vue-tab" data-toggle="pill" href="#contacts-client-vue" role="tab" aria-controls="contacts-client-vue" aria-selected="false">
+        Client Vue
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contacts-client-react-tab" data-toggle="pill" href="#contacts-client-react" role="tab" aria-controls="contacts-client-react" aria-selected="false">
+        Client React
+    </a>
+  </li>
 </ul>
 <div class="tab-content" id="contacts-serverContent">
   <div class="tab-pane fade show active" id="contacts-vuetify" role="tabpanel" aria-labelledby="contacts-vuetify-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/contacts.html">/server/contacts.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/server/contacts/index.html">/server/contacts/index.html</a>
     </div>
     <h3>Source Code and References</h3>
     {% include validation/contacts/vuetify.html %}
@@ -394,7 +436,7 @@ Razor equivalents, either in the base `ViewPage<T>` class like `RedirectIfNotAut
 
   <div class="tab-pane fade" id="contacts-client-ts" role="tabpanel" aria-labelledby="contacts-client-ts-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-ts/contacts.html">/client-ts/contacts.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-ts/contacts/index.html">/client-ts/contacts/index.html</a>
     </div>
     <h3>Source Code and References</h3>
     {% include validation/contacts/client-ts.html %}
@@ -402,7 +444,7 @@ Razor equivalents, either in the base `ViewPage<T>` class like `RedirectIfNotAut
 
   <div class="tab-pane fade" id="contacts-client-jquery" role="tabpanel" aria-labelledby="contacts-client-jquery-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-jquery/contacts.html">/client-jquery/contacts.html</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-jquery/contacts/index.html">/client-jquery/contacts/index.html</a>
     </div>
     <h3>Source Code and References</h3>
     {% include validation/contacts/client-jquery.html %}
@@ -410,11 +452,28 @@ Razor equivalents, either in the base `ViewPage<T>` class like `RedirectIfNotAut
 
   <div class="tab-pane fade" id="contacts-client-razor" role="tabpanel" aria-labelledby="contacts-client-razor-tab">
     <div class="float-right">
-        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-razor/contacts.cshtml">/client-razor/contacts.cshtml</a>
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-razor/contacts/default.cshtml">/client-razor/contacts/default.cshtml</a>
     </div>
     <h3>Source Code and References</h3>
     {% include validation/contacts/client-razor.html %}
   </div>
+
+  <div class="tab-pane fade" id="contacts-client-vue" role="tabpanel" aria-labelledby="contacts-client-vue-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-vue/contacts/index.ts">/client-vue/contacts/index.ts</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/contacts/client-vue.html %}
+  </div>
+
+  <div class="tab-pane fade" id="contacts-client-react" role="tabpanel" aria-labelledby="contacts-client-react-tab">
+    <div class="float-right">
+        <a href="https://github.com/NetCoreApps/Validation/blob/master/world/wwwroot/client-react/contacts/index.tsx">/client-react/contacts/index.tsx</a>
+    </div>
+    <h3>Source Code and References</h3>
+    {% include validation/contacts/client-react.html %}
+  </div>
+
 </div>
 
 ### About Client Implementations
