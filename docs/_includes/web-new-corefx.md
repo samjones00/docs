@@ -1,4 +1,4 @@
-| ASP.NET Core Framework Templates ||
+|| ASP.NET Core Framework Templates |
 |-|-|
 | [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx)        | .NET Framework ASP.NET Core Website |
 | [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
