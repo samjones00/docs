@@ -25,7 +25,7 @@ Requests handled by ServiceStack execute the custom hooks and filters in the fol
   5. Then any [Global Request Filters][1] get executed
   6. Followed by [Request Filter Attributes][3] with **Priority >= 0**
   7. Action Request Filters
-  8. Then your **Service is executed** with the configured [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and its **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
+  8. Then your **Service is executed** with the configured [Service Filters](/customize-http-responses#intercept-service-requests) and [Service Runner](/customize-http-responses#using-a-custom-servicerunner) **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
   9. Action Response Filters
   10. Any [Response Converters](/customize-http-responses#response-converters) are executed
   11. Followed by [Response Filter Attributes][3] with **Priority < 0** 
