@@ -23,6 +23,8 @@ Or if you had a previous version installed, update with:
 
 > The Windows-only `app` tool has better integration with Windows that can power [.NET Core Windows Desktop Apps](/netcore-windows-desktop).
 
+#### Usage
+
 Then run `web` without any arguments to view Usage:
 
     $ web
@@ -123,7 +125,7 @@ You can also easily integrate this within your VS.NET dev workflows by [adding i
 Which will then let you update all your `*dtos.ts` TypeScript References in your project by clicking on `Tools > Update TypeScript Reference` 
 or using the `ALT+T R` keyboard shortcut.
 
-If you wanted to Update your `*dtos.cs` C# ServiceStack References instead, just change the Arguments to `cs`:
+If you wanted to Update your `*dtos.cs` **C# ServiceStack References** instead, just change Arguments to `cs`:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/tool-cs-reference.png)
 
@@ -134,6 +136,8 @@ If you wanted to Update your `*dtos.cs` C# ServiceStack References instead, just
 | Arguments         | cs |
 | Initial directory | $(ProjectDir) |
 |  ||
+
+Refer to the [web usage output](#usage) above for the arguments or aliases for all other supported languages.
 
 ## Mix/Match ASP.NET Core projects with `web +`
 
