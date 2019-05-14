@@ -104,11 +104,7 @@ To update run `web <lang>` which will recursively update all existing ServiceSta
 
     Updated: dtos.ts
 
-### Create new Projects with `web new`
-
-See [web new](/web-new) for info on how to create new projects.
-
-## Integrate with Visual Studio
+### Integrate with Visual Studio
 
 You can also easily integrate this within your VS.NET dev workflows by [adding it as an External Tool](https://docs.microsoft.com/en-us/visualstudio/ide/managing-external-tools?view=vs-2019) in the **External Tools** dialog box by choosing `Tools > External Tools`:
 
@@ -139,7 +135,11 @@ If you wanted to Update your `*dtos.cs` **C# ServiceStack References** instead, 
 
 Refer to the [web usage output](#usage) above for the arguments or aliases for all other supported languages.
 
-## Mix/Match ASP.NET Core projects with `web +`
+### Create new Projects with `web new`
+
+See [web new](/web-new) for info on how to create new projects.
+
+### Mix/Match ASP.NET Core projects with `web +`
 
 See [web +](/web-apply) for how to mix/match gists to "layer on" functionality to create customized ASP.NET Core projects.
 
