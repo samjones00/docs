@@ -118,6 +118,7 @@ You can also easily integrate this within your VS.NET dev workflows by [adding i
 | Command           | web.exe |
 | Arguments         | ts |
 | Initial directory | $(ProjectDir) |
+|  ||
 
 Which will then let you update all your `*dtos.ts` TypeScript References in your project by clicking on `Tools > Update TypeScript Reference` 
 or using the `ALT+T R` keyboard shortcut.
@@ -132,6 +133,7 @@ If you wanted to Update your `*dtos.cs` C# ServiceStack References instead, just
 | Command           | web.exe |
 | Arguments         | cs |
 | Initial directory | $(ProjectDir) |
+|  ||
 
 ## Mix/Match ASP.NET Core projects with `web +`
 
