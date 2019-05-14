@@ -112,3 +112,30 @@ See [web +](/web-apply) for how to mix/match gists to "layer on" functionality t
 
 {% capture trouble %}{% include web-trouble.md %}{% endcapture %}
 {{ trouble | markdownify }}
+
+## Integrate with Visual Studio
+
+You can also easily integrate this within your VS.NET dev workflows by [adding it as an External Tool](https://docs.microsoft.com/en-us/visualstudio/ide/managing-external-tools?view=vs-2019) in the **External Tools** dialog box by choosing `Tools > External Tools`:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/tool-ts-reference.png)
+
+|  ||
+|-|-|
+| Title             | Update TypeScript &Reference |
+| Command           | web.exe |
+| Arguments         | ts |
+| Initial directory | $(ProjectDir) |
+
+Which will then let you update all your `*dtos.ts` TypeScript References in your project by clicking on `Tools > Update TypeScript Reference` 
+or using the `ALT+T R` keyboard shortcut.
+
+If you wanted to Update your `*dtos.cs` C# ServiceStack References instead, just change the Arguments to `cs`:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/tool-cs-reference.png)
+
+|  ||
+|-|-|
+| Title             | Update C# &Reference |
+| Command           | web.exe |
+| Arguments         | cs |
+| Initial directory | $(ProjectDir) |
