@@ -418,7 +418,9 @@ public class CustomCredentialsAuthProvider : CredentialsAuthProvider
         return base.OnAuthenticated(authService, session, tokens, authInfo);
 
         //Alternatively avoid built-in behavior and explicitly save session with
+        //session.IsAuthenticated = true;
         //authService.SaveSession(session, SessionExpiry);
+        //authService.Request.Items[Keywords.DidAuthenticate] = true;
         //return null;
     }
 }
