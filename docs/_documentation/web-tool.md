@@ -127,10 +127,10 @@ If you wanted to Update your `*dtos.cs` **C# ServiceStack References** instead, 
 
 |  ||
 |-|-|
-| Title             | Update C# &Reference |
-| Command           | web.exe |
-| Arguments         | cs |
-| Initial directory | $(ProjectDir) |
+| **Title**             | Update C# &Reference |
+| **Command**           | web.exe |
+| **Arguments**         | cs |
+| **Initial directory** | $(ProjectDir) |
 |  ||
 
 Refer to the [web usage output](#usage) above for the arguments or aliases for all other supported languages.
@@ -145,10 +145,10 @@ under the **Tools** category:
 
 |  ||
 |-|-|
-| Name              | Update TypeScript Reference |
-| Command           | web.exe |
-| Arguments         | ts |
-| Working directory | $FileParentDir$ |
+| **Name**              | Update TypeScript Reference |
+| **Command**           | web.exe |
+| **Arguments**         | ts |
+| **Working directory** | $FileParentDir$ |
 |  ||
 
 Now you can update your `*dtos.ts` TypeScript References in your project by clicking on `External Tools > Update TypeScript Reference`
