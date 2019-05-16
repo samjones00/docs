@@ -135,6 +135,29 @@ If you wanted to Update your `*dtos.cs` **C# ServiceStack References** instead, 
 
 Refer to the [web usage output](#usage) above for the arguments or aliases for all other supported languages.
 
+### Integrate with Rider
+
+Just like with VS.NET above you can [add an External Tool](https://www.jetbrains.com/help/rider/Settings_Tools_External_Tools.html) 
+in [JetBrains Rider](https://www.jetbrains.com/rider/) by opening the Settings dialog with `CTRL+ALT+S` then searching for `external tools` 
+under the **Tools** category:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/rider-tool-ts-reference.png)
+
+|  ||
+|-|-|
+| Name              | Update TypeScript Reference |
+| Command           | web.exe |
+| Arguments         | ts |
+| Working directory | $FileParentDir$ |
+|  ||
+
+Now you can update your `*dtos.ts` TypeScript References in your project by clicking on `External Tools > Update TypeScript Reference`
+in the right-click context menu:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/rider-tool-ts-reference-run.png)
+
+If you're updating references frequently you can save time by [assigning it a keyboard shortcut](https://www.jetbrains.com/help/rider/Configuring_Keyboard_and_Mouse_Shortcuts.html).
+
 ### Create new Projects with `web new`
 
 See [web new](/web-new) for info on how to create new projects.
