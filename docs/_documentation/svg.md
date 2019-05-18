@@ -45,7 +45,7 @@ e.g. we can load the generated SVG from the [Spirals Sharp App](https://github.c
 
 ##### /svg/svg-icons/spirals.html
 
-```
+```hbs
 {% raw %}<svg height="640" width="240">
 {{#each range(180) }}
     {{ 120 + 100 * cos((5)  * it * 0.02827) | assignTo: x }}
@@ -177,7 +177,7 @@ network requests as well as better isolation in contrast to including all CSS yo
 
 You can use `cssIncludes` to embed the contents of multiple css files in `#Script` pages with:
 
-```html
+```hbs
 {% raw %}{{ 'buttons,svg-icons' | cssIncludes }}{% endraw %}
 ```
 
