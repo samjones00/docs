@@ -11,7 +11,9 @@ You can view all built-in SVG icons from the  `/metadata/svg` page which is also
 [/metadata page Debug Links](/metadata-page#debug-links).
 
 The `/metadata/svg` page contains a number of usage examples, code fragments and links to access SVG Image .css collections or 
-individual SVG images.
+individual SVG images:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/metadata-svg.png)
 
 ### Loading SVG from FileSystem
 
