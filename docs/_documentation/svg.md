@@ -72,7 +72,7 @@ You can also register your own SVG images programmatically with:
 Svg.AddImage("<svg width='100' height='100' viewBox='0 0 100 100'>...</svg>", "myicon", "my-icons");
 ```
 
-Where it will register your SVG with the name `myicon` in the css file `/css/my-icons.css`.
+Where it will register the SVG under the `myicon` name and include it in the `/css/my-icons.css` css file.
 
 ### SVG APIs
 
@@ -132,7 +132,7 @@ Where you can use the class name to apply the above CSS to an element:
 
 ```html
 <div class="myicon"></div>
-``
+```
 
 ### SVG images in Razor
 
