@@ -52,9 +52,16 @@ A limited selection of project templates can be created inside VS.NET using the
 
 ### Visual Studio 2019
 
-The latest **ServiceStackVS** v2.0 includes support for Visual Studio 2010:
+The latest **ServiceStackVS** from v2+ includes support for Visual Studio 2019:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/vs2019-install-vue.gif)
+
+### Visual Studio 2015 or 2013
+
+If you're still using VS.NET 2015 or 2013 you can use the earlier VS.NET ServiceStackVS extension:
+
+ - [ServiceStackVS.vsix](https://github.com/ServiceStack/ServiceStackVS/raw/master/dist/2018/ServiceStackVS.vsix)
+
 
 ## Available Project Templates
 
