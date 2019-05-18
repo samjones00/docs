@@ -1,6 +1,6 @@
 ---
-slug: svg-utils
-title: SVG Utils
+slug: svg
+title: SVG Support
 ---
 
 ServiceStack lets you register use built-in and register custom SVG icons from the `Svg` static API class.
@@ -191,3 +191,13 @@ A good way to set the size of all related icons is to use a shared class, e.g:
 }
 ```
 
+
+```html
+<button class="btn btn-social btn-block fab fa-myicon">My Button</button>
+```
+
+Alternatively you can 
+
+```csharp
+
+```
