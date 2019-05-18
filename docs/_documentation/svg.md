@@ -53,13 +53,13 @@ e.g. we can load the generated SVG from the [Spirals Sharp App](https://github.c
 > spirals.html
 
 ```
-<svg height="640" width="240">
+{% draw %}<svg height="640" width="240">
 {{#each range(180) }}
     {{ 120 + 100 * cos((5)  * it * 0.02827) | assignTo: x }}
     {{ 320 + 300 * sin((1)  * it * 0.02827) | assignTo: y }}
     <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="#556080" stroke="black" stroke-width="1"></circle>
 {{/each}}
-</svg>
+</svg>{% endraw %}
 ```
 
 The SVG rendered output of which is registered as any normal SVG Image.
@@ -105,27 +105,27 @@ In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can embed SVG x
 
 ```hbs
 {% raw %}{{ 'myicon' | svgImage }}
-{{ 'myicon'.svgImage('#e33') }}
+{{ 'myicon'.svgImage('#e33') }}{% endraw %}
 ```
 
 Inside an HTML IMG element using its data URI:
 
 ```html
-<img src="{{ 'myicon'.svgDataUri() }}">
-<img src="{{ 'myicon'.svgDataUri('#e33') }}">
+{% raw %}<img src="{{ 'myicon'.svgDataUri() }}">
+<img src="{{ 'myicon'.svgDataUri('#e33') }}">{% endraw %}
 ```
 
 Or as a background 
 
 ```css
-.myicon {
+{% raw %}.myicon {
   width: 150px;
   height: 150px;
   background-size: 142px;
   background-position: 4px;
   background-repeat: no-repeat;
   {{ 'myicon'.svgBackgroundImageCss() }} 
-}
+}{% endraw %}
 ```
 
 Where you can use the class name to apply the above CSS to an element:
@@ -158,7 +158,7 @@ Or inside a CSS rule:
   height: 150px;
   background-size: 150px;
   background-repeat: no-repeat;
-  @Html.SvgBackgroundImageCss("myicon", "#e33")
+  @Html.SvgBackgroundImageCss("myicon")
 }
 ```
 
