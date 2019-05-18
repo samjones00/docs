@@ -53,7 +53,7 @@ e.g. we can load the generated SVG from the [Spirals Sharp App](https://github.c
 > spirals.html
 
 ```
-{% draw %}<svg height="640" width="240">
+{% raw %}<svg height="640" width="240">
 {{#each range(180) }}
     {{ 120 + 100 * cos((5)  * it * 0.02827) | assignTo: x }}
     {{ 320 + 300 * sin((1)  * it * 0.02827) | assignTo: y }}
