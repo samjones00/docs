@@ -10,21 +10,12 @@ ServiceStack lets you register use built-in and register custom SVG icons from t
 You can view all built-in SVG icons from the  `/metadata/svg` page which is also available under the **SVG Images** link in your 
 [/metadata page Debug Links](/metadata-page#debug-links).
 
-The `/metadata/svg` page contains a number of usage examples, code fragments and links to view 
-
-They're also available from the `Svg.Images` collection if you need to access them programmatically:
-
-```csharp
-foreach (var entry in Svg.Images) {
-    var name = entry.Key;
-    var svg = entry.Value;
-    $"{name}: {svg}".Print();
-}
-```
+The `/metadata/svg` page contains a number of usage examples, code fragments and links to access SVG Image .css collections or 
+individual SVG images.
 
 ### Loading SVG from FileSystem
 
-The most user-friendly way to load custom SVG icons is to add them from a custom directory, e.g:
+The most user-friendly way to load custom SVG images is to load them from a custom directory, e.g:
 
     /svg
         /svg-icons
@@ -33,7 +24,7 @@ The most user-friendly way to load custom SVG icons is to add them from a custom
         /my-icons
             myicon.svg
 
-Then in your `AppHost` you can load them with using `Svg.Load()`:
+Then in your `AppHost` you can register all SVG images using `Svg.Load()`:
 
 ```csharp
 public override void Configure(Container container)
@@ -88,6 +79,18 @@ Once added you can access your SVG images from the available `Svg` APIs:
 var svg = Svg.GetImage("myicon");
 var dataUri = Svg.GetDataUri("myicon");
 ```
+
+All SVG images are also available from the `Svg.Images` collection if you need to access them programmatically:
+
+```csharp
+foreach (var entry in Svg.Images) {
+    var name = entry.Key;
+    var svg = entry.Value;
+    $"{name}: {svg}".Print();
+}
+```
+
+#### Recommended SVG conventions
 
 All built-in SVG's are `100x100` in size, for consistency we recommend that your SVG icons also retain the same size, as they're 
 vector images they can be later resized when they're referenced in your App.
