@@ -246,7 +246,22 @@ public override void Configure(Container container)
 }
 ```
 
-For more fine-grained control, use `IAppHost.CustomErrorHttpHandlers` for specifying custom HttpHandlers to use with specific error status codes, e.g.:
+For more fine-grained control, use `IAppHost.CustomErrorHttpHandlers` for specifying custom HttpHandlers to use with specific error status codes, e.g:
+
+```csharp 
+public override void Configure(Container container)
+{
+    this.CustomErrorHttpHandlers[HttpStatusCode.NotFound] = 
+        new SharpPageHandler("/notfound");
+    this.CustomErrorHttpHandlers[HttpStatusCode.Unauthorized] = 
+        new SharpPageHandler("/login");
+}
+```
+
+Will render the contents of the `/notfound.html` for 404 NotFound Requests and `/login.html` page for 401 Unauthorized requests if you're using
+static HTML, Single Page Apps or [#Script Pages](https://sharpscript.net/docs/sharp-pages).
+
+If you're using Razor instead you can `RazorHandler` to render `/notfound.cshtml` or `/login.cshtml` ServiceStack Razor pages:
 
 ```csharp 
 public override void Configure(Container container)
