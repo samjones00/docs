@@ -471,14 +471,14 @@ This is one area where we hit limitations of not being able to use Reflection in
 Instead you'll need to specify missing types needed, the easiest solution to do this is to create a Dummy Service containing properties of any missing Types needed, in this case we need to generate a factory for the `List<HelloResponse>` used to return the batched `HelloResponse` DTOs in:
 
 ```csharp
-public class DummyTypes
+public class UnknownTypes
 {
     public List<HelloResponse> HelloResponses { get; set; }
 }
 
-public class DummyTypesService : Service
+public class UnknownTypesService : Service
 {
-    public object Any(DummyTypes request) => request;
+    public object Any(UnknownTypes request) => request;
 }
 ```
 
