@@ -109,10 +109,12 @@ that throw `FileNotFoundException` "Could not load file or assembly ..." Excepti
  - `System.Memory`
  - `System.Buffers`
  - `System.Numerics.Vectors`
+ - `netstandard`
 
 Some solutions that have been known to resolve these issues include:
 
- 1. Adding the package, e.g. `System.Runtime.CompilerServices.Unsafe` reference directly on the Host project
+ 1. Adding the package, e.g. `System.Runtime.CompilerServices.Unsafe` reference directly on the Host project,
+[for netstandard](https://github.com/dotnet/standard/issues/328#issuecomment-299577190) the package is [NETStandard.Library.NETFramework](NETStandard.Library.NETFramework) or installing .NET Core 2.0 SDK.
  2. Manually Adding Binding Redirect, see:
    - [System.Runtime](https://stackoverflow.com/a/52250140/85785)
    - [System.Runtime.CompilerServices.Unsafe](https://stackoverflow.com/a/55329952/85785)
