@@ -126,3 +126,7 @@ Some solutions that have been known to resolve these issues include:
  5. Uninstalling and Reinstalling the problem packages from your projects
  6. Clean Solution and remove project artifacts, including Nuget `/packages` and project `/bin` and `/obj` folders
  7. Upgrading to the latest version of the .NET Framework (v4.7.2+)
+
+Many of these issues is the result of [older .NET Frameworks like .NET v4.6.1](https://github.com/dotnet/standard/issues/481)
+not properly supporting .NET Standard 2.0 which is mostly resolved by installing .NET Framework v4.7.1+.
+
