@@ -34,17 +34,11 @@ By default ServiceStack automatically includes the Assembly where your `AppHost`
 
 ### FileSystem Mappings
 
-Custom FileSystem mappings can be easily registered under a specific alias by overriding your AppHost's 
-`GetVirtualFileSources()` and registering a custom `FileSystemMapping`, e.g:
+Custom FileSystem mappings can be easily registered under a specific alias by overriding your AppHost's `AddVirtualFileSources` and registering a custom `FileSystemMapping`, e.g:
 
 ```csharp
-public override List<IVirtualPathProvider> GetVirtualFileSources()
-{
-    var existingProviders = base.GetVirtualFileSources();
-    existingProviders.Add(new FileSystemMapping("img", "i:\\images"));
-    existingProviders.Add(new FileSystemMapping("docs", "d:\\documents"));
-    return existingProviders;
-}
+AddVirtualFileSources.Add(new FileSystemMapping("img", "i:\\images"));
+AddVirtualFileSources.Add(new FileSystemMapping("docs", "d:\\documents"));
 ```
 
 This will let you access File System Resources under the custom `/img` and `/doc` routes, e.g:
@@ -52,9 +46,9 @@ This will let you access File System Resources under the custom `/img` and `/doc
  - http://host/img/the-image.jpg
  - http://host/docs/word.doc
 
-### Register additional Virtual File Sources in a Plugin
+### Register additional Virtual File Sources in Plugins
 
-As plugins can't override methods in your AppHost, plugins will need to register any additional Virtual File Sources in the AppHost's `AddVirtualFileSources` List. As Virtual File Sources are initialized before plugins are registered your plugin will need to implement `IPreInitPlugin` so any VFS sources are registered in its `Configure()` method, e.g:
+As Virtual File Sources are initialized before plugins are registered your plugin will need to implement `IPreInitPlugin` so any VFS sources are registered in its `Configure()` method, e.g:
 
 ```csharp
 public class Disk1Plugin : IPlugin, IPreInitPlugin
