@@ -13,6 +13,8 @@ directly.
 We'll illustrate with a few examples how to register and use ServiceSources, explore some of their capabilities 
 and provide some examples of when you may want to use them below. 
 
+### Register Data Sources
+
 The `UserLogin` ServiceSouce shows you can just pass an empty Request DTO as-is to execute its Service. 
 The `RockstarAlbum` and `GithubRepo` Service Sources are however leveraging the built-in
 [Auto Mapping](/auto-mapping) to copy any matching 
@@ -47,6 +49,8 @@ public async Task<List<UserLogin>> Any(GetTodaysUserActivity request)
     return logins;
 }
 ```
+
+### GetRockstarAlbums
 
 The `GetRockstarAlbums` Service shows an example of a calling an existing ad hoc DB Service executing an 
 arbitrary custom Query. It uses the Request DTO Auto-Mapping at the `ServiceSource` registration to 
@@ -90,6 +94,8 @@ the above 2 Services:
 ```csharp
 public class QueryRockstarAlbums : QueryDb<RockstarAlbum> {}
 ```
+
+### GetGithubRepos
 
 The final `GetGithubRepos` ServiceSource example shows an example of a slightly more complex implementation
 than a single 3rd Party API call where it adds custom validation logic and call different 3rd Party API 
