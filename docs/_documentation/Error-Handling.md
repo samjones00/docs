@@ -140,9 +140,10 @@ throw new HttpError(HttpStatusCode.BadRequest, "ArgumentException") {
 }; 
 ```
 
-### Implementing [IResponseStatusConvertible](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Model/IResponseStatusConvertible.cs)
+### Implementing IResponseStatusConvertible
 
-You can also override the serialization of Custom Exceptions by implementing the `IResponseStatusConvertible` interface to return your own populated ResponseStatus instead. This is how `ValidationException` allows customizing the Response DTO is by [having ValidationException implement](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/FluentValidation/ValidationException.cs) the [IResponseStatusConvertible](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Model/IResponseStatusConvertible.cs) interface. 
+You can also override the serialization of Custom Exceptions by implementing the `IResponseStatusConvertible`
+interface to return your own populated ResponseStatus instead. This is how `ValidationException` allows customizing the Response DTO is by [having ValidationException implement](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/FluentValidation/ValidationException.cs) the [IResponseStatusConvertible](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Model/IResponseStatusConvertible.cs) interface. 
 
 E.g. Here's a custom Exception example that returns a populated Field Error:  
 
@@ -154,24 +155,21 @@ public class CustomFieldException : Exception, IResponseStatusConvertible
     public string FieldName { get; set; }
     public string FieldMessage { get; set; }
 
-    public ResponseStatus ToResponseStatus()
-    {
-        return new ResponseStatus {
-            ErrorCode = GetType().Name,
-            Message = Message,
-            Errors = new List<ResponseError> {
-                new ResponseError {
-                    ErrorCode = FieldErrorCode,
-                    FieldName = FieldName,
-                    Message = FieldMessage
-                }
+    public ResponseStatus ToResponseStatus() => new ResponseStatus {
+        ErrorCode = GetType().Name,
+        Message = Message,
+        Errors = new List<ResponseError> {
+            new ResponseError {
+                ErrorCode = FieldErrorCode,
+                FieldName = FieldName,
+                Message = FieldMessage
             }
         }
-    }    
+    }
 }
 ```
 
-### Implementing [IHasStatusCode](https://github.com/ServiceStack/ServiceStack/blob/42c93be28091e3023a1e9720eb5601d4c4fa01a0/src/ServiceStack.Interfaces/Model/IResponseStatusConvertible.cs#L13)
+### Implementing IHasStatusCode
 
 In addition to customizing the HTTP Response Body of C# Exceptions with 
 [IResponseStatusConvertible](/error-handling#implementing-iresponsestatusconvertible), 
@@ -180,10 +178,7 @@ you can also customize the HTTP Status Code by implementing `IHasStatusCode`:
 ```csharp
 public class Custom401Exception : Exception, IHasStatusCode
 {
-    public int StatusCode 
-    { 
-        get { return 401; } 
-    }
+    public int StatusCode => 401;
 }
 ```
 
@@ -224,7 +219,7 @@ In Any Request or Response Filter you can short-circuit the [Request Pipeline](/
 this.PreRequestFilters.Add((req,res) => 
 {
     if (req.PathInfo.StartsWith("/admin") && 
-        !req.GetSession().HasRole("Admin")) 
+        !req.GetSession().HasRole("Admin", req.TryResolve<IAuthRepository>())) 
     {
         res.StatusCode = (int)HttpStatusCode.Forbidden;
         res.StatusDescription = "Requires Admin Role";
