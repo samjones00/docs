@@ -105,7 +105,7 @@ If you want even finer grained control of your HTTP errors you can either **thro
 ```csharp 
 public object Get(User request) 
 {
-    throw HttpError.NotFound("User {0} does not exist".Fmt(request.Name));
+    throw HttpError.NotFound($"User {request.Name} does not exist");
 }
 ```
 
@@ -113,7 +113,7 @@ The above returns a **404** NotFound StatusCode on the wire and is a short-hand 
 
 ```csharp 
 new HttpError(HttpStatusCode.NotFound, 
-    "User {0} does not exist".Fmt(request.Name)); 
+    $"User {request.Name} does not exist");
 ```
 
 ### HttpError with a Custom Response DTO

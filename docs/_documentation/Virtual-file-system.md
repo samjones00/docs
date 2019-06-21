@@ -126,7 +126,7 @@ public override List<IVirtualPathProvider> GetVirtualFileSources()
         {
             //Report any errors in StartUpErrors collection on ?debug=requestinfo
             base.OnStartupException(new Exception(
-                "JSMin Error in {0}: {1}".Fmt(file.VirtualPath, ex.Message)));
+                $"JSMin Error in {file.VirtualPath}: {ex.Message}"));
         }
     }
 

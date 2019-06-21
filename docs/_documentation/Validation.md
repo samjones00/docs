@@ -99,11 +99,11 @@ If you want even finer grained control of your HTTP errors you can either **thro
 
 ```csharp 
 public object Get(User request) {
-       throw HttpError.NotFound("User {0} does not exist".Fmt(request.Name));
+       throw HttpError.NotFound($"User {request.Name} does not exist");
 }
 ```
 
-the above is a short-hand for `new HttpError(HttpStatusCode.NotFound, string.Format("User {0} does not exist", request.Name))` which returns a **404** NotFound StatusCode on the wire.
+the above is a short-hand for `new HttpError(HttpStatusCode.NotFound, $"User {request.Name} does not exist")` which returns a **404** NotFound StatusCode on the wire.
 
 ## Validation Feature
 

@@ -91,7 +91,7 @@ public override List<IVirtualPathProvider> GetVirtualFileSources()
         {
             //As JSMin is a strict subset of JavaScript, this can fail on valid JS.
             //We can report exceptions in StartUpErrors so they're visible in ?debug=requestinfo
-            base.OnStartupException(new Exception("JSMin Error {0}: {1}".Fmt(file.VirtualPath, ex.Message)));
+            base.OnStartupException(new Exception($"JSMin Error {file.VirtualPath}: {ex.Message}"));
         }
     }
 

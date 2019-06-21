@@ -56,7 +56,7 @@ There are optional `PublishMessageFilter` and `GetMessageFilter` callbacks which
 var mqServer = new RabbitMqServer("localhost") 
 {
     PublishMessageFilter = (queueName, properties, msg) => {
-        properties.AppId = "app:{0}".Fmt(queueName);
+        properties.AppId = $"app:{queueName}";
     },
     GetMessageFilter = (queueName, basicMsg) => {
         var props = basicMsg.BasicProperties;
@@ -162,7 +162,7 @@ Often message handlers will just return a POCO response after it processes a mes
 
 ```csharp
 mqServer.RegisterHandler<Hello>(m =>
-    new HelloResponse { Result = "Hello, {0}!".Fmt(m.GetBody().Name) });
+    new HelloResponse { Result = $"Hello, {m.GetBody().Name}!" });
 ```
 
 Whenever there's a response, then instead of the .outq the response message is sent to the **.inq** of the response message type, which for a `HelloResponse` type is just **mq:HelloResponse.inq**, e.g:
@@ -279,7 +279,7 @@ public class HelloService : Service
 {
     public object Any(Hello request)
     {
-        return new HelloResponse { Result = "Hello, {0}!".Fmt(request.Name) };
+        return new HelloResponse { Result = $"Hello, {request.Name}!" };
     }
 }
 ```

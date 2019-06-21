@@ -380,7 +380,7 @@ public class ServerEventsServices : Service
         // Ensure the subscription sending this notification is still active
         var sub = ServerEvents.GetSubscriptionInfo(request.From);
         if (sub == null)
-            throw HttpError.NotFound("Subscription {0} does not exist".Fmt(request.From));
+            throw HttpError.NotFound($"Subscription {request.From} does not exist");
 
         // Check to see if this is a private message to a specific user
         if (request.ToUserId != null)
@@ -400,7 +400,7 @@ public class ServerEventsServices : Service
         // Ensure the subscription sending this notification is still active
         var sub = ServerEvents.GetSubscriptionInfo(request.From);
         if (sub == null)
-            throw HttpError.NotFound("Subscription {0} does not exist".Fmt(request.From));
+            throw HttpError.NotFound($"Subscription {request.From} does not exist");
 
         var channel = request.Channel;
 
@@ -427,7 +427,7 @@ public class ServerEventsServices : Service
             foreach (var toSub in toSubs)
             {
                 // Change the message format to contain who the private message was sent to
-                msg.Message = "@{0}: {1}".Fmt(toSub.DisplayName, msg.Message);
+                msg.Message = $"@{toSub.DisplayName}: {msg.Message}";
                 ServerEvents.NotifySubscription(request.From, request.Selector, msg);
             }
         }

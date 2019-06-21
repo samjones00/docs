@@ -162,7 +162,7 @@ public class SimpleService : Service
    {
       var rockstar = RockstarRepository.GetByLastName(request.LastName);
       if (rockstar == null)
-          throw HttpError.NotFound("'{0}' is not a Rockstar".Fmt(request.LastName));
+          throw HttpError.NotFound($"'{request.LastName}' is not a Rockstar");
 
       var status = new RockstarStatus
       {

@@ -970,8 +970,8 @@ public void LoadUserAuthInfo(AuthUserSession userSession,
         tokens.FirstName = user.GivenName;
         tokens.LastName = user.Surname;
         tokens.FullName = (String.IsNullOrWhiteSpace(user.MiddleName))
-            ? "{0} {1}".Fmt(user.GivenName, user.Surname)
-            : "{0} {1} {2}".Fmt(user.GivenName, user.MiddleName, user.Surname);
+            ? $"{user.GivenName} {user.Surname}"
+            : $"{user.GivenName} {user.MiddleName} {user.Surname}";
         tokens.PhoneNumber = user.VoiceTelephoneNumber;
     }
 }

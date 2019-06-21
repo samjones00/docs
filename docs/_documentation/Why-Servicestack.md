@@ -222,7 +222,7 @@ public class CustomerService : Service
     {
         var customer = Db.SingleById<Customer>(request.Id);
         if (customer == null)
-            throw HttpError.NotFound("Customer '{0}' does not exist".Fmt(request.Id));
+            throw HttpError.NotFound($"Customer '{request.Id}' does not exist");
 
         customer.Name = request.Name;
         Db.Update(customer);

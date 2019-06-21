@@ -289,7 +289,7 @@ different row in the `TenantConfig` table to identify the database that it's in.
 public class MultiTenantChangeDbAppHost : AppSelfHostBase
 {
     public MultiTenantChangeDbAppHost()
-        : base("Multi Tennant Test", typeof (MultiTenantChangeDbAppHost).Assembly) {}
+        : base("Multi Tenant Test", typeof (MultiTenantChangeDbAppHost).Assembly) {}
 
     public override void Configure(Container container)
     {
@@ -298,16 +298,16 @@ public class MultiTenantChangeDbAppHost : AppSelfHostBase
 
         var dbFactory = container.Resolve<IDbConnectionFactory>();
 
-        const int noOfTennants = 3;
+        const int noOfTenants = 3;
 
         using (var db = dbFactory.OpenDbConnection())
             InitDb(db, "MASTER", "Masters inc.");
 
-        noOfTennants.Times(i =>
+        noOfTenants.Times(i =>
         {
             var tenantId = "T0" + (i + 1);
             using (var db = dbFactory.OpenDbConnectionString(GetTenantConnString(tenantId)))
-                InitDb(db, tenantId, "ACME {0} inc.".Fmt(tenantId));
+                InitDb(db, tenantId, $"ACME {tenantId} inc.");
         });
 
         RegisterTypedRequestFilter<IForTenant>((req,res,dto) => 
@@ -323,7 +323,7 @@ public class MultiTenantChangeDbAppHost : AppSelfHostBase
     public string GetTenantConnString(string tenantId)
     {
         return tenantId != null 
-            ? "~/App_Data/tenant-{0}.sqlite".Fmt(tenantId).MapAbsolutePath()
+            ? $"~/App_Data/tenant-{tenantId}.sqlite".MapAbsolutePath()
             : null;
     }
 }

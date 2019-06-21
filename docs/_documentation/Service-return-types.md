@@ -39,7 +39,7 @@ public class HelloService : Service
 {
     public HelloResponse Get(Hello request)
     {
-        return new HelloResponse { Result = "Hello, {0}!".Fmt(request.Name) };
+        return new HelloResponse { Result = $"Hello, {request.Name}!" };
 
         //C# client can call with:
         //var response = client.Get(new Hello { Name = "ServiceStack" });
@@ -47,13 +47,13 @@ public class HelloService : Service
 
     public string Get(HelloHtml request)
     {
-        return "<h1>Hello, {0}!</h1>".Fmt(request.Name);
+        return $"<h1>Hello, {request.Name}!</h1>";
     }
 
     [AddHeader(ContentType = "text/plain")]
     public string Get(HelloText request)
     {
-        return "<h1>Hello, {0}!</h1>".Fmt(request.Name);
+        return $"<h1>Hello, {request.Name}!</h1>";
     }
 
     [AddHeader(ContentType = "image/png")]
@@ -69,7 +69,7 @@ public class HelloService : Service
         {
             g.Clear(bgColor);
 
-            var drawString = "Hello, {0}!".Fmt(request.Name);
+            var drawString = $"Hello, {request.Name}!";
             var drawFont = new Font("Times", request.FontSize.GetValueOrDefault(40));
             var drawBrush = new SolidBrush(fgColor);
             var drawRect = new RectangleF(0, 0, width, height);
