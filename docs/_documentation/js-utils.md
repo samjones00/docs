@@ -30,14 +30,14 @@ It can be used to parse dynamic JSON and any primitive JavaScript data type. The
 Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [#Script Sandbox](https://sharpscript.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
 
 ```csharp
-public class CustomFilter : ScriptMethods
+public class CustomMethods : ScriptMethods
 {
     public string reverse(string text) => new string(text.Reverse().ToArray());
 }
 
 var scope = JS.CreateScope(
          args: new Dictionary<string, object> { { "arg", "value"} }, 
-    functions: new CustomFilter());
+    functions: new CustomMethods());
 
 JS.eval("arg", scope)                                        //= "value"
 JS.eval("reverse(arg)", scope)                               //= "eulav"
@@ -47,14 +47,29 @@ JS.eval("itemsOf(3, padRight(reverse(arg), 8, '_'))", scope) //= ["eulav___", "e
 JS.eval("{a: itemsOf(3, padRight(reverse(arg), 8, '_')) }", scope)
 ```
 
+#### Evaluating DSL's within a custom Context
+
+`#Script` is useful for creating a late-bound sandboxed environment pre-configured with all functionality you want to enable access to
+without forcing implementation coupling in your project dependencies, e.g. you can enable binary serialization that all your project dependencies can use with:
+
+```csharp
+var scope = context.CreateScope(new Dictionary<string, object> {
+    ["target"] = person
+});
+var result = (ReadOnlyMemory<byte>)JS.eval("serialize(target)", scope);
+```
+
+Where the `serialize()` method only needs to be registered once in the host project that creates the context that all your DSL's are executed within, 
+the implementations of which can later be substituted without any changes to existing scripts or needing to change any package/Assembly references.
+
 ### JavaScript Expressions
 
 The JavaScript Expressions support in ServiceStack follows the [syntax tree used by Esprima](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html), JavaScript's leading lexical language parser for JavaScript, but adapted to suit C# conventions using PascalCase properties and each AST Type prefixed 
 with `Js*` to avoid naming collisions with C#'s LINQ Expression Types which often has the same name. 
 
-So Esprima's [MemberExpression](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html#member-expression) maps to [JsMemberExpression](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/Templates/JsMemberExpression.cs) in Templates. 
+So Esprima's [MemberExpression](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html#member-expression) maps to [JsMemberExpression](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/Script/JsMemberExpression.cs) in Templates. 
 
-In addition to adopting Esprima's AST data structures, Templates can also [emit the same serialized Syntax Tree](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205) that Esprima generates from any AST Expression, e.g:
+In addition to adopting Esprima's AST data structures, #Script can also [emit the same serialized Syntax Tree](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205) that Esprima generates from any AST Expression, e.g:
 
 ```csharp
 // Create AST from JS Expression
@@ -156,7 +171,7 @@ or mutations using Assignment Expressions and Operators. All assignments still n
 
 #### Evaluating JavaScript Expressions
 
-The built-in JavaScript expressions support is also useful outside of Templates where they can be evaluated with `JS.eval()`:
+The built-in JavaScript expressions support is also useful outside of dynamic pages where they can be evaluated with `JS.eval()`:
 
 ```csharp
 JS.eval("pow(2,2) + pow(4,2)") //= 20
@@ -178,10 +193,10 @@ JS.eval("pow(a,2) + pow(b,2)", scope) //= 20
 Custom methods can also be introduced into the scope which can override existing filters by using the same name and args count, e.g:
 
 ```csharp
-class MyFilters : ScriptMethods {
+class MyMethods : ScriptMethods {
     public double pow(double arg1, double arg2) => arg1 / arg2;
 }
-var scope = JS.CreateScope(functions: new MyFilters());
+var scope = JS.CreateScope(functions: new MyMethods());
 JS.eval("pow(2,2) + pow(4,2)", scope); //= 3
 ```
 
@@ -237,7 +252,7 @@ Resulting in `where` populated with the [c.Age == 27](https://sharpscript.net/do
 
 #### Immutable and Comparable
 
-Unlike C#'s LINQ Expressions which can't be compared for equality, Template Expressions are both Immutable and Comparable which can be used 
+Unlike C#'s LINQ Expressions which can't be compared for equality, #Script Expressions are both Immutable and Comparable which can be used 
 in caches and compared to determine if 2 Expressions are equivalent, e.g:
 
 ```csharp
