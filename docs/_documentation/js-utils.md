@@ -16,10 +16,11 @@ The `#Script` JSON and JS Utils are available from the [ServiceStack.Common](htt
 Which will enable access to the JSON API which preserves the Type which can be used to parse JavaScript or JSON literals:
 
 ```csharp
-JSON.parse("1")      //= int 1 
-JSON.parse("1.1")    //= double 1.1
-JSON.parse("'a'")    //= string "a"
-JSON.parse("{a:1}")  //= new Dictionary<string, object> { {"a", 1 } }
+JSON.parse("1")       //= int 1 
+JSON.parse("1.1")     //= double 1.1
+JSON.parse("'a'")     //= string "a"
+JSON.parse("{a:1}")   //= new Dictionary<string, object> { {"a", 1 } }
+JSON.parse("[{a:1}]") //= new List<object> { new Dictionary<string, object> { { "a", 1 } } }
 ```
 
 It can be used to parse dynamic JSON and any primitive JavaScript data type. The inverse API of `JSON.stringify()` is also available.
@@ -29,7 +30,7 @@ It can be used to parse dynamic JSON and any primitive JavaScript data type. The
 Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [#Script Sandbox](https://sharpscript.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
 
 ```csharp
-public class CustomFilter : TemplateFilter
+public class CustomFilter : ScriptMethods
 {
     public string reverse(string text) => new string(text.Reverse().ToArray());
 }
@@ -177,7 +178,7 @@ JS.eval("pow(a,2) + pow(b,2)", scope) //= 20
 Custom methods can also be introduced into the scope which can override existing filters by using the same name and args count, e.g:
 
 ```csharp
-class MyFilters : TemplateFilter {
+class MyFilters : ScriptMethods {
     public double pow(double arg1, double arg2) => arg1 / arg2;
 }
 var scope = JS.CreateScope(functions: new MyFilters());
