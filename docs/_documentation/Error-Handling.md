@@ -228,6 +228,20 @@ this.PreRequestFilters.Add((req,res) =>
 });
 ```
 
+Or if you need access to the Request DTO you can use a [Global Request Filter](/request-and-response-filters) instead, e.g:
+
+```csharp
+GlobalRequestFilters.Add((req,res,dto) => {
+    if (req.Verb == HttpMethods.Post && dto is Authenticate authDto 
+        && authDto.provider == CredentialsAuthProvider.Name && !authDto.UseTokenCookie) {
+        res.StatusCode = (int)HttpStatusCode.Forbidden;
+        res.StatusDescription = "Must use stateless JWT Cookies";
+        res.EndRequest();       
+    }
+});
+```
+
+
 > To end the Request in a  Custom HttpHandler use `res.EndHttpHandlerRequest()`
 
 ### Fallback Error Pages
