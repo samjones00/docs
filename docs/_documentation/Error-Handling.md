@@ -264,6 +264,8 @@ public override void Configure(Container container)
         new SharpPageHandler("/notfound");
     this.CustomErrorHttpHandlers[HttpStatusCode.Unauthorized] = 
         new SharpPageHandler("/login");
+    this.CustomErrorHttpHandlers[HttpStatusCode.Forbidden] = 
+        new SharpPageHandler("/forbidden");
 }
 ```
 
@@ -279,6 +281,8 @@ public override void Configure(Container container)
         new RazorHandler("/notfound");
     this.CustomErrorHttpHandlers[HttpStatusCode.Unauthorized] = 
         new RazorHandler("/login");
+    this.CustomErrorHttpHandlers[HttpStatusCode.Forbidden] = 
+        new RazorHandler("/forbidden");
 }
 ```
 
