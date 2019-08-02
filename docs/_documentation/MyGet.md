@@ -56,6 +56,13 @@ Alternatively on Windows you can delete the Cached NuGet packages manually with:
 
     $ del %LOCALAPPDATA%\NuGet\Cache\*.nupkg /q
 
+### Full Package Clean
+
+In most cases clearing the NuGet packages cache will suffice, sometimes you'll also need to manually delete the other local packages cache
+
+    $ rd /q /s packages  # delete all NuGet packages in `/packages` folder
+    $ rd /q /s bin obj   # delete `/bin` and `/obj` folders in host project
+
 ## Versioning Scheme
 
 All ServiceStack packages are published together in "lockstep" with the same version number so the effort to upgrade ServiceStack projects can be done all at same time, with low frequency. 
