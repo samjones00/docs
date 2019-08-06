@@ -4,7 +4,7 @@
     - [Architecture Overview](/architecture-overview)
     - [Live Demos](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
 - ##### Releases
-    - [Latest Release Notes](/releases/v5.5)
+    - [Latest Release Notes](/releases/v5.6)
     - [Release Notes History](/release-notes-history)
     - [Pre-release MyGet Packages](/myget)
 - ##### Getting Started
