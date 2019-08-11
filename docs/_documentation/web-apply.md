@@ -170,11 +170,11 @@ If we decided later we wanted to switch to use **SQL Server** instead we can jus
 
 This isn't just limited to gist projects, you can also apply gists when **creating new projects**:
 
-    $ web new sharp+postgres+auth-db
+    $ web new script+postgres+auth-db
 
-Which will create a [sharp](https://github.com/NetCoreTemplates/sharp) project configured to use **PostgreSQL Auth**.
+Which will create a [script](https://github.com/NetCoreTemplates/script) project configured to use **PostgreSQL Auth**.
 
-This works despite the `sharp` project being a [multi-project solution](/physical-project-structure) 
+This works despite the `script` project being a [multi-project solution](/physical-project-structure) 
 thanks to the `to: $HOST` modifier which says to **apply the gists files** to the `HOST` project.
 
 ### Apply Gist Modifiers

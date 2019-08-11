@@ -325,7 +325,7 @@ The Webpack templates have been updated to utilize [Webpack's DllPlugin](https:/
  
     $ npm run dev
 
-Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [Sharp Pages hot-reloading](https://sharpscript.net/docs/sharp-apps/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port http://localhost:3000 
+Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [#Script Pages hot-reloading](https://sharpscript.net/docs/sharp-apps/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port http://localhost:3000 
 
 ### Deployments
 
@@ -357,19 +357,22 @@ There are 3 templates for each of the different technologies that can be used wi
 
  - .NET Core: [mvc](https://github.com/NetCoreTemplates/mvc)
  - .NET Framework: [mvc-netfx](https://github.com/NetFrameworkTemplates/mvc-netfx)
+ - ASP.NET Core on .NET Framework: [mvc-corefx](https://github.com/NetFrameworkCoreTemplates/mvc-corefx)
  - Live Preview: [mvc.web-templates.io](http://mvc.web-templates.io)
  
 #### ServiceStack.Razor 
 
- - .NET Core: [](https://github.com/NetCoreTemplates/)
- - .NET Framework: [](https://github.com/NetFrameworkTemplates/)
- - Live Preview: [.web-templates.io](http://.web-templates.io)
+ - .NET Core: [razor](https://github.com/NetCoreTemplates/razor)
+ - .NET Framework: [](https://github.com/NetFrameworkTemplates/razor-netfx)
+ - ASP.NET Core on .NET Framework: [razor-corefx](https://github.com/NetFrameworkCoreTemplates/razor-corefx)
+ - Live Preview: [razor.web-templates.io](http://razor.web-templates.io)
  
-#### Sharp Pages
+#### #Script Pages
 
- - .NET Core: [sharp](https://github.com/NetCoreTemplates/sharp)
- - .NET Framework: [sharp-netfx](https://github.com/NetFrameworkTemplates/sharp-netfx)
- - Live Preview: [sharp.web-templates.io](http://sharp.web-templates.io)
+ - .NET Core: [script](https://github.com/NetCoreTemplates/script)
+ - .NET Framework: [script-netfx](https://github.com/NetFrameworkTemplates/script-netfx)
+ - ASP.NET Core on .NET Framework: [script-corefx](https://github.com/NetFrameworkCoreTemplates/script-corefx)
+ - Live Preview: [script.web-templates.io](http://script.web-templates.io)
 
 #### Hot Reloading
 
@@ -709,9 +712,9 @@ Which you could use to provide a tailored feed for specific clients:
 public class CustomFeedView { ... }
 ```
 
-### Sharp Pages
+### #Script Pages
 
-[Sharp Pages](https://sharpscript.net/docs/sharp-pages) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
+[#Script Pages](https://sharpscript.net/docs/sharp-pages) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
 
 It works similarly to Razor ViewPages where it uses first matching View Page with the Response DTO is injected as the `Model` property. The View Pages can be in any folder within the `/Views` folder using the format `{PageName}.html` where `PageName` can be either the **Request DTO** or **Response DTO** Name, but all page names within the `/Views` folder need to be unique.
 

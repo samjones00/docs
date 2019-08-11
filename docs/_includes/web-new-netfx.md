@@ -8,7 +8,7 @@
 | [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) | .NET Framework React Desktop Apps |
 | [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx)          | .NET Framework React Bootstrap Webpack App |
 | [selfhost-netfx](https://github.com/NetFrameworkTemplates/selfhost-netfx)           | .NET Framework self-hosting HttpListener Console App |
-| [sharp-netfx](https://github.com/NetFrameworkTemplates/sharp-netfx)              | .NET Framework Templates Bootstrap WebApp |
+| [script-netfx](https://github.com/NetFrameworkTemplates/script-netfx)              | .NET Framework #Script Pages Bootstrap WebApp |
 | [vue-nuxt-netfx](https://github.com/NetFrameworkTemplates/vue-nuxt-netfx)           | .NET Framework Vue Nuxt.js SPA Web App |
 | [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx)            | .NET Framework Vue Bootstrap Webpack App |
 | [vuetify-nuxt-netfx](https://github.com/NetFrameworkTemplates/vuetify-nuxt-netfx)       | .NET Framework Vuetify Material Nuxt.js SPA Web App |

@@ -50,8 +50,8 @@ Which will create a new .NET Core 2.1 MVC Project called **AcmeMvc**. The Templa
     </td>
 </tr>
 <tr>
-    <td><a href="https://github.com/NetCoreTemplates/sharp">templates</a></td>
-    <td><a href="https://github.com/NetFrameworkTemplates/sharp-netfx">sharp-netfx</a></td>
+    <td><a href="https://github.com/NetCoreTemplates/script">script</a></td>
+    <td><a href="https://github.com/NetFrameworkTemplates/script-netfx">script-netfx</a></td>
     <th align="center">
         ServiceStack Sharp Pages Bootstrap Template
     </th>
@@ -61,15 +61,15 @@ Which will create a new .NET Core 2.1 MVC Project called **AcmeMvc**. The Templa
         The <code class="highlighter-rouge">templates</code> Project Template is configured to develop Websites using <a href="https://sharpscript.net">#Script</a>, a simpler and cleaner alternative to Razor that lets you utilize simple Template Expressions for evaluating Server logic in <code class="highlighter-rouge">.html</code> pages. Templates doesn’t require any precompilation, is easier to learn and more intuitive for non-programmers that’s more suitable for a <a href="https://sharpscript.net/usecases/">number of use-cases</a>. Use templates if you want an <a href="/releases/v4.5.14#why-templates">alternative to Razor</a> syntax and the heavy machinery required to support it.
     </td>
     <td align="center">
-        <a href="http://sharp.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates.png" width="450" /></a>
-        <p><a href="http://sharp.web-templates.io">sharp.web-templates.io</a></p>
+        <a href="http://script.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates.png" width="450" /></a>
+        <p><a href="http://script.web-templates.io">script.web-templates.io</a></p>
     </td>
 </tr>
 </table>
 
 #### Hot Reloading
 
-Both `razor` and `templates` project enjoy Hot Reloading where in development a long poll is used to detect and reload changes in the current Template Page or static files in `/wwwroot`.
+Both `razor` and `script` project enjoy Hot Reloading where in development a long poll is used to detect and reload changes in the current Template Page or static files in `/wwwroot`.
 
 ### Watched .NET Core builds
 

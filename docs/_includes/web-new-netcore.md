@@ -13,7 +13,7 @@
 | [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript |
 | [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET Core 2.1 React Create App CLI Bootstrap App |
 | [selfhost](https://github.com/NetCoreTemplates/selfhost)           | .NET Core 2.1 self-hosting Console App |
-| [sharp](https://github.com/NetCoreTemplates/sharp)              | .NET Core 2.1 Sharp Pages Bootstrap Website |
+| [script](https://github.com/NetCoreTemplates/sharp)              | .NET Core 2.1 #Script Pages Bootstrap Website |
 | [svelte-spa](https://github.com/NetCoreTemplates/svelte-spa)            | .NET Core 2.1 Svelte v3 Rollup Bootstrap App |
 | [vue-lite](https://github.com/NetCoreTemplates/vue-lite)           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript |
 | [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)           | .NET Core 2.1 Nuxt.js SPA App with Bootstrap |
