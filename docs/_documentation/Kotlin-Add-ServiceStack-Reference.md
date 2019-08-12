@@ -680,7 +680,7 @@ convention as the remote ServiceStack server which for the [test.servicestack.ne
 Web Services, follows its **camelCase** naming convention that is configured in its AppHost with: 
 
 ```csharp
-JsConfig.EmitCamelCaseNames = true;
+JsConfig.Init(new Config { TextCase = TextCase.CamelCase });
 ```
 
 ### Kotlin Type Conversions

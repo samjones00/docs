@@ -2107,7 +2107,7 @@ var result = db.Single(x => x.Name == "foo");
 You can easily escape HTML Entities characters (`<`, `>`, `&`, `=`, `'`) when serializing JSON strings with:
 
 ```csharp
-JsConfig.EscapeHtmlChars = true;
+JsConfig.Init(new Config { EscapeHtmlChars = true });
 ```
 
 This can also be requested by clients using [Customized JSON Responses](/customize-json-responses), e.g:

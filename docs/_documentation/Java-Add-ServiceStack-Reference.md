@@ -540,7 +540,7 @@ Another noticeable feature is the Java getters and setters property convention a
 
 To comply with Gson JSON Serialization rules, the public DTO fields are emitted in the same JSON naming convention as the remote ServiceStack server which for the [test.servicestack.net](http://test.servicestack.net) Web Services, follows its **camelCase** naming convention that is configured in its AppHost with: 
 ```csharp
-JsConfig.EmitCamelCaseNames = true;
+JsConfig.Init(new Config { TextCase = TextCase.CamelCase });
 ```
 
 Whilst the public fields match the remote server JSON naming convention, the getters and setters are always emitted in Java's **camelCase** convention to maintain a consistent API irrespective of the remote server configuration. To minimize API breakage they should be the preferred method to access DTO fields.

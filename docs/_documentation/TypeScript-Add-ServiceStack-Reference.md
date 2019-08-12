@@ -253,7 +253,7 @@ Properties always reflect to match the remote servers JSON Serialization configu
 i.e. will use **camelCase** properties when the `AppHost` is configured with:
 
 ```csharp
-JsConfig.EmitCamelCaseNames = true;
+JsConfig.Init(new Config { TextCase = TextCase.CamelCase });
 ```
 
 ### Making Typed API Requests

@@ -12,8 +12,10 @@ ServiceStack uses the [ServiceStack.Text Serializers](https://github.com/Service
 ```csharp
 public override void Configure(Container container)
 {
-    JsConfig.EmitLowercaseUnderscoreNames = true; 
-    JsConfig.ExcludeDefaultValues = true;
+    JsConfig.Init(new ServiceStack.Text.Config {
+        TextCase = TextCase.SnakeCase,
+        ExcludeDefaultValues = true,
+    });
 
     JsConfig<Guid>.SerializeFn = guid => guid.ToString("D");
     JsConfig<TimeSpan>.SerializeFn = time => 
@@ -27,15 +29,15 @@ The Global Defaults can be overridden on a adhoc basis by returning your Respons
 
 ```csharp
 return new HttpResult(responseDto) {
-    ResultScope = () => JsConfig.With(
-        emitLowercaseUnderscoreNames:true, excludeDefaultValues:true)
+    ResultScope = () => 
+        JsConfig.With(new Config { IncludeNullValues = true, ExcludeDefaultValues = true })
 };
 ```
 
 This has the same behavior for your Service Responses as creating a Custom Config Scope for adhoc Serialization that overrides Global Configuration, e.g:
 
 ```csharp
-using (JsConfig.With(emitLowercaseUnderscoreNames:true, excludeDefaultValues:true))
+using (JsConfig.With(new Config { IncludeNullValues = true, ExcludeDefaultValues = true }))
 {
     var json = dto.ToJson();
 }
@@ -54,8 +56,8 @@ Works similarly to:
 
 ```csharp
 return new HttpResult(new { TheKey = "value", Foo=0 }) {
-    ResultScope = () => JsConfig.With(
-        emitLowercaseUnderscoreNames:true, excludeDefaultValues:true)
+    ResultScope = () => 
+        JsConfig.With(new Config { TextCase = TextCase.SnakeCase, ExcludeDefaultValues = true })
 };
 ```
 

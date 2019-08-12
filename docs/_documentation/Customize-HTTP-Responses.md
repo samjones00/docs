@@ -136,14 +136,14 @@ be used to customize the serialized response of adhoc services that's different 
 
 ```csharp
 return new HttpResult(dto) {
-    ResultScope = () => JsConfig.With(includeNullValues:true)
+    ResultScope = () => JsConfig.With(new Config { IncludeNullValues =  true })
 };
 ```
 
 Which enables custom serialization behavior by performing the serialization within the custom scope, equivalent to:
 
 ```csharp
-using (JsConfig.With(includeNullValues:true))
+using (JsConfig.With(new Config { IncludeNullValues =  true }))
 {
     var customSerializedResponse = Serialize(dto);
 }

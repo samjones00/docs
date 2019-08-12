@@ -342,26 +342,17 @@ public class FindFruits : IReturn<List<Fruit>>
 
 ## Text Serialization
 
-The JSON, JSV and CSV Text Serilalizers support serializing public fields with:
+The JSON, JSV and CSV Text Serializers support serializing public fields with:
 
-    JsConfig.IncludePublicFields = true;
+    JsConfig.Init(new Config { IncludePublicFields = true });
 
 ### Scoped static configuration
 
 You can use block-scoped configuration to modify the configuration for a single thread within a using block, e.g:
 
 ```csharp
-using (JsConfig.BeginScope())
-{
-    JsConfig.IncludePublicFields = true;       //Any config changes only apply to this using scope
-    new FieldId(1).ToUrl("GET"); -> /route/1
-}
-```
-
-You can also use the convenient `JsConfig.With` shorthand which does the above in a more concise form:
-
-```csharp
-using (JsConfig.With(includePublicFields: true))
+//Any config changes only apply to this using scope
+using (JsConfig.With(new Config { IncludePublicFields = true }))
 {
     new FieldId(1).ToUrl("GET"); -> /route/1
 }
@@ -371,7 +362,7 @@ using (JsConfig.With(includePublicFields: true))
 
   - Added IAuthSession.OnCreated(httpReq) custom event (similar to Session_Started)    
   - Added Config.AllowNonHttpOnlyCookies to disable http-only cookies
-  - Added `EndhointHost.GetPlugin<IPlugin>()` to find and return registered plugin
+  - Added `AppHost.GetPlugin<IPlugin>()` to find and return registered plugin
   - Added ToMd5Hash extension method on Stream or byte[]
   - Added AssertDir extension method creating a directory if it doesn't exist
   - Added .svg to static files whitelist

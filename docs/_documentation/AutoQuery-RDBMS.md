@@ -1103,7 +1103,7 @@ Which can be queried with:
 
     ?first_name=Jimi
 
-or by setting the global `JsConfig.EmitLowercaseUnderscoreNames=true` convention:
+or by setting the global `JsConfig.Init(Config { TextCase = TextCase.SnakeCase })` convention:
 
 ```csharp
 public class QueryPerson : QueryDb<Person>

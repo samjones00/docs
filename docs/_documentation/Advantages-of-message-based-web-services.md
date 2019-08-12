@@ -191,7 +191,7 @@ Support is included for registering raw custom IHttpHandler's, [Request / Respon
 
 ServiceStack's JSON & JSV serializers are **case-insensitive** (i.e. supports both camelCase and PascalCase properties) and the 1-line below (already included in most Example templates) emits idiomatic camelCase JSON output:
 
-    ServiceStack.Text.JsConfig.EmitCamelCaseNames = true;
+    JsConfig.Init(Config { TextCase = TextCase.CamelCase });
 
 They're both [very resilient and can withstand extreme versioning without error](https://github.com/ServiceStack/ServiceStack.Redis/wiki/MigrationsUsingSchemalessNoSql) making it easy to consume [3rd party APIs](https://github.com/ServiceStack/ServiceStack.Text/tree/master/tests/ServiceStack.Text.Tests/UseCases)
 
