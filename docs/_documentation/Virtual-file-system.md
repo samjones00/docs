@@ -12,7 +12,7 @@ The virtual file system (VFS) is what allows ServiceStack to support view engine
 ServiceStack has the following Virtual Files Sources available:
 
  - `FileSystemVirtualFiles` - Hard-disk or Network Files and Directories from a specified root directory
- - `MemoryVirtualFiles` - Virtual Files and Folders that can be programatically populated In Memory
+ - `MemoryVirtualFiles` - Virtual Files and Folders that can be programmatically populated In Memory
  - `ResourceVirtualFiles` - Embedded Resource Files in .dlls
  - `FileSystemMapping` - Hard-disk or Network files made available under an custom file mapping alias
  - `GistVirtualFiles` - Files stored in a GitHub Gist
@@ -85,57 +85,105 @@ Where your AppHost will serve static files from your plugin's registered path ma
     /disk1/file.html -> /path/to/project/App_Data/mount/hdd/file.html
     /disk2/file.html -> d:\hdd\file.html
 
-### Register additional Virtual File Sources 
+### Empty MemoryVirtualFiles registered in VirtualFileSources
 
-Another easy way to register additional Virtual Path Providers in ServiceStack is to override the `GetVirtualFileSources()` method in your AppHost where you can add, remove, or re-order existing providers to change their priority. E.g. we can use this to provide an elegant solution for minifying static `.html`, `.css` and `.js` resources by simply pre-loading a new **Memory Virtual FileSystem** with minified versions of existing files and giving the Memory FS a higher precedence so any matching requests serve up the minified version first with:
+To enable **shadowing** of the `WebRoot` cascading Virtual File Sources, an empty `MemoryVirtualFiles` has been added to 
+`InsertVirtualFileSources` by default where it gets inserted at the start of `VirtualFileSources`, i.e:
 
 ```csharp
-public override List<IVirtualPathProvider> GetVirtualFileSources()
-{
-    var existingProviders = base.GetVirtualFileSources();
-    var memFs = new MemoryVirtualFiles();
-
-    //Get FileSystem Provider
-    var fs = existingProviders.First(x => x is FileSystemVirtualFiles);
-
-    //Process all .html files:
-    foreach (var file in fs.GetAllMatchingFiles("*.html"))
-    {
-        var contents = Minifiers.HtmlAdvanced.Compress(file.ReadAllText());
-        memFs.WriteFile(file.VirtualPath, contents);
-    }
-
-    //Process all .css files:
-    foreach (var file in fs.GetAllMatchingFiles("*.css")
-        .Where(file => !file.VirtualPath.EndsWith(".min.css")))
-    {
-        var contents = Minifiers.Css.Compress(file.ReadAllText());
-        memFs.WriteFile(file.VirtualPath, contents);
-    }
-
-    //Process all .js files
-    foreach (var file in fs.GetAllMatchingFiles("*.js")
-        .Where(file => !file.VirtualPath.EndsWith(".min.js")))
-    {
-        try
-        {
-            var js = file.ReadAllText();
-            var contents = Minifiers.JavaScript.Compress(js);
-            memFs.WriteFile(file.VirtualPath, contents);
-        }
-        catch (Exception ex)
-        {
-            //Report any errors in StartUpErrors collection on ?debug=requestinfo
-            base.OnStartupException(new Exception(
-                $"JSMin Error in {file.VirtualPath}: {ex.Message}"));
-        }
-    }
-
-    //Give new Memory FS highest priority
-    existingProviders.Insert(0, memFs);
-    return existingProviders;
+new AppHost {
+    InsertVirtualFileSources = { new MemoryVirtualFiles() } 
 }
 ```
+
+If needed, the individual Memory and FileSystem VFS providers in the WebRoot VFS Sources can be accessed with:
+
+```csharp
+var memFs = appHost.VirtualFileSources.GetMemoryVirtualFiles();
+var diskFs = appHost.VirtualFileSources.GetFileSystemVirtualFiles();
+```
+
+Which are also available from the `HostContext` singleton:
+
+ - `HostContext.MemoryVirtualFiles` - **WebRoot** MemoryVirtualFiles
+ - `HostContext.FileSystemVirtualFiles` - **WebRoot** FileSystem
+
+The **WebRoot** Directory and **ContentRoot** Directories are also available from:
+
+ - `HostContext.RootDirectory` - **WebRoot** `wwwroot/` 
+ - `HostContext.ContentRootDirectory` - **ContentRoot** `/`
+
+### Populate Virtual Files
+
+We can leverage this to provide an elegant solution for minifying static `.html`, `.css` and `.js` resources by simply pre-loading a new 
+**Memory Virtual FileSystem** with minified versions of existing files and giving the Memory FS a higher precedence so any matching requests 
+serve up the minified version first with:
+
+```csharp
+public class MyPlugin : IPlugin, IPostInitPlugin
+{
+    public void Register(IAppHost appHost) { }
+
+    public void AfterPluginsLoaded(IAppHost appHost)
+    {
+        var memFs = appHost.VirtualFileSources.GetMemoryVirtualFiles();
+
+        //Get FileSystem Provider
+        var fs = appHost.VirtualFileSources.GetFileSystemVirtualFiles();
+
+        //Process all .html files:
+        foreach (var file in fs.GetAllMatchingFiles("*.html"))
+        {
+            var contents = Minifiers.HtmlAdvanced.Compress(file.ReadAllText());
+            memFs.WriteFile(file.VirtualPath, contents);
+        }
+
+        //Process all .css files:
+        foreach (var file in fs.GetAllMatchingFiles("*.css")
+            .Where(file => !file.VirtualPath.EndsWith(".min.css")))
+        {
+            var contents = Minifiers.Css.Compress(file.ReadAllText());
+            memFs.WriteFile(file.VirtualPath, contents);
+        }
+
+        //Process all .js files
+        foreach (var file in fs.GetAllMatchingFiles("*.js")
+            .Where(file => !file.VirtualPath.EndsWith(".min.js")))
+        {
+            try
+            {
+                var js = file.ReadAllText();
+                var contents = Minifiers.JavaScript.Compress(js);
+                memFs.WriteFile(file.VirtualPath, contents);
+            }
+            catch (Exception ex)
+            {
+                //Report any errors in StartUpErrors collection on ?debug=requestinfo
+                base.OnStartupException(new Exception(
+                    $"JSMin Error in {file.VirtualPath}: {ex.Message}"));
+            }
+        }
+    }
+}
+```
+
+### Registering additional Virtual File Sources
+
+The `InsertVirtualFileSources` can be used to **prepend** additional Virtual File Sources at start giving them the highest priority whilst
+`AddVirtualFileSources` **appends** at the end giving them the lowest priority, which your AppHost or plugins can use to 
+register additional Virtual File Sources:
+
+```csharp
+public class MyPlugin : IPlugin, IPostInitPlugin
+{
+    public void Register(IAppHost appHost) 
+    { 
+        appHost.InsertVirtualFileSources.Add(new GistVirtualFiles("6de7993333b457445793f51f6f520ea8"));
+        appHost.AddVirtualFileSources.Add(new FileSystemMapping("docs", "d:\\documents"));
+    }
+}
+```
+
 
 ### Using a different Virtual Path Provider
 
@@ -149,7 +197,7 @@ Fine-grained control on which VFS to use can also be specified on any [Plugins](
 
 ```csharp
 Plugins.Add(new RazorFormat { 
-  VirtualPathProvider = new MemoryVirtualFiles() 
+    VirtualPathProvider = new MemoryVirtualFiles() 
 });
 ```
 
