@@ -546,3 +546,7 @@ public interface IVirtualFiles : IVirtualPathProvider
     void DeleteFolder(string dirPath);
 }
 ```
+
+To ensure behavior conformance your VFS provider, it should also be validated against the existing
+[VirtualPathProviderTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/VirtualPathProviderTests.cs)
+test suite.
