@@ -306,7 +306,8 @@ Whilst not required you can copy the **exact same bundling configuration** in yo
 [/wwwroot/_bundle.ss](https://github.com/NetCoreTemplates/vue-lite/blob/master/wwwroot/_bundle.ss) script:
 
 ```js
-{% raw %}* run in host project directory with `web run wwwroot/_bundle.ss` *
+{% raw %}
+* run in host project directory with `web run wwwroot/_bundle.ss` *
 
 false | to => debug
 (debug ? '' : '.min')       | to => min
@@ -334,7 +335,8 @@ false | to => debug
     'content:/src/components/',
     'content:/src/shared/',
     'content:/src/',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${dist}.js`, iife:true }) }}{% endraw %}
+] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${dist}.js`, iife:true }) }}
+{% endraw %}
 ```
 
 Then run it with:
