@@ -15,6 +15,7 @@ ServiceStack has the following Virtual Files Sources available:
  - `MemoryVirtualFiles` - Virtual Files and Folders that can be programatically populated In Memory
  - `ResourceVirtualFiles` - Embedded Resource Files in .dlls
  - `FileSystemMapping` - Hard-disk or Network files made available under an custom file mapping alias
+ - `GistVirtualFiles` - Files stored in a GitHub Gist
  - `S3VirtualFiles` - Files stored on Amazon's S3 Managed File Storage in [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualfiles)
  - `AzureBlobVirtualFiles` - Files stored on Azure's Managed Blob Storage in [ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure)
  - `MultiVirtualFiles` - Any combination of any of the above Virtual File Sources under a cascading configuration
@@ -168,6 +169,68 @@ SetConfig(new HostConfig {
 
 The VFS supports multiple file source locations where you can override embedded files by including your own custom files in the same location as the embedded files. We can see how this works by overriding the built-in templates used in metadata pages:
 
+
+## GistVirtualFiles
+
+The `GistVirtualFiles` is a particular exciting addition to the collection of available [Virtual File System providers](/virtual-file-system#virtual-file-systems-available). 
+Gist's are the perfect way to capture and share a publicly versionable snapshot of files that's validated against a 
+authenticated user account - adding an important layer of trust and verification over an anonymous archive download.
+
+GitHub also provide public HTTP API's to access Gist's and their metadata, that scales nicely to support small fileset snapshots where all
+content is returned in the public API resource request, as well as supporting larger fileset snapshots where the contents of the gist are 
+truncated and its contents are instead downloaded from its `raw_url` in an alternative HTTP Request.
+
+`GistVirtualFiles` provides a transparent VFS abstraction over GitHub's Gist APIs so they can be used interchangeably with all other VFS providers.
+
+#### Heirachal and Binary file Support
+
+On its surface Gists appear to only support a flat list of text files, but `GistVirtualFiles` is able to overcome these limitations by transparently
+encoding Binary files to **Base 64** behind the scenes and utilizing `\` back-slashes in file names to maintain a heirachal file structure
+where it's able to implement the full VFS Provider abstraction.
+
+ServiceStack includes good heuristics for determining which files are binary on its extension and Content Type, if your Binary file isn't 
+recognized you can register its extension with a known binary content type or override the `IsBinaryFilter` predicate:
+
+```csharp
+MimeTypes.ExtensionMimeTypes[ext] = contentType; // e.g. MimeTypes.Binary
+//MimeTypes.IsBinaryFilter = contentType => ...;
+```
+
+#### Read/Write and ReadOnly Gists
+
+It supports both public read-only and read/write gists with a GitHub `accessToken` being needed in order to perform any writes:
+
+```csharp
+var gistFs = new GistVirtualFiles(gistId, accessToken);
+var gistFsReadOnly = new GistVirtualFiles(gistId);
+```
+
+#### Gist Refresh
+
+Behaviourally they differ from other VFS providers in that they're used more as a snapshot instead of a actively modified file system and
+their updates and are noticeably slower to both read and write then the other VFS providers. 
+
+To maximize performance the files are stored in memory after the first access and its internal cache only updated when a **Write** operation is performed.
+
+If you're instead using a Gist that changes frequently you can specify how long before refreshing the cache:
+
+```csharp
+var gistFs = new GistVirtualFiles(...) {
+    RefreshAfter = TimeSpan.FromHours(1)
+};
+```
+
+GitHub truncates large Gists which `GistVirtualFiles` transparently fetches behind-the-scenes on-demand, you can also eagerly 
+fetch all truncated content with:
+
+```csharp
+await gistFs.LoadAllTruncatedFilesAsync();
+```
+
+### New Virtual File System APIs
+
+As Gist HTTP API's are relatively slow, we recommend using the `WriteFiles` **batched APIs**  so multiple files can be updated in a single HTTP Request.
+
 ### Updating HTML and Metadata Page Templates
 
 The HTML templates for the metadata pages are maintained as [embedded html template resources](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack/Templates). 
@@ -195,21 +258,71 @@ public interface IVirtualFiles : IVirtualPathProvider
   void DeleteFile(string filePath);
   void DeleteFiles(IEnumerable<string> filePaths);
   void DeleteFolder(string dirPath);
+
+  void WriteFile(string filePath, object contents);
+  void AppendFile(string filePath, object contents);
+  void WriteFiles(Dictionary<string, string> textFiles); //text files only
+  void WriteFiles(Dictionary<string, object> files); //binary or text files
 }
+```
+
+The single and multi-write File APIs support `object` content values of either `string`, `ReadOnlyMemory<char>`, `byte[]`, 
+`ReadOnlyMemory<byte>`, `Stream` and `IVirtualFile` Types.
+
+Additional allocation-efficient `ReadOnlyMemory<T>` APIs are also available as extension methods:
+
+```csharp
+void WriteFile(string path, ReadOnlyMemory<char> text);
+void WriteFile(string path, ReadOnlyMemory<byte> bytes);
+void AppendFile(string path, ReadOnlyMemory<char> text);
+void AppendFile(string path, ReadOnlyMemory<byte> bytes);
 ```
 
 > Folders are implicitly created when writing a file to folders that don't exist
 
-The new `IVirtualFiles` API is available in local FileSystem, In Memory and S3 Virtual path providers:
+The new `IVirtualFiles` API is available in local FileSystem, In Memory, Gists and S3 Virtual path providers:
 
- - FileSystemVirtualFiles
- - MemoryVirtualFiles
- - S3VirtualFiles
+ - `FileSystemVirtualFiles`
+ - `MemoryVirtualFiles`
+ - `GistVirtualFiles`
+ - `S3VirtualFiles`
 
 All `IVirtualFiles` providers share the same 
 [VirtualPathProviderTests](https://github.com/ServiceStack/ServiceStack.Aws/blob/master/tests/ServiceStack.Aws.Tests/S3/VirtualPathProviderTests.cs)
 ensuring a consistent behavior where it's now possible to swap between different file storage backends with simple
-configuration as seen in the [Imgur](#imgur) and [REST Files](#restfiles) examples.
+configuration as seen in the [Imgur](http://awsapps.servicestack.net/imgur/) and [REST Files](http://awsapps.servicestack.net/restfiles/) examples.
+
+#### Object APIs
+
+The `object GetContents()` API allow VFS Providers to implement more efficient file access which by default returns `ReadOnlyMemory<char>`
+for text files and `ReadOnlyMemory<byte>` for binary files:
+
+```csharp
+public interface IVirtualFile
+{
+    object GetContents();
+}
+```
+
+The `object` APIs also let you use the same source code to read/write both text and binary files which VFS providers can implement more efficiently:
+
+```csharp
+var content = vfs.GetFile(fromVirtualPath).GetContent();
+vfs.WriteFile(toVirtualPath, content);
+```
+
+In [#Script](https://sharpscript.net) you can access a files text or binary contents with either:
+
+```js
+vfs.fileContents(filePath) | to => fileContents
+vfs.writeFile(path, fileContents)
+
+vfs.fileTextContents(filePath) | to => textContents
+vfs.writeFile(path, textContents)
+
+vfs.fileBytesContent(filePath) | to => binaryContents
+vfs.writeFile(path, binaryContents)
+```
 
 ### VirtualFiles vs VirtualFileSources
 
