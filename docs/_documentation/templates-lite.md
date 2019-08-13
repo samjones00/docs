@@ -300,22 +300,26 @@ individual pages wants to include at the bottom of the page:
 ```hbs
 {% raw %}{{ scripts | raw }}{% endraw %}
 ```
-
 ### Pre-compiled minified production bundles
 
 Whilst not required you can copy the **exact same bundling configuration** in your `_layout.html` above into a separate 
 [/wwwroot/_bundle.ss](https://github.com/NetCoreTemplates/vue-lite/blob/master/wwwroot/_bundle.ss) script:
 
-```hbs
-{% raw %}{{* run in host project directory with `web run wwwroot/_bundle.ss` *}}
+```js
+{% raw %}* run in host project directory with `web run wwwroot/_bundle.ss` *
 
-{{ false | assignTo: debug }}
-{{ (debug ? '' : '.min') | assignTo: min }}
-{{ [`/css/bundle${min}.css`,`/js/lib.bundle${min}.js`,`/js/bundle${min}.js`] | map => fileDelete(it) | end }}
+false | to => debug
+(debug ? '' : '.min')       | to => min
+(debug ? '' : '[hash].min') | to => dist
 
-{{* Copy same bundle definitions from _layout.html as-is *}}
+{{ [`/css/bundle${min}.css`,`/js/lib.bundle${min}.js`,`/js/bundle${min}.js`] 
+   | map => it.replace('[hash]','.*').filesFind()
+   | flatten
+   | map => it.VirtualPath.fileDelete() | end }}
 
-{{ ['/assets/css/'] | bundleCss({ minify:!debug, cache:!debug, disk:!debug, out:`/css/bundle${min}.css` }) }}
+* Copy same bundle definitions from _layout.html as-is *
+
+['!/assets/css/default.css','/assets/css/'] | bundleCss({ disk:!debug, out:`/css/lib.bundle${dist}.css` })
 
 {{ [
     `/lib/vue/dist/vue${min}.js`,
@@ -323,13 +327,14 @@ Whilst not required you can copy the **exact same bundling configuration** in yo
     '/lib/vue-class-component/vue-class-component.js',
     '/lib/vue-property-decorator/vue-property-decorator.umd.js',
     '/lib/@servicestack/client/servicestack-client.umd.js',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/lib.bundle${min}.js` }) }}
+    '/lib/@servicestack/vue/servicestack-vue.umd.js',
+] | bundleJs({ disk:!debug, out:`/js/lib.bundle${dist}.js` }) }}
 
 {{ [
     'content:/src/components/',
     'content:/src/shared/',
     'content:/src/',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${min}.js` }) }}{% endraw %}
+] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${dist}.js`, iife:true }) }}{% endraw %}
 ```
 
 Then run it with:
@@ -360,49 +365,10 @@ cssMinifier ServiceStack
 -->
 ```
 
-### Minified bundles with cache breakers
+### Using Cache breakers in minified bundles 
 
-Cache Breaker support is available by with the `[hash]` placeholder, which we only want to include in minified bundles.
-In this case we need to perform a file pattern search to find and delete any existing generated bundles:
-
-```hbs
-{% raw %}{{* run in host project directory with `web run wwwroot/_bundle.ss` *}}
-
-{{ false | assignTo: debug }}
-{{ (debug ? '' : '[hash].min') | assignTo: min }}
-{{ [`/css/bundle${min}.css`,`/js/lib.bundle${min}.js`,`/js/bundle${min}.js`] 
-   | map => filesFind(replace(it,'[hash]','.*'))
-   | flatten
-   | map => fileDelete(it.VirtualPath) | end }}
-
-{{* Copy same bundle definitions from _layout.html as-is *}}
-
-{{ ['/assets/css/'] | bundleCss({ minify:!debug, cache:!debug, disk:!debug, out:`/css/bundle${min}.css` }) }}
-
-{{ [
-    `/lib/vue/dist/vue${min}.js`,
-    `/lib/vue-router/dist/vue-router${min}.js`,
-    '/lib/vue-class-component/vue-class-component.js',
-    '/lib/vue-property-decorator/vue-property-decorator.umd.js',
-    '/lib/@servicestack/client/servicestack-client.umd.js',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/lib.bundle${min}.js` }) }}
-
-{{ [
-    'content:/src/components/',
-    'content:/src/shared/',
-    'content:/src/',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${min}.js` }) }}{% endraw %}
-```
-
-Running the `_bundle.css` script again will then output minified bundles with cache breakers:
-
-```html
-<link rel="stylesheet" href="/css/bundle.1549858174979.min.css">
-
-<script src="/js/lib.bundle.155190192923.min.js"></script>
-
-<script src="/js/bundle.1551907971028.min.js"></script>
-```
+Cache Breaker support is available using the `[hash]` placeholder, which we only want to include in minified bundles.
+In this case we need to perform a file pattern search to find and delete any existing generated bundles.
 
 When using `[hash]` cache breakers the bundle APIs will use any existing generated bundles it finds, so you'll need to
 ensure that any older minified assets are removed (as done in the above script).
