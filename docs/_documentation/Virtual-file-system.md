@@ -61,7 +61,8 @@ public class Disk1Plugin : IPlugin, IPreInitPlugin
         appHost.InsertVirtualFileSources.Add(new S3VirtualFiles(s3Client, AwsConfig.S3BucketName));
 
         // Add additional low priority Virtual Files and the end of VirtualFileSources
-        appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk1", appHost.MapProjectPath("~/App_Data/mount/hdd")));
+        var mountPath = appHost.MapProjectPath("~/App_Data/mount/hdd");
+        appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk1", mountPath));
         appHost.AddVirtualFileSources.Add(new FileSystemMapping("disk2", "d:\\hdd"));
     }
 
@@ -417,7 +418,11 @@ The VFS is designed to be implementation agnostic so can be changed to use any f
 
 Like most of ServiceStack's substitutable API's, the interfaces for the VFS lives in the **ServiceStack.Interfaces.dll** under the [ServiceStack.IO](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack.Interfaces/IO) namespace.
 
-These are the API's that are needed to be implemented in order to create a new VFS:
+To reduce the amount of effort to implement a VFS provider you can inherit from the 
+[`ServiceStack.VirtualPath.Abstract*`](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack.Common/VirtualPath) 
+that all of ServiceStack's VFS providers inherit from.
+
+Otherwise for a clean-room implementation, you'll need to implement these interfaces in order to create a new VFS Provider:
 
 ```csharp
 public interface IVirtualPathProvider
@@ -437,8 +442,11 @@ public interface IVirtualPathProvider
 
     IVirtualDirectory GetDirectory(string virtualPath);
 
-    IEnumerable<IVirtualFile> GetAllMatchingFiles(
-        string globPattern, int maxDepth = Int32.MaxValue);
+    IEnumerable<IVirtualFile> GetAllMatchingFiles(string globPattern, int maxDepth = Int32.MaxValue);
+
+    IEnumerable<IVirtualFile> GetAllFiles();
+    IEnumerable<IVirtualFile> GetRootFiles();
+    IEnumerable<IVirtualDirectory> GetRootDirectories();
 
     bool IsSharedFile(IVirtualFile virtualFile);
     bool IsViewFile(IVirtualFile virtualFile);
@@ -457,11 +465,27 @@ public interface IVirtualNode
 public interface IVirtualFile : IVirtualNode
 {
     IVirtualPathProvider VirtualPathProvider { get; }
+
     string Extension { get; }
+
     string GetFileHash();
+
     Stream OpenRead();
     StreamReader OpenText();
     string ReadAllText();
+
+    /// <summary>
+    /// Returns ReadOnlyMemory&lt;byte&gt; for binary files or
+    /// ReadOnlyMemory&lt;char&gt; for text files   
+    /// </summary>
+    object GetContents();
+
+    long Length { get; }
+
+    /// <summary>
+    /// Refresh file stats for this node if supported
+    /// </summary>
+    void Refresh();
 }
 
 public interface IVirtualDirectory : IVirtualNode, IEnumerable<IVirtualNode>
@@ -478,7 +502,47 @@ public interface IVirtualDirectory : IVirtualNode, IEnumerable<IVirtualNode>
     IVirtualDirectory GetDirectory(string virtualPath);
     IVirtualDirectory GetDirectory(Stack<string> virtualPath);
 
-    IEnumerable<IVirtualFile> GetAllMatchingFiles(
-        string globPattern, int maxDepth = Int32.MaxValue);
+    IEnumerable<IVirtualFile> GetAllMatchingFiles(string globPattern, int maxDepth = Int32.MaxValue);
+}
+```
+
+### Writable Virtual Files Provider
+
+If you want your VFS provider to support writes where it can used in your `IAppHost.VirtualFiles`, 
+your `IVirtualPathProvider` should also implement the interface below:
+
+```csharp
+public interface IVirtualFiles : IVirtualPathProvider
+{
+    void WriteFile(string filePath, string textContents);
+
+    void WriteFile(string filePath, Stream stream);
+
+    /// <summary>
+    /// Contents can be either:
+    /// string, ReadOnlyMemory&lt;char&gt;, byte[], `ReadOnlyMemory&lt;byte&gt;, Stream or IVirtualFile 
+    /// </summary>
+    void WriteFile(string filePath, object contents);
+
+    void WriteFiles(IEnumerable<IVirtualFile> files, Func<IVirtualFile, string> toPath = null);
+
+    void WriteFiles(Dictionary<string, string> textFiles);
+    void WriteFiles(Dictionary<string, object> files);
+
+    void AppendFile(string filePath, string textContents);
+
+    void AppendFile(string filePath, Stream stream);
+
+    /// <summary>
+    /// Contents can be either:
+    /// string, ReadOnlyMemory&lt;char&gt;, byte[], `ReadOnlyMemory&lt;byte&gt;, Stream or IVirtualFile 
+    /// </summary>
+    void AppendFile(string filePath, object contents);
+
+    void DeleteFile(string filePath);
+
+    void DeleteFiles(IEnumerable<string> filePaths);
+
+    void DeleteFolder(string dirPath);
 }
 ```
