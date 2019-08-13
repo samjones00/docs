@@ -275,9 +275,9 @@ fetch all truncated content with:
 await gistFs.LoadAllTruncatedFilesAsync();
 ```
 
-### New Virtual File System APIs
+### Batched WriteFiles APIs
 
-As Gist HTTP API's are relatively slow, we recommend using the `WriteFiles` **batched APIs**  so multiple files can be updated in a single HTTP Request.
+As Gist HTTP API's are relatively slow, we recommend using the `WriteFiles` **Batched APIs**  so multiple files can be updated in a single HTTP Request.
 
 ### Updating HTML and Metadata Page Templates
 
