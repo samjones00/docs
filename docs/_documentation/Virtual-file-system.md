@@ -185,7 +185,6 @@ public class MyPlugin : IPlugin, IPostInitPlugin
 }
 ```
 
-
 ### Using a different Virtual Path Provider
 
 You can also globally replace the VFS used by setting it in your AppHost, e.g. If you only want to use an InMemory File System:

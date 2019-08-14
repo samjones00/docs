@@ -135,11 +135,11 @@ These are the only sources `web new` looks at to create ServiceStack projects, w
 The ASP.NET Core Project Templates have been upgraded to use the latest external dependencies and have all been rewritten to take advantage
 of the ServiceStack Features added in this release, namely:
 
- - **ModularStartup** - ASP.NET Core Apps can take advantage of the modularity benefits and extensibility of `mix` features
- - **Navigation Items** - Simplified maintenance and dynamic navigation items rendering using Navigation controls
+ - **[Modular Startup](/modular-startup)** - ASP.NET Core Apps can take advantage of the modularity benefits and extensibility of `mix` features
+ - **[Navigation Items](/navigation)** - Simplified maintenance and dynamic navigation items rendering using Navigation controls
  - **Auth Enabled** - Integrated Auth including dynamic menu, protected pages, auth redirect flow inc. Forbidden pages
- - **SVG** - Pre-configured to use `svg/` folder, ready to drop in your App's assets and go
- - **Optimal Library Bundles** - CSS/JS bundles are split into optimal hashed library and frequently changing App bundles
+ - **[SVG](/svg)** - Pre-configured to use `svg/` folder, ready to drop in your App's assets and go
+ - **[Optimal Library Bundles](/html-css-and-javascript-minification)** - CSS/JS bundles are split into optimal hashed library and frequently changing App bundles
  - **SSL** - As it's recommended for Web Apps to use SSL, all templates now use `https://localhost:5001` and 
  configured to use Same Site Cookies by default
 
@@ -249,7 +249,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ### Create Customized Projects with mix
 
-All new projects can be further customized with [mix](/mix) dotnet tool to mix in additional "layered" features.
+All new projects can be further customized with [mix](/mix-tool) dotnet tool to mix in additional "layered" features.
 
 {% capture trouble %}{% include web-trouble.md %}{% endcapture %}
 {{ trouble | markdownify }}
