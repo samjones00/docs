@@ -766,16 +766,7 @@ registered, which in this case will return a `Hello World!` plain text response.
 ### .NET Core AppHost Integration
 
 Once inside your `AppHost` you're back in ServiceStack-land where it's business as usual and your AppHost 
-configuration remains the same as before. The only differences from 
-[.NET 4.5 Todos AppHost](https://github.com/ServiceStackApps/Todos/blob/fdcffd37d4ad49daa82b01b5876a9f308442db8c/src/Todos/Global.asax.cs#L62)
-is that .NET Framework introduced source-incompatible breaking changes to its Reflection APIs where instead 
-of resolving a Types Assembly with `typeof(TodoService).Assembly` you're instead required to call 
-`typeof(TodoService).GetTypeInfo().Assembly`. 
-
-To combat this unfortunate design decision we've added 
-[Platform Extension Methods](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/PlatformExtensions.cs)
-providing unified Reflection APIs like `Type.GetAssembly()` allowing you to configure source-compatible
-AppHost's that can be used in both .NET 4.5 and .NET Core platforms, e.g:
+configuration remains the same as before: 
 
 ```csharp
 // Create your ServiceStack Web Service with a singleton AppHost
@@ -793,7 +784,7 @@ public class AppHost : AppHostBase
 }
 ```
 
-This minor change was all it took to port the 
+This was all it took to port the 
 [Todos back-end Services](https://github.com/NetCoreApps/Todos/blob/c742da45c9a70217980c2f2b323813fe7821df06/src/Todos/Startup.cs#L61-L110)
 to run on .NET Core which was able to reuse the entire existing Service implementation as-is. 
 
@@ -868,8 +859,55 @@ public override void Configure(Container container)
 }
 ```
 
-> Note: any dependencies registered .NET Core Startup are also available to ServiceStack but dependencies 
-registered in ServiceStack's IOC are **only** visible to ServiceStack.
+### Register ASP.NET Core dependencies in AppHost
+
+Any dependencies registered .NET Core Startup are also available to ServiceStack but dependencies registered in ServiceStack's IOC 
+are **only** visible to ServiceStack.
+
+This is due to the limitation of ASP.NET Core requiring all dependencies needing to be registered in `ConfigureServices()` before any App Modules 
+are loaded and why dependencies registered in ServiceStack's AppHost `Configure()` are only accessible from ServiceStack and 
+not the rest of ASP.NET Core. 
+
+But in [Modular Startup](/modular-startup) Apps you can override ASP.NET Core's `IConfigureServices.Configure(IServiceCollection)` method in your AppHost
+to register IOC dependencies where they'll now be accessible to both ServiceStack and the rest of your ASP.NET Core App, e.g:
+
+```csharp
+public class AppHost : AppHostBase
+{
+    public override void Configure(IServiceCollection services)
+    {
+        services.AddSingleton<IRedisClientsManager>(
+            new RedisManagerPool(Configuration.GetConnectionString("redis")));
+    }
+
+    public override void Configure(Container container)
+    {
+        var redisManager = container.Resolve<IRedisClientsManager>();
+        //...
+    }
+}
+```
+
+We can take this even further and have your ServiceStack AppHost implement `IConfigureApp` where it can also contain the logic to register itself
+as an alternative to registering ServiceStack in your `Startup` class, e.g:
+
+```csharp
+public class AppHost : AppHostBase, IConfigureApp
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseServiceStack(new AppHost
+        {
+            AppSettings = new NetCoreAppSettings(Configuration)
+        });
+    }
+
+    public override void Configure(Container container) { /***/ }
+}
+```
+
+This will let you drop-in your custom `AppHost` into a [ModularStartup enabled ASP.NET Core App](/modular-startup) to enable the same 
+"no-touch" auto-registration.
 
 ### .NET Core IAppSettings Adapter
 

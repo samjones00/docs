@@ -14,8 +14,10 @@
     - [ServiceStack's API Design](/api-design)
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)
+    - [Modular Startup](/modular-startup)
     - [web tool](/web-tool)
     - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
+    - [mix tool](/mix-tool)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [ASP.NET Core on .NET Framework](/templates-corefx)
@@ -48,7 +50,8 @@
     - [Service return types](/service-return-types)
     - [Customize HTTP Responses](/customize-http-responses)
     - [Customize JSON Responses](/customize-json-responses)
-    - [Metadata page](/metadata-page)
+    - [Metadata Pages](/metadata-page)
+    - [SVG Support](/svg)
     - [REST, SOAP & default endpoints](/endpoints)
     - [SOAP support](/soap-support)
 - ##### Error Handling
