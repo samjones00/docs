@@ -15,6 +15,7 @@
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)
     - [Modular Startup](/modular-startup)
+    - [Unified Navigation](/navigation)
     - [web tool](/web-tool)
     - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
     - [mix tool](/mix-tool)
