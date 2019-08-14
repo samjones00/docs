@@ -20,6 +20,100 @@ Like other ServiceStack providers, all MQ Servers are interchangeable, visible i
   - [MqServerIntroTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Server.Tests/Messaging/MqServerIntroTests.cs)
   - [MqServerAppHostTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Common.Tests/Messaging/MqServerAppHostTests.cs)
 
+## Mix in MQ Server
+
+In ASP.NET Core Apps we recommend using [mix](/mix-tool) to configure your preferred MQ Service, other than being quicker to add,
+it proposes adopting a naming convention in app settings and file names that other `mix` features can also make use of:
+
+    $ mix #mq
+
+Currently available list of MQ Services:
+
+```
+Results matching tag [mq]:
+
+   1. backgroundmq  Use Memory Background MQ                    to: $HOST  by @ServiceStack  [mq]
+   2. rabbitmq      Use RabbitMQ                                to: $HOST  by @ServiceStack  [mq]
+   3. sqs           Use AWS SQS MQ                              to: $HOST  by @ServiceStack  [mq]
+   4. servicebus    Use Azure Service Bus MQ                    to: $HOST  by @ServiceStack  [mq]
+   5. redismq       Use Redis MQ                                to: $HOST  by @ServiceStack  [mq]
+   6. feature-mq    Simple MQ Feature to test sending Messages  to: $HOST  by @ServiceStack  [feature,mq,sharp]
+```
+
+### feature-mq
+
+The `feature-mq` adds MQ support to your App, complete with UI and includes 2 different ways of calling MQ Services in ServiceStack, just like 
+`example-validation` above, `feature-mq` is another complete working example with both UI and Service implementation in the following files:
+
+  - [Configure.Mq.cs?](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-configure-mq-cs)
+  - [Feature.Mq.cs](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-feature-mq-cs)
+  - [ServiceInterface\MqServices.cs ](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-serviceinterface-mqservices-cs)
+  - [ServiceModel\Mq.cs](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-servicemodel-mq-cs)
+  - [wwwroot\messaging.html](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-wwwroot-messaging-html)
+  
+As `Configure.Mq.cs?` is optional it will only add it if doesn't already exist, so it will either use your existing MQ configuration
+or configure your App to use the In Memory `BackgroundMqService` implementation.
+
+Add `feature-mq` to your project with:
+
+    $ mix feature-mq
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/nav/feature-mq.png)
+
+This will add the `TestMq` Service and make it available to your MQ endpoint. `TestMq` is a regular service that updates values in the 
+App's registered `ICacheClient` and returns the Cache's current values as well as the internal Stats of the MQ:
+
+```csharp
+public class MqServices : Service
+{
+    public IMessageService MqService { get; set; }
+
+    public void Any(PublishMq request)
+    {
+        PublishMessage(request.ConvertTo<TestMq>());
+    }
+
+    public object Any(TestMq request)
+    {
+        if (!string.IsNullOrEmpty(request.Name))
+            Cache.Set("mq.name", request.Name);
+        
+        if (request.Add > 0)
+            Cache.Increment("mq.counter", (uint)request.Add);
+        else if (request.Add < 0)
+            Cache.Decrement("mq.counter", (uint)(request.Add * -1));
+
+        return new TestMqResponse {
+            Name = Cache.Get<string>("mq.name"),
+            Counter = Cache.Get<long>("mq.counter"),
+            StatsDescription = MqService.GetStatsDescription(),
+        };
+    }
+}
+```
+
+The 2 ways to call a MQ Service is directly using the `publish` or `sendOneWay` APIs (available in all ServiceStack Service Clients) where 
+it send the request to the Service's `/oneway` endpoint which will automatically publish it to the registered MQ. 
+
+Alternatively you can publish the Request DTO yourself from a different Service Implementation as done in `PublishMq`, as-is typical for
+Services that queues sending emails without blocking Service Execution.
+
+The feature's UI allows you to publish `TestMq` messages using either approach:
+
+```js
+client = new JsonServiceClient('/');
+
+var oneway = document.querySelector('input[name=mq-publish]:checked').value === "OneWay";
+if (oneway) {
+    client.publish(new TestMq({ name: $txtName.value, add: parseInt(add) }))
+} else {
+    client.post(new PublishMq({ name: $txtName.value, add: parseInt(add) }))
+}
+```
+
+Both approaches end with the same result with the `TestMq` Request DTO published and executed by the registered MQ Service as shown in the
+UI which is periodically updated with the current state in the Cache and the internal stats of the MQ Service showing how many messages it processed.
+
 ## Benefits of Message Queues
 
 One of the benefits of using ServiceStack is its integrated support for hosting MQ Servers
