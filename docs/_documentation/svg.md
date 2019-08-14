@@ -5,15 +5,42 @@ title: SVG Support
 
 ServiceStack lets you register use built-in and register custom SVG icons from the `Svg` static API class.
 
+A common performance drain in Web Apps is serving images whose large binary blobs can have a significant impact on your App's 
+Request throughput, and why they're often hosted behind CDN's which can complicate the deployment process and introduce subtle caching issues.
+
+A popular image format that's seen its popularity rise on the Web is SVG - a text vector image format that scales beautifully to support
+different resolutions. SVG's are typically small in size and have great support in browsers where they can be optimally cached in `.css` 
+style sheets to reduce the number of required image requests.
+
+Unless you're using an npm based build system there hasn't been great support for managing SVG images in .NET beyond treating them
+as individual images, that is until now with the new `SvgFeature` plugin (pre-registered by default) and the `Svg` class - providing programmatic 
+access to registering SVG image collections and accessing them in a variety of different formats and colors.
+
+### In Memory Bundled CSS files
+
+`SvgFeature` works by creating an in memory bundled `.css` file for each "image set" that's registered at the path `/css/{image-set}.css`, 
+e.g. it's pre-configured with the **svg-auth** and **svg-icons** svg groups:
+
+  - **/css/svg-auth.css** - Vendor Icons for each of the popular 3rd Party OAuth Providers
+  - **/css/svg-icons.css** - Generic User Avatars (used as the default profile image)
+
+SVG files are simply stored as strings in regular collections maintained in `Svg.CssFiles` and `Svg.Images` dictionaries which can be modified/extended as normal.
+
 ### Viewing SVG Icons
 
-You can view all built-in SVG icons from the  `/metadata/svg` page which is also available under the **SVG Images** link in your 
-[/metadata page Debug Links](/metadata-page#debug-links).
+One thing that sets SVG apart from normal images is the multitude of ways they can be referenced. SVG's are commonly bundled in 
+`.css` files and referenced by classes, but they can also be embedded in a native `<img>` tag and `<svg>` block element where they
+can be displayed in different colors.
 
-The `/metadata/svg` page contains a number of usage examples, code fragments and links to access SVG Image .css collections or 
-individual SVG images:
+To make it as easy as possible to reference SVG images in different contexts we've created the dynamic `/metadata/svg` page 
+(also available under the **SVG Images** link in your [/metadata page Debug Links](/metadata-page#debug-links)) where you can view
+all your App's registered SVG images complete with different usage examples, code fragments and links to access SVG Image `.css` 
+collections or individual SVG images:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/metadata-svg.png)
+
+The **entire page is clickable** where you can first click on the SVG image you want to use then **click on any text fragment** to copy it, 
+ready for pasting it in your web page.
 
 ### Loading SVG from FileSystem
 
@@ -31,16 +58,17 @@ Then in your `AppHost` you can register all SVG images using `Svg.Load()`:
 ```csharp
 public override void Configure(Container container)
 {
-    Svg.Load(VirtualFiles.GetDirectory("svg"));
+    Svg.Load(RootDirectory.GetDirectory("/svg"));
 }
 ```
 
-> `VirtualFiles` is configured to your projects **ContentRoot**, use `VirtualFileSources` to use your **WebRoot**
+> `VirtualFiles` is configured to your projects **ContentRoot**, use `VirtualFileSources` to use your **WebRoot**, 
+> `RootDirectory` uses the FileSystem VFS in `VirtualFileSources` whereas `ContentRootDirectory` looks in `VirtualFiles`
 
-This will load all the SVG images in the `/svg` directory with the sub directory used for the **cssfile** you want to add them to 
-and the file name used as the svg **name**.
+This will load all the SVG images in the `/svg` directory with the **sub directory** used for the **cssfile** (aka image-set) 
+you want to add them to and the **file name** (without extension) used as the SVG identifier.
 
-It will also evaluate any `.html` files in the directory with [#Script](https://sharpscript.net) and add the rendered SVG,
+It will also evaluate any `.html` files in the directory with [#Script](https://sharpscript.net) and add the rendered SVG output,
 e.g. we can load the generated SVG from the [Spirals Sharp App](https://github.com/mythz/spirals):
 
 ##### /svg/svg-icons/spirals.html
@@ -48,14 +76,14 @@ e.g. we can load the generated SVG from the [Spirals Sharp App](https://github.c
 ```hbs
 {% raw %}<svg height="640" width="240">
 {{#each range(180) }}
-    {{ 120 + 100 * cos((5)  * it * 0.02827) | assignTo: x }}
-    {{ 320 + 300 * sin((1)  * it * 0.02827) | assignTo: y }}
+    {{ 120 + 100 * cos((5)  * it * 0.02827) | to => x }}
+    {{ 320 + 300 * sin((1)  * it * 0.02827) | to => y }}
     <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="#556080" stroke="black" stroke-width="1"></circle>
 {{/each}}
 </svg>{% endraw %}
 ```
 
-The SVG rendered output of which is registered as any normal SVG Image.
+and the SVG rendered output will be registered as a normal static SVG Image.
 
 ### Register Custom SVG Images via API
 
@@ -65,7 +93,7 @@ You can also register your own SVG images programmatically with:
 Svg.AddImage("<svg width='100' height='100' viewBox='0 0 100 100'>...</svg>", "myicon", "my-icons");
 ```
 
-Where it will register the SVG under the `myicon` name and include it in the `/css/my-icons.css` css file.
+Where it will register the SVG under the **myicon** name and include it in the `/css/my-icons.css` css file.
 
 The same icon can also be included in multiple stylesheets by adding its name to the `Svg.CssFiles` collection, e.g:
 
@@ -94,8 +122,8 @@ foreach (var entry in Svg.Images) {
 
 #### Recommended SVG conventions
 
-All built-in SVG's are `100x100` in size, for consistency we recommend that your SVG icons also retain the same size, as they're 
-vector images they can be later resized when they're referenced in your App.
+All built-in SVG's are `100x100` in size, it's not necessary but for consistency it's good for your SVG icons also retain the same size, 
+but as they're vector images they can be easily resized when referencing them in your App.
 
 If your icons use the **fill** colors registered in:
 
@@ -112,7 +140,7 @@ var dataUri = Svg.GetDataUri("myicon", "#e33");
 
 ## Using SVG images in CSS
 
-On Startup ServiceStack generates `.css` files for all SVG icons in `Svg.CssFiles` where you can import all icons with a single 
+On Startup ServiceStack generates `.css` files for all SVG icons in `Svg.CssFiles` so you can import all icons with a single 
 stylesheet reference with all icons in each CSS file available from `/css/{name}.css`, e.g:
 
 ```html
@@ -163,7 +191,7 @@ you want or use a custom `btn-myicon` class to choose different backgrounds for 
 ```
 
 The buttons requires the [Social Buttons for Bootstrap](https://lipis.github.io/bootstrap-social/) which is also embedded in ServiceStack.dll
-and can be included with:
+that can be referenced from `/css/buttons.css`, e.g:
 
 ```html
 <link rel="stylesheet" href="/css/buttons.css">
@@ -173,7 +201,7 @@ and can be included with:
 ### Inline CSS
 
 An alternative to using external stylesheet references above, is to embed them as inline styles in your page which can benefit in reduced
-network requests as well as better isolation in contrast to including all CSS your App's use in each page.
+network requests as well as provide better isolation than including all CSS your App's use in each page.
 
 You can use `cssIncludes` to embed the contents of multiple css files in `#Script` pages with:
 
@@ -189,7 +217,7 @@ Or in Razor with:
 
 ## Using SVG images in `#Script`
 
-In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can embed SVG xml with the `svgImage` and `svgDataUri` script methods:
+In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can embed SVG xml with the `svgImage` and `svgDataUri` scripts:
 
 ```hbs
 {% raw %}{{ 'myicon' | svgImage }}
@@ -234,8 +262,8 @@ Likewise there are HTML Helpers with the same name available in Razor Pages, whe
 Inside an HTML IMG element using its data URI:
 
 ```html
-<img src="@Html.SvgDataUri("myicon")">
-<img src="@Html.SvgDataUri("myicon", "#e33")">
+<img src='@Html.SvgDataUri("myicon")'>
+<img src='@Html.SvgDataUri("myicon", "#e33")'>
 ```
 
 Or inside a CSS class:
@@ -250,3 +278,76 @@ Or inside a CSS class:
 }
 ```
 
+### Server Controls
+
+Use these `#Script` methods to reference and modify individual SVG images in [#Script Pages](https://sharpscript.net/docs/sharp-pages):
+
+```csharp
+svgImage(string name) => Svg.GetImage(name)
+svgImage(string name, string fillColor) => Svg.GetImage(name, fillColor)
+svgDataUri(string name) => Svg.GetDataUri(name)
+svgDataUri(string name, string fillColor) => Svg.GetDataUri(name, fillColor)
+svgFill(string svg, string color) => Svg.Fill(svg, color)
+
+svgBackgroundImageCss(string name) => Svg.GetBackgroundImageCss(name)
+svgBackgroundImageCss(string name, string fillColor) => Svg.GetBackgroundImageCss(name, fillColor)
+svgInBackgroundImageCss(string svg) => Svg.InBackgroundImageCss(svg)
+
+svgBaseUrl(ScriptScopeContext scope) => 
+    req(scope).ResolveAbsoluteUrl(HostContext.AssertPlugin<SvgFeature>().RoutePath);
+
+Dictionary<string, string> svgImages() => Svg.Images;
+Dictionary<string, string> svgDataUris() => Svg.DataUris;
+Dictionary<string, List<string>> svgCssFiles() => Svg.CssFiles;
+```
+
+The same API's are also available in ServiceStack.Razor pages using the `@Html` helpers below:
+
+```csharp
+Html.SvgImage(name)
+Html.SvgImage(name, fillColor)
+Html.SvgDataUri(name)
+Html.SvgDataUri(name, fillColor)
+Html.SvgFill(svg, color);
+
+Html.SvgBackgroundImageCss(name)
+Html.SvgBackgroundImageCss(name, fillColor)
+Html.SvgInBackgroundImageCss(svg)
+
+Html.SvgBaseUrl()
+```
+
+### Mix in SVG Images
+
+A nice consequence of the SVG support is being able to easily create a customized bundles of hand-picked SVG image assets
+as opposed to being forced to choose from a limited library in a fixed bundle. 
+
+As creating svg bundles just involves dropping SVG images inside your `/svg/{group}/` folder, we're also able take advantage of `mix`
+to import SVG image-sets into your App with a single command. You can view the current list of all SVG image-sets on `mix` with:
+
+    $ mix #svg
+
+Currently all [Material Design Icons](https://material.io/resources/icons/?style=baseline) are available separately by their logical group names:
+
+```
+Results matching tag [svg]:
+
+   1. svg-action         Material Design Action Icons         to: svg/  by @ServiceStack  [svg]
+   2. svg-alert          Material Design Alert Icons          to: svg/  by @ServiceStack  [svg]
+   3. svg-av             Material Design Audio Visual Icons   to: svg/  by @ServiceStack  [svg]
+   4. svg-communication  Material Design Communication Icons  to: svg/  by @ServiceStack  [svg]
+   5. svg-content        Material Design Content Icons        to: svg/  by @ServiceStack  [svg]
+   6. svg-device         Material Design Device Icons         to: svg/  by @ServiceStack  [svg]
+   7. svg-editor         Material Design Editor Icons         to: svg/  by @ServiceStack  [svg]
+   8. svg-file           Material Design File Icons           to: svg/  by @ServiceStack  [svg]
+   9. svg-hardware       Material Design Hardware Icons       to: svg/  by @ServiceStack  [svg]
+  10. svg-image          Material Design Image Icons          to: svg/  by @ServiceStack  [svg]
+  11. svg-maps           Material Design Maps Icons           to: svg/  by @ServiceStack  [svg]
+  12. svg-navigation     Material Design Navigation Icons     to: svg/  by @ServiceStack  [svg]
+  13. svg-places         Material Design Places Icons         to: svg/  by @ServiceStack  [svg]
+  14. svg-social         Material Design Social Icons         to: svg/  by @ServiceStack  [svg]
+  15. svg-toggle         Material Design Toggle Icons         to: svg/  by @ServiceStack  [svg]
+```
+
+Once imported, you have the flexibility to further customize them individually to create your App's custom designer bundle.
+You also have access to `#Script` to generate parts of your SVG image dynamically if needed, as seen above in `spirals.html`.
