@@ -128,13 +128,128 @@ These are the only sources `web new` looks at to create ServiceStack projects, w
 
     $ web new
 
-### Create Customized Projects with `web +` 
+## Refined Project Templates
 
-All new projects can be further customized with [web +](/web-apply) to mix in additional "layered" features, e.g. 
-you can create a new [Sharp Pages](https://sharpscript.net/docs/sharp-pages) Web Project and configure it with **PostgreSQL** and 
-**RDBMS Auth** with:
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
 
-    $ web new sharp+postgres+auth-db
+The ASP.NET Core Project Templates have been upgraded to use the latest external dependencies and have all been rewritten to take advantage
+of the ServiceStack Features added in this release, namely:
+
+ - **ModularStartup** - ASP.NET Core Apps can take advantage of the modularity benefits and extensibility of `mix` features
+ - **Navigation Items** - Simplified maintenance and dynamic navigation items rendering using Navigation controls
+ - **Auth Enabled** - Integrated Auth including dynamic menu, protected pages, auth redirect flow inc. Forbidden pages
+ - **SVG** - Pre-configured to use `svg/` folder, ready to drop in your App's assets and go
+ - **Optimal Library Bundles** - CSS/JS bundles are split into optimal hashed library and frequently changing App bundles
+ - **SSL** - As it's recommended for Web Apps to use SSL, all templates now use `https://localhost:5001` and 
+ configured to use Same Site Cookies by default
+
+### Auth Enabled Project Templates
+
+Most Project Templates are now integrated with Credentials Auth and Facebook, Google and Facebook 3rd Party OAuth providers, complete with
+protected Pages and Services and auth redirect flow to Sign In and Forbidden pages. 
+
+#### angular-spa
+
+> Angular 8 CLI Bootstrap App
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)
+
+    $ web new angular-spa ProjectName            # .NET Core
+    $ web new angular-spa-netfx ProjectName      # Classic ASP.NET on .NET Framework
+
+#### mvcauth
+
+> .NET Core 2.2 MVC Website integrated with ServiceStack Auth
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)
+
+    $ web new mvcauth ProjectName                # .NET Core
+
+#### mvcidentity
+
+> .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)
+
+    $ web new mvcidentity ProjectName            # .NET Core
+
+#### mvcidentityserver
+
+> .NET Core 2.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)
+
+    $ web new mvcidentityserver ProjectName      # .NET Core
+
+#### razor
+
+> ServiceStack.Razor Bootstrap Website
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/razor.png)
+
+    $ web new razor ProjectName                  # .NET Core
+    $ web new razor-corefx ProjectName           # ASP.NET Core on .NET Framework
+    $ web new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
+
+#### react-spa
+
+> React Create App CLI Bootstrap App
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-spa.png)
+
+    $ web new react-spa ProjectName              # .NET Core
+    $ web new react-spa-netfx ProjectName        # Classic ASP.NET on .NET Framework
+
+#### react-lite
+
+> ASP.NET Core Simple + lite (npm-free) React SPA using TypeScript
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-lite.png)
+
+    $ web new react-lite ProjectName             # .NET Core
+    $ web new react-lite-corefx ProjectName      # ASP.NET Core on .NET Framework
+
+#### script
+
+> #Script Pages Bootstrap Website
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/script.png)
+
+    $ web new script ProjectName                 # .NET Core
+    $ web new script-corefx ProjectName          # ASP.NET Core on .NET Framework
+    $ web new script-netfx ProjectName           # Classic ASP.NET on .NET Framework
+
+#### vue-spa
+
+> Vue CLI Bootstrap App
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-spa.png)
+
+    $ web new vue-spa ProjectName                # .NET Core
+    $ web new vue-spa-netfx ProjectName          # Classic ASP.NET on .NET Framework
+
+#### vue-lite
+
+> ASP.NET Core Simple + lite (npm-free) Vue SPA using TypeScript
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-lite.png)
+
+    $ web new vue-lite ProjectName               # .NET Core
+    $ web new vue-lite-corefx ProjectName        # ASP.NET Core on .NET Framework
+
+#### vue-nuxt
+
+> Nuxt.js SPA App with Bootstrap
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-nuxt.png)
+
+    $ web new vue-nuxt ProjectName               # .NET Core
+    $ web new vue-nuxt-netfx ProjectName         # Classic ASP.NET on .NET Framework
+
+
+### Create Customized Projects with mix
+
+All new projects can be further customized with [mix](/mix) dotnet tool to mix in additional "layered" features.
 
 {% capture trouble %}{% include web-trouble.md %}{% endcapture %}
 {{ trouble | markdownify }}
