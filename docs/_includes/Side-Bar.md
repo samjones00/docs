@@ -23,7 +23,6 @@
     - [Overview](/templates-overview) 
     - [ASP.NET Core on .NET Framework](/templates-corefx)
     - [web new](/web-new)
-    - [web +](/web-apply)
     - [Single Page App Templates](/templates-single-page-apps)
     - [Website Templates](/templates-websites)
     - [Empty Starting Templates](/templates-empty-starting)
@@ -35,6 +34,7 @@
     - [Svelte Templates](/templates-svelte)
     - [Angular Templates](/templates-angular)
     - [Desktop Templates](/templates-desktop)
+    - [Vue, React, Angular Components](/spa-components)
     - [Tour of Webpack](/tour-of-webpack)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
