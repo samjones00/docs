@@ -44,7 +44,7 @@ For example to create a new **Vue Single Page App**, run:
 
     $ web new vue-spa ProjectName
 
-## Refined Project Templates
+## Modernized Project Templates
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
 
