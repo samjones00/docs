@@ -39,7 +39,7 @@ The Bootstrap UI form controls include built-in support for validation where the
 ### `#Script` Pages
 
 ```html
-<form action="/auth/credentials" method="post" class="col-lg-4">
+{% raw %}<form action="/auth/credentials" method="post" class="col-lg-4">
     <div class="form-group">
         {{ ['userName','password'] | validationSummary({class:'alert alert-warning'}) }}
         {{ { continue: qs.continue ?? '/server/', errorView:'/server/login' } | htmlHiddenInputs }}
@@ -61,7 +61,7 @@ The Bootstrap UI form controls include built-in support for validation where the
     <div class="form-group">
         <a class="lnk" href="/server/register">Register New User</a>
     </div>
-</form>
+</form>{% endraw %}
 ```
 
 ### ServiceStack.Razor
@@ -121,7 +121,7 @@ whilst the 2nd Argument is used to customize any of its other high-level feature
 #### #Script Pages
 
 ```html
-<form action="/contacts" method="post" class="col-lg-4">
+{% raw %}<form action="/contacts" method="post" class="col-lg-4">
     <div class="form-group">
         {{ 'title,name,color,age,filmGenres,agree' | validationSummary }}
     </div>
@@ -148,7 +148,7 @@ whilst the 2nd Argument is used to customize any of its other high-level feature
         <button class="btn btn-primary" type="submit">Add Contact</button>
         <a href="/server/contacts/">reset</a>
     </div>
-</form>
+</form>{% endraw %}
 ```
 
 Whereas **Razor** uses anonymous objects for properties that can be unbounded like a HTML Element Attribute List and a Typed Class 
