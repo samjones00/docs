@@ -31,15 +31,15 @@ To illustrate this we can install any .NET Core project from GitHub by specifyin
 the GitHub **User** or **Organization** via the `--source` argument. If you don't have a .NET Core Application on-hand to try it on, you can use
 any of [ServiceStack's .NET Core Templates](https://github.com/NetCoreTemplates) which are all functioning .NET Core projects in their own right. 
 
-Where we can install the [NetCoreTemplates/mvc](https://github.com/NetCoreTemplates/mvc) project with:
+Where we can create a new [NetCoreTemplates/mvc](https://github.com/NetCoreTemplates/mvc) project with:
 
-    $ app install mvc --source NetCoreTemplates
+    $ app new mvc Acme --source NetCoreTemplates
 
 Which will download and unzip either the Project's **latest release**, or an archive of **master** if none exists. 
 
-Then publish the .NET Core App as normal by going into the Host project folder (`MyApp` in all ServiceStack's Templates):
+Then publish the .NET Core App as normal by going into the Host project folder using the **project name** you specified above, eg:
 
-    $ cd mvc\MyApp
+    $ cd Acme\Acme
     
 Create a published version of the App:
 
@@ -51,7 +51,7 @@ Then in the `/publish` folder:
 
 You can use `app` to run the .NET Core binary:
 
-    $ app MyApp.dll
+    $ app Acme.dll
 
 Where it will run the .NET Core App and launch it within a CEF Windows Application:
 
@@ -59,7 +59,7 @@ Where it will run the .NET Core App and launch it within a CEF Windows Applicati
 
 To make the experience of running .NET Core Desktop Apps even nicer you can use the `shortcut` command to create a Windows Shortcut for your App:
 
-    $ app shortcut MyApp.dll
+    $ app shortcut Acme.dll
 
 Which you can either double-click to run or copy to a more accessible location like the Users Desktop:
 
@@ -67,95 +67,40 @@ Which you can either double-click to run or copy to a more accessible location l
 
 If you wanted to use your own icon instead, copy it as `favicon.ico` in your `/publish` folder and rerun the command:
 
-    $ app shortcut MyApp.dll
+    $ app shortcut Acme.dll
 
 Where it will be used in both Shortcut Icon and Windows Desktop icon:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-shortcut-icon.png)
 
-### Installing .NET Core Apps
+### Create new Project Templates
 
-The app tool also makes it easy to install .NET Core Apps where you can `list` apps that are available to install with:
+See [web new](/web-new) for available Project Templates you can create with:
 
-    $ app list
+    $ app new
 
-By default this will list all [sharp-apps](https://github.com/sharp-apps) available, ordered by popularity:
+### Installing Sharp Apps
 
-```
-   1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
-   2. blog            Minimal, multi-user Twitter OAuth blogging platform that can create living, powerful pages
-   3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
-   4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
-   5. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   7. rockwind        Example Sharp App combining multi-layout Rockstars website + data-driven Northwind Browser
-   8. rockwind-aws    Rockwind Cloud Sharp App on AWS
-   9. rockwind-azure  Rockwind Cloud Sharp App on Azure
-  10. spirals         Explore and generate different Spirals with SVG
+The app tool also makes it easy to install .NET Core [Sharp Apps](https://sharpscript.net/docs/sharp-apps) where you can `open` apps that are available 
+to **open** or **install** with:
 
-Usage: app install <name>
-```
+    $ app open
 
-The source can be customized with the `APP_SOURCE` Environment Variable where you could list multiple GitHub Organizations by setting:
-
-    $ SET APP_SOURCE=NetCoreTemplates .NET Core Templates;sharp-apps Sharp Apps
-
-Where `app list` will now return:
+By default this will list all [Gist Desktop Apps](https://sharpscript.net/docs/gist-desktop-apps) and 
+[GitHub Sharp Apps](https://sharpscript.net/docs/gist-desktop-apps#github-sharp-apps) and available:
 
 ```
-.NET Core Templates:
+   1. redis       Simple, lightweight, versatile Redis Admin UI                                 by @ServiceStack  [redis]
+   2. spirals     Explore and generate different Spirals with SVG                               by @ServiceStack  [svg]
+   3. blog        Minimal, multi-user Twitter Auth blogging app                                 by @ServiceStack  [sqlite]
+   4. rockwind    Example combining Rockstars website + data-driven Northwind Browser           by @ServiceStack  [example]
+   5. redis-html  Redis Admin Viewer developed as server-generated HTML Website                 by @sharp-apps    [redis]
+   6. plugins     Extend Apps with Plugins, ServiceStack Services and other C# extensions       by @sharp-apps    [example]
+   7. chat        Extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat  by @sharp-apps    [example]
+   8. bare        Basic Sharp Content Website                                                   by @ServiceStack  [website]
 
-   1. angular-lite-spa   .NET Core 2.1 Angular 4 Material Design Lite Webpack App
-   2. angular-spa        .NET Core 2.1 Angular 7 CLI Bootstrap App
-   3. aurelia-spa        .NET Core 2.1 Aurelia CLI Bootstrap App
-   4. bare-webapp        .NET Core 2.1 Bare Sharp Apps
-   5. mvc                .NET Core 2.1 MVC Website
-   6. mvcauth            .NET Core 2.2 MVC Website integrated with ServiceStack Auth
-   7. mvcidentity        .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth
-   8. mvcidentityserver  .NET Core 2.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
-   9. parcel             .NET Core 2.1 Parcel TypeScript App
-  10. parcel-webapp      .NET Core 2.1 Parcel Sharp Apps
-  11. razor              .NET Core 2.1 Website with ServiceStack.Razor
-  12. react-lite         .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript
-  13. react-spa          .NET Core 2.1 React Create App CLI Bootstrap App
-  14. rockwind-webapp    .NET Core 2.1 Rockwind Sharp Apps
-  15. selfhost           .NET Core 2.1 self-hosting Console App
-  16. sharp              .NET Core 2.1 Sharp Pages Bootstrap Website
-  17. vue-lite           .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript
-  18. vue-nuxt           .NET Core 2.1 Nuxt.js SPA App with Bootstrap
-  19. vue-spa            .NET Core 2.1 Vue CLI Bootstrap App
-  20. vuetify-nuxt       .NET Core 2.1 Nuxt.js SPA App with Material Vuetify
-  21. vuetify-spa        .NET Core 2.1 Vue CLI App with Material Vuetify
-  22. web                .NET Core 2.1 Empty Website
-
-Sharp Apps:
-
-   1. bare            Basic Bootstrap + jQuery multi-page Content Website with dynamic Menu Navigation + API pages
-   2. blog            Minimal, multi-user Twitter OAuth blogging platform that can create living, powerful pages
-   3. chat            Highly extensible App with custom AppHost leveraging OAuth + SSE for real-time Chat
-   4. plugins         Extend WebApps with Plugins, Filters, ServiceStack Services and other C# extensions
-   5. redis           Redis Admin Viewer developed as Vue Client Single Page App
-   6. redis-html      Redis Admin Viewer developed as server-generated HTML Website
-   7. rockwind        Example Sharp App combining multi-layout Rockstars website + data-driven Northwind Browser
-   8. rockwind-aws    Rockwind Cloud Sharp App on AWS
-   9. rockwind-azure  Rockwind Cloud Sharp App on Azure
-  10. spirals         Explore and generate different Spirals with SVG
-
-Usage: app install <name>
+Usage: app open <name>
 ```
-
-With the above `APP_SOURCE`, you can install the `mvc` .NET Core Project Template above without needing to specify the `--source` argument:
-
-    $ app install mvc
-
-### App Gallery
-
-For a better visual description of each App you can run `gallery` to view a richer showcase of different apps available:
-
-    $ app gallery
-
-Which by default opens [Sharp Apps Gallery](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos) in a CEF browser
-or can also be customized to open any URL by changing the `APP_GALLERY` environment variable.
 
 ## Custom .NET Core Desktop Apps
 

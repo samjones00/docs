@@ -48,24 +48,29 @@ Usage:
   web vbnet      <url>        Add VB.NET ServiceStack Reference     (Alias 'vb')
   web tsd        <url>        Add TypeScript Definition ServiceStack Reference
 
-  web +                       Show available gists
-  web +<name>                 Write gist files locally, e.g:
-  web +init                   Create empty .NET Core 2.2 ServiceStack App
-  web + #<tag>                Search available gists
+  web mix                     Show available gists to mixin         (Alias '+')
+  web mix <name>              Write gist files locally, e.g:        (Alias +init)
+  web mix init                Create empty .NET Core ServiceStack App
+  web mix #<tag>              Search available gists
   web gist <gist-id>          Write all Gist text files to current directory
 
   web run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
   web watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
 
-  web run                     Run Sharp App in App folder using local app.settings
-  web run path/app.settings   Run Sharp App at folder containing specified app.settings
+  web open                    List of available Sharp Apps
+  web open <app>              Install and run Sharp App
 
-  web list                    List available Sharp Apps            (Alias 'l')
-  web gallery                 Open Sharp App Gallery in a Browser  (Alias 'g')
-  web install <name>          Install Sharp App                    (Alias 'i')
+  web run                     Run Sharp App in current directory
+  web run <name>              Run Installed Sharp App
+  web run path/app.settings   Run Sharp App at directory containing specified app.settings
 
-  web publish                 Package Sharp App to /publish ready for deployment (.NET Core Required)
-  web publish-exe             Package self-contained .exe Sharp App to /publish  (.NET Core Embedded)
+  web install                 List available Sharp Apps to install (Alias 'l')
+  web install <app>           Install Sharp App                    (Alias 'i')
+
+  web uninstall               List Installed Sharp Apps
+  web uninstall <app>         Uninstall Sharp App
+
+  web publish                 Publish Sharp App to Gist       (requires token)
 
   web shortcut                Create Shortcut for Sharp App
   web shortcut <name>.dll     Create Shortcut for .NET Core App
@@ -79,8 +84,10 @@ Options:
     -r, --release             Run in Release mode for Production
     -s, --source              Change GitHub Source for App Directory
     -f, --force               Quiet mode, always approve, never prompt
+        --token               Use GitHub Auth Token
         --clean               Delete downloaded caches
         --verbose             Display verbose logging
+        --ignore-ssl-errors   Ignore SSL Errors
 ```
 
 ### Add/Update ServiceStack References
