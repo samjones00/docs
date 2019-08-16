@@ -79,6 +79,33 @@ See [web new](/web-new) for available Project Templates you can create with:
 
     $ app new
 
+### Mix Features into existing ASP.NET Core Apps
+
+The `app` dotnet tool is a [versatile utility belt packed with a number of features](/web-tool) to simplify discovering, installing, running and deploying 
+.NET Core Apps. You can view the full list of supported commands by running `app ?`, e.g. another useful command is using [`app mix`](/mix-tool)
+for generating pre-set templates:
+
+```
+app mix                     Show available gists to mixin         (Alias '+')
+app mix <name>              Write gist files locally, e.g:        (Alias +init)
+app mix init                Create empty .NET Core ServiceStack App
+app mix #<tag>              Search available gists
+app gist <gist-id>          Write all Gist text files to current directory
+```
+
+View available gists with:
+
+    $ app mix
+
+
+Where you can use `app mix nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
+[Linux deployment servers for your .NET Core Apps](/netcore-deploy-rsync) less tedious. 
+
+In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 
+for your Environment that anyone can write to their current directory with **the gist id** or **gist URL**:
+
+    $ app gist <gist-id>
+
 ### Installing Sharp Apps
 
 The app tool also makes it easy to install .NET Core [Sharp Apps](https://sharpscript.net/docs/sharp-apps) where you can `open` apps that are available 
@@ -184,58 +211,6 @@ A nice benefit from delivering `app` as a dotnet tool is that updates are effort
 Which will upgrade to a newer CEF and `app` versions as they're released. `app` also lets you know if there's a newer version available
 after running the `list`, `gallery` and `-v` commands.
 
-## Additional Features
-
-The `app` dotnet tool is a [versatile utility belt packed with a number of features](/web-tool) to simplify discovering, installing, running and deploying 
-.NET Core Apps. You can view the full list of supported commands by running `app ?`, e.g. another useful command is using [`app +`](/web-apply)
-for generating pre-set templates:
-
-```
-app +                       Show available gists
-app +<name>                 Write gist files locally, e.g:
-app +init                   Create empty .NET Core 2.2 ServiceStack App
-app + #<tag>                Search available gists
-app gist <gist-id>          Write all Gist text files to current directory
-```
-
-View available gists with:
-
-    $ app +
-
-Where it will list available gists in [apply.md](/web-apply#applymd):
-
-```
-   1. init                 Empty .NET Core 2.2 ServiceStack App                                   to: .                            by @ServiceStack  [project]
-   2. init-lts             Empty .NET Core 2.1 LTS ServiceStack App                               to: .                            by @ServiceStack  [project]
-   3. init-corefx          Empty ASP.NET Core 2.1 LTS on .NET Framework                           to: .                            by @ServiceStack  [project]
-   4. init-sharp-app       Empty ServiceStack Sharp App                                           to: .                            by @ServiceStack  [project]
-   5. bootstrap-sharp      Bootstrap + Sharp Pages Starter Template                               to: $HOST                        by @ServiceStack  [ui,sharp]
-   6. sqlserver            Use OrmLite with SQL Server                                            to: $HOST                        by @ServiceStack  [db]
-   7. sqlite               Use OrmLite with SQLite                                                to: $HOST                        by @ServiceStack  [db]
-   8. postgres             Use OrmLite with PostgreSQL                                            to: $HOST                        by @ServiceStack  [db]
-   9. mysql                Use OrmLite with MySql                                                 to: $HOST                        by @ServiceStack  [db]
-  10. auth-db              AuthFeature with OrmLite AuthRepository, CacheClient (requires ui,db)  to: $HOST                        by @ServiceStack  [auth]
-  11. auth-memory          AuthFeature with Memory AuthRepository, CacheClient (requires ui)      to: $HOST                        by @ServiceStack  [auth]
-  12. validation-contacts  Contacts Validation Example                                            to: $HOST                        by @ServiceStack  [example,sharp]
-  13. vue-lite-lib         Update vue-lite projects libraries                                     to: $HOST                        by @ServiceStack  [lib,vue]
-  14. react-lite-lib       Update react-lite projects libraries                                   to: $HOST                        by @ServiceStack  [lib,react]
-  15. nginx                Nginx reverse proxy config for .NET Core Apps                          to: /etc/nginx/sites-available/  by @ServiceStack  [config]
-  16. supervisor           Supervisor config for managed execution of .NET Core Apps              to: /etc/supervisor/conf.d/      by @ServiceStack  [config]
-  17. docker               Dockerfile example for .NET Core Sharp Apps                            to: .                            by @ServiceStack  [config]
-
- Usage:  app +<name>
-         app +<name> <UseName>
-
-Search:  app + #<tag>      Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
-```
-
-Where you can use `app +nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
-[Linux deployment servers for your .NET Core Apps](/netcore-deploy-rsync) less tedious. 
-
-In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 
-for your Environment that anyone can write to their current directory with **the gist id** or **gist URL**:
-
-    $ app gist <gist-id>
 
 ## Chromium Desktop Apps
 

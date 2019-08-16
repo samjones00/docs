@@ -165,13 +165,37 @@ in the right-click context menu:
 
 If you're updating references frequently you can save time by [assigning it a keyboard shortcut](https://www.jetbrains.com/help/rider/Configuring_Keyboard_and_Mouse_Shortcuts.html).
 
-### Create new Projects with `web new`
+### Create new Project Templates
 
-See [web new](/web-new) for info on how to create new projects.
+See [web new](/web-new) for available Project Templates you can create with:
 
-### Mix/Match ASP.NET Core projects with `web +`
+    $ web new
 
-See [web +](/web-apply) for how to mix/match gists to "layer on" functionality to create customized ASP.NET Core projects.
+### Mix Features into existing ASP.NET Core Apps
+
+The `web` dotnet tool is a [versatile utility belt packed with a number of features](/web-tool) to simplify discovering, installing, running and deploying 
+.NET Core Apps. You can view the full list of supported commands by running `web ?`, e.g. another useful command is using [`web mix`](/mix-tool)
+for generating pre-set templates:
+
+```
+web mix                     Show available gists to mixin         (Alias '+')
+web mix <name>              Write gist files locally, e.g:        (Alias +init)
+web mix init                Create empty .NET Core ServiceStack App
+web mix #<tag>              Search available gists
+web gist <gist-id>          Write all Gist text files to current directory
+```
+
+View available gists with:
+
+    $ web mix
+
+Where you can use `web mix nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
+[Linux deployment servers for your .NET Core Apps](/netcore-deploy-rsync) less tedious. 
+
+In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 
+for your Environment that anyone can write to their current directory with **the gist id** or **gist URL**:
+
+    $ web gist <gist-id>
 
 {% capture trouble %}{% include web-trouble.md %}{% endcapture %}
 {{ trouble | markdownify }}
