@@ -136,7 +136,8 @@ whilst the 2nd Argument is used to customize any of its other high-level feature
            | formSelect({label:'Favorite color',values:{'', ...contactColors}}) }}
     </div>
     <div class="form-group">
-        {{ {id:'filmGenres',type:'checkbox'} | formInput({label:'Favorite Film Genres',values:contactGenres,help:"choose one or more"}) }}
+        {{ {id:'filmGenres',type:'checkbox'} 
+          | formInput({label:'Favorite Film Genres',values:contactGenres,help:"choose one or more"}) }}
     </div>
     <div class="form-group">
         {{ {id:'age',type:'number',min:13,placeholder:'Age',class:'col-3'} | formInput }}
