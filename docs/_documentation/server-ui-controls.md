@@ -253,7 +253,7 @@ public object Any(CreateContact request)
     var contacts = Contacts.Values.ToList();
     var alreadyExists = contacts.Any(x => x.UserAuthId == newContact.UserAuthId && x.Name == request.Name);
     if (alreadyExists)
-        throw new ArgumentException($"You already have a contact named '{request.Name}'", nameof(request.Name));
+        throw new ArgumentException($"You already have contact named '{request.Name}'",nameof(request.Name));
     
     Contacts[newContact.Id] = newContact;
     return new CreateContactResponse { Result = newContact.ConvertTo<Contact>() };
