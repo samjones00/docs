@@ -17,9 +17,7 @@ register functionality that all ServiceStack Apps can make use of.
 To support this, we use the new `NavItem` below to capture hierarchical Navigation information about a single Navigation Item:
 
 ```csharp
-/// <summary>
 /// NavItem in View.NavItems and View.NavItemsMap
-/// </summary>
 public class NavItem : IMeta
 {
     /// Link Label

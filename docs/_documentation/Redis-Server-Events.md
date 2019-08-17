@@ -36,7 +36,7 @@ The above configuration will use Redis ServerEvents if there's a `RedisHost` **a
 
 ### Cross-platform Memory and Redis ServerEvent Enabled Chat.exe
 
-To showcase Redis ServerEvents in action, we've prepared a stand-alone [ServiceStack.Gap](https://github.com/ServiceStack/ServiceStack.Gap) version of [Chat](http://chat.servicestack.net) compiled down into a single **Chat.exe** that can run on either Windows and OSX with Mono which can be downloaded from: 
+To showcase Redis ServerEvents in action, we've prepared a stand-alone [ServiceStack.Gap](https://github.com/ServiceStack/ServiceStack.Gap) version of [Chat](http://chat.netcore.io) compiled down into a single **Chat.exe** that can run on either Windows and OSX with Mono which can be downloaded from: 
 
 ### [Chat.zip](https://github.com/ServiceStack/ServiceStack.Gap/raw/master/deploy/Chat.zip) (1.2MB)
 

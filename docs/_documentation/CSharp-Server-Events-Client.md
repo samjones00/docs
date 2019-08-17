@@ -13,7 +13,7 @@ And like the Service Clients it requires the `BaseUri` of your ServiceStack inst
 
 ```csharp
 var client = new ServerEventsClient(
-    "http://chat.servicestack.net", channels:"home");
+    "http://chat.netcore.io", channels:"home");
 ```
 
 ### Managed Connection
@@ -314,7 +314,7 @@ public class MyServices : Service
 }
 ```
 
-As Global Receivers handle other messages sent with the `cmd.*` selector and can be re-used as a named receiver, we can define a single class to handle all the different custom messages sent in [chat.servicestack.net](http://chat.servicestack.net) App, E.g:
+As Global Receivers handle other messages sent with the `cmd.*` selector and can be re-used as a named receiver, we can define a single class to handle all the different custom messages sent in [chat.netcore.io](http://chat.netcore.io) App, E.g:
 
 ```
 cmd.chat Hi
@@ -490,7 +490,7 @@ ServicePointManager.DefaultConnectionLimit = maxNumOfConcurrentConnections;
 Xamarin.Android Chat utilizes the 
 [.NET PCL Server Events Client](/csharp-server-events-client)
 to create an Android Chat App connecting to the existing 
-[chat.servicestack.net](http://chat.servicestack.net/) Server Events back-end where it's able to communicate 
+[chat.netcore.io](http://chat.netcore.io/) Server Events back-end where it's able to communicate 
 with existing Ajax clients and other connected Android Chat Apps. 
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/xamarin-android-server-events.png)](https://www.youtube.com/watch?v=tImAm2LURu0)

@@ -153,10 +153,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         <table>
             <caption>ASP.NET 4.5</caption>
             <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://redisgeo.servicestack.net">redisgeo.servicestack.net</a></td>
-            </tr>
-            <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/redis-geo">github.com/ServiceStackApps/redis-geo</a></td>
             </tr>
@@ -196,10 +192,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         </table>        
         <table>
             <caption>ASP.NET 4.5</caption>
-            <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://chat.servicestack.net">chat.servicestack.net</a></td>
-            </tr>
             <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/Chat">github.com/ServiceStackApps/Chat</a></td>
@@ -242,10 +234,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         <table>
             <caption>ASP.NET 4.5</caption>
             <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://mvc.servicestack.net">mvc.servicestack.net</a></td>
-            </tr>
-            <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStack/Test/tree/master/src/Mvc">github.com/ServiceStack/Test</a></td>
             </tr>
@@ -285,10 +273,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         </table>        
         <table>
             <caption>ASP.NET 4.5</caption>
-            <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://stackapis.servicestack.net">stackapis.servicestack.net</a></td>
-            </tr>
             <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/StackApis">github.com/ServiceStackApps/StackApis</a></td>
@@ -370,10 +354,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         </table>        
         <table>
             <caption>ASP.NET 4.5</caption>
-            <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://todos.servicestack.net">todos.servicestack.net</a></td>
-            </tr>
             <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/Todos">github.com/ServiceStackApps/Todos</a></td>
@@ -457,10 +437,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         <table>
             <caption>ASP.NET 4.5</caption>
             <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://restfiles.servicestack.net">restfiles.servicestack.net</a></td>
-            </tr>
-            <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/RestFiles">github.com/ServiceStackApps/RestFiles</a></td>
             </tr>
@@ -502,10 +478,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         <table>
             <caption>ASP.NET 4.5</caption>
             <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://northwind.servicestack.net">northwind.servicestack.net</a></td>
-            </tr>
-            <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/Northwind">github.com/ServiceStackApps/Northwind</a></td>
             </tr>
@@ -543,10 +515,6 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
         </table>        
         <table>
             <caption>ASP.NET 4.5</caption>
-            <tr>
-              <td>Live Demo:</td>
-              <td><a href="http://redisstackoverflow.servicestack.net">redisstackoverflow.servicestack.net</a></td>
-            </tr>
             <tr>
               <td>Github:</td>
               <td><a href="https://github.com/ServiceStackApps/RedisStackOverflow">github.com/ServiceStackApps/RedisStackOverflow</a></td>
@@ -795,7 +763,7 @@ of serving static files from the **WebRootPath** which just required moving all 
 And with that the Todos port was complete, which you can view from the deployed locations below:
 
  - [http://todos.netcore.io](http://todos.netcore.io)       - Linux / Docker / nginx / .NET Core
- - [http://todos.servicestack.net](http://todos.servicestack.net) - Windows / IIS / .NET 4.5 / ASP.NET
+ - [http://todos.netcore.io](http://todos.netcore.io) - Windows / IIS / .NET 4.5 / ASP.NET
 
 ## Seamless Integration with .NET Core
 

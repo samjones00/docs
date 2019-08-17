@@ -32,7 +32,7 @@ var deserialize = (Type type, Stream stream) => ...;
 this.ContentTypes.Register(contentType, serialize, deserialize);	
 ```
 
-The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.servicestack.net/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
+The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.netcore.io/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
 
 For reference see registration examples of ServiceStack's different Formats:
 

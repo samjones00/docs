@@ -54,21 +54,21 @@ The ability to automatically to register another format and provide immediate va
 
 The CSV format is effectively a first-class supported format so everything should work as expected, including being registered as an available format on ServiceStack's metadata index page:
 
-* [/metadata](http://northwind.servicestack.net/metadata)
+* [/metadata](http://northwind.netcore.io/metadata)
 
 And being able to preview the output of a service:
 
-* [/csv/metadata?op=CustomerDetails](http://northwind.servicestack.net/csv/metadata?op=CustomerDetails)
+* [/csv/metadata?op=CustomerDetails](http://northwind.netcore.io/csv/metadata?op=CustomerDetails)
 
 By default they are automatically available using ServiceStack's standard calling conventions, e.g:
 
-* [/csv/reply/Customers](http://northwind.servicestack.net/csv/reply/Customers)
+* [/csv/reply/Customers](http://northwind.netcore.io/csv/reply/Customers)
     
 ### REST Usage
 
 CSV also works just as you would expect with user-defined REST-ful urls, i.e. you can append `?format=csv` to specify the format in the url e.g:
 
-* [/customers?format=csv](http://northwind.servicestack.net/customers?format=csv)
+* [/customers?format=csv](http://northwind.netcore.io/customers?format=csv)
 
 This is how the above web service output looks when opened up in [google docs](https://spreadsheets.google.com/pub?key=0AjnFdBrbn8_fdDBwX0Rha04wSTNWZDZlQXctcmp2bVE&hl=en_GB&output=html)
 
@@ -76,7 +76,7 @@ This is how the above web service output looks when opened up in [google docs](h
 Alternative in following with the HTTP specification you can also specify content-type `"text/csv"` in the *Accept* header of your HttpClient as done in [HTTP Utils](/http-utils) extension methods:
 
 ```csharp
-var csv = "http://nortwind.servicestack.net/customers".GetCsvFromUrl();
+var csv = "http://nortwind.netcore.io/customers".GetCsvFromUrl();
 ```
 
 ## CSV Deserialization Support

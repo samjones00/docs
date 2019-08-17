@@ -5,15 +5,15 @@ title: HTML5 JSON Report Format
 
 These examples are simply links to existing ServiceStack web services, which based on your browsers user-agent (i.e. Accept: 'text/html') provides this HTML format instead of the other serialization formats. 
 
-  - Nortwind Database: [All Customers](http://northwind.servicestack.net/customers), [Customer Detail](http://northwind.servicestack.net/customers/ALFKI), [Customer Orders](http://northwind.servicestack.net/orders)
-  - RedisStackOverflow:  [Latest Questions](http://redisstackoverflow.servicestack.net/questions) and [Site Stats](http://redisstackoverflow.servicestack.net/stats)
-  - RestFiles:  [Root Directory](http://restfiles.servicestack.net/files)
+  - Northwind Database: [All Customers](http://northwind.netcore.io/customers), [Customer Detail](http://northwind.netcore.io/customers/ALFKI), [Customer Orders](http://northwind.netcore.io/orders)
+  - RedisStackOverflow:  [Latest Questions](http://redisstackoverflow.netcore.io/questions) and [Site Stats](http://redisstackoverflow.netcore.io/stats)
+  - RestFiles:  [Root Directory](http://restfiles.netcore.io/files)
 
-[![HTML5 Report Format](/images/formats/HTML5Format.png)](http://northwind.servicestack.net/customers/ALFKI)
+[![HTML5 Report Format](/images/formats/HTML5Format.png)](http://northwind.netcore.io/customers/ALFKI)
 
 To see it in action, **view the source** in your browser. Webkit and Firefox users can simply go to the url below:
 
-    view-source:http://northwind.servicestack.net/customers/ALFKI
+    view-source:http://northwind.netcore.io/customers/ALFKI
 
 Note: To view the web services in a different format simply append **?format={ext}** to the query string, e.g:
 

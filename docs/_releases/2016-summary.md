@@ -928,9 +928,9 @@ The latest [release of Redis 3.2.0](http://antirez.com/news/104) brings it excit
 
 To demonstrate this functionality we've created a new [Redis GEO Live Demo](https://github.com/ServiceStackApps/redis-geo) which lets you click on anywhere in the U.S. to find the list of nearest cities within a given radius:
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/redis-geo/redisgeo-screenshot.png)](http://redisgeo.servicestack.net/)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/redis-geo/redisgeo-screenshot.png)](http://redisgeo.netcore.io/)
 
-> Live Demo: http://redisgeo.servicestack.net
+> Live Demo: http://redisgeo.netcore.io
 
 ## [Slack Logger](/releases/v4.0.60#slack-logger)
 
@@ -1322,8 +1322,8 @@ builds after August 1, 2016 now that Microsoft no longer supports them. If you a
 An exciting new plugin available from the **ServiceStack.Admin** NuGet package which provides an instant automatic UI for all your AutoQuery services. As it's super quick to add we've enabled it on a number of existing live demos which you can try out:
 
 - http://github.servicestack.net/ss_admin/
-- http://northwind.servicestack.net/ss_admin/
-- http://stackapis.servicestack.net/ss_admin/
+- http://northwind.netcore.io/ss_admin/
+- http://stackapis.netcore.io/ss_admin/
 - http://techstacks.io/ss_admin/
 
 It also ships with a number of productive features out-of-the-box:
@@ -1355,7 +1355,7 @@ We've added a couple of demos showing how easy it is to create rich, interactive
 ## [Xamarin.Android Chat](https://github.com/ServiceStackApps/AndroidXamarinChat)
 
 The new Xamarin.Android demo shows how to use the .NET PCL typed Server Events Client to connect to an 
-existing chat.servicestack.net back-end and communicate with existing Ajax web clients. It also shows 
+existing chat.netcore.io back-end and communicate with existing Ajax web clients. It also shows 
 how to use Xamarin.Auth to authenticate with ServiceStack using Twitter and OAuth.
 
 A quick demo is available from: https://www.youtube.com/watch?v=tImAm2LURu0 

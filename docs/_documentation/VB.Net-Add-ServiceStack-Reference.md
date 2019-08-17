@@ -35,7 +35,7 @@ The header comments in the generated DTO's allows for further customization of h
 ' Options:
 'Date: 2014-10-21 00:45:05
 'Version: 1
-'BaseUrl: http://stackapis.servicestack.net
+'BaseUrl: http://stackapis.netcore.io
 '
 '''MakePartial: True
 '''MakeVirtual: True
@@ -57,7 +57,7 @@ To override these options on the client, the comment has to be changed to start 
 ' Options:
 'Date: 2014-10-21 00:45:05
 'Version: 1
-'BaseUrl: http://stackapis.servicestack.net
+'BaseUrl: http://stackapis.netcore.io
 '
 'MakePartial: False
 '''MakeVirtual: True

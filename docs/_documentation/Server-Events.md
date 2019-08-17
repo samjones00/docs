@@ -10,7 +10,7 @@ slug: server-events
   - **Efficient** - Each client uses a single TCP connection and each message avoids the overhead of HTTP Connections and Headers that's [often faster than Web Sockets](http://matthiasnehlsen.com/blog/2013/05/01/server-sent-events-vs-websockets/).
   - **Resilient** - Browsers automatically detect when a connection is broken and automatically reconnects
   - **Interoperable** - As it's just plain-old HTTP, it's introspectable with your favorite HTTP Tools and even works through HTTP proxies (with buffering and [chunked-encoding turned off](https://www.w3.org/TR/eventsource/#notes)).
-  - **Well Supported** - As a Web Standard it's supported in all major browsers except for IE which [can be enabled with polyfills](http://html5doctor.com/server-sent-events/#yaffle) - see [default_ieshim.cshtml](https://github.com/ServiceStackApps/Chat/blob/master/src/Chat/default_ieshim.cshtml) and its [Live Chat Example](http://chat.servicestack.net/default_ieshim).
+  - **Well Supported** - As a Web Standard it's supported in all major browsers except for IE which [can be enabled with polyfills](http://html5doctor.com/server-sent-events/#yaffle) - see [default_ieshim.cshtml](https://github.com/ServiceStackApps/Chat/blob/master/src/Chat/default_ieshim.cshtml) and its [Live Chat Example](http://chat.netcore.io/default_ieshim).
 
 We've chosen to adopt Server Sent Events for Server Notifications as it's a beautifully simple and elegant [Web Standard](http://dev.w3.org/html5/eventsource/) with better HTTP fidelity than **WebSockets**, that's perfect fit for Server Push Communications that works in both ServiceStack' ASP.NET, SelfHosts and .NET Core without requiring any extra .NET dependencies or [require the host Windows Server have WebSockets support](http://stackoverflow.com/a/12073593/85785) to use. 
 
@@ -543,14 +543,14 @@ React Chat is a port of [ServiceStack Chat](https://github.com/ServiceStackApps/
 demo into a [TypeScript](http://www.typescriptlang.org/), [React](http://facebook.github.io/react/) and 
 [Redux](https://github.com/reactjs/redux) App:
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/chat-react/screenshot.png)](http://react-chat.servicestack.net/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/chat-react/screenshot.png)
 
 ### [Xamarin.Android Chat](https://github.com/ServiceStackApps/AndroidXamarinChat)
 
 Xamarin.Android Chat utilizes the 
 [.NET PCL Server Events Client](/csharp-server-events-client)
 to create an Android Chat App connecting to the existing 
-[chat.servicestack.net](http://chat.servicestack.net/) Server Events back-end where it's able to communicate 
+[chat.netcore.io](http://chat.netcore.io/) Server Events back-end where it's able to communicate 
 with existing Ajax clients and other connected Android Chat Apps. 
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/xamarin-android-server-events.png)](https://www.youtube.com/watch?v=tImAm2LURu0)
@@ -572,7 +572,7 @@ to how users can use Remote Desktop to watch another computer's screen:
 
 > Feature-rich Single Page Chat App, showcasing Server Events support in 170 lines of JavaScript!
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/chat.png)](http://chat.servicestack.net)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/chat.png)](http://chat.netcore.io)
 
 ### [React Chat Desktop](https://github.com/ServiceStackApps/ReactChatApps)
 

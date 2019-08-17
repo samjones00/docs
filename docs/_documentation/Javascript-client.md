@@ -106,7 +106,7 @@ We also provide our older jQuery JsonServiceClient which mimics the [.NET Client
   - [JsonServiceClient.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4/lib/js/JsonServiceClient.js) - Pure JavaScript client
   - [JsonServiceClient.closure.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4/lib/js/JsonServiceClient.closure.js) - a [Google Closure](https://developers.google.com/closure/) enabled version of the client allowing compilation and bundling within a Closure project
 
-Although most dynamic languages like JavaScript already include support for HTTP and JSON where in most cases it's easier to just use the libraries already provided. Here are a couple of examples from [Backbones Todos](http://todos.servicestack.net) and [Redis StackOverflow](http://redisstackoverflow.servicestack.net) that uses jQuery to talk to back-end ServiceStack JSON services:
+Although most dynamic languages like JavaScript already include support for HTTP and JSON where in most cases it's easier to just use the libraries already provided. Here are a couple of examples from [Backbones Todos](http://todos.netcore.io) and [Redis StackOverflow](http://redisstackoverflow.netcore.io) that uses jQuery to talk to back-end ServiceStack JSON services:
 
 ### Using jQuery Ajax APIs:
 

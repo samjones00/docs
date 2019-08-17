@@ -1212,15 +1212,15 @@ AutoQuery Viewer provides an instant UI for constructing and browsing your
 ### Live AutoQuery Viewer Examples
 
 - [http://github.servicestack.net/ss_admin/](http://github.servicestack.net/ss_admin/)
-- [http://northwind.servicestack.net/ss_admin/](http://northwind.servicestack.net/ss_admin/)
-- [http://stackapis.servicestack.net/ss_admin/](http://stackapis.servicestack.net/ss_admin/)
+- [http://northwind.netcore.io/ss_admin/](http://northwind.netcore.io/ss_admin/)
+- [http://stackapis.netcore.io/ss_admin/](http://stackapis.netcore.io/ss_admin/)
 - [http://techstacks.io/ss_admin/](http://techstacks.io/ss_admin/)
 
 ## [Northwind](https://github.com/ServiceStackApps/Northwind)
 
 > Northwind database viewer, showing how to easily expose read and cached view services of an internal dataset with ServiceStack + OrmLite
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/northwind.png)](http://northwind.servicestack.net)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/northwind.png)](http://northwind.netcore.io)
 
 #### Features
 
@@ -1232,7 +1232,7 @@ AutoQuery Viewer provides an instant UI for constructing and browsing your
 
 > AngularJS Single Page App leveraging AutoQuery in <50 lines of JavaScript + 1 AutoQuery DTO 
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/stackapis.png)](http://stackapis.servicestack.net)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/stackapis.png)](http://stackapis.netcore.io)
 
 #### Features
 
