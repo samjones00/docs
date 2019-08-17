@@ -133,7 +133,7 @@ To illustrate Authentication integration with ServiceStack, see the authenticati
     - Twitter, GitHub and JWT Auth
   - [Gistlyn](https://github.com/ServiceStack/Gistlyn)
     - GitHub and JWT Auth
-  - [AWS Auth](http://awsapps.servicestack.net/awsauth/) 
+  - [AWS Auth](https://github.com/ServiceStackApps/AwsApps) 
     - Twitter, Facebook, GitHub, Google, Yahoo, LinkedIn, and Credentials Auth
   - [MVC and WebForms Example](/servicestack-integration) 
     - Twitter, Facebook, GitHub, Google, Yahoo, LinkedIn, VK, Credentials and Windows Auth

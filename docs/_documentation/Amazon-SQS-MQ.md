@@ -25,7 +25,7 @@ When an MQ Server is registered, ServiceStack automatically publishes Requests a
 
 ### SQS MQ Server Example
 
-The [AWS Email Contacts](http://awsapps.servicestack.net/emailcontacts/) example shows the same long-running 
+The [AWS Email Contacts](https://github.com/ServiceStackApps/AwsApps/tree/master/src/AwsApps/emailcontacts) example shows the same long-running 
 [EmailContact Service](https://github.com/ServiceStackApps/AwsApps/blob/4817f5c6ad69defd74d528403bfdb03e5958b0b3/src/AwsApps/emailcontacts/EmailContactServices.cs#L81)
 being executed from both HTTP and MQ Server by just 
 [changing which url the HTML Form is posted to](https://github.com/ServiceStackApps/AwsApps/blob/4817f5c6ad69defd74d528403bfdb03e5958b0b3/src/AwsApps/emailcontacts/default.cshtml#L203):

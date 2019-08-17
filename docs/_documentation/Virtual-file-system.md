@@ -338,7 +338,8 @@ The new `IVirtualFiles` API is available in local FileSystem, In Memory, Gists a
 All `IVirtualFiles` providers share the same 
 [VirtualPathProviderTests](https://github.com/ServiceStack/ServiceStack.Aws/blob/master/tests/ServiceStack.Aws.Tests/S3/VirtualPathProviderTests.cs)
 ensuring a consistent behavior where it's now possible to swap between different file storage backends with simple
-configuration as seen in the [Imgur](http://awsapps.servicestack.net/imgur/) and [REST Files](http://awsapps.servicestack.net/restfiles/) examples.
+configuration as seen in the [Imgur](https://github.com/ServiceStackApps/AwsApps/tree/master/src/AwsApps/imgur) and 
+[REST Files](https://github.com/ServiceStackApps/AwsApps/tree/master/src/AwsApps/restfiles) examples.
 
 #### Object APIs
 

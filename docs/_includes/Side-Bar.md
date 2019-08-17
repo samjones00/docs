@@ -229,7 +229,7 @@
 - ##### Amazon Web Services
     - [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
     - [PocoDynamo](https://github.com/ServiceStack/PocoDynamo)
-    - [AWS Live Demos](http://awsapps.servicestack.net)
+    - [AWS Live Demos](https://github.com/ServiceStackApps/AwsApps)
     - [Getting Started with AWS](https://github.com/ServiceStackApps/AwsGettingStarted)
 - ##### Deployment
     - [Deploy Multiple Sites to single AWS](/deploy-multiple-sites-to-aws)
