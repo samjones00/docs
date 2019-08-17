@@ -1,5 +1,5 @@
 ---
-title: Server UI Controls
+title: #Script and Razor Server UI Controls
 slug: server-ui-controls
 ---
 

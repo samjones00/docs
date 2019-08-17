@@ -35,7 +35,7 @@
     - [Angular Templates](/templates-angular)
     - [Desktop Templates](/templates-desktop)
     - [Vue, React, Angular Components](/spa-components)
-    - [#Script Razor Server UI Controls](/server-ui-controls)
+    - [#Script & Razor Server UI Controls](/server-ui-controls)
     - [Tour of Webpack](/tour-of-webpack)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
