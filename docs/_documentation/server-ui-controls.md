@@ -111,6 +111,17 @@ The equivalent implementation in Razor:
 </form>
 ```
 
+## Login Page UI
+
+The Login Page contains a standard Bootstrap Username/Password form with labels, placeholders and help text, which initially looks like:
+
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/login-validation.png)
+
+What it looks like after submitting an empty form with Server Exception Errors rendered against their respective fields:
+
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/login-validation-failed.png)
+
+
 ### Contacts Page
 
 The [Contacts Page](/world-validation#contacts-page) shows a more complete example with a number of different UI Controls. 
@@ -259,6 +270,17 @@ public object Any(CreateContact request)
     return new CreateContactResponse { Result = newContact.ConvertTo<Contact>() };
 }
 ```
+
+## Contacts Page UI
+
+The Contacts Page is representative of a more complex page that utilizes a variety of different form controls where the same page is also responsible
+for rendering the list of existing contacts:
+
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/contacts-validation.png)
+
+Here's an example of what a partially submitted invalid form looks like:
+
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/contacts-validation-failed.png)
 
 To view the complete implementation in context checkout [World Validation Server Implementation](/world-validation#server-implementation).
 
