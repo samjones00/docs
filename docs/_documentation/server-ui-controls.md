@@ -122,12 +122,54 @@ What it looks like after submitting an empty form with Server Exception Errors r
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/login-validation-failed.png)
 
 
+### Form Control Properties
+
+Essentially both `#Script` and `Razor` have identical properties but implemented idiomatically for each control where `#Script` uses 
+**camelCase** names and JS Object literals. The first (aka target) argument is for attributes you want to add to the HTML `<input/>` Element
+whilst the 2nd Argument is used to customize any of its other high-level features:
+
+```csharp
+/// High-level Input options for rendering HTML Input controls
+public class InputOptions
+{
+    /// Display the Control inline 
+    public bool Inline { get; set; }
+    
+    /// Label for the control
+    public string Label { get; set; }
+    
+    /// Class for Label
+    public string LabelClass { get; set; }
+    
+    /// Override the class on the error message (default: invalid-feedback)
+    public string ErrorClass { get; set; }
+
+    /// Small Help Text displayed with the control
+    public string Help { get; set; }
+    
+    /// Bootstrap Size of the Control: sm, lg
+    public string Size { get; set; }
+    
+    /// Multiple Value Data Source for Checkboxes, Radio boxes and Select Controls 
+    public object Values { get; set; }
+
+    /// Typed setter of Multi Input Values
+    public IEnumerable<KeyValuePair<string, string>> InputValues
+    {
+        set => Values = value;
+    }
+
+    /// Whether to preserve value state after post back
+    public bool PreserveValue { get; set; } = true;
+
+    /// Whether to show Error Message associated with this control
+    public bool ShowErrors { get; set; } = true;
+}
+```
+
 ### Contacts Page
 
 The [Contacts Page](/world-validation#contacts-page) shows a more complete example with a number of different UI Controls. 
-Essentially both `#Script` and `Razor` have identical properties but implemented idiomatically for each control where `#Script` uses 
-**camelCase** names and JS Object literals. The first (aka target) argument is for attributes you want to add to the HTML `<input/>` Element
-whilst the 2nd Argument is used to customize any of its other high-level features, e.g:
 
 #### #Script Pages
 
@@ -308,21 +350,13 @@ Which by default renders the `View.NavItems` main navigation, using the default 
 You can also render a **different Navigation List** with:
 
 ```hbs
-{% raw %}{{ navbar(navItems('submenu')) }}{% endraw %}
+{% raw %}{{ navItems('submenu').navbar() }}{% endraw %}
 ```
 
 Which can be customized using the different `NavOptions` properties above, in camelCase:
 
 ```hbs
-{% raw %}{{ navbar(navItems('submenu'), { navClass: 'navbar-nav navbar-light bg-light' }) }}{% endraw %}
-```
-
-#### Rewritten using #Script Extension methods
-
-Thanks to `#Script` new ability to be able to call any script methods as extension methods, this can also be rewritten as:
-
-```hbs
-{% raw %}{{ 'submenu'.navItems().navbar({ navClass: 'navbar-nav navbar-light bg-light' }) }}{% endraw %}
+{% raw %}{{ navItems('submenu').navbar({ navClass: 'navbar-nav navbar-light bg-light' }) }}{% endraw %}
 ```
 
 #### Button group
@@ -364,3 +398,36 @@ The same server controls are available in ServiceStack.Razor Apps as HTML Helper
     NavItemClass = "btn btn-block btn-lg",
 })
 ```
+
+### NavOptions Properties
+
+The `NavItem` classes capture the Navigation information which is used together with the `NavOptions` class below:
+
+```csharp
+public class NavOptions
+{
+    /// User Attributes for conditional rendering, e.g:
+    ///  - auth - User is Authenticated
+    ///  - role:name - User Role
+    ///  - perm:name - User Permission 
+    public HashSet<string> Attributes { get; set; }
+    
+    /// Path Info that should set as active 
+    public string ActivePath { get; set; }
+    
+    /// Prefix to include before NavItem.Path (if any)
+    public string BaseHref { get; set; }
+
+    // Custom classes applied to different navigation elements (defaults to Bootstrap classes)
+    public string NavClass { get; set; }
+    public string NavItemClass { get; set; }
+    public string NavLinkClass { get; set; }
+    
+    public string ChildNavItemClass { get; set; }
+    public string ChildNavLinkClass { get; set; }
+    public string ChildNavMenuClass { get; set; }
+    public string ChildNavMenuItemClass { get; set; }
+}
+```
+
+Use **camelCase** when specifying nav options in `#Script` controls.
