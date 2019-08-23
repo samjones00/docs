@@ -69,6 +69,24 @@ Where it will be called whenever a conversion between `Data.User -> User` or `Ca
 
 Converters can also be used when you want to "take over" and override the default conversion behavior.
 
+### Intercept AutoMapping Conversions
+
+The `RegisterPopulator` AutoMapping API can be used to run custom logic after an Auto Mapping Conversion, e.g. after a
+`T.ConvertTo<T>()` or `T.PopulateWith(obj)` is performed. 
+
+This is useful when you need to intercept Auto Mapping conversions in external libraries, e.g. you can use this to populate
+the UserSession's `UserAuthId` with a different field from your Custom UserAuth:
+
+```csharp
+AutoMapping.RegisterPopulator((IAuthSession session, IUserAuth userAuth) => 
+{
+    if (userAuth is RavenUserAuth ravenUserAuth)
+    {
+        session.UserAuthId = ravenUserAuth.Key;
+    }
+});
+```
+
 ### Advanced mapping using custom extension methods
 
 When mapping logic becomes more complicated we like to use extension methods to keep code DRY and maintain the mapping in one place 
