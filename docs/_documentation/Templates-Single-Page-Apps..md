@@ -18,7 +18,7 @@ Click on the template name below to view a Live Demo and contents of each projec
 {% capture netcore %}
 | .NET Core C# Templates ||
 |-|-|
-| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
+| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 8 CLI Bootstrap App |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 2.1 Aurelia CLI Bootstrap App |
 | [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET Core 2.1 Parcel TypeScript App |
 | [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript |
@@ -40,7 +40,7 @@ The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly 
 {% capture netfx %}
 | .NET Framework C# Templates ||
 |-|-|
-| [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
+| [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 8 Bootstrap cli.angular.io App |
 | [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx)        | .NET Framework Aurelia Bootstrap Webpack App |
 | [react-desktop-apps-netfx](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx) | .NET Framework React Desktop Apps |
 | [react-spa-netfx](https://github.com/NetFrameworkTemplates/react-spa-netfx)          | .NET Framework React Bootstrap Webpack App |
@@ -289,11 +289,11 @@ Bootstrapped with [Angular CLI](https://cli.angular.io).
 
 > Live Demo: [angular-spa.web-templates.io](http://angular-spa.web-templates.io)
 
-Create new Angular 7 Project for .NET Core 2.1:
+Create new Angular 8 Project for .NET Core 2.1:
 
     $ dotnet-new angular-spa ProjectName
 
-Create new Angular 7 Project for .NET Framework:
+Create new Angular 8 Project for .NET Framework:
 
     $ dotnet-new angular-spa-netfx ProjectName
 

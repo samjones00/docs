@@ -1,7 +1,7 @@
 || .NET Framework C# Templates |
 |-|-|
 | [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)   | .NET Framework Angular 4 Material Design Lite Webpack App |
-| [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 7 Bootstrap cli.angular.io App |
+| [angular-spa-netfx](https://github.com/NetFrameworkTemplates/angular-spa-netfx)        | .NET Framework Angular 8 Bootstrap cli.angular.io App |
 | [aurelia-spa-netfx](https://github.com/NetFrameworkTemplates/aurelia-spa-netfx)        | .NET Framework Aurelia Bootstrap Webpack App |
 | [mvc-netfx](https://github.com/NetFrameworkTemplates/mvc-netfx)                | .NET Framework MVC Website |
 | [razor-netfx](https://github.com/NetFrameworkTemplates/razor-netfx)              | .NET Framework Website with ServiceStack.Razor |

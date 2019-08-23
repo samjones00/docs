@@ -1,7 +1,7 @@
 || .NET Core C# Templates |
 |-|-|
 | [web](https://github.com/NetCoreTemplates/web)                | .NET Core 2.1 Empty Website |
-| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 7 CLI Bootstrap App |
+| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 8 CLI Bootstrap App |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 2.1 Aurelia CLI Bootstrap App |
 | [mvc](https://github.com/NetCoreTemplates/mvc)                | .NET Core 2.1 MVC Website |
 | [mvcauth](https://github.com/NetCoreTemplates/mvcauth)            | .NET Core 2.2 MVC Website integrated with ServiceStack Auth |
