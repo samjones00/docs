@@ -570,8 +570,7 @@ public interface IQueryUserAuth
 }
 ```
 
-This is now implemented in all ServiceStack Auth Repositories, although there are limitations depending on the queryability of the 
-underlying data provider, no additional indexes were created to support these API's so 
+This is now implemented in all ServiceStack Auth Repositories although there are limitations depending on the queryability of the underlying data provider.
 
 Searching in these Auth Repositories are efficient and searches in **UserName**, **Email**, **DisplayName** and **Company** fields:
 
