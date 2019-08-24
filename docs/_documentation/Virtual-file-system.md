@@ -190,14 +190,14 @@ public class MyPlugin : IPlugin, IPostInitPlugin
 You can also globally replace the VFS used by setting it in your AppHost, e.g. If you only want to use an InMemory File System:
 
 ```csharp
-base.VirtualPathProvider = new MemoryVirtualFiles();
+base.VirtualFileSources = new MemoryVirtualFiles();
 ```
 
 Fine-grained control on which VFS to use can also be specified on any [Plugins](/plugins) requiring access to the FileSystem like ServiceStack's built-in HTML ViewEngines, here's how you could override the VFS used in ServiceStack's Razors support:
 
 ```csharp
 Plugins.Add(new RazorFormat { 
-    VirtualPathProvider = new MemoryVirtualFiles() 
+    VirtualFileSources = new MemoryVirtualFiles() 
 });
 ```
 
@@ -207,11 +207,11 @@ You can change the physical root path from where ServiceStack serves your files 
 
 ```csharp
 SetConfig(new HostConfig {
-    WebHostPhysicalPath = "~/".MapProjectPath()
+    WebHostPhysicalPath = MapProjectPath("~/")
 });
 ```
 
-> Where `string.MapProjectPath()` is just an extension method that goes back 2 directories `~\..\..` - resolving the project folder from the Debug/Release bin folders.
+> Where `~/` is resolved from your App's configured `ContentRootPath`
 
 ## Overriding Embedded Resources with Static Files
 
