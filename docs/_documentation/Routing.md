@@ -83,7 +83,42 @@ public class Fallback
 
 This will match any unmatched route from the root path (e.g. `/foo` but not `/foo/bar`) that's not handled by CatchAll Handler or matches a static file. You can also specify a wildcard path e.g. `[FallbackRoute("/{Path*}")]` which will handle every unmatched route (inc. `/foo/bar`). Only 1 fallback route is allowed.
 
-The Fallback route is useful for HTML5 Single Page App websites handling server requests of HTML5 pushState pretty urls.
+The Fallback route is useful for HTML5 Single Page App websites handling server requests of HTML5 pushState pretty urls, e.g. All
+[Single Page Apps Templates](/templates-single-page-apps) use the `[FallbackRoute]` to return the home page for all HTML Requests that
+do not have Server Routes, e.g [MyServices.cs](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp.ServiceInterface/MyServices.cs):
+
+```csharp
+[FallbackRoute("/{PathInfo*}", Matches="AcceptsHtml")]
+public class FallbackForClientRoutes
+{
+    public string PathInfo { get; set; }
+}
+
+public class MyServices : Service
+{
+    //Return index.html for unmatched requests so routing is handled on client
+    public object Any(FallbackForClientRoutes request) => Request.GetPageResult("/");
+}
+```
+
+Which will returns the the default `index.html` page using [#Script Pages](https://sharpscript.net/docs/sharp-pages).
+
+Examples of other HTML Fallback Response:
+
+```csharp
+//Return static HTML file
+return new HttpResult(VirtualFileSources.GetFile("index.html"));
+
+//Return HTML String
+return new HttpResult(VirtualFileSources.GetFile("index.html").ReadAllText());
+
+//Return ServiceStack.Razor View
+return new HttpResult(request)
+{
+    View = "/default.cshtml"
+};
+```
+
 
 ### Limiting to HTTP Verbs
 
