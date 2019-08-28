@@ -85,6 +85,35 @@ e.g. we can load the generated SVG from the [Spirals Sharp App](https://github.c
 
 and the SVG rendered output will be registered as a normal static SVG Image.
 
+### Registering SVGs from _init.html
+
+An alternative way of registering SVG's is to register them in #Script Pages `_init.html` page that gets executed once on Startup
+which will let you register multiple SVG images within 1 file using the `#svg` Script Block using the format `#svg <name> <image-set>`, e.g:
+
+```hbs
+{% raw %}{{#svg vue app}}
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <path fill="#556080" stroke="null" d="m79.43253,10.80794l0.01231,-0.02461l-18.15085,0l-11.38274,19.68085l0,0.0082l-11.37043,-19.68906l-18.15085,0l0,0.02051l-19.70136,0l49.22265,85.26183l49.22265,-85.25773"/>
+    </g>
+</svg>
+{{/svg}}{% endraw %}
+```
+
+Which also supports using `#Script` to create and register dynamically rendered SVG images:
+
+```hbs
+{% raw %}{{#svg spirals svg-icons}}
+<svg height="640" width="240">
+{{#each range(180) }}
+    {{ 120 + 100 * cos((5)  * it * 0.02827) | to => x }}
+    {{ 320 + 300 * sin((1)  * it * 0.02827) | to => y }}
+    <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="#556080" stroke="black" stroke-width="1"></circle>
+{{/each}}
+</svg>
+{{/svg}}{% endraw %}
+```
+
 ### Register Custom SVG Images via API
 
 You can also register your own SVG images programmatically with:
