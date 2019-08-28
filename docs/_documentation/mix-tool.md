@@ -424,6 +424,14 @@ Results matching tag [mq]:
    6. feature-mq    Simple MQ Feature to test sending Messages  to: $HOST  by @ServiceStack  [feature,mq,sharp]
 ```
 
+## Mix in NUglify
+
+You can configure your ServiceStack App to use Nuglify's Advanced HTML, CSS, JS Minifiers using [mix](/mix-tool) with:
+
+    $ mix nuglify 
+
+Which will write [Configure.Nuglify.cs](https://gist.github.com/gistlyn/4bdb79d21f199c22b8a86f032c186e2d) to your **HOST** project.
+
 ### Mix in Prebuilt Recipes and Working Examples
 
 `ModularStartup` and `mix` can scale up to complete working examples which can provide instant utility and integration of a feature into
