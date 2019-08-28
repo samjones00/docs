@@ -3,6 +3,9 @@ slug: bundling-and-minification
 title: Bundling & Minification
 ---
 
+For info info on bundling built into ServiceStack, see [HTML, CSS and JavaScript Minification](/html-css-and-javascript-minification) and
+[Integrated Bundling](https://docs.servicestack.net/templates-lite#integrated-bundling).
+
 See the top-level [ServiceStack Bundler](https://github.com/ServiceStack/Bundler) project for documentation on bundling and minification with ServiceStack's node.js powered bundler.
 
 

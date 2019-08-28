@@ -137,6 +137,12 @@ By default `cssIncludes` references files in the format `/css/{name}.css` which 
 the Virtual Path to the file. It can be useful to use in conjunction with `svgFill` to change the **fill** color 
 of all SVG images in the SVG CSS bundle as seen above.
 
+## Integrated Bundling Example
+
+For more detailed information on using ServiceStack's built-in bundling checkout the 
+[Integrated Bundling in Vue/React lite templates](/templates-lite#integrated-bundling).
+
+
 ### Minify static `.js`, `.css` and `.html` files
 
 With nothing other than the new minifiers, we can leverage the flexibility in ServiceStack's [Virtual File System](/virtual-file-system) to provide an elegant solution for minifying static `.html`, `.css` and `.js` resources by simply pre-loading the pre-configured Memory Virtual FileSystem with minified versions of existing files and giving the Memory FS a higher precedence so any matching requests serve up the minified version first:
