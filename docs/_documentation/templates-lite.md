@@ -367,6 +367,15 @@ cssMinifier ServiceStack
 -->
 ```
 
+## Configure NUglify
+
+You can configure your ServiceStack App to use Nuglify's Advanced HTML, CSS, JS Minifiers using [mix](/mix-tool) with:
+
+    $ mix nuglify 
+
+Which will write [Configure.Nuglify.cs](https://gist.github.com/gistlyn/4bdb79d21f199c22b8a86f032c186e2d) to your **HOST** project.
+
+
 ### Using Cache breakers in minified bundles 
 
 Cache Breaker support is available using the `[hash]` placeholder, which we only want to include in minified bundles.

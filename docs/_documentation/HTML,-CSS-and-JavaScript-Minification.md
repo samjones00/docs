@@ -137,6 +137,14 @@ By default `cssIncludes` references files in the format `/css/{name}.css` which 
 the Virtual Path to the file. It can be useful to use in conjunction with `svgFill` to change the **fill** color 
 of all SVG images in the SVG CSS bundle as seen above.
 
+## Configure NUglify
+
+You can configure your ServiceStack App to use Nuglify's Advanced HTML, CSS, JS Minifiers using [mix](/mix-tool) with:
+
+    $ mix nuglify 
+
+Which will write [Configure.Nuglify.cs](https://gist.github.com/gistlyn/4bdb79d21f199c22b8a86f032c186e2d) to your **HOST** project.
+
 ## Integrated Bundling Example
 
 For more detailed information on using ServiceStack's built-in bundling checkout the 
