@@ -904,7 +904,7 @@ Plugins can register AuthProviders by calling `RegisterAuthProvider()` before th
 ```csharp
 public class MyPlugin : IPreInitPlugin
 {
-    public void Configure(IAppHost appHost)
+    public void BeforePluginsLoaded(IAppHost appHost)
     {
         appHost.GetPlugin<AuthFeature>().RegisterAuthProvider(new MyAuthProvider());
     }

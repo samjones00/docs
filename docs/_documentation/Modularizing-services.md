@@ -135,7 +135,7 @@ if you want to register additional Service Assemblies with ServiceStack, e.g:
 ```csharp
 public class ConfigureContactsServices : IPreConfigureAppHost
 {
-    public void Configure(IAppHost host) => host.ServiceAssemblies.AddIfNotExists(typeof(MyServices).Assembly);
+    public void PreConfigure(IAppHost host) => host.ServiceAssemblies.AddIfNotExists(typeof(MyServices).Assembly);
 }
 ```
 
@@ -150,11 +150,19 @@ public interface IConfigureAppHost
 }
 ```
 
-Use `IPostConfigureAppHost` for Startup logic you want to run immediately **after** `AppHost.Configure()`:
+Use `Priority <= -1` for Startup logic you want to run **before** `AppHost.Configure()` and
+`Priority >= 1` for logic you want to run immediately **after** `AppHost.Configure()`:
 
 ```csharp
-public interface IPostConfigureAppHost
+[Priority(-1)]
+public class MyPreAppHostConfigure : IConfigureAppHost
 {
-    void Configure(IAppHost appHost);
+    public void Configure(IAppHost host) => ...;
+}
+
+[Priority(1)]
+public class MyPostAppHostConfigure : IConfigureAppHost
+{
+    public void Configure(IAppHost host) => ...;
 }
 ```

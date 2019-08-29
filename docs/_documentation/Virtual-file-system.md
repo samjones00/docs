@@ -54,7 +54,7 @@ As Virtual File Sources are initialized before plugins are registered your plugi
 ```csharp
 public class Disk1Plugin : IPlugin, IPreInitPlugin
 {
-    public void Configure(IAppHost appHost)
+    public void BeforePluginsLoaded(IAppHost appHost)
     {
         // Insert higher priority Virtual Files and the start of VirtualFileSources
         var s3Client = new AmazonS3Client(AwsAccessKey, AwsSecretKey, RegionEndpoint.USEast1);

@@ -19,7 +19,7 @@ If your plugin also implements `IPreInitPlugin` it will get run before any plugi
 ```csharp
 public interface IPreInitPlugin
 {
-    void Configure(IAppHost appHost);
+    void BeforePluginsLoaded(IAppHost appHost);
 }
 ```
 
