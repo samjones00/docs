@@ -19,7 +19,7 @@ Plugins.Add(new SharpPagesFeature {
 This is enabled in your pages with this snippet which renders the hot reload client script during development:
 
 ```html
-<i hidden>{{ '/js/hot-loader.js' | ifDebugIncludeScript }}</i>
+<i hidden>{% raw %}{{ '/js/hot-loader.js' | ifDebugIncludeScript }}{% endraw %}</i>
 ```
 
 Which starts a long poll that calls the smart `HotReloadFilesService` which recursively inspects the current tokenized 
@@ -48,5 +48,11 @@ if (Config.DebugMode)
 Which is enabled during development in `_layout.html` by including `/js/hot-fileloader.js`:
 
 ```html
-<i hidden>{{ '/js/hot-fileloader.js' | ifDebugIncludeScript }}</i>
+<i hidden>{% raw %}{{ '/js/hot-fileloader.js' | ifDebugIncludeScript }}{% endraw %}</i>
+```
+
+Or if you're not using [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can add the script tag:
+
+```html
+<script src="/js/hot-fileloader.js"></script>
 ```
