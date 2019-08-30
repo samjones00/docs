@@ -124,6 +124,8 @@ The equivalent bundle API's are also available in ServiceStack.Razor projects as
 })
 ```
 
+### cssIncludes
+
 Single Page App Templates also makes use of `cssIncludes` to embed multiple `*.css` files inline in the initial page request,
 avoiding external resource requests as seen in the `vue-lite` template 
 [_layout.html](https://github.com/NetCoreTemplates/vue-lite/blob/master/wwwroot/_layout.html):
