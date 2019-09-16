@@ -240,8 +240,9 @@ public class UpdateReqstar : IReturn<Reqstar>
 
 public Reqstar Patch(UpdateReqstar request)
 {
-    Db.Update<Reqstar>(request, x => x.Id == request.Id);
-    return Db.Id<Reqstar>(request.Id);
+    var reqstar = request.ConvertTo<Reqstar>();
+    Db.UpdateNonDefaults(reqstar);
+    return Db.SingleById<Reqstar>(request.Id);
 }
 ```
 
