@@ -14,8 +14,8 @@ title: ServiceStack Resources
 
 - [.NET Core Live Demos](https://github.com/NetCoreApps/LiveDemos) - .NET Core Live Demos
 - [.NET Framework Live Demos](https://github.com/ServiceStackApps/LiveDemos) - Web, Mobile and Desktop Apps and Live Demos
-- [Gistlyn](http://gistlyn.com) - Explore ServiceStack Live on Gistlyn
-- [#Script](http://gistlyn.com) - #Script Documentation
+- [Gistlyn](https://gistlyn.com) - Explore ServiceStack Live on Gistlyn
+- [#Script](https://sharpscript.net) - `#Script` Website
 - [TechStacks](https://techstacks.io) - TechStacks
 
 ## ServiceStack Downloads
