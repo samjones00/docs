@@ -12,13 +12,16 @@ title: ServiceStack Resources
 
 ## ServiceStack Examples and Live Demos
 
-- [Live Demos](https://github.com/ServiceStackApps/LiveDemos) - Web, Mobile and Desktop Apps and Live Demos
 - [.NET Core Live Demos](https://github.com/NetCoreApps/LiveDemos) - .NET Core Live Demos
+- [.NET Framework Live Demos](https://github.com/ServiceStackApps/LiveDemos) - Web, Mobile and Desktop Apps and Live Demos
 - [Gistlyn](http://gistlyn.com) - Explore ServiceStack Live on Gistlyn
+- [#Script](http://gistlyn.com) - #Script Documentation
+- [TechStacks](https://techstacks.io) - TechStacks
 
 ## ServiceStack Downloads
 
 - [ServiceStack Downloads](https://servicestack.net/download) - Official downloads are available on NuGet
+- [License Registration](/register) - ServiceStack License Key Registration Options
 - [Pre-release MyGet Packages](/myget) - The latest downloads in-between each release are available on MyGet
 
 ## ServiceStack Community
