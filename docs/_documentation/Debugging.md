@@ -154,6 +154,18 @@ Plugins.Add(new SharpPagesFeature {
 
 Which is the configuration that allows [sharpscript.net/metadata/debug](https://sharpscript.net/metadata/debug) to be accessible to anyone.
 
+## Lisp TCP Repl Server
+
+A even greater way to get deeper insights into a Live running remote ServiceStack App is to open a
+[Lisp TCP REPL Server](/lisp-tcp-repl-server) into the server to open a **"programmable gateway"** into any 
+ServiceStack App where you're able to perform live queries, access IOC dependencies, invoke internal Server functions and query
+the state of a running Server to provide invaluable insight when diagnosing issues on a remote server.
+
+> YouTube: [youtu.be/HO523cFkDfk](https://youtu.be/HO523cFkDfk)
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/lisp-tcp-repl.gif)](https://youtu.be/HO523cFkDfk)
+
+
 ### Request Info
 
 ServiceStack's Request Info feature is useful for debugging requests. Just add **?debug=requestinfo** 

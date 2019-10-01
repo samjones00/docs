@@ -199,6 +199,7 @@
     - [CORS Feature](/corsfeature)
     - [Proxy Feature](/proxy-feature)
     - [Request logger](/request-logger)
+    - [Lisp TCP REPL Server](/lisp-tcp-repl-server)
     - [Postman](/postman)
     - [Sitemaps](/sitemaps)
     - [Cancellable Requests](/cancellable-requests)
