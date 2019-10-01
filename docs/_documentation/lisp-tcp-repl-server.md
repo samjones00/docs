@@ -3,7 +3,7 @@ slug: lisp-tcp-repl-server
 title: Lisp TCP REPL Server
 ---
 
-In addition to launching a [Lisp REPL in web and app dotnet tools](/web-tool#lisp-repl), you can also open a Lisp REPL into any 
+In addition to launching a [Lisp REPL in the web and app dotnet tools](/web-tool#lisp-repl) you can also open a Lisp REPL into any 
 ServiceStack App configured with the `LispReplTcpServer` ServiceStack plugin. This effectively opens a **"programmable gateway"** into any 
 ServiceStack App where it's able to perform live queries, access IOC dependencies, invoke internal Server functions and query
 the state of a running Server which like the [Debug Inspector](/debugging#debug-inspector) 
