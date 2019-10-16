@@ -43,7 +43,7 @@ Results matching tag [mq]:
 ### feature-mq
 
 The `feature-mq` adds MQ support to your App, complete with UI and includes 2 different ways of calling MQ Services in ServiceStack, just like 
-`example-validation` above, `feature-mq` is another complete working example with both UI and Service implementation in the following files:
+[example-validation UI](/mix-tool#mix-in-prebuilt-recipes-and-working-examples), `feature-mq` is another complete working example with both UI and Service implementation in the following files:
 
   - [Configure.Mq.cs?](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-configure-mq-cs)
   - [Feature.Mq.cs](https://gist.github.com/gistlyn/355338cd60a32ee9c9fc4761269f7782#file-feature-mq-cs)
