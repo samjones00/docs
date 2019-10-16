@@ -51,7 +51,7 @@ Our C#, TypeScript and Java Server Event Clients are ports with full feature par
 ### Server Event Providers
 
 There are 2 Server Implementations of Server Events available, the default In Memory provider enables sending
-real-time communications to all clients subscribed to the same ServiceStack Instance whilst Redis Server Events utilizes a distributed redis-server back-end to provide a scale-out option capable of serving across multiple fan-out/load-balanced App Servers: I
+real-time communications to all clients subscribed to the same ServiceStack Instance whilst Redis Server Events utilizes a distributed redis-server back-end to provide a scale-out option capable of serving across multiple fan-out/load-balanced App Servers:
 
   - Memory Server Events (default)
   - [Redis Server Events](/redis-server-events)
@@ -101,9 +101,9 @@ class ServerEventsFeature
     Action<IEventSubscription, Dictionary<string, string>> OnConnect;
 
     // Events fired when 
-    Action<IEventSubscription, IRequest> OnCreated;  // Subscription is created
-    Action<IEventSubscription> OnSubscribe;          // Subscription is registered 
-    Action<IEventSubscription> OnUnsubscribe;        // Subscription is unregistered
+    Action<IEventSubscription, IRequest> OnCreated;   // Subscription is created
+    Func<IEventSubscription, Task> OnSubscribeAsync;  // Subscription is registered 
+    Func<IEventSubscription,Task> OnUnsubscribeAsync; // Subscription is unregistered
 
     Action<IEventSubscription, IResponse, string> OnPublish; // Fired when message is published
 }
@@ -120,11 +120,17 @@ public interface IServerEvents : IDisposable
 {
     // External API's
     void NotifyAll(string selector, object message);
+    Task NotifyAllAsync(string sel, object msg, CancellationToken ct=default);
     void NotifyChannel(string channel, string selector, object message);
+    Task NotifyChannelAsync(string chan, string sel, object msg, CancellationToken ct=default);
     void NotifySubscription(string subscriptionId, string selector, object message, string channel = null);
+    Task NotifySubscriptionAsync(string subId, string sel, object msg,string chan,CancellationToken ct=default)
     void NotifyUserId(string userId, string selector, object message, string channel = null);
+    Task NotifyUserIdAsync(string userId, string sel, object msg, string chan, CancellationToken ct=default)
     void NotifyUserName(string userName, string selector, object message, string channel = null);
+    Task NotifyUserNameAsync(string userName, string sel, object msg, string chan,CancellationToken ct=default)
     void NotifySession(string sessionId, string selector, object message, string channel = null);
+    Task NotifySessionAsync(string sessionId, string sel, object msg, string chan,CancellationToken ct=default)
 
     SubscriptionInfo GetSubscriptionInfo(string id);
     List<SubscriptionInfo> GetSubscriptionInfosByUserId(string userId);
@@ -199,11 +205,14 @@ public interface IEventSubscription : IMeta, IDisposable
 
     void UpdateChannels(string[] channels);
 
+    Func<IEventSubscription, Task> OnUnsubscribeAsync { get; set; }
     Action<IEventSubscription> OnUnsubscribe { get; set; }
-    void Unsubscribe();
+    Task UnsubscribeAsync();
 
     void Publish(string selector, string message);
+    Task PublishAsync(string selector, string message, CancellationToken token=default);
     void PublishRaw(string frame);
+    Task PublishRawAsync(string frame, CancellationToken token=default);
     void Pulse();
 
     Dictionary<string,string> ServerArgs { get; set; }
