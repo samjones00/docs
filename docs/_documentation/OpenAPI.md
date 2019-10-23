@@ -123,21 +123,6 @@ To exclude entire Services from showing up in OpenAPI or any other Metadata Serv
 public class MyRequestDto { ... }
 ```
 
-
-### Swagger UI Route Summaries
-
-The Swagger UI groups multiple routes under a single top-level route that covers multiple different 
-services sharing the top-level route which can be specified using the `RouteSummary` dictionary of 
-the `OpenApiFeature` plugin, e.g: 
-
-```csharp
-Plugins.Add(new OpenApiFeature {
-    RouteSummary = {
-        { "/top-level-path", "Route Summary" }
-    }
-});
-```
-
 ### Operation filters
 
 You can override operation or parameter definitions by specifying the appropriate filter in plugin configuration:
