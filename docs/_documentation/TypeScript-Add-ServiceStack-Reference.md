@@ -17,10 +17,6 @@ and arrow functions whilst still being able to target most web browsers with its
 TypeScript also goes beyond ES6 with optional Type Annotations enabling better tooling support and compiler 
 type feedback than what's possible in vanilla ES6 - invaluable when scaling large JavaScript codebases.
 
-We're actively tracking TypeScript's evolution and looking forward to integrating
-[TypeScript 2.0](https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/)
-once it leaves beta.
-
 ### Ideal Typed Message-based API
 
 The TypeScript `JsonServiceClient` available in the 
