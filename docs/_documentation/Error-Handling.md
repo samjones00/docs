@@ -211,6 +211,32 @@ public virtual void OnExceptionTypeFilter(
 }
 ```
 
+### Intercept Service Exceptions
+
+As an alternative way of customizing Service Exceptions is to override `OnExceptionAsync()`
+callback in your `Service` class (or base class) to intercept and modify Request DTOs, Responses or Error Responses, e.g:
+
+```csharp
+class MyServices : Service
+{
+    //Return custom error with additional metadata
+    public override Task<object> OnExceptionAsync(object requestDto, Exception ex)
+    {
+        var error = DtoUtils.CreateErrorResponse(requestDto, ex);
+        if (error is IHttpError httpError)
+        {                
+            var errorStatus = httpError.Response.GetResponseStatus();
+            errorStatus.Meta = new Dictionary<string,string> {
+                ["InnerType"] = ex.InnerException?.GetType().Name
+            };
+        }
+        return Task.FromResult(error);
+    }
+}
+```
+
+> Return `null` to continue with default error handling.
+
 ### Custom HTTP Errors
 
 In Any Request or Response Filter you can short-circuit the [Request Pipeline](/order-of-operations) by emitting a Custom HTTP Response and Ending the request, e.g:
@@ -337,32 +363,6 @@ this.UncaughtExceptionHandlersAsync.Add(async (req, res, operationName, ex) =>
     res.EndRequest(skipHeaders: true);
 });
 ```
-
-### Intercept Service Exceptions
-
-As an alternative way of customizing Service Exceptions is to override `OnExceptionAsync()`
-callback in your `Service` class (or base class) to intercept and modify Request DTOs, Responses or Error Responses, e.g:
-
-```csharp
-class MyServices : Service
-{
-    //Return custom error with additional metadata
-    public override Task<object> OnExceptionAsync(object requestDto, Exception ex)
-    {
-        var error = DtoUtils.CreateErrorResponse(requestDto, ex);
-        if (error is IHttpError httpError)
-        {                
-            var errorStatus = httpError.Response.GetResponseStatus();
-            errorStatus.Meta = new Dictionary<string,string> {
-                ["InnerType"] = ex.InnerException?.GetType().Name
-            };
-        }
-        return Task.FromResult(error);
-    }
-}
-```
-
-> Return `null` to continue with default error handling.
 
 ### Error handling using a custom ServiceRunner
 
