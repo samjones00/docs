@@ -338,9 +338,35 @@ this.UncaughtExceptionHandlersAsync.Add(async (req, res, operationName, ex) =>
 });
 ```
 
+### Intercept Service Exceptions
+
+As an alternative way of customizing Service Exceptions is to override `OnExceptionAsync()`
+callback in your `Service` class (or base class) to intercept and modify Request DTOs, Responses or Error Responses, e.g:
+
+```csharp
+class MyServices : Service
+{
+    //Return custom error with additional metadata
+    public override Task<object> OnExceptionAsync(object requestDto, Exception ex)
+    {
+        var error = DtoUtils.CreateErrorResponse(requestDto, ex);
+        if (error is IHttpError httpError)
+        {                
+            var errorStatus = httpError.Response.GetResponseStatus();
+            errorStatus.Meta = new Dictionary<string,string> {
+                ["InnerType"] = ex.InnerException?.GetType().Name
+            };
+        }
+        return Task.FromResult(error);
+    }
+}
+```
+
+> Return `null` to continue with default error handling.
+
 ### Error handling using a custom ServiceRunner
 
-If you want to provide different error handlers for different actions and services you can just tell ServiceStack to run your services in your own custom [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and implement the **HandleExcepion** event hook in your AppHost:
+If you want to provide different error handlers for different actions and services you can just tell ServiceStack to run your services in your own custom [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and implement the **HandleException** event hook in your AppHost:
 
 ```csharp
 public override IServiceRunner<TRequest> CreateServiceRunner<TRequest>(

@@ -204,7 +204,6 @@ class MyServices : Service
     //Return custom error with additional metadata
     public override Task<object> OnExceptionAsync(object requestDto, Exception ex)
     {
-        Assert.That(Request, Is.Not.Null);
         var error = DtoUtils.CreateErrorResponse(requestDto, ex);
         if (error is IHttpError httpError)
         {                
