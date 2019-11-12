@@ -131,7 +131,7 @@ public class User
 }
 ```
 
-The validation rules for this request dto are made with [FluentValidation](https://github.com/JeremySkinner/FluentValidation/wiki). ServiceStack makes heavy use of [rule sets] (https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#rulesets) to provide different validation rules for each HTTP method (GET, POST, PUT...).
+The validation rules for this request dto are made with [FluentValidation](https://github.com/JeremySkinner/FluentValidation/wiki). ServiceStack makes heavy use of [rule sets](https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#rulesets) to provide different validation rules for each HTTP method (GET, POST, PUT...).
 
 > Tip: First read the [documentation about FluentValidation](https://github.com/JeremySkinner/FluentValidation/wiki) before you continue reading
 
