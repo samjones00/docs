@@ -281,6 +281,14 @@ public class GetTechnology { ... }
 public class GetTechnologyResponse { ... }
 ```
 
+#### Include Generic Types
+
+Use .NET's Type Name to include Generic Types, i.e. the Type name separated by the backtick followed by the number of generic arguments, e.g:
+
+```
+IncludeTypes: IReturn`1,MyPair`2
+```
+
 #### Include Request DTO and its dependent types
 
 You can include a Request DTO and all its dependent types with a `.*` suffix on the Request DTO, e.g:

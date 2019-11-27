@@ -489,7 +489,6 @@ Behind the scenes ServiceStack captures all metadata on your Services DTOs inclu
 
 #### Live examples
 
-metadata.json))
   - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata) ([JSON](http://stackapis.netcore.io/types/metadata.json))
 
 This model is then used to generate the generated types, which for C# is at `/types/csharp`.
