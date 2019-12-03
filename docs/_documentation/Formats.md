@@ -26,7 +26,7 @@ The different Content Types can be easily consumed using [ServiceStack's Typed G
 ## HTTP API Formats
 
 ServiceStack Services supports a number of [Content Negotiation](/routing#content-negotiation) options where you can define which 
-format should be returned by adding a `.{format}` extension to the end of your `/route/path.{format}`, the built-in Formats include:
+format should be returned by adding a `.{format}` extension to your `/route.{format}`. Built-in Formats include:
 
  - `.json`
  - `.xml`
@@ -34,7 +34,7 @@ format should be returned by adding a `.{format}` extension to the end of your `
  - `.csv`
  - `.html`
 
-> Example: http://web.web-templates.io/hello/World.json
+> Example: [http://web.web-templates.io/hello/World.json](http://web.web-templates.io/hello/World.json)
 
 Or by appending `?format={format}` to the end of the URL:
 
@@ -44,7 +44,7 @@ Or by appending `?format={format}` to the end of the URL:
 - `?format=csv`
 - `?format=html`
 
-> Example: http://web.web-templates.io/hello/World?format=json
+> Example: [http://web.web-templates.io/hello/World?format=json](http://web.web-templates.io/hello/World?format=json)
 
 Alternatively ServiceStack also recognizes which format should be used with the `Accept` [http header](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields):
 
