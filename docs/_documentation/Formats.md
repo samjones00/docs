@@ -6,7 +6,7 @@ title: Content Types
 ServiceStack supports the following formats:
 
 - [JSON](https://github.com/ServiceStack/ServiceStack.Text)
-- XML
+- [XML](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer?view=netframework-4.8)
 - [SOAP 1.1/1.2](/soap-support)
 - [JSV](/jsv-format) _(hybrid CSV-style escaping + JSON format that is optimized for both size and speed)_
 - [CSV](/csv-format)
@@ -64,7 +64,7 @@ Examples:
 
 Whilst ServiceStack Services are typically available on any endpoint and format, there are times when you only want adhoc Services available in a particular format, for instance you may only want the View Models for your dynamic Web Views available in HTML. This can now be easily enabled with the new `[HtmlOnly]` Request Filter Attribute, e.g:
     
-```cshtml
+```csharp
 [HtmlOnly]
 public class HtmlServices : Service
 {
