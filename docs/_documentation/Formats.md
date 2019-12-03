@@ -23,15 +23,18 @@ ServiceStack supports the following formats:
 
 The different Content Types can be easily consumed using [ServiceStack's Typed Generic Service Clients](/csharp-client#httpwebrequest-service-clients).
 
-## HTTP/REST Endpoints
+## HTTP API Formats
 
-You can define which format should be used by adding a `.{format}` extension:
+ServiceStack Services supports a number of [Content Negotiation](/routing#content-negotiation) options where you can define which 
+format should be returned by adding a `.{format}` extension to the end of your `/route/path.{format}`, the built-in Formats include:
 
  - `.json`
  - `.xml`
  - `.jsv`
  - `.csv`
  - `.html`
+
+> Example: http://web.web-templates.io/hello/World.json
 
 Or by appending `?format={format}` to the end of the URL:
 
@@ -41,14 +44,12 @@ Or by appending `?format={format}` to the end of the URL:
 - `?format=csv`
 - `?format=html`
 
-> Example: http://test.servicestack.net/hello/World!?format=json
+> Example: http://web.web-templates.io/hello/World?format=json
 
 Alternatively ServiceStack also recognizes which format should be used with the `Accept` [http header](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields):
 
 - `Accept: application/json`
 - `Accept: application/xml`
-
-As you can see, this approach only works with `json` and `xml`.
 
 ## Pre-defined Routes
 
