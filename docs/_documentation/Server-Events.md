@@ -138,7 +138,7 @@ public interface IServerEvents : IDisposable
     List<SubscriptionInfo> GetSubscriptionInfosByUserId(string userId);
 
     // Admin API's
-    Task RegisterAsync(IEventSubscription subscription, Dictionary<string,string> connectArgs,CancellationToken ct);
+    Task RegisterAsync(IEventSubscription subscription, Dictionary<string,string> conArgs,CancellationToken ct)
     Task UnRegisterAsync(string subscriptionId, CancellationToken token=default);
 
     long GetNextSequence(string sequenceId);
