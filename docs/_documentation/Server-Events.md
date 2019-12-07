@@ -119,39 +119,41 @@ The way your Services send notifications is via the `IServerEvents` API which de
 public interface IServerEvents : IDisposable
 {
     // External API's
-    void NotifyAll(string selector, object message);
     Task NotifyAllAsync(string sel, object msg, CancellationToken ct=default);
-    void NotifyChannel(string channel, string selector, object message);
     Task NotifyChannelAsync(string chan, string sel, object msg, CancellationToken ct=default);
-    void NotifySubscription(string subscriptionId, string selector, object message, string channel = null);
     Task NotifySubscriptionAsync(string subId, string sel, object msg,string chan,CancellationToken ct=default)
-    void NotifyUserId(string userId, string selector, object message, string channel = null);
     Task NotifyUserIdAsync(string userId, string sel, object msg, string chan, CancellationToken ct=default)
-    void NotifyUserName(string userName, string selector, object message, string channel = null);
     Task NotifyUserNameAsync(string userName, string sel, object msg, string chan,CancellationToken ct=default)
-    void NotifySession(string sessionId, string selector, object message, string channel = null);
     Task NotifySessionAsync(string sessionId, string sel, object msg, string chan,CancellationToken ct=default)
+
+    // Sync APIs
+    void NotifyAll(string selector, object message);
+    void NotifyChannel(string channel, string selector, object message);
+    void NotifySubscription(string subscriptionId, string selector, object message, string channel = null);
+    void NotifyUserId(string userId, string selector, object message, string channel = null);
+    void NotifyUserName(string userName, string selector, object message, string channel = null);
+    void NotifySession(string sessionId, string selector, object message, string channel = null);
 
     SubscriptionInfo GetSubscriptionInfo(string id);
     List<SubscriptionInfo> GetSubscriptionInfosByUserId(string userId);
 
     // Admin API's
-    void Register(IEventSubscription subscription, Dictionary<string, string> connectArgs = null);
-    void UnRegister(string subscriptionId);
+    Task RegisterAsync(IEventSubscription subscription, Dictionary<string,string> connectArgs,CancellationToken ct);
+    Task UnRegisterAsync(string subscriptionId, CancellationToken token=default);
 
     long GetNextSequence(string sequenceId);
 
-    int RemoveExpiredSubscriptions();
+    Task<int> RemoveExpiredSubscriptionsAsync(CancellationToken token = default);
 
-    void SubscribeToChannels(string subscriptionId, string[] channels);
-    void UnsubscribeFromChannels(string subscriptionId, string[] channels);
+    Task SubscribeToChannelsAsync(string subscriptionId, string[] channels, CancellationToken ct);
+    Task UnsubscribeFromChannelsAsync(string subscriptionId, string[] channels, CancellationToken ct);
 
     List<SubscriptionInfo> GetAllSubscriptionInfos();
 
     // Client API's
     List<Dictionary<string, string>> GetSubscriptionsDetails(params string[] channels);
     List<Dictionary<string, string>> GetAllSubscriptionsDetails();
-    bool Pulse(string subscriptionId);
+    Task<bool> PulseAsync(string subscriptionId, CancellationToken ct=default);
 
     // Clear all Registrations
     void Reset();
@@ -160,18 +162,20 @@ public interface IServerEvents : IDisposable
 }
 ```
 
+We recommend using the non-blocking `*Async` APIs when possible, especially in .NET Core Apps or high load environments.
+
 The API's your Services predominantly deal with are the **External API's** which allow sending of messages at different levels of granularity. As Server Events have deep integration with ServiceStack's [Sessions](/sessions) and [Authentication Providers](/authentication-and-authorization) you're also able to notify specific users by either:
 
 ```csharp
-NotifyUserId()   // UserAuthId
-NotifyUserName() // UserName
-NotifySession()  // Session Id
+NotifyUserIdAsync()   // UserAuthId
+NotifyUserNameAsync() // UserName
+NotifySessionAsync()  // Session Id
 ```
 
 Whilst these all provide different ways to send a message to a single authenticated user, any user can be connected to multiple subscriptions at any one time (e.g. by having multiple tabs open). Each one of these subscriptions is uniquely identified by a `subscriptionId` which you can send a message with using: 
 
 ```csharp
-NotifySubscription() // Unique Subscription Id
+NotifySubscriptionAsync() // Unique Subscription Id
 ```
 
 There are also API's to retrieve a users single event subscription as well as all subscriptions for a user:
