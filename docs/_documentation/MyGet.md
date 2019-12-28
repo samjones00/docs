@@ -37,6 +37,10 @@ If you're not using or don't have VS.NET installed, you can add the MyGet feed t
 </configuration>
 ```
 
+Download `NuGet.Config` for usage in local project using [mix tool](/mix-tool):
+
+    $ web mix myget
+
 ## Redownloading MyGet packages
 
 If you've already packages with the **same version number** from MyGet previously installed, you will 
