@@ -27,7 +27,7 @@ If you have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
 
     $ dotnet tool install --global web
 
-> All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features that includes richer Windows integration.
+> All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer Windows integration
 
 #### Usage
 
