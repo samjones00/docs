@@ -16,7 +16,7 @@
     - [Design Message-based APIs](/design-message-based-apis)
     - [Modular Startup](/modular-startup)
     - [Unified Navigation](/navigation)
-    - [web tool - Win/Mac/Linux Utility Belt](/web-tool)
+    - [x tool - Win/Mac/Linux Utility Belt](/dotnet-tool)
     - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
     - [mix tool - Mix n' Match .NET Apps](/mix-tool)
 - ##### VS.NET Templates

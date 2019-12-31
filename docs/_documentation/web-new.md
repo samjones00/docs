@@ -1,25 +1,29 @@
 ---
 slug: web-new
-title: Create new Projects with 'web new'
+title: Create new Projects with 'x new'
 ---
 
-All ServiceStack Projects can be created using the .NET Core [web](https://www.nuget.org/packages/web) tool:
+All ServiceStack Projects can be created using the .NET Core [x](https://www.nuget.org/packages/x) tool:
 
-    $ dotnet tool install --global web 
+    $ dotnet tool install --global x 
 
 If you had a previous version installed, update with:
 
-    $ dotnet tool update -g web
+    $ dotnet tool update -g x
 
-All features from the cross-platform `web` .NET Core tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
+All features from the cross-platform `x` .NET Core tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
 
     $ dotnet tool install --global app 
+
+If you have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
+
+    $ dotnet tool install --global web
 
 #### Usage
 
 To view a list of projects run:
 
-    $ web new
+    $ x new
 
 Where it will display all repositories in [.NET Core](https://github.com/NetCoreTemplates), 
 [.NET Framework](https://github.com/NetFrameworkTemplates) and 
@@ -38,11 +42,11 @@ Where it will display all repositories in [.NET Core](https://github.com/NetCore
 
 #### Usage
 
-web new `<template>` `<name>`
+x new `<template>` `<name>`
 
 For example to create a new **Vue Single Page App**, run:
 
-    $ web new vue-spa ProjectName
+    $ x new vue-spa ProjectName
 
 ## Modernized Project Templates
 
@@ -70,8 +74,8 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)
 
-    $ web new angular-spa ProjectName            # .NET Core
-    $ web new angular-spa-netfx ProjectName      # Classic ASP.NET on .NET Framework
+    $ x new angular-spa ProjectName            # .NET Core
+    $ x new angular-spa-netfx ProjectName      # Classic ASP.NET on .NET Framework
 
 #### mvcauth
 
@@ -79,7 +83,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)
 
-    $ web new mvcauth ProjectName                # .NET Core
+    $ x new mvcauth ProjectName                # .NET Core
 
 #### mvcidentity
 
@@ -87,7 +91,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)
 
-    $ web new mvcidentity ProjectName            # .NET Core
+    $ x new mvcidentity ProjectName            # .NET Core
 
 #### mvcidentityserver
 
@@ -95,7 +99,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)
 
-    $ web new mvcidentityserver ProjectName      # .NET Core
+    $ x new mvcidentityserver ProjectName      # .NET Core
 
 #### razor
 
@@ -103,9 +107,9 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/razor.png)
 
-    $ web new razor ProjectName                  # .NET Core
-    $ web new razor-corefx ProjectName           # ASP.NET Core on .NET Framework
-    $ web new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
+    $ x new razor ProjectName                  # .NET Core
+    $ x new razor-corefx ProjectName           # ASP.NET Core on .NET Framework
+    $ x new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
 
 #### react-spa
 
@@ -113,8 +117,8 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-spa.png)
 
-    $ web new react-spa ProjectName              # .NET Core
-    $ web new react-spa-netfx ProjectName        # Classic ASP.NET on .NET Framework
+    $ x new react-spa ProjectName              # .NET Core
+    $ x new react-spa-netfx ProjectName        # Classic ASP.NET on .NET Framework
 
 #### react-lite
 
@@ -122,8 +126,8 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-lite.png)
 
-    $ web new react-lite ProjectName             # .NET Core
-    $ web new react-lite-corefx ProjectName      # ASP.NET Core on .NET Framework
+    $ x new react-lite ProjectName             # .NET Core
+    $ x new react-lite-corefx ProjectName      # ASP.NET Core on .NET Framework
 
 #### script
 
@@ -131,9 +135,9 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/script.png)
 
-    $ web new script ProjectName                 # .NET Core
-    $ web new script-corefx ProjectName          # ASP.NET Core on .NET Framework
-    $ web new script-netfx ProjectName           # Classic ASP.NET on .NET Framework
+    $ x new script ProjectName                 # .NET Core
+    $ x new script-corefx ProjectName          # ASP.NET Core on .NET Framework
+    $ x new script-netfx ProjectName           # Classic ASP.NET on .NET Framework
 
 #### vue-spa
 
@@ -141,8 +145,8 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-spa.png)
 
-    $ web new vue-spa ProjectName                # .NET Core
-    $ web new vue-spa-netfx ProjectName          # Classic ASP.NET on .NET Framework
+    $ x new vue-spa ProjectName                # .NET Core
+    $ x new vue-spa-netfx ProjectName          # Classic ASP.NET on .NET Framework
 
 #### vue-lite
 
@@ -150,8 +154,8 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-lite.png)
 
-    $ web new vue-lite ProjectName               # .NET Core
-    $ web new vue-lite-corefx ProjectName        # ASP.NET Core on .NET Framework
+    $ x new vue-lite ProjectName               # .NET Core
+    $ x new vue-lite-corefx ProjectName        # ASP.NET Core on .NET Framework
 
 #### vue-nuxt
 
@@ -159,8 +163,8 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-nuxt.png)
 
-    $ web new vue-nuxt ProjectName               # .NET Core
-    $ web new vue-nuxt-netfx ProjectName         # Classic ASP.NET on .NET Framework
+    $ x new vue-nuxt ProjectName               # .NET Core
+    $ x new vue-nuxt-netfx ProjectName         # Classic ASP.NET on .NET Framework
 
 
 ### Create Customized Projects with mix
@@ -188,11 +192,11 @@ the moment they're created.
 ### GitHub powered Project Templates
 
 Especially for SPA projects which need to be frequently updated, the existing .NET Project Templates system is a stale solution that doesn't offer 
-much benefit over maintaining individual GitHub projects, which is exactly what the `dotnet-new` npm tool and now `web new` .NET Core are designed around.
+much benefit over maintaining individual GitHub projects, which is exactly what the `dotnet-new` npm tool and now `x new` .NET Core are designed around.
 
-Inside [dotnet-new](/dotnet-new) and `web new` is an easier way to create and share any kind of project templates which are easier for developers
+Inside [dotnet-new](/dotnet-new) and `x new` is an easier way to create and share any kind of project templates which are easier for developers
 to create, test, maintain and install. So if you're looking for a simpler way to be able to create and maintain your own value-added project templates 
-with additional bespoke customizations, functionality, dependencies and configuration, using `web new` is a great way to maintain and share them.
+with additional bespoke customizations, functionality, dependencies and configuration, using `x new` is a great way to maintain and share them.
 
 Using GitHub for maintaining project templates yields us a lot of natural benefits:
 
@@ -215,7 +219,7 @@ creates new projects from the latest published `.zip` release.
 Best of all creating and testing projects are now much easier since project templates are just working projects following a simple naming convention
 that when a new project is created with:
 
-    $ web new <template> ProjectName
+    $ x new <template> ProjectName
 
 Replaces all occurrences in all text files, file and directory names, where:
 
@@ -235,7 +239,7 @@ That after installation is complete, results in newly created projects being all
 
 One missing detail is how it finds which GitHub repo should be installed from the `<template>` name. 
 
-This can be configured with the `APP_SOURCE_TEMPLATES` Environment variable to configure the `web` tool to use your own GitHub organizations instead, e.g:
+This can be configured with the `APP_SOURCE_TEMPLATES` Environment variable to configure the `x` tool to use your own GitHub organizations instead, e.g:
 
     APP_SOURCE_TEMPLATES=NetCoreTemplates;NetFrameworkTemplates;NetFrameworkCoreTemplates
 
@@ -243,14 +247,14 @@ Optionally you can display a friendly name next to each Organization name, e.g:
 
     APP_SOURCE_TEMPLATES=NetCoreTemplates .NET Core C# Templates;
 
-`web new` will then use the first GitHub Repo that matches the `<template>` name from all your GitHub Sources, so this
+`x new` will then use the first GitHub Repo that matches the `<template>` name from all your GitHub Sources, so this
 does require that all repos have unique names across all your configured GitHub Sources.
 
-These are the only sources `web new` looks at to create ServiceStack projects, which by default is configured to use 
+These are the only sources `x new` looks at to create ServiceStack projects, which by default is configured to use 
 [NetCoreTemplates](https://github.com/NetCoreTemplates), [NetFrameworkTemplates](https://github.com/NetFrameworkTemplates) and 
 [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organizations, whose repos will be listed when running:
 
-    $ web new
+    $ x new
 
 {% capture trouble %}{% include web-trouble.md %}{% endcapture %}
 {{ trouble | markdownify }}

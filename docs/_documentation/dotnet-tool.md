@@ -1,13 +1,13 @@
 ---
-slug: web-tool
+slug: dotnet-tool
 title: ServiceStack's .NET Core Utility Belt
 ---
 
-Our `web` (`x` and `app`) .NET Core tools are a versatile invaluable companion for all ServiceStack developers where it's 
+Our `x` (`web` and `app`) .NET Core tools are a versatile invaluable companion for all ServiceStack developers where it's 
 jam packed with functionality to power a number of exciting scenarios where it serves as a [Sharp App](https://sharpscript.net/docs/sharp-apps) 
 delivery platform where they can be run as a .NET Core Windows Desktop App with `app` or as a cross-platform Web App launcher 
-using `web` and we've already how it's now a [`#Script` runner](https://sharpscript.net/docs/sharp-scripts) with `web run` and into a 
-[Live `#Script` playground](https://sharpscript.net/docs/sharp-scripts#live-script-with-web-watch) with `web watch`.
+using `web` and we've already how it's now a [`#Script` runner](https://sharpscript.net/docs/sharp-scripts) with `x run` and into a 
+[Live `#Script` playground](https://sharpscript.net/docs/sharp-scripts#live-script-with-web-watch) with `x watch`.
 
 They also contain all features from our [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli) npm tools
 so you'll **no longer need npm** to [create ServiceStack projects](/web-new) or 
@@ -15,89 +15,89 @@ so you'll **no longer need npm** to [create ServiceStack projects](/web-new) or
 
 To access available features, install with:
 
-    $ dotnet tool install --global web 
+    $ dotnet tool install --global x 
 
 Or if you had a previous version installed, update with:
 
-    $ dotnet tool update -g web
+    $ dotnet tool update -g x
 
 > The Windows-only `app` tool has better integration with Windows that can power [.NET Core Windows Desktop Apps](/netcore-windows-desktop).
 
-If you have **.NET Core 3.1 LTS** installed use the `x` dotnet tool:
+If you have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
 
-    $ dotnet tool install --global x
+    $ dotnet tool install --global web
 
 > All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features that includes richer Windows integration.
 
 #### Usage
 
-Then run `web` without any arguments to view Usage:
+Then run `x` without any arguments to view Usage:
 
-    $ web
+    $ x
 
 ```
 Usage:
 
-  web new                     List available Project Templates
-  web new <template> <name>   Create New Project From Template
+  x new                     List available Project Templates
+  x new <template> <name>   Create New Project From Template
 
-  web <lang>                  Update all ServiceStack References in directory (recursive)
-  web <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)   
-  web <lang>     <url> <file> Add ServiceStack Reference and save to file name        
-  web csharp     <url>        Add C# ServiceStack Reference            (Alias 'cs')   
-  web typescript <url>        Add TypeScript ServiceStack Reference    (Alias 'ts')   
-  web swift      <url>        Add Swift ServiceStack Reference         (Alias 'sw')   
-  web java       <url>        Add Java ServiceStack Reference          (Alias 'ja')   
-  web kotlin     <url>        Add Kotlin ServiceStack Reference        (Alias 'kt')   
-  web dart       <url>        Add Dart ServiceStack Reference          (Alias 'da')   
-  web fsharp     <url>        Add F# ServiceStack Reference            (Alias 'fs')   
-  web vbnet      <url>        Add VB.NET ServiceStack Reference        (Alias 'vb')   
-  web tsd        <url>        Add TypeScript Definition ServiceStack Reference        
+  x <lang>                  Update all ServiceStack References in directory (recursive)
+  x <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)   
+  x <lang>     <url> <file> Add ServiceStack Reference and save to file name        
+  x csharp     <url>        Add C# ServiceStack Reference            (Alias 'cs')   
+  x typescript <url>        Add TypeScript ServiceStack Reference    (Alias 'ts')   
+  x swift      <url>        Add Swift ServiceStack Reference         (Alias 'sw')   
+  x java       <url>        Add Java ServiceStack Reference          (Alias 'ja')   
+  x kotlin     <url>        Add Kotlin ServiceStack Reference        (Alias 'kt')   
+  x dart       <url>        Add Dart ServiceStack Reference          (Alias 'da')   
+  x fsharp     <url>        Add F# ServiceStack Reference            (Alias 'fs')   
+  x vbnet      <url>        Add VB.NET ServiceStack Reference        (Alias 'vb')   
+  x tsd        <url>        Add TypeScript Definition ServiceStack Reference        
 
-  web proto <url>             Add gRPC .proto ServiceStack Reference
-  web proto <url> <name>      Add gRPC .proto and save to <name>.services.proto       
-  web proto                   Update all gRPC *.services.proto ServiceStack References
-  web proto-langs             Display list of gRPC supported languages
-  web proto-<lang> <url>      Add gRPC .proto and generate language    (-out <dir>)   
-  web proto-<lang> <file|dir> Update gRPC .proto and re-gen language   (-out <dir>)
-  web proto-<lang>            Update all gRPC .proto's and re-gen lang (-out <dir>)
+  x proto <url>             Add gRPC .proto ServiceStack Reference
+  x proto <url> <name>      Add gRPC .proto and save to <name>.services.proto
+  x proto                   Update all gRPC *.services.proto ServiceStack References
+  x proto-langs             Display list of gRPC supported languages
+  x proto-<lang> <url>      Add gRPC .proto and generate language    (-out <dir>)
+  x proto-<lang> <file|dir> Update gRPC .proto and re-gen language   (-out <dir>)
+  x proto-<lang>            Update all gRPC .proto's and re-gen lang (-out <dir>)
 
-  web mix                     Show available gists to mixin            (Alias '+')
-  web mix <name>              Write gist files locally, e.g:           (Alias +init)
-  web mix init                Create empty .NET Core ServiceStack App
-  web mix #<tag>              Search available gists
-  web mix <gist-url>          Write all Gist text files to current directory
-  web gist <gist-id>          Write all Gist text files to current directory
+  x mix                     Show available gists to mixin            (Alias '+')
+  x mix <name>              Write gist files locally, e.g:           (Alias +init)
+  x mix init                Create empty .NET Core ServiceStack App
+  x mix #<tag>              Search available gists
+  x mix <gist-url>          Write all Gist text files to current directory
+  x gist <gist-id>          Write all Gist text files to current directory
 
-  web run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
-  web watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
-                              Language File Extensions:
+  x run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
+  x watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
+                            Language File Extensions:
                                    .ss - #Script source file
                                    .sc - #Script `code` source file
                                    .l  - #Script `lisp` source file
-  web lisp                    Start Lisp REPL
+  x lisp                    Start Lisp REPL
 
-  web open                    List of available Sharp Apps
-  web open <app>              Install and run Sharp App
+  x open                    List of available Sharp Apps
+  x open <app>              Install and run Sharp App
 
-  web run                     Run Sharp App in current directory
-  web run <name>              Run Installed Sharp App
-  web run path/app.settings   Run Sharp App at directory containing specified app.settings
+  x run                     Run Sharp App in current directory
+  x run <name>              Run Installed Sharp App
+  x run path/app.settings   Run Sharp App at directory containing specified app.settings
 
-  web install                 List available Sharp Apps to install     (Alias 'l')
-  web install <app>           Install Sharp App                        (Alias 'i')
+  x install                 List available Sharp Apps to install     (Alias 'l')
+  x install <app>           Install Sharp App                        (Alias 'i')
 
-  web uninstall               List Installed Sharp Apps
-  web uninstall <app>         Uninstall Sharp App
+  x uninstall               List Installed Sharp Apps
+  x uninstall <app>         Uninstall Sharp App
 
-  web publish                 Publish Sharp App to Gist (requires token)
+  x publish                 Publish Sharp App to Gist (requires token)
 
-  web shortcut                Create Shortcut for Sharp App
-  web shortcut <name>.dll     Create Shortcut for .NET Core App
+  x shortcut                Create Shortcut for Sharp App
+  x shortcut <name>.dll     Create Shortcut for .NET Core App
 
-  web get <url>               Download remote file                     (-out <file|dir>)
+  x get <url>               Download remote file                     (-out <file|dir>)
 
-  dotnet tool update -g web   Update to latest version
+  dotnet tool update -g x   Update to latest version
 
 Options:
     -h, --help, ?             Print this message
@@ -114,22 +114,22 @@ Options:
 
 ### Add/Update ServiceStack References
 
-This shows us we can Add a ServiceStack Reference with `web <lang> <baseurl>` which will let us create a TypeScript Reference 
+This shows us we can Add a ServiceStack Reference with `x <lang> <baseurl>` which will let us create a TypeScript Reference 
 to the new [World Validation](/world-validation) App using its `ts` file extension alias:
 
-    $ web ts http://validation.web-app.io
+    $ x ts http://validation.web-app.io
 
     Saved to: dtos.ts
 
 Or create a C# ServiceStack Reference with:
 
-    $ web cs http://validation.web-app.io
+    $ x cs http://validation.web-app.io
 
     Saved to: dtos.cs
 
-To update run `web <lang>` which will recursively update all existing ServiceStack References:
+To update run `x <lang>` which will recursively update all existing ServiceStack References:
 
-    $ web ts
+    $ x ts
 
     Updated: dtos.ts
 
@@ -162,7 +162,7 @@ If you wanted to Update your `*dtos.cs` **C# ServiceStack References** instead, 
 | **Initial directory** | $(ProjectDir) |
 |  ||
 
-Refer to the [web usage output](#usage) above for the arguments or aliases for all other supported languages.
+Refer to the [x usage output](#usage) above for the arguments or aliases for all other supported languages.
 
 ### Integrate with Rider
 
@@ -189,40 +189,40 @@ If you're updating references frequently you can save time by [assigning it a ke
 
 ### Create new Project Templates
 
-See [web new](/web-new) for available Project Templates you can create with:
+See [x new](/web-new) for available Project Templates you can create with:
 
-    $ web new
+    $ x new
 
 ### Mix Features into existing ASP.NET Core Apps
 
-The `web` dotnet tool is a [versatile utility belt packed with a number of features](/web-tool) to simplify discovering, installing, running and deploying 
-.NET Core Apps. You can view the full list of supported commands by running `web ?`, e.g. another useful command is using [`web mix`](/mix-tool)
+The `x` dotnet tool is a versatile utility belt packed with a number of features to simplify discovering, installing, running and deploying 
+.NET Core Apps. You can view the full list of supported commands by running `x ?`, e.g. another useful command is using [`x mix`](/mix-tool)
 for generating pre-set templates:
 
 ```
-web mix                     Show available gists to mixin         (Alias '+')
-web mix <name>              Write gist files locally, e.g:        (Alias +init)
-web mix init                Create empty .NET Core ServiceStack App
-web mix #<tag>              Search available gists
-web gist <gist-id>          Write all Gist text files to current directory
+x mix                     Show available gists to mixin         (Alias '+')
+x mix <name>              Write gist files locally, e.g:        (Alias +init)
+x mix init                Create empty .NET Core ServiceStack App
+x mix #<tag>              Search available gists
+x gist <gist-id>          Write all Gist text files to current directory
 ```
 
 View available gists with:
 
-    $ web mix
+    $ x mix
 
-Where you can use `web mix nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
+Where you can use `x mix nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
 [Linux deployment servers for your .NET Core Apps](/netcore-deploy-rsync) less tedious. 
 
 In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 
 for your Environment that anyone can write to their current directory with **the gist id** or **gist URL**:
 
-    $ web gist <gist-id>
+    $ x gist <gist-id>
 
 ### Lisp REPL
 
 Lisp's dynamism and extensibility makes it particularly well suited for explanatory programming whose access via a REPL is available 
-`web` and `app` dotnet tools.
+`x`, `web` and `app` dotnet tools.
 
 The quick demo below shows the kind of exploratory programming available where you can query the `scriptMethods` available, 
 query an objects `props`, query the Lisp interpreter's global `symbols` table containing all its global state including all 

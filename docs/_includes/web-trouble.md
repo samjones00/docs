@@ -3,9 +3,9 @@
 
 ## Troubleshooting
 
-### web: command not found
+### x: command not found
 
-If after installing the `dotnet` web tool it fails with `bash: web: command not found` you'll need to add **dotnet tools** to your `PATH` 
+If after installing any of the `dotnet` tools it fails with `bash: x: command not found` you'll need to add **dotnet tools** to your `PATH` 
 which you can do in Linux Bash with:
 
     $ echo "export PATH=\$HOME/.dotnet/tools:\$PATH" >> ~/.bashrc
@@ -31,6 +31,6 @@ Or try [updating the SSL_CERT Environment variables](https://github.com/dotnet/c
     export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
     export SSL_CERT_DIR=/dev/null
 
-Finally you can try running the `web` tool with the `--ignore-ssl-errors` switch, e.g:
+Finally you can try running the `x` tool with the `--ignore-ssl-errors` switch, e.g:
 
-    $ web new vue-lite VueLite --ignore-ssl-errors
+    $ x new vue-lite VueLite --ignore-ssl-errors
