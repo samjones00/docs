@@ -27,7 +27,7 @@ If you have **.NET Core 3.1 LTS** installed use the `x` dotnet tool:
 
     $ dotnet tool install --global x
 
-> All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features that includes richer Windows integration.
+> All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer Windows integration
 
 #### Usage
 
