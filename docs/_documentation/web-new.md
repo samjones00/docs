@@ -3,7 +3,7 @@ slug: web-new
 title: Create new Projects with 'x new'
 ---
 
-All ServiceStack Projects can be created using the .NET Core [x](https://www.nuget.org/packages/x) tool:
+All ServiceStack Projects can be created using the .NET Core [x dotnet tool](https://www.nuget.org/packages/x):
 
     $ dotnet tool install --global x 
 
@@ -11,11 +11,11 @@ If you had a previous version installed, update with:
 
     $ dotnet tool update -g x
 
-All features from the cross-platform `x` .NET Core tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
+All features from the cross-platform `x` dotnet tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
 
     $ dotnet tool install --global app 
 
-If you have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
+If you only have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
 
     $ dotnet tool install --global web
 
