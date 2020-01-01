@@ -8,10 +8,10 @@ install features which can be installed with:
 
     $ dotnet tool install --global mix
 
-The same functionality is also built into the cross-platform [web](/web-tool) and Windows [`app`](/netcore-windows-desktop) 
+The same functionality is also built into the cross-platform [x](/dotnet-tool), [web](/web-tool) and Windows [app](/netcore-windows-desktop) 
 dotnet tools which can be updated to the latest version with:
 
-    $ dotnet tool update -g web
+    $ dotnet tool update -g x
     $ dotnet tool update -g app
 
 ### mix-enabled dotnet tools
@@ -19,7 +19,7 @@ dotnet tools which can be updated to the latest version with:
 `mix` works exactly the same in all dotnet tools, which just needs the **tool name prefixed** before the `mix` command:
 
     $ mix ...
-    $ web mix ...
+    $ x mix ...
     $ app mix ...
 
 ### mix Usage
