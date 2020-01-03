@@ -7,17 +7,17 @@ ServiceStack supports the following formats:
 
 - [JSON](https://github.com/ServiceStack/ServiceStack.Text)
 - [XML](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer)
-- [SOAP 1.1/1.2](/soap-support)
-- [JSV](/jsv-format) _(hybrid CSV-style escaping + JSON format that is optimized for both size and speed)_
 - [CSV](/csv-format)
-- HTML
-    - [#Script Pages](https://sharpscript.net/docs/sharp-pages) _(Simple, clean, fast alternative to Razor)_
-    - [Razor](http://razor.servicestack.net) _(Microsoft's Razor View Engine)_
-    - [Markdown Razor](/markdown-razor) _(Razor-inspired syntax combined with markdown)_
-    - [HTML5 Report](/html5reportformat) _(Human-friendly HTML auto-layout to quickly visualize data returned by services)_
+- [JSV](/jsv-format) (hybrid CSV-style escaping + JSON format that is optimized for both size and speed)
+- [SOAP 1.1/1.2](/soap-support) (requires ASP.NET Framework)
 - [Message Pack](/messagepack-format)
 - [Protocol Buffers](/protobuf-format)
 - [Wire](/wire-format)
+- HTML
+    - [#Script Pages](https://sharpscript.net/docs/sharp-pages) (Simple, clean, fast alternative to Razor)
+    - [Razor](http://razor.servicestack.net) (Microsoft's Razor View Engine)
+    - [Markdown Razor](/markdown-razor) (Razor-inspired syntax combined with markdown)
+    - [HTML5 Report](/html5reportformat) (Human-friendly HTML auto-layout to quickly visualize data returned by services)
 
 ### .NET Service Clients
 
