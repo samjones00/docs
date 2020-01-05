@@ -81,7 +81,7 @@ See [web new](/web-new) for available Project Templates you can create with:
 
 ### Mix Features into existing ASP.NET Core Apps
 
-The `app` dotnet tool is a [versatile utility belt packed with a number of features](/web-tool) to simplify discovering, installing, running and deploying 
+The `app` dotnet tool is a [versatile utility belt packed with a number of features](/dotnet-tool) to simplify discovering, installing, running and deploying 
 .NET Core Apps. You can view the full list of supported commands by running `app ?`, e.g. another useful command is using [`app mix`](/mix-tool)
 for generating pre-set templates:
 
