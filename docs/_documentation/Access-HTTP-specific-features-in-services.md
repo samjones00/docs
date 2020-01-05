@@ -56,7 +56,7 @@ this.ResponseFilters.Add((req, res, responseDto) =>
     if (req.ResponseContentType == ContentType.Csv)
     {
         res.AddHeader(HttpHeaders.ContentDisposition,
-            "attachment;filename={0}.csv".Fmt(req.OperationName));
+            $"attachment;filename={req.OperationName}.csv");
     }
 
     //Access underlying Response in ASP.NET hosts
