@@ -463,6 +463,15 @@ There's a [VS.NET Template](/templates-overview) for creating solutions targetin
 
 E.g. the [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps) VS.NET Template provides an easy and integrated way to host a Single Page React App on multiple platforms.
 
+## Goals of Service Design
+
+The primary benefits of Services are that they offer the highest level of software re-use, they're [Real Computers all the way down](http://mythz.servicestack.net/#messaging) retaining the ability to represent anything. Especially at this level, encapsulation and its external interactions are paramount which sees the [Service Layer as its most important Contract](http://stackoverflow.com/a/15369736/85785), constantly evolving to support new capabilities whilst serving and outliving its many consumers. 
+
+Extra special attention should be given to Service design with the primary goals of exposing its capabilities behind [consistent and self-describing](http://stackoverflow.com/a/15941229/85785), intent-based [tell-dont-ask](http://pragprog.com/articles/tell-dont-ask) APIs - given its importance, it's not something that should be dictated by an internal implementation. 
+
+A Services ability to encapsulate complexity is what empowers consumers to be able to perform higher-level tasks like provisioning a cluster of AWS servers or being able to send a tweet to millions of followers in seconds with just a simple HTTP request, i.e. being able to re-use existing hardened functionality without the required effort, resources and infrastructure to facilitate the request yourself. To maximize accessibility it's recommended for Service Interfaces to be orientated around resources and verbs, retain a flat structure, customizable with key value pairs so they're accessible via the built-in QueryString 
+and FormData support present in all HTTP clients, from HTML Forms to command-line utilities like [curl](http://curl.haxx.se).
+
 ### WCF the anti-DTO Web Services Framework
 
 Unfortunately this best-practices convention is effectively discouraged by Microsoft's WCF SOAP Web Services framework as they encourage you to develop API-specific RPC method calls by mandating the use of method signatures to define your web services API. This results in less re-usable, more client-specific APIs that encourages more remote method calls. 
