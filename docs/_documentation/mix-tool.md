@@ -11,7 +11,16 @@ install features which can be installed with:
 The same functionality is also built into the cross-platform [x](/dotnet-tool), [web](/web-tool) and Windows [app](/netcore-windows-desktop) 
 dotnet tools which can be updated to the latest version with:
 
+.NET Core 3.1:
+
     $ dotnet tool update -g x
+
+.NET Core 2.1:
+
+    $ dotnet tool update -g web
+
+.NET Core 3.1 / Windows x64:
+
     $ dotnet tool update -g app
 
 ### mix-enabled dotnet tools
