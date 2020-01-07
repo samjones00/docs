@@ -349,7 +349,7 @@ Use TodoWorld DTOs with generic `GrpcServiceClient` to call TodoWorld gRPC Servi
 
 ### F# gRPC insecure Example
 
-```fs
+```fsharp
 open System
 open System.Threading
 open System.Threading.Tasks
@@ -382,7 +382,7 @@ Run example:
 
 ### F# gRPC SSL Example
 
-```fs
+```fsharp
 open System
 open System.Threading
 open System.Threading.Tasks
