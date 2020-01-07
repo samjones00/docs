@@ -150,6 +150,15 @@ namespace CSharpGeneric
 Refer to [/src/clients/csharp-generic](https://github.com/NetCoreApps/todo-world/tree/master/src/clients/csharp-generic)
 for a complete example project.
 
+## More Examples
+
+For more C# `GrpcServiceClient` examples check out the integration tests at:
+
+ - [GrpcTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcTests.cs)
+ - [GrpcTodoTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcTodoTests.cs)
+ - [GrpcAuthTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcAuthTests.cs)
+ - [GrpcAutoQueryTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcAutoQueryTests.cs)
+ - [GrpcServerEventsTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcServerEventsTests.cs)
 
 ## VB.NET Generic GrpcServiceClient TodoWorld Example
 
@@ -475,14 +484,3 @@ let main argv =
 
 Refer to [/src/clients/fsharp-generic](https://github.com/NetCoreApps/todo-world/tree/master/src/clients/fsharp-generic)
 for a complete example project.
-
-## More Examples
-
-For more `GrpcServiceClient` examples check out the integration tests at:
-
- - [GrpcTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcTests.cs)
- - [GrpcTodoTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcTodoTests.cs)
- - [GrpcAuthTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcAuthTests.cs)
- - [GrpcAutoQueryTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcAutoQueryTests.cs)
- - [GrpcServerEventsTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Extensions.Tests/GrpcServerEventsTests.cs)
-
