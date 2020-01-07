@@ -5,7 +5,7 @@ title: gRPC protoc PHP Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/php.png)](https://youtu.be/lRy3qb-x2Yc)
 
-> YouTube: https://youtu.be/lRy3qb-x2Yc
+> YouTube: [youtu.be/lRy3qb-x2Yc](https://youtu.be/lRy3qb-x2Yc)
 
 ## PHP Google protoc generated GrpcServiceClient TodoWorld Example
 

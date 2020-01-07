@@ -7,7 +7,7 @@ title: Smart generic C# / F# / VB.NET GrpcServiceClient
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/csharp-generic.png)](https://youtu.be/K0QAUQPJNtM)
 
-> YouTube: https://youtu.be/K0QAUQPJNtM
+> YouTube: [youtu.be/K0QAUQPJNtM](https://youtu.be/K0QAUQPJNtM)
 
 Install [x dotnet tool](/web-tool):
     

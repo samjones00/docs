@@ -5,7 +5,7 @@ title: gRPC protoc GO Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/go.png)](https://youtu.be/FYA32J1-IA0)
 
-> YouTube: https://youtu.be/FYA32J1-IA0
+> YouTube: [youtu.be/FYA32J1-IA0](https://youtu.be/FYA32J1-IA0)
 
 ## Go Google protoc generated GrpcServiceClient TodoWorld Example
 

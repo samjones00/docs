@@ -5,7 +5,7 @@ title: gRPC protoc Python Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/python.png)](https://youtu.be/rcDdabAELnA)
 
-> YouTube: https://youtu.be/rcDdabAELnA
+> YouTube: [youtu.be/rcDdabAELnA](https://youtu.be/rcDdabAELnA)
 
 ## Python Google protoc generated GrpcServicesStub Client TodoWorld Example
 

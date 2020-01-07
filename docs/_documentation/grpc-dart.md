@@ -5,7 +5,7 @@ title: gRPC protoc Dart Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/dart.png)](https://youtu.be/fDARSMNlt50)
 
-> YouTube: https://youtu.be/fDARSMNlt50
+> YouTube: [youtu.be/fDARSMNlt50](https://youtu.be/fDARSMNlt50)
 
 ## Dart Google protoc generated GrpcServiceClient TodoWorld Example
 

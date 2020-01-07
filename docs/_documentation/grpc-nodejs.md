@@ -5,7 +5,7 @@ title: gRPC protoc Node.js Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/nodejs.png)](https://youtu.be/QL56lOHiXVM)
 
-> YouTube: https://youtu.be/QL56lOHiXVM
+> YouTube: [youtu.be/QL56lOHiXVM](https://youtu.be/QL56lOHiXVM)
 
 ## Node.js Google protoc generated GrpcServicesStub Client TodoWorld Example
 

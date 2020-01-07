@@ -5,7 +5,7 @@ title: gRPC protoc Swift Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/swift.png)](https://youtu.be/FLHbN_Z9z98)
 
-> YouTube: https://youtu.be/FLHbN_Z9z98
+> YouTube: [youtu.be/FLHbN_Z9z98](https://youtu.be/FLHbN_Z9z98)
 
 ## Swift Google protoc generated GrpcServiceClient TodoWorld Example
 

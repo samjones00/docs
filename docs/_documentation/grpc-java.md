@@ -5,7 +5,7 @@ title: gRPC protoc Java Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/java.png)](https://youtu.be/pe7oKApToDA)
 
-> YouTube: https://youtu.be/pe7oKApToDA
+> YouTube: [youtu.be/pe7oKApToDA](https://youtu.be/pe7oKApToDA)
 
 ## Java Google protoc generated GrpcServiceClient TodoWorld Example
 

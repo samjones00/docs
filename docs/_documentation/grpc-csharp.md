@@ -5,7 +5,7 @@ title: gRPC protoc C# Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/csharp.png)](https://youtu.be/0TXk9y24NIw)
 
-> YouTube: https://youtu.be/0TXk9y24NIw
+> YouTube: [youtu.be/0TXk9y24NIw](https://youtu.be/0TXk9y24NIw)
 
 ## C# Google protoc generated GrpcServiceClient TodoWorld Example
 

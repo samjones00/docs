@@ -5,7 +5,7 @@ title: gRPC protoc Ruby Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/ruby.png)](https://youtu.be/yvLnqgXKYTI)
 
-> YouTube: https://youtu.be/yvLnqgXKYTI
+> YouTube: [youtu.be/yvLnqgXKYTI](https://youtu.be/yvLnqgXKYTI)
 
 ## Ruby Google protoc generated GrpcServicesStub Client TodoWorld Example
 
