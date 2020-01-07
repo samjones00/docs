@@ -15,7 +15,7 @@ empty [web](https://github.com/NetCoreTemplates/web) project template that's pre
 
     $ x new grpc MyGrpcProject
 
-### ServiceStack Services are gRPC Services!
+### ServiceStack Services are gRPC Services
 
 Whilst Protocol Buffers imposes additional restrictions on the Types of DTOs that can be returned, in general the only change to
 ServiceStack Services following our [recommended API Design](/api-design) need to add are `[DataContract]` and `[DataMember]` attributes 
@@ -641,6 +641,8 @@ certificates and hosting public gRPC Services behind an nginx proxy.
 
 ## gRPC Clients
 
+Visit [todoworld.servicestack.net](https://todoworld.servicestack.net) to explore how easy it is to consume ServiceStack gRPC Services in different languages.
+
 For most .NET Clients we recommend using our generic `GrpcServiceClient` with deeper ServiceStack integration that can be used with the 
 cleaner and richer [Add ServiceStack Reference](/add-servicestack-reference) DTOs that implements clean Service Client interfaces
 allowing easy substitution between all of ServiceStack's [.NET Service Clients](/csharp-client), improved testability and implementation 
@@ -693,4 +695,84 @@ Or if preferred you can use the online UI or HTTP API for generating Protocol Bu
 
 ## gRPC Configuration
 
+There are a number of additional configuration options for customizing and extending ServiceStack's gRPC support:
+
+### Protobuf Serialization
+
+Behavior of how [protobuf-net](https://github.com/protobuf-net/protobuf-net) de/serializes .NET Models can be
+customized by modifying `GrpcConfig.TypeModel` where any customizations should be applied to both
+server and client apps if using [C# generic GrpcServiceClient](/grpc-generic).
+
+### Any Methods
+
+ServiceStack lets you define `Any()` services which can be invoked when called on each HTTP Method. To minimize
+gRPC surface area pollution, by default ServiceStack only generates different **rpc** endpoints for HTTP's primary
+`Get*`, `Post*`, `Put*` and `Delete*` verbs. 
+
+To change this for **all Any services** specify which methods you want generated in `DefaultMethodsForAny` list,
+e.g. you can specify to only generate `Get*` and `Post*` methods with:
+
+```csharp
+Plugins.Add(new GrpcFeature(App) {
+    DefaultMethodsForAny = new List<string> { 
+        HttpMethods.Get,
+        HttpMethods.Post,
+    }
+});
+```
+
+As [AutoQuery Services](/autoquery) are read-only queries they only default to generating `Get*` rpc methods, which can be changed with:
+
+```csharp
+Plugins.Add(new GrpcFeature(App) {
+    AutoQueryMethodsForAny = new List<string> { 
+        HttpMethods.Get,
+        HttpMethods.Post,
+    }
+});
+```
+
+This can be customized per service by annotating your Request DTO with `IVerb` marker interfaces, e.g:
+
+```csharp
+[DataContract]
+public class Hello : IReturn<HelloResponse>, IGet, IPost { ... }
+
+public class MyServices : Service
+{
+    public object Any(Hello request) => ...;
+}
+```
+
+Alternatively you can replace your `Any()` method and only implement the specific methods you want generated, e.g. `Get()` or `Post()`.
+
+For even finer-grained customization you can override the `GenerateMethodsForAny` predicate to adopt your own conventions.
+
+### Proto Options
+
+The auto-generated `.proto` service description ServiceStack generates at `/types/proto` allows for 
+[proto options](https://developers.google.com/protocol-buffers/docs/proto#options) to customize `protoc` code-generation behavior
+which are pre-configured with C# and PHP namespaces used in its generated proxy clients. 
+
+You can include your own proto options by registering them in the `ProtoOptions` collection as seen below:
+
+```csharp
+Plugins.Add(new GrpcFeature(App) {
+    ProtoOptions = new List<ProtoOptionDelegate> { 
+        ProtoOption.CSharpNamespace,
+        ProtoOption.PhpNamespace,
+    }
+});
+
+public static class ProtoOption
+{
+    public static string CSharpNamespace(IRequest req, MetadataTypesConfig config) =>
+        $"option csharp_namespace = \"{config.GlobalNamespace}\";";
+
+    public static string PhpNamespace(IRequest req, MetadataTypesConfig config) =>
+        $"option php_namespace = \"{config.GlobalNamespace}\";";
+}
+```
+
+### gRPC protoc API
 
