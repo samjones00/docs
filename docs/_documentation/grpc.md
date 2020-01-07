@@ -774,11 +774,9 @@ public static class ProtoOption
 }
 ```
 
-## gRPC protoc UI and API
+## Public gRPC protoc Service and UI
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/protoc-api.png)](https://grpc.servicestack.net)
-
-> Link: 
 
 To provide the simplest and seamless end-to-end gRPC solution we're maintaining a **[public gRPC protoc Service](https://grpc.servicestack.net)** 
 and UI which is the backend empowering our cross-platform [dotnet tools](/dotnet-tool) to be able generate Protocol Buffer DTOs
@@ -827,7 +825,7 @@ Below is a complete list of different languages supported by this public gRPC Se
 | python       | Python | 
 | ruby         | Ruby | 
 | swift        | Swift | 
-| **gRPC Web** | | 
+| **gRPC Web Langs** | | 
 | js-closure   | JavaScript (Closure) | 
 | js-commonjs  | JavaScript (CommonJS) | 
 | ts           | TypeScript | 
