@@ -776,6 +776,8 @@ public static class ProtoOption
 
 ## Public gRPC protoc Service and UI
 
+> [grpc.servicestack.net](https://grpc.servicestack.net)
+
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/protoc-api.png)](https://grpc.servicestack.net)
 
 To provide the simplest and seamless end-to-end gRPC solution we're maintaining a **[public gRPC protoc Service](https://grpc.servicestack.net)** 
@@ -825,7 +827,7 @@ Below is a complete list of different languages supported by this public gRPC Se
 | python       | Python | 
 | ruby         | Ruby | 
 | swift        | Swift | 
-| **gRPC Web Langs** | | 
+| **gRPC Web Languages** | | 
 | js-closure   | JavaScript (Closure) | 
 | js-commonjs  | JavaScript (CommonJS) | 
 | ts           | TypeScript | 
