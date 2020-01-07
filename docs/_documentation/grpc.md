@@ -301,7 +301,7 @@ so the possibility of a hash collision is very low (but still possible).
 To instead use your own user-defined field id for inherited classes you can use the `[Id]` attribute, for AutoQuery Services it should 
 at least start from `10` to avoid id conflicts with base class properties, e.g:
 
-```class
+```csharp
 [DataContract, Id(10)]
 public class QueryRockstars : QueryDb<Rockstar>
 {
