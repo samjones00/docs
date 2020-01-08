@@ -4,22 +4,22 @@ title: ServiceStack gRPC
 ---
 
 ServiceStack's gRPC support enables a highly productive development environment for developing high-performance gRPC HTTP/2 Services
-by making ServiceStack's existing typed Services available via ASP.NET's gRPC endpoints. In addition to offering superior value
+by making ServiceStack's existing typed Services available from ASP.NET's gRPC endpoints. In addition to offering superior value
 in developing gRPC Services on the Server, ServiceStack also offers a 
 [simplified development model for gRPC Clients](https://todoworld.servicestack.net) for streamlined end-to-end productivity.
 
 ### Getting Started
 
-The easiest way to get started is to start from a new [grpc](https://github.com/NetCoreTemplates/grpc) template, i.e. a copy of the 
-empty [web](https://github.com/NetCoreTemplates/web) project template that's pre-configured with gRPC support:
+The easiest way to get started is to start from a new [grpc](https://github.com/NetCoreTemplates/grpc) template that's a copy of the 
+empty [web](https://github.com/NetCoreTemplates/web) project template pre-configured with gRPC support:
 
     $ x new grpc MyGrpcProject
 
 ### ServiceStack Services are gRPC Services
 
-Whilst Protocol Buffers imposes additional restrictions on the Types of DTOs that can be returned, in general the only change to
-ServiceStack Services following our [recommended API Design](/api-design) need to add are `[DataContract]` and `[DataMember]` attributes 
-on each DTO member assigning unique field index to each property, i.e. what's already required to support [ProtoBuf Services](/protobuf-format)
+Whilst Protocol Buffers imposes [additional restrictions](/grpc#limitations) on the Types that can be returned, in general the only change to
+ServiceStack Services following our [recommended API Design](/api-design) are to add `[DataContract]` and `[DataMember]` attributes 
+on each DTO member assigning unique field index to each property, i.e. what's required to support existing [ProtoBuf Services](/protobuf-format)
 or used to customize XML wire format in XML or [SOAP Services](/soap-support).
 
 For an example here's the complete annotated `GetTodos` Service from [todo-world](https://github.com/NetCoreApps/todo-world) gRPC Service:
@@ -267,7 +267,7 @@ at the expense of all others and can continue to serve all client consumers with
 
 ## Architecture
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-request.svg)
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-request.svg?sanitize=true)
 
 Unlike in other Services where ServiceStack handles writing the response directly to the HttpResponse, ServiceStack's gRPC Services are effectively 
 just providing an implementation for ASP.NET Core gRPC Endpoint requests where it makes use of [Marc Gravell's](https://github.com/mgravell)
@@ -615,7 +615,7 @@ Plugins.Add(new GrpcFeature(App) {
 });
 ```
 
-> Likewise you can remove the pre-registered `StreamFileService` and `SubscribeServerEventsService` services by removing them from the list
+> Or remove pre-registered `StreamFileService` and `SubscribeServerEventsService` services to disable them
 
 Clients can use `StreamFiles` to efficiently download multiple files over a single gRPC HTTP/2 Server Stream connection in their preferred order:
 
