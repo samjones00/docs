@@ -18,9 +18,9 @@ empty [web](https://github.com/NetCoreTemplates/web) project template pre-config
 ### ServiceStack Services are gRPC Services
 
 Whilst Protocol Buffers imposes [additional restrictions](/grpc#limitations) on the Types that can be returned, in general the only change to
-ServiceStack Services following our [recommended API Design](/api-design) are to add `[DataContract]` and `[DataMember]` attributes 
+ServiceStack Services following our [recommended API Design](/api-design) are to add .NET's `[DataContract]` and `[DataMember]` attributes 
 on each DTO member assigning unique field index to each property, i.e. what's required to support existing [ProtoBuf Services](/protobuf-format)
-or used to customize XML wire format in XML or [SOAP Services](/soap-support).
+or used to customize XML wire format in ServiceStack's XML or [SOAP Services](/soap-support).
 
 For an example here's the complete annotated `GetTodos` Service from [todo-world](https://github.com/NetCoreApps/todo-world) gRPC Service:
 
@@ -61,10 +61,8 @@ public class TodoServices : Service
 }
 ```
 
-As gRPC mandates a static service contract (i.e. can only return the same Response DTO Type) your Request DTOs are required to 
+As gRPC mandates a static service contract (i.e. only returns the same Response DTO Type) Request DTOs are required to 
 adhere to ServiceStack best practices and be annotated with either `IReturn<TResponse>` or `IReturnVoid` interfaces. 
-
-In order to receive structured Error Responses your `IReturn<T>` Response DTOs requires `ResponseStatus` property as normal.
 
 > Only services annotated with `IReturn*` interfaces and member indexes (as above) will be registered as gRPC Services.
 
@@ -73,11 +71,13 @@ Trying to call a Service without these annotations will result in an error that 
 ### Enable gRPC Services in existing .NET Core 3 projects
 
 By default this Service is available in [all of ServiceStack's supported formats](/formats), to also make it available via ASP.NET Core's
-gRPC Endpoints you can [mix it](/mix-tool) in [Modular Startup](/modular-startup) projects:
+gRPC Endpoints you can [mix it](/mix-tool) into [Modular Startup](/modular-startup) projects with:
 
     $ x mix grpc
 
-Or to manually configure it, add a reference to the .NET Core 3 **ServiceStack.Extensions** NuGet package:
+Which applies this [modular ConfigureGrpc configuration](https://gist.github.com/gistlyn/656c29a7257dc374d22d4aa709ba7244) to your project.
+
+Or to manually configure gRPC support, add a reference to the .NET Core 3 **ServiceStack.Extensions** NuGet package:
 
     $ dotnet add package ServiceStack.Extensions
 
@@ -96,18 +96,18 @@ Then register the `GrpcFeature` Plugin in your `AppHost`:
 Plugins.Add(new GrpcFeature(App));
 ```
 
-Which registers all applicable ServiceStack Services in ASP.NET Core's gRPC Endpoint and provides an auto-generated 
-[Add ServiceStack Reference](/add-servicestack-reference) `proto` metadata endpoint that Google's protoc generated clients can use
-to generate typed client proxies in each of the languages supported by Google gRPC.
+Which registers all applicable ServiceStack Services with ASP.NET Core's gRPC Endpoint and provides an auto-generated 
+[Add ServiceStack Reference](/add-servicestack-reference) `/types/proto` metadata endpoint that Google's protoc generated clients can use
+to generate typed client proxies in each of the languages Google's gRPC supports.
 
 ## Advantages of ServiceStack gRPC
 
 ServiceStack's code-first message-based development approach offers a number of advantages over most gRPC Service frameworks
-which rely on manually maintaining a separate plain-text `.proto` IDL file for defining your gRPC Services and reliance
+which rely on manually maintaining a separate plain-text `.proto` IDL files for defining your gRPC Services and reliance
 on external tooling and binding to foreign code-generated classes.
 
 With ServiceStack gRPC, there's no additional complexity, no manual maintenance of `.proto` files, no reliance on external tooling,
-code-gen or other artificial machinery is required to maintain its simple code-first development model utilizing clean POCOs 
+code-gen or any other artificial machinery is required to maintain its simple code-first development model utilizing clean POCOs 
 which is still able to retain its ideal end-to-end Typed API utilizing smart, rich generic Service Clients:
 
 ```csharp
@@ -116,28 +116,28 @@ IRestServiceClient client = new GrpcServiceClient(BaseUrl);
 var response = await client.GetAsync(new GetTodos());
 ```
 
-Like all other [.NET Service Clients](/csharp-client#built-in-clients), `GrpcServiceClient` is a full-featured ServiceClient 
+Like all other [.NET Service Clients](/csharp-client#built-in-clients), `GrpcServiceClient` is a full-featured Service Client 
 that has deep integration with ServiceStack that is substitutable with all other .NET Clients should clients prefer to
 revert to using the other more versatile, interoperable and debuggable ubiquitous serialization formats.
 
 ### Maximize reuse of Knowledge and Investments
 
 Likely the biggest advantage in using ServiceStack to develop gRPC Services is being able to (without additional knowledge) 
-leverage your existing investments and knowledge of building HTTP Services which in most cases (after annotating them with unique indexes) 
-are automatically available as gRPC Services. This maximizes utility of your Services which can be simultaneously made available
+leverage your existing investments and knowledge of building HTTP Services which in most cases (after applying above annotations) 
+are automatically made available as gRPC Services. This maximizes utility of your Services which can be simultaneously made available
 via ASP.NET's gRPC Endpoints and ServiceStack's HTTP and MQ Endpoints alleviating the need to fork or duplicate your Services logic
-across multiple implementations or worse, taking the leap to develop gRPC-only services and shutting out clients and environments that
-can't make use of gRPC HTTP/2 endpoints yet.
+across multiple implementations, or worse, taking the leap to develop gRPC-only services and shutting out clients and environments that
+can't make use of gRPC HTTP/2 endpoints.
 
-ServiceStack enables the best of both worlds, you can take risk-free step of making your Services available via highly efficient and performant
+ServiceStack enables the best of both worlds, you can take the risk-free step of making your Services available via highly efficient and performant
 gRPC HTTP/2 Services for clients and environments that can take advantage of it whilst (in the same App) continuing to make them available via the 
 ubiquitous JSON HTTP/1.1 APIs or in any of their [preferred formats](/formats).
 
 ### Code-First gRPC Services
 
 By allowing the use of idiomatic C# POCOs to define your Services contract, code-first always enables a superior development experience
-which avoids having to rely on external build tools to generate foreign implementation-encumbered types which is limited in capability
-to what's generated by opaque build tooling whose output emits single-purpose Types limited for usage in gRPC Services that are restrictive
+which avoids having to rely on external build tools to generate foreign implementation-encumbered types limited in capability
+by what's generated by its opaque tooling where it emits single-purpose Types limited for usage in gRPC Services - restricted
 to the lowest common denominator capabilities of `.proto` files.
 
 By contrast with a code-first approach your idiomatic C# POCOs are the master authority for your Services contract in which you retain 
@@ -271,7 +271,7 @@ at the expense of all others and can continue to serve all client consumers with
 
 Unlike in other Services where ServiceStack handles writing the response directly to the HttpResponse, ServiceStack's gRPC Services are effectively 
 just providing an implementation for ASP.NET Core gRPC Endpoint requests where it makes use of [Marc Gravell's](https://github.com/mgravell)
-excellent [protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc) library to enable ServiceStack's code-first development model 
+code-first [protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc) library to enable ServiceStack's code-first development model 
 of using typed Request/Response DTOs to implement and consume gRPC Services without mandating the use of **.proto** files, code-generated Types 
 or implementation specific interfaces.
 
@@ -299,8 +299,7 @@ The Types of limitations applicable when building gRPC Services in .NET include:
  - No built-in Types that can accommodate .NET's `Decimal`, `Guid` Types
  - Built-in `Timestamp` loses precision when when serializing .NET's `DateTime` or `DateTimeOffset` Types
 
-The [protobuf-net](https://github.com/protobuf-net/protobuf-net) library developed by [@mgravell](https://github.com/mgravell) that ServiceStack's
-gRPC support uses in its Server implementation (and `GrpcServiceClient`) does its best to transparently work around above limitations, e.g:
+The [protobuf-net](https://github.com/protobuf-net/protobuf-net) library used in both Server and `GrpcServiceClient` implementations does its best to transparently work around above limitations, e.g:
 
  - Creates multiple messages using reified generic type names for each concrete Generic Type used
  - Allows defining layout of base Types to embed ("has a") relation of known sub types
