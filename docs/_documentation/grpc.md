@@ -227,17 +227,17 @@ GrpcServiceStack.ParseResponseStatus = bytes => ResponseStatus.Parser.ParseFrom(
 ### Preserve rich Semantics and API Design
 
 gRPC Services enables an efficient long-lived HTTP/2 multiplexed channel with performant Protocol Buffer serialization and a 
-vast code-generation framework allowing us to provide Typed clients for most major programming languages and platforms.
+vast code-generation framework allowing us to provide Typed clients for most major programming languages.
 
 An area that could see a regression which all RPC frameworks suffer from is the erosion of the 
 [Goals of Service Design](/why-servicestack#goals-of-service-design) and loss of loosely-coupled resource-oriented HTTP API Design
-centered around applying actions (aka HTTP Verbs) to the subject of each request, laying out a logical structure for your API Design that's 
+centered around applying actions (aka HTTP Verbs) to the request subjects, laying out a logical structure for your API Design that's 
 also able to better communicate at a higher-level the commonly understood properties of each HTTP method.
 
-By forcing the usage of **messages** in gRPC Service Requests it partially mitigates against the 
+Forcing the usage of **messages** in gRPC Service Requests partially mitigates against the 
 [fragile usage of chatty client-specific method signatures](/why-servicestack#wcf-the-anti-dto-web-services-framework)
 plagued by most RPC frameworks like WCF, but still makes it easy for API designs to descend into an logically unstructured "free-for-all" 
-surface area adopting non-standard conventions making it harder and requiring more effort to convey understanding to consumers of your API.
+surface area adopting non-standard conventions making it harder and requiring more effort to convey understanding to your API consumers.
 
 By continuing to develop your ServiceStack Services as a good HTTP First citizens using coarse-grained loosely-coupled messages 
 oriented around resources, a lot of the rich HTTP semantics is preserved where each Verb remains accessible where its prefixed at the start 
@@ -245,12 +245,12 @@ of the rpc Method name:
 
     rpc [Verb][RequestType](RequestType) returns (ResponseType) {}
 
-The original HTTP Status Code remains accessible from the **httpstatus** gRPC Metadata Response Headers that continues to be populated
-in the `WebServiceException.StatusCode` thrown if using `GrpcServiceClient` or `protoc` client configured with the ServiceStack Interceptor.
+The original HTTP Status Code remains accessible from the **httpstatus** gRPC Metadata Response Header that continues to be populated
+in the `WebServiceException.StatusCode` thrown in `GrpcServiceClient` or `protoc` clients configured with the ServiceStack Interceptor.
 Any Custom HTTP Headers added by your Services are also returned in gRPC headers including your Services detailed structured Exception
 information stored as a serialized `ResponseStatus` message in the **responsestatus-bin** Header that continues to be available in
 `WebServiceException.ResponseStatus` property allowing gRPC client Apps to develop [rich form validation bindings](/world-validation#contacts-page)
-that's otherwise not possible in gRPC's failed responses containing just a basic error code and text description.
+that's otherwise not possible in gRPC's failed responses containing just an error code and simple text description.
 
 ### Offer best API for every platform
 
@@ -260,7 +260,7 @@ than maximum performance, when needing to support Ajax requests in Web Apps wher
 baked into many JS libraries or if needing to support environments where deeper integration of different formats is preferred, e.g. utilizing
 [CSV Format](/csv-format) in Excel based workflows or importing datasets into Databases where it's natively supported in most RDBMS's tooling.
 
-With the additional "complexity tax" for adopting a gRPC-based solution workflow, many App developers are going to prefer the
+With the additional "complexity tax" for adopting a gRPC-based solution workflow, many App developers are still going to prefer the
 simplicity of consuming a HTTP/JSON API from a URL and HTTP API docs.
 
 As gRPC is just another endpoint for your ServiceStack Services you don't have to take the risk of committing to one scenario
@@ -268,20 +268,19 @@ at the expense of all others and can continue to serve all client consumers with
 
 ## Architecture
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-request.svg?sanitize=true)
-
-Unlike in other Services where ServiceStack handles writing the response directly to the HttpResponse, ServiceStack's gRPC Services are effectively 
-just providing an implementation for ASP.NET Core gRPC Endpoint requests where it makes use of [Marc Gravell's](https://github.com/mgravell)
+Unlike in other Services where ServiceStack handles writing the response directly to the HttpResponse, ServiceStack's gRPC Services 
+are the implementation for ASP.NET Core gRPC Endpoint requests where it makes use of [Marc Gravell's](https://github.com/mgravell)
 code-first [protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc) library to enable ServiceStack's code-first development model 
-of using typed Request/Response DTOs to implement and consume gRPC Services without mandating the use of **.proto** files, code-generated Types 
-or implementation specific interfaces.
+of using typed Request/Response DTOs to implement and consume gRPC Services.
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-request.svg?sanitize=true)
 
 Requests are executed using the [RpcGateway](/order-of-operations#rpcgateway) which provides a pure object model for executing the full 
 HTTP Request pipeline which returns the Response DTO back to ASP .NET Core gRPC which handles sending the response back to the HTTP/2 connected client. 
 
 ## Limitations
 
-By its nature gRPC and Protocol Buffers have many additional restrictions in the Types it can support:
+Protocol Buffers have a number of restrictions in Types it supports:
 
 ### Inheritance
 
@@ -296,9 +295,9 @@ The Types of limitations applicable when building gRPC Services in .NET include:
  - No support for Generic Types
  - No proper support for Inheritance
  - All enums need a zero value
- - All enum names to be **globally unique** across all enums used in your Services
+ - All top-level enum names to be **globally unique** across all enums used in your Services
  - No built-in Types that can accommodate .NET's `Decimal`, `Guid` Types
- - Built-in `Timestamp` loses precision when when serializing .NET's `DateTime` or `DateTimeOffset` Types
+ - Loss of precision when using the built-in `Timestamp` to serialize .NET's `DateTime` or `DateTimeOffset`
 
 The [protobuf-net](https://github.com/protobuf-net/protobuf-net) library used in both Server and `GrpcServiceClient` implementations does its best to transparently work around above limitations, e.g:
 
@@ -311,8 +310,8 @@ The [protobuf-net](https://github.com/protobuf-net/protobuf-net) library used in
 
 ## Features
 
-In addition to providing a highly-productive code-first development model ServiceStack gRPC adds a lot of additional features that makes 
-developing gRPC Services a joy:
+In addition to its code-first development model ServiceStack gRPC adds a number of useful features to simplify and provide a richer gRPC
+Services development experience:
 
 ### protobuf-net Inheritance
 
@@ -321,13 +320,13 @@ its support by embedding sub classes as different fields in the base class type.
 upfront on the base type using a consistent and non-conflicting numerical field id. 
 
 As it's required by [AutoQuery](/autoquery) it was important to best provide a seamless out-of-the-box solution to alleviate as much friction
-as possible so ServiceStack pre-configures this numerical index on all known sub types in your Services Contract with a generated
+as possible, so ServiceStack pre-configures this numerical index on all known sub types in your Services Contract with a generated
 [Murmur2 hash](https://softwareengineering.stackexchange.com/a/145633/14025) (best overall for speed/randomness) of the **Types Name** that's modded to 
-within the `2^29-1` range of [valid field ids in protocol buffers](https://developers.google.com/protocol-buffers/docs/proto#assigning-field-numbers) 
-so the possibility of a hash collision is very low (but still possible).
+within the `2^29-1` range of [valid field ids in protocol buffers](https://developers.google.com/protocol-buffers/docs/proto#assigning-field-numbers) -
+resulting in a low (but still possible) index collision.
 
 To instead use your own user-defined field id for inherited classes you can use the `[Id]` attribute, for AutoQuery Services it should 
-at least start from `10` to avoid id conflicts with base class properties, e.g:
+at least start from `10` to avoid conflicts with its base class properties, e.g:
 
 ```csharp
 [DataContract, Id(10)]
@@ -338,23 +337,24 @@ public class QueryRockstars : QueryDb<Rockstar>
 }
 ```
 
-The `[Id]` needs to be unique for all sub classes and must not conflict with base class field ids, so since AutoQuery Services share the same base-class, any user-defined `[Id(N)]` on AutoQuery Services needs to be unique across all your AutoQuery Services.
+The `[Id]` needs to be **unique across all Sub Types** and must not conflict with base class field ids, given AutoQuery Services share the same base-class, 
+any user-defined `[Id(N)]` used needs to be **unique across all your AutoQuery Services**.
 
-Both ServiceStack's transparent or explicit `[Id]` approaches works nicely with the generic `GrpcServiceClient` where it allows calling the base and 
-Sub Type properties on DTOs utilizing inheritance, e.g:
+Both implicit or explicit `[Id]` inherited Types works nicely with the generic `GrpcServiceClient` where it allows calling the base and 
+Sub Type properties, e.g:
 
 ```csharp
 var response = await client.GetAsync(new QueryRockstars { Age = 27, Include = "Total" });
 ```
 
-Unfortunately usage of inheritance is [currently not compatible with protoc clients](https://github.com/protobuf-net/protobuf-net.Grpc/issues/50) so 
-in order to call AutoQuery Services from protoc generated clients can utilize **Dynamic gRPC Requests** to execute any Service from an loosely-typed
-string dictionary.
+Unfortunately usage of inheritance is [currently not compatible with protoc clients](https://github.com/protobuf-net/protobuf-net.Grpc/issues/50) 
+so in order to call AutoQuery Services from protoc generated clients you can utilize **Dynamic gRPC Requests** to execute any Service from an 
+loosely-typed string dictionary.
 
 ### Dynamic gRPC Requests
 
 Dynamic Requests lets you to populate Request DTOs of gRPC Services with a `DynamicRequest` DTO in the same way as **QueryString** and **FormData**
-is used to populate a Request DTO, in this case `DynamicRequest` is just a Request DTO with a string dictionary:
+is used to populate a Request DTO, in this case `DynamicRequest` is just a Request DTO containing a string dictionary:
 
 ```csharp
 [DataContract]
@@ -365,9 +365,9 @@ public class DynamicRequest
 }
 ```
 
-Which just like QueryStrings/FormData are also able to [populate deeply nested object graphs from a JSV string](/serialization-deserialization).
+> Which just like QueryStrings/FormData are also able to [populate deeply nested object graphs from a JSV string](/serialization-deserialization)
 
-By default ServiceStack only generates Dynamic Services for Services annotated with `[Tag("Dynamic")]`, e.g:
+By default ServiceStack only generates Dynamic Services for Services annotated with the `[Tag("Dynamic")]` attribute, e.g:
 
 ```csharp
 [Tag(Keywords.Dynamic)]
@@ -379,7 +379,7 @@ public class QueryRockstars : QueryDb<Rockstar>
 }
 ```
 
-This generates an additional Service option for invoking a Service using a `DynamicRequest` DTO instead, in the format:
+This generates an additional Service that uses a `DynamicRequest` DTO input, in the format:
 
     rpc [Verb]Dynamic[RequestType](DynamicRequest) returns (ResponseType) {}
 
@@ -391,7 +391,7 @@ Dynamic Requests are useful when you'd prefer to be able to populate Requests fr
 a [dynamic Query Builder UI](https://github.com/ServiceStack/Admin) which would require significantly less effort and boilerplate 
 then trying to map dynamic rules into populating a typed Request.
 
-They're also required for calling Services that doesn't have an explicit Services contract like untyped
+They're also required for calling Services that doesn't have an explicit Service contract like any untyped
 [AutoQuery Services utilizing implicit conventions](/autoquery-rdbms#implicit-conventions), e.g:
 
 ```csharp
@@ -399,10 +399,10 @@ public class QueryRockstars : QueryDb<Rockstar> {}
 ```
 
 Until [protoc clients are compatible with protobuf-net inheritance](https://github.com/protobuf-net/protobuf-net.Grpc/issues/50) they can
-also be used as an alternative for calling inheritance-based Request DTOs like AutoQuery.
+be used as an alternative for calling inheritance-based Request DTOs like AutoQuery.
 
 The `CreateDynamicService` predicate determines which Services should have dynamic requests generated for it, by default it's limited
-to Request DTOs annotated with `[Tag("Dynamic")]`, but can also be made to have dynamic requests for **all AutoQuery Services** with:
+to Request DTOs annotated with `[Tag("Dynamic")]`, but can also be made to have dynamic requests generated for **all AutoQuery Services** with:
 
 ```csharp
 Plugins.Add(new GrpcFeature(App) {
@@ -410,8 +410,8 @@ Plugins.Add(new GrpcFeature(App) {
 });
 ```
 
-When configured each AutoQuery Service will have an additional Service available that it can be called with starting with `GetDynamic*` 
-where the same `DynamicRequest` can be used to call both a Typed or Untyped AutoQuery Service, e.g:
+When configured each AutoQuery Service will have an additional Service starting with `GetDynamic*` available that can be called with
+a `DynamicRequest`, in fact the same `DynamicRequest` can be used to call either Typed or Untyped AutoQuery Services, e.g:
 
 ```csharp
 var response = await client.GetDynamicQueryRockstarsAsync(new DynamicRequest {
@@ -436,7 +436,7 @@ to be able to simulate a HTTP Request where headers starting with:
  - `header.` - added to `IRequest.Headers` (default)
  - Remaining headers without above prefixes are added to `IRequest.Headers` as-is.
 
-Where this can be used to simulate a valid HTTP Request for Filters, Plugins and HTTP APIs that are very specific on how they analyze HTTP Requests.
+This can be used to simulate a valid HTTP Request for Filters, Plugins and HTTP APIs that are specific in how they analyze HTTP Requests.
 
 So just like `DynamicRequest` you can use dynamic gRPC Metadata Headers to populated typed gRPC Service requests, e.g:
 
@@ -452,8 +452,8 @@ var client = new GrpcServiceClient(baseUrl) {
 var response = await client.GetAsync(new QueryRockstars());
 ```
 
-Where each matching property will populate the Request DTO with the string value using the conversion rules in ServiceStack's 
-[built-in Auto Mapping](/auto-mapping).
+Where each matching property will populate the Request DTO with the string value using the conversion rules in 
+[ServiceStack's Auto Mapping](/auto-mapping).
 
 If you don't wish for Headers to be able to populate Typed gRPC Requests, it can be disabled with:
 
@@ -466,43 +466,43 @@ Plugins.Add(new GrpcFeature(App) {
 ### Server Stream gRPC Services
 
 All gRPC Services we've seen so far are what gRPC Refers to as **Unary RPC**, i.e. where clients sends a single request to the server and 
-gets a single response back. Another very useful communication style supported by gRPC are **Server streaming RPCs**:
+gets a single response back. Another very useful communication style supported by gRPC is **Server streaming**:
 
-> where the client sends a request to the server and gets a stream to read a sequence of messages back. The client reads from the returned stream 
+> the client sends a request to the server and gets a stream to read a sequence of messages back. The client reads from the returned stream 
 until there are no more messages. gRPC guarantees message ordering within an individual RPC call.
 
 #### StreamServerEvents
 
-There are a couple of scenarios in ServiceStack where this communication channel is primarily useful such as [Server Events](/server-events)
+There are a couple of scenarios in ServiceStack where this communication channel is especially useful such as [Server Events](/server-events)
 which operates in a similar style with clients connecting to a long-lived HTTP connection that streams back "real-time Events" over the
-very light and efficient [SSE](https://www.html5rocks.com/en/tutorials/eventsource/basics/) standard natively supported in browsers.
+light and efficient [SSE](https://www.html5rocks.com/en/tutorials/eventsource/basics/) standard natively supported in modern browsers.
 
 Although as HTTP Requests are not normally used for maintaining long-lived connections they're susceptible to issues like buffering 
 from App Servers, middleware and proxies and require implementing a bespoke health-check and auto-reconnect solution in order to maintain
 interrupted service.
 
-As a first class supported communication channel we can instead leverage gRPC's library infrastructure which is perfectly suited for
-streaming real-time Server Events that's now also made available via gRPC's efficient HTTP/2 persistent channel with the `StreamServerEvents`
-gRPC Service:
+As a first class supported communication channel clients can instead leverage gRPC's library infrastructure which is perfectly suited for
+streaming real-time Server Events over an efficient persistent HTTP/2 channel that's available from the `StreamServerEvents` gRPC Service:
 
     rpc ServerStreamServerEvents(StreamServerEvents) returns (stream StreamServerEventsResponse) {}
 
-Thanks to gRPC all of `protoc` supported languages now have Typed APIs for consuming your [Server Events](/server-events) notifications.
+Which gives all `protoc` supported languages a Typed Client for consuming your [Server Events](/server-events).
 
 #### GrpcServiceClient Streams
 
-Using the generic `GrpcServiceClient` you're able to take advantage of C#'s 8 new `await foreach` syntax sugar for consuming gRPC Server Streams.
+When using the generic `GrpcServiceClient` you're able to take advantage of C#'s 8 new `await foreach` syntax sugar for consuming gRPC Server Streams.
 
-Its usage is analogous to all Server Events clients where your initial connection contains all the channels you want to receive notifications from, e.g:
+Its usage is analogous to all Server Events clients where your initial connection contains the channels you want to subscribe to receive notifications
+from, e.g:
 
 ```csharp
 var stream = client.StreamAsync(new StreamServerEvents {
-    Channels = new[] {"todos"}
+    Channels = new[] { "todos" }
 });
 ```
 
 Then you can use `await foreach` to consume an endless stream of Server Events. Use `Selector` to identify the type of Server Event
-whilst the body of each event message can be parsed as JSON, e.g:
+whilst the complex-type body of each event message can be parsed from its JSON body, e.g:
 
 ```csharp
 await foreach (var msg in stream)
@@ -543,7 +543,7 @@ this stream will output something similar to:
 #### protoc Dart Streams
 
 Other `protoc` languages will require using their own language constructs for consuming gRPC Streams,
-here's a [example for Dart](https://todoworld.servicestack.net/#dart) that also has a similarly pleasant API for consuming Server Streams:
+here's the [example for Dart](https://todoworld.servicestack.net/#dart) that also has a pleasant API for consuming Server Streams:
 
 ```dart
 var stream = client.serverStreamServerEvents(StreamServerEvents()..channels.add('todos'));
@@ -561,14 +561,14 @@ await for (var r in stream) {
 }
 ```
 
-### Implement a Server Stream Service
+### Implementing Server Stream Services
 
 As they're not your typical unary-style Request/Response service, Server Streams are handled and implemented a little differently
 where in addition to inheriting ServiceStack's base `Service` class you'll need to implement the `IStreamService<TRequest,TResponse>`
-interface and implement its `Stream()` method for your Service implementation.
+interface and implement its `Stream()` method for your Server Stream implementation.
 
 Here's the implementation of ServiceStack's built-in `StreamFiles` Service which accepts multiple virtual paths of files 
-which returns the File contents and metadata in the same order clients want returned:
+and returns the File contents and metadata in the same order:
 
 ```csharp
 public class StreamFileService : Service, IStreamService<StreamFiles,FileContent>
@@ -615,7 +615,7 @@ Plugins.Add(new GrpcFeature(App) {
 });
 ```
 
-> Or remove pre-registered `StreamFileService` and `SubscribeServerEventsService` services to disable them
+> Or remove the pre-registered `StreamFileService` and `SubscribeServerEventsService` services to disable them
 
 Clients can use `StreamFiles` to efficiently download multiple files over a single gRPC HTTP/2 Server Stream connection in their preferred order:
 
@@ -665,7 +665,7 @@ await for (var file in stream) {
 ## SSL Certificate Configuration
 
 Please see the [gRPC SSL docs](/grpc-ssl) for information on how to secure your gRPC connections including scripts for creating custom self-signed
-certificates and hosting public gRPC Services behind an nginx proxy.
+certificates and hosting public gRPC Services behind nginx reverse proxies.
 
 ## gRPC Clients
 
@@ -674,9 +674,8 @@ Visit [todoworld.servicestack.net](https://todoworld.servicestack.net) to explor
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-videos-generic.png)](https://todoworld.servicestack.net/#csharp-generic)
 
 For most .NET Clients we recommend using our generic `GrpcServiceClient` with deeper ServiceStack integration that can be used with the 
-cleaner and richer [Add ServiceStack Reference](/add-servicestack-reference) DTOs that implements clean Service Client interfaces
-allowing easy substitution between all of ServiceStack's [.NET Service Clients](/csharp-client), improved testability and implementation 
-decoupled gateway logic:
+richer [Add ServiceStack Reference](/add-servicestack-reference) POCO DTOs that implements the same shared Service Client interfaces
+adopted by all ServiceStack's [.NET Service Clients](/csharp-client):
 
  - [C# / F# / VB.NET Smart GrpcServiceClient](/grpc-generic)
 
@@ -783,13 +782,23 @@ For even finer-grained customization you can override the `GenerateMethodsForAny
 ### Custom gRPC Status Codes
 
 gRPC has are reduced number of [Error Status Codes](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md) compared to what's available in HTTP,
-you can override ServiceStack's built-in `HTTP > gRPC` mapping with your own implementation by implementing `ToGrpcStatus`, e.g:
+you can override ServiceStack's built-in `HTTP > gRPC` mapping with your own implementation by populating `ToGrpcStatus`, e.g:
 
 ```csharp
 Plugins.Add(new GrpcFeature(App) {
     ToGrpcStatus = httpRes => httpRes.StatusCode == 404
         ? new Status(StatusCode.NotFound, httpRes.StatusDescription)
         : (Status?) null // use default behavior
+});
+```
+
+### Filtered HTTP Headers
+
+You can control which of your custom HTTP Headers you don't want to return by adding them to the `IgnoreResponseHeaders` collection:
+
+```csharp
+Plugins.Add(new GrpcFeature(App) {
+    IgnoreResponseHeaders = { HttpHeaders.ContentDisposition }
 });
 ```
 
