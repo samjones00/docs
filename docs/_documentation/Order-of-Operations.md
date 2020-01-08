@@ -47,8 +47,14 @@ Any time you close the Response in any of your filters, i.e. `httpRes.EndRequest
 
 ## RpcGateway
 
-The `RpcGateway` provides a pure object model API where it converts all Errors including filters short-circuiting the Request Pipeline into an 
-Error ResponseStatus that's injected into the Response DTO's `ResponseStatus`.
+The `RpcGateway` provides a pure object model API for executing requests through the full HTTP Request pipeline including converting all Errors 
+inc. short-circuited Request Pipeline requests into an Error ResponseStatus that's populated into the Response DTO's `ResponseStatus`.
+
+The `RpcGateway` is available via the single `AppHost.RpcGateway` API:
+
+```csharp
+Task<TResponse> ExecuteAsync<TResponse>(object requestDto, IRequest req)
+```
 
 Unlike MQ Requests which uses `ServiceController.ExecuteMessage` to execute **internal/trusted** Services, the `RpcGateway` executes the full 
 **HTTP Request Pipeline** below: 
@@ -68,11 +74,7 @@ Unlike MQ Requests which uses `ServiceController.ExecuteMessage` to execute **in
   13. Finally at the end of the Request `IAppHost.OnEndRequest` and any `IAppHost.OnEndRequestCallbacks` are fired
 
 Where requests are executed through the same global Request/Response filters that normal HTTP ServiceStack Services execute
-making them suitable for executing external **untrusted** requests where it's conveniently made available via the single `AppHost.RpcGateway` API:
-
-```csharp
-Task<TResponse> ExecuteAsync<TResponse>(object requestDto, IRequest req)
-```
+making them suitable for executing external **untrusted** requests.
 
 ## Implementation architecture diagram
 
