@@ -103,7 +103,22 @@ to generate typed client proxies in each of the languages supported by Google gR
 ## Advantages of ServiceStack gRPC
 
 ServiceStack's code-first message-based development approach offers a number of advantages over most gRPC Service frameworks
-which rely on manually maintaining a separate plain-text `.proto` IDL file for defining your gRPC Services.
+which rely on manually maintaining a separate plain-text `.proto` IDL file for defining your gRPC Services and reliance
+on external tooling and binding to foreign code-generated classes.
+
+With ServiceStack gRPC, there's no additional complexity, no manual maintenance of `.proto` files, no reliance on external tooling,
+code-gen or other artificial machinery is required to maintain its simple code-first development model utilizing clean POCOs 
+which is still able to retain its ideal end-to-end Typed API utilizing smart, rich generic Service Clients:
+
+```csharp
+//IRestServiceClient client = new JsonServiceClient(BaseUrl);
+IRestServiceClient client = new GrpcServiceClient(BaseUrl);
+var response = await client.GetAsync(new GetTodos());
+```
+
+Like all other [.NET Service Clients](/csharp-client#built-in-clients), `GrpcServiceClient` is a full-featured ServiceClient 
+that has deep integration with ServiceStack that is substitutable with all other .NET Clients should clients prefer to
+revert to using the other more versatile, interoperable and debuggable ubiquitous serialization formats.
 
 ### Maximize reuse of Knowledge and Investments
 
@@ -656,6 +671,8 @@ certificates and hosting public gRPC Services behind an nginx proxy.
 
 Visit [todoworld.servicestack.net](https://todoworld.servicestack.net) to explore how easy it is to consume ServiceStack gRPC Services in different languages.
 
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-videos-generic.png)](https://todoworld.servicestack.net/#csharp-generic)
+
 For most .NET Clients we recommend using our generic `GrpcServiceClient` with deeper ServiceStack integration that can be used with the 
 cleaner and richer [Add ServiceStack Reference](/add-servicestack-reference) DTOs that implements clean Service Client interfaces
 allowing easy substitution between all of ServiceStack's [.NET Service Clients](/csharp-client), improved testability and implementation 
@@ -664,6 +681,8 @@ decoupled gateway logic:
  - [C# / F# / VB.NET Smart GrpcServiceClient](/grpc-generic)
 
 ### protoc generated clients
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-videos-protoc.png)](https://todoworld.servicestack.net/#csharp)
 
 For all non .NET Clients and AOT environments like Xamarin.iOS we recommend using Google's `protoc` generated clients:
 
