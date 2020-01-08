@@ -217,7 +217,7 @@ vast code-generation framework allowing us to provide Typed clients for most maj
 An area that could see a regression which all RPC frameworks suffer from is the erosion of the 
 [Goals of Service Design](/why-servicestack#goals-of-service-design) and loss of loosely-coupled HTTP API Design that's centered
 around resources and applying actions (aka HTTP Verbs) to them which provides both a logical structure for your API Design that is able
-to better communicate at a higher-level the commonly understood properties of each HTTP Verb and the subject of each request.
+to better communicate at a higher-level the commonly understood properties of each HTTP method and the subject of each request.
 
 By forcing the usage of **messages** in gRPC Service Requests it partially mitigates against the 
 [fragile usage of chatty client-specific method signatures](/why-servicestack#wcf-the-anti-dto-web-services-framework)
@@ -249,6 +249,19 @@ for consuming gRPC client proxies or environments where deeper integration of di
 
 As gRPC is just another endpoint for your ServiceStack Services you don't have to take the risk of committing to one scenario
 at the expense of all others and can continue to serve all client consumers with the best API for every platform simultaneously. 
+
+## Architecture
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-request.svg)
+
+Unlike in other Services where ServiceStack handles writing the response directly to the HttpResponse, ServiceStack's gRPC Services are effectively 
+just providing an implementation for ASP.NET Core gRPC Endpoint requests where it makes use of [Marc Gravell's](https://github.com/mgravell)
+excellent [protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc) library to enable ServiceStack's code-first development model 
+of using typed Request/Response DTOs to implement and consume gRPC Services without mandating the use of **.proto** files, code-generated Types 
+or implementation specific interfaces.
+
+Requests are executed using the [RpcGateway](/order-of-operations#rpcgateway) which provides a pure object model for executing the full 
+HTTP Request pipeline which returns the Response DTO back to ASP .NET Core gRPC which handles sending the response back to the HTTP/2 connected client. 
 
 ## Limitations
 
