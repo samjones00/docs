@@ -173,7 +173,7 @@ The new `GrpcServiceClient` can be used in **.NET Standard 2.1** and **.NET Core
     $ dotnet add package ServiceStack.GrpcClient
 
 This is a full-featured generic Service Client that provides a nicer and cleaner API than what's possible with `protoc` generated clients
-and contains most of the built-in functionality of other [C#/.NET Typed Generic Clients](/csharp-client):
+and contains most of the built-in functionality of other [C#/.NET Typed Generic Clients](/csharp-client), namely:
 
   - Substitutable `IRestServiceClient`, `IServiceClientAsync` and `IServiceClientSync` interfaces
   - [Rich Detailed and Structured](/validation) Typed Exceptions
@@ -187,10 +187,10 @@ and contains most of the built-in functionality of other [C#/.NET Typed Generic 
 Importantly `GrpcServiceClient` implements the same interfaces shared by other [C#/.NET Typed Generic Clients](/csharp-client) allowing
 development of higher-level shared client logic and libraries decoupled from concrete implementations, improved testability,
 easy substitution to other clients for improved debuggability or working around limitations in protocol buffers,
-as well as parallel client/server development where clients can temporarily bind to mock clients whilst server APIs are being implemented.
+as well as parallel client/server development where devs can temporarily bind to mock clients before server APIs are implemented.
 
-The fixed Generic API Surface area of the service client interfaces makes it easier to develop enhanced functionality like
-[Cache Aware Service Clients](/cache-aware-clients) in future that existing clients will be able to utilize via a minimally disruptive "drop-in" implementation.
+The predetermined Generic API Surface area of the service client interfaces also makes it easier to develop enhanced functionality like
+[Cache Aware Service Clients](/cache-aware-clients) in future that existing Apps will be able to utilize via a minimally disruptive "drop-in" implementation.
 
 #### Prefer Async
 
@@ -206,7 +206,7 @@ emits AOT-friendly Protocol Buffer serialization implementations within its code
 To better accommodate scenarios where `protoc` clients are used you can use the `ServiceStackClientInterceptor` (also in **ServiceStack.GrpcClient**)
 to replicate most of the rich ServiceStack integration features that's possible to implement using an `Interceptor`.
 
-The ServiceStack Interceptor can be registered using `GrpcServiceStack.Client()` when creating the protoc `GrpcServicesClient`:
+ServiceStack's Interceptor can be registered using `GrpcServiceStack.Client()` when creating the protoc `GrpcServicesClient`:
 
 ```csharp
 // Insecure plain-text example
@@ -226,19 +226,18 @@ GrpcServiceStack.ParseResponseStatus = bytes => ResponseStatus.Parser.ParseFrom(
 
 ### Preserve rich Semantics and API Design
 
-gRPC Services gives us a highly efficient HTTP/2 concurrent long-lived multiplexed channel with performant Protocol Buffer serialization and a 
+gRPC Services enables an efficient long-lived HTTP/2 multiplexed channel with performant Protocol Buffer serialization and a 
 vast code-generation framework allowing us to provide Typed clients for most major programming languages and platforms.
 
 An area that could see a regression which all RPC frameworks suffer from is the erosion of the 
-[Goals of Service Design](/why-servicestack#goals-of-service-design) and loss of loosely-coupled HTTP API Design that's centered
-around resources and applying actions (aka HTTP Verbs) to them which provides both a logical structure for your API Design that is able
-to better communicate at a higher-level the commonly understood properties of each HTTP method and the subject of each request.
+[Goals of Service Design](/why-servicestack#goals-of-service-design) and loss of loosely-coupled resource-oriented HTTP API Design
+centered around applying actions (aka HTTP Verbs) to the subject of each request, laying out a logical structure for your API Design that's 
+also able to better communicate at a higher-level the commonly understood properties of each HTTP method.
 
 By forcing the usage of **messages** in gRPC Service Requests it partially mitigates against the 
 [fragile usage of chatty client-specific method signatures](/why-servicestack#wcf-the-anti-dto-web-services-framework)
 plagued by most RPC frameworks like WCF, but still makes it easy for API designs to descend into an logically unstructured "free-for-all" 
-surface area adopting uncommonly understood conventions that makes it harder and requires more effort to convey understanding for clients
-consuming your API.
+surface area adopting non-standard conventions making it harder and requiring more effort to convey understanding to consumers of your API.
 
 By continuing to develop your ServiceStack Services as a good HTTP First citizens using coarse-grained loosely-coupled messages 
 oriented around resources, a lot of the rich HTTP semantics is preserved where each Verb remains accessible where its prefixed at the start 
@@ -251,16 +250,18 @@ in the `WebServiceException.StatusCode` thrown if using `GrpcServiceClient` or `
 Any Custom HTTP Headers added by your Services are also returned in gRPC headers including your Services detailed structured Exception
 information stored as a serialized `ResponseStatus` message in the **responsestatus-bin** Header that continues to be available in
 `WebServiceException.ResponseStatus` property allowing gRPC client Apps to develop [rich form validation bindings](/world-validation#contacts-page)
-that's otherwise not possible in gRPC's basic error code and description failed responses.
+that's otherwise not possible in gRPC's failed responses containing just a basic error code and text description.
 
 ### Offer best API for every platform
 
-Irrespective of the advantages of gRPC Services we still expect traditional and more ubiquitous HTTP/REST API endpoints to be 
-more widely utilized in areas where you don't control both client and server Apps, where interoperability is more important than 
-maximum performance, if needing to support Ajax requests in Web Clients where HTTP/JSON is the lingua franca with deep support 
-baked into many JS libraries, decoupled scenarios where it's easier to consume clean HTTP APIs then the "complexity tax" required 
-for consuming gRPC client proxies or environments where deeper integration of different formats is preferred, e.g. utilizing
-[CSV Format](/csv-format) in Excel based workflows or importing datasets into RDBMS Tables which is supported by most RDBMS tooling.
+Given the trade-offs of gRPC we still expect the traditional and more ubiquitous HTTP/REST API endpoints to be more widely utilized 
+in areas where you don't control both client and server Apps, where simplicity and interoperability is more important 
+than maximum performance, when needing to support Ajax requests in Web Apps where HTTP/JSON is the lingua franca with rich support 
+baked into many JS libraries or if needing to support environments where deeper integration of different formats is preferred, e.g. utilizing
+[CSV Format](/csv-format) in Excel based workflows or importing datasets into Databases where it's natively supported in most RDBMS's tooling.
+
+With the additional "complexity tax" for adopting a gRPC-based solution workflow, many App developers are going to prefer the
+simplicity of consuming a HTTP/JSON API from a URL and HTTP API docs.
 
 As gRPC is just another endpoint for your ServiceStack Services you don't have to take the risk of committing to one scenario
 at the expense of all others and can continue to serve all client consumers with the best API for every platform simultaneously. 
@@ -781,8 +782,8 @@ For even finer-grained customization you can override the `GenerateMethodsForAny
 
 ### Custom gRPC Status Codes
 
-gRPC has are reduced number of [Error Status Codes](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md) than what's available in HTTP,
-you can override the built-in mapping with your own implementation by implementing `ToGrpcStatus`, e.g:
+gRPC has are reduced number of [Error Status Codes](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md) compared to what's available in HTTP,
+you can override ServiceStack's built-in `HTTP > gRPC` mapping with your own implementation by implementing `ToGrpcStatus`, e.g:
 
 ```csharp
 Plugins.Add(new GrpcFeature(App) {
