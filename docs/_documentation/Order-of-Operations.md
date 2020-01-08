@@ -45,6 +45,35 @@ Any time you close the Response in any of your filters, i.e. `httpRes.EndRequest
   6. Then [Global Response Filters](/request-and-response-filters#message-queue-endpoints) 
   7. Finally at the end of the Request `IAppHost.OnEndRequest` is fired
 
+## RpcGateway
+
+The `RpcGateway` provides a pure object model API where it converts all Errors including filters short-circuiting the Request Pipeline into an 
+Error ResponseStatus that's injected into the Response DTO's `ResponseStatus`.
+
+Unlike MQ Requests which uses `ServiceController.ExecuteMessage` to execute **internal/trusted** Services, the `RpcGateway` executes the full 
+**HTTP Request Pipeline** below: 
+
+  1. The `IAppHost.PreRequestFilters` gets executed before the Request DTO is deserialized
+  2. Any [Request Converters](/customize-http-responses#request-converters) are executed
+  3. [Request Filter Attributes][3] with **Priority < 0** gets executed
+  4. Then any [Global Request Filters][1] get executed
+  5. Followed by [Request Filter Attributes][3] with **Priority >= 0**
+  6. Action Request Filters
+  7. Then your **Service is executed** with the configured [Service Filters](/customize-http-responses#intercept-service-requests) and [Service Runner](/customize-http-responses#using-a-custom-servicerunner) **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
+  8. Action Response Filters
+  9. Any [Response Converters](/customize-http-responses#response-converters) are executed
+  10. Followed by [Response Filter Attributes][3] with **Priority < 0** 
+  11. Then [Global Response Filters][1] 
+  12. Followed by [Response Filter Attributes][3] with **Priority >= 0** 
+  13. Finally at the end of the Request `IAppHost.OnEndRequest` and any `IAppHost.OnEndRequestCallbacks` are fired
+
+Where requests are executed through the same global Request/Response filters that normal HTTP ServiceStack Services execute
+making them suitable for executing external **untrusted** requests where it's conveniently made available via the single `AppHost.RpcGateway` API:
+
+```csharp
+Task<TResponse> ExecuteAsync<TResponse>(object requestDto, IRequest req)
+```
+
 ## Implementation architecture diagram
 
 The [Implementation architecture diagram][2] shows a visual cue of the internal order of operations that happens in ServiceStack:
