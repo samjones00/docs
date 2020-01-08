@@ -22,7 +22,7 @@ ServiceStack Services following our [recommended API Design](/api-design) are to
 on each DTO member assigning unique field index to each property, i.e. what's required to support existing [ProtoBuf Services](/protobuf-format)
 or used to customize XML wire format in ServiceStack's XML or [SOAP Services](/soap-support).
 
-For an example here's the complete annotated `GetTodos` Service from [todo-world](https://github.com/NetCoreApps/todo-world) gRPC Service:
+For an example, here's the complete annotated `GetTodos` Service from [todo-world](https://github.com/NetCoreApps/todo-world) gRPC Service:
 
 ```csharp
 [DataContract]
@@ -236,7 +236,7 @@ also able to better communicate at a higher-level the commonly understood proper
 
 Forcing the usage of **messages** in gRPC Service Requests partially mitigates against the 
 [fragile usage of chatty client-specific method signatures](/why-servicestack#wcf-the-anti-dto-web-services-framework)
-plagued by most RPC frameworks like WCF, but still makes it easy for API designs to descend into an logically unstructured "free-for-all" 
+plagued by most RPC frameworks like WCF, but still makes it easy for API designs to descend into a logically unstructured "free-for-all" 
 surface area adopting non-standard conventions making it harder and requiring more effort to convey understanding to your API consumers.
 
 By continuing to develop your ServiceStack Services as a good HTTP First citizens using coarse-grained loosely-coupled messages 
@@ -428,7 +428,7 @@ In addition to populating the Request DTO each dynamic param will also be availa
 ### Simulate HTTP Requests
 
 Similar to `DynamicRequest` even normal typed gRPC Service requests can be augmented with gRPC Metadata Request Headers where they can be used
-to be able to simulate a HTTP Request where headers starting with:
+to be able to simulate an HTTP Request where headers starting with:
 
  - `query.` - added to `IRequest.QueryString`
  - `form.` - added to `IRequest.FormData`
@@ -708,7 +708,7 @@ ServiceStack HTTP JSON Services, made possible since ServiceStack's gRPC
 Service implementations are also made available over REST-ful HTTP APIs - i.e. the lingua franca of the web.
 
 If [ASP.NET Core adds native gRPC Web support](https://github.com/grpc/grpc-dotnet/issues/99) then using gRPC
-clients may provide a more appealing option although it wont have a clean, versatile and rich API as 
+clients may provide a more appealing option although it won't have a clean, versatile and rich API as 
 [TypeScript Add ServiceStack Reference](https://docs.servicestack.net/typescript-add-servicestack-reference).
 
 ### x dotnet tool gRPC Web support
@@ -835,7 +835,7 @@ public static class ProtoOption
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/protoc-api.png)](https://grpc.servicestack.net)
 
 To provide the simplest and seamless end-to-end gRPC solution we're maintaining a **[public gRPC protoc Service](https://grpc.servicestack.net)** 
-and UI which is the backend empowering our cross-platform [dotnet tools](/dotnet-tool) to be able generate Protocol Buffer DTOs
+and UI which is the backend empowering our cross-platform [dotnet tools](/dotnet-tool) to be able to generate Protocol Buffer DTOs
 and gRPC clients in every `protoc` supported language without any installation, tooling or configuration required.
 
 This is a public service **any gRPC clients using any gRPC Service framework** can use as an alternative for having each
@@ -886,3 +886,4 @@ Below is a complete list of different languages supported by this public gRPC Se
 | js-commonjs  | JavaScript (CommonJS) | 
 | ts           | TypeScript | 
 | ts-binary    | TypeScript (Binary) | 
+
