@@ -184,10 +184,10 @@ and contains most of the built-in functionality of other [C#/.NET Typed Generic 
   - Global and Instance Request/Response Filters to apply generic custom logic on each request
   - C# 8 `await foreach` friendly `async IAsyncEnumerable<TResponse> Stream()` APIs for Server Stream gRPC Services
 
-Importantly `GrpcServiceClient` shares the same interfaces as all other [C#/.NET Typed Generic Clients](/csharp-client) allowing
+Importantly `GrpcServiceClient` implements the same interfaces shared by other [C#/.NET Typed Generic Clients](/csharp-client) allowing
 development of higher-level shared client logic and libraries decoupled from concrete implementations, improved testability,
-easy substitution where you could easily switch to `JsonServiceClient` for improved debuggability or if you've hit a limitation of protocol buffers,
-parallel client/server development where clients can temporarily bind to a mock client whilst server is being implemented.
+easy substitution to other clients for improved debuggability or working around limitations in protocol buffers,
+as well as parallel client/server development where clients can temporarily bind to mock clients whilst server APIs are being implemented.
 
 The fixed Generic API Surface area of the service client interfaces makes it easier to develop enhanced functionality like
 [Cache Aware Service Clients](/cache-aware-clients) in future that existing clients will be able to utilize via a minimally disruptive "drop-in" implementation.
@@ -199,12 +199,12 @@ As all .NET gRPC Clients are inherently built on an `async` implementation, clie
 
 #### ServiceStack Interceptor for protoc generated clients
 
-As the `GrpcServiceClient` offers a nicer and clear API, Types and development model its usage over `protoc` clients should generally be preferred, one 
-area where you'll want to consider using Google's `protoc` generated clients is in AOT environments like Xamarin.iOS as Google's `protoc` tooling 
-emits AOT-friendly Protocol Buffer serialization implementation within its code generated Types.
+As `GrpcServiceClient` offers a nicer UX its usage over `protoc` generated clients should generally be preferred, one area where you'll want 
+to consider using Google's `protoc` generated clients is in AOT environments like Xamarin.iOS as the `protoc` tooling 
+emits AOT-friendly Protocol Buffer serialization implementations within its code generated Types.
 
-To better accommodate scenarios where `protoc` clients are used you can use the `ServiceStackClientInterceptor` also in **ServiceStack.GrpcClient**
-to replicate most of the rich ServiceStack integration features that's possible to implement using an `Interceptor`. 
+To better accommodate scenarios where `protoc` clients are used you can use the `ServiceStackClientInterceptor` (also in **ServiceStack.GrpcClient**)
+to replicate most of the rich ServiceStack integration features that's possible to implement using an `Interceptor`.
 
 The ServiceStack Interceptor can be registered using `GrpcServiceStack.Client()` when creating the protoc `GrpcServicesClient`:
 
@@ -778,6 +778,19 @@ public class MyServices : Service
 Alternatively you can replace your `Any()` method and only implement the specific methods you want generated, e.g. `Get()` or `Post()`.
 
 For even finer-grained customization you can override the `GenerateMethodsForAny` predicate to adopt your own conventions.
+
+### Custom gRPC Status Codes
+
+gRPC has are reduced number of [Error Status Codes](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md) than what's available in HTTP,
+you can override the built-in mapping with your own implementation by implementing `ToGrpcStatus`, e.g:
+
+```csharp
+Plugins.Add(new GrpcFeature(App) {
+    ToGrpcStatus = httpRes => httpRes.StatusCode == 404
+        ? new Status(StatusCode.NotFound, httpRes.StatusDescription)
+        : (Status?) null // use default behavior
+});
+```
 
 ### Proto Options
 
