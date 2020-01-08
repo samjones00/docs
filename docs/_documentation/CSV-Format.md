@@ -41,14 +41,13 @@ this.ResponseFilters.Add((req, res, dto) =>
 });
 ```
 
-Note: **ServiceStack already does this for you** though it still serves a good example to show how you can plug-in your own custom format. If you wish, you can remove all custom formats with (inside AppHost.Configure()):
+Note: **ServiceStack already does this for you** though it still serves a good example to show how you can plug-in your own custom format. If you wish, you can remove the `CsvFormat` with (inside AppHost.Configure()):
 
 ```csharp
-this.ContentTypes.ClearCustomFilters();
+Plugins.RemoveAll(x => x is CsvFormat);
 ```
 
-The ability to automatically to register another format and provide immediate value and added functionality to all your existing web services (without any code-changes or configuration) we believe is a testament to ServiceStack's clean design of using strongly-typed 'message-based' DTOs to let you develop clean, testable and re-usable web services. No code-gen or marshalling is required to bind to an abstract method signature, every request and calling convention maps naturally to your webservices DTOs.
-
+The ability to automatically to register another format and provide immediate value and added functionality to all your existing web services (without any code-changes or configuration) we believe is a testament to ServiceStack's clean design of using strongly-typed 'message-based' DTOs to let you develop clean, testable and re-usable web services. No code-gen or marshalling is required to bind to an abstract method signature, every request and calling convention maps naturally to your Web Services DTOs.
 
 ## Usage
 
