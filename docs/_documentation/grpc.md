@@ -3,6 +3,8 @@ slug: grpc
 title: ServiceStack gRPC
 ---
 
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-horizontal-color.svg?sanitize=true)](https://grpc.io)
+
 ServiceStack's gRPC support enables a highly productive development environment for developing high-performance gRPC HTTP/2 Services
 by making ServiceStack's existing typed Services available from ASP.NET's gRPC endpoints. In addition to offering superior value
 in developing gRPC Services on the Server, ServiceStack also offers a 
