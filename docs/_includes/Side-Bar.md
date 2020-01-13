@@ -22,7 +22,7 @@
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [ASP.NET Core on .NET Framework](/templates-corefx)
-    - [x new - Project Template](/web-new)
+    - [x new - Project Template](/dotnet-new)
     - [Single Page App Templates](/templates-single-page-apps)
     - [Website Templates](/templates-websites)
     - [Empty Starting Templates](/templates-empty-starting)
