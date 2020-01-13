@@ -1,5 +1,5 @@
 ---
-slug: dotnet-new
+slug: npm-new
 title: .NET Core 2.1 and ASP.NET Project Templates
 ---
 
