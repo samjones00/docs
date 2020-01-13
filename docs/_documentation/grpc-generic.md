@@ -1,6 +1,6 @@
 ---
 slug: grpc-generic
-title: Smart generic C# / F# / VB.NET GrpcServiceClient
+title: Smart Generic C# / F# / VB.NET Service Client
 ---
 
 ## C# Generic GrpcServiceClient TodoWorld Example
