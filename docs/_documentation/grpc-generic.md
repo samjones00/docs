@@ -164,7 +164,7 @@ For more C# `GrpcServiceClient` examples check out the integration tests at:
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/vb-generic.png)](https://youtu.be/9XTy3eOdpHw)
 
-> YouTube: https://youtu.be/9XTy3eOdpHw
+> YouTube: [youtu.be/9XTy3eOdpHw](https://youtu.be/9XTy3eOdpHw)
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
@@ -323,7 +323,7 @@ for a complete example project.
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/fsharp-generic.png)](https://youtu.be/y3MBaapcN-0)
 
-> YouTube: https://youtu.be/y3MBaapcN-0
+> YouTube: [youtu.be/y3MBaapcN-0](https://youtu.be/y3MBaapcN-0)
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
