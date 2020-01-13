@@ -1,9 +1,7 @@
 ---
 slug: grpc-ssl
-title: gRPC SSL Certificates
+title: gRPC SSL Configuration
 ---
-
-## SSL Configuration
 
 By default gRPC projects uses ASP.NET Core's trusted Development certificate (typically created on install), or can be configured with:
 

@@ -83,7 +83,7 @@
     - [VB.NET Add Reference](/vbnet-add-servicestack-reference)
 - ##### ServiceStack gRPC
     - [Overview](/grpc)
-    - [gRPC SSL Configuration](/grpc-ssl)
+    - [SSL Configuration](/grpc-ssl)
     - [C#/F#/VB.NET Generic Clients](/grpc-generic)
     - [gRPC C#](/grpc-csharp)
     - [gRPC Swift](/grpc-swift)
