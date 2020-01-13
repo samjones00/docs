@@ -4,7 +4,7 @@
     - [Architecture Overview](/architecture-overview)
     - [Live Demos](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
 - ##### Releases
-    - [Latest Release Notes](/releases/v5.7)
+    - [Latest Release Notes](/releases/v5.8)
     - [Release Notes History](/release-notes-history)
     - [Pre-release MyGet Packages](/myget)
 - ##### Getting Started
@@ -81,6 +81,19 @@
     - [Dart Add Reference](/dart-add-servicestack-reference)
     - [F# Add Reference](/fsharp-add-servicestack-reference)
     - [VB.NET Add Reference](/vbnet-add-servicestack-reference)
+- ##### ServiceStack gRPC
+    - [Overview](/grpc)
+    - [gRPC SSL Configuration](/grpc-ssl)
+    - [C#/F#/VB.NET Generic Clients](/grpc-generic)
+    - [gRPC C#](/grpc-csharp)
+    - [gRPC Swift](/grpc-swift)
+    - [gRPC Java](/grpc-java)
+    - [gRPC Dart](/grpc-dart)
+    - [gRPC GO](/grpc-go)
+    - [gRPC Node.js](/grpc-nodejs)
+    - [gRPC Python](/grpc-python)
+    - [gRPC Ruby](/grpc-ruby)
+    - [gRPC PHP](/grpc-php)
 - ##### Formats
     - [Overview](/formats)
     - [JSON Format](https://github.com/ServiceStack/ServiceStack.Text/)
