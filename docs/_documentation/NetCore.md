@@ -122,7 +122,80 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <table class="table">
 <tr>
   <td colspan="2">
-    <b>Chat</b> - Single Page Chat App with real-time Server Events + Simple OAuth in <190 lines of JavaScript
+    <b>World Validation</b> - Validation and Auth Server Ajax + HTML Forms, jQuery, TypeScript, Vuetify, Razor and Sharp Pages
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <b>Features</b> - 
+    <a href="/validation">Validation</a> and <a href="/authentication-and-authorization">Auth Providers</a>.
+  </td>
+</tr>
+<tr>
+    <td>
+        <a href="http://validation.web-app.io">
+          <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/home.png" width="350"/>
+        </a>
+    </td>
+    <td>
+        <table>
+            <caption>.NET Core</caption>
+            <tr>
+              <td>Live Demo:</td>
+              <td><a href="http://validation.web-app.io">validation.web-app.io</a></td>
+            </tr>
+            <tr>
+              <td>Github:</td>
+              <td><a href="https://github.com/NetCoreApps/Validation">github.com/NetCoreApps/Validation</a></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <b>TechStacks</b> - Find, discuss and share information on your favorite technologies with others sharing similar interests
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <b>Features</b> - 
+    <a href="https://github.com/NetCoreApps/TechStacks#recommended-net-spa-stack">.NET SPA Stack</a>, 
+    <a href="https://github.com/NetCoreApps/TechStacks#netlify-cdn">Netlify CDN static hosting</a>,
+    <a href="https://github.com/NetCoreApps/TechStacks#client--server-validation-with-vuetify">Client / Server Validation</a>,
+    <a href="https://github.com/NetCoreApps/TechStacks#extensible-autoquery-services">AutoQuery Services</a> and
+    <a href="https://github.com/NetCoreApps/TechStacks#background-mq-service">Background MQ Email Service</a>.
+  </td>
+</tr>
+<tr>
+    <td>
+        <a href="https://techstacks.io">
+          <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/techstacks-new.png" width="350"/>
+        </a>
+    </td>
+    <td>
+        <table>
+            <caption>.NET Core</caption>
+            <tr>
+              <td>Live Demo:</td>
+              <td><a href="https://techstacks.io">techstacks.io</a></td>
+            </tr>
+            <tr>
+              <td>Github:</td>
+              <td><a href="https://github.com/NetCoreApps/TechStacks">github.com/NetCoreApps/TechStacks</a></td>
+            </tr>
+        </table>
+        <table>
+            <caption>ASP.NET 4.5</caption>
+            <tr>
+              <td>Github:</td>
+              <td><a href="https://github.com/ServiceStackApps/TechStacks">github.com/ServiceStackApps/TechStacks</a></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <b>Chat</b> - Single Page Chat App with real-time Server Events + Simple OAuth in &gt;190 lines of JavaScript
   </td>
 </tr>
 <tr>
@@ -130,7 +203,7 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
     <b>Features</b> - 
     Real-time <a href="/server-events">Server Events</a>
     and <a href="/javascript-server-events-client">JavaScript Client</a>,
-    Twitter, Facebook and Github <a href="/authentication-and-authorization.html">OAuth Providers</a>
+    Twitter, Facebook and Github <a href="/authentication-and-authorization">OAuth Providers</a>
   </td>
 </tr>
 <tr>
@@ -168,8 +241,8 @@ The Live Demos cover a broad spectrum of ServiceStack features including:
 <tr>
   <td colspan="2">
     <b>Features</b> - 
-    Simple <a href="/authentication-and-authorization.html">Auth and OAuth Providers</a>,
-    <a href="/authentication-and-authorization.html#requiredrole-and-requiredpermission-attributes">Role-based Security</a>,
+    Simple <a href="/authentication-and-authorization">Auth and OAuth Providers</a>,
+    <a href="/authentication-and-authorization#requiredrole-and-requiredpermission-attributes">Role-based Security</a>,
     <a href="/servicestack-integration.html">MVC Integration</a>,
     <a href="/ss-utils-js.html">ss-utils.js</a>
   </td>
