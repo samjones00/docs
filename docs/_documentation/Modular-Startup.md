@@ -34,8 +34,6 @@ and change it to inherit from `ModularStartup` instead:
 ```csharp
 public class Startup : ModularStartup
 {
-    public Startup(IConfiguration configuration) : base(configuration){}
-
     public new void ConfigureServices(IServiceCollection services)
     {
         //...
@@ -46,6 +44,19 @@ public class Startup : ModularStartup
         //...
     }
 }
+```
+
+Then in `Program.cs` replace `UseStartup<Startup>` with `.UseModularStartup<Startup>()`, e.g:
+
+```csharp
+using ServiceStack;
+
+//...
+
+public static IWebHost BuildWebHost(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseModularStartup<Startup>()
+        .Build();
 ```
 
 > The `new` modifier isn't strictly necessary but does resolve a compiler warning
