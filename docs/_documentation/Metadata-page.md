@@ -16,7 +16,7 @@ The Metadata page contains:
 
 The metadata pages provide automatic generated documentation around your services, allowing consumers of your APIs to more easily introspect and provide greater visibility of your services. 
 
-***
+## Annotating Services
 
 You can also optionally add custom annotations and documentation on services which will automatically appear on the metadata pages. Here is an example of a fully annotated Service:
 
