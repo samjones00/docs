@@ -17,9 +17,9 @@ public object Post(User request)
 
 ### Default Mapping of C# Exceptions to HTTP Errors
 
-By Default C# Exceptions:
+By Default C# Exceptions inheriting from:
 
-  - Inheriting from `ArgumentException` or `SerializationException` or `FormatException` is returned as a **400 BadRequest**
+  - `ArgumentException` or `SerializationException` or `FormatException` is returned as a **400 BadRequest**
   - `NotImplementedException` or `NotSupportedException ` is returned as a **405 MethodNotAllowed** 
   - `FileNotFoundException` is return as **404 NotFound**
   - `AuthenticationException` is returned as **401 Unauthorized**
