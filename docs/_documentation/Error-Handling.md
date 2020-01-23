@@ -19,14 +19,16 @@ public object Post(User request)
 
 By Default C# Exceptions:
 
-  - Inheriting from `ArgumentException` are returned with a HTTP StatusCode of **400 BadRequest**
+  - Inheriting from `ArgumentException` or `SerializationException` or `FormatException` is returned as a **400 BadRequest**
   - `NotImplementedException` or `NotSupportedException ` is returned as a **405 MethodNotAllowed** 
+  - `FileNotFoundException` is return as **404 NotFound**
   - `AuthenticationException` is returned as **401 Unauthorized**
   - `UnauthorizedAccessException` is returned as **403 Forbidden**
   - `OptimisticConcurrencyException` is returned as **409 Conflict**
-  - Other normal C# Exceptions are returned as **500 InternalServerError**
+  - All Other normal C# Exceptions are returned as **500 InternalServerError**
 
-This list can be extended with user-defined mappings on `Config.MapExceptionToStatusCode`.
+Other custom mappings can be added to the [Config.MapExceptionToStatusCode dictionary](/error-handling#custom-mapping-of-c-exceptions-to-http-error-status),
+by [implementing IHasStatusCode interface](/error-handling#implementing-ihasstatuscode) or by [returning a HttpError](/error-handling#returning-a-httperror).
 
 ### WebServiceException 
 
