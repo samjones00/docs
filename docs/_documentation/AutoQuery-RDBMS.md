@@ -97,8 +97,8 @@ public class MyQueryServices : Service
     //Override with custom implementation
     public object Any(FindMovies query)
     {
-        var q = AutoQuery.CreateQuery(query, base.Request);
-        return AutoQuery.Execute(query, q);
+        var q = AutoQuery.CreateQuery(query, Request);
+        return AutoQuery.Execute(query, q, Request);
     }
 }
 ```
@@ -957,7 +957,7 @@ public class PostPublicServices : PostServicesBase
 
     public object Any(QueryPosts request)
     {
-        var q = AutoQuery.CreateQuery(request, Request.GetRequestParams()); //Populated SqlExpression
+        var q = AutoQuery.CreateQuery(request, Request.GetRequestParams(), base.Request); //Populated SqlExpression
         q.Where(x => x.Deleted == null);
         
         var states = request.Is ?? TypeConstants.EmptyStringArray;
@@ -987,7 +987,7 @@ public class PostPublicServices : PostServicesBase
             q.And($"(ARRAY[{techIds}] && technology_ids OR organization_id in ({orgIds}))");
         }
 
-        return AutoQuery.Execute(request, q);
+        return AutoQuery.Execute(request, q, base.Request);
     }
 }
 ```
@@ -1128,8 +1128,8 @@ public class MyQueryServices : Service
     //Override with custom implementation
     public object Any(FindMovies dto)
     {
-        var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams());
-        return AutoQuery.Execute(dto, q);
+        var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams(), base.Request);
+        return AutoQuery.Execute(dto, q, base.Request);
     }
 }
 ```
@@ -1161,14 +1161,14 @@ public abstract class MyAutoQueryServiceBase : AutoQueryServiceBase
 {
     public override object Exec<From>(IQuery<From> dto)
     {
-        var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams());
-        return AutoQuery.Execute(dto, q);
+        var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams(), base.Request);
+        return AutoQuery.Execute(dto, q, base.Request);
     }
 
     public override object Exec<From, Into>(IQuery<From, Into> dto)
     {
-        var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams());
-        return AutoQuery.Execute(dto, q);
+        var q = AutoQuery.CreateQuery(dto, Request.GetRequestParams(), base.Request);
+        return AutoQuery.Execute(dto, q, base.Request);
     }
 }
 ```
