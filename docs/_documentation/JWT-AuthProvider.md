@@ -808,6 +808,17 @@ var sseClient = new ServerEventsClient(BaseUrl, ["*"], {
 }).start();
 ```
 
+#### Setting the JWT Token Cookie
+
+As the TypeScript `ServerEventsClient` needs to use the browsers native EventSource class to establish the SSE connection it's not able to customize 
+the HTTP Request Headers in other clients but as the client shares the same cookies with the browser you can use a JWT Token Cookie either
+by Requesting to use a [JWT Token Cookie at Authentication](/jwt-authprovider#request-jwt-cookie-is-set-on-authentication) or by setting the Token
+Cookie on the client, [CORS permitting](/corsfeature), e.g:
+
+```js
+document.cookie = "ss-tok={Token}";
+```
+
 #### JWT FormData POST
 
 The stateless nature of JWTs makes it highly versatile to be able to use in a number of difference scenarios, e.g. it could be used to make stateless authenticated requests across different domains without JavaScript (HTTP Headers or Cookies), by embedding it in a HTML Form POST:

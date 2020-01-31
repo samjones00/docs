@@ -489,6 +489,61 @@ client.serviceClient.post(new MyRequest())
     .then(r => ...)
 ```
 
+## Authentication via JWT
+
+As the TypeScript `ServerEventsClient` needs to use the browsers native EventSource class to establish the SSE connection it's not able to customize 
+the HTTP Request Headers in other clients but as the client shares the same cookies with the browser you can use a JWT Token Cookie either
+by Requesting to use a [JWT Token Cookie at Authentication](/jwt-authprovider#request-jwt-cookie-is-set-on-authentication) or by setting the Token
+Cookie on the client, [CORS permitting](/corsfeature), e.g:
+
+```js
+document.cookie = "ss-tok={Token}";
+```
+
+Alternatively you can enable authenticating via JWT on the QueryString:
+
+### Send JWTs in HTTP Params
+
+The JWT Auth Provider can **opt-in** to accept JWT's via the Query String or HTML POST FormData with:
+
+```csharp
+new JwtAuthProvider {
+    AllowInQueryString = true,
+    AllowInFormData = true
+}
+```
+
+This is useful for situations where it's not possible to attach the JWT in the HTTP Request Headers or `ss-tok` Cookie. 
+
+For example if you wanted to authenticate via JWT to a real-time [Server Events stream](/server-events) from a token retrieved from a remote auth server (i.e. so the JWT Cookie isn't already configured with the SSE server) you can [call the /session-to-token API](/jwt-authprovider#ajax-clients) to convert the JWT Bearer Token into a JWT Cookie which will configure it with that domain so the subsequent HTTP Requests to the SSE event stream contains the JWT cookie and establishes an authenticated session:
+
+```ts
+var client = new JsonServiceClient(BaseUrl);
+client.setBearerToken(JWT);
+await client.post(new ConvertSessionToToken());
+
+var sseClient = new ServerEventsClient(BaseUrl, ["*"], {
+    handlers: {
+        onConnect: e => { 
+            console.log(e.isAuthenticated /*true*/, e.userId, e.displayName);
+        }
+    }
+}).start();
+```
+
+Unfortunately this wont work in `node.exe` Server Apps (or in integration tests) which doesn't support a central location for configuring domain cookies. One solution that works everywhere is to add the JWT to the `?ss-tok` query string that's used to connect to the `/event-stream` URL, e.g:
+
+```csharp
+var sseClient = new ServerEventsClient(BaseUrl, ["*"], {
+    resolveStreamUrl: url => appendQueryString(url, { "ss-tok": JWT }),
+    handlers: {
+        onConnect: e => { 
+            console.log(e.isAuthenticated /*true*/, e.userId, e.displayName);
+        }
+    }
+}).start();
+```
+
 ### Integration Test Examples
 
 More examples of the `ServerEventClient` can be found in the [TypeScript ServerEventClient Test Suite](https://github.com/ServiceStack/servicestack-client/blob/master/tests/serverevents.spec.ts).
