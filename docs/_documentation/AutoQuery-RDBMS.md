@@ -127,7 +127,7 @@ At this point you can inspect the SqlExpression that AutoQuery has constructed o
 After constructing the query from the Request all that's left is executing it:
 
 ```csharp
-return AutoQuery.Execute(dto, q);
+return AutoQuery.Execute(dto, q, Request);
 ```
 
 As the implementation is trivial we can show the implementation inline:
