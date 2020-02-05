@@ -7,7 +7,7 @@ title: gRPC protoc PHP Client
 
 > YouTube: [youtu.be/lRy3qb-x2Yc](https://youtu.be/lRy3qb-x2Yc)
 
-## PHP Google protoc generated GrpcServiceClient TodoWorld Example
+## PHP protoc generated GrpcServiceClient TodoWorld Example
 
 ### Prerequisites
 

@@ -7,7 +7,7 @@ title: gRPC protoc C# Client
 
 > YouTube: [youtu.be/0TXk9y24NIw](https://youtu.be/0TXk9y24NIw)
 
-## C# Google protoc generated GrpcServiceClient TodoWorld Example
+## C# protoc generated GrpcServiceClient TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

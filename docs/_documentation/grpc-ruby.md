@@ -7,7 +7,7 @@ title: gRPC protoc Ruby Client
 
 > YouTube: [youtu.be/yvLnqgXKYTI](https://youtu.be/yvLnqgXKYTI)
 
-## Ruby Google protoc generated GrpcServicesStub Client TodoWorld Example
+## Ruby protoc generated GrpcServicesStub Client TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

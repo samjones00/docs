@@ -7,7 +7,7 @@ title: gRPC protoc Node.js Client
 
 > YouTube: [youtu.be/QL56lOHiXVM](https://youtu.be/QL56lOHiXVM)
 
-## Node.js Google protoc generated GrpcServicesStub Client TodoWorld Example
+## Node.js protoc generated GrpcServicesStub Client TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

@@ -85,6 +85,8 @@
     - [Overview](/grpc)
     - [SSL Configuration](/grpc-ssl)
     - [C#/F#/VB.NET Generic Clients](/grpc-generic)
+    - [gRPC Flutter](/grpc-flutter)
+    - [gRPC Android](/grpc-android)
     - [gRPC C#](/grpc-csharp)
     - [gRPC Swift](/grpc-swift)
     - [gRPC Java](/grpc-java)

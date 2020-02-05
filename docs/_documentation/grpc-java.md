@@ -7,7 +7,7 @@ title: gRPC protoc Java Client
 
 > YouTube: [youtu.be/pe7oKApToDA](https://youtu.be/pe7oKApToDA)
 
-## Java Google protoc generated GrpcServiceClient TodoWorld Example
+## Java protoc generated GrpcServiceClient TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

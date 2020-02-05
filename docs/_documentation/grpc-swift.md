@@ -7,7 +7,7 @@ title: gRPC protoc Swift Client
 
 > YouTube: [youtu.be/FLHbN_Z9z98](https://youtu.be/FLHbN_Z9z98)
 
-## Swift Google protoc generated GrpcServiceClient TodoWorld Example
+## Swift protoc generated GrpcServiceClient TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

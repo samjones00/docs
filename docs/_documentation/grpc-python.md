@@ -7,7 +7,7 @@ title: gRPC protoc Python Client
 
 > YouTube: [youtu.be/rcDdabAELnA](https://youtu.be/rcDdabAELnA)
 
-## Python Google protoc generated GrpcServicesStub Client TodoWorld Example
+## Python protoc generated GrpcServicesStub Client TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

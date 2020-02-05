@@ -7,7 +7,7 @@ title: gRPC protoc GO Client
 
 > YouTube: [youtu.be/FYA32J1-IA0](https://youtu.be/FYA32J1-IA0)
 
-## Go Google protoc generated GrpcServiceClient TodoWorld Example
+## Go protoc generated GrpcServiceClient TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     

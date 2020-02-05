@@ -7,7 +7,7 @@ title: gRPC protoc Dart Client
 
 > YouTube: [youtu.be/fDARSMNlt50](https://youtu.be/fDARSMNlt50)
 
-## Dart Google protoc generated GrpcServiceClient TodoWorld Example
+## Dart protoc generated GrpcServiceClient TodoWorld Example
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
