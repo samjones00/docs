@@ -255,7 +255,7 @@ var webReq = (HttpWebRequest)WebRequest.Create("http://example.org/upload");
 webReq.Accept = MimeTypes.Json;
 using (var stream = uploadFile.OpenRead())
 {
-    var webRes = webReq.UploadFile(stream, uploadFile.Name, MimeTypes.GetMimeType(uploadFile.Name));
+    webReq.UploadFile(stream, uploadFile.Name, MimeTypes.GetMimeType(uploadFile.Name));
 }
 ```
 
