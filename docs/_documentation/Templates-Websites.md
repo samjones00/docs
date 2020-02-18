@@ -9,11 +9,11 @@ There are 3 templates for each of the different technologies that can be used wi
 
     $ dotnet-new mvc AcmeMvc
 
-Which will create a new .NET Core 2.1 MVC Project called **AcmeMvc**. The Template Names, Source Code and Live Demos for each Website Template is available below:
+Which will create a new .NET Core 3.1 MVC Project called **AcmeMvc**. The Template Names, Source Code and Live Demos for each Website Template is available below:
 
 <table class="table tpl">
 <tr>
-    <th>.NET Core 2.1</th>
+    <th>.NET Core 3.1</th>
     <th>.NET Framework</th>
     <th>Single Page App Templates</th>
 </tr>
@@ -53,12 +53,12 @@ Which will create a new .NET Core 2.1 MVC Project called **AcmeMvc**. The Templa
     <td><a href="https://github.com/NetCoreTemplates/script">script</a></td>
     <td><a href="https://github.com/NetFrameworkTemplates/script-netfx">script-netfx</a></td>
     <th align="center">
-        ServiceStack Sharp Pages Bootstrap Template
+        ServiceStack #Script Pages Bootstrap Template
     </th>
 </tr>
 <tr>
     <td class="tpl-desc" colspan="2">
-        The <code class="highlighter-rouge">templates</code> Project Template is configured to develop Websites using <a href="https://sharpscript.net">#Script</a>, a simpler and cleaner alternative to Razor that lets you utilize simple Template Expressions for evaluating Server logic in <code class="highlighter-rouge">.html</code> pages. Templates doesn’t require any precompilation, is easier to learn and more intuitive for non-programmers that’s more suitable for a <a href="https://sharpscript.net/usecases/">number of use-cases</a>. Use templates if you want an <a href="/releases/v4.5.14#why-templates">alternative to Razor</a> syntax and the heavy machinery required to support it.
+        The <code class="highlighter-rouge">script</code> Project Template is configured to develop Websites using <a href="https://sharpscript.net/docs/sharp-pages">#Script Pages</a>, a simpler and cleaner alternative to Razor that lets you utilize simple #Script Expressions for evaluating Server logic in <code class="highlighter-rouge">.html</code> pages. #Script doesn’t require any precompilation, is easier to learn and more intuitive for non-programmers that’s more suitable for a <a href="https://sharpscript.net/usecases/">number of use-cases</a>. Use <code class="highlighter-rouge">script</code> if you want an <a href="/releases/v4.5.14#why-templates">alternative to Razor</a> syntax and the heavy machinery required to support it.
     </td>
     <td align="center">
         <a href="http://script.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/templates.png" width="450" /></a>
@@ -77,20 +77,20 @@ Both `razor` and `script` project enjoy Hot Reloading where in development a lon
 
     $ dotnet watch run
 
-### .NET Core 2.1 ServiceStack WebApp Template
+### .NET Core 3.1 ServiceStack WebApp Template
 
-The .NET Core 2.1 [sharp-webapp](https://github.com/NetCoreTemplates/sharp-webapp) project template is a pre-built .NET Core 2.1 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+The .NET Core 3.1 [bare-webapp](https://github.com/NetCoreTemplates/bare-webapp) project template is a pre-built .NET Core 3.1 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
 <table class="table">
 <tr>
-    <th>.NET Core 2.1</th>
+    <th>.NET Core 3.1</th>
     <th>Sharp App</th>
 </tr>
 <tr>
     <td><a href="https://github.com/NetCoreTemplates/rockwind-webapp">rockwind-webapp</a></td>
     <td align="center">
-        <a href="http://rockwind-webapp.web-templates.io/"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/sharp-webapp.png" width="650" /></a>
-        <p><a href="http://rockwind-webapp.web-templates.io/">sharp-webapp.web-templates.io</a></p>
+        <a href="http://rockwind-webapp.web-templates.io/"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/bare-webapp.png" width="650" /></a>
+        <p><a href="http://rockwind-webapp.web-templates.io/">rockwind-webapp.web-templates.io</a></p>
     </td>
 </tr>
 </table>

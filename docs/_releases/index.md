@@ -396,9 +396,9 @@ Those who prefer starting from an Empty slate can use the `web` template to crea
 
 ### .NET Core 2.0 ServiceStack WebApp Template
 
-The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [sharp-webapp](https://github.com/NetCoreTemplates/sharp-webapp) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [bare-webapp](https://github.com/NetCoreTemplates/bare-webapp) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
- - .NET Core: [sharp-webapp](https://github.com/NetCoreTemplates/sharp-webapp)
+ - .NET Core: [bare-webapp](https://github.com/NetCoreTemplates/bare-webapp)
  - Live Preview: [rockwind-webapp.web-templates.io](http://rockwind-webapp.web-templates.io)
  
 See [sharpscript.net/docs/sharp-apps](https://sharpscript.net/docs/sharp-apps) to learn the different use-cases made possible with Web Apps.
