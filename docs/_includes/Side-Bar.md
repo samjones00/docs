@@ -199,6 +199,7 @@
     - [TypeScript Client](/typescript-server-events-client)
     - [Java Client](/java-server-events-client)
     - [JavaScript Client](/javascript-server-events-client)
+    - [gRPC Clients](/server-events-grpc)
     - [Redis Server Events](/redis-server-events)
 - ##### Service Gateway
     - [Overview](/service-gateway)

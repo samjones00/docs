@@ -41,6 +41,23 @@ Our native Server Event clients covers the most popular Mobile, Desktop and Serv
 - [JavaScript (jQuery plugin)](/javascript-server-events-client)
     - Web
 
+### gRPC Server Events Clients
+
+In addition to the smart generic HTTP Server Events Clients above, Server Events is also available via a [gRPC Server Streaming Endpoint](/server-events-grpc)
+which opens ServiceStack Server Events open to gRPC's ecosystem of typed generated client proxies, including:
+
+ - [gRPC Flutter](/grpc-flutter)
+ - [gRPC Android](/grpc-android)
+ - [gRPC C#](/grpc-csharp)
+ - [gRPC Swift](/grpc-swift)
+ - [gRPC Java](/grpc-java)
+ - [gRPC Dart](/grpc-dart)
+ - [gRPC GO](/grpc-go)
+ - [gRPC Node.js](/grpc-nodejs)
+ - [gRPC Python](/grpc-python)
+ - [gRPC Ruby](/grpc-ruby)
+ - [gRPC PHP](/grpc-php)
+ 
 Our C#, TypeScript and Java Server Event Clients are ports with full feature parity as C#, offering the same functionality behind idiomatic APIs for their respective programming language. The Integration test suite has also been ported to each platform to assert behavior conformance and provides a good reference showcasing the aesthetics of using Server Events Clients in each language:
 
  - [C# Server Events Integration Tests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/ServerEventTests.cs)
