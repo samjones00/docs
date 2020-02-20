@@ -1,37 +1,31 @@
 ---
-title: Script and Razor Server UI Controls
-slug: server-ui-controls
+title: Razor UI Controls
+slug: razor-ui-controls
 ---
 
-Deprecated. Moved to [#Script Pages UI Controls](http://localhost:5000/docs/sharp-pages#ui-controls) and
-[Razor UI Controls](/razor-ui-controls) dedicated docs.
-
----
-
-Both [#Script Pages](https://sharpscript.net/docs/sharp-pages) and [ServiceStack.Razor](/netcore-razor) Share the same implementations for
-their Server Controls which are utilized in [ASP.NET Core Project Templates](/web-new) and [World Validation](/world-validation) Application.
+The Razor UI Controls are utilized in new [Razor project templates](/templates-websites) and
+the [World Validation](/world-validation#server-rendered-html-uis) Application.
 
 ### UI Component List
 
-Currently the component libraries include common Bootstrap UI Form Controls and Navigation Components, here's a 
-side-by-side comparison displaying the names for the different Control for each Server Control:
+Currently the component libraries include common Bootstrap UI Form Controls and Navigation Components:
 
 <div class='markdown-body pb-3'>
 {% capture table %}
-| Control           | #Script Pages                 | ServiceStack.Razor                        |
-| - | - | - |
-| ErrorSummary      | validationSummary             | @Html.ValidationSummary                   |
-| ValidationSuccess | validationSuccess             | @Html.ValidationSuccess                   |
-| Input             | formInput                     | @Html.FormInput                           |
-| TextArea          | formTextarea                  | @Html.FormTextarea                        |
-| Select            | formSelect                    | @Html.FormSelect                          |
-| CheckBox          | formInput({type:'checkbox'})  | @Html.FormInput(new { type = "checkbox"}) |
-| HiddenInputs      | htmlHiddenInputs              | @Html.HiddenInputs                        |
-| SvgImage          | svgImage                      | @Html.SvgImage                            |
-| Nav               | nav                           | @Html.Nav                                 |
-| Navbar            | navbar                        | @Html.Navbar                              |
-| NavLink           | navLink                       | @Html.NavLink                             |
-| NavButtonGroup    | navButtonGroup                | @Html.NavButtonGroup                      |
+| Control                       | Description |
+| - | - |
+| @Html.ValidationSummary                   | Show validation summary error message unless there's an error in specified fields |
+| @Html.ValidationSuccess                   | Display a "Success Alert Box" |
+| @Html.FormInput                           | Display a `<input type="text"/>` UI Control |
+| @Html.FormTextarea                        | Display a `<textarea/>` UI Control |
+| @Html.FormSelect                          | Display a `<select/>` UI Control |
+| @Html.FormInput(new { type = "checkbox"}) | Display a `<input type="checkbox"/>` UI Control |
+| @Html.HiddenInputs                        | Emit HTML `<input type="hidden"/>` field for each specified Key/Value pair entry |
+| @Html.SvgImage                            | Return `<svg/>` markup for the named image |
+| @Html.Nav                                 | Display a list of NavItem's |
+| @Html.Navbar                              | Display the `navbar` main menu |
+| @Html.NavLink                             | Display a `nav-link` nav-item |
+| @Html.NavButtonGroup                      | Display a list of NavItem's `btn-group` |
 {% endcapture %}
 {{ table | markdownify }}
 </div>
@@ -40,38 +34,6 @@ side-by-side comparison displaying the names for the different Control for each 
 
 The Bootstrap UI form controls include built-in support for validation where they can render validation errors from ServiceStack's
 `ResponseStatus` object, e.g the [Login Page](/world-validation#login-page) in World Validation:
-
-### `#Script` Pages
-
-```html
-{% raw %}<form action="/auth/credentials" method="post" class="col-lg-4">
-    <div class="form-group">
-        {{ ['userName','password'] | validationSummary({class:'alert alert-warning'}) }}
-        {{ { continue: qs.continue ?? '/server/', errorView:'/server/login' } | htmlHiddenInputs }}
-    </div>
-    <div class="form-group">
-        {{ {id:'userName'} 
-           | formInput({label:'Email',help:'Email you signed up with',size:'lg'}) }}
-    </div>
-    <div class="form-group">
-        {{ {id:'password',type:'password'} 
-           | formInput({label:'Password',help:'6 characters or more',size:'lg',preserveValue:false}) }}
-    </div>
-    <div class="form-group">
-        {{ {id:'rememberMe',type:'checkbox',checked:true} | formInput({label:'Remember Me'}) }}
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-lg btn-primary">Login</button>
-    </div>
-    <div class="form-group">
-        <a class="lnk" href="/server/register">Register New User</a>
-    </div>
-</form>{% endraw %}
-```
-
-### ServiceStack.Razor
-
-The equivalent implementation in Razor:
 
 ```cs
 <form action="/auth/credentials" method="post" class="col-lg-4">
@@ -129,9 +91,15 @@ What it looks like after submitting an empty form with Server Exception Errors r
 
 ### Form Control Properties
 
-Essentially both `#Script` and `Razor` have identical properties but implemented idiomatically for each control where `#Script` uses 
-**camelCase** names and JS Object literals. The first (aka target) argument is for attributes you want to add to the HTML `<input/>` Element
-whilst the 2nd Argument is used to customize any of its other high-level features:
+The **Razor** controls uses anonymous objects and camelCase properties for its unbounded HTML Element Attribute List 
+for attributes you want to add to the underlying HTML <input/> Element and a Typed `InputOptions` Class to specify the controls other 
+high-level features, typically like:
+
+```cs
+@Html.ControlName(new { /*htmlAttrs*/ }, new InputOptions { ... })
+```
+
+The typed `InputOptions` class supports the following features:
 
 ```csharp
 /// High-level Input options for rendering HTML Input controls
@@ -176,46 +144,7 @@ public class InputOptions
 
 The [Contacts Page](/world-validation#contacts-page) shows a more complete example with a number of different UI Controls. 
 
-#### #Script Pages
-
-```html
-{% raw %}<form action="/contacts" method="post" class="col-lg-4">
-    <div class="form-group">
-        {{ 'title,name,color,age,filmGenres,agree' | validationSummary }}
-    </div>
-    <div class="form-group">
-        {{ {id:'title',type:'radio'} | formInput({values:contactTitles,inline:true}) }}
-    </div>
-    <div class="form-group">
-        {{ {id:'name',placeholder:'Name'} | formInput({label:'Full Name',help:'Your first and last name'}) }}
-    </div>
-    <div class="form-group">
-        {{ {id:'color',class:'col-4'}
-           | formSelect({label:'Favorite color',values:{'', ...contactColors}}) }}
-    </div>
-    <div class="form-group">
-        {{ {id:'filmGenres',type:'checkbox'} 
-          | formInput({label:'Favorite Film Genres',values:contactGenres,help:"choose one or more"}) }}
-    </div>
-    <div class="form-group">
-        {{ {id:'age',type:'number',min:13,placeholder:'Age',class:'col-3'} | formInput }}
-    </div>
-    <div class="form-group">
-        {{ {id:'agree',type:'checkbox'} | formInput({label:'Agree to terms and conditions'}) }}
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">Add Contact</button>
-        <a href="/server/contacts/">reset</a>
-    </div>
-</form>{% endraw %}
-```
-
-Whereas **Razor** uses anonymous objects for properties that can be unbounded like a HTML Element Attribute List and a Typed Class 
-like `InputOptions` to specify the controls other high-level features, e.g:
-
-#### ServiceStack.Razor
-
-```html
+```cs
 <form action="/contacts" method="post" class="col-lg-4">
     <div class="form-group">
         @Html.ValidationSummary(new[]{ "title","name","color","age","filmGenres","agree" })
@@ -320,8 +249,7 @@ public object Any(CreateContact request)
 
 ## Contacts Page UI
 
-The Contacts Page is representative of a more complex page that utilizes a variety of different form controls where the same page is also responsible
-for rendering the list of existing contacts:
+The Contacts Page is representative of a more complex page that utilizes a variety of different form controls where the same page is also responsible for rendering the list of existing contacts:
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/apps/Validation/contacts-validation.png)
 
@@ -334,18 +262,15 @@ To view the complete implementation in context checkout [World Validation Server
 ## Navigation Controls
 
 The Server Navigation Controls are used to render your Apps [Unified Navigation](https://docs.servicestack.net/navigation#navbar)
-
-### `#Script` Pages
-
-In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can use render the `navbar` and `navButtonGroup` methods to render NavItems:
+where you can use the `@Html.Navbar()` and `@Html.NavButtonGroup()` methods to render NavItems:
 
 #### Navbar
 
 You can render the **main menu** navigation using the 
-[navbar](https://github.com/NetCoreTemplates/sharp/blob/50b77454950ef0590042e08cf327aae602a2ab0a/MyApp/wwwroot/_layout.html#L30) script method:
+[Navbar](https://github.com/NetCoreTemplates/razor/blob/e6b2bb82c81fc8fb07eff94e7afbdd42ded2569f/MyApp/Views/Shared/_Layout.cshtml#L52) HTML Helper:
 
-```hbs
-{% raw %}{{ navbar }}{% endraw %}
+```cs
+@Html.Navbar()
 ```
 
 Which by default renders the `View.NavItems` main navigation, using the default `NavOptions` and User Attributes (if authenticated): 
@@ -354,24 +279,29 @@ Which by default renders the `View.NavItems` main navigation, using the default 
 
 You can also render a **different Navigation List** with:
 
-```hbs
-{% raw %}{{ navItems('submenu').navbar() }}{% endraw %}
+```cs
+@Html.Navbar(Html.GetNavItems("submenu"))
 ```
 
 Which can be customized using the different `NavOptions` properties above, in camelCase:
 
-```hbs
-{% raw %}{{ navItems('submenu').navbar({ navClass: 'navbar-nav navbar-light bg-light' }) }}{% endraw %}
+```cs
+@Html.Navbar(Html.GetNavItems("submenu"), new NavOptions {
+    NavClass = "navbar-nav navbar-light bg-light" 
+})
 ```
 
 #### Button group
 
-The `navButtonGroup` script can render NavItems in a button group, e.g. the
-[OAuth buttons](https://github.com/NetCoreTemplates/sharp/blob/50b77454950ef0590042e08cf327aae602a2ab0a/MyApp/wwwroot/login.html#L46)
+The `NavButtonGroup` HTML Helper can render NavItems in a button group, e.g. the
+[OAuth buttons](https://github.com/NetCoreTemplates/razor/blob/ed70e0d9d858e6dc05a267dfc1cd281b70311589/MyApp/wwwroot/login.cshtml#L48-L51)
 are rendered with:
 
-```hbs
-{% raw %}{{ 'auth'.navItems().navButtonGroup({ navClass: '', navItemClass: 'btn btn-block btn-lg' }) }}{% endraw %}
+```cs
+@Html.NavButtonGroup(Html.GetNavItems("auth"), new NavOptions {
+    NavClass = "",
+    NavItemClass = "btn btn-block btn-lg",
+})
 ```
 
 Which renders a vertical, spaced list of buttons which look like:
@@ -406,7 +336,7 @@ The same server controls are available in ServiceStack.Razor Apps as HTML Helper
 
 ### NavOptions Properties
 
-The `NavItem` classes capture the Navigation information which is used together with the `NavOptions` class below:
+Each Nav UI Control can be further customized by overriding the properties on the typed `NavOptions` class: 
 
 ```csharp
 public class NavOptions
@@ -434,5 +364,3 @@ public class NavOptions
     public string ChildNavMenuItemClass { get; set; }
 }
 ```
-
-Use **camelCase** when specifying nav options in `#Script` controls.

@@ -35,7 +35,6 @@
     - [Angular Templates](/templates-angular)
     - [Desktop Templates](/templates-desktop)
     - [Vue, React, Angular Components](/spa-components)
-    - [#Script & Razor Server UI Controls](/server-ui-controls)
     - [Tour of Webpack](/tour-of-webpack)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
@@ -133,6 +132,7 @@
 - ##### .NET Core
     - [Overview](/netcore)
     - [Smart MVC Razor Pages](/netcore-razor)
+    - [Razor UI Controls](/razor-ui-controls)
     - [.NET Core Clients](/netcore-clients)
     - [.NET Core Redis](/netcore-redis)
     - [Deploy .NET Core Apps to AWS ECS](/deploy-netcore-docker-aws-ecs)
