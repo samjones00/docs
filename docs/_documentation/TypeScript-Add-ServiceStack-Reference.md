@@ -7,6 +7,10 @@ title: TypeScript Add ServiceStack Reference
 
 ServiceStack's **Add ServiceStack Reference** feature allows clients to generate Native Types from directly within VS.NET using [ServiceStackVS VS.NET Extension](/create-your-first-webservice) - providing a simple way to give clients typed access to your ServiceStack Services.
 
+> React Native Android JavaScript Example using VS Code
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/T3KTDPdovOw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### First class development experience
 
 [TypeScript](https://www.typescriptlang.org/) has become a core part of our overall recommended solution 
@@ -51,6 +55,20 @@ try {
 
 Where the `r` param in the returned `then()` Promise callback is typed to `StoreGistResponse` DTO Type.
 
+### Supports JavaScript only Environments
+
+Despite generating Typed TypeScript DTOs, the generic `JsonServiceClient` and generated TypeScript DTOs can also be utilized in
+JavaScript-Only development environments like [React Native](https://youtu.be/T3KTDPdovOw) or in the [Nuxt Templates](/templates-nuxt)
+which doesn't use TypeScript in its build, but can be easily integrated by adding an npm script to using the 
+[dotnet tools](/dotnet-tool) to generate the DTOs and the global `typescript` npm tool to compile it into the module we want,
+which in React Native projects would look like:
+
+```json
+"scripts": {
+    "dtos": "typescript-ref && tsc --lib es6 dtos.ts",
+}
+```
+
 ## TypeScript ServiceClient
 
 The `@servicestack/client` is a clean "jQuery-free" implementation based on JavaScript's new 
@@ -66,6 +84,8 @@ The easiest way to use TypeScript with ServiceStack is to start with one of
 Other TypeScript or ES6 projects can install `@servicestack/client` from npm with:
 
     npm install --save @servicestack/client
+
+See [JavaScript Client](/javascript-client) for how to use `JsonServiceClient` in non-npm or non TypeScript projects.
 
 #### Enabling TypeScript async/await 
 

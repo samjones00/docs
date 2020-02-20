@@ -9,7 +9,8 @@ Although in addition to this the [ServiceStack.Client](http://nuget.org/packages
 
   * [C#/.NET Client](/csharp-client)
   * [TypeScript Client](/typescript-add-servicestack-reference)
-  * [Java/Kotlin Client](/java-add-servicestack-reference)
+  * [Kotlin Client](/kotlin-add-servicestack-reference)
+  * [Java Client](/java-add-servicestack-reference)
   * [Swift Client](/swift-add-servicestack-reference)
   * [Dart Client](/dart-add-servicestack-reference#example-usage)
   * [JavaScript Client](/javascript-client)

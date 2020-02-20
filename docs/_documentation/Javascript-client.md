@@ -32,8 +32,10 @@ polyfill for W3C's [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetc
 
 Hosted on unpkg.com CDN:
 
- - [index.js](https://unpkg.com/@servicestack/client/src/index.js)
- - [index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts)
+ - [index.js](https://unpkg.com/@servicestack/client/src/index.js) (`https://unpkg.com/@servicestack/client/src/index.js`)
+ - [index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts) (`https://unpkg.com/@servicestack/client/src/index.d.ts`)
+
+The npm-free [Vue and React lite Templates](/templates-lite) are some examples that makes use of the stand-alone `@servicestack/client` libraries.
 
 ### Using TypeScript JsonServiceClient in JavaScript projects
 

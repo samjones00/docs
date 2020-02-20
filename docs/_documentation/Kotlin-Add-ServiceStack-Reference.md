@@ -26,6 +26,10 @@ support for Kotlin with IDE integration in
 [IntelliJ IDEA](https://www.jetbrains.com/idea/) where App Devlopers can create and update an end-to-end typed 
 API with just a Menu Item click - enabling a highly-productive workflow for consuming ServiceStack Services.
 
+> Kotlin Android Example using Android Studio
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/nmB0NaI9-3k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### Kotlin Android Resources
 
 To help getting started with Kotlin, we'll maintain links to useful resources helping to develop Android Apps 

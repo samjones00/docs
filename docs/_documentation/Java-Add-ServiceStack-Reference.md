@@ -9,6 +9,10 @@ Like the existing IDE integrations before it, the ServiceStack IDEA plugin provi
 
 The **ServiceStackIDEA** plugin also includes support for **IntelliJ Maven projects** giving Java devs a productive and familiar development experience whether they're creating Android Apps or pure cross-platform Java clients.
 
+> Java Android Example using Android Studio
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/xg677weFef4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 #### Install ServiceStack IDEA from the Plugin repository
 
 The ServiceStack IDEA is now available to install directly from within IntelliJ or Android Studio IDE Plugins Repository, to Install Go to: 

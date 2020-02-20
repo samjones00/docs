@@ -7,6 +7,10 @@ title: Dart Add ServiceStack Reference
 
 ServiceStack's **Add ServiceStack Reference** feature allows clients to generate Native Types from a simple [@servicestack/cli command-line utility](https://github.com/ServiceStack/servicestack-cli#servicestackcli) - providing a simple way to give clients typed access to your ServiceStack Services.
 
+> Dart Android Example using Android Studio
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/EwOwbZ9mUZk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### Dart ServiceStack Reference
 
 Dart ServiceStack Reference supports **all Dart 2.0 platforms**, including Flutter and AngularDart or Dart Web Apps - in the same optimal development workflow pioneered in [Add ServiceStack Reference](/add-servicestack-reference) where it doesn't requiring any additional tooling, transformers or build steps. 
