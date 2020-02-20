@@ -92,7 +92,7 @@ What it looks like after submitting an empty form with Server Exception Errors r
 ### Form Control Properties
 
 The **Razor** controls uses anonymous objects and camelCase properties for its unbounded HTML Element Attribute List 
-for attributes you want to add to the underlying HTML <input/> Element and a Typed `InputOptions` Class to specify the controls other 
+for attributes you want to add to the underlying HTML `<input/>` Element and a Typed `InputOptions` Class to specify the controls other 
 high-level features, typically like:
 
 ```cs
