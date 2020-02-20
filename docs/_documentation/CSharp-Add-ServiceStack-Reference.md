@@ -9,6 +9,10 @@ The primary and most popular [Add ServiceStack Reference](/add-servicestack-refe
 
 Our goal with Native Types is to provide an alternative for sharing DTO dlls, that can enable a better dev workflow for external clients who are now able to generate (and update) Typed APIs for your Services from a remote url - reducing the burden and effort required to consume ServiceStack Services whilst benefiting from clients native language strong-typing feedback.
 
+> C# Xamarin.Android Example in VS.NET
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/EaUcPXVeLpk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ## [Add ServiceStack Reference](/add-servicestack-reference)
 
 The easiest way to Add a ServiceStack reference to your project is to right-click on your project to bring up [ServiceStackVS's](/create-your-first-webservice) `Add ServiceStack Reference` context-menu item. This opens a dialog where you can add the url of the ServiceStack instance you want to typed DTO's for, as well as the name of the DTO source file that's added to your project.

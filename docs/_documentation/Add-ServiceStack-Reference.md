@@ -220,7 +220,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
 
 > C# Xamarin.Android Example in VS.NET
 
-![C# Android Client example](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/android-add-ref-demo.gif)
+<iframe width="896" height="525" src="https://www.youtube.com/embed/EaUcPXVeLpk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
 
