@@ -301,6 +301,13 @@ container.Register<IAuthRepository>(c =>
     });
 ```
 
+### Mix in Auth Repository
+
+The easiest way to configure a User Auth Repository in your [Modular Startup](/modular-startup) App that new ASP.NET Core templates support
+is to [mix them in](/mix-tool#composable-features), e.g. you can configure to use an OrmLiteAuthRepository using SQL Server with:
+
+    $ x mix auth-db sqlserver
+
 ### Session Persistence
 
 Once authenticated the **AuthUserSession** model is populated and stored in the Cache using one of ServiceStack's [supported Caching providers](/caching). ServiceStack's Sessions simply uses the 
