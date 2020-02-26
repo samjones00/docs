@@ -308,6 +308,14 @@ is to [mix them in](/mix-tool#composable-features), e.g. you can configure to us
 
     $ x mix auth-db sqlserver
 
+You can view other Auth Repository "mix ins" available with:
+
+    $ x mix #auth
+
+and which RDBMS's and NoSQL Data Stores can be easily configured with a mix in:
+
+    $ x mix #db
+
 ### Session Persistence
 
 Once authenticated the **AuthUserSession** model is populated and stored in the Cache using one of ServiceStack's [supported Caching providers](/caching). ServiceStack's Sessions simply uses the 
