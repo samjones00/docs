@@ -11,7 +11,7 @@ Instead of using techniques like virtual DOM diffing, Svelte writes code that su
 
 ## Svelte .NET Core Single Page App Templates
 
-.NET Core 2.1 svelte v3 rollup App Project Template integrated with ServiceStack Services and built-in Routing, User Registration and Sign Up forms.
+.NET Core 3.1 svelte v3 rollup App Project Template integrated with ServiceStack Services and built-in Routing, User Registration and Sign Up forms.
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/svelte-spa.png)](http://svelte-spa.web-templates.io/)
 

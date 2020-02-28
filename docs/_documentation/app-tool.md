@@ -738,7 +738,7 @@ into the rich colorful world of SVG is complete:
 To share our digital masterpiece with the world we just need to publish it in a GitHub repo, which I've already done for my Spirals app at: 
 [https://github.com/mythz/spirals](github.com/mythz/spirals).
 
-Anyone will then be able to install your App by first downloading the `app` tool themselves ([.NET Core 2.1 Required](https://www.microsoft.com/net/download/dotnet-core/2.1)):
+Anyone will then be able to install your App by first downloading the `app` tool themselves ([.NET Core 3.1 Required](https://www.microsoft.com/net/download/dotnet-core/3.1)):
 
     $ dotnet tool install -g app
 
@@ -778,7 +778,7 @@ executable with:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-publish-exe.png)
 
-This downloads the [WebWin](https://github.com/ServiceStack/WebWin) self-contained .NET Core 2.1 binaries and copies then to `publish/win` folder with 
+This downloads the [WebWin](https://github.com/ServiceStack/WebWin) self-contained .NET Core 3.1 binaries and copies then to `publish/win` folder with 
 the app copied to `publish/app`.
 
 This publishing option includes a self-contained .NET Core with all `app` binaries which compresses to **121 MB** in a `.zip` or **83 MB** in 7-zip `.7z` archive.

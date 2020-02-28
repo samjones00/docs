@@ -15,13 +15,13 @@ dotnet tools which can be updated to the latest version with:
 
     $ dotnet tool update -g x
 
-.NET Core 2.1:
-
-    $ dotnet tool update -g web
-
 .NET Core 3.1 / Windows x64:
 
     $ dotnet tool update -g app
+
+.NET Core 2.1:
+
+    $ dotnet tool update -g web
 
 ### mix-enabled dotnet tools
 

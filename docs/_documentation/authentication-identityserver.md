@@ -3,7 +3,7 @@ slug: authentication-identityserver
 title: Using IdentityServer4 Auth in ServiceStack
 ---
 
-[mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver) .NET Core 2.1 MVC Website integrated with IdentityServer4 Auth and ServiceStack:
+[mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver) .NET Core 3.1 MVC Website integrated with IdentityServer4 Auth and ServiceStack:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvcidentityserver.png)](https://github.com/NetCoreTemplates/mvcidentityserver)
 

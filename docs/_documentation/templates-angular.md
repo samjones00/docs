@@ -15,13 +15,13 @@ See the documentation in each project for more info on features of each template
 
 ### [Angular 8 SPA Template](https://github.com/NetCoreTemplates/angular-spa)
 
-.NET Core 2.1 Angular 8 project generated with [Angular CLI](https://github.com/angular/angular-spa).
+.NET Core 3.1 Angular 8 project generated with [Angular CLI](https://github.com/angular/angular-spa).
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/angular-spa.png)](http://angular-spa.web-templates.io/)
 
 > Browse [source code](https://github.com/NetCoreTemplates/angular-spa), view live demo [angular-spa.web-templates.io](http://angular-spa.web-templates.io) and install with [web new](/web-new):
 
-Create new Angular 8 Project for .NET Core 2.1:
+Create new Angular 8 Project for .NET Core 3.1:
 
     $ web new angular-spa ProjectName
 
@@ -46,13 +46,13 @@ this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r =
 
 ### [Angular4 and Material Design Lite SPA Template](https://github.com/NetCoreTemplates/angular-lite-spa)
 
-.NET Core 2.1 Angular4 and Material Design Lite Webpack App Template:
+.NET Core 3.1 Angular4 and Material Design Lite Webpack App Template:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/angular-lite-spa.png)](http://angular-lite-spa.web-templates.io/)
 
 > Browse [source code](https://github.com/NetCoreTemplates/angular-lite-spa), view Live Demo [angular-lite-spa.web-templates.io](http://angular-lite-spa.web-templates.io) and install with [web new](/web-new):
 
-Create new Angular 4 Project for .NET Core 2.1:
+Create new Angular 4 Project for .NET Core 3.1:
 
     $ web new angular-lite-spa ProjectName
 

@@ -23,7 +23,7 @@ Bootstrapped with [create-react-app](https://github.com/facebook/create-react-ap
 
 > Live Demo: [react-spa.web-templates.io](http://react-spa.web-templates.io)
 
-Create new React 16 Project for .NET Core 2.1:
+Create new React 16 Project for .NET Core 3.1:
 
     $ web new react-spa ProjectName
 

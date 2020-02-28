@@ -69,22 +69,22 @@ running at **~50% Memory Utilization** and **<1% CPU Utilization** in its curren
 
 Thanks to ServiceStack's high-level host agnostic API and our approach to decouple from concrete HTTP abstractions behind lightweight `IRequest` interfaces, ServiceStack projects enjoy near perfect code reuse, which allows the same ServiceStack Services to be able to run on ASP.NET, HttpListener SelfHosts, SOAP Endpoints, multiple MQ Hosts and .NET Core Apps. The [HelloMobile Server Hosts](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) shows an example of this where the same [AppHost Configuration and WebServices implementation](https://github.com/ServiceStackApps/HelloMobile/blob/master/src/Server.Common/WebServices.cs) is used in all:
 
- - .NET Core 2.1 Server
+ - .NET Core 3.1 Server
  - ASP.NET Core running on .NET Framework
  - ASP.NET Web App (.NET Framework)
  - HttpListener Self-Host (.NET Framework)
  
 The primary advantage of this is simplicity, in both effort and cognitive overhead for creating Services that target multiple platforms, reuse of existing knowledge and investments in using ServiceStack libraries and features as well as significantly reduced migration efforts for porting existing .NET Framework code-bases to run on .NET Core where it enjoys near perfect source code compatibility. 
  
-ServiceStack's exceptional source compatibility is visible in our new .NET Core 2.1 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
+ServiceStack's exceptional source compatibility is visible in our new .NET Core 3.1 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
 
 The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
 
-## New .NET Core 2.1 Project Templates
+## New .NET Core 3.1 Project Templates
  
-There are **11 .NET Core 2.1 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.1 template has an equivalent .NET Framework template except for ServiceStack [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 2.1 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
+There are **11 .NET Core 3.1 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 3.1 template has an equivalent .NET Framework template except for ServiceStack [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 3.1 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
-All .NET Core 2.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [web-new](/web-new) command-line utility, installable from npm with:
+All .NET Core 3.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [web-new](/web-new) command-line utility, installable from npm with:
  
     $ dotnet tool install --global web 
  
@@ -626,7 +626,7 @@ The smaller footprint required by the `aspnetcore` runtime reduced the footprint
 
 ### .NET Core Web Apps
 
-.NET Core 2.1 is also used to enable [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is a new approach to dramatically simplify .NET Wep App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
+.NET Core 3.1 is also used to enable [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is a new approach to dramatically simplify .NET Wep App development and provide the most productive development experience possible whilst maximizing reuse and component sharing. 
 
 Web Apps let you develop dynamic websites without needing to write any C# code or perform any app builds which dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [ServiceStack #Script Syntax](https://sharpscript.net/docs/syntax) and [what scripts are available](https://sharpscript.net/docs/filters-reference) to call. Because of #Script's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript devs despite calling and binding directly to .NET APIs behind the scenes.
 

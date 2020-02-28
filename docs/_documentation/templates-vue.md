@@ -23,7 +23,7 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
  > Live Demo: [vue-spa.web-templates.io](http://vue-spa.web-templates.io)
 
-Create new Vue 2.5 Project for .NET Core 2.1:
+Create new Vue 2.5 Project for .NET Core 3.1:
 
     $ web new vue-spa ProjectName
 
@@ -39,7 +39,7 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/) and the [vuetify cli plugi
 
  > Live Demo: [vuetify-spa.web-templates.io](http://vuetify-spa.web-templates.io)
 
-Create new Vuetify Project for .NET Core 2.1:
+Create new Vuetify Project for .NET Core 3.1:
 
     $ web new vuetify-spa ProjectName
 
@@ -55,7 +55,7 @@ Bootstrapped with [Nuxt.js starter template](https://nuxtjs.org/guide/installati
 
  > Live Demo: [vue-nuxt.web-templates.io](http://vue-nuxt.web-templates.io)
 
-Create new Nuxt.js v1.4.2 Project for .NET Core 2.1:
+Create new Nuxt.js v1.4.2 Project for .NET Core 3.1:
 
     $ web new vue-nuxt ProjectName
 
@@ -71,7 +71,7 @@ Bootstrapped with [Nuxt.js + Vuetify.js starter template](https://github.com/vue
 
  > Live Demo: [vuetify-nuxt.web-templates.io](http://vuetify-nuxt.web-templates.io)
 
-Create new Nuxt Vuetify Project for .NET Core 2.1:
+Create new Nuxt Vuetify Project for .NET Core 3.1:
 
     $ web new vuetify-nuxt ProjectName
 

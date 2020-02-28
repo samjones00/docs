@@ -18,24 +18,24 @@ Click on the template name below to view a Live Demo and contents of each projec
 {% capture netcore %}
 | .NET Core C# Templates ||
 |-|-|
-| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 2.1 Angular 8 CLI Bootstrap App |
-| [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 2.1 Aurelia CLI Bootstrap App |
-| [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET Core 2.1 Parcel TypeScript App |
-| [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET Core 2.1 simple + lite (npm-free) React SPA using TypeScript |
-| [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET Core 2.1 React Create App CLI Bootstrap App |
-| [vue-lite](https://github.com/NetCoreTemplates/vue-lite)           | .NET Core 2.1 simple + lite (npm-free) Vue SPA using TypeScript |
-| [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)           | .NET Core 2.1 Nuxt.js SPA App with Bootstrap |
-| [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET Core 2.1 Vue CLI Bootstrap App |
-| [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)       | .NET Core 2.1 Nuxt.js SPA App with Material Vuetify |
-| [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET Core 2.1 Vue CLI App with Material Vuetify |
-| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 2.1 Angular 4 Material Design Lite Webpack App |
+| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 3.1 Angular 8 CLI Bootstrap App |
+| [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 3.1 Aurelia CLI Bootstrap App |
+| [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET Core 3.1 Parcel TypeScript App |
+| [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET Core 3.1 simple + lite (npm-free) React SPA using TypeScript |
+| [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET Core 3.1 React Create App CLI Bootstrap App |
+| [vue-lite](https://github.com/NetCoreTemplates/vue-lite)           | .NET Core 3.1 simple + lite (npm-free) Vue SPA using TypeScript |
+| [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)           | .NET Core 3.1 Nuxt.js SPA App with Bootstrap |
+| [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET Core 3.1 Vue CLI Bootstrap App |
+| [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)       | .NET Core 3.1 Nuxt.js SPA App with Material Vuetify |
+| [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET Core 3.1 Vue CLI App with Material Vuetify |
+| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 3.1 Angular 4 Material Design Lite Webpack App |
 {% endcapture %}
 
 <div class='markdown-body pb-3'>
 {{ netcore | markdownify }}
 </div>
 
-The .NET Core 2.1 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your preferred C# IDE of VS.NET, VS Code or Rider.
+The .NET Core 3.1 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your preferred C# IDE of VS.NET, VS Code or Rider.
 
 {% capture netfx %}
 | .NET Framework C# Templates ||
@@ -257,7 +257,7 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
  > Live Demo: [vue-spa.web-templates.io](http://vue-spa.web-templates.io)
 
-Create new Vue 2.5 Project for .NET Core 2.1:
+Create new Vue 2.5 Project for .NET Core 3.1:
 
     $ dotnet-new vue-spa ProjectName
 
@@ -273,7 +273,7 @@ Bootstrapped with [create-react-app](https://github.com/facebook/create-react-ap
 
 > Live Demo: [react-spa.web-templates.io](http://react-spa.web-templates.io)
 
-Create new React 16 Project for .NET Core 2.1:
+Create new React 16 Project for .NET Core 3.1:
 
     $ dotnet-new react-spa ProjectName
 
@@ -289,7 +289,7 @@ Bootstrapped with [Angular CLI](https://cli.angular.io).
 
 > Live Demo: [angular-spa.web-templates.io](http://angular-spa.web-templates.io)
 
-Create new Angular 8 Project for .NET Core 2.1:
+Create new Angular 8 Project for .NET Core 3.1:
 
     $ dotnet-new angular-spa ProjectName
 
@@ -305,7 +305,7 @@ Bootstrapped with [Aurelia CLI](https://aurelia.io/docs/build-systems/aurelia-cl
 
 > Live Demo: [aurelia-spa.web-templates.io](http://aurelia-spa.web-templates.io)
 
-Create new Aurelia Project for .NET Core 2.1:
+Create new Aurelia Project for .NET Core 3.1:
 
     $ dotnet-new aurelia-spa ProjectName
 
@@ -321,7 +321,7 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/) and the [vuetify cli plugi
 
  > Live Demo: [vuetify-spa.web-templates.io](http://vuetify-spa.web-templates.io)
 
-Create new Vuetify Project for .NET Core 2.1:
+Create new Vuetify Project for .NET Core 3.1:
 
     $ dotnet-new vuetify-spa ProjectName
 
@@ -337,7 +337,7 @@ Bootstrapped with [Nuxt.js starter template](https://nuxtjs.org/guide/installati
 
  > Live Demo: [vue-nuxt.web-templates.io](http://vue-nuxt.web-templates.io)
 
-Create new Nuxt.js v1.4.2 Project for .NET Core 2.1:
+Create new Nuxt.js v1.4.2 Project for .NET Core 3.1:
 
     $ dotnet-new vue-nuxt ProjectName
 
@@ -353,7 +353,7 @@ Bootstrapped with [Nuxt.js + Vuetify.js starter template](https://github.com/vue
 
  > Live Demo: [vuetify-nuxt.web-templates.io](http://vuetify-nuxt.web-templates.io)
 
-Create new Nuxt Vuetify Project for .NET Core 2.1:
+Create new Nuxt Vuetify Project for .NET Core 3.1:
 
     $ dotnet-new vuetify-nuxt ProjectName
 
@@ -464,7 +464,7 @@ resulting HTML minification in optimized production builds - enabling simplified
 
 ### Running .NET Core Templates in Visual Studio IIS Express
 
-Currently VS.NET doesn't support .NET Core 2.1 multiple bindings i.e. `http://localhost:5000/;https://localhost:5001/` which all .NET Core Templates
+Currently VS.NET doesn't support .NET Core 3.1 multiple bindings i.e. `http://localhost:5000/;https://localhost:5001/` which all .NET Core Templates
 are configured with. To run in IIS Express change it to specify only 1 binding:
 
 ![](https://forums.servicestack.net/uploads/default/931/0a2191581d2774c6.png)
