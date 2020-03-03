@@ -19,7 +19,7 @@ can be installed in your
 with:
 
     dependencies {
-        compile 'net.servicestack:android:1.0.41'
+        implementation 'net.servicestack:android:1.0.41'
         ...
     }
 
