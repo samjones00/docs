@@ -91,9 +91,9 @@ namespace MyApp
     {
         private static readonly HttpHandlerFactory Factory = new HttpHandlerFactory();
 
-        public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
+        public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string path)
         {
-          var handler = Factory.GetHandler(context, requestType, url, pathTranslated);
+          var handler = Factory.GetHandler(context, requestType, url, path);
           return handler == null ? null : new SessionHandlerDecorator((IHttpAsyncHandler)handler);
         }
 
