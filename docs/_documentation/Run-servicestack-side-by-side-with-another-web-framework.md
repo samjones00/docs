@@ -79,13 +79,53 @@ public override void Configure(Container container)
     preCondition="integratedMode" resourceType="Unspecified" allowPathInfo="true" />
 ```
 
-**Due to Mono bug you need to set up explicitly ASP.NET auth to 'windows' mode** when using ServiceStack auth on Mono, otherwise auth will be always redirected to /login.aspx insted of getting nice 401 (invalid username or password) response.
+### Enable ASP.NET Sessions
 
-Add to `web.config` under `system.web` section.
+If you want ServiceStack Services to be able to access ASP.NET Session you can use a decorated `IHttpHandlerFactory` below
+that returns a `SessionHandlerDecorator` that's decorated with `IRequiresSessionState` to tell ASP.NET to enable Sessions for these handlers:
+
+```csharp
+namespace MyApp
+{
+    public class SessionHttpHandlerFactory : IHttpHandlerFactory
+    {
+        private static readonly HttpHandlerFactory Factory = new HttpHandlerFactory();
+
+        public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
+        {
+          var handler = Factory.GetHandler(context, requestType, url, pathTranslated);
+          return handler == null ? null : new SessionHandlerDecorator((IHttpAsyncHandler)handler);
+        }
+
+        public void ReleaseHandler(IHttpHandler handler) => Factory.ReleaseHandler(handler);
+    }
+
+    public class SessionHandlerDecorator : IHttpAsyncHandler, IRequiresSessionState
+    {
+        private IHttpAsyncHandler Handler { get; set; }
+
+        internal SessionHandlerDecorator(IHttpAsyncHandler handler) => Handler = handler;
+
+        public bool IsReusable => Handler.IsReusable;
+
+        public void ProcessRequest(HttpContext context) => Handler.ProcessRequest(context);
+
+        public IAsyncResult BeginProcessRequest(HttpContext context, AsyncCallback cb, object extraData) => 
+          Handler.BeginProcessRequest(context, cb, extraData);
+
+        public void EndProcessRequest(IAsyncResult result) => Handler.EndProcessRequest(result);
+    }
+}
+```
+
+Then replace the existing `ServiceStack.HttpHandlerFactory` registration with your decorated implementation above, e.g:
 
 ```xml
-<!-- Required to use ServiceStack auth under Mono -->
-<authentication mode="Windows" />
+<system.web>
+  <httpHandlers>
+    <add path="*" type="MyApp.SessionHttpHandlerFactory, MyApp" verb="*"/>
+  </httpHandlers>
+</system.web>
 ```
 
 ### Resources
