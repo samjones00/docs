@@ -93,8 +93,8 @@ namespace MyApp
 
         public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string path)
         {
-          var handler = Factory.GetHandler(context, requestType, url, path);
-          return handler == null ? null : new SessionHandlerDecorator((IHttpAsyncHandler)handler);
+            var handler = Factory.GetHandler(context, requestType, url, path);
+            return handler == null ? null : new SessionHandlerDecorator((IHttpAsyncHandler)handler);
         }
 
         public void ReleaseHandler(IHttpHandler handler) => Factory.ReleaseHandler(handler);

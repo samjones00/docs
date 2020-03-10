@@ -129,15 +129,15 @@ ServiceStack's Request and Response stream are non-buffered (i.e. forward-only) 
 
 ```csharp
 appHost.PreRequestFilters.Add((httpReq, httpRes) => {
-    httpReq.UseBufferedStream = true;
-    httpRes.UseBufferedStream = true;    
+    httpReq.UseBufferedStream = true;  // Buffer Request Input
+    httpRes.UseBufferedStream = true;  // Buffer Response Output
 });
 ```
 
 Which you'll then be able to re-read the Request Input Stream with:
 
 ```csharp
-string textBody = httpReq.GetRawBody(); //read as string
+string textBody = await httpReq.GetRawBodyAsync(); //read as string
 
 ReadOnlySpan<byte> bytes = ((MemoryStream)httpReq.InputStream).GetBufferAsSpan(); //read as bytes
 ```
