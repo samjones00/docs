@@ -182,6 +182,29 @@ Or by appending the format **.ext** to the end of the route, e.g:
 This is enabled on all custom routes and works for all built-in and user-registered formats. 
 It can be disabled by setting `Config.AllowRouteContentTypeExtensions = false`.
 
+### Simulate alternative HTTP Methods
+
+Some environments prohibit or inhibit sending alternative HTTP Methods like HTML Forms which only allow **GET** or **POST**
+but you can simulate an alternative HTTP Method with the `X-Http-Method-Override`, e.g. we can simulate a **PATCH** request with:
+
+    X-Http-Method-Override: PATCH
+
+Or in a HTML Form with a hidden input, e.g:
+
+```html
+<form method="POST">
+    <input type="hidden" name="X-Http-Method-Override" value="PATCH">
+    ...
+</form>
+```
+
+This header is also available in the `HttpHeaders.XHttpMethodOverride` constant if needing to use it in C#/.NET Clients, e.g:
+
+```csharp
+var client = new JsonServiceClient(baseUrl) {
+    RequestFilter = req => req.Headers[HttpHeaders.XHttpMethodOverride] = HttpMethods.Patch
+};
+```
 
 ### Custom Rules
 
