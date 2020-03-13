@@ -159,7 +159,7 @@ public class Pocos : IReturn<Pocos>
 ```
 
 In addition to the above flexible options for defining CSV-friendly Services, there's also a few different 
-options for sending CSV Requests to the above Services. You can use the new CSV `PostCsvToUrl()` extension 
+options for sending CSV Requests to the above Services. You can use the CSV `PostCsvToUrl()` extension 
 methods added to [HTTP Utils](/http-utils):
 
 ```csharp

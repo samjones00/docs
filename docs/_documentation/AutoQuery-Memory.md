@@ -5,7 +5,7 @@ title: AutoQuery Memory Data Source
 
 The simplest data source we can query is an in-memory .NET collection registered with `ctx.MemorySource()`. 
 But how the collection is populated remains up to you. The example below shows registering collections from 
-multiple sources inc. **in-line code**, populated **from a CSV file** (utilizing ServiceStack's new 
+multiple sources inc. **in-line code**, populated **from a CSV file** (utilizing ServiceStack's 
 CSV deserialization support) and populated **from a 3rd Party API** using 
 [HTTP Utils](/http-utils):
 
