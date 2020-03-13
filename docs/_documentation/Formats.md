@@ -51,6 +51,30 @@ Alternatively ServiceStack also recognizes which format should be used with the 
 - `Accept: application/json`
 - `Accept: application/xml`
 
+## Default Content-Type
+
+The recommended way to request a specific content type is to add it to the Accept HTTP Request Header, e.g:
+
+    Accept: application/json
+
+Alternatively you can specify to use a specific Content-Type as the default Content Type in your AppHost with:
+
+```csharp
+SetConfig(new HostConfig {
+     DefaultContentType = MimeTypes.Json 
+});
+```
+
+Sometimes when calling web services from a web browser they'll ask for `Accept: text/html` and not JSON which by contract ServiceStack obliges by returning back HTML if it is enabled.
+
+To ensure JSON is always returned you can disable the HTML support with:
+
+```csharp
+SetConfig(new HostConfig {
+    EnableFeatures = Feature.All.Remove(Feature.Html),
+});
+```
+
 ## Pre-defined Routes
 
     /[xml|json|html|jsv|csv]/[reply|oneway]/[servicename]
