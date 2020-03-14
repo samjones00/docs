@@ -38,7 +38,7 @@ You can also use [ServiceStackVS](/create-your-first-webservice#step-1-download-
 
 There are multiple C# service clients included, each optimized for their respective formats:
 
-![ServiceStack HTTP Client Architecture](/images/clients/servicestack-httpclients.png) 
+![ServiceStack HTTP Client Architecture](/images/overview/servicestack-httpclients.png) 
 
 - [JSON Client](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/JsonServiceClient.cs)
 - [XML Client](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/XmlServiceClient.cs)
