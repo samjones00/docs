@@ -103,9 +103,10 @@ public class ReqstarsService : Service
 
 ServiceStack maps HTTP Requests to your Services **Actions**. An Action is any method that:
 
-  - Is public 
-  - Only contains a single argument - the typed Request DTO
-  - Has a Method name matching a HTTP Method or **Any** which is used as a fallback if it exists
+  - Is `public` 
+  - Only contains a **single argument - the typed Request DTO**
+  - Has a Method name matching a **HTTP Method** or **Any** (used as a fallback if it exists)
+    - Methods can have **Format** suffix to handle specific formats, e.g. if exists `GetJson` will handle **GET JSON** requests
   - Can specify either `T` or `object` Return type, both have same behavior 
 
 The above example will handle any `GetReqstars` request made on any **HTTP Verb** or **endpoint** and will return the complete `List<Reqstar>` contained in your configured RDBMS. 
