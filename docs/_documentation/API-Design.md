@@ -105,7 +105,7 @@ ServiceStack maps HTTP Requests to your Services **Actions**. An Action is any m
 
   - Is `public` 
   - Only contains a **single argument - the typed Request DTO**
-  - Has a Method name matching a **HTTP Method** or **Any** (used as a fallback if it exists)
+  - Has a Method name matching a **HTTP Method** or **Any** (the fallback that can handle *Any* method)
     - Methods can have **Format** suffix to handle specific formats, e.g. if exists `GetJson` will handle **GET JSON** requests
   - Can specify either `T` or `object` Return type, both have same behavior 
 
