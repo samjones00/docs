@@ -197,7 +197,9 @@ They're both [very resilient and can withstand extreme versioning without error]
 
 ### Your services can be consumed by more than just HTTP
 
-Your services implementation can even be re-used inside any [IMessageService hosts](/redis-mq), which at this time includes support for Redis, InMemory and RCON hosts (with more to follow) and work has already begun to enable a fast tcp/IPC async pipeline between ServiceStack and node.js + Dart server processes. All these features actually make ServiceStack one of the most versatile and flexible web service frameworks in existance - enabling your services accessible in a myriad of different use-cases.
+Your services implementation can even be re-used inside any [IMessageService hosts](/redis-mq), which at this time includes support for 
+[Background MQ, Rabbit MQ, Redis MQ, AWS SQS and Azure Service Bus MQ Servers](https://docs.servicestack.net/messaging) and for Maximum Performance
+Services can also be consumed from [high-performance HTTP/2 gRPC endpoints](/grpc) and its universe of [protoc Generated Clients](https://grpc.servicestack.net/). All these features actually make ServiceStack one of the most versatile and flexible web service frameworks in existence - enabling your services accessible in a myriad of different use-cases.
 
 ### Most examples don't actually have .NET clients
 
