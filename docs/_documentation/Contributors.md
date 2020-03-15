@@ -26,14 +26,13 @@ There have been too many valuable contributions, enhancements and fixes to list 
   - [Guru Kathiresan](https://github.com/gkathire)  - OrmLite Core member: Oracle owner and T4 POCO code-generator from existing DB schema for OrmLite
   - [Joachim Rosskopf](https://github.com/jrosskopf) - ServiceStack's Virtual File System, Glob search support
   - [Ivan Korneliuk](https://github.com/vansha) - Inspiration for the new API and implementation of auto-generation of REST-ful routes
-  - [John Carruthers](https://github.com/JohnACarruthers) - RCON Messaging Service Provider
   - [Jon Canning](https://github.com/JonCanning) - File Upload support, Android support and Integration Template Test project
   - [Dan Barua](https://github.com/danbarua) - Auto-register of conventional REST-ful routes, Redis Hash APIs, redis client password management
   - [Assaf Raman](https://github.com/assaframan) - MongoDB Auth Provider, managed response pipeline
   - [Iain Ballard](https://github.com/i-e-b) - Dynamic Proxy, IDictionary support to text serializers
   - [Andrew](https://github.com/awr) - Polymorphic types, Dictionary object, Custom Serialization and hooks to text serializers
   - [Ethan Brown](https://github.com/Iristyle) - ServiceStack's Logging NuGet packaging and deployments  
-  - [Daniel Wertheim](https://github.com/danielwertheim) - Date handling and support for anonymous types in text serailizers
+  - [Daniel Wertheim](https://github.com/danielwertheim) - Date handling and support for anonymous types in text serializers
   - [Matt Johnson](https://github.com/mj1856) - Maintaining Silverlight 4 & 5 support, Date Handling in text serializers
   - [Derek Beattie](https://github.com/dbeattie71) - Maintaining Silverlight 4 & 5 support
   - [Bo Kingo Damgaard](https://github.com/bokmadsen) - Support for Digest Authentication
@@ -81,9 +80,11 @@ The feedback we've received has led us to implement the most popular use-cases, 
 
 ### Message Queue Services
 
-  - [Redis MQ](/redis-mq)
-  - In Memory MQ
-  - RCON
+  - [Background MQ Service](/background-mq)
+  - [Rabbit MQ Server](/rabbit-mq)
+  - [Redis MQ Server](/redis-mq)
+  - [Amazon SQS MQ Server](/amazon-sqs-mq)
+  - [Azure Service Bus MQ](/azure-service-bus-mq)
 
 There are more useful endpoints and hosts in the pipeline: expanded MQ options, integration with non-.NET platforms are key areas where ServiceStack can add a lot of value and as it's the most cost-effective deployment option to deploy .NET services we're also looking to further simplify and provide more automation and git-deployment options of ServiceStack services in Linux Cloud hosting environments. 
 
