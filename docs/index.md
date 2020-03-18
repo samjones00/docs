@@ -3,12 +3,12 @@ layout: default
 title: ServiceStack Resources
 ---
 
-- [servicestack.net](https://servicestack.net/) - See ServiceStack's Website for product info and pricing 
-- [StackOverflow](http://stackoverflow.com/search?q=servicestack) - Ask questions on StackOverflow using the `servicestack` tag
+- [servicestack.net](https://servicestack.net) - See ServiceStack's Website for product info and pricing 
+- [StackOverflow](https://stackoverflow.com/questions/ask?tags=servicestack) - Ask questions on StackOverflow using the `servicestack` tag
 - [Customer Forums](https://forums.servicestack.net/) - Customers can get Technical Support in the Customer Forums
 - [Issue Tracker](https://github.com/ServiceStack/Issues) - Report issues on our Issue Tracker
-- [Feature Requests](http://servicestack.uservoice.com/forums/176786-feature-requests) - Request features on UserVoice
-- [Release Notes](http://docs.servicestack.net/release-notes-history) - Stay up to date with ServiceStack's latest features
+- [Feature Requests](https://servicestack.uservoice.com/forums/176786-feature-requests) - Request features on UserVoice
+- [Release Notes](/release-notes-history) - Stay up to date with ServiceStack's latest features
 
 ## ServiceStack Examples and Live Demos
 
@@ -26,7 +26,6 @@ title: ServiceStack Resources
 
 ## ServiceStack Community
 
-- [ServiceStack G+ Community](https://plus.google.com/communities/112445368900682590445) Get in touch with the ServiceStack Community
 - [Community-Resources](/community-resources) (Blog Posts, Gists, StackOverflow, Pod casts...)
 - [Contributors](/contributors) - Special thanks to all of ServiceStack's Contributors
 - [Contributing Guide](/contributing) - Read our Contributing Guide before contributing
