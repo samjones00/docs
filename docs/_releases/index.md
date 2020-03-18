@@ -5,9 +5,9 @@ title: Release Notes Summary
 
 > [Release Notes History](/release-notes-history)
 
-# [v5.0.2 Update](http://docs.servicestack.net/releases/v5.0.0)
+# [v5.0.2 Update](https://docs.servicestack.net/releases/v5.0.0)
 
-Happy New 2018 All! We hope you’ve all had a long, relaxing break over the holidays and are re-energized for a productive start to the new year. We have a new v5.0.2 release ready for the start of the new year. A summary of the changes are included below, for the full details see the [v5 Release Notes](http://docs.servicestack.net/releases/v5.0.0).
+Happy New 2018 All! We hope you’ve all had a long, relaxing break over the holidays and are re-energized for a productive start to the new year. We have a new v5.0.2 release ready for the start of the new year. A summary of the changes are included below, for the full details see the [v5 Release Notes](https://docs.servicestack.net/releases/v5.0.0).
 
 ### Future Versioning Updates
 
@@ -17,7 +17,7 @@ To distinguish updates from normal releases we’ll use the `{PATCH}` version to
 
     {MAJOR}.{MINOR}.{PATCH}
 
-The `{MAJOR}` is reserved for Major releases like v5 containing structural changes that may require changes to environment and/or project configurations like v5. A new `{MINOR}` version will be used for normal "Major" releases which will have a `{PATCH}` version of **0**. An **even** `{PATCH}` version number indicates an "Update" release published to **NuGet** whilst an **odd** version number indicates a "pre-release" version that's only [available on MyGet](http://docs.servicestack.net/myget), e.g:
+The `{MAJOR}` is reserved for Major releases like v5 containing structural changes that may require changes to environment and/or project configurations like v5. A new `{MINOR}` version will be used for normal "Major" releases which will have a `{PATCH}` version of **0**. An **even** `{PATCH}` version number indicates an "Update" release published to **NuGet** whilst an **odd** version number indicates a "pre-release" version that's only [available on MyGet](https://docs.servicestack.net/myget), e.g:
 
   - **v5.0.0** - Current Major Release with structural changes
     - v5.0.2 - Enhancement of Major v5.0.0 Release
@@ -68,7 +68,7 @@ The latest `@servicestack/cli` **v1.0.2** has been updated to include this addit
 
     $ dotnet-new
 
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+![](https://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
 
 Which will let you create an ASP.NET Core App running on the .NET Framework v4.7 with:
 
@@ -150,7 +150,7 @@ public class AppHost : AppSelfHostBase
 
 ## .NET Standard 2.0 Logging Providers
 
-Whilst our recommendation is to use [.NET Core's Logging Abstraction](http://docs.servicestack.net/netcore#servicestacklogging-adapters) some Customers prefer to avoid this abstraction and configure logging directly with ServiceStack. To support this we've included **.NET Standard 2.0** builds to the following logging providers:
+Whilst our recommendation is to use [.NET Core's Logging Abstraction](https://docs.servicestack.net/netcore#servicestacklogging-adapters) some Customers prefer to avoid this abstraction and configure logging directly with ServiceStack. To support this we've included **.NET Standard 2.0** builds to the following logging providers:
 
  - ServiceStack.Logging.Serilog
  - ServiceStack.Logging.Slack
@@ -243,25 +243,25 @@ Support for leading zeros in integers was restored.
 
 The theme of this major v5 release is integration and unification with the newly released .NET Standard 2.0 which offers the broadest compatibility and stabilized API surface for .NET Core and the version we've chosen to standardize around.
 
-We'll do our best to summarize new features here but if you have time we encourage you to read the [full v5 Release Notes](http://docs.servicestack.net/releases/v5.0.0), as this is a major version upgrade we recommend at least reviewing the [v5 Changes and Migration Notes](http://docs.servicestack.net/releases/v5.0.0#v5-changes-and-migration-notes) before upgrading. Whilst the user-facing source code impact is minimal, we've taken the opportunity of a major version window to perform some logical re-structuring and some potentially breaking changes from **replacing PCL clients** to use .NET Standard 2.0, moving .NET Framework implementations to different projects, making SOAP Support, Mini Profiler and Markdown Razor opt-in and to be able to utilize the latest NuGet package dependencies **ServiceStack.RabbitMQ** requires **.NET v4.5.1** and **ServiceStack.Azure** requires **.NET v4.5.2**.
+We'll do our best to summarize new features here but if you have time we encourage you to read the [full v5 Release Notes](https://docs.servicestack.net/releases/v5.0.0), as this is a major version upgrade we recommend at least reviewing the [v5 Changes and Migration Notes](https://docs.servicestack.net/releases/v5.0.0#v5-changes-and-migration-notes) before upgrading. Whilst the user-facing source code impact is minimal, we've taken the opportunity of a major version window to perform some logical re-structuring and some potentially breaking changes from **replacing PCL clients** to use .NET Standard 2.0, moving .NET Framework implementations to different projects, making SOAP Support, Mini Profiler and Markdown Razor opt-in and to be able to utilize the latest NuGet package dependencies **ServiceStack.RabbitMQ** requires **.NET v4.5.1** and **ServiceStack.Azure** requires **.NET v4.5.2**.
 
 All .NET Standard builds have been upgraded to **.NET Standard 2.0** where now both `.Core` and `.Signed` NuGet package variants have been unified into ServiceStack's main NuGet packages - unifying them into a single suite of NuGet packages and release cadence. All **.NET 4.5 builds are Strong Named** by default using the `servicestack.snk` signing key that's in the [/src](https://github.com/ServiceStack/ServiceStack/tree/master/src) folder of each Project. The .NET Standard builds continue to remain unsigned so they can be built on each platform with .NET Core's `dotnet build` command.
 
 ## New .NET Core 2.0 and .NET Framework Project Templates!
 
-ServiceStack's maintains exceptional source compatibility between .NET Core and .NET Framework projects which is visible in our new .NET Core 2.0 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](http://docs.servicestack.net/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
+ServiceStack's maintains exceptional source compatibility between .NET Core and .NET Framework projects which is visible in our new .NET Core 2.0 and .NET Framework project templates where all templates utilize the same recommended [Physical Project Structure](https://docs.servicestack.net/physical-project-structure), reference the same NuGet packages, share the same source code for its Server and Client App implementations as well as Client and Server Unit and Integration Tests.
 
 The primary difference between the .NET Core and .NET Framework project templates is how ServiceStack's `AppHost` is initialized, in ASP.NET it's done in `Global.asax` whilst for .NET Core it's registered in .NET Core's pipeline as standard. The `.csproj` are also different with .NET Core using MSBuild's new and minimal human-friendly format and the ASP.NET Framework templates continuing to use VS.NET's classic project format for compatibility with older VS .NET versions.
 
 v5 includes **11 new .NET Core 2.0 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 2.0 template has an equivalent .NET Framework template except for [ServiceStack's Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 2.0 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
-All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](http://docs.servicestack.net/dotnet-new) command-line utility, installable from npm with:
+All .NET Core 2.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [dotnet-new](https://docs.servicestack.net/dotnet-new) command-line utility, installable from npm with:
  
     $ npm install -g @servicestack/cli
  
 This makes the `dotnet-new` command globally available which can be run without arguments to view all templates available:
 
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
+![](https://docs.servicestack.net/images/ssvs/dotnet-new-list.png)
 
 That can be used to create new projects with:
  
@@ -273,19 +273,19 @@ Example of creating a new Vue SPA project called **Acme**:
  
 The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
 
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
+![](https://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
 
 If using JetBrains Rider the npm packages can be installed by opening `package.json` and clicking on the **"npm install"** tooltip on the **bottom right**. In VS Code you'll need to run `npm install` manually from the command-line.
 
 ### ServiceStackVS VS.NET Templates Updated
 
-The VS.NET Templates inside [ServiceStackVS](https://github.com/ServiceStack/ServiceStackVS) have also been updated to use the latest .NET Framework templates which you can continue to use to [create new projects within VS.NET](http://docs.servicestack.net/create-your-first-webservice). For all other IDEs and non-Windows Operating Systems you can use the cross-platform `dotnet-new` tooling to create new .NET Core 2.0 Projects. 
+The VS.NET Templates inside [ServiceStackVS](https://github.com/ServiceStack/ServiceStackVS) have also been updated to use the latest .NET Framework templates which you can continue to use to [create new projects within VS.NET](https://docs.servicestack.net/create-your-first-webservice). For all other IDEs and non-Windows Operating Systems you can use the cross-platform `dotnet-new` tooling to create new .NET Core 2.0 Projects. 
 
 ### .NET Core 2.0 TypeScript Webpack Templates
 
 There's a project template for each of the most popular Single Page Application JavaScript frameworks, including a new [Angular 5.1](https://angular.io) template built and managed using Angular's new [angular-spa](https://cli.angular.io) tooling. All other SPA Templates (inc. Angular 4) utilize a modernized Webpack build system, pre-configured with npm scripts to perform all necessary debug, production and live watched builds and testing. The included [gulpfile.js](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/gulpfile.js) provides a Gulp script around each npm script so they can be run without the command-line, by running them using VS.NET's built-in Task Runner Explorer GUI. 
 
-All SPA templates are configured to use Typed DTOs from [TypeScript Add Reference](http://docs.servicestack.net/typescript-add-servicestack-reference) with the generic [@servicestack/client](https://github.com/ServiceStack/servicestack-client) `JsonServiceClient` with concrete Type Definitions except for the Angular 5 template which uses Angular's built-in Rx-enabled HTTP Client with ServiceStack's ambient TypeScript declarations, as it's often preferable to utilize Angular's built-in dependencies when available. 
+All SPA templates are configured to use Typed DTOs from [TypeScript Add Reference](https://docs.servicestack.net/typescript-add-servicestack-reference) with the generic [@servicestack/client](https://github.com/ServiceStack/servicestack-client) `JsonServiceClient` with concrete Type Definitions except for the Angular 5 template which uses Angular's built-in Rx-enabled HTTP Client with ServiceStack's ambient TypeScript declarations, as it's often preferable to utilize Angular's built-in dependencies when available. 
 
 All Single Page App Templates are available for both .NET Core 2.0 and ASP.NET Framework projects which can be live-previewed and used to create new projects using the template names below:
 
@@ -428,7 +428,7 @@ The `ASPNETCORE_ENVIRONMENT` Environment variable can also be used to configure 
 
 ### Multi-stage Docker Builds
 
-The [.NET Core Apps deployed using Docker](http://docs.servicestack.net/deploy-netcore-docker-aws-ecs)now use the ASP.NET Team's [recommended multi-stage Docker Builds](https://docs.microsoft.com/en-us/dotnet/core/docker/building-net-docker-images#your-first-aspnet-core-docker-app) where the App is built inside an `aspnetcore-build` Docker container with its published output copied inside a new `aspnetcore` runtime Docker container:
+The [.NET Core Apps deployed using Docker](https://docs.servicestack.net/deploy-netcore-docker-aws-ecs)now use the ASP.NET Team's [recommended multi-stage Docker Builds](https://docs.microsoft.com/en-us/dotnet/core/docker/building-net-docker-images#your-first-aspnet-core-docker-app) where the App is built inside an `aspnetcore-build` Docker container with its published output copied inside a new `aspnetcore` runtime Docker container:
 
 ```docker
 FROM microsoft/dotnet:2.1-sdk AS build-env
@@ -530,7 +530,7 @@ Users that don't have Digest Auth Hashes will require logging in again in order 
 
 ### JWT AuthProvider
 
-Previously in order to be able to utilize RefreshToken's you would need to be also be using an [Auth Repository](http://docs.servicestack.net/authentication-and-authorization#user-auth-repository) as it's the data source used to populate the JWT Token. 
+Previously in order to be able to utilize RefreshToken's you would need to be also be using an [Auth Repository](https://docs.servicestack.net/authentication-and-authorization#user-auth-repository) as it's the data source used to populate the JWT Token. 
 
 Now Users who are not using an `IAuthRepository` can instead implement the `IUserSessionSource` interface:
 
@@ -822,7 +822,7 @@ New Async filters are now available to match existing sync filters. It's very un
 
 Async Filter Attributes are available by inheriting the new `RequestFilterAsyncAttribute` or `ResponseFilterAsyncAttribute` base classes if you need to call async APIs within Filter Attributes.
 
-All async equivalents follow the same [Order of Operations](http://docs.servicestack.net/order-of-operations) and are executed immediately after any registered sync filters with the same priority.
+All async equivalents follow the same [Order of Operations](https://docs.servicestack.net/order-of-operations) and are executed immediately after any registered sync filters with the same priority.
 
 #### Async Request and Response Converters
 
@@ -943,7 +943,7 @@ await Task.Delay(ExecUtils.CalculateFullJitterBackOffDelay(retriesAttempted));
 
 In this release we've added a new simple, fast and highly-versatile alternative to Razor for developing Server generated Websites, official support for .NET Core 2.0, new ServiceStack.Azure NuGet package for deeper integration with ServiceStack Apps hosted on Azure and a number of new features and enhancements across ServiceStack.
 
-Please see the full release notes for what's in this Release: http://docs.servicestack.net/releases/v4.5.14
+Please see the full release notes for what's in this Release: https://docs.servicestack.net/releases/v4.5.14
 
 ### .NET Core 2.0 Ready
 
@@ -967,13 +967,13 @@ Clone the [TemplatesBootstrapStarter](https://github.com/NetCoreApps/TemplatesBo
 
 #### ASP.NET v4.5 Bootstrap Starter
 
-For ASP.NET v4.5 projects create a new **ServiceStack ASP.NET Templates with Bootstrap** from the VS.NET Templates in [ServiceStackVS VS.NET Extension](http://docs.servicestack.net/templates-overview#servicestackvs-vsnet-extension) to create an ASP.NET v4.5 Project using [ServiceStack's recommended project structure](http://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution):
+For ASP.NET v4.5 projects create a new **ServiceStack ASP.NET Templates with Bootstrap** from the VS.NET Templates in [ServiceStackVS VS.NET Extension](https://docs.servicestack.net/templates-overview#servicestackvs-vsnet-extension) to create an ASP.NET v4.5 Project using [ServiceStack's recommended project structure](https://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution):
 
 [![](https://sharpscript.net/assets/img/screenshots/ssvs-bootstrap.png)](https://github.com/ServiceStack/ServiceStackVS)
 
 ## Why Templates?
 
-We developed Templates because we want to be able to offer a simple, clean, highly-productive and innovative end-to-end solution for building ServiceStack Web Apps without the external baggage and issues Razor brings to a project. If interested in the finer details, we've published some of the limitations and issues we've hit in [Why not Razor](http://docs.servicestack.net/why-not-razor). 
+We developed Templates because we want to be able to offer a simple, clean, highly-productive and innovative end-to-end solution for building ServiceStack Web Apps without the external baggage and issues Razor brings to a project. If interested in the finer details, we've published some of the limitations and issues we've hit in [Why not Razor](https://docs.servicestack.net/why-not-razor). 
 
 ### A new .NET templating language was born
 
@@ -1029,7 +1029,7 @@ We've developed a number of [Web Apps](https://sharpscript.net/docs/sharp-apps) 
 
 All ServiceStack Apps now have access to rich introspection and queryability for inspecting remote ServiceStack instances with the new [Metadata Debug Inspector](https://sharpscript.net/docs/servicestack-scripts#debug-template).
 
-The Debug Template is a Service in `SharpPagesFeature` that's pre-registered in [DebugMode](http://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
+The Debug Template is a Service in `SharpPagesFeature` that's pre-registered in [DebugMode](https://docs.servicestack.net/debugging#debugmode). The Service can also be available when not in **DebugMode** by enabling it with:
 
 ```csharp
 Plugins.Add(new SharpPagesFeature { 
@@ -1038,7 +1038,7 @@ Plugins.Add(new SharpPagesFeature {
 ```
 
 This registers the Service but limits it to Users with the `Admin` role, alternatively you configure an 
-[Admin Secret](http://docs.servicestack.net/debugging#authsecret):
+[Admin Secret](https://docs.servicestack.net/debugging#authsecret):
 
 ```csharp
 SetConfig(new HostConfig { AdminAuthSecret = "secret" })
@@ -1140,7 +1140,7 @@ We're happy to report `SimpleContainer` is even smaller and faster than Funq and
 
 ## Simple AppSettings
 
-[SimpleAppSettings](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/SimpleAppSettings.cs) is an [IAppSettings provider](http://docs.servicestack.net/appsettings) that you can use to maintain substitutable App Configuration without a dependency to `ServiceStack.dll` which can be populated with a string Dictionary:
+[SimpleAppSettings](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/SimpleAppSettings.cs) is an [IAppSettings provider](https://docs.servicestack.net/appsettings) that you can use to maintain substitutable App Configuration without a dependency to `ServiceStack.dll` which can be populated with a string Dictionary:
 
 ```csharp
 AppSettings = new SimpleAppSettings(new Dictionary<string, string> {
@@ -1157,7 +1157,7 @@ IList<string> allowedUsers = AppSettings.GetList("AllowedUsers");
 
 ## Virtual File System
 
-The major change added in order for Templates to be isolated from the ServiceStack Web Framework was to decouple the [Virtual File System providers](http://docs.servicestack.net/virtual-file-system) from ServiceStack's AppHost and move them to `ServiceStack.Common`. 
+The major change added in order for Templates to be isolated from the ServiceStack Web Framework was to decouple the [Virtual File System providers](https://docs.servicestack.net/virtual-file-system) from ServiceStack's AppHost and move them to `ServiceStack.Common`. 
 
 This separation makes it easier to use VFS providers outside of ServiceStack AppHost which is a useful abstraction for copying files from different file sources as done in the [copy-files](https://github.com/ServiceStack/dotnet-app/tree/master/src/support/copy-files) project to upload files to AWS S3 or Azure Blob Storage.
 
@@ -1187,9 +1187,9 @@ The VFS providers and extension methods in `ServiceStack.Common` use the same `S
 
 We've added deeper integration with Azure with [ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure) - a new project containing Azure backed managed implementations for popular ServiceStack providers (as we've done with [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)):
 
- - `ServiceBusMqServer` - [MQ Server](http://docs.servicestack.net/messaging) for invoking ServiceStack Services via Azure ServiceBus
- - `AzureBlobVirtualFiles` - [Virtual File System](http://docs.servicestack.net/virtual-file-system) provider using Azure Blob Storage
- - `AzureTableCacheClient` - [Cache Client](http://docs.servicestack.net/caching) provider using Azure Table Storage
+ - `ServiceBusMqServer` - [MQ Server](https://docs.servicestack.net/messaging) for invoking ServiceStack Services via Azure ServiceBus
+ - `AzureBlobVirtualFiles` - [Virtual File System](https://docs.servicestack.net/virtual-file-system) provider using Azure Blob Storage
+ - `AzureTableCacheClient` - [Cache Client](https://docs.servicestack.net/caching) provider using Azure Table Storage
 
 We intend to add support for additional providers in future and make it even easier for ServiceStack Apps to be able to move freely between hosting on an Azure or an AWS managed infrastructure.
 
@@ -1226,7 +1226,7 @@ public class AppHost : AppHostBase
 
 ### Azure Table Storage Cache Client
 
-The `AzureTableCacheClient` [Caching provider](http://docs.servicestack.net/caching) lets you use an Azure Table for your App's distributed caching:
+The `AzureTableCacheClient` [Caching provider](https://docs.servicestack.net/caching) lets you use an Azure Table for your App's distributed caching:
 
 ```csharp
 container.Register<ICacheClient>(c => new AzureTableCacheClient(CacheConnectionString));
@@ -2169,7 +2169,7 @@ This covers a high-level view of the major features added in this release, pleas
 
 # [v4.5.6 Release Notes](/releases/v4.5.6)
 
-For the full details of this release please see the [full v4.5.6 release notes](http://docs.servicestack.net/releases/v4.5.6).
+For the full details of this release please see the [full v4.5.6 release notes](https://docs.servicestack.net/releases/v4.5.6).
 
 ## New Angular2 Single Page App template!
 
@@ -2415,6 +2415,6 @@ Plugins.Add(new AuthFeature(...,
     }));
 ```
 
-That covers the major features, for the full details please see the full release notes at: http://docs.servicestack.net/releases/v4.5.6
+That covers the major features, for the full details please see the full release notes at: https://docs.servicestack.net/releases/v4.5.6
 
 # [2016 Release Notes Summary](/releases/2016-summary)

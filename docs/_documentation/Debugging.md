@@ -135,7 +135,7 @@ Plugins.Add(new SharpPagesFeature {
 ```
 
 This registers the Service but limits it to Users with the `Admin` role, alternatively you configure an 
-[Admin Secret](http://docs.servicestack.net/debugging#authsecret):
+[Admin Secret](https://docs.servicestack.net/debugging#authsecret):
 
 ```csharp
 SetConfig(new HostConfig { AdminAuthSecret = "secret" })

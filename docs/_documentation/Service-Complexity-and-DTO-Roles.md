@@ -15,7 +15,7 @@ Services Framework - supporting an unparalleled number of
 multitude of [HTTP, SOAP and MQ Endpoints](/why-servicestack#multiple-endpoints)
 that can be hosted in a [variety of hosting scenarios](/why-servicestack#multiple-hosting-options) whilst 
 providing a productive succinct, end-to-end Typed API for the most popular 
-[native Mobile and Desktop](http://docs.servicestack.net/add-servicestack-reference)
+[native Mobile and Desktop](https://docs.servicestack.net/add-servicestack-reference)
 and [.NET platforms](https://github.com/ServiceStackApps/HelloMobile#client-applications). 
 In the time other vendors have left a 
 [number of abandoned frameworks](/advantages-of-message-based-web-services#the-many-webservice-frameworks-of-microsoft) 

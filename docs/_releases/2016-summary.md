@@ -10,7 +10,7 @@ title: 2016 Release Notes Summary
 We’re super excited to announce ServiceStack is now running on .NET Core.
 If you're interested running on .NET Core, please see the v4.5.2 Release Notes for the full details 
 on ServiceStack's integration story and the different conventions in .NET Core: 
-[/releases/v4.5.2.html](http://docs.servicestack.net/releases/v4.5.2.html)
+[/releases/v4.5.2.html](https://docs.servicestack.net/releases/v4.5.2.html)
 
 .NET Core was the most requested feature request of all time and was the also the feature we've been 
 most looking forward to ourselves as we finally have a clean, fast, stable platform for running .NET 
@@ -47,7 +47,7 @@ you run `dotnet restore`
 
 Whilst .NET Core was the predominant feature in this release we've also moved docs in the 
 ServiceStack wiki to the new ServiceStack Docs website at: 
-[docs.servicestack.net](http://docs.servicestack.net) - The new 
+[docs.servicestack.net](https://docs.servicestack.net) - The new 
 website is built using Github's new Docs Pages feature which is powered behind-the-scenes by its 
 Jekyll static website generator which will automatically regenerate the docs website on every 
 commit to [github.com/ServiceStack/docs](https://github.com/ServiceStack/docs) where the docs are 
@@ -86,7 +86,7 @@ db.Delete(q);
 ```
 
 Please see the full release notes includes for a number of other minor features added in this 
-release: http://docs.servicestack.net/releases/v4.5.2.html
+release: https://docs.servicestack.net/releases/v4.5.2.html
 
 If you're currently running **ServiceStack on Linux with Mono** we strongly recommend upgrading 
 to **.NET Core** to take advantage of its superior performance, stability and great support - which 

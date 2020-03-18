@@ -72,7 +72,7 @@ is serialized as:
 {Size:"2"" x 1"""}
 ```
 
-#### [.NET JsvServiceClient](http://docs.servicestack.net/csharp-client#httpwebrequest-service-clients)
+#### [.NET JsvServiceClient](https://docs.servicestack.net/csharp-client#httpwebrequest-service-clients)
 
 Thanks to the performance benefits of JSV's CSV-style escaping, the `JsvServiceClient` 
 is our fastest text-based [.NET ServiceClient](/csharp-client):

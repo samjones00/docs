@@ -3,7 +3,7 @@ slug: deploy-netcore-docker-aws-ecs
 title: Deploy .NET Core with Docker to EC2 Container Service
 ---
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-banner.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-banner.png)
 
 One of the primary benefits of [.NET Core's](https://www.microsoft.com/net/core) first-class 
 support for Linux is being able to leverage the thriving ecosystem that's formed around automating, 
@@ -130,24 +130,24 @@ Then click on **Create New Role** button to start the Create Role Wizard:
 
 Type `ecsInstanceRole` for the **Role Name** then click **Next Step**:
 
-![](http://docs.servicestack.net/images/aws/ecs/role-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/role-01.png)
 
 Select the **Amazon EC2 Role for EC2 Container Service** Role Type:
 
-![](http://docs.servicestack.net/images/aws/ecs/role-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/role-02.png)
 
 You'll also need to attach the `AmazonEC2ContainerServiceforEC2Role` policy which you can quickly find by 
 pasting it in the **Policy Type** filter and selecting the only result and proceeding to the **Next Step**:
 
-![](http://docs.servicestack.net/images/aws/ecs/role-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/role-03.png)
 
 The last page in the Wizard lets you review details of the Role you'll creating after clicking **Create Role**:
 
-![](http://docs.servicestack.net/images/aws/ecs/role-04.png)
+![](https://docs.servicestack.net/images/aws/ecs/role-04.png)
 
 The new `ecsInstanceRole` will be available in the **Roles** tab which you can click on to open its Detail View:
 
-![](http://docs.servicestack.net/images/aws/ecs/role-05.png)
+![](https://docs.servicestack.net/images/aws/ecs/role-05.png)
 
 ## 2. Create a new IAM User 
 
@@ -158,13 +158,13 @@ utils so it can deploy our Docker App to our ECS **default** Cluster.
 Similar to creating a role, to create a new User select the **Users** tab then click **Create New Users**.
 On the next screen add your preferred Username for this new User in the first textbox then click **Create**: 
 
-![](http://docs.servicestack.net/images/aws/ecs/user-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/user-01.png)
 
 You'll need to copy both the **Access Key ID** and **Secret Access Key** which is **only available** 
 from the next screen. These credentials **need to be saved** as you'll need to configure it with 
 **Travis CI** later so it can authenticate as this new User. 
 
-![](http://docs.servicestack.net/images/aws/ecs/user-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/user-02.png)
 
 We also need to assign the following permissions to the new User to give it access to our ECS Service.
 The easiest way to select these policies is to copy each into the **Policy Type** Filter then select
@@ -177,12 +177,12 @@ the filtered result, you'll need to do this for each of the policies below:
 After clearing the filter you should see 3 Policies selected, then click **Attach Policy** to add them 
 to the User.
 
-![](http://docs.servicestack.net/images/aws/ecs/user-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/user-03.png)
 
 As the names were cropped in the previous screen, double-check that you have the same policy names selected 
 below:
 
-![](http://docs.servicestack.net/images/aws/ecs/user-04.png)
+![](https://docs.servicestack.net/images/aws/ecs/user-04.png)
 
 ## Checkout AWS Container Service
 
@@ -194,16 +194,16 @@ We're not going to do anything within ECS just yet other than observe its emptin
 you go there you'll be presented with the splash page below which you can skip on through by clicking 
 **Get Started**:
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-01.png)
 
 In the next screen AWS will try to guide you into populating your ECS Service with something, but as we're 
 after a blank slate, you'll want to click **Cancel**:
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-02.png)
 
 Which will arrive us to our destination - the empty state:
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-03.png)
 
 But we needn't worry, everything in our ECS Service will be created outside ECS by our **new EC2 Instance**
 and **Travis CI** builds.
@@ -215,24 +215,24 @@ We want any EC2 Instances in the Container Service to use the purpose-specific
 **Amazon ECS-Optimized Amazon Linux AMI** which you can quickly find by selecting the **AWS Marketplace** tab
 and adding `ecs-optimized` in the filter then click **Select** on the first Amazon AMI result:
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-01.png)
 
 Which will start the Launch Instance Wizard where you can select the Instance Type you want to run. 
 The **t2.micro** is more than enough for what we need but you can select any preferred Instance Type 
 then click **Next: Configure instance Details**:
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-02.png)
 
 The important option in the **Configure Instance Details** screen is to select the `ecsInstanceRole` for the 
 EC2 Instance's **IAM Role**, you'll also want to choose `Enable` for the **Auto-assign Public IP** option
 (if it's not already the default):
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-03.png)
 
 You can skip past the defaults on the **Add Storage** screen, in the **Tag Instance** screen you'll be able 
 to assign a human-friendly label to identify this instance, e.g:
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-04.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-04.png)
 
 The **Configure Security Group** page is where you specify the ports you want open. You'll want **SSH** open
 so you can login to your instance and for Web Apps you'll also typically want **HTTP** and **HTTPS** open 
@@ -240,28 +240,28 @@ as well. With the warning message AWS is encouraging you to limit your SSH acces
 which if you have a **static IP** from your ISP is a good idea to lock down the **Source** to `My IP`, 
 otherwise leaving it open to any IP is ok as we'll be using a Private Key to login to our Instance.
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-05.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-05.png)
 
 On the next page you want to either create a new Public/Private Key Pair or use an existing one. If creating 
 a new Pair you need to click **Download Key Pair** as you'll need it to SSH into your instance.
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-06.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-06.png)
 
 After clicking **Launch Instances** you'll be redirected to your EC2 **Instances** tab where you can 
 watch your new Instance start up:
 
-![](http://docs.servicestack.net/images/aws/ecs/launch-07.png)
+![](https://docs.servicestack.net/images/aws/ecs/launch-07.png)
 
 ## Revisit AWS Container Service
 
 Once **running** go back and refresh your **EC2 Container Service** page where you should now see a 
 **default** cluster that was created:
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-04.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-04.png)
 
 Clicking on **ECS Instances** tab will show your new Instance with an **ACTIVE** state:
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-05.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-05.png)
 
 If you don't see a **default** cluster created with your new Instance attached, terminate your Instance 
 then go back and create it again, triple-checking it has the `ecsInstanceRole` **IAM Role** when Configuring
@@ -277,11 +277,11 @@ so it has a **persistent Public IP** within your control that you can assign a d
 To do this, click on the **Elastic IPs** tab then click on **Allocate New Address**, this will issue you a 
 new **Elastic IP** that you can assign to your new instance, e.g:
 
-![](http://docs.servicestack.net/images/aws/ecs/elasticip-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/elasticip-01.png)
 
 After clicking **Associate** it will show up in the **Elastic IPs** tab:
 
-![](http://docs.servicestack.net/images/aws/ecs/elasticip-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/elasticip-02.png)
 
 ## Assign a Domain Name to your Elastic IP
 
@@ -314,7 +314,7 @@ Once locked down you can use it to SSH into your instance using the `-i` flag, l
 Replace `ecsdemo.netcore.io` with your domain name or Elastic IP. If everything went to plan you should now
 be logged into your EC2 Instance:
 
-![](http://docs.servicestack.net/images/aws/ecs/ssh-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/ssh-01.png)
 
 We're only assigned one task while we're here which is to run an instance of the `jwilder/nginx-proxy` 
 Docker App copying the command below:
@@ -335,7 +335,7 @@ only that it's responsible for setting up **nginx** to **reverse proxy requests*
 
 If successful you'll get an output similar to:
 
-![](http://docs.servicestack.net/images/aws/ecs/ssh-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/ssh-02.png)
 
 For the curious you can run `docker ps` at this point to see the running Docker Containers which should 
 include this **nginx-proxy** and AWS's ECS agent.
@@ -363,13 +363,13 @@ With all the prep work for setting up our Docker Server out of the way, we can n
 of deploying Docker Apps to it. Let's get started by forking the existing
 [https://github.com/NetCoreApps/redis-geo](https://github.com/NetCoreApps/redis-geo) project:
 
-![](http://docs.servicestack.net/images/aws/ecs/fork-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/fork-01.png)
 
 This will create our own fork of the `redis-geo` Github project into our own Github User Account. We then
 need to **Clone** our local fork which we can do from the [Github Desktop App](https://desktop.github.com/)
 to a local folder:
 
-![](http://docs.servicestack.net/images/aws/ecs/fork-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/fork-02.png)
 
 ### Inspect the Build Scripts
 
@@ -382,7 +382,7 @@ Here we're telling Travis we want a **csharp** environment for our solution loca
 using an Ubuntu 14.04 Linux distribution with .NET Core installed. The **script** section tells Travis how 
 it should build our project, which is to just run the build scripts in the repo:
 
-![](http://docs.servicestack.net/images/aws/ecs/code-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/code-01.png)
 
 The `DockerFile` tells Docker how to build our Docker App Image: 
 
@@ -397,13 +397,13 @@ The `DockerFile` tells Docker how to build our Docker App Image:
 This is a fairly generic template for building a .NET Core multi-project App which typically only
 requires changing the **WORKDIR** to point to your Solutions **Host Project**:
 
-![](http://docs.servicestack.net/images/aws/ecs/code-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/code-02.png)
 
 The primary config changes you'll need to make are in `/deploy-env.sh` which contains public deployment and 
 project-specific info. Here you'll want to change `AWS_DEFAULT_REGION` with the AWS region where your 
 ECS Service is located. You'll also need to change `AWS_VIRTUAL_HOST` with your `VIRTUAL_HOST`:
 
-![](http://docs.servicestack.net/images/aws/ecs/code-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/code-03.png)
 
 ### ECS task-definition.json
 
@@ -417,7 +417,7 @@ our Docker App we also need an instance of `redis:3.2` that's made available to 
 `--link` feature which lets us connect to the redis-server instance using the `ecsdemo-redisgeo-redis` 
 Hostname that we make available to our App via the `REDIS_HOST` Environment variable:
 
-![](http://docs.servicestack.net/images/aws/ecs/code-04.png)
+![](https://docs.servicestack.net/images/aws/ecs/code-04.png)
 
 ## Configure support for SSL
 
@@ -498,16 +498,16 @@ After making the necessary changes in `/deploy-env.sh` we can register our proje
 fortunately for us Travis's UX is streamlined making this effortless. Start by clicking on **Sign Up** 
 button on Travis's home page [https://travis-ci.org](https://travis-ci.org):
 
-![](http://docs.servicestack.net/images/aws/ecs/travis-01.png)
+![](https://docs.servicestack.net/images/aws/ecs/travis-01.png)
 
 Then click on the `+` link next to **My Repositories**:
 
-![](http://docs.servicestack.net/images/aws/ecs/travis-02.png)
+![](https://docs.servicestack.net/images/aws/ecs/travis-02.png)
 
 This takes you to your Github Profile view where you just need to click on the the switch icon next to your
 **redis-geo fork**, e.g:
 
-![](http://docs.servicestack.net/images/aws/ecs/travis-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/travis-03.png)
 
 ### CI Environment Variables
 
@@ -524,22 +524,22 @@ The **Settings** page is where you can define any sensitive information you want
 access to. E.g. although it's not needed for this Demo you can specify your `SERVICESTACK_LICENSE` here
 where its inject into your Docker App with the **"environment"** Key/Value list in your projects 
 `task-definition.json`. If your App requires a lot of confidential information it can be easier to instead
-register a connection string to a [Remote AppSettings data source](http://docs.servicestack.net/appsettings), 
+register a connection string to a [Remote AppSettings data source](https://docs.servicestack.net/appsettings), 
 that way you can have a centralized location for managing the keys and connection strings for all your Apps.
 
-![](http://docs.servicestack.net/images/aws/ecs/travis-04.png)
+![](https://docs.servicestack.net/images/aws/ecs/travis-04.png)
 
 If it's not on hand, you can get the `AWS_ACCOUNT_NUMBER` for your `ecsDemoUser` from the number embedded 
 in its **User ARN**:
 
-![](http://docs.servicestack.net/images/aws/ecs/travis-05.png)
+![](https://docs.servicestack.net/images/aws/ecs/travis-05.png)
 
 After adding your `ecsDemoUser` credentials above, commit and push your changes to `deploy-env.sh` in order 
 to trigger a new **Travis CI** build. If you've previously committed the changes you can click 
 **Restart build** to rerun the build using your latest Environment Variables. This will trigger a new build 
 which if everything is in place should result in a successful green build:
 
-![](http://docs.servicestack.net/images/aws/ecs/travis-06.png)
+![](https://docs.servicestack.net/images/aws/ecs/travis-06.png)
 
 ## Inspect AWS Container Service
 
@@ -549,13 +549,13 @@ created for us. Clicking the **Repositories** tab will display your Apps
 which contains a list of all Docker Images that were deployed to ECS with the one that's currently used by 
 the running Docker Container, tagged with the **latest** Image tag:
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-06.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-06.png)
 
 In the **Clusters** tab you'll see that your **default** Cluster contains an 
 [ECS Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) 
 aptly named `ecsdemo-redisgeo-service`: 
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-07.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-07.png)
 
 The [ECS Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) 
 is what manages your running Tasks where if your Docker App goes down for whatever reason, the Service will 
@@ -563,7 +563,7 @@ restart new Task Instances based on its
 [Task Definition](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html) 
 until the **Desired count** of instances is reached.  
 
-![](http://docs.servicestack.net/images/aws/ecs/ecs-08.png)
+![](https://docs.servicestack.net/images/aws/ecs/ecs-08.png)
 
 ### View list of running Docker Containers
 
@@ -571,7 +571,7 @@ If your Service contains a **RUNNING** Task that means your time here was a succ
 that's everything's in order by SSH'ing back into our EC2 Instance and running `docker ps` to see our 
 running Docker Containers:
 
-![](http://docs.servicestack.net/images/aws/ecs/ssh-03.png)
+![](https://docs.servicestack.net/images/aws/ecs/ssh-03.png)
 
 Where we should see **4 running** Docker Containers:
 
@@ -604,7 +604,7 @@ That will run the container and show its output, which might give you some indic
 With all the pieces in place we can visit our virtual host [http://ecsdemo.netcore.io](http://redisgeo.netcore.io) 
 to see the fruits of our Labor - our .NET Core Docker App, alive!
 
-[![](http://docs.servicestack.net/images/aws/ecs/app-01.png)](http://redisgeo.netcore.io)
+[![](https://docs.servicestack.net/images/aws/ecs/app-01.png)](http://redisgeo.netcore.io)
 
 ## Things to try
 

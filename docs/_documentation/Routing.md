@@ -208,7 +208,7 @@ var client = new JsonServiceClient(baseUrl) {
 
 ### Custom Rules
 
-The `Matches` property on `[Route]` and `[FallbackRoute]` attributes lets you specify an additional custom Rule that requests need to match. This feature is used in all [SPA project templates](http://docs.servicestack.net/templates-single-page-apps) to specify that the `[FallbackRoute]` should only return the SPA `index.html` for unmatched requests which explicitly requests HTML, i.e:
+The `Matches` property on `[Route]` and `[FallbackRoute]` attributes lets you specify an additional custom Rule that requests need to match. This feature is used in all [SPA project templates](https://docs.servicestack.net/templates-single-page-apps) to specify that the `[FallbackRoute]` should only return the SPA `index.html` for unmatched requests which explicitly requests HTML, i.e:
 
 ```csharp
 [FallbackRoute("/{PathInfo*}", Matches="AcceptsHtml")]

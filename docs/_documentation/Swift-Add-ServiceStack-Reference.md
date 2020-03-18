@@ -105,7 +105,7 @@ As an example, you can Update the Server DTOs added in the previous command with
     swift-ref TechStacks.dtos.swift
 
 Which also includes any 
-[Customization Options](http://docs.servicestack.net/swift-add-servicestack-reference#swift-configuration) 
+[Customization Options](https://docs.servicestack.net/swift-add-servicestack-reference#swift-configuration) 
 that were manually added.
 
 ## Swift Server Configuration

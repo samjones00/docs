@@ -56,7 +56,7 @@ In many ways this turned out to be a blessing in disguise as by using MVC's impl
 access to new MVC .NET Core features and its surrounding ecosystem like Tag Helpers. MVC also takes care 
 of live-reloading Razor Views behind-the-scenes so we're also able to get the same iterative development 
 experience we're used to. By using MVC Views we also naturally get good tooling support which 
-[can be a dark art in .NET 4.5](http://docs.servicestack.net/razor-notes.html)
+[can be a dark art in .NET 4.5](https://docs.servicestack.net/razor-notes.html)
 which was tightly coupled to **Web.config** configuration and therefore poorly supported in Self-Hosting 
 Console Apps. 
 

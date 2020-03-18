@@ -107,7 +107,7 @@ Example of creating a new **Vue SPA** project called **Acme**:
  
 The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
 
-![](http://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
+![](https://docs.servicestack.net/images/ssvs/dotnet-new-spa-files.png)
 
 If using JetBrains Rider the npm packages can be installed by opening `package.json` and clicking on the **"npm install"** tooltip on the **bottom right**. In VS Code you'll need to run `npm install` manually from the command-line.
 

@@ -65,7 +65,7 @@ HelloResponse response = client.Get<HelloResponse>(new Hello { Name = "World" })
 HelloResponse response = client.Get<HelloResponse>("/hello/World!"); 
 ```
 
-Alternatively you could use a general purpose HTTP Client like [HTTP Utils](http://docs.servicestack.net/http-utils):
+Alternatively you could use a general purpose HTTP Client like [HTTP Utils](https://docs.servicestack.net/http-utils):
 
 ```csharp
 HelloResponse response = "http://base.url/hello/World"

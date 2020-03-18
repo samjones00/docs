@@ -151,7 +151,7 @@ Which makes a **GET** web request to the `/reqstars` route. Custom Routes on Req
 ### Generating Typed DTOs
 
 In addition to being able to share your `ServiceModel.dll` on .NET Clients enable a typed end-to-end API without code-gen, clients 
-can alternatively choose to use [Add ServiceStack Reference](http://docs.servicestack.net/csharp-add-servicestack-reference) support to provide an 
+can alternatively choose to use [Add ServiceStack Reference](https://docs.servicestack.net/csharp-add-servicestack-reference) support to provide an 
 alternative way to get the Services typed DTOs on the client. In both cases the exact same source code is used to call the Services:
 
 ```csharp
@@ -159,7 +159,7 @@ var client = new JsonServiceClient(BaseUri);
 var response = client.Get(new GetReqstars());
 ```
 
-Add ServiceStack Reference is also available for [most popular languages](http://docs.servicestack.net/add-servicestack-reference) used in developing Web, Mobile and Desktop Apps.
+Add ServiceStack Reference is also available for [most popular languages](https://docs.servicestack.net/add-servicestack-reference) used in developing Web, Mobile and Desktop Apps.
 
 #### Custom API Requests
 

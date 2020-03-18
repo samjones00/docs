@@ -10,7 +10,7 @@ declarative encapsulated components which can be used to build both Web and Nati
 ## React .NET Core and .NET Framework Single Page App Templates
 
 The templates below have been
-[seamlessly integrated](http://docs.servicestack.net/templates-single-page-apps#end-to-end-typed-apis) into 
+[seamlessly integrated](https://docs.servicestack.net/templates-single-page-apps#end-to-end-typed-apis) into 
 ServiceStack's [Recommended Physical Project Structure](/physical-project-structure). 
 
 See the documentation in each project for more info on features of each template:
