@@ -39,6 +39,7 @@ public class HelloService : Service
 
     //5. Using a Request or Response Filter 
     [AddHeader(ContentType = "text/plain")]
+    [AddHeader(ContentDisposition = "attachment; filename=hello.txt")]
     public string Get(Hello request)
     {
         return $"Hello, {request.Name}!";
