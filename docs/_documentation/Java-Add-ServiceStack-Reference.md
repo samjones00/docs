@@ -53,11 +53,11 @@ Whilst the ServiceStack IDEA Plugin will automatically add the Gradle reference 
 ```
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'net.servicestack:android:1.0.42'
+    implementation 'net.servicestack:android:1.0.43'
 }
 ```
 
-This also lets you to change which ServiceStack Client library version you want to use, the example above uses **1.0.42**.
+This also lets you to change which ServiceStack Client library version you want to use, the example above uses **1.0.43**.
 
 ### Add ServiceStack Reference
 

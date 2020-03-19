@@ -19,7 +19,7 @@ can be installed in your
 with:
 
     dependencies {
-        implementation 'net.servicestack:android:1.0.42'
+        implementation 'net.servicestack:android:1.0.43'
         ...
     }
 
@@ -29,7 +29,7 @@ Or in Maven with:
 <dependency>
   <groupId>net.servicestack</groupId>
   <artifactId>android</artifactId>
-  <version>1.0.42</version>
+  <version>1.0.43</version>
   <type>pom</type>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Other Java/JVM languages running on the JVM (JRE 7+) can use the `ServerEventsCl
 [net.servicestack:client](https://bintray.com/servicestack/maven/ServiceStack.Client) package which can 
 be installed using Gradle:
 
-    compile 'net.servicestack:client:1.0.42'
+    compile 'net.servicestack:client:1.0.43'
 
 Or Maven:
 
@@ -46,7 +46,7 @@ Or Maven:
 <dependency>
   <groupId>net.servicestack</groupId>
   <artifactId>client</artifactId>
-  <version>1.0.42</version>
+  <version>1.0.43</version>
   <type>pom</type>
 </dependency>
 ```
