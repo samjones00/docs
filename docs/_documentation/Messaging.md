@@ -344,14 +344,54 @@ DisablePublishingToOutq = true
 
 As MQ Requests aren't executed within the Context of a HTTP Request they don't have access to any HTTP Info like HTTP Cookies, Headers, FormData, etc. This also means the Users Session isn't typically available as it's based on the [ss-id Session Ids in Cookies](/sessions).
 
-As ServiceStack also lets you specify a Users Session ids using HTTP Headers (with `X-` prefix), we can instead specify Session Ids using Request Headers. To do this we can create a custom Request Context that the MQ Service is executed within and set the SessionId in the Headers:
+### Embedding Auth Info in MQ Request DTO
+
+The easiest way to publish Authenticated MQ Requests is using the [same approach as Encrypted Messaging](/encrypted-messaging#authentication-with-encrypted-messaging) by embedding the Auth Info in the Request DTO by implementing `IHasSessionId` if using
+session-based Authentication or `IHasBearerToken` if using token-based Auth, e.g:
+
+```csharp
+public class AuthSessionMq : IHasSessionId
+{
+    public string SessionId { get; set; }
+    //...
+}
+
+public class AuthTokenMq : IHasBearerToken
+{
+    public string BearerToken { get; set; }
+    //...
+}
+
+public class MqServices : Service
+{
+    public void Any(PublishSessionMq request)
+    {
+        var mqRequest = request.ConvertTo<AuthSessionMq>();
+        mqRequest.SessionId = Request.GetSessionId();
+        PublishMessage(mqRequest);
+    }
+
+    public void Any(PublishTokenMq request)
+    {
+        var mqRequest = request.ConvertTo<AuthTokenMq>();
+        mqRequest.BearerToken = Request.GetSessionId();
+        PublishMessage(mqRequest);
+    }
+}
+```
+
+### Overriding MQ Request Headers
+
+Alternatively as ServiceStack also lets you specify a Users Session ids using HTTP Headers (with `X-` prefix), we can instead specify Session Ids using 
+Request Headers. To do this we can create a custom Request Context that the MQ Service is executed within and set the SessionId in the Headers:
 
 ```csharp
 var req = new BasicRequest { Verb = HttpMethods.Post };
 req.Headers["X-ss-id"] = sessionId;
 ```
 
-Alternatively we can inject the Session itself. As a Users Session is just a `AuthUserSession` POCO persisted against the SessionId, we can access the Users Session from the CacheClient directly ourselves, e.g:
+Alternatively we can inject the Session itself. As a Users Session is just a `AuthUserSession` POCO persisted against the SessionId, we can access the 
+Users Session from the CacheClient directly ourselves, e.g:
 
 ```csharp
 //i.e. urn:iauthsession:{sessionId}
