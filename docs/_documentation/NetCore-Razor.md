@@ -99,6 +99,15 @@ uses to call the `GetContact` Service using the [Service Gateway](/service-gatew
 
 One drawback of page based routing is that MVC is unable to resolve Page Based Routes when pre-compiled and will need to disabled with:
 
+### .NET Core 3+
+
+```xml
+<RazorCompileOnPublish>false</RazorCompileOnPublish>
+```
+
+Older versions:
+
 ```xml
 <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
 ```
+
