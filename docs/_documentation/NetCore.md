@@ -838,10 +838,9 @@ The other change needed outside the Todos ServiceStack implementation was to mat
 of serving static files from the **WebRootPath** which just required moving all static resources into the 
 [/wwwroot](https://github.com/NetCoreApps/Todos/tree/master/src/Todos/wwwroot) folder.
 
-And with that the Todos port was complete, which you can view from the deployed locations below:
+And with that the Todos port was complete, which you can view from the deployed location below:
 
- - [http://todos.netcore.io](http://todos.netcore.io)       - Linux / Docker / nginx / .NET Core
- - [http://todos.netcore.io](http://todos.netcore.io) - Windows / IIS / .NET 4.5 / ASP.NET
+ - [http://todos.netcore.io](http://todos.netcore.io) - Linux / Docker / nginx / .NET Core
 
 ## Seamless Integration with .NET Core
 
