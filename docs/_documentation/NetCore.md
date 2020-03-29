@@ -881,6 +881,8 @@ public class Startup
 }
 ```
 
+#### Scoped Dependencies
+
 In .NET Core ServiceStack is pre-configured to use a `NetCoreContainerAdapter` where it will also resolve any 
 dependencies declared in your .NET Core Startup using `app.ApplicationServices`. One side-effect of this is that 
 when resolving **Scoped** dependencies it resolves them in a Singleton scope instead of the Request Scope had 
@@ -891,7 +893,7 @@ If you need to resolve Request Scoped .NET Core dependencies you can resolve the
 ```csharp
 public object Any(MyRequest request)
 {
-    var requestScope = base.Request.TryResolveScoped<IScoped>();
+    var requestScope = base.Request.TryResolve<IScoped>();
 }
 ```
 
