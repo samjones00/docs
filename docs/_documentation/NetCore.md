@@ -891,7 +891,7 @@ If you need to resolve Request Scoped .NET Core dependencies you can resolve the
 ```csharp
 public object Any(MyRequest request)
 {
-    var requestScope = base.Request.TryResolve<IScoped>();
+    var requestScope = base.Request.TryResolveScoped<IScoped>();
 }
 ```
 
@@ -902,6 +902,44 @@ public override void Configure(Container container)
 {
     services.RegisterAutoWiredAs<Scoped,IScoped>()
         .ReusedWithin(ReuseScope.Request);
+}
+```
+
+### ASP.NET Core IServiceProvider APIs
+
+Registering dependencies in ServiceStack's IOC are only available within ServiceStack, you can access 
+**scoped ASP.NET Core dependencies** and create Custom IOC Scopes using the `IRequest` APIs below:
+
+ - `IRequest.TryResolveScoped<T>()`
+ - `IRequest.TryResolveScoped()`
+ - `IRequest.ResolveScoped<T>()`
+ - `IRequest.ResolveScoped()`
+ - `IRequest.CreateScope()`
+ - `IRequest.GetServices()`
+ - `IRequest.GetServices<T>()`
+
+Which can be used to create custom scopes that utilizes ASP.NET Entity Framework Identity classes in your ServiceStack Services:
+
+```csharp
+using (var scope = Request.CreateScope())
+{
+    var RoleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var UserManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+    var managerUser = await UserManager.FindByEmailAsync("manager@gmail.com");
+    if (managerUser == null)
+    {
+        assertResult(await UserManager.CreateAsync(new ApplicationUser {
+            DisplayName = "Test Manager",
+            Email = "manager@gmail.com",
+            UserName = "manager@gmail.com",
+            FirstName = "Test",
+            LastName = "Manager",
+        }, "p@55wOrd"));
+        
+        managerUser = await UserManager.FindByEmailAsync("manager@gmail.com");
+        await UserManager.AddToRoleAsync(managerUser, "Manager");
+    }
 }
 ```
 
