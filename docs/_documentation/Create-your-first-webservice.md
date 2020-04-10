@@ -14,7 +14,7 @@ First we want to install the [x dotnet tool](/dotnet-tool)
 Which is ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
 [Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc) or to
 [quickly apply gists](/mix-tool) to your project taking advantage of ServiceStack's effortless [no-touch Modular features](/modular-startup), it even
-includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to quickly [explore your remote .NET Core App](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo). 
+includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to quickly explore your [remote .NET Core App in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo). 
 
 ## Step 2: Selecting a template
 
