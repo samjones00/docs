@@ -7,7 +7,7 @@ This is a quick walkthrough of getting your first web service up and running whi
 
 ## Step 1: Install the x dotnet tool
 
-First we want to install the [x dotnet tool](/dotnet-tool) 
+First we want to install the [x dotnet tool](/dotnet-tool):
 
     $ dotnet tool install --global x 
 
