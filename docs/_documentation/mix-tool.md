@@ -467,12 +467,12 @@ Authentication integration allowing each authenticated user to manage their own 
 
 To follow video's example, start with a new **Acme** project from `sharp` .NET Core Template:
 
-    $ web new script Acme
+    $ x new script Acme
 
 Add the `example-validation` mix:
 
     $ cd Acme
-    $ web mix example-validation
+    $ x mix example-validation
 
 Which will prompt you with a link to the gist and the files that will be added to your project:
 

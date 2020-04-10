@@ -9,7 +9,7 @@ title: Using ServiceStack Auth in MVC
 
 Create new `mvcauth` project with:
 
-    $ web new mvcauth ProjectName
+    $ x new mvcauth ProjectName
 
 The ServiceStack Auth is pre-configured to persist users in an OrmLite Auth Repository (default SQLite) and enables both local
 Username/Password Credentials Auth as well as external Sign In's via Facebook, Twitter, Google and the new Microsoft Graph OAuth providers:

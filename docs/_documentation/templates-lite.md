@@ -38,13 +38,13 @@ npm webpack build system, should you wish to upgrade to one in future.
 
 ## Install
 
-All ServiceStack Project Templates can now be created with our [web](/web-new) .NET Core tool:
+All ServiceStack Project Templates can now be created with our [x](/web-new) .NET Core tool:
 
-    $ dotnet tool install -g web
+    $ dotnet tool install -g x
 
-If you previously had an existing `web` tool installed, update it to the latest version with:
+If you previously had an existing `x` tool installed, update it to the latest version with:
 
-    $ dotnet tool update -g web
+    $ dotnet tool update -g x
 
 ### vue-lite
 
@@ -52,11 +52,11 @@ If you previously had an existing `web` tool installed, update it to the latest 
 
 Browse [source code](https://github.com/NetCoreTemplates/vue-lite), view [vue-lite.web-templates.io](http://vue-lite.web-templates.io) live demo and install for **.NET Core** with:
 
-    $ web new vue-lite ProjectName
+    $ x new vue-lite ProjectName
 
 Alternatively you can create an ASP.NET Core 3.1 LTS project on **.NET Framework** with:
 
-    $ web new vue-lite-corefx ProjectName
+    $ x new vue-lite-corefx ProjectName
 
 ### react-lite
 
@@ -64,11 +64,11 @@ Alternatively you can create an ASP.NET Core 3.1 LTS project on **.NET Framework
 
 Browse [source code](https://github.com/NetCoreTemplates/react-lite), view [react-lite.web-templates.io](http://react-lite.web-templates.io) live demo and install for **.NET Core** with:
 
-    $ web new react-lite ProjectName
+    $ x new react-lite ProjectName
 
 Alternatively you can create an ASP.NET Core 3.1 LTS project on **.NET Framework** with:
 
-    $ web new react-lite-corefx ProjectName
+    $ x new react-lite-corefx ProjectName
 
 ### Development workflow
 

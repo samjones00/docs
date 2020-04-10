@@ -56,7 +56,7 @@ This will let you create an ASP.NET Core App running on the .NET Framework v4.7 
 
     $ dotnet tool install --global web 
 
-    $ web new web-corefx AcmeNetFx
+    $ x new web-corefx AcmeNetFx
 
 Which can then be opened in your preferred VS.NET or Project Rider C# IDE.
 

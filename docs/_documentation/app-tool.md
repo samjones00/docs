@@ -75,7 +75,7 @@ Where it will be used in both Shortcut Icon and Windows Desktop icon:
 
 ### Create new Project Templates
 
-See [web new](/web-new) for available Project Templates you can create with:
+See [x new](/web-new) for available Project Templates you can create with:
 
     $ app new
 

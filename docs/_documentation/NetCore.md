@@ -84,11 +84,11 @@ The primary difference between the .NET Core and .NET Framework project template
  
 There are **11 .NET Core 3.1 project templates** for each of ServiceStack's most popular starting templates. Each .NET Core 3.1 template has an equivalent .NET Framework template except for ServiceStack [Sharp Apps](https://sharpscript.net/docs/sharp-apps) which is itself a pre-built .NET Core 3.1 App that lets you develop Web Applications and HTTP APIs on-the-fly without any compilation.
 
-All .NET Core 3.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [web-new](/web-new) command-line utility, installable from npm with:
+All .NET Core 3.1 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [x new](/web-new) command-line utility, installable from npm with:
  
-    $ dotnet tool install --global web 
+    $ dotnet tool install --global x 
  
-This makes the `web` .NET Core tool globally available which can be run without arguments to view all templates available:
+This makes the `x` .NET Core tool globally available which can be run without arguments to view all templates available:
 
 <div class='markdown-body'>
 {% capture projects %}{% include web-new-netcore.md %}{% endcapture %}
@@ -99,11 +99,11 @@ This makes the `web` .NET Core tool globally available which can be run without 
 
 That can be used to create new projects with:
  
-web new `<template-name>` `<project-name>`
+x new `<template-name>` `<project-name>`
  
 Example of creating a new **Vue SPA** project called **Acme**:
  
-    $ web new vue-spa Acme
+    $ x new vue-spa Acme
  
 The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
 

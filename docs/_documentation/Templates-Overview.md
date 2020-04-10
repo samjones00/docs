@@ -5,19 +5,19 @@ slug: templates-overview
 
 ServiceStack has its strong foundations as a Web and MQ Services framework whose [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Backend Systems and Web APIs, Websites, Single Page Apps, Windows Services, Self-Hosting Console Apps and Rich OSX and Winforms Desktop Apps.
 
-## web new
+## x new
 
-All ServiceStack Project Templates can be found and installed using the [web new](/web-new) .NET Core tool that can be installed with:
+All ServiceStack Project Templates can be found and installed using the [x new](/web-new) .NET Core tool that can be installed with:
 
-    $ dotnet tool install --global web 
+    $ dotnet tool install --global x 
 
-Then run `web new` to view the list of available project templates:
+Then run `x new` to view the list of available project templates:
 
-    $ web new
+    $ x new
 
 To upgrade to the latest version, run:
 
-    $ dotnet tool update -g web
+    $ dotnet tool update -g x
 
 #### dotnet-new
 

@@ -3,10 +3,10 @@ slug: web-apply
 title: Customize .NET Core Apps with 'web +'
 ---
 
-Whilst we believe [web new](/web-new) is a super simple way to create and maintain project templates, we've also created an even 
+Whilst we believe [x new](/web-new) is a super simple way to create and maintain project templates, we've also created an even 
 simpler and lighter way to create projects - from gists!
 
-We can use `web +` (read as "apply gist") to create light-weight customized projects by applying multiple gists on top of each other. 
+We can use `x +` (read as "apply gist") to create light-weight customized projects by applying multiple gists on top of each other. 
 One of the major benefits of this approach is that it's not only limited at project creation time as it's also a great way to easily add 
 "layered functionality" to existing projects.
 
@@ -14,11 +14,11 @@ We can see an example of this earlier with how we can use this to
 [easily update dependencies in "lite" projects](/templates-lite#updating-lite-project-dependencies)
 which is just applying the **vue-lite-lib** and **react-lite-lib** gists to your existing "lite" projects:
 
-    $ web +vue-lite-lib
+    $ x +vue-lite-lib
 
 ### Usage
 
-Similar to `web` other features, we get the full user experience where we can list, search and apply gists from the commands below:
+Similar to `x` other features, we get the full user experience where we can list, search and apply gists from the commands below:
 
 ```
 Usage: 
@@ -30,7 +30,7 @@ Usage:
 
 Where we can view all available gists that we can apply to our projects with:
 
-    $ web +
+    $ x +
 
 Which as of this writing lists:
 
@@ -53,10 +53,10 @@ Which as of this writing lists:
   16. supervisor           Supervisor config for managed execution of .NET Core Apps              to: /etc/supervisor/conf.d/      by @ServiceStack  [config]
   17. docker               Dockerfile example for .NET Core Web Apps                              to: .                            by @ServiceStack  [config]
 
- Usage:  web +<name>
-         web +<name> <UseName>
+ Usage:  x +<name>
+         x +<name> <UseName>
 
-Search:  web + #<tag>      Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
+Search:  x + #<tag>      Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
 ```
 
 ### apply.md
@@ -67,9 +67,9 @@ reused as the datasource to populate the above list:
 
 {% include apply.md.html %}
 
-This self-documenting list lets you browse all available gists and their contents the same way as the `web` tool does. 
+This self-documenting list lets you browse all available gists and their contents the same way as the `x` tool does. 
 
-That just like `web new` can be configured to use your own `apply.md` Gist document with:
+That just like `x new` can be configured to use your own `apply.md` Gist document with:
 
     APP_SOURCE_GISTS=<gist id>
 
@@ -78,7 +78,7 @@ That just like `web new` can be configured to use your own `apply.md` Gist docum
 As we expect to see this list of available gists expand greatly in future we've also included support for grouping related gists by `<tag>`, 
 e.g. you can view available starting projects with:
 
-    $ web + #project
+    $ x + #project
 
 ```
 Results matching tag [project]:
@@ -96,7 +96,7 @@ Search:  web + #<tag> Available tags: auth, config, db, example, lib, project, r
 
 Which can be chained together to search for all `project` and `sharp` gists we can use for [Sharp Pages](https://sharpscript.net/docs/sharp-pages) projects:
 
-    $ web + #project,sharp
+    $ x + #project,sharp
 
 ```
 Results matching tags [project,sharp]:
@@ -122,7 +122,7 @@ From this list we can see that we can create an **Empty .NET Core 2.2 ServiceSta
 
 Then applying the `init` labelled gist which will be saved to the `'.'` current directory:
 
-    $ web +init
+    $ x +init
 
 ```
 Write files from 'init' https://gist.github.com/gistlyn/58030e271595520d87873c5df5e4c2eb to:
@@ -142,35 +142,35 @@ Where its output will let you inspect and verify the gist it's writing and all t
 
 To instead start with the **latest .NET Core LTS release**, run:
 
-    $ web +init-lts
+    $ x +init-lts
 
 After we've created our empty .NET Core project we can configure it to use **PostgreSQL** with:
 
-    $ web +postgres
+    $ x +postgres
 
 Or we can give it a **Bootstrap Sharp Pages UI** with:
 
-    $ web +bootstrap-sharp
+    $ x +bootstrap-sharp
 
 What's even better is that gists can be chained, so we can create a **.NET Core 2.2 Bootstrap Sharp Pages App using PostgreSQL** with:
 
-    $ web +init+bootstrap-sharp+postgres
+    $ x +init+bootstrap-sharp+postgres
 
 A **Bootstrap Sharp Pages App** that includes a complete **Contacts Validation example** with:
 
-    $ web +init+bootstrap-sharp+validation-contacts
+    $ x +init+bootstrap-sharp+validation-contacts
 
 The same as above, but its Auth replaced to persist in a **PostgreSQL** backend:
 
-    $ web +init+bootstrap-sharp+validation-contacts+postgres+auth-db
+    $ x +init+bootstrap-sharp+validation-contacts+postgres+auth-db
 
 If we decided later we wanted to switch to use **SQL Server** instead we can just layer it over the top of our existing App:
 
-    $ web +sqlserver
+    $ x +sqlserver
 
 This isn't just limited to gist projects, you can also apply gists when **creating new projects**:
 
-    $ web new script+postgres+auth-db
+    $ x new script+postgres+auth-db
 
 Which will create a [script](https://github.com/NetCoreTemplates/script) project configured to use **PostgreSQL Auth**.
 
@@ -204,7 +204,7 @@ Use `?` at end of filename to indicate optional file that **should not be overri
 
 #### Replacement rules
 
-Just like `web new` any gist file name or contents with different "MyApp" text styles will be replaced with the Project Name in that style, e.g:
+Just like `x new` any gist file name or contents with different "MyApp" text styles will be replaced with the Project Name in that style, e.g:
 
  - `MyApp` will be replaced with `ProjectName`
  - `my-app` will be replaced with `project-name`
@@ -223,7 +223,7 @@ dotnet add package ServiceStack.OrmLite.Sqlite
 Whilst we intend to use this feature extensively to be able to deliver "pre-set layered functionality" to ServiceStack Users, we're
 happy to maintain a curated list of gists that can **help any .NET Core project** as we've done with the `config` gists:
 
-    $ web + #config
+    $ x + #config
 
 ```
 Results matching tag [config]:
@@ -245,5 +245,5 @@ a link to your gist and the modifiers you want it to use.
 
 Alternatively you can share and apply any gists by **gist id** or **URL**, e.g:
 
-    $ web gist 58030e271595520d87873c5df5e4c2eb
-    $ web gist https://gist.github.com/58030e271595520d87873c5df5e4c2eb
+    $ x gist 58030e271595520d87873c5df5e4c2eb
+    $ x gist https://gist.github.com/58030e271595520d87873c5df5e4c2eb
