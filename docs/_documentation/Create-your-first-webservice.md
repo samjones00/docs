@@ -5,7 +5,7 @@ title: Create your first WebService
 
 This is a quick walkthrough of getting your first web service up and running whilst having a look at the how some of the different components work. 
 
-## Step 1: Download and the x dotnet tool
+## Step 1: Install the x dotnet tool
 
 First we want to install the [x dotnet tool](/dotnet-tool) 
 
