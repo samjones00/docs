@@ -5,36 +5,40 @@ title: Create your first WebService
 
 This is a quick walkthrough of getting your first web service up and running whilst having a look at the how some of the different components work. 
 
-## Step 1: Download and Install ServiceStackVS 
-First we want to install ServiceStackVS Visual Studio extension. The easiest way to do this is to look for it from within Visual Studio by going to `Tools > Extensions and Updates...` and searching the Visual Studio Gallery as seen below.
+## Step 1: Download and the x dotnet tool
 
-[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/tools_extensions.png)
+First we want to install the [x dotnet tool](/dotnet-tool) 
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/search-download.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/search-download.png)
+    $ dotnet tool install --global x 
 
-Optionally it can be downloaded and installed from the [VS.NET Gallery](http://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
-
-[![VS.NET Gallery Download](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/servicestackvs/vsgallery-download.png)](http://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7)
-
-ServiceStackVS supports VS.NET 2017, 2015 and 2013.
+Which is ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
+[Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc) or to
+[quickly apply gists](/mix-tool) to your project taking advantage of ServiceStack's effortless [no-touch Modular features](/modular-startup), it even
+includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to quickly [explore your remote .NET Core App](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo). 
 
 ## Step 2: Selecting a template
 
-Once the ServiceStackVS extension is installed, you will have new project templates available when creating a new project. For this example, let's choose ServiceStack ASP.NET Empty to get started.
+Importantly, the dotnet tools lets you create [.NET Core, .NET Framework](/dotnet-new) and [ASP.NET Core on .NET Framework](/templates-corefx) projects.
+Unless you're restricted to working with .NET Framework you'll want to [start with a .NET Core project template](/dotnet-new#usage), for this example
+we'll start with the Empty [web](https://github.com/NetCoreTemplates/web) template:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-project-empty.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-project-empty.png)
-
-Once you've created your application from the template, you should have 4 projects in your new solution. If you left the default name, you'll end up with a solution with the following structure.
-
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/empty-project-solution.png)](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/empty-project-solution.png)
+    $ x new web WebApp
 
 ## Step 3: Run your project
 
-Press F5 and run your project!
+Press `Ctrl+F5` to run your project!
 
 [![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_run.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_run.png)
 
-#### How does it work?
+#### Watched builds
+
+An alternative to running your project in your IDE is to run a watched build using the `dotnet` tool on the command-line:
+
+    $ dotnet watch run
+
+Where it will automatically rebuild & restart your App when it detects any changes to your App's source files.
+
+### How does it work?
 
 Now that your new project is running, let's have a look at what we have. The template comes with a single web service route which comes from the request DTO (Data Transfer Object) which is located in the WebApplication1.ServiceModel project under `Hello.cs` file.
 
