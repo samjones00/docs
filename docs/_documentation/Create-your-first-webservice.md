@@ -11,15 +11,15 @@ First we want to install the [x dotnet tool](/dotnet-tool)
 
     $ dotnet tool install --global x 
 
-Which is ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
-[Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc) or to
-[quickly apply gists](/mix-tool) to your project taking advantage of ServiceStack's effortless [no-touch Modular features](/modular-startup), it even
-includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to quickly explore your [remote .NET Core App in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo). 
+The [dotnet tools](/dotnet-tool) are ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
+generating mobile, web & desktop DTOs with [Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc),
+quickly [apply gists](/mix-tool) to your project enabled by ServiceStack's effortless [no-touch Modular features](/modular-startup), it even
+includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to explore your [remote .NET Core App in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo). 
 
 ## Step 2: Selecting a template
 
 Importantly, the dotnet tools lets you create [.NET Core, .NET Framework](/dotnet-new) and [ASP.NET Core on .NET Framework](/templates-corefx) projects.
-Unless you're restricted to working with .NET Framework you'll want to [start with a .NET Core project template](/dotnet-new#usage), for this example
+Unless you're restricted to working with .NET Framework you'll want to start with a [.NET Core project template](/dotnet-new#usage), for this example
 we'll start with the Empty [web](https://github.com/NetCoreTemplates/web) template:
 
     $ x new web WebApp
