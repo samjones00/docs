@@ -19,23 +19,9 @@ To upgrade to the latest version, run:
 
     $ dotnet tool update -g x
 
-#### dotnet-new
-
-If you don't have .NET Core installed you can find and create all project templates using the [dotnet-new](/dotnet-new) npm tool that can be installed with
-
-    $ npm install -g @servicestack/cli
-
-Then run `dotnet-new` to view the list of available project templates:
-
-    $ dotnet-new
-
-To upgrade to the latest version, run:
-
-    $ npm install -g @servicestack/cli@latest
-
 ## VS.NET Templates
 
-A limited selection of project templates can be created inside VS.NET using the 
+A limited selection of .NET Framework project templates can also be created inside VS.NET using the 
 [ServiceStackVS VS.NET Extension](/templates-overview#servicestackvs-vsnet-extension)
 
 ![ServiceStack VS.NET Templates Dialog](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-projects-dialog.png)
