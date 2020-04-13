@@ -84,7 +84,7 @@ var response = client.Get(new Hello { Name = "World" });
 
 ### [JavaScript JSV Serializer](https://github.com/ServiceStack/ServiceStack/blob/master/lib/js/JSV.js)
 
-A JavaScript JSV parser is also available from [JSV.js]https://github.com/ServiceStack/ServiceStack/blob/v5.4.1/lib/js/JSV.js:
+A JavaScript JSV parser is also available from [JSV.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4.1/lib/js/JSV.js):
 
 ```javascript
 var jsv = JSV.stringify(model);
