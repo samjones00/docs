@@ -126,6 +126,6 @@ $.post("questions", {
 
 In our pursuit to provide the fastest end-to-end communication we've also developed a JsvServiceClient in JavaScript that uses the [fast JSV Format](https://github.com/ServiceStackV3/mythz_blog/blob/master/pages/176.md):  
 
-  - [JsvServiceClient.js](https://github.com/ServiceStack/ServiceStack/tree/master/lib/js/JSV.js)
+  - [JsvServiceClient.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4.1/lib/js/JSV.js)
 
 JSV is marginally faster than **safe JSON** in modern browsers (marginally slower than Eval) but because of the poor JS and String Performance in IE7/8 it performs over **20x** slower than IE's native `eval()`.
