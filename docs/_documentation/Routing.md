@@ -437,6 +437,51 @@ Will match the following Route definitions in order from highest precedence to l
 
 See the [RestPathTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.ServiceHost.Tests/RestPathTests.cs) and [Smart Routing](/api-design) section on the wiki for more examples.
 
+
+### Content-Type Specific Service Implementations
+
+Service implementations lets you use `Verb{Format}` method names to provide a different implementation for handling a specific Content-Type. 
+The Service below defines several different implementation for handling the same Request:
+
+```csharp
+[Route("/my-request")]
+public class MyRequest 
+{
+    public string Name { get; set; }
+}
+
+public class ContentTypeServices : Service
+{
+    public object Any(MyRequest request) => ...;    // Handles all other unspecified Verbs/Formats to /my-request
+
+    public object GetJson(MyRequest request) => ..; // Handles GET /my-request for JSON responses
+
+    public object AnyHtml(MyRequest request) =>     // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
+$@"<html>
+<body>
+<h1>AnyHtml {request.Name}</h1>
+</body>
+</html>";
+
+    public object GetHtml(MyRequest request) =>     // Handles GET /my-request for HTML Responses
+$@"<html>
+<body>
+<h1>GetHtml {request.Name}</h1>
+</body>
+</html>";
+}
+```
+
+This convention can be used for any of the formats listed in `ContentTypes.KnownFormats`, which by default includes:
+
+ - json
+ - xml
+ - jsv
+ - csv
+ - html
+ - protobuf
+ - msgpack
+
 ### Reverse Routing
 
 If you use `[Route]` metadata attributes (as opposed to the Fluent API) you will be able to generate strong-typed URI's using just the DTOs, letting you create urls outside of ServiceStack web framework as done with [.NET Service Clients](/csharp-client) using the `ToUrl(HttpMethod)` and `ToAbsoluteUri(HttpMethod)`, e.g:

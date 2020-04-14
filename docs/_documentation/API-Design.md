@@ -123,7 +123,7 @@ The POCOs used in Micro ORMS are particularly well suited for re-using as DTOs s
 ### Calling Services from a Typed C# Client
 
 In Service development your services DTOs provides your technology agnostic **Service Layer** which you want to keep clean and as 'dependency-free' for maximum accessibility and potential re-use. Our recommendation is to follow our [Recommended Physical Project Structure](/physical-project-structure) and keep your DTOs in a separate ServiceModel project which ensures a well-defined
-ServiceContract [decoupled from their implemenation and accessible from any client](/service-complexity-and-dto-roles#data-transfer-objects---dtos). This recommended Physical project structure is embedded in each [ServiceStack VS.NET Template](/templates-overview).
+ServiceContract [decoupled from their implementation and accessible from any client](/service-complexity-and-dto-roles#data-transfer-objects---dtos). This recommended Physical project structure is embedded in each [ServiceStack VS.NET Template](/templates-overview).
 
 One of ServiceStack's strengths is its ability to re-use your Server DTOs on the client enabling ServiceStack's productive end-to-end typed API. 
 ServiceStack's use of Typed DTOs in its message-based design enable greater resiliency for your Services where the exact DTOs aren't needed, only the shape of the DTOs is important and clients can also opt to use partial DTOs containing just the fields they're interested in. In the same way extending existing Services with new optional properties wont break existing clients using older DTOs.
