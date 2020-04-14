@@ -437,11 +437,10 @@ Will match the following Route definitions in order from highest precedence to l
 
 See the [RestPathTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.ServiceHost.Tests/RestPathTests.cs) and [Smart Routing](/api-design) section on the wiki for more examples.
 
-
 ### Content-Type Specific Service Implementations
 
-Service implementations lets you use `Verb{Format}` method names to provide a different implementation for handling a specific Content-Type. 
-The Service below defines several different implementation for handling the same Request:
+Service implementations can use `Verb{Format}` method names to provide a different implementation for handling a specific Content-Type, e.g. 
+the Service below defines several different implementation for handling the same Request:
 
 ```csharp
 [Route("/my-request")]
@@ -452,18 +451,22 @@ public class MyRequest
 
 public class ContentTypeServices : Service
 {
-    public object Any(MyRequest request) => ...;    // Handles all other unspecified Verbs/Formats to /my-request
+    // Handles all other unspecified Verbs/Formats to /my-request
+    public object Any(MyRequest request) => ...;
 
-    public object GetJson(MyRequest request) => ..; // Handles GET /my-request for JSON responses
+    // Handles GET /my-request for JSON responses
+    public object GetJson(MyRequest request) => ..; 
 
-    public object AnyHtml(MyRequest request) =>     // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
+    // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
+    public object AnyHtml(MyRequest request) =>  
 $@"<html>
 <body>
 <h1>AnyHtml {request.Name}</h1>
 </body>
 </html>";
 
-    public object GetHtml(MyRequest request) =>     // Handles GET /my-request for HTML Responses
+    // Handles GET /my-request for HTML Responses
+    public object GetHtml(MyRequest request) =>   
 $@"<html>
 <body>
 <h1>GetHtml {request.Name}</h1>
@@ -481,6 +484,7 @@ This convention can be used for any of the formats listed in `ContentTypes.Known
  - html
  - protobuf
  - msgpack
+ - wire
 
 ### Reverse Routing
 
