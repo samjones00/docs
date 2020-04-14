@@ -119,19 +119,19 @@ public class ContentTypeServices : Service
 
     // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
     public object AnyHtml(MyRequest request) =>  
-$@"<html>
-<body>
-<h1>AnyHtml {request.Name}</h1>
-</body>
-</html>";
+        $@"<html>
+            <body>
+                <h1>AnyHtml {request.Name}</h1>
+            </body>
+        </html>";
 
     // Handles GET /my-request for HTML Responses
     public object GetHtml(MyRequest request) =>   
-$@"<html>
-<body>
-<h1>GetHtml {request.Name}</h1>
-</body>
-</html>";
+        $@"<html>
+            <body>
+                <h1>GetHtml {request.Name}</h1>
+            </body>
+        </html>";
 }
 ```
 
