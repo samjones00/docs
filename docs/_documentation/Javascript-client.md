@@ -32,8 +32,8 @@ polyfill for W3C's [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetc
 
 Hosted on unpkg.com CDN:
 
- - [index.js](https://unpkg.com/@servicestack/client/src/index.js) (`https://unpkg.com/@servicestack/client/src/index.js`)
- - [index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts) (`https://unpkg.com/@servicestack/client/src/index.d.ts`)
+ - [index.js](https://unpkg.com/@servicestack/client) (`https://unpkg.com/@servicestack/client`)
+ - [index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) (`https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts`)
 
 The npm-free [Vue and React lite Templates](/templates-lite) are some examples that makes use of the stand-alone `@servicestack/client` libraries.
 
@@ -41,8 +41,8 @@ The npm-free [Vue and React lite Templates](/templates-lite) are some examples t
 
 Despite its name the TypeScript JsonServiceClient can also be used in non-TypeScript projects. 
 The [/@servicestack/client](https://www.npmjs.com/package/@servicestack/client) follows the recommended guidance for TypeScript modules which doesn't 
-bundle any TypeScript `.ts` source files, just the generated [index.js](https://unpkg.com/@servicestack/client/src/index.js) and 
-[index.d.ts](https://unpkg.com/@servicestack/client/src/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript
+bundle any TypeScript `.ts` source files, just the generated [index.js](https://unpkg.com/@servicestack/client) and 
+[index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript
 npm projects as any other module, e.g:
 
 
