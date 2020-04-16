@@ -34,7 +34,7 @@ this.ContentTypes.Register(contentType, serialize, deserialize);
 
 ### Encapsulate inside a plugin
 
-If you'll looking to standardize on a customer serializer implementation, it's recommended to wrap the registration inside a plugin.
+If you're looking to standardize on a custom implementation, it's recommended to wrap the registration inside a plugin.
 
 E.g. here's how you can change ServiceStack to use .NET's `XmlSerializer` instead of its `DataContractSerializer` default:
 
