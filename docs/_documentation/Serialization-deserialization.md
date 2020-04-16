@@ -32,6 +32,42 @@ var deserialize = (Type type, Stream stream) => ...;
 this.ContentTypes.Register(contentType, serialize, deserialize);	
 ```
 
+### Encapsulate inside a plugin
+
+If you'll looking to standardize on a customer serializer implementation, it's recommended to wrap the registration inside a plugin.
+
+E.g. here's how you can change ServiceStack to use .NET's `XmlSerializer` instead of its `DataContractSerializer` default:
+
+```csharp
+public class XmlSerializerFormat : IPlugin
+{
+    public static void Serialize(IRequest req, object response, Stream stream)
+    {
+        var serializer = new XmlSerializer(response.GetType());
+        serializer.Serialize(stream, response);
+    }
+
+    public static object Deserialize(Type type, Stream stream)
+    {
+        var serializer = new XmlSerializer(type.GetType());
+        var obj = (Type) serializer.Deserialize(stream);
+        return obj;
+    }
+
+    public void Register(IAppHost appHost)
+    {
+        appHost.ContentTypes.Register(MimeTypes.Xml, Serialize, Deserialize);
+    }
+}
+```
+
+Where it can then be easily registered as a regular [plugin](/plugins):
+
+```csharp
+Plugins.Add(new XmlSerializerFormat());
+```
+
+
 The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.netcore.io/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
 
 For reference see registration examples of ServiceStack's different Formats:
