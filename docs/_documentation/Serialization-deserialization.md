@@ -67,6 +67,7 @@ Where it can then be easily registered as a regular [plugin](/plugins):
 Plugins.Add(new XmlSerializerFormat());
 ```
 
+### Other ContentType Examples
 
 The [Protobuf-format](/protobuf-format) shows an example of registering a new format whilst the [Northwind VCard Format](http://northwind.netcore.io/vcard-format.htm) shows an example of creating a custom media type in ServiceStack.
 
