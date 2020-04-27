@@ -48,10 +48,10 @@ Example from `sharp` [_layout.html](https://github.com/NetCoreTemplates/sharp/bl
 
 {{ [ '!/assets/css/default.css', '/assets/css/', '/css/buttons.css', '/css/svg-auth.css', 
      '/css/svg-icons.css', '/css/app.css' ]
-   | bundleCss({ disk:!debug, out:`/css/lib.bundle${min}.css` }) }}
+   |> bundleCss({ disk:!debug, out:`/css/lib.bundle${min}.css` }) }}
 
 {{ [ '/assets/css/default.css']
-   | bundleCss({ minify:!debug, cache:!debug, disk:!debug, out:`/css/bundle${min}.css` }) }}{% endraw %}
+   |> bundleCss({ minify:!debug, cache:!debug, disk:!debug, out:`/css/bundle${min}.css` }) }}{% endraw %}
 ```
 
 Here the App specific `default.css` is excluded when bundling all other `.css` files in the `/assets/css/` directory as
@@ -59,10 +59,10 @@ it's included on its own in a separate app **bundle.css** below.
 
 ```hbs
 {% raw %}{{ [ '!/assets/js/dtos.js', '!/assets/js/default.js', '/assets/js/jquery.min.js', '/assets/js/' ]
-   | bundleJs({ disk:!debug, out:`/js/lib.bundle${min}.js` }) }} 
+   |> bundleJs({ disk:!debug, out:`/js/lib.bundle${min}.js` }) }} 
 
 {{ [ '/assets/js/dtos.js', '/assets/js/default.js' ]
-   | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${min}.js` }) }}{% endraw %}
+   |> bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${min}.js` }) }}{% endraw %}
 ```
 
 Likewise the App specific `dtos.js` and `default.js` files are excluded from the library bundle and included in its own app **bundle.js**.
