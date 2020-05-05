@@ -9,7 +9,7 @@
 | [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity)        | .NET Core 3.1 MVC Website integrated with ServiceStack using MVC Identity Auth |
 | [mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver)  | .NET Core 3.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth |
 | [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET Core 3.1 Parcel TypeScript App |
-| [parcel-webapp](https://github.com/NetCoreTemplates/parcel-webapp)      | .NET Core 3.1 Parcel Sharp Apps |
+| [parcel-app](https://github.com/NetCoreTemplates/parcel-app)      | .NET Core 3.1 Parcel Sharp Apps |
 | [razor](https://github.com/NetCoreTemplates/razor)              | .NET Core 3.1 Website with ServiceStack.Razor |
 | [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET Core 3.1 simple + lite (npm-free) React SPA using TypeScript |
 | [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET Core 3.1 React Create App CLI Bootstrap App |
@@ -25,6 +25,6 @@
 | [worker-redismq](https://github.com/NetCoreTemplates/worker-redismq)        | .NET Core 3.1 Redis MQ Worker Service |
 | [worker-servicebus](https://github.com/NetCoreTemplates/worker-servicebus)        | .NET Core 3.1 Azure Service Bus MQ Worker Service |
 | [worker-sqs](https://github.com/NetCoreTemplates/worker-sqs)        | .NET Core 3.1 AWS SQS MQ Worker Service |
-| [bare-webapp](https://github.com/NetCoreTemplates/bare-webapp)        | .NET Core 3.1 Bare Sharp Apps |
-| [rockwind-webapp](https://github.com/NetCoreTemplates/rockwind-webapp)    | .NET Core 3.1 Rockwind Sharp Apps |
+| [bare-app](https://github.com/NetCoreTemplates/bare-app)        | .NET Core 3.1 Bare Sharp Apps |
+| [rockwind-app](https://github.com/NetCoreTemplates/rockwind-app)    | .NET Core 3.1 Rockwind Sharp Apps |
 | [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET Core 3.1 Angular 4 Material Design Lite Webpack App |

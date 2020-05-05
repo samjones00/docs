@@ -636,7 +636,7 @@ To illustrate the various features available we've developed a number of Web App
 
 You can quickly get started by creating a Web App from the project template:
 
-    $ dotnet-new bare-webapp ProjectName
+    $ dotnet-new bare-app ProjectName
 
 ## Run ASP.NET Core Apps on the .NET Framework
 
