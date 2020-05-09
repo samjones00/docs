@@ -425,9 +425,9 @@ public partial class HomeController : ControllerBase
 
 It's the same thing in ASP.NET Web Forms although this comes in the form of a [base ASP.NET Web Page](https://github.com/ServiceStack/ServiceStack/blob/master/NuGet/ServiceStack.Host.AspNet/content/App_Start/PageBase.cs.pp) which you get for free when you install ServiceStack via the [ServiceStack.Host.AspNet](http://nuget.org/packages/ServiceStack.Host.AspNet) NuGet package.
 
-## Using Dynamic / Untyped Sessions in ServiceStack
+## Using Dynamic / Untyped Sessions in Session Bag
 
-You can access the dynamic UserSession Bag in ServiceStack services via the `base.Session` property already built-in ServiceStack's [Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Service.cs) base class, e.g:
+You can access the dynamic UserSession Bag in ServiceStack services via the `base.SessionBag` property already built-in ServiceStack's [Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Service.cs) base class, e.g:
 
 ```csharp
 base.SessionBag["cart"] = new Cart { ... };
