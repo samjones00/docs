@@ -34,7 +34,7 @@ For typed or Custom AuthSession the [key is](https://github.com/ServiceStack/Ser
 
     urn:iauthsession:{sessionId}
 
-When using un-typed [Session Bag](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ServiceInterface/SessionFactory.cs#L27) the key is:
+When using un-typed **Session Bag** the key is:
 
     sess:{sessionId}:{key}
 
@@ -427,7 +427,7 @@ It's the same thing in ASP.NET Web Forms although this comes in the form of a [b
 
 ## Using Dynamic / Untyped Sessions in ServiceStack
 
-You can access the dynamic UserSession Bag in ServiceStack services via the `base.Session` property already built-in ServiceStack's [ServiceBase](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Service.cs) base class, e.g:
+You can access the dynamic UserSession Bag in ServiceStack services via the `base.Session` property already built-in ServiceStack's [Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Service.cs) base class, e.g:
 
 ```csharp
 base.SessionBag["cart"] = new Cart { ... };
