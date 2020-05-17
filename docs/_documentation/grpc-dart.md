@@ -114,11 +114,11 @@ import 'package:grpc/grpc.dart';
 import 'package:todoworld/services.pb.dart';
 import 'package:todoworld/services.pbgrpc.dart';
 
-GrpcServicesClient createClient() {
+GrpcServicesClient createClient({CallOptions options}) {
   return GrpcServicesClient(ClientChannel('localhost', port:5001,
     options:ChannelOptions(credentials: ChannelCredentials.secure(
         certificates: File('../certs/dev.crt').readAsBytesSync(),
-        authority: 'localhost'))));
+        authority: 'localhost'))), options:options);
 }
 
 void main(List<String> args) async {
@@ -187,6 +187,32 @@ await for (var file in stream) {
   var text = utf8.decode(file.body);
   print('FILE ${file.name} (${file.length}): ${text.substring(0, text.length < 50 ? text.length : 50)} ...');
 }
+```
+
+### Dart gRPC Authenticated Request Example
+
+Depending on what Authentication Providers are available will determine how you can Authenticate and whether the
+`AuthenticateResponse` will return a [stateless Bearer Token](/authentication-and-authorization#authentication-per-request-auth-providers)
+that can be used to Authenticate instead of a Server Session Id. 
+
+Here's an example of authenticating with the common Credentials Auth and authenticating with either the 
+[Session Id](/sessions) or JWT Bearer Token (if [JWT is enabled](/jwt-authprovider)):
+
+```dart
+// Authenticate user Username/Password Credentials Auth
+var authResponse = await client.postAuthenticate(Authenticate()..provider='credentials'
+  ..userName=userOrEmail..password=password);
+
+// If using Session Auth
+var authClient = createClient(options:CallOptions(metadata:{ 'X-ss-id': authResponse.sessionId }));
+
+// If using Bearer Token stateless Auth Providers (e.g. JWT or API Key):
+const bearerToken = authResponse.bearerToken; // or JWT or API Key
+var authClient = createClient(options:CallOptions(metadata:{ 'Authorization': 'Bearer ${bearerToken}' }));
+
+// Use authClient to make Authenticated Requests:
+var response = await authClient.getHelloSecure(HelloSecure()..name = 'Authenticated gRPC Dart!');
+print(response.result);
 ```
 
 Refer to [/src/clients/dart](https://github.com/NetCoreApps/todo-world/tree/master/src/clients/dart)
