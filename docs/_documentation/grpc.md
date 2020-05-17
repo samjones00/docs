@@ -889,3 +889,14 @@ Below is a complete list of different languages supported by this public gRPC Se
 | ts           | TypeScript | 
 | ts-binary    | TypeScript (Binary) | 
 
+### Downloading and generating protobuf-net/bcl.proto
+
+Depending on what Types are used in Server DTOs will determine whether its generated proto will include a reference to 
+[protobuf-net/bcl.proto](https://github.com/protobuf-net/protobuf-net/blob/master/src/Tools/bcl.proto). 
+
+If it is you can download and generate the protoc Types using the same dotnet tools, [e.g for Dart](/grpc-dart):
+
+  $ x mix bcl.proto -out lib
+  $ x proto-dart lib\protobuf-net -out lib\protobuf-net
+
+> Ideally this will no longer be needed in a [future version of protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc/pull/41#issuecomment-560279357)
