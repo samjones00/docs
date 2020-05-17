@@ -33,7 +33,13 @@ If you can't keep copy of the certificates **thumbprint**, then export it via Wi
 
 ### Generating a new Development Certificate
 
-Should you prefer, you can create and use your own self-signed certificate using this OpenSSL script:
+Should you prefer, you can create and use your own self-signed certificate using this OpenSSL script.
+
+A quick way to download them is using the [mix tool](/mix-tool):
+
+    $ x mix -name ProjectName gen.https.sh
+
+Otherwise you can create local text files and manually copy them with the contents below:
 
 #### [gen-dev.https.sh](https://github.com/NetCoreTemplates/grpc/blob/master/scripts/gen-dev.https.sh)
 
