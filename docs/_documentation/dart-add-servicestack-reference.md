@@ -38,7 +38,7 @@ To make API calls we need to use the `JsonServiceClient`, installed by adding th
 
 ```yaml
 dependencies:
-  servicestack: ^1.0.11
+  servicestack: ^1.0.13
 ```
 
 Saving `pubspec.yaml` in VS Code with the [Dart Code Extension](https://dartcode.org) automatically calls `flutter packages get` to add any new dependencies to your project.
@@ -239,7 +239,7 @@ This creates a basic Flutter App which you can run in your Android Device or And
 Then to use `JsonServiceClient` add the `servicestack` dependency to your apps [pubspec.yaml](https://github.com/ServiceStackApps/HelloFlutter/blob/master/pubspec.yaml):
 
   dependencies:
-    servicestack: ^1.0.11
+    servicestack: ^1.0.13
 
 Saving `pubspec.yaml` automatically runs [flutter packages get](https://flutter.io/using-packages/) to install any new dependencies in your App. 
 
