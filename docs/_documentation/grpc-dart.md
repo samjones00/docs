@@ -222,8 +222,8 @@ Depending on what Types are used in Server DTOs will determine whether its gener
 
 If it is you can download and generate the protoc Types using the same dotnet tools, e.g:
 
-  $ x mix bcl.proto -out lib
-  $ x proto-dart lib\protobuf-net -out lib\protobuf-net
+    $ x mix bcl.proto -out lib
+    $ x proto-dart lib\protobuf-net -out lib\protobuf-net
 
 > Ideally this will no longer be needed in a [future version of protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc/pull/41#issuecomment-560279357)
 
