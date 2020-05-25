@@ -198,6 +198,28 @@ Windows:
 
     C:\> bash gen-prod.https.sh <DOMAIN> <PASSWORD>
 
+### .NET Core Configuration
+
+When configuring a custom SSL Certificate directly in a .NET Core App you'll need to configure the **GrpcSecure** endpoint 
+with the combined [PKCS #12](https://en.wikipedia.org/wiki/PKCS_12) **.pfx** certificate, e.g:
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "GrpcSecure": {
+        "Url": "https://*:5051",
+        "Protocols": "Http2",
+        "Certificate": {
+          "Path": "dev.pfx",
+          "Password": "grpc"
+        }
+      }
+    }
+  }
+}
+```
+
 ### Nginx
 
 When hosting public gRPC endpoints its HTTP/2 endpoints are generally incompatible with existing HTTP/1.1 gateways and proxies
