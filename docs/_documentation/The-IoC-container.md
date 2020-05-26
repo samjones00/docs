@@ -303,26 +303,29 @@ public class WindsorContainerAdapter : IContainerAdapter, IDisposable
 ```csharp
 public class AutofacIocAdapter : IContainerAdapter
 {
-    private readonly IContainer container;
+    private readonly Autofac.IContainer container;
 
-    public AutofacIocAdapter(IContainer container)
-    {
+    public AutofacIocAdapter(Autofac.IContainer container) => 
         this.container = container;
+
+    public T TryResolve<T>()
+    {
+        if (container.TryResolve<Autofac.ILifetimeScope>(out var scope) &&
+            scope.TryResolve(typeof(T), out var scopeComponent))
+            return (T)scopeComponent;
+
+        if (container.TryResolve(typeof(T), out var component))
+            return (T)component;
+
+        return default;
     }
 
     public T Resolve<T>()
     {
-        return container.Resolve<T>();
-    }
-
-    public T TryResolve<T>()
-    {
-        if (container.TryResolve(typeof(T), out var result))
-	{
-	    return (T)result;
-	}
-
-	return default;
+        var ret = TryResolve<T>();
+        return !ret.Equals(default)
+            ? ret
+            : throw new Exception($"Error trying to resolve '{typeof(T).Name}'");
     }
 }
 ```
