@@ -137,7 +137,7 @@ Run example:
 
 ### Node.js Local Development gRPC SSL CRUD Example
 
-```node
+```js
 const { 
     ResetTodos,
     CreateTodo,
