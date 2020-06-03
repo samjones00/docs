@@ -386,7 +386,7 @@ Create an optimized client and package a Release build of your App:
 
     $ npm run publish
 
-Which will publish your App to `bin/Release/netcoreapp2.1/publish` ready for deployment.
+Which will publish your App to `bin/Release/netcoreapp3.1/publish` ready for deployment.
 
 #### Testing
 

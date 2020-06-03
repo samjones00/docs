@@ -91,7 +91,7 @@ We can now exit our remote Linux server and return to our local machine and prep
 [rsync](https://rsync.samba.org/) is a beautiful utility that provides a fast, secure file transfer over SSH which you can use to sync the contents of folders to a remote site. There's only 2 commands you need to run to deploy a local .NET Core App remotely, `rsync` to sync the published .NET Core App files and `supervisorctl` to restart the `supervisord` process that runs and monitor the .NET Core App which you can add to a [deploy.sh](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks/deploy.sh) that you can run with WSL bash:
 
 ```sh
-rsync -avz -e 'ssh' bin/Release/netcoreapp2.0/publish/ ubuntu@myapp.example.org:/home/deploy/apps/myapp
+rsync -avz -e 'ssh' bin/Release/netcoreapp3.1/publish/ ubuntu@myapp.example.org:/home/deploy/apps/myapp
 ssh ubuntu@myapp.example.org "sudo supervisorctl restart web-myapp"
 ```
 

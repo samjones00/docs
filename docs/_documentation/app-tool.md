@@ -47,7 +47,7 @@ Create a published version of the App:
 
 Then in the `/publish` folder:
 
-    $ cd bin\Release\netcoreapp2.1\publish
+    $ cd bin\Release\netcoreapp3.1\publish
 
 You can use `app` to run the .NET Core binary:
 
@@ -143,7 +143,7 @@ project shows how to launch both the .NET Core App and a customized CEF browser 
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <Platforms>x64</Platforms>
     <ApplicationIcon>favicon.ico</ApplicationIcon>

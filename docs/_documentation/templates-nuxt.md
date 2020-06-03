@@ -89,7 +89,7 @@ To create a complete client and server build of your App run:
 
     $ npm run publish
 
-This publishes your App to `bin/Release/netcoreapp2.0/publish` that can then be deployed like any normal .NET Core App.
+This publishes your App to `bin/Release/netcoreapp3.1/publish` that can then be deployed like any normal .NET Core App.
 
 ### Host static content on Netlify's CDN for free
 
