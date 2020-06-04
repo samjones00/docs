@@ -122,8 +122,11 @@ class ServerEventsFeature
     Action<IEventSubscription, IRequest> OnCreated;   // Subscription is created
     Func<IEventSubscription, Task> OnSubscribeAsync;  // Subscription is registered 
     Func<IEventSubscription,Task> OnUnsubscribeAsync; // Subscription is unregistered
+    Func<IEventSubscription, Task> OnUpdateAsync;     // Subscription is updated
 
-    Action<IEventSubscription, IResponse, string> OnPublish; // Fired when message is published
+    // Fired when message is published
+    Action<IEventSubscription, IResponse, string> OnPublish; 
+    Func<IEventSubscription, IResponse, string, Task> OnPublishAsync; 
 }
 ```
 
