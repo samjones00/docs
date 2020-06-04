@@ -298,7 +298,8 @@ The following Server and Client callbacks are fired when a client first makes a 
  3. `ServerEventsFeature.OnConnect()` - Fired when the `IEventSubscription` is about to be connected. This callback can be used to modify the connection info arguments the client receives
  4. **(Client)**  - The Client is then sent an `cmd.onConnect` message with the connection info arguments about the connection. 
  5. `ServerEventsFeature.OnSubscribe()` - Fired after the subscription is registered. This callback can be used to send any custom messages to the client
- 6. **(Client)** - If `ServerEventsFeature.NotifyChannelOfSubscriptions = true` every client in the same channel receives a `cmd.onJoin` message to notify them that a new subscription has joined the channel as well as a `cmd.onLeave` message when subscription leaves the channel
+ 6. `ServerEventsFeature.OnUpdateAsync()` - Fired after the subscription is updated (e.g. subscribed Channels are updated)
+ 7. **(Client)** - If `ServerEventsFeature.NotifyChannelOfSubscriptions = true` every client in the same channel receives a `cmd.onJoin` message to notify them that a new subscription has joined the channel as well as a `cmd.onLeave` message when subscription leaves the channel
 
 > The `cmd.onConnect`, `cmd.onJoin` and `cmd.onLeave` messages can be handled with the [Global Event Handlers](/javascript-server-events-client#global-event-handlers) on the JavaScript Client and the [Message Event Handlers](/csharp-server-events-client#message-event-handlers) or the [Global Receiver](/csharp-server-events-client#the-global-receiver) .NET ServerEventClient.
 
