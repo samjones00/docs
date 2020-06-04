@@ -114,6 +114,7 @@ There are also a number of hooks available providing entry points where custom l
 ```csharp
 class ServerEventsFeature
 {
+    Action<IRequest> OnInit;                          // Subscription pre-initialization callback
      //Filter OnConnect messages
     Action<IEventSubscription, Dictionary<string, string>> OnConnect;
 
