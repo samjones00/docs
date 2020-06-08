@@ -179,9 +179,12 @@ pre.highlight {
 }
 .youtube-play {
     background-image: no-repeat url(/images/youtube-play.png);
+    display: block;
+    position: absolute;
 }
 .youtube-play:hover {
     background-image: no-repeat url(/images/youtube-play-hover.png);
+    opacity: 0.9;
 }
 
 
