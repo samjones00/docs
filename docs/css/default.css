@@ -177,6 +177,13 @@ pre.highlight {
 {
     background-color: #f8f8f8;
 }
+.youtube-play {
+    background-image: no-repeat url(/images/youtube-play.png);
+}
+.youtube-play:hover {
+    background-image: no-repeat url(/images/youtube-play-hover.png);
+}
+
 
 @media (max-width: 1580px) {
     #content {
