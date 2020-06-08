@@ -3432,7 +3432,7 @@ public class SpaFallbackService : Service
 
 ### Vue & React "Lite" Project Templates
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-lite.png)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-lite.png)
 
 The "maximum-simplified" npm-free [vue-lite](https://github.com/NetCoreTemplates/vue-lite) and [react-lite](https://github.com/NetCoreTemplates/react-lite)
 Project templates are now even lighter where instead of needing the **bootstrap.css** or Vue framework library `*.js` assets on disk we can instead 
