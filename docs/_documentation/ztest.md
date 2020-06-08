@@ -357,7 +357,7 @@ For example a single `#Script` page can provide much of the functionality in [Au
 
 #### [/db/_db/_table/index.html](https://github.com/NetCoreApps/SharpData/blob/master/wwwroot/db/_db/_table/index.html)
 
-    {{ {namedConnection:db} |> if (db && db != 'main') |> useDb }}
+    {% raw %}{{ {namedConnection:db} |> if (db && db != 'main') |> useDb }}
 
     ```code|quiet
     var ignore = ['db','fields','format','skip','take','orderBy']
@@ -400,7 +400,7 @@ For example a single `#Script` page can provide much of the functionality in [Au
     sql |> dbSelect(queryMap) |> return
     ```
     {{ ifError |> show(sql) }}
-    {{htmlError}}
+    {{htmlError}}{% endraw %}
 
 
 The `_` prefixes in the path utilizes [#Script Page Based Routing](https://sharpscript.net/docs/sharp-pages#page-based-routing) allowing for 
@@ -664,7 +664,7 @@ With our component registered we can now drill down into any Order to view its O
 You're free to render any kind of UI in the row component, e.g. here's the [Customer.ts](https://github.com/NetCoreApps/SharpData/blob/master/src/components/Custom/Customer.ts) row component used to render a richer view for Customers:
 
 ```ts
-@Component({ template:
+{% raw %}@Component({ template:
 `<div v-if="id" class="pl-2">
     <h3 class="text-success">{{customer.ContactName}}</h3>
     <table class="table table-bordered" style="width:auto">
@@ -708,7 +708,7 @@ class Customer extends Vue {
         this.orders = await sharpData(this.db,'Order',{ CustomerId: this.id, fields })
     }
 }
-registerRowComponent('main','customer', Customer, 'customer');
+registerRowComponent('main','customer', Customer, 'customer');{% endraw %}
 ```
 
 Which looks like:
@@ -730,7 +730,7 @@ It uses the same Vue SPA solution as [vue-lite](https://github.com/NetCoreTempla
 Some other of its unique traits is that instead of manually including all the Vue framework `.js` libraries, it instead references the new `ServiceStack.Desktop.dll` for its Vue framework libraries and its Material design SVG icons which are [referenced as normal file references](https://github.com/NetCoreApps/SharpData/blob/0499e7c66ca4289d17158e79bcc91815bbcd7a99/wwwroot/_layout.html#L60-L66):
 
 ```js
-{{ [
+{% raw %}{{ [
     `/lib/js/vue/vue.min.js`,
     `/lib/js/vue-router/vue-router.min.js`,
     `/lib/js/vue-class-component/vue-class-component.min.js`,
@@ -738,7 +738,7 @@ Some other of its unique traits is that instead of manually including all the Vu
     `/lib/js/@servicestack/desktop/servicestack-desktop.min.js`,
     `/lib/js/@servicestack/client/servicestack-client.min.js`,
     `/lib/js/@servicestack/vue/servicestack-vue.min.js`,
-] |> map => `<script src="${it}"></script>` |> joinln |> raw }}
+] |> map => `<script src="${it}"></script>` |> joinln |> raw }}{% endraw %}
 ```
 
 But instead of needing to exist on disk & deployed with your project it's referencing the embedded resources in `ServiceStack.Desktop.dll` and only the bundled assets need to be [deployed with your project](https://github.com/NetCoreApps/SharpData/blob/0499e7c66ca4289d17158e79bcc91815bbcd7a99/SharpData.csproj#L17) which is using the built-in [NUglify](https://github.com/xoofx/NUglify) support in the [dotnet tools](/dotnet-tool) to produce its highly optimized/minified bundle without needing to rely on any npm tooling when publishing the .NET Core App:
@@ -3439,14 +3439,14 @@ Project templates are now even lighter where instead of needing the **bootstrap.
 [reference the official pre-minified assets](https://github.com/NetCoreTemplates/vue-lite/blob/master/wwwroot/_layout.html) embedded in **ServiceStack.Desktop.dll**:
 
 ```js
-{{ [
+{% raw %}{{ [
     `/lib/js/vue/vue.min.js`,
     `/lib/js/vue-router/vue-router.min.js`,
     `/lib/js/vue-class-component/vue-class-component.min.js`,
     `/lib/js/vue-property-decorator/vue-property-decorator.min.js`,
     `/lib/js/@servicestack/client/servicestack-client.min.js`,
     `/lib/js/@servicestack/vue/servicestack-vue.min.js`,
-] |> map => `<script src="${it}"></script>` |> joinln |> raw }}
+] |> map => `<script src="${it}"></script>` |> joinln |> raw }}{% endraw %}
 ```
 
 This allows faster and simplified updates and deployments which automatically takes care of updating to the latest framework library stable versions 
@@ -3572,13 +3572,13 @@ JS compatibility was the primary motivation for [transitioning to the Pipe Forwa
 The Pipe Forward operator makes it more obvious that the **output of the left expression** is passed as the **input of the right target** which needs to be either a [script method](https://sharpscript.net/docs/methods) or a [filter transformer](https://sharpscript.net/docs/transformers#filter-transformers) however it could be forgiven to [confuse it as an assignment expression](https://forums.servicestack.net/t/virtualfilesystem-for-script-page/7971/5?u=mythz) where the output of the left expression was assigned to the `sliders` variable:
 
 ```hbs
-{{ dirFiles('img/sliders') |> sliders }}
+{% raw %}{{ dirFiles('img/sliders') |> sliders }}{% endraw %}
 ```
 
 The mistake here was that it needs to be piped to the `to` (or `toGlobal`) script method which assigns it to the `sliders` local scope argument:
 
 ```hbs
-{{ dirFiles('img/sliders') |> to => sliders }}
+{% raw %}{{ dirFiles('img/sliders') |> to => sliders }}{% endraw %}
 ```
 
 ### Local Variables
@@ -3672,7 +3672,7 @@ var tableNames = northwind_tables
 #### Other features
 
 - Can now use `$` in variable identifiers
-- Can use top-level `{{ 'ex' |> catchError }}` at start of Page to capture exceptions in `ex` & continue page execution
+- Can use top-level `{% raw %}{{ 'ex' |> catchError }}{% endraw %}` at start of Page to capture exceptions in `ex` & continue page execution
 
 ### Modified `if*` methods behavior
 
@@ -3714,7 +3714,7 @@ one-time Startup logic in `#Script` (akin to `Startup.cs` for C#).
 list of embedded `*.svg` resources and inline SVG declarations, e.g:
 
 ```hbs
-{{ 
+{% raw %}{{ 
     var AppSvgs = {
         'action/home.svg':                    'home',
         'device/storage.svg':                 'db',
@@ -3739,7 +3739,7 @@ list of embedded `*.svg` resources and inline SVG declarations, e.g:
     <path d="M0 0h24v24H0V0z" fill="none"/>
     <path d="M4 5v13h17V5H4zm10 2v9h-3V7h3zM6 7h3v9H6V7zm13 9h-3V7h3v9z" fill="#ffffff"/>
 </svg>
-{{/svg}}
+{{/svg}}{% endraw %}
 ```
 
 ### Lisp
@@ -3938,7 +3938,7 @@ Config.HandlerFactoryPath //= api
 
 When necessary the `PathBase` property is available in both server rendered views:
 
-  - `{{PathBase}}` variable in [#Script Pages](https://sharpscript.net/docs/sharp-pages)
+  - `{% raw %}{{PathBase}}{% endraw %}` variable in [#Script Pages](https://sharpscript.net/docs/sharp-pages)
   - `PathBase` in Razor Views
 
 ### Pluralize and Singularize
