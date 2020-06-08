@@ -181,10 +181,12 @@ pre.highlight {
     background: no-repeat url(/images/youtube-play.png);
     display: block;
     position: absolute;
+    opacity: 0.8;
 }
 .youtube-play:hover {
     background: no-repeat url(/images/youtube-play-hover.png);
-    opacity: 0.9;
+    opacity: 1;
+    background-color: rgba(255,255,255,.2);
 }
 
 
