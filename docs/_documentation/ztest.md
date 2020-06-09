@@ -517,7 +517,7 @@ the only files that need to be published are the App's specific resources, which
 **20kb .zip** - a tiny payload that's viable to download the latest app each on each run, removing the pain & friction to distribute updates as 
 everyone's already running the latest version every time it's run.
 
-Should you need to (e.g. large Sharp App or github.com is down) you can run your previously locally cached App using `run`, e.g:
+Should you need to (e.g. large Sharp App or github.com is down) you can run your previously locally cached App using `run`:
 
     $ app run sharpdata
 
@@ -534,12 +534,12 @@ or by specifying an Environment variable containing the connection string:
 In addition to Sharp Apps being downloaded and run on the fly, they're also able to take advantage of the dotnet tools [mix support](/mix-tool) to 
 also download another Gist's content into the Sharp App's working directory.
 
-With this you can publish a custom dataset in an SQLite database save it as a gist and generate a URL that everyone can use to download the database 
-and open it in **SharpData**, e.g:
+With this you can publish a custom dataset in an SQLite database save it as a gist and **generate a single URL** that everyone can use to 
+download the database and open it in **SharpData**, e.g:
 
  - [app://sharpdata?mix=northwind.sqlite&db=sqlite&db.connection=northwind.sqlite](app://sharpdata?mix=northwind.sqlite&db=sqlite&db.connection=northwind.sqlite)
 
-It's possible to use the user-friendly `northwind.sqlite` alias here as it's published in the [mix.md](https://gist.github.com/gistlyn/9b32b03f207a191099137429051ebde8) directory where it links to the [northwind.sqlite gist](https://gist.github.com/gistlyn/97d0bcd3ebd582e06c85f8400683e037). 
+It's possible to use the user-friendly `northwind.sqlite` alias here as it's published in the global [mix.md](https://gist.github.com/gistlyn/9b32b03f207a191099137429051ebde8) directory where it links to the [northwind.sqlite gist](https://gist.github.com/gistlyn/97d0bcd3ebd582e06c85f8400683e037). 
 
 For your custom databases you use the **Gist Id** instead or if you plan to use this feature a lot you can override which `mix.md` document that 
 `app` should source its links from by specifying another **Gist Id** in the `MIX_SOURCE` Environment variable (or see below - to create a local alias).
@@ -641,7 +641,7 @@ Which will display both RDBMS Databases, showing only the user-specified tables 
 
 ### Open in Excel
 
-Sharp Data detects if you have **Excel** installed and allows you to open the un-paged filtered resultset directly by clicking on the **Excel** button.
+SharpData detects if **Excel** is installed and lets you open the un-paged filtered resultset directly with the **Excel** button
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-excel.png) 
 
@@ -649,11 +649,13 @@ This works seamlessly as it's able to "by-pass" the browser download where the q
 
 ### Custom Row Components
 
-Whilst a tabular grid view might be a natural UI for browsing a database for devs, we can do better since we have the full UI source code that's built using Vue components. A filtered tabular view makes it fast to find the record you're interested in, but it's not ideal for quickly finding related information about an Entity.
+Whilst a tabular grid view might be a natural UI for browsing a database for devs, we can do better since we have the full UI source code of the Vue components. 
+A filtered tabular view makes it fast to find the record you're interested in, but it's not ideal for quickly finding related information about an Entity.
 
-To provide a richer more customized UX for different App users, SharpData includes support for "Row Components" which you can use to provide rich information at a glance for any record. In SharpData you can create them in [/components/Custom](https://github.com/NetCoreApps/SharpData/tree/master/src/components/Custom). 
+To provide a more customized UX for different App UIs, **SharpData** includes support for **"Row Components"** to be able to quickly drill down & view 
+richer info on any record. Row Components are defined in [/components/Custom](https://github.com/NetCoreApps/SharpData/tree/master/src/components/Custom).
 
-For example when viewing an Order, it's natural to want to view the Order Details with it, which we can enable by registering a custom Vue component below:
+For example when viewing an **Order**, it's natural to want to view the **Order Details** with it, which is enabled by registering the custom Vue component below:
 
 ```ts
 @Component({ template:
@@ -681,11 +683,11 @@ registerRowComponent('main','Order', Order, 'order');
 
 All Row components are injected with the `db`, `table` properties, the entire `row` object that was selected as well as the Column Schema definition for that table. Inside the component you're free to display anything, in this case we're using the `sharpData` helper for calling the server `#Script` HTTP API to get it to fetch all `OrderDetail` entries for this order.
 
-> If the user filters the resultset and doesn't include the Order `Id` we wont be able to fetch its referenced data so we display an error message instead.
+> If the user filters the resultset without the Order `Id` PrimaryKey we wont be able to fetch its referenced data so an error is displayed instead
 
 The [jsonviewer](https://github.com/NetCoreApps/SharpData/blob/master/src/JsonViewer.ts) component used here is similar to ServiceStack's HTML5 pages auto viewer to quickly display the contents of any object.
 
-The `registerRowComponent(db,table,VueComponent,componentName)` API is used to register this component with Sharp Data to make it available to render any order.
+The `registerRowComponent(db,table,VueComponent,componentName)` API is used to register this component with **SharpData** to make it available to render any order.
 
 With our component registered we can now drill down into any Order to view its Order Details:
 
@@ -749,13 +751,13 @@ Which looks like:
 
 Whilst [NetCoreApps/SharpData](https://github.com/NetCoreApps/SharpData) can live a charmed life as a Desktop App, it's also just a regular ServiceStack .NET Core App with a [Startup.cs](https://github.com/NetCoreApps/SharpData/blob/master/Startup.cs) and `AppHost` that can be developed, published and deployed as you're used to, here's an instance of it [deployed as a .NET Core App on Linux](/netcore-deploy-rsync):
 
-#### https://sharpdata.netcore.io
+#### [sharpdata.netcore.io](https://sharpdata.netcore.io)
 
 > For best experience we recommend running locally to experience it without latency of our servers in Germany
 
-It's a unique ServiceStack App in that it doesn't actually use any custom ServiceStack Services since it's just using pre-existing functionality already built into ServiceStack, `#Script` for its HTTP APIs and a Vue SPA for its UI, so requires no `.dll's` to be deployed with it.
+It's a unique ServiceStack App in that it doesn't actually use any custom ServiceStack Services since it's only using pre-existing functionality already built into ServiceStack, `#Script` for its HTTP APIs and a Vue SPA for its UI, so requires no `.dll's` to be deployed with it.
 
-It uses the same Vue SPA solution as [vue-lite](https://github.com/NetCoreTemplates/vue-lite) to avoid requiring npm where you only need to run TypeScript's `tsc -w` to enable its [live-reload](/hot-reloading) dev UX which provides its instant feedback during development.
+It uses the same Vue SPA solution as [vue-lite](https://github.com/NetCoreTemplates/vue-lite) to avoid npm's size & complexity where you only need to run TypeScript's `tsc -w` to enable its [live-reload](/hot-reloading) dev UX which provides its instant feedback during development.
 
 Some other of its unique traits is that instead of manually including all the Vue framework `.js` libraries, it instead references the new `ServiceStack.Desktop.dll` for its Vue framework libraries and its Material design SVG icons which are [referenced as normal file references](https://github.com/NetCoreApps/SharpData/blob/0499e7c66ca4289d17158e79bcc91815bbcd7a99/wwwroot/_layout.html#L60-L66):
 
@@ -779,7 +781,7 @@ But instead of needing to exist on disk & deployed with your project it's refere
 </Target>
 ```
 
-The framework [/typings](https://github.com/NetCoreApps/SharpData/tree/master/typings) that are included are just the TypeScript definitions for each library which TypeScript uses for its static analysis & its great dev UX in IDEs & VS Code, but they're only needed during development and aren't deployed with your project.
+The framework [/typings](https://github.com/NetCoreApps/SharpData/tree/master/typings) that are included are just the TypeScript definitions for each library which TypeScript uses for its static analysis & its great dev UX in IDEs & VSCode, but are only needed during development and not deployed with the project.
 
 ### Publish to Gist Desktop App
 
