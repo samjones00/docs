@@ -40,7 +40,8 @@ If time constrained, skim the ToC below to get a quick overview of what's in thi
         - [Paging](#paging)
         - [Format](#format)
         - [Multitenancy](#multitenancy)
-    - [Configure RDBMS from command-line](#configure-rdbms-from-command-line)
+    - [Launching SharpData](#launching-sharpdata)
+      - [Configure RDBMS from command-line](#configure-rdbms-from-command-line)
     - [app URL Schemes](#app-url-schemes)
     - [app local aliases](#app-local-aliases)
     - [Custom App Settings](#custom-app-settings)
@@ -360,14 +361,14 @@ another generic tool (useful for non .NET devs) for providing an instant UI arou
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-custom-appsettings.png)](https://youtu.be/EJ-lDWshjcY)
 
 An impressively capable .NET Core App that fits into a tiny **20kb .zip** footprint thanks to [Gist Desktop App's Architecture](https://sharpscript.net/docs/gist-desktop-apps). It's small dynamic `#Script` & Vue TypeScript code-base also makes it highly customizable to tailor & further extend with 
-App-specific requirements - suitable for offering advanced system users a quick, capable customized read-only UI of your databases.
+App-specific requirements - suitable for offering advanced system users a quick, capable customized read-only UI of your DBs.
 
 **SharpData** started as a demonstration showing how productive [#Script](https://sharpscript.net) can be in the number of areas where 
-dynamic languages can offer far superior productivity then the typical .NET approach of using C# to type an entire code-base and all its models.
+dynamic languages offer far superior productivity then the typical .NET approach of using C# to type an entire code-base & models.
 
 For example a single `#Script` page provides a lot of the functionality in [AutoQuery](/autoquery-rdbms) where it provides an instant HTTP API 
 (in all registered ServiceStack formats) around all registered RDBMS tables, in all OrmLite supported RBDMS's, that includes support for custom fields, 
-multiple querying options, paging, multi OrderBy's in a parameterized SQL query executed with OrmLite's raw SQL async DB APIs:
+multiple querying options, paging, multi OrderBy's in a parameterized SQL query executed with OrmLite's SQL async DB APIs:
 
 ### AutoQuery Script
 
@@ -420,21 +421,16 @@ multiple querying options, paging, multi OrderBy's in a parameterized SQL query 
 
 
 The `_` prefixes in the path utilizes [Page Based Routing](https://sharpscript.net/docs/sharp-pages#page-based-routing) allowing for 
-convention-base [Clean URL](https://en.wikipedia.org/wiki/Clean_URL) routes without needing to define & maintain separate routes where the
-same script includes support for querying all [registered multitenancy databases](/multitenancy#changedb-apphost-registration).
+[CoC](https://en.wikipedia.org/wiki/Convention_over_configuration) based 
+[Clean URL](https://en.wikipedia.org/wiki/Clean_URL) routes without needing to define & maintain separate routes where the
+same script supports querying all [registered multitenancy databases](/multitenancy#changedb-apphost-registration).
 
 ### Instant Customizable RDBMS UI
 
-The [SharpData](https://github.com/NetCoreApps/SharpData) project essentially provides a UI around this script to surface its features & 
-give it instant utility which ended up being so useful that it's become the quickest way to perform fast adhoc queries as it's easy to configure 
-which RDBMS's & tables to show in a simple text file, easy to customize its UI, enables 1-click export into Excel and its column filters 
-with shortcut syntax is a super quick way to perform quick adhoc queries.
-
-To run SharpData in a .NET Core Desktop App you'll need latest `app` dotnet tool:
-
-    $ dotnet tool update -g app
-
-> If on macOS/Linux you can use the [x dotnet tool](/dotnet-tool) instead to view SharpData in your default browser.
+The [SharpData](https://github.com/NetCoreApps/SharpData) project essentially provides a UI around this script, surfacing its features & give 
+it instant utility which ended up being so useful that it's become the quickest way to perform fast adhoc DB queries as it's easy to configure 
+which RDBMS's & tables to show in a simple text file, easy to customize its UI, enables 1-click export into Excel and its shortcut syntax
+support in column filters is a fast way to perform quick adhoc queries.
 
 ### Quick Tour
 
@@ -488,7 +484,15 @@ You can specify which registered DB to search using the path info, use `main` to
 
     /db/<named-db>/<table>
 
-### Configure RDBMS from command-line
+### Launching SharpData
+
+To run SharpData in a .NET Core Desktop App you'll need latest `app` dotnet tool:
+
+    $ dotnet tool update -g app
+
+> If on macOS/Linux you can use the [x dotnet tool](/dotnet-tool) instead to view SharpData in your default browser
+
+#### Configure RDBMS from command-line
 
 You can override which database to connect to by specifying it on the command line, e.g. here's an example of connecting to https://techstacks.io RDBMS:
 
@@ -501,14 +505,19 @@ find the table you want, e.g:
 
 ### app URL Schemes
 
-Most of what can be done with the `open` command on the command-line can be done from a **custom URL Scheme**, a feature that opens up a myriad of new 
+What can be done with the `open` command on the command-line can also be done from a **custom URL Scheme**, a feature that opens up a myriad of new 
 possibilities as `app` can open [Gist Desktop Apps](https://sharpscript.net/docs/gist-desktop-apps) from Gists or in public & private GitHub repositories, 
-where it's able to download and launch Apps on the fly with custom arguments - allowing a single URL to run a never installed Desktop App stored in a 
-Gist with deep linking.
+where it's able to download and launch Apps on the fly with custom arguments - allowing a single URL to run a **never installed** Desktop App stored in a 
+Gist & pass it custom params to enable **deep linking**.
 
-With this organizations can now maintain a dashboard of links to different Desktop Apps that anyone can access, especially useful as the **only software** that's needed to run any [Sharp Apps](https://sharpscript.net/docs/sharp-apps) is the `app` dotnet tool which thanks to including all ServiceStack .dll's & dependencies bundled with the tool, (including Vue/React/Bootstrap fontawesome and Material SVG Icon assets), the only files that need to be published are the App's specific resources which is how Sharp Apps like SharpData can be compressed in a **20kb .zip** - a tiny payload that's viable to download the latest app each on each run, making it painless to distribute updates as everyone's already running the latest version after each run.
+With this organizations could maintain a dashboard of links to its different Desktop Apps that anyone can access, especially useful as the 
+**only software** that's needed to run any [Sharp Apps](https://sharpscript.net/docs/sharp-apps) is the `app` dotnet tool which thanks to all 
+ServiceStack .dll's & dependencies being bundled with the tool, (including Vue/React/Bootstrap fontawesome and Material SVG Icon assets), 
+the only files that need to be published are the App's specific resources, which is how Apps like **SharpData** can be compressed in a 
+**20kb .zip** - a tiny payload that's viable to download the latest app each on each run, removing the pain & friction to distribute updates as 
+everyone's already running the latest version every time it's run.
 
-Should you need to (e.g. large Sharp App or github.com is down) you can run your previously locally cached version using `run`, e.g:
+Should you need to (e.g. large Sharp App or github.com is down) you can run your previously locally cached App using `run`, e.g:
 
     $ app run sharpdata
 
@@ -522,17 +531,21 @@ or by specifying an Environment variable containing the connection string:
 
     app://sharpdata?db=postgres&db.connection=$TECHSTACKS_DB
 
-In addition to Sharp Apps being downloaded and run on the fly, they're also able to take advantage of the dotnet tools [mix support](/mix-tool) to also download another Gist's content into the Sharp App's working directory.
+In addition to Sharp Apps being downloaded and run on the fly, they're also able to take advantage of the dotnet tools [mix support](/mix-tool) to 
+also download another Gist's content into the Sharp App's working directory.
 
-With this you can publish a custom dataset in an SQLite database save it as a gist and generate a URL that everyone can use to download the database and open it in SharpData, e.g:
+With this you can publish a custom dataset in an SQLite database save it as a gist and generate a URL that everyone can use to download the database 
+and open it in **SharpData**, e.g:
 
  - [app://sharpdata?mix=northwind.sqlite&db=sqlite&db.connection=northwind.sqlite](app://sharpdata?mix=northwind.sqlite&db=sqlite&db.connection=northwind.sqlite)
 
 It's possible to use the user-friendly `northwind.sqlite` alias here as it's published in the [mix.md](https://gist.github.com/gistlyn/9b32b03f207a191099137429051ebde8) directory where it links to the [northwind.sqlite gist](https://gist.github.com/gistlyn/97d0bcd3ebd582e06c85f8400683e037). 
 
-For your custom databases you use the **Gist Id** instead or if you plan to use this feature a lot you can override which `mix.md` document that `app` should source its links from by specifying another **Gist Id** in the `MIX_SOURCE` Environment variable.
+For your custom databases you use the **Gist Id** instead or if you plan to use this feature a lot you can override which `mix.md` document that 
+`app` should source its links from by specifying another **Gist Id** in the `MIX_SOURCE` Environment variable (or see below - to create a local alias).
 
-But if you're already mixing in an external gist you may as well include a custom `app.settings` in the Gist so it's pre-configured with custom RDBMS registrations and table lists, e.g:
+But if you're already mixing in an external gist you may as well include a custom `app.settings` in the Gist so it's pre-configured with custom 
+RDBMS registrations and table lists, e.g:
 
  - [app://sharpdata?mix=northwind.sharpdata](app://sharpdata?mix=northwind.sharpdata)
 
@@ -544,12 +557,13 @@ Alternatively you may instead prefer to publish it to a private GitHub repo inst
 
     app://user/sharpdata-private?token={TOKEN}
 
-The `app` dotnet tools will use the **latest published GitHub release** if there are any, otherwise will use the **master.zip** archive, this feature can be used to maintain a working master repo and maintain control ver when to publish new versions of your custom SharpData App.
+The `app` dotnet tools will use the **latest published GitHub release** if there are any, otherwise will use the **master.zip** archive, 
+this feature can be used to maintain a working master repo and maintain control ver when to publish new versions of your custom SharpData App.
 
 ### app local aliases
 
-Where ever you can use a Gist Id, you can assign a local user-friendly alias to use instead. So if you had a custom **sqlite** database and sharpdata **app.settings**
-you could assign it to a local **db** alias with:
+Where ever you can use a Gist Id, you can assign a local user-friendly alias to use instead. So if you had a custom **sqlite** database and 
+sharpdata **app.settings** you could assign it to a local **db** alias with:
 
     $ app alias db 0ce0d5b828303f1cb4637450b563adbd
 
