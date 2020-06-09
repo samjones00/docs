@@ -304,7 +304,7 @@ Alternatively you can download and update separately with:
 
     $ x mix autodto
 
-Then using a text editor to update `app.settings` with your RDBMS configuration:
+Then use a text editor to update `app.settings` with your RDBMS configuration:
 
     debug true
     name Auto DTO
@@ -317,11 +317,11 @@ Then using a text editor to update `app.settings` with your RDBMS configuration:
     db sqlite
     db.connection northwind.sqlite
 
-Once configured, start this instance of ServiceStack with:
+Once configured, start this ServiceStack App with:
 
     $ x
 
-Then in another terminal you can download just the generated DTOs in each language you want them in by excluding their Service Contracts:
+Then in another terminal you can download just the generated **Types** in each language you want, by excluding their **Services**:
 
     $ x csharp https://localhost:5001 -path /crud/all/csharp?ExcludeTypes=services
     $ x typescript https://localhost:5001 -path /crud/all/typescript?ExcludeTypes=services
@@ -353,13 +353,13 @@ Then regenerate it using the full language name above or their wrist-friendly 2-
 ## Introducing SharpData!
 
 Before diving into the world of AutoCrud, we'd like to introduce the [SharpData](https://github.com/NetCoreApps/SharpData) .NET Core project -
-another tool providing an instant UI around multiple RDBMS's:
+another generic tool (useful for non .NET devs) providing an instant UI around multiple RDBMS's:
 
 > YouTube: [youtu.be/EJ-lDWshjcY](https://youtu.be/EJ-lDWshjcY)
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-custom-appsettings.png)](https://youtu.be/EJ-lDWshjcY)
 
-An impressively capable .NET Core App that fits in its tiny **20kb .zip** footprint thanks to [Gist Desktop App's Architecture](https://sharpscript.net/docs/gist-desktop-apps). It's tiny dynamic #Script & Vue TypeScript code-base size also makes it highly customizable to tailor & further extend with 
+An impressively capable .NET Core App that fits in its tiny **20kb .zip** footprint thanks to [Gist Desktop App's Architecture](https://sharpscript.net/docs/gist-desktop-apps). It's tiny dynamic `#Script` & Vue TypeScript code-base size also makes it highly customizable to tailor & further extend with 
 different App requirements.
 
 **SharpData** started out as a demonstration to show how productive [#Script](https://sharpscript.net) can be in the number of areas where a 
@@ -583,15 +583,15 @@ Make the changes we want, then run our local copy by running `app` (or `x`) with
 
 Other alias command include:
 
-#### View all aliases
+##### View all aliases
 
     $ app alias
 
-#### View single alias
+##### View single alias
 
     $ app alias db
 
-#### Remove an alias
+##### Remove an alias
 
     $ app unalias db
 
