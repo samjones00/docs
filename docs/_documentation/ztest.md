@@ -641,7 +641,7 @@ Which will display both RDBMS Databases, showing only the user-specified tables 
 
 ### Open in Excel
 
-SharpData detects if **Excel** is installed and lets you open the un-paged filtered resultset directly with the **Excel** button
+SharpData detects if **Excel** is installed and lets you open the un-paged filtered resultset directly by clicking the **Excel** button
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-excel.png) 
 
@@ -652,10 +652,11 @@ This works seamlessly as it's able to "by-pass" the browser download where the q
 Whilst a tabular grid view might be a natural UI for browsing a database for devs, we can do better since we have the full UI source code of the Vue components. 
 A filtered tabular view makes it fast to find the record you're interested in, but it's not ideal for quickly finding related information about an Entity.
 
-To provide a more customized UX for different App UIs, **SharpData** includes support for **"Row Components"** to be able to quickly drill down & view 
-richer info on any record. Row Components are defined in [/components/Custom](https://github.com/NetCoreApps/SharpData/tree/master/src/components/Custom).
+To provide a more customized UX for different App UIs, **SharpData** includes support for **"Row Components"** 
+(defined in [/components/Custom](https://github.com/NetCoreApps/SharpData/tree/master/src/components/Custom)) to be able to quickly drill down & view 
+richer info on any record.
 
-For example when viewing an **Order**, it's natural to want to view the **Order Details** with it, which is enabled by registering the custom Vue component below:
+For example when viewing an **Order**, it's natural to want to view the **Order Details** with it, enabled with the custom Vue component registration below:
 
 ```ts
 @Component({ template:
@@ -683,13 +684,14 @@ registerRowComponent('main','Order', Order, 'order');
 
 All Row components are injected with the `db`, `table` properties, the entire `row` object that was selected as well as the Column Schema definition for that table. Inside the component you're free to display anything, in this case we're using the `sharpData` helper for calling the server `#Script` HTTP API to get it to fetch all `OrderDetail` entries for this order.
 
-> If the user filters the resultset without the Order `Id` PrimaryKey we wont be able to fetch its referenced data so an error is displayed instead
+> If the resultset is filtered without the Order `Id` PK it can't fetch its referenced data, so displays an error instead
 
-The [jsonviewer](https://github.com/NetCoreApps/SharpData/blob/master/src/JsonViewer.ts) component used here is similar to ServiceStack's HTML5 pages auto viewer to quickly display the contents of any object.
+The [jsonviewer](https://github.com/NetCoreApps/SharpData/blob/master/src/JsonViewer.ts) component used is similar to ServiceStack's 
+[HTML5 auto pages](/html5reportformat) to quickly view contents of any object.
 
 The `registerRowComponent(db,table,VueComponent,componentName)` API is used to register this component with **SharpData** to make it available to render any order.
 
-With our component registered we can now drill down into any Order to view its Order Details:
+With the `Order` component registered we can now drill down into any **Order** to view its **Order Details**:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-custom-rowcomponents.png) 
 
@@ -751,11 +753,12 @@ Which looks like:
 
 Whilst [NetCoreApps/SharpData](https://github.com/NetCoreApps/SharpData) can live a charmed life as a Desktop App, it's also just a regular ServiceStack .NET Core App with a [Startup.cs](https://github.com/NetCoreApps/SharpData/blob/master/Startup.cs) and `AppHost` that can be developed, published and deployed as you're used to, here's an instance of it [deployed as a .NET Core App on Linux](/netcore-deploy-rsync):
 
-#### [sharpdata.netcore.io](https://sharpdata.netcore.io)
+##### [sharpdata.netcore.io](https://sharpdata.netcore.io)
 
 > For best experience we recommend running locally to experience it without latency of our servers in Germany
 
-It's a unique ServiceStack App in that it doesn't actually use any custom ServiceStack Services since it's only using pre-existing functionality already built into ServiceStack, `#Script` for its HTTP APIs and a Vue SPA for its UI, so requires no `.dll's` to be deployed with it.
+It's a unique ServiceStack App in that it doesn't contain any ServiceStack Services as it's only using pre-existing functionality already built into ServiceStack, 
+`#Script` for its HTTP APIs and a Vue SPA for its UI, so requires no `.dll's` need to be deployed with it.
 
 It uses the same Vue SPA solution as [vue-lite](https://github.com/NetCoreTemplates/vue-lite) to avoid npm's size & complexity where you only need to run TypeScript's `tsc -w` to enable its [live-reload](/hot-reloading) dev UX which provides its instant feedback during development.
 
@@ -781,27 +784,28 @@ But instead of needing to exist on disk & deployed with your project it's refere
 </Target>
 ```
 
-The framework [/typings](https://github.com/NetCoreApps/SharpData/tree/master/typings) that are included are just the TypeScript definitions for each library which TypeScript uses for its static analysis & its great dev UX in IDEs & VSCode, but are only needed during development and not deployed with the project.
+The included [/typings](https://github.com/NetCoreApps/SharpData/tree/master/typings) are just the TypeScript definitions for each library which 
+TypeScript uses for its static analysis & its great dev UX in IDEs & VSCode, but are only needed during development and not deployed with the project.
 
 ### Publish to Gist Desktop App
 
-The other way SharpData can be distributed is as a [Gist Desktop App](https://sharpscript.net/docs/gist-desktop-apps), where it's able to provide instant utility by running on a users local machine inside a native Chromium Desktop App making it suitable for a much broader use-case as a fast, lightweight, always up-to-date Desktop App with deeper Windows integration all packaged in a tiny **20kb .zip** footprint. There's no need to provision servers, setup CI, manage cloud hosting resources, you can simply run a script to update a Gist where its latest features are immediately available to your end users the next time it's run.
+The primary way **SharpData** is distributed is as a [Gist Desktop App](https://sharpscript.net/docs/gist-desktop-apps), where it's able to provide instant utility by running on a users local machine inside a native Chromium Desktop App making it suitable for a much broader use-case as a fast, lightweight, always up-to-date Desktop App with deeper Windows integration all packaged in a tiny **20kb .zip** footprint. There's no need to provision servers, setup CI, manage cloud hosting resources, you can simply run a script to update a Gist where its latest features are immediately available to your end users the next time it's run.
 
 To run, test & publish it as a Desktop App you can use the pre-made scripts in [package.json](https://github.com/NetCoreApps/SharpData/blob/master/package.json).
 Rider provides a nice UX here as it lets you run each individual script directly from their json editor:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-scripts.png) 
 
-Essentially to package it into a [Sharp App](https://sharpscript.net/docs/sharp-apps) you just need to run the `pack` script which will bundle & copy all required assets into the `/dist` folder which you can then run in a [.NET Core Desktop App](/netcore-windows-desktop) by running `app` in that folder.
+Essentially to package it into a [Sharp App](https://sharpscript.net/docs/sharp-apps) you just need to run the `pack` script which will bundle & copy all required assets into the `/dist` folder which you can then test locally in a [.NET Core Desktop App](/netcore-windows-desktop) by running `app` in that folder:
 
     $ cd dist
     $ app
 
 The `init-test` script just copies an example **northwind.sqlite** database and sample `app.settings` so you have something to test it with if you need it.
 
-The `publish-app` script is if you want to publish it to a Gist, you will need it to provide the GitHub AccessToken with write access to the Gist User Account you want to publish it to. Adding an `appName` and `description` to `app.settings` will publish it to the [Global App Registry](https://sharpscript.net/docs/gist-desktop-apps#instant-run-without-installation), make it publicly discoverable and allow anyone to open your App using your user-friendly `appName` alias, otherwise they can run it using the **Gist Id** or **Gist URL**.
+The `publish-app` script is if you want to publish it to a Gist, you will need it to provide the GitHub **AccessToken** with write access to the Gist User Account you want to publish it to. Adding an `appName` and `description` to `app.settings` will publish it to the [Global App Registry](https://sharpscript.net/docs/gist-desktop-apps#instant-run-without-installation), make it publicly discoverable and allow anyone to open your App using your user-friendly `appName` alias, otherwise they can run it using the **Gist Id** or **Gist URL**.
 
-Alternatively you can publish the contents of the `dist/` folder to a GitHub repo (public or private) and run it with:
+Alternatively the contents of the `dist/` folder can be published to a GitHub repo (public or private) and run with:
 
     $ app open <user>/<repo>
 
@@ -809,7 +813,7 @@ Or link to it with its custom URL Scheme:
 
     app://<user>/repo
 
-If it's in a private repo they'll need to either provide an AccessToken in the `GITHUB_TOKEN` Environment variable or using the `-token` argument:
+If it's in a private repo they'll need to either provide an **AccessToken** in the `GITHUB_TOKEN` Environment variable or using the `-token` argument:
 
     $ app open <user>/<repo> -token <token>
 
@@ -819,7 +823,7 @@ URL Scheme:
 
 ### RDBMS Configuration
 
-When running it as a .NET Core App you'd need to register which RDBMS's you want to use with OrmLite's configuration, e.g. the screenshot above registers an SQLite `northwind.sqlite` database and the https://techstacks.io PostgreSQL Database:
+When running as a .NET Core App you'd need to register which RDBMS's you want to use with OrmLite's configuration, e.g. the screenshot above registers an SQLite `northwind.sqlite` database and the https://techstacks.io PostgreSQL Database:
 
 ```csharp
 container.Register<IDbConnectionFactory>(c => new OrmLiteConnectionFactory(
@@ -844,7 +848,8 @@ Plugins.Add(new SharpPagesFeature {
 });
 ```
 
-When running as a Sharp App you'd instead configure it in its `app.settings`, here's the equivalent settings to the above configuration:
+When running as a Sharp App it's instead configured in its 
+[app.settings](https://github.com/NetCoreApps/SharpData/blob/master/scripts/deploy/app.northwind.settings), here's equivalent settings for the above configuration:
 
 ```
 # Configure below. Supported dialects: sqlite, mysql, postgres, sqlserver
@@ -858,10 +863,9 @@ args.tables_techstacks technology,technology_stack,technology_choice,organizatio
 
 ### Feedback
 
-We hope [SharpData](https://github.com/NetCoreApps/SharpData) serves useful in some capacity, whether it's being able to quickly develop and Ship a UI to stakeholders or as a template to develop .NET Core Apps that you can distribute as **Sharp Apps**, as an example to explore the delivery and platform potential of URL schemes and install-less Desktop Apps or just as an inspiration for different kind of Apps you can create with it and areas where `#Script` shines. 
+We hope [SharpData](https://github.com/NetCoreApps/SharpData) serves useful in some capacity, whether it's being able to quickly develop and Ship a UI to stakeholders or as a template to develop .NET Core Apps that you can distribute as **Sharp Apps**, as an example to explore the delivery and platform potential of URL schemes and install-less Desktop Apps or just as an inspiration for areas where `#Script` shines & the different kind of Apps you can create with it. 
 
-As a side note whilst `app` is Windows 64 only, you can use the `x` cross-platform tool and its `xapp://` URL scheme to run Sharp Apps on macOS/Linux, it just wont have access to any of its Window Integration features.
-
+Whilst `app` is Windows 64 only, you can use the `x` cross-platform tool and its `xapp://` URL scheme to run Sharp Apps on macOS/Linux, it just wont have access to any of its Window Integration features.
 
 ## AutoQuery CRUD!
 
