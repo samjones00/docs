@@ -3,22 +3,23 @@ slug: ztest
 title: ztest
 ---
 
-Excited to announce the culmination of many high-level productivity features ServiceStack gained in this release that makes it vastly 
-more productive to rapidly develop data-driven APIs which has seen AutoQuery gain full CRUD support over its Data Models 
-where it's now able to declaratively implement Create, Updates, Partial Updates and Deletes APIs.
+We're excited to announce the culmination of many high-level productivity features ServiceStack gained in this release that makes it vastly 
+more productive to rapidly develop data-driven APIs which has seen AutoQuery gain full CRUD support where it's now able to 
+declaratively implement Create, Updates, Partial Updates and Deletes APIs.
 
-To maximize their utility Auto CRUD Services are equipped with additional declarative powers, alleviating their need for common 
-operations requiring any implementation which can be used to apply mandatory filters to limit Multitenant & Soft Deleted records,
-populate internal data models with Audit info & Complex Expressions, Auto Mapping between different DTO & Data Model properties, 
-support for Optimistic concurrency & the ability to easily enable high-end App-level features like full Executable Audit History 
-for all AutoCrud operations enabling EventSourcing-like capabilities in being able to re-create entity state by re-running Audit History.
+To maximize their utility AutoQuery/CRUD Services gain additional declarative powers whereby most common operations can continue to
+be implemented entirely from just their declarative Request DTO definition which is able to apply mandatory filters to limit 
+Multitenant & Soft Deleted records, populate internal data models with Audit info & Complex Expressions, Auto Mapping between 
+different DTO & Data Model properties, support for Optimistic concurrency & the ability to easily enable high-end App-level features 
+like full Executable Audit History for all CRUD operations enabling EventSourcing-like capabilities in being able to re-create 
+entity state by re-running their Audit History.
 
 Whilst all Services benefit from the new enhanced Fluent Validation capabilities where all built-in validators can now be applied declaratively, 
 including new support for top-level "Type" validators which can be used to enforce Type Authorization rules directly on DTOs without 
-implementation dependencies. The declarative validation rules can also sourced from dynamic sources like an RDBMS where they're instantly applied 
-at runtime whilst maintaining maximum performance.
+implementation dependencies. Declarative validation rules can also sourced from dynamic sources like an RDBMS where they're both instantly applied 
+at runtime & cached locally for max performance.
 
-As this is another Mega release, if you're time constrained skim the ToC below to get an overview of what's in this release and skip to the interested parts:
+If you're time constrained, skim the ToC below to get a quick overview of what's in this release and to jump directly to features you're interested in:
 
 # Table of Contents
 
@@ -166,11 +167,13 @@ As this is another Mega release, if you're time constrained skim the ToC below t
 
 ## Introducing ServiceStack Studio!
 
-Another exciting development started in this release is the successor to [Admin UI](https://github.com/ServiceStack/Admin) - 
+Another exciting development in this release is the successor to [Admin UI](https://github.com/ServiceStack/Admin) - 
 **ServiceStack Studio!** - a capability-based UI to manage multiple remote ServiceStack instances from either a .NET Core Chromium Desktop App 
-or cross-platform .NET Core Web App. The richer semantics in ServiceStack Services makes it possible to logically group Services around their 
-Data Models where it's able to offer a native Desktop data-grid like UX to quickly discover, search, create, update and delete entities based 
-on all the different AutoQuery APIs available and whether Authenticated Users have access to them.
+or cross-platform .NET Core Web App. 
+
+The richer metadata in ServiceStack Services allows Studio to logically group Services around Data Models, enabling its higher-level
+semantic features like native Desktop data-grid like UX over all AutoQuery Services to quickly discover, search, create, update and 
+delete entities based on the available AutoQuery APIs and whether Authenticated Users have access to them.
 
 > YouTube: [youtu.be/2FFRLxs7orU](https://youtu.be/2FFRLxs7orU)
 
@@ -178,13 +181,13 @@ on all the different AutoQuery APIs available and whether Authenticated Users ha
 
 ## Instantly Servicify existing Systems!
 
-ServiceStack also reached its maximum autonomy for a Services framework where in addition to **AutoQuery** automatically providing your Services implementations, 
+ServiceStack also reached maximum autonomy for a Services framework where in addition to **AutoQuery** automatically providing your Services implementations, 
 **Studio** providing its instant UI, ServiceStack also gained the capability to **generate your entire API!** including Typed API contracts,
 data models, implementations & human-friendly pluralized HTTP API routes over an existing System RDBMS's tables!
 
-The new **AutoGen** Services feature enables a number of exciting possibilities, predominantly it's the fastest way to ServiceStack-ify an
-existing systems RDBMS where it will serve as an invaluable tool for anyone wanting to migrate to ServiceStack and access its functionality 
-ecosystem around ServiceStack Services:
+ServiceStack's **AutoGen** enables a number of exciting possibilities, predominantly it's the fastest way to ServiceStack-ify an
+existing systems RDBMS where it will serve as an invaluable tool for anyone wanting to quickly migrate to ServiceStack and access its 
+functionality ecosystem around ServiceStack Services:
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" width="100%">
 
@@ -373,14 +376,14 @@ For example a single `#Script` page can provide much of the functionality in [Au
         else if search.startsWith('=')
             `${sqlQuote(it)} = @${it}` |> addTo => filters
             queryMap[it] = search.substring(1).coerce()
-        else if search.startsWith('<=') || search.startsWith('>=') || search.startsWith('<>') ||search.startsWith('!=')
+        else if search.startsWith('<=') || search.startsWith('>=') || search.startsWith('!=')
             `${sqlQuote(it)} ${search.substring(0,2)} @${it}` |> addTo => filters
             queryMap[it] = search.substring(2).coerce()
         else if search.startsWith('<') || search.startsWith('>')
             `${sqlQuote(it)} ${search.substring(0,1)} @${it}` |> addTo => filters
             queryMap[it] = search.substring(1).coerce()
         else if search.endsWith(',')
-            `${sqlQuote(it)} IN (${search.trimEnd(',').split(',').map(i => i.toLong()).join(',')})` |> addTo => filters
+            `${sqlQuote(it)} IN (${search.trimEnd(',').split(',').map(i=>i.toLong()).join(',')})` |> addTo=>filters
             queryMap[it] = null
         else if search.startsWith('%') || search.endsWith('%')
             `${sqlQuote(it).sqlCast('varchar')} LIKE @${it}` |> addTo => filters
