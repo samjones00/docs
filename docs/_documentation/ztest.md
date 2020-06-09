@@ -15,11 +15,11 @@ like full Executable Audit History for all CRUD operations enabling EventSourcin
 entity state by re-running their Audit History.
 
 Whilst all Services benefit from the new enhanced Fluent Validation capabilities where all built-in validators can now be applied declaratively, 
-including new support for top-level "Type" validators which can be used to enforce Type Authorization rules directly on DTOs without 
+including new support for top-level "Type Validators" which can be used to enforce Type Authorization rules directly on DTOs without 
 implementation dependencies. Declarative validation rules can also sourced from dynamic sources like an RDBMS where they're both instantly applied 
 at runtime & cached locally for max performance.
 
-If you're time constrained, skim the ToC below to get a quick overview of what's in this release and to jump directly to features you're interested in:
+If time constrained, skim the ToC below to get a quick overview of what's in this release and jump directly to features you're interested in:
 
 # Table of Contents
 
@@ -167,12 +167,12 @@ If you're time constrained, skim the ToC below to get a quick overview of what's
 
 ## Introducing ServiceStack Studio!
 
-Another exciting development in this release is the successor to [Admin UI](https://github.com/ServiceStack/Admin) - 
-**ServiceStack Studio!** - a capability-based UI to manage multiple remote ServiceStack instances from either a .NET Core Chromium Desktop App 
+Another exciting development in this release is the successor to [Admin UI](https://github.com/ServiceStack/Admin): 
+**ServiceStack Studio!** - a capability-based UI to manage multiple remote ServiceStack instances from either a Chromium Desktop App 
 or cross-platform .NET Core Web App. 
 
-The richer metadata in ServiceStack Services allows Studio to logically group Services around Data Models, enabling its higher-level
-semantic features like native Desktop data-grid like UX over all AutoQuery Services to quickly discover, search, create, update and 
+The richer metadata in ServiceStack Services allows Studio to logically group Services around Data Models, enabling its high-level
+semantic features like its native data-grid like UX over all AutoQuery Services to quickly discover, search, create, update and 
 delete entities based on the available AutoQuery APIs and whether Authenticated Users have access to them.
 
 > YouTube: [youtu.be/2FFRLxs7orU](https://youtu.be/2FFRLxs7orU)
