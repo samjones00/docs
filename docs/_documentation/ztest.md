@@ -874,15 +874,15 @@ including support for multi-tenancy, optimistic concurrency, declarative validat
 to data model properties, auto populating then using full #Script Expressions that can be used for example to populate timestamps, 
 authenticating user information, generating new UUIDs, etc.
 
-Just like AutoQuery, AutoCrud Services are ServiceStack Services where you'd continue to use the same functionality to 
+Just like AutoQuery, CRUD Services are ServiceStack Services where you can continue using the same functionality to 
 specify optimal user-defined routes for HTTP APIs, same Request/Response and Attribute filters to apply custom logic and 
-continue to enjoy the entire ecosystem around ServiceStack Services including being able to invoke them via gRPC, MQ
-endpoints and enjoy the same rich client ecosystem for enabling end-to-end Typed APIs with 
+continue enjoying the entire ecosystem around ServiceStack Services including being able to invoke them via 
+[gRPC](/grpc), [MQ endpoints](/messaging) and its rich client ecosystem for enabling end-to-end Typed APIs with 
 [Add ServiceStack Reference](/add-servicestack-reference).
 
 AutoQuery Services are fast & emit clean optimal "pure serialized POCO" wire-format, they're built on OrmLite's high-performance 
-APIs where all AutoQuery APIs are async by default but also also offers native sync APIs if needing to enlist any of
-AutoQuery's functionality in custom sync methods (that you're unable to make use of viral async APIs).
+APIs where all AutoQuery APIs are `async` by default but also also offers native sync APIs if needing to enlist any of
+AutoQuery's functionality in custom sync methods (that are unable to be converted into viral async APIs).
 
 Importantly AutoQuery Services are "future-proofed" and can be overridden with a custom implementation that can either choose to augment 
 the existing AutoQuery functionality and enhance it with custom behavior (e.g. if not possible to implement declaratively) or if needed its 
@@ -894,7 +894,7 @@ reimplement later if the Service needs to be constructed to use alternative data
 This is ultimately where many auto querying solutions fall down, they're typically executed with black-box binary implementations which 
 only understand their opaque query languages normal Services wouldn't support, are exposed on unnatural routes you wouldn't use 
 and return unclean verbose wire formats normal Services wouldn't return. So when it comes to needing to replace their 
-implementation-specific APIs it's often not feasible to reverse engineer a new implementation to match its existing Services contract and 
+implementation-specific APIs, it's often not feasible to reverse engineer a new implementation to match its existing Services contract and 
 would need to resort in creating a new incompatible API, breaking existing clients and violating its Systems encapsulation which 
 should be one of the [core goals of Service design](/service-complexity-and-dto-roles#services).
 
