@@ -5,6 +5,7 @@ slug: release-notes-history
 
 ### 2020
 
+ - [v5.9](/releases/v5.9)
  - [v5.8](/releases/v5.8)
 
 ### 2019
