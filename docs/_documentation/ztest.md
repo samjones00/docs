@@ -352,20 +352,22 @@ Then regenerate it using the full language name above or their wrist-friendly 2-
 
 ## Introducing SharpData!
 
-Before diving into the world of AutoCrud, we'd like to introduce the [SharpData](https://github.com/NetCoreApps/SharpData) .NET Core project -
-another generic tool (useful for non .NET devs) providing an instant UI around multiple RDBMS's:
+Before we delve into the typed world of AutoCrud, we'd like to introduce the [SharpData](https://github.com/NetCoreApps/SharpData) .NET Core project -
+another generic tool (useful for non .NET devs) for providing an instant UI around multiple RDBMS's:
 
 > YouTube: [youtu.be/EJ-lDWshjcY](https://youtu.be/EJ-lDWshjcY)
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/sharpdata-custom-appsettings.png)](https://youtu.be/EJ-lDWshjcY)
 
-An impressively capable .NET Core App that fits in its tiny **20kb .zip** footprint thanks to [Gist Desktop App's Architecture](https://sharpscript.net/docs/gist-desktop-apps). It's tiny dynamic `#Script` & Vue TypeScript code-base size also makes it highly customizable to tailor & further extend with 
-different App requirements.
+An impressively capable .NET Core App that fits into a tiny **20kb .zip** footprint thanks to [Gist Desktop App's Architecture](https://sharpscript.net/docs/gist-desktop-apps). It's small dynamic `#Script` & Vue TypeScript code-base also makes it highly customizable to tailor & further extend with 
+App-specific requirements - suitable for offering advanced system users a quick, capable customized read-only UI of your databases.
 
-**SharpData** started out as a demonstration to show how productive [#Script](https://sharpscript.net) can be in the number of areas where a 
-dynamic scripting language like `#Script` can offer far superior productivity then the common path of using C# to type an entire code-base and all its models.
+**SharpData** started as a demonstration showing how productive [#Script](https://sharpscript.net) can be in the number of areas where 
+dynamic languages can offer far superior productivity then the typical .NET approach of using C# to type an entire code-base and all its models.
 
-For example a single `#Script` page can provide much of the functionality in [AutoQuery](/autoquery-rdbms) where it provides an instant HTTP API (in all registered ServiceStack formats) around all registered RDBMS tables, in all OrmLite supported RBDMS's where it includes supports custom fields, multiple querying options, paging, multi OrderBy's in a parameterized SQL query executed with OrmLite's raw SQL async DB APIs:
+For example a single `#Script` page provides a lot of the functionality in [AutoQuery](/autoquery-rdbms) where it provides an instant HTTP API 
+(in all registered ServiceStack formats) around all registered RDBMS tables, in all OrmLite supported RBDMS's, that includes support for custom fields, 
+multiple querying options, paging, multi OrderBy's in a parameterized SQL query executed with OrmLite's raw SQL async DB APIs:
 
 ### AutoQuery Script
 
@@ -417,8 +419,8 @@ For example a single `#Script` page can provide much of the functionality in [Au
     {{htmlError}}{% endraw %}
 
 
-The `_` prefixes in the path utilizes [#Script Page Based Routing](https://sharpscript.net/docs/sharp-pages#page-based-routing) allowing for 
-dynamic [Clean URL](https://en.wikipedia.org/wiki/Clean_URL) routes without needing to define & maintain separate route definitions where the 
+The `_` prefixes in the path utilizes [Page Based Routing](https://sharpscript.net/docs/sharp-pages#page-based-routing) allowing for 
+convention-base [Clean URL](https://en.wikipedia.org/wiki/Clean_URL) routes without needing to define & maintain separate routes where the
 same script includes support for querying all [registered multitenancy databases](/multitenancy#changedb-apphost-registration).
 
 ### Instant Customizable RDBMS UI
