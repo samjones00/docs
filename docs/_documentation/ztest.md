@@ -262,13 +262,14 @@ code-bases like [React Native](https://reactnative.dev) - a highly productive Re
 
 An unintended consequence of **AutoGen** that's potentially universally appealing to even non .NET developers is that it's also a way to instantly
 generate Types for all RDBMS tables in all of ServiceStack [supported client languages](/add-servicestack-reference), 
-which thanks to being configurable in a [Sharp App](https://sharpscript.net/docs/sharp-apps) can also be executed from the [dotnet tools](/dotnet-tool).
+which thanks to being configurable in a [Sharp App](https://sharpscript.net/docs/sharp-apps) can be executed from the command-line using
+the [dotnet tools](/dotnet-tool):
 
     $ dotnet tool install --global x
 
-We can then use its [mix feature](/mix-tool) to download the [autodto](https://gist.github.com/gistlyn/c6567f32ba7de2eb760dc776f3067e78) gist
-containing a pre-configured `app.settings`, with the only configuration required is which RDBMS it should connect to which you can
-specify when writing the gist, e.g:
+We can then use the [mix feature](/mix-tool) to download the [autodto](https://gist.github.com/gistlyn/c6567f32ba7de2eb760dc776f3067e78) gist
+containing a pre-configured `app.settings`, with the only configuration required is the RDBMS it should connect to, which you can
+specify in a single-command when writing the gist, e.g:
 
     $ x mix autodto -replace DIALECT=<dialect> -replace CONNECTION_STRING="<connection-string>"
 
@@ -278,8 +279,18 @@ Or if preferred the connection string can be referenced from an Environment vari
 
     $ x mix autodto -replace DIALECT=postgres -replace CONNECTION_STRING=$TECHSTACKS_DB
 
-| C# | TypeScript | Dart | Java | Kotlin | Swift | VB.NET | F# |
-|----|------------|------|------|--------|-------|--------|----|
+<table class="table table-bordered" style="text-align:center">
+<tr>
+    <td><a href="/csharp-add-servicestack-reference">C#</a></td>
+    <td><a href="/typescript-add-servicestack-reference">TypeScript</a></td>
+    <td><a href="/swift-add-servicestack-reference">Swift</a></td>
+    <td><a href="/java-add-servicestack-reference">Java</a></td>
+    <td><a href="/kotlin-add-servicestack-reference">Kotlin</a></td>
+    <td><a href="/dart-add-servicestack-reference">Dart</a></td>
+    <td><a href="/fsharp-add-servicestack-reference">F#</a></td>
+    <td><a href="/vbnet-add-servicestack-reference">VB.NET</a></td>
+</tr>
+</table>
 
 > YouTube: [youtu.be/1dFqzrF1mV8](https://youtu.be/1dFqzrF1mV8)
 
