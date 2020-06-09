@@ -182,7 +182,7 @@ delete entities based on the available AutoQuery APIs and whether Authenticated 
 ## Instantly Servicify existing Systems!
 
 ServiceStack also reached maximum autonomy for a Services framework where in addition to **AutoQuery** automatically providing your Services implementations, 
-**Studio** providing its instant UI, ServiceStack also gained the capability to **generate your entire API!** including Typed API contracts,
+**Studio** providing its instant UI, ServiceStack also gained the capability to **generate your entire API!** Including Typed API contracts,
 data models, implementations & human-friendly pluralized HTTP API routes over an existing System RDBMS's tables!
 
 ServiceStack's **AutoGen** enables a number of exciting possibilities, predominantly it's the fastest way to ServiceStack-ify an
@@ -191,37 +191,37 @@ functionality ecosystem around ServiceStack Services:
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" width="100%">
 
-AutoGen's code generation is programmatically customizable where the generated types can be easily augmented with additional declarative attributes 
-to inject your App's conventions into the auto generated services & types to apply custom behavior like Authorization & additional validation rules. 
+**AutoGen's** code generation is programmatically customizable where the generated types can be easily augmented with additional declarative attributes 
+to inject your App's conventions into the auto generated Services & Types to apply custom behavior like Authorization & additional validation rules. 
 After codifying your system conventions the generated classes can optionally be "ejected" where code-first development can continue as normal.
 
 This feature enables rewriting parts or modernizing legacy systems with the least amount of time & effort, once Servicified you can take advantage 
 of declarative features like Multitenancy, Optimistic Concurrency & Validation, enable automatic features like Executable Audit History,
 allow business users to maintain validation rules in its RDBMS, manage them through **Studio** & have them applied instantly at runtime 
-and visibly surfaced through ServiceStack's myriad of [client UI auto-binding options](/world-validation). The Studio Desktop App can give stakeholders 
-an instant UI to quickly access and search through their data, import custom queries directly into Excel or access them in other registered Content Types
-through a custom UI where fine-grained app-level access can be applied to customize which tables & operations different users have.
+and visibly surfaced through ServiceStack's myriad of [client UI auto-binding options](/world-validation). **Studio** can then enable stakeholders 
+with an instant UI to quickly access and search through their data, import custom queries directly into Excel or access them in other registered 
+Content Types through a custom UI where fine-grained app-level access can be applied to customize which tables & operations different users have.
 
 ### gRPC's Typed protoc Universe
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/grpc-icon-color.svg" height="100" align="right">
 
-AutoGen also enables access to ServiceStack's ecosystem of metadata services & connectivity options where it's now become the fastest way to
-generate gRPC endpoints over an existing system. This is especially exciting as other then enabling high-performance endpoints to your Systems
-data, it opens it up to [all languages in gRPC's protoc universe](https://grpc.io/docs/languages/).
+**AutoGen** also enables access to ServiceStack's ecosystem of metadata services & connectivity options where it's now become the 
+**fastest way to generate gRPC endpoints** over an existing system. This is especially exciting as in addition to enabling high-performance 
+connectivity to your Systems data, it opens it up to [all languages in gRPC's protoc universe](https://grpc.io/docs/languages/).
 
 Whilst the Smart, Generic [C# / F# / VB.NET Service Clients](/grpc-generic) continue to provide the best UX for consuming gRPC Services, one of 
-the nicest protoc generated clients languages is [Dart](http://dart.dev) - a clean, modern high-level language with native class performance & 
-script-like productivity where individual source files can be run immediately without compilation, it's quality tooling & static analysis, 
+the nicest **protoc generated** clients languages is [Dart](http://dart.dev) - a modern high-level language with native class performance & 
+script-like productivity where individual source files can be run immediately without compilation, it's quality tooling, static analysis &
 high-level features like async/await make it an ideal exploratory language for consuming gRPC endpoints.
 
 ### Dart gRPC Script Playground
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/dart-logo.svg" height="75" align="right">
 
-In this quick demo will show an example of instantly Servicifying a database & access via gRPC in minutes, by starting with a new 
-[grpc](https://github.com/NetCoreTemplates/grpc) project from scratch, [mix](/mix-tool) in 
-[autocrudgen](https://gist.github.com/gistlyn/464a80c15cb3af4f41db7810082dc00c) to configure AutoQuery's AutoGen feature to generate 
+This quick demo shows an example of instantly Servicifying a database & accesses it via gRPC in minutes, starting with a new 
+[grpc](https://github.com/NetCoreTemplates/grpc) project from scratch, it [mixes](/mix-tool) in 
+[autocrudgen](https://gist.github.com/gistlyn/464a80c15cb3af4f41db7810082dc00c) to configure **AutoGen** to generate 
 AutoQuery services for the registered [sqlite](https://gist.github.com/gistlyn/768d7b330b8c977f43310b954ceea668) RDBMS
 that's copied into the project from the [northwind.sqlite](https://gist.github.com/gistlyn/97d0bcd3ebd582e06c85f8400683e037) gist.
 
