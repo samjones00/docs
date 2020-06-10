@@ -118,25 +118,31 @@ function preloadImage(src) {
     img.src = src;
 }
 
-function bindYoutubeImages() {
+function bindYouTubePlay(img) {
+    var a = img.parent();
+    var p = a.parent();
+    if (p[0] && p[0].tagName === 'P') {
+        var id = splitOnFirst(splitOnLast(a.attr('href'),'/')[1],'?')[0];
+        var width = Math.floor(img[0].offsetWidth/2 - 43);
+        var height = Math.floor(img[0].offsetHeight/2 - 31);
+        var html = `<i class="youtube-play" style="width:${img[0].offsetWidth}px;height:${img[0].offsetHeight}px;background-position:${width}px ${height}px" onclick="playVideo(this,'${id}')"></i>`;
+        p.prepend(html);
+    }
+}
+
+function bindYouTubeImages() {
     preloadImage('/images/youtube-play-hover.png');
     $("a[href^='https://youtu.be/']>img").each(function() {
         var img = $(this);
-        var a = img.parent();
-        var p = a.parent();
-        if (p[0] && p[0].tagName === 'P') {
-            var id = splitOnFirst(splitOnLast(a.attr('href'),'/')[1],'?')[0];
-            var width = Math.floor(img[0].offsetWidth/2 - 43);
-            var height = Math.floor(img[0].offsetHeight/2 - 31);
-            var html = `<i class="youtube-play" style="width:${img[0].offsetWidth}px;height:${img[0].offsetHeight}px;background-position:${width}px ${height}px" onclick="playVideo(this,'${id}')"></i>`;
-            p.prepend(html);
+        if (img.complete) {
+            bindYouTubePlay(img);
+        } else {
+            img.onload = function() { bindYouTubePlay($(this)); }
         }
     });
 }
 
-$(function(){
-    bindYoutubeImages();
-});
+$(bindYouTubeImages);
 
 </script>
 
