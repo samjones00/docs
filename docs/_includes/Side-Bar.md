@@ -2,7 +2,8 @@
 - ##### Overview
     - [Why ServiceStack](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
-    - [Live Demos](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
+    - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
+    - [Studio](/studio)
 - ##### Releases
     - [Latest Release Notes](/releases/v5.9)
     - [Release Notes History](/release-notes-history)
