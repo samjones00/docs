@@ -342,7 +342,7 @@ var protectTableByRole = new Dictionary<string,string[]> {
     ["Admin"]    = new[] { nameof(CrudEvent), nameof(ValidationRule) },
     ["Accounts"] = new[] { "Order", "Supplier", "Shipper" },
     ["Employee"] = new[] { "Customer", "Order", "OrderDetail" },
-    ["Manager"]  = new[] { "Product", "Category", "Employee", "EmployeeTerritory", "UserAuth", "UserAuthDetails" },
+    ["Manager"]  = new[] { "Product", "Category", "Employee", "UserAuth", "UserAuthDetails" },
 };
 var tableRequiredFields = new Dictionary<string,string[]> {
     ["Shipper"] = new[]{ "CompanyName", "Phone" },
@@ -372,9 +372,9 @@ Plugins.Add(new AutoQueryFeature {
             }
 
             // Add [ValidateNotEmpty] attribute on Services operating Tables with Required Fields
-            if (op.DataModel != null && tableRequiredFields.TryGetValue(op.DataModel.Name, out var requiredFields))
+            if (op.DataModel != null && tableRequiredFields.TryGetValue(op.DataModel.Name, out var required))
             {
-                var props = op.Request.Properties.Where(x => requiredFields.Contains(x.Name));
+                var props = op.Request.Properties.Where(x => required.Contains(x.Name));
                 props.Each(x => x.AddAttribute(new ValidateNotEmptyAttribute()));
             }
         },
