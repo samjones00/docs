@@ -1,11 +1,11 @@
 ---
 slug: autogen
-title: AutoGen AutoQuery & Crud Services
+title: AutoGen AutoQuery & CRUD Services
 ---
 
 Long time users of ServiceStack will know it's a staunch proponent of **code-first development** where your C# Types retains the master authority of your App's logic, although there are a number of times where you have to work with existing databases which would require significant effort to create the initial code-first Data Models. Historically we've pointed people to use [OrmLite's T4 Template Support](https://github.com/ServiceStack/ServiceStack.OrmLite#t4-template-support) which provides a decent initial stab, however it's limited in its capability and offers a sub par development experience.
 
-### Code Generation of AutoQuery & Crud Services
+### Code Generation of AutoQuery & CRUD Services
 
 Now with AutoCrud we can add a lot more value in this area as AutoCrud's declarative nature allows us to easily generate AutoQuery & Crud Services by just emitting declarative Request DTOs.
 
@@ -62,11 +62,11 @@ i.e. the same experience as updating normal DTOs.
 
 You can do the same for all other ServiceStack's supported languages as shown in autodto at the start of this release.
 
-## AutoRegister AutoGen AutoQuery Services!
+## AutoRegister AutoGen AutoQuery Services
 
 To recap we've now got an integrated scaffolding solution where we can quickly generate code-first AutoQuery Services and integrate them into our App to quickly build an AutoQuery Service layer around our existing database.
 
-But we can raise the productivity level even higher by instead of manually importing the code-generated Services into our project we just tell ServiceStack to do it for us! 
+But we can raise the productivity level even higher by instead of manually importing the code-generated Services into our project we just tell ServiceStack to do it for us.
 
 This is what the magical `AutoRegister` flag does for us:
 

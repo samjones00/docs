@@ -19,10 +19,6 @@ dotnet tools which can be updated to the latest version with:
 
     $ dotnet tool update -g app
 
-.NET Core 2.1:
-
-    $ dotnet tool update -g web
-
 ### mix-enabled dotnet tools
 
 `mix` works exactly the same in all dotnet tools, which just needs the **tool name prefixed** before the `mix` command:
@@ -71,9 +67,9 @@ Although most of the time you're only going to run 2 commands, viewing available
 Where it displays different features that can be added to your App, where they're added to and the author of the Gist:
 
 ```
- 1. init                 Empty .NET Core 2.2 ServiceStack App         to: .      by @ServiceStack  [project]
- 2. init-lts             Empty .NET Core 2.1 LTS ServiceStack App     to: .      by @ServiceStack  [project]
- 3. init-corefx          Empty ASP.NET Core 2.1 LTS on .NET Framework to: .      by @ServiceStack  [project]
+ 1. init                 Empty .NET Core 3.1 ServiceStack App         to: .      by @ServiceStack  [project]
+ 2. init-lts             Empty .NET Core 3.1 LTS ServiceStack App     to: .      by @ServiceStack  [project]
+ 3. init-corefx          Empty ASP.NET Core 3.1 LTS on .NET Framework to: .      by @ServiceStack  [project]
  4. init-sharp-app       Empty ServiceStack Sharp App                 to: .      by @ServiceStack  [project]
  5. bootstrap-sharp      Bootstrap + #Script Pages Starter Template   to: $HOST  by @ServiceStack  [ui,sharp]
  6. redis                Use ServiceStack.Redis                       to: $HOST  by @ServiceStack  [db]

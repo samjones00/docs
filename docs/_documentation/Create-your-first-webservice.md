@@ -105,6 +105,8 @@ The Unit Test project contains all your Unit and Integration tests. It's also a 
 
 ### ServiceStack Integration
 
+### jQuery
+
 ServiceStack's clean Web Services design makes it simple and intuitive to be able to call ServiceStack Services from any kind of client from a [simple Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
 
 ```html
@@ -129,53 +131,97 @@ ServiceStack's clean Web Services design makes it simple and intuitive to be abl
 </script>
 ```
 
-To sophisticated Single Page Apps using [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient), here's an 
-[example using React](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp1/ReactApp1/src/home/Hello.tsx):
+### dep-free JsonServiceClient in HTML Pages
 
-```ts
+A **dep-free alternative** to jQuery that works in all modern browsers is to use the 
+[UMD @servicestack/client](https://github.com/ServiceStack/servicestack-client) built into `ServiceStack.dll` along with the transpiled 
+[TypeScript Generated DTOs](/typescript-add-servicestack-reference) to enable a more typed Promise API:
+
+```html
+<input type="text" id="txtName" onkeyup="callHello(this.value)">
+<div id="result"></div>
+
+<script src="/js/servicestack-client.js"></script>
+<script>
+    Object.assign(window, window['@servicestack/client']); //import into global namespace
+
+    // generate typed dtos with https://docs.servicestack.net/typescript-add-servicestack-reference
+    var Hello = /** @class */ (function () {
+        function Hello(init) { Object.assign(this, init); }
+        Hello.prototype.createResponse = function () { return new HelloResponse(); };
+        Hello.prototype.getTypeName = function () { return 'Hello'; };
+        return Hello;
+    }());
+    var HelloResponse = /** @class */ (function () {
+        function HelloResponse(init) { Object.assign(this, init); }
+        return HelloResponse;
+    }());
+
+    var client = new JsonServiceClient();
+    function callHello(val) {
+        client.get(new Hello({ name: val }))
+            .then(function(r) {
+                document.getElementById('result').innerHTML = r.result;
+            });
+    }
+</script>
+```
+
+#### Used in init quick mix projects
+
+As this requires no external deps or prescribed JS frameworks, it's used in the [init and init-lts](/mix-tool#mix-usage) mix scripts which you can 
+quickly add & run in any directory with:
+
+    $ md test && cd test
+    $ x mix init
+    $ dotnet run
+
+### TypeScript or JavaScript SPA Apps
+
+The same [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient) is also used in more sophisticated 
+JavaScript Apps like [React Native](/typescript-add-servicestack-reference#react-native-jsonserviceclient) to 
+[node.js Server Apps](https://github.com/ServiceStackApps/typescript-server-events) as well as all TypeScript SPA Project Templates, 
+such as this [example using React](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp1/ReactApp1/src/home/Hello.tsx):
+
+```tsx
+import './hello.css';
+
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { client } from '../shared';
-import { Hello } from '../dtos';
+import { Input } from '@servicestack/react';
+import { client } from '../../shared';
+import { Hello } from '../../shared/dtos';
 
-export default class HelloComponent extends React.Component<any, any> {
-    constructor(props, context) {
-        super(props, context);
-        this.state = { result: '' };
-    }
+export interface HelloApiProps {
+    name: string;
+}
 
-    componentDidMount() {
-        this.nameChanged(this.props.name);
-    }
+export const HelloApi: React.FC<any> = (props:HelloApiProps) => {
+    const [name, setName] = React.useState(props.name);
+    const [result, setResult] = React.useState('');
 
-    async nameChanged(name:string) {
-        if (name) {
-            let request = new Hello();
-            request.name = name;
-            let r = await client.get(request);
-            this.setState({ result: r.result });
-        } else {
-            this.setState({ result: '' });
-        }
-    }
+    React.useEffect(() => {
+        (async () => {
+            setResult(!name ? '' : (await client.get(new Hello({ name }) )).result)
+        })();
+    }, [name]); // fires when name changes
 
-    render() {
-        return (
-            <div className="form-group">
-                <input className="form-control" type="text" placeholder="Your name"
-                    defaultValue={this.props.name}
-                    onChange={e => this.nameChanged((e.target as HTMLInputElement).value)} />
-                <h3 className="result">{this.state.result}</h3>
-            </div>);
-    }
+    return (<div>
+        <div className="form-group">
+            <Input value={name} onChange={setName} placeholder="Your name" />
+            <h3 className="result pt-2">{ result }</h3>
+        </div>
+    </div>);
 }
 ```
 
-Compare and contrast with other major JavaScript Frameworks:
+Compare and contrast with other major SPA JavaScript Frameworks:
 
- - [Vue.js Home.vue](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/VueApp/VueApp/src/home/Home.vue)
- - [Angular4 hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/Angular4App/Angular4App/src/modules/app/home/hello.ts)
- - [Aurelia hello.ts](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/AureliaApp/AureliaApp/src/resources/elements/hello.ts)
+ - [Vue.js HelloApi.vue](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/components/Home/HelloApi.vue)
+ - [React HelloApi.tsx](https://github.com/NetCoreTemplates/react-spa/blob/master/MyApp/src/components/Home/HelloApi.tsx)
+ - [Angular HelloApi.ts](https://github.com/NetCoreTemplates/angular-spa/blob/master/MyApp/src/app/home/HelloApi.ts)
+ - [Svelte Home.svelte](https://github.com/NetCoreTemplates/svelte-spa/blob/master/MyApp/src/components/Home.svelte)
+ - [Aurelia hello.ts](https://github.com/NetCoreTemplates/aurelia-spa/blob/master/MyApp/src/resources/elements/hello.ts)
+ - [Angular v4 hello.ts](https://github.com/NetCoreTemplates/angular-lite-spa/blob/master/MyApp/src/modules/app/home/hello.ts)
  - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
 
 ### Integrated in Major IDEs and popular Mobile & Desktop platforms
