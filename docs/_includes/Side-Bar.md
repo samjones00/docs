@@ -2,8 +2,9 @@
 - ##### Overview
     - [Why ServiceStack](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
-    - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
     - [ServiceStack Studio](/studio)
+    - [Servicify existing Systems](/servicify)
+    - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
 - ##### Releases
     - [Latest Release Notes](/releases/v5.9)
     - [Release Notes History](/release-notes-history)
@@ -196,6 +197,7 @@
     - [AutoQuery Data Memory](/autoquery-memory)
     - [AutoQuery Data Service](/autoquery-service)
     - [AutoQuery Data DynamoDB](/autoquery-dynamodb)
+    - [AutoGen](/autogen)
 - ##### Server Events
     - [Overview](/server-events)
     - [C# Client](/csharp-server-events-client)
