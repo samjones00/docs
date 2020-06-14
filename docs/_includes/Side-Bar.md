@@ -12,7 +12,6 @@
 - ##### Getting Started
     - [Create your first WebService](/create-your-first-webservice)
     - [Your first WebService explained](/your-first-webservice-explained)
-    - [Create a WebService from scratch](/create-webservice-from-scratch)
     - [ServiceStack's API Design](/api-design)
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)
@@ -176,6 +175,7 @@
     - [Config API](/config-api)
     - [Concurrency Model](/concurrency-model)
     - [Form Hijacking Prevention](/form-hijacking-prevention)
+    - [Create a WebService from scratch](/create-webservice-from-scratch)
  - ##### Utils
     - [HTTP Utils](/http-utils)
     - [Dump Utils](/dump-utils)
