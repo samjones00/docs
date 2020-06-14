@@ -502,12 +502,13 @@ GrpcServicesClient createClient({CallOptions options}) {
 }
 
 void main(List<String> arguments) async {
-    var authResponse = await createClient()
-        .postAuthenticate(Authenticate()..provider='credentials'
-        ..userName='manager@gmail.com'..password='p@ss');
+    var authResponse = await createClient().postAuthenticate(
+        Authenticate()..provider='credentials'..userName='manager@gmail.com'..password='p@ss');
 
     var authClient = createClient(options:CallOptions(metadata:{ 
-        'Authorization': 'Bearer ${authResponse.bearerToken}' }));
+            'Authorization': 'Bearer ${authResponse.bearerToken}' 
+        }));
+
     var response = await authClient.getQueryCategory(QueryCategory());
     print(response.results);
     exit(0);
