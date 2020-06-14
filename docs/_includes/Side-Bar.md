@@ -196,7 +196,6 @@
     - [AutoQuery Data Memory](/autoquery-memory)
     - [AutoQuery Data Service](/autoquery-service)
     - [AutoQuery Data DynamoDB](/autoquery-dynamodb)
-    - [AutoQuery UI](https://github.com/ServiceStack/Admin)
 - ##### Server Events
     - [Overview](/server-events)
     - [C# Client](/csharp-server-events-client)

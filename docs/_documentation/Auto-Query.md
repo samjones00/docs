@@ -35,13 +35,13 @@ AutoQuery Data's Open Provider model supports multiple back-end data sources. Th
  - [AutoQuery Service](/autoquery-service) - a step higher than `MemorySource` where you can decorate the response of existing Services with AutoQuery's rich querying capabilities.
  - [AutoQuery DynamoDB](/autoquery-dynamodb) - adds rich querying capabilities over an AWS DynamoDB Table, offering a giant leap of productivity than constructing DynamoDB queries manually.
 
-## [AutoQuery Viewer](https://github.com/ServiceStack/Admin)
+## [ServiceStack Studio](/studio)
 
-If you're just getting started AutoQuery we also recommend registering the [AutoQuery Viewer](https://github.com/ServiceStack/Admin) Plugin which provides an instant UI to quickly browse and query all your AutoQuery Services that provides a fast way to explore AutoQuery features and construct AutoQuery requests through a Simple UI.
+If you're just getting started AutoQuery we also recommend using [ServiceStack Studio](/studio) Desktop App which provides an instant UI to quickly browse and query all your AutoQuery Services that provides a fast way to explore AutoQuery features and construct AutoQuery requests through a Simple UI.
 
-[![](https://raw.githubusercontent.com/ServiceStack/Admin/master/img/query-default-values.png)](http://github.servicestack.net/ss_admin/autoquery)
+> YouTube: [youtu.be/2FFRLxs7orU](https://youtu.be/2FFRLxs7orU)
 
-> [YouTube Demo](https://youtu.be/YejYkCvKsuQ)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-home.png)](https://youtu.be/2FFRLxs7orU)
 
 # AutoQuery Examples
 
