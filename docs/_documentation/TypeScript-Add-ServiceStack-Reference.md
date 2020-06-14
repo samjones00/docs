@@ -7,6 +7,8 @@ title: TypeScript Add ServiceStack Reference
 
 ServiceStack's **Add ServiceStack Reference** feature allows clients to generate Native Types from directly within VS.NET using [ServiceStackVS VS.NET Extension](/create-your-first-webservice) - providing a simple way to give clients typed access to your ServiceStack Services.
 
+### React Native JsonServiceClient
+
 > React Native Android JavaScript Example using VS Code
 
 <iframe width="896" height="525" src="https://www.youtube.com/embed/T3KTDPdovOw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
