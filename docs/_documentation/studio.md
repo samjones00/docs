@@ -13,9 +13,9 @@ The richer metadata in ServiceStack Services allows Studio to logically group Se
 
 **Studio** replaces the [ServiceStack Admin UI](https://github.com/ServiceStack/Admin) where it provides a UX-friendly UI for accessing AutoQuery & Crud Services but will also gain UI features for taking advantage of various ServiceStack Plugins & Features, e.g. in this initial release it includes UI's for **Managing DB Validation Rules** & for viewing the **Executable Audit History of Tables** updated through AutoCrud Services.
 
-**Studio** is a capability-based Admin UI where it only enables its different management UI's depending on which features each remote ServiceStack Instance has enabled & whether the Signed In User has access to them.
+### Requires v5.9+
 
-This ability is enabled via the `/metadata/app` endpoint which returns metadata information about which plugins are enabled, what features they're configured with and whether they're protected behind User Roles. As such it will only be able to manage ServiceStack instances running **v5.9+** versions.
+**Studio** capability-based Admin UI is enabled via the `/metadata/app` endpoint which returns metadata information about which plugins are enabled, what features they're configured with and what User Roles they're protected behind (if any). As such it's only able to manage **v5.9+** ServiceStack instances.
 
 You'll need the latest [app dotnet tool](/netcore-windows-desktop) which is bundled with the latest Chromium which provides the Desktop UI:
 
@@ -25,23 +25,9 @@ Which you'll need to run once to register the `app://` url scheme, e.g:
 
     $ app -version
 
-### Studio Desktop App vs ServiceStack.Admin
-
-The primary limitations with [ServiceStack Admin](https://github.com/ServiceStack/Admin) was its deployment model where it had to be explicitly registered as a plugin in each ServiceStack instance, this means it could only be used on ServiceStack instances that explicitly had it registered, also it maintained the long release cadence of ServiceStack major releases which means the UI couldn't be updated frequently resulting in a stale long feedback loop.
-
-### Frequent out-of-band release cadence
-
-To overcome this ServiceStack Studio is delivered as a [Gist Desktop App](https://sharpscript.net/docs/gist-desktop-apps) which, like a website will be running the latest version each time it's run. To reduce its download footprint the `app` and `x` dotnet tools now include the new [ServiceStack.Desktop](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack.Desktop) project which includes the common framework libraries that most Vue & React Apps use which saves it from needing to be included in each Download. It also includes Google Material Design Icons SVGs & a copy of [fontawesome free icons](https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself) that all Desktop Apps will be able to use without the bandwidth cost for using them.
-
-### Light Footprint + Always use latest version
-
-[ServiceStack/Studio](https://github.com/ServiceStack/Studio) is a [vue-lite](https://github.com/NetCoreTemplates/vue-lite) App that only uses SVG icons as they're small, high-quality at every scale, are customizable & have built-in css classes making them easy to use declaratively where it takes advantage of [ServiceStack's built-in SVG](/svg) support which allows optimal css bundles containing only the SVGs your App's use. All SVG icons used in Studio are defined in its [_init.ss](https://github.com/ServiceStack/Studio/blob/master/wwwroot/_init.ss) startup script which defines which Material Design SVG to make available under which css bundle. It also registers its own custom SVG icons not contained in ServiceStack.Desktop's embedded resources and includes them as part of its `/css/app.css` bundle.
-
-As a result of its architecture Studio gets bundled down to a **55kb .zip** which includes its 46kb (Uncompressed) `Studio.dll` plugin containing all its C# back-end logic (thanks to all ServiceStack .dll's being deployed with the dotnet tools as well). As it's [published as a Gist](https://gist.github.com/gistlyn/d8e7a56027ed6ec3060d9a9896931909) it adds a bit more overhead (and Gist APIs aren't particularly fast) so there's a slight delay in loading from a Gist but still is able to load its home page in around **2-3s**, which includes the start time of the ServiceStack .NET Core App and the Chromium CEF Browser. The number of restarts should be minimal thanks to Studio being designed as a single UI to manage all your ServiceStack instances so you can reuse the same running Desktop App to manage multiple remote ServiceStack instances.
-
 ### Starting ServiceStack Studio
 
-The initial release of ServiceStack Studio primarily provides a UI around AutoQuery Services and the latest features in this release like **Executable Audit History** and declarative **RDBMS validators**.
+This initial release of ServiceStack Studio primarily provides a UI around AutoQuery Services and the latest features in this release like **Executable Audit History** and declarative **RDBMS validators**.
 
 If you don't have a project using the **v5.9+** features on hand you can launch a copy of [NetCoreApps/NorthwindCrud](https://github.com/NetCoreApps/NorthwindCrud) which uses the new AutoCrud features to generate AutoQuery Services around all its RDBMS tables, that can be run locally with:
 
@@ -59,8 +45,7 @@ This URL scheme gets translated & is equivalent to running **Studio** on the com
 
 Which downloads the [Studio Gist Desktop App](https://gist.github.com/gistlyn/d8e7a56027ed6ec3060d9a9896931909), loads it as a [Gist VFS](/virtual-file-system#gistvirtualfiles) whose static assets are then served by the .NET Core Server and loaded in the CEF Chromium browser.
 
-The `connect` param is used by **Studio** to auto register the remote **NorthwindCrud** instance where it auto downloads its App Metadata 
-containing its enabled plugins & features & within a few seconds you should see it appear on the home page:
+The `connect` param is used by **Studio** to auto register the remote **NorthwindCrud** instance where it auto downloads its App Metadata containing its enabled plugins & features & within a few seconds you should see it appear on the home page:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-home.png)
 
@@ -76,16 +61,16 @@ Where you'll then be able to view it by going to `https://localhost:5002`. Note 
 
 ### Home Page
 
-From the home page you'll see all the top-level Admin Sections available that's enabled on the remote instance, in the initial release there's a UI for accessing AutoQuery Services and a UI for maintaining DB Validation Rules.
+From the home page you'll see all the top-level Admin Sections available that's enabled on the remote instance, in the initial release there's a UI for accessing **AutoQuery Services** and a UI for maintaining **DB Validation Rules**.
 
 ### AutoQuery UI
 
-Because of the rich declarative metadata of AutoQuery & Crud Services we can infer the data model that each AutoQuery Service operates on and the Type of Operation each Service provides. As a result can logically group each Service around the Data Model they operate on and provide a more intuitive & natural UI for each of the different AutoQuery/CRUD operation types.
+Studio uses the rich declarative metadata of AutoQuery & Crud Services to infer the **data model** that each AutoQuery Service operates on and the **Operation Type** they provide. As a result it can logically group each Service around the Data Model they operate on to provide a more intuitive & natural UI for each of the different AutoQuery/CRUD operation types.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)
 
 What UI features & tables are visible is reflected by whether the AutoQuery Service for that type exists and whether the currently authenticated User has access to them (i.e. Have the role required by each Service). So an unauthenticated user will see Northwind Crud's read-only **Region** table with no ability to update it & the **Territory** table, which as it isn't protected by a role will be visible to everyone, 
-but as all CRUD Write operations require authentication, all edit controls require authentication - where we can see in the screenshot above, are replaced with **Sign In** buttons.
+but as all CRUD Write operations require authentication, all edit controls require authentication - as shown in the screenshot above where they're replaced with auth **Sign In** buttons.
 
 Here are the relevant [NorthwindCrud auto-generation rules](https://github.com/NetCoreApps/NorthwindCrud/blob/master/Startup.cs) which defines this behavior:
 
@@ -260,12 +245,9 @@ After you add your validation rules you will be able to click the **AutoQuery** 
 
 ### Metadata App Export / Discovery
 
-The way a generic capability-based Admin UI's like Studio is possible is via the `/metadata/app` API descriptor which describes what 
-plugins and features are enabled on the remote ServiceStack instance. All built-in plugins which provide functionality that can be
-remotely accessed add their info to the App's metadata. 
+The way a generic capability-based Admin UI's like Studio is possible is via the `/metadata/app` API descriptor which describes what plugins and features are enabled on the remote ServiceStack instance. All built-in plugins which provide functionality that can be remotely accessed add their info to the App's metadata. 
 
-This functionality is also available to your own plugins should you wish to attach info about your plugin where you can use the 
-`AddToAppMetadata` extension method to return a populated `CustomPlugin` DTO describing the features made available by your plugin:
+This functionality is also available to your own plugins should you wish to attach info about your plugin where you can use the `AddToAppMetadata` extension method to return a populated `CustomPlugin` DTO describing the features made available by your plugin:
 
 ```csharp
 public class MyPlugin : IPlugin
@@ -287,3 +269,17 @@ public class MyPlugin : IPlugin
     }
 }
 ```
+
+### Studio Desktop App vs ServiceStack.Admin
+
+The primary limitations with [ServiceStack Admin](https://github.com/ServiceStack/Admin) was its deployment model where it had to be explicitly registered as a plugin in each ServiceStack instance, this means it could only be used on ServiceStack instances that explicitly had it registered, also it maintained the long release cadence of ServiceStack major releases which means the UI couldn't be updated frequently resulting in a stale long feedback loop.
+
+### Frequent out-of-band release cadence
+
+To overcome this ServiceStack Studio is delivered as a [Gist Desktop App](https://sharpscript.net/docs/gist-desktop-apps) which, like a website will be running the latest version each time it's run. To reduce its download footprint the `app` and `x` dotnet tools now include the new [ServiceStack.Desktop](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack.Desktop) project which includes the common framework libraries that most Vue & React Apps use which saves it from needing to be included in each Download. It also includes Google Material Design Icons SVGs & a copy of [fontawesome free icons](https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself) that all Desktop Apps will be able to use without the bandwidth cost for using them.
+
+### Light Footprint + Always use latest version
+
+[ServiceStack/Studio](https://github.com/ServiceStack/Studio) is a [vue-lite](https://github.com/NetCoreTemplates/vue-lite) App that only uses SVG icons as they're small, high-quality at every scale, are customizable & have built-in css classes making them easy to use declaratively where it takes advantage of [ServiceStack's built-in SVG](/svg) support which allows optimal css bundles containing only the SVGs your App's use. All SVG icons used in Studio are defined in its [_init.ss](https://github.com/ServiceStack/Studio/blob/master/wwwroot/_init.ss) startup script which defines which Material Design SVG to make available under which css bundle. It also registers its own custom SVG icons not contained in ServiceStack.Desktop's embedded resources and includes them as part of its `/css/app.css` bundle.
+
+As a result of its architecture Studio gets bundled down to a **55kb .zip** which includes its 46kb (Uncompressed) `Studio.dll` plugin containing all its C# back-end logic (thanks to all ServiceStack .dll's being deployed with the dotnet tools as well). As it's [published as a Gist](https://gist.github.com/gistlyn/d8e7a56027ed6ec3060d9a9896931909) it adds a bit more overhead (and Gist APIs aren't particularly fast) so there's a slight delay in loading from a Gist but still is able to load its home page in around **2-3s**, which includes the start time of the ServiceStack .NET Core App and the Chromium CEF Browser. The number of restarts should be minimal thanks to Studio being designed as a single UI to manage all your ServiceStack instances so you can reuse the same running Desktop App to manage multiple remote ServiceStack instances.
