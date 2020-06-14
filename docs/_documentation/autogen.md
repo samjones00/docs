@@ -11,6 +11,8 @@ Now with AutoCrud we can add a lot more value in this area as AutoCrud's declara
 
 You can then add the generated DTOs to your ServiceModel's to quickly enable AutoQuery Services for your existing databases.
 
+<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" width="100%">
+
 To enable this feature you you just need to initialize `GenerateCrudServices` in your `AutoQueryFeature` plugin, e.g:
 
 ```csharp

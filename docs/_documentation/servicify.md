@@ -12,7 +12,7 @@ ServiceStack's **AutoGen** enables a number of exciting possibilities, predomina
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" width="100%">
 
-**AutoGen's** code generation is programmatically customizable where the generated types can be easily augmented with additional declarative attributes to inject your App's conventions into the auto generated Services & Types to apply custom behavior like Authorization & additional validation rules. 
+**[AutoGen's](/autogen)** code generation is programmatically customizable where the generated types can be easily augmented with additional declarative attributes to inject your App's conventions into the auto generated Services & Types to apply custom behavior like Authorization & additional validation rules. 
 
 After codifying your system conventions the generated classes can optionally be "ejected" where code-first development can continue as normal.
 
