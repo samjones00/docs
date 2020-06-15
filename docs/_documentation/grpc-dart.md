@@ -35,6 +35,8 @@ Install dependencies:
 
     $ pub get
     
+### Generate protoc Dart gRPC Client
+
 Add protoc generated TodoWorld DTOs and gRPC GrpcServiceClient to `lib/` folder:
 
     $ x proto-dart https://todoworld.servicestack.net -out lib
