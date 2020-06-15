@@ -40,7 +40,7 @@ Where it will automatically rebuild & restart your App when it detects any chang
 
 ### How does it work?
 
-Now that your new project is running, let's have a look at what we have. The template comes with a single web service route which comes from the request DTO (Data Transfer Object) which is located in the WebApplication1.ServiceModel project under `Hello.cs` file.
+Now that your new project is running, let's have a look at what we have. The template comes with a single web service route which comes from the request DTO (Data Transfer Object) which is located in the [Hello.cs](https://github.com/NetCoreTemplates/web/blob/master/MyApp.ServiceModel/Hello.cs) file:
 
 ```csharp
 [Route("/hello/{Name}")]
