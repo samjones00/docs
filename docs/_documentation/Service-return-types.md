@@ -3,8 +3,8 @@ slug: service-return-types
 ---
 From a birds-eye view ServiceStack can return any of:
 
-  - Any DTO object -> serialized to Response ContentType
-  - HttpResult, HttpError, CompressedResult (IHttpResult) for Customized HTTP response
+  - Any **DTO** object -> serialized to Response ContentType
+  - `HttpResult`, `HttpError`, `CompressedResult` or other `IHttpResult` for Customized HTTP response
 
 #### Services should only return Reference Types
 
@@ -30,7 +30,9 @@ The following types are not converted (to different Content-Types) but get writt
   - `String`
   - `Stream`
   - `IStreamWriter`
-  - `byte[]` - with the `application/octet-stream` Content Type.
+  - `byte[]` - with the `application/octet-stream` Content Type
+  - `ReadOnlyMemory<char>`
+  - `ReadOnlyMemory<byte>`
   
 From the [HelloWorld ServiceStack.UseCase](https://github.com/ServiceStack/ServiceStack.UseCases/blob/master/HelloWorld/Global.asax.cs) demo:
 
