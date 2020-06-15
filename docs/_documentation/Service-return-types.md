@@ -158,10 +158,22 @@ Partial Content Support allows a resource to be split up an accessed in multiple
 return new HttpResult(new FileInfo(filePath), request.MimeType); 
 ```
 
+#### A Virtual File
+
+```csharp
+return new HttpResult(VirtualFileSources.GetFile(virtualPath)); 
+```
+
 #### A Memory Stream
 
 ```csharp
 return new HttpResult(ms, "audio/mpeg");
+```
+
+#### Raw Bytes
+
+```csharp
+return new HttpResult(bytes, "image/png");
 ```
 
 #### Raw Text
