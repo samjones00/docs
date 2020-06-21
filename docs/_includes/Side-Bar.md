@@ -60,6 +60,7 @@
     - [Overview](/error-handling)
     - [Validation](/validation)
     - [World Validation](/world-validation)
+    - [Declarative Validation](/declarative-validation)
     - [Debugging](/debugging)
 - ##### Clients
     - [Overview](/clients-overview)
@@ -197,6 +198,8 @@
     - [AutoQuery Data Memory](/autoquery-memory)
     - [AutoQuery Data Service](/autoquery-service)
     - [AutoQuery Data DynamoDB](/autoquery-dynamodb)
+    - [AutoQuery CRUD](/autoquery-crud)
+    - [AutoQuery Audit Log](/autoquery-audit-log)
     - [AutoGen](/autogen)
 - ##### Server Events
     - [Overview](/server-events)
