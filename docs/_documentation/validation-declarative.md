@@ -8,7 +8,7 @@ Declarative validation facilitate greater declarative functionality around Servi
 attributes which are decoupled from their Validator implementation so they're suitable to be annotated on impl-free Service Model DTOs and exported in 
 [Add ServiceStack Reference](/add-servicestack-reference) Types.
 
-> As they're decoupled they can eventually be used to implement instant validation feedback on clients without server round trips
+> As they're decoupled the same rules could enable instant validation feedback on clients without server round trips
 
 The validators are incorporated into ServiceStack's existing Fluent Validation model so it [works with existing UI form binding](/world-validation). 
 
