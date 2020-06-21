@@ -90,32 +90,53 @@ The `IQuery` interface includes shared features that all Queries support and act
 The behavior of queries can be completely customized by simply providing your own Service implementation instead, e.g:
 
 ```csharp
+// Override with custom implementation
 public class MyQueryServices : Service
 {
     public IAutoQueryDb AutoQuery { get; set; }
 
-    //Override with custom implementation
+    // Sync
     public object Any(FindMovies query)
     {
-        var q = AutoQuery.CreateQuery(query, Request);
-        return AutoQuery.Execute(query, q, Request);
+        using var db = AutoQuery.GetDb(query, base.Request);
+        var q = AutoQuery.CreateQuery(query, base.Request, db);
+        return await AutoQuery.Execute(query, q, base.Request, db);
     }
+
+    // Async
+    public async Task<object> Any(QueryRockstars query)
+    {
+        using var db = AutoQuery.GetDb(query, base.Request);
+        var q = AutoQuery.CreateQuery(query, base.Request, db);
+        return await AutoQuery.ExecuteAsync(query, q, base.Request, db);
+    }    
 }
 ```
 
 This is essentially what the AutoQuery feature generates for each `IQuery` Request DTO unless a Service for the Request DTO already exists, in which case it uses the existing implementation. 
 
-We can inspect the 2 lines to understand how AutoQuery works:
+We can inspect each line to understand how AutoQuery works:
+
+Resolve the DB Connection for this AutoQuery request:
 
 ```csharp
-var q = AutoQuery.CreateQuery(query, base.Request);
+using var db = AutoQuery.GetDb(query, base.Request);
 ```
 
-Is an equivalent short-hand version for: 
+By default this follows the [Multitenancy conventions](/multitenancy) for resolving a DB connection, which you can override with your 
+own custom resolution for this service.
+
+Creating a populated type SqlExpression:
+
+```csharp
+var q = AutoQuery.CreateQuery(query, base.Request, db);
+```
+
+Is an equivalent short-hand version for:
 
 ```csharp
 Dictionary<string,string> queryArgs = Request.GetRequestParams();
-var q = AutoQuery.CreateQuery(dto, queryArgs, Request);
+var q = AutoQuery.CreateQuery(dto, queryArgs, Request, db);
 ```
 
 Which constructs an [OrmLite SqlExpression](https://github.com/ServiceStack/ServiceStack.OrmLite/#examples) 
@@ -416,6 +437,8 @@ const string GreaterThanFormat =        "{Field} >  {Value}";
 const string LessThanFormat =           "{Field} <  {Value}";
 const string LessThanOrEqualFormat =    "{Field} <= {Value}";
 const string NotEqualFormat =           "{Field} <> {Value}";
+const string IsNull =                   "{Field} IS NULL";
+const string IsNotNull =                "{Field} IS NOT NULL";
 
 ImplicitConventions = new Dictionary<string, string> 
 {
@@ -433,6 +456,7 @@ ImplicitConventions = new Dictionary<string, string>
     {">%",              GreaterThanOrEqualFormat},
     {"%>",              GreaterThanFormat},
     {"%!",              NotEqualFormat},
+    {"<>%",             NotEqualFormat},
 
     {"%GreaterThanOrEqualTo%", GreaterThanOrEqualFormat},
     {"%GreaterThan%",          GreaterThanFormat},
@@ -458,6 +482,9 @@ ImplicitConventions = new Dictionary<string, string>
     {"%In",             "{Field} IN ({Values})"},
     {"%Ids",            "{Field} IN ({Values})"},
     {"%Between%",       "{Field} BETWEEN {Value1} AND {Value2}"},
+            
+    {"%IsNull",         IsNull},
+    {"%IsNotNull",      IsNotNull},
 };
 
 EndsWithConventions = new Dictionary<string, QueryDbFieldAttribute>
@@ -697,7 +724,7 @@ var response = client.Get(new QueryCustomers {
 })
 ```
 
-We can use this feature with Northwinds existing [AutoQuery Request DTOs](https://github.com/NetCoreApps/Northwind/blob/master/src/Northwind.ServiceModel/AutoQuery.cs):
+We can use this feature with Northwind's existing [AutoQuery Request DTOs](https://github.com/NetCoreApps/Northwind/blob/master/src/Northwind.ServiceModel/AutoQuery.cs):
 
 ```csharp
 [Route("/query/customers")]
@@ -795,12 +822,20 @@ var top250 = client.GetLazy(new QueryMovies {
 
 Another benefit we get from AutoQuery Services being regular ServiceStack services is taking advantage of [ServiceStack's built-in formats](/formats). 
 
+### CsvFormat
+
 The [CSV Format](/csv-format) especially shines here given queries return a single tabular resultset making it perfect for CSV. In many ways CSV is one of the most interoperable Data Formats given most data import and manipulation programs including Databases and Spreadsheets have native support for CSV allowing for deep and seamless integration.
 
 ServiceStack provides a number of ways to [request your preferred content-type](/routing#content-negotiation), the easiest of which is to just use the `.{format}` extension at the end of the `/pathinfo` e.g:
 
     /rockstars.csv
     /movies.csv?ratings=G,PG-13
+
+[CSV Format](/csv-format) responses can use the same [scoped custom responses as JSON](/customize-json-responses) to allow
+Typed Results to exclude default values columns when returning limited [custom fields with `?fields`](/autoquery-rdbms#custom-fields):
+
+ - Camel Humps Notation: `?jsconfig=edf`
+ - Full configuration: `?jsconfig=ExcludeDefaultValues`
 
 ## Named Connection
 
@@ -993,6 +1028,96 @@ public class PostPublicServices : PostServicesBase
 ```
 
 The above implementation also caches all `QueryPosts` responses as a result of being defined in a Service annotated with [`[CacheResponse]` attribute](/cacheresponse-attribute).
+
+### IAutoQueryDb API
+
+To increase the versatility of using AutoQuery functionality in custom Service implementations, `IAutoQueryDb` supports both parallel Sync and Async APIs 
+if needing to enlist AutoQuery functionality in Sync methods that are unable to be refactored to use the async APIs:
+
+```csharp
+public interface IAutoQueryDb : IAutoCrudDb
+{
+    // Generic API to resolve the DB Connection to use for this request
+    IDbConnection GetDb<From>(IRequest req = null);
+
+    // Generate a populated and Typed OrmLite SqlExpression using the same model as the source and output target
+    SqlExpression<From> CreateQuery<From>(IQueryDb<From> dto, Dictionary<string, string> dynamicParams, 
+        IRequest req = null, IDbConnection db = null);
+
+    // Execute an OrmLite SqlExpression using the same model as the source and output target
+    QueryResponse<From> Execute<From>(IQueryDb<From> model, SqlExpression<From> query, 
+        IRequest req = null, IDbConnection db = null);
+
+    // Async Execute an OrmLite SqlExpression using the same model as the source and output target
+    Task<QueryResponse<From>> ExecuteAsync<From>(IQueryDb<From> model, SqlExpression<From> query, 
+        IRequest req = null, IDbConnection db = null);
+
+    // Generate a populated and Typed OrmLite SqlExpression using different models for source and output target
+    SqlExpression<From> CreateQuery<From, Into>(IQueryDb<From,Into> dto, Dictionary<string,string> dynamicParams, 
+        IRequest req = null, IDbConnection db = null);
+
+    // Execute an OrmLite SqlExpression using different models for source and output target
+    QueryResponse<Into> Execute<From, Into>(IQueryDb<From, Into> model, SqlExpression<From> query, 
+        IRequest req = null, IDbConnection db = null);
+
+    // Async Execute an OrmLite SqlExpression using different models for source and output target
+    Task<QueryResponse<Into>> ExecuteAsync<From, Into>(IQueryDb<From, Into> model, SqlExpression<From> query, 
+        IRequest req = null, IDbConnection db = null);
+}
+```
+
+The `IAutoQueryDb` inherits `IAutoCrudDb` APIs below and can access both AutoQuery and CRUD functionality.
+
+Likewise the new AutoQuery Crud APIs also have sync & async implementations:
+
+```csharp
+public interface IAutoCrudDb
+{
+    // Inserts new entry into Table
+    object Create<Table>(ICreateDb<Table> dto, IRequest req);
+    
+    // Inserts new entry into Table Async
+    Task<object> CreateAsync<Table>(ICreateDb<Table> dto, IRequest req);
+    
+    // Updates entry into Table
+    object Update<Table>(IUpdateDb<Table> dto, IRequest req);
+    
+    // Updates entry into Table Async
+    Task<object> UpdateAsync<Table>(IUpdateDb<Table> dto, IRequest req);
+    
+    // Partially Updates entry into Table (Uses OrmLite UpdateNonDefaults behavior)
+    object Patch<Table>(IPatchDb<Table> dto, IRequest req);
+    
+    // Partially Updates entry into Table Async (Uses OrmLite UpdateNonDefaults behavior)
+    Task<object> PatchAsync<Table>(IPatchDb<Table> dto, IRequest req);
+    
+    // Deletes entry from Table
+    object Delete<Table>(IDeleteDb<Table> dto, IRequest req);
+    
+    // Deletes entry from Table Async
+    Task<object> DeleteAsync<Table>(IDeleteDb<Table> dto, IRequest req);
+
+    // Inserts or Updates entry into Table
+    object Save<Table>(ISaveDb<Table> dto, IRequest req);
+
+    // Inserts or Updates entry into Table Async
+    Task<object> SaveAsync<Table>(ISaveDb<Table> dto, IRequest req);
+}
+```
+
+Due to its internal pre-defined behavior, AutoQuery CRUD custom Service implementations have limited customizability over its implementation but still allows you to apply custom logic like apply Custom Filter Attributes, include additional validation, augment the Response DTO, etc.
+
+E.g. This implementation applies the `[ConnectionInfo]` behavior to all its Services which will instead execute queries on the registered Reporting named connection:
+
+```csharp
+[ConnectionInfo(NamedConnection = "Reporting")]
+public class MyReportingServices : Service
+{
+    public IAutoQueryDb AutoQuery { get; set; }
+
+    public Task<object> Any(CreateReport request) => AutoQuery.CreateAsync(request, base.Request);
+}
+```
 
 ### AutoQuery Response Filters
 
