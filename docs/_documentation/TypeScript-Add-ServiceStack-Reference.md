@@ -67,9 +67,14 @@ which in React Native projects would look like:
 
 ```json
 "scripts": {
-    "dtos": "typescript-ref && tsc --lib es6 dtos.ts",
+    "dtos": "cd src/shared && x typescript && tsc -m ES6 dtos.ts",
 }
 ```
+
+#### UMD @servicestack/client
+
+npm-free JavaScript Web Apps can use the [built-in UMD @servicestack/client](/servicestack-client-umd) in **ServiceStack.dll** 
+to call ServiceStack Services without any external dependencies.
 
 ## TypeScript ServiceClient
 
@@ -85,7 +90,7 @@ The easiest way to use TypeScript with ServiceStack is to start with one of
 
 Other TypeScript or ES6 projects can install `@servicestack/client` from npm with:
 
-    npm install --save @servicestack/client
+    $ npm install @servicestack/client
 
 See [JavaScript Client](/javascript-client) for how to use `JsonServiceClient` in non-npm or non TypeScript projects.
 
@@ -103,10 +108,6 @@ To make API requests using TypeScript's async/await feature you'll need to creat
 }
 ```
 
-The W3C `fetch` definitions are built into TypeScript **2.3+**, if using older versions of TypeScript they can be installed with:
-
-    npm install --save-dev @types/whatwg-fetch
-
 ### TypeScript Ambient Interface Definitions or Concrete Types
 
 You can get both concrete types and interface definitions for your Services at the following routes:
@@ -116,27 +117,25 @@ You can get both concrete types and interface definitions for your Services at t
 
 ## Simple command-line utilities for TypeScript
 
-The [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli) npm package lets you quickly and easily Add and Update ServiceStack References via a simple `typescript-ref` command-line utility.
+The [dotnet tools](/dotnet-tool) include built in support for generating TypeScript references from the command-line:
 
 ### Installation
 
-Prerequisites: Node.js (>=4.x, 6.x preferred), npm version 3+.
-
-    $ npm install -g @servicestack/cli
+    $ dotnet tool install --global x 
 
 ### Adding a ServiceStack Reference
 
-To Add a TypeScript ServiceStack Reference just call `typescript-ref` with the URL of a remote ServiceStack instance:
+To Add a TypeScript ServiceStack Reference just call `x typescript` with the URL of a remote ServiceStack instance:
 
-    $ typescript-ref http://techstacks.io
+    $ x typescript http://techstacks.io
 
 Result:
 
     Saved to: techstacks.dtos.ts
 
-Calling `typescript-ref` with just a URL will save the DTOs using the Host name, you can override this by specifying a FileName as the 2nd argument:
+Calling `x typescript` with just a URL will save the DTOs using the Host name, you can override this by specifying a FileName as the 2nd argument:
 
-    $ typescript-ref http://techstacks.io Tech
+    $ x typescript http://techstacks.io Tech
 
 Result:
 
@@ -144,9 +143,9 @@ Result:
 
 ### Updating a ServiceStack Reference
 
-To Update an existing ServiceStack Reference, call `typescript-ref` with the Filename:
+To Update an existing ServiceStack Reference, call `x typescript` with the Filename:
 
-    $ typescript-ref techstacks.dtos.ts
+    $ x typescript techstacks.dtos.ts
 
 Result:
 
@@ -156,16 +155,19 @@ Which will update the File with the latest TypeScript Server DTOs from [techstac
 
 ### Updating all TypeScript DTOs
 
-Calling `typescript-ref` without any arguments will update all TypeScript DTOs in the current directory:
+Calling `x typescript` without any arguments will update all TypeScript DTOs in the current directory:
 
-    $ typescript-ref
+    $ x typescript
 
 Result:
 
     Updated: Tech.dtos.ts
     Updated: techstacks.dtos.ts
 
-To make it more wrist-friendly you can also use the shorter `ts-ref` alias instead of `typescript-ref`.
+### npm tools
+
+The `x` dotnet tools require .NET Core installed, a pure npm-based alternative is to install the [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli)
+ npm package containing the `typescript-ref` (or wrist-friendly `ts-ref` alias) commands which can be used instead of `x typescript`.
 
 ## Add TypeScript Reference
 
@@ -374,6 +376,64 @@ raw `byte[]` responses:
 let str:string = await client.get(new ReturnString());
 
 let data:Uint8Array = await client.get(new ReturnBytes());
+```
+
+### TypeScript Nullable properties
+
+The default TypeScript generated for a C# DTO like:
+
+```csharp
+public class Data
+{
+    [Required]
+    public int Value { get; set; }
+    public int? OptionalValue { get; set; }
+    public string Text { get; set; }
+}
+```
+
+Will render the DTO with optional properties:
+
+```csharp
+export class Data
+{
+    // @Required()
+    public value: number;
+
+    public optionalValue?: number;
+    public text?: string;
+
+    public constructor(init?: Partial<Data>) { (Object as any).assign(this, init); }
+}
+```
+
+This behavior can be changed to emit nullable properties instead with:
+
+```csharp
+TypeScriptGenerator.UseNullableProperties = true;
+```
+
+Where it will instead emit nullable properties:
+
+```ts
+export class Data
+{
+    public value: number|null;
+    public optionalValue: number|null;
+    public text: string|null;
+
+    public constructor(init?: Partial<Data>) { (Object as any).assign(this, init); }
+}
+```
+
+If finer-grained customization is needed to control which type and property should be nullable, you can 
+use the customizable `TypeScriptGenerator` filters (which `UseNullableProperties` defaults to):
+
+```csharp
+TypeScriptGenerator.IsPropertyOptional = (generator, type, prop) => false;
+
+TypeScriptGenerator.PropertyTypeFilter = (gen, type, prop) => 
+    gen.GetPropertyType(prop, out var isNullable) + "|null";
 ```
 
 ### Authenticating using Basic Auth

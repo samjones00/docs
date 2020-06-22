@@ -123,6 +123,7 @@
     - [#Script Lisp](https://sharpscript.net/lisp/)
 - ##### JavaScript Web Apps
     - [Vue Components](/vue-components)
+    - [Embedded UMD @servicestack/client](/servicestack-client-umd)
     - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - ##### Hosts
     - [IIS](/iis)
