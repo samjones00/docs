@@ -391,7 +391,8 @@ The Types of limitations applicable when building gRPC Services in .NET include:
  - No built-in Types that can accommodate .NET's `Decimal`, `Guid` Types
  - Loss of precision when using the built-in `Timestamp` to serialize .NET's `DateTime` or `DateTimeOffset`
 
-The [protobuf-net](https://github.com/protobuf-net/protobuf-net) library used in both Server and `GrpcServiceClient` implementations does its best to transparently work around above limitations, e.g:
+The [protobuf-net](https://github.com/protobuf-net/protobuf-net) library used in both Server and `GrpcServiceClient` implementations does its 
+best to transparently work around above limitations, e.g:
 
  - Creates multiple messages using reified generic type names for each concrete Generic Type used
  - Allows defining layout of base Types to embed ("has a") relation of known sub types
@@ -407,12 +408,19 @@ Services development experience:
 
 ### protobuf-net Inheritance
 
+As it's important to best provide a seamless out-of-the-box solution to alleviate as much friction as possible, 
+[Request DTOs flatten their inheritance hierarchy](/grpc#flattened-request-hierarchys) in order to provide the optimal typed API for 
+[.proto generated clients](/grpc#protoc-generated-clients).
+
+Inheritance in Request DTOs can provide a [natural way to compose functionality](/autoquery-crud#advanced-crud-example), otherwise using 
+[inheritance in DTOs is not recommended](https://stackoverflow.com/a/10759250/85785) to avoid runtime serialization & interoperability issues
+and [define more explicit Service Contracts](/why-remote-services-use-dtos#dry-vs-intent).
+
 In order to support inheritance [protobuf-net has to retrofit](https://github.com/protobuf-net/protobuf-net/wiki/Getting-Started#inheritance) 
 its support by embedding sub classes as different fields in the base class type. This is awkward since all known sub classes needs to be defined 
 upfront on the base type using a consistent and non-conflicting numerical field id. 
 
-As it's required by [AutoQuery](/autoquery) it was important to best provide a seamless out-of-the-box solution to alleviate as much friction
-as possible, so ServiceStack pre-configures this numerical index on all known sub types in your Services Contract with a generated
+To support inheritance in gRPC, ServiceStack pre-configures a numerical index on all known sub types in your Services Contract with a generated
 [Murmur2 hash](https://softwareengineering.stackexchange.com/a/145633/14025) (best overall for speed/randomness) of the **Types Name** that's modded to 
 within the `2^29-1` range of [valid field ids in protocol buffers](https://developers.google.com/protocol-buffers/docs/proto#assigning-field-numbers) -
 resulting in a low (but still possible) index collision.
@@ -422,10 +430,10 @@ at least start from `10` to avoid conflicts with its base class properties, e.g:
 
 ```csharp
 [DataContract, Id(10)]
-public class QueryRockstars : QueryDb<Rockstar>
+public class Rockstar : RockstarBase
 {
     [DataMember(Order = 1)]
-    public int? Age { get; set; }
+    public Guid Id { get; set; }
 }
 ```
 
