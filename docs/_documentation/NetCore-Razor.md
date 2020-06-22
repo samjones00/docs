@@ -95,6 +95,58 @@ uses to call the `GetContact` Service using the [Service Gateway](/service-gatew
 
 > `Html.Exec()` is a UX-friendly alternative to using `try/catch` boilerplate in Razor
 
+### Stand-alone Razor Views
+
+Rendering stand-alone HTML Views from Razor Pages can use the `GetViewPage()` API for retrieving View Pages 
+(e.g. under `~/Views`) and the `GetContentPage()` API for retrieving Content Pages (e.g. under `/wwwroot`). 
+
+You can then use `RenderToHtmlAsync()` API to render the HTML output in a UTF-8 `ReadOnlyMemory<char>` which your Services can return directly 
+for optimal efficiency, or if needed the rendered output can be converted to a `string` with `.ToString()`:
+
+```csharp
+public async Task<object> Any(MyRequest request)
+{
+    var razor = GetPlugin<RazorFormat>();
+    var view = razor.GetViewPage("MyView");
+    if (view == null)
+        throw HttpError.NotFound("Razor view not found: " + "MyView");
+
+    var ret = await razor.RenderToHtmlAsync(view, new MyModel { Name = "World" },
+        layout:"_MyLayout"); //if Layout specified in `.cshtml` page it uses that
+    return ret;
+}
+```
+
+For even better efficiency the Razor View can render to the Response `OutputStream` directly with `WriteHtmlAsync()` to write the rendered UTF-8 bytes 
+directly to the `OutputStream` instead of above where it converts it into a UTF-8 string before converting it back to UTF-8 bytes when ServiceStack
+writes it to the response:
+
+```csharp
+public async Task Any(MyRequest request)
+{
+    var razor = GetPlugin<RazorFormat>();
+    var view = razor.GetViewPage("MyView");
+    if (view == null)
+        throw HttpError.NotFound("Razor view not found: " + "MyView");
+
+    await razor.WriteHtmlAsync(Response.OutputStream, view, 
+        new MyModel { Name = "World" }, 
+        layout:"_MyLayout"); //if Layout specified in `.cshtml` page it uses that
+}
+```
+
+If needed you can also render the view with an anonymous Model Type, e.g:
+
+```csharp
+await razor.RenderToHtmlAsync(view, new { Name = "World" });
+```
+
+Where the Razor View would need to specify it's using a `dynamic` model with:
+
+```html
+@model dynamic
+```
+
 #### Limitation
 
 One drawback of page based routing is that MVC is unable to resolve Page Based Routes when pre-compiled and will need to disabled with:

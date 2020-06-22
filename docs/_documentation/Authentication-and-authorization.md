@@ -354,6 +354,35 @@ public class SecuredService : Service
 
 ServiceStack's Authentication, Caching and Session providers are completely new, clean, dependency-free testable APIs that doesn't rely on and is devoid of ASP.NET's existing membership, caching or session provider models. 
 
+### AuthSecret Admin Session
+
+Super User Requests using [Config.AdminAuthSecret](/debugging#authsecret) return an Authenticated Admin UserSession 
+whose default values can be modified at `AuthFeature.AuthSecretSession`:
+
+ - `DisplayName`: Admin
+ - `UserName`: authsecret
+ - `AuthProvider`: authsecret
+ - `Roles`: Admin
+ - `UserAuthId`: 0
+
+### Embedded Login Page fallback
+
+`AuthFeature` adds a fallback **/login.html** page if the `HtmlRedirect` remains unchanged and no `/login.html` exists, otherwise
+if using a custom `/login` page in either **Razor** or **Script Pages** they'll continue to be used instead.
+
+The default `/login.html` page provides an auto Login page that supports authentication via Credentials as well as a generating a dynamic 
+list of OAuth providers, e.g the [NorthwindCrud](https://github.com/NetCoreApps/NorthwindCrud) `/login` page with Facebook OAuth looks like:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/auth-login.png)
+
+If you're using an SPA App with client side routing to implement `/login`, the default login page can be disabled with:
+
+```csharp
+new AuthFeature {
+    IncludeDefaultLogin = false
+}
+```
+
 ## World Validation
 
 See the annotated [World Validation Docs](/world-validation) for a detailed walks through and showcases the implementation 

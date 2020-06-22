@@ -98,6 +98,40 @@ public class HtmlServices : Service
 
 This feature is also available for other built-in Content Types: `[JsonOnly]`, `[XmlOnly]`, `[JsvOnly]` and `[CsvOnly]`.
 
+### XmlSerializerFormat Plugin
+
+The `XmlSerializerFormat` plugin changes ServiceStack to serialize XML with .NET `XmlSerializer` instead of .NET XML 
+`DataContractSerializer`:
+
+```csharp
+Plugins.Add(new XmlSerializerFormat());
+```
+
+The implementation provides a typical example of how to register or override different Content-Types in ServiceStack:
+
+```csharp
+public class XmlSerializerFormat : IPlugin
+{
+    public static void Serialize(IRequest req, object response, Stream stream)
+    {
+        var serializer = new XmlSerializer(response.GetType());
+        serializer.Serialize(stream, response);
+    }
+
+    public static object Deserialize(Type type, Stream stream)
+    {
+        var serializer = new XmlSerializer(type.GetType());
+        var obj = (Type) serializer.Deserialize(stream);
+        return obj;
+    }
+
+    public void Register(IAppHost appHost)
+    {
+        appHost.ContentTypes.Register(MimeTypes.Xml, Serialize, Deserialize);
+    }
+}
+```
+
 ## [SOAP Endpoint](/soap-support)
 
 Consume ServiceStack Services via [SOAP](/soap-support) using WCF Add Service Reference or [ServiceStack generic SOAP Clients](/csharp-client#httpwebrequest-service-clients).

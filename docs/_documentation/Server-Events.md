@@ -158,6 +158,14 @@ public interface IServerEvents : IDisposable
     SubscriptionInfo GetSubscriptionInfo(string id);
     List<SubscriptionInfo> GetSubscriptionInfosByUserId(string userId);
 
+    // Raw JSON APIs
+    Task NotifyAllJsonAsync(string selector, string json, CancellationToken ct=default)
+    Task NotifyChannelJsonAsync(string channel, string selector, string json, CancellationToken ct=default)
+    Task NotifySubscriptionJsonAsync(string subscriptionId, string selector, string json, string chan)
+    Task NotifyUserIdJsonAsync(string userId, string selector, string json, string chan)
+    Task NotifyUserNameJsonAsync(string userName, string selector, string json, string chan)
+    Task NotifySessionJsonAsync(string sessionId, string selector, string json, string chan)
+
     // Admin API's
     Task RegisterAsync(IEventSubscription subscription, Dictionary<string,string> conArgs,CancellationToken ct)
     Task UnRegisterAsync(string subscriptionId, CancellationToken token=default);

@@ -366,6 +366,22 @@ this.UncaughtExceptionHandlersAsync.Add(async (req, res, operationName, ex) =>
 });
 ```
 
+### GatewayExceptionHandlers
+
+Gateway Exception Handlers provide the same Exception Handling callbacks as ServiceExceptions which you can use
+to intercept Exceptions from Gateway requests:
+
+```csharp
+IAppHost.GatewayExceptionHandlers
+IAppHost.GatewayExceptionHandlersAsync 
+```
+
+Gateway Exceptions can also be intercepted in your `AppHost` by overriding:
+
+```csharp
+public override async Task OnGatewayException(IRequest httpReq, object request, Exception ex) => ...
+```
+
 ### Error handling using a custom ServiceRunner
 
 If you want to provide different error handlers for different actions and services you can just tell ServiceStack to run your services in your own custom [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and implement the **HandleException** event hook in your AppHost:

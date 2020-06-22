@@ -406,6 +406,17 @@ public class AppHost : AppHostBase
 }
 ```
 
+### Pluralize and Singularize
+
+In order to use optimal user-friendly routes in [AutoGen AutoQuery Services](/autogen), an interned version of 
+[Andrew Peters port of Rails Inflector](http://andrewpeters.net/inflectornet/) is available under the `Words` static class
+that you can use to `Pluralize` or `Singularize` routes:
+
+```csharp
+var plural = Words.Pluralize("customer");      //= customers
+var singular = Words.Singularize("customers"); //= customer
+```
+
 ## Routing Resolution Order
 
 This is described in more detail on the [New API Design wiki](/api-design) but the weighting used to select a route is based on:

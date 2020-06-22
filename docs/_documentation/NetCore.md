@@ -1099,6 +1099,29 @@ using a **virtualPath** from your Host Project root folder, e.g:
 var filePath = appHost.MapProjectPath("~/path/to/settings.txt");
 ```
 
+### Hosting ASP.NET Core Apps on Custom Path
+
+Use the `PathBase` property on AppHost for hosting a ServiceStack .NET Core App at a custom path, e.g:
+
+```csharp
+app.UseServiceStack(new AppHost {
+    PathBase = "/api",
+    AppSettings = new NetCoreAppSettings(Configuration)
+});
+```
+
+Resulting in both `Config.PathBase` and `Config.HandlerFactoryPath` getting populated with and without the `/` suffix:
+
+```csharp
+Config.PathBase           //= /api
+Config.HandlerFactoryPath //= api
+```
+
+When necessary the `PathBase` property is available in both server rendered views:
+
+  - `{% raw %}{{PathBase}}{% endraw %}` variable in [#Script Pages](https://sharpscript.net/docs/sharp-pages)
+  - `PathBase` in Razor Views
+
 ### HostContext.TryGetCurrentRequest()
 
 ASP.NET Web Applications let you resolve the `IRequest` of the current executing HTTP Request with:

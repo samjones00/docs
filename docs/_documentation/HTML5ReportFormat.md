@@ -19,6 +19,28 @@ Note: To view the web services in a different format simply append **?format={ex
 
     ?format=[json|xml|html|csv|jsv]
 
+### Lightweight Customizable HTML Templates
+
+ServiceStack's auto HTML response pages can be overridden specific routes by populating `HtmlFormat.PathTemplates`
+with a lightweight HTML template, e.g. the `/auth` page is pre-configured with:
+
+ ```csharp
+GetPlugin<HtmlFormat>.PathTemplates["/auth"] = "/Templates/Auth.html";
+```
+
+Specifying the **/path/info**  to override and the **VirtualPath** of the static HTML page that should be returned instead.
+
+That instead of the JSON HTML Dump of the `/auth` endpoint, now returns a static `.html` page to display the `AuthenticateResponse`
+DTO in a beautified custom HTML view:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/auth-page.png)
+
+The static HTML templates will replace these variable placeholders which will allow you to render a custom view of service responses:
+
+ - `${Dto}` JSON Response DTO
+ - `${BaseUrl}` - `IRequest.GetBaseUrl()`
+ - `${ServiceUrl}` - Service URL
+
 ### [The Magic AutoGrid Partial](https://github.com/ServiceStackApps/HttpBenchmarks#the-magic-autogrid-partial)
 
 [![Search Test Results](https://raw.githubusercontent.com/ServiceStack/HttpBenchmarks/master/src/BenchmarksAnalyzer/Content/img/search-filter.png)](https://github.com/ServiceStack/HttpBenchmarks/blob/master/src/BenchmarksAnalyzer/Views/SearchTestResults.cshtml)
