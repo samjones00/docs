@@ -134,7 +134,7 @@ ServiceStack enables the best of both worlds, you can take the risk-free step of
 gRPC HTTP/2 Services for clients and environments that can take advantage of it whilst (in the same App) continuing to make them available via the 
 ubiquitous JSON HTTP/1.1 APIs or in any of their [preferred formats](/formats).
 
-### Code-First gRPC Services
+## gRPC code-first Development
 
 By allowing the use of idiomatic C# POCOs to define your Services contract, code-first always enables a superior development experience
 which avoids having to rely on external build tools to generate foreign implementation-encumbered types limited in capability
@@ -147,6 +147,96 @@ general inherently easier to develop genericized behavior around. As [Service Mo
 doesn't have any implementation dependencies they can be easily shared and [referenced in any .NET Project](/why-servicestack#target-multiple-platforms) 
 and as clean POCOs they can serve as [multi-purpose models enabling maximum reuse](/service-complexity-and-dto-roles#the-simple-poco-life) 
 where they can be utilized in all ServiceStack's POCO libraries as well being supported in [all of ServiceStack's supported formats](/formats).
+
+### Code-First gRPC Services
+
+ServiceStack's code-first gRPC Services enabled by [protobuf-net.Grpc](https://github.com/protobuf-net/protobuf-net.Grpc) 
+where instead of imposing the high maintenance burden of manually authoring `.proto` to define gRPC Services on the developer and resulting 
+in awkward generated classes in both the C# Service implementation as well as the protoc generated clients.
+
+A code-first development approach allows use of the higher-level & more expressive power of C# & its rich static analysis 
+to intuitively declare exactly the Service you want to provide. 
+
+E.g. an [AutoQuery Service](/autoquery-rdbms) uses both inheritance and generic response Types is simply declared in a single C# Request DTO
+with exactly what querying features you want to be discoverable for this Service:
+
+```csharp
+public class QueryCategory : QueryDb<Category>
+{
+    public int Id { get; set; }
+    public string CategoryName { get; set; }
+}
+```
+
+Which you could call in an end-to-end API without code-gen, using the smart [C# Generic gRPC Service Client](/grpc-generic) 
+which supports protobuf-net high-level retrofitted support for both inheritance and generic responses:
+
+```csharp
+var response = await client.GetAsync(new QueryCategory { CategoryName = "Vegetables" });
+```
+
+But as `.proto` doesn't natively support either inheritance or generic classes the proto clients generates an unusable and awkward 
+**has** vs **is a** base for the retrofitted inheritance message hack requiring every base message type to define every possible subtype 
+message. The pursuit of a better dev UX inspired the creation of the [Dynamic gRPC Requests](/grpc#dynamic-grpc-requests) feature, 
+enabling the more natural and UX-friendly way to invoke Services using a flattened unstructured string Dictionary, 
+akin to a `?QueryString` in HTTP Requests:
+
+```csharp
+var response = await client.GetDynamicQueryCategoryAsync(new DynamicRequest {
+    Params = {
+        { "CategoryName", "Vegetables" }, 
+        { "OrderBy", "Id" }, 
+        { "Include", "Total" },
+    }
+});
+```
+
+This feature also allows you to construct a generic `DynamicRequest` Request Message that can invoke any Service making it
+useful in scenarios where you want to dynamically construct & invoke different Services like in a Request Query Builder 
+as done in [Studio](/studio) and [SharpData](https://sharpscript.net/sharp-apps/sharpdata) UIs.
+s
+### Flattened Request Hierarchy's
+
+To improve support for [protoc generated Service Clients](/grpc#public-grpc-protoc-service-and-ui) Request DTOs automatically flatten
+multiple inheritance hierarchy's into a single message type in the dynamically generated `.proto` gRPC Services description 
+so the C# `QueryCategory` Service above will elide the inheritance tree and expose it as a flattened Service message containing both 
+implicit base functionality available to all AutoQuery Services in combination with the explicit Querying functionality specific for each AutoQuery Service.
+
+So the above `QueryCategory` AutoQuery Service above are defined in the generated gRPC `.proto` as:
+
+```csharp
+service GrpcServices {
+    rpc GetQueryCategory(QueryCategory) returns (QueryResponse_Category) {}
+}
+
+message QueryCategory {
+   int32 Skip = 1;
+   int32 Take = 2;
+   string OrderBy = 3;
+   string OrderByDesc = 4;
+   string Include = 5;
+   string Fields = 6;
+   map<string,string> Meta = 7;
+   int64 Id = 201;
+   string CategoryName = 202;
+}
+
+message QueryResponse_Category {
+   int32 Offset = 1;
+   int32 Total = 2;
+   repeated Category Results = 3;
+   map<string,string> Meta = 4;
+   ResponseStatus ResponseStatus = 5;
+}
+```
+
+This enables protoc generated clients with the more optimal generated typed API for calling ServiceStack's AutoQuery Services down to:
+
+```dart
+// Dart
+var response = await client.getQueryCategory(QueryCategory()..categoryName='Vegetables');
+print(response.results);
+```
 
 ### No additional complexity or artificial machinery
 
