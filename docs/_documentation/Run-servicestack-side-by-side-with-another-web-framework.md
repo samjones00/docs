@@ -63,12 +63,18 @@ public override void Configure(Container container)
 }
 ```
 
-**To avoid conflicts with ASP.NET MVC add an ignore rule** in `Global.asax RegisterRoutes` method e.g: `routes.IgnoreRoute ("api/{*pathInfo}");`
+**To avoid conflicts with ASP.NET MVC add an ignore rule** in `Global.asax RegisterRoutes` method e.g: 
+
+```csharp
+routes.IgnoreRoute ("api/{*pathInfo}");
+```
+
+See [mvc-netfx](https://github.com/NetFrameworkTemplates/mvc-netfx) for a working ServiceStack + MVC Project Template.
 
 **For MVC4 applications you also need to unregister WebApi**, by commenting out this line in `Global.asax.cs`:
 
 ```csharp
-  //WebApiConfig.Register(GlobalConfiguration.Configuration);
+//WebApiConfig.Register(GlobalConfiguration.Configuration);
 ```
 
 > **Note:** If you used Nuget to install the bits, remove the original handler from the web.config system.webserver node e.g: 
