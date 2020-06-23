@@ -761,22 +761,48 @@ JsonHttpClient can be downloaded from NuGet at:
 
     > Install-Package ServiceStack.HttpClient
 
-### [ModernHttpClient](https://github.com/paulcbetts/ModernHttpClient)
+### Xamarin Native HttpClient
 
-One of the primary benefits of being based on `HttpClient` is being able to make use of 
-[ModernHttpClient](https://github.com/paulcbetts/ModernHttpClient) which provides a thin wrapper around iOS's native `NSURLSession` or `OkHttp` client on Android, offering improved stability for 3G mobile connectivity.
+Using the default managed `HttpClient` implementation in Xamarin has a 
+[number of issues](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/http-stack#cons-2) in iOS and Android devices.
 
-To enable, install [ModernHttpClient](https://www.nuget.org/packages/ModernHttpClient) then set the 
-Global HttpMessageHandler Factory to configure all `JsonHttpClient` instances to use ModernHttpClient's `NativeMessageHandler`: 
+Xamarin's MSDN docs explain the advantages of native implementations and show how you can enable 
+[native HttpClient implementation for iOS/macOS](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/http-stack) for your project.
+
+If you want to [programmatically enable it for iOS/macOS](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/http-stack#programmatically-setting-the-httpmessagehandler), you'll likely want to configure it once on the `GlobalHttpMessageHandlerFactory`
+for all `JsonHttpClient` instances to use, e.g:
 
 ```csharp
-JsonHttpClient.GlobalHttpMessageHandlerFactory = () => new NativeMessageHandler()
+// iOS
+JsonHttpClient.GlobalHttpMessageHandlerFactory = () => 
+    new NSUrlSessionHandler();
 ```
 
-Alternatively, you can configure a single client instance to use ModernHttpClient with:
+Or to only configure it for a specific client you can initialize an instance with:
 
 ```csharp
-client.HttpMessageHandler = new NativeMessageHandler();
+// iOS
+var client = new JsonHttpClient(baseUrl) { 
+    HttpMessageHandler = new NSUrlSessionHandler()
+};
+```
+
+Refer to the [Xamarin MSDN docs for Android HttpClient](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/http-stack?tabs=windows) for
+how to enable it in your project, which can be globally programmatically configured with:
+
+```csharp
+// Android
+JsonHttpClient.GlobalHttpMessageHandlerFactory = () => 
+    new Xamarin.Android.Net.AndroidClientHandler();
+```
+
+Or per instance with:
+
+```csharp
+// Android
+var client = new JsonHttpClient(baseUrl) { 
+    HttpMessageHandler = new Xamarin.Android.Net.AndroidClientHandler()
+};
 ```
 
 ### Differences with JsonServiceClient
