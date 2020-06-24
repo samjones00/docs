@@ -70,7 +70,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### angular-spa
 
-> Angular 8 CLI Bootstrap App
+> Angular 9 CLI Bootstrap App
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)
 
@@ -79,7 +79,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcauth
 
-> .NET Core 2.2 MVC Website integrated with ServiceStack Auth
+> .NET Core 3.1 MVC Website integrated with ServiceStack Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)
 
@@ -87,7 +87,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcidentity
 
-> .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth
+> .NET Core 3.1 MVC Website integrated with ServiceStack using MVC Identity Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)
 
@@ -95,7 +95,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcidentityserver
 
-> .NET Core 2.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
+> .NET Core 3.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)
 
