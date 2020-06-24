@@ -1,7 +1,7 @@
 || .NET Core C# Templates |
 |-|-|
 | [web](https://github.com/NetCoreTemplates/web)                | .NET Core 3.1 Empty Website |
-| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 3.1 Angular 8 CLI Bootstrap App |
+| [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET Core 3.1 Angular 9 CLI Bootstrap App |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET Core 3.1 Aurelia CLI Bootstrap App |
 | [grpc](https://github.com/NetCoreTemplates/grpc)                | .NET Core 3.1 gRPC Services |
 | [mvc](https://github.com/NetCoreTemplates/mvc)                | .NET Core 3.1 MVC Website |

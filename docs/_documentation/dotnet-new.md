@@ -15,10 +15,6 @@ All features from the cross-platform `x` dotnet tool are also available from the
 
     $ dotnet tool install --global app 
 
-If you only have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
-
-    $ dotnet tool install --global web
-
 #### Usage
 
 To view a list of projects run:

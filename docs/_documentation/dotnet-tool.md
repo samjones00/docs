@@ -23,10 +23,6 @@ Or if you had a previous version installed, update with:
 
 > The Windows-only `app` tool has better integration with Windows that can power [.NET Core Windows Desktop Apps](/netcore-windows-desktop).
 
-If you have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
-
-    $ dotnet tool install --global web
-
 > All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer Windows integration
 
 #### Usage

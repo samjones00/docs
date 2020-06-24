@@ -15,10 +15,6 @@ All features from the cross-platform `x` dotnet tool are also available from the
 
     $ dotnet tool install --global app 
 
-If you only have **.NET Core 2.1 LTS** installed use the `web` dotnet tool instead:
-
-    $ dotnet tool install --global web
-
 #### Usage
 
 To view a list of projects run:
@@ -70,7 +66,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### angular-spa
 
-> Angular 8 CLI Bootstrap App
+> Angular CLI Bootstrap App
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)
 
@@ -79,7 +75,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcauth
 
-> .NET Core 2.2 MVC Website integrated with ServiceStack Auth
+> .NET Core 3.1 MVC Website integrated with ServiceStack Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)
 
@@ -87,7 +83,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcidentity
 
-> .NET Core 2.2 MVC Website integrated with ServiceStack using MVC Identity Auth
+> .NET Core 3.1 MVC Website integrated with ServiceStack using MVC Identity Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)
 
