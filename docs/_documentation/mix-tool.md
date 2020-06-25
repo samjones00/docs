@@ -8,7 +8,7 @@ To complete the picture of making it easy as possible to compose ASP.NET Core Ap
 
     $ dotnet tool install --global x
 
-The same functionality is also built into the Windows [app](/netcore-windows-desktop) dotnet tool which can be updated to the latest version with:
+The same functionality is also built into the Windows [app](/netcore-windows-desktop) dotnet tool, both can be updated to the latest version with:
 
 .NET Core 3.1 (Windows/macOS/Linux):
 
@@ -94,28 +94,40 @@ Where it displays different features that can be added to your App, where they'r
 27. sqs                  Use AWS SQS MQ                               to: $HOST  by @ServiceStack  [mq]
 28. servicebus           Use Azure Service Bus MQ                     to: $HOST  by @ServiceStack  [mq]
 29. redismq              Use Redis MQ                                 to: $HOST  by @ServiceStack  [mq]
-30. vue-lite-lib         Update vue-lite projects libraries           to: $HOST  by @ServiceStack  [lib,vue]
-31. react-lite-lib       Update react-lite projects libraries         to: $HOST  by @ServiceStack  [lib,react]
-32. validation-contacts  Contacts Validation Example                  to: $HOST  by @ServiceStack  [example]
-33. feature-mq           Simple MQ Feature to test sending Messages   to: $HOST  by @ServiceStack  [feature,mq]
-34. feature-authrepo     List and Search Users registered in AuthRepo to: $HOST  by @ServiceStack  [feature]
-37. docker               Dockerfile example for .NET Core Sharp Apps  to: .      by @ServiceStack  [config]
-38. svg-action           Material Design Action Icons                 to: svg/   by @ServiceStack  [svg]
-39. svg-alert            Material Design Alert Icons                  to: svg/   by @ServiceStack  [svg]
-40. svg-av               Material Design Audio Visual Icons           to: svg/   by @ServiceStack  [svg]
-41. svg-communication    Material Design Communication Icons          to: svg/   by @ServiceStack  [svg]
-42. svg-content          Material Design Content Icons                to: svg/   by @ServiceStack  [svg]
-43. svg-device           Material Design Device Icons                 to: svg/   by @ServiceStack  [svg]
-44. svg-editor           Material Design Editor Icons                 to: svg/   by @ServiceStack  [svg]
-45. svg-file             Material Design File Icons                   to: svg/   by @ServiceStack  [svg]
-46. svg-hardware         Material Design Hardware Icons               to: svg/   by @ServiceStack  [svg]
-47. svg-image            Material Design Image Icons                  to: svg/   by @ServiceStack  [svg]
-48. svg-maps             Material Design Maps Icons                   to: svg/   by @ServiceStack  [svg]
-49. svg-navigation       Material Design Navigation Icons             to: svg/   by @ServiceStack  [svg]
-50. svg-places           Material Design Places Icons                 to: svg/   by @ServiceStack  [svg]
-51. svg-social           Material Design Social Icons                 to: svg/   by @ServiceStack  [svg]
-52. svg-toggle           Material Design Toggle Icons                 to: svg/   by @ServiceStack  [svg]
-
+30. feature-mq           Simple MQ Feature to test sending Messages   to: $HOST  by @ServiceStack  [feature,mq]
+31. feature-authrepo     List & Search Users registered in Auth Repo  to: $HOST  by @ServiceStack  [feature,auth]
+32. hangfire-postgres    Postgres hangfire cron scheduler & dashboard to: $HOST  by @GuerrillaCoder [hangfire]
+33. autocrudgen          Configure AutoGen AutoCrud Services          to: $HOST  by @ServiceStack  [autoquery]
+34. autodto              Generate DB DTOs in C#, TypeScript, Dart...  to: .      by @ServiceStack  [autoquery]
+35. sharpdata            Instant JSON,CSV,XML,JSV data APIs           to: .      by @ServiceStack  [db]
+36. nuglify              Use Nuglify's Advanced JS/CSS/HTML Minifiers to: $HOST  by @ServiceStack  [assets]
+37. northwind.sqlite     northwind.sqlite                             to: .      by @ServiceStack  [sqlite]
+38. northwind.sharpdata  northwind.sharpdata                          to: .      by @ServiceStack  [sharpdata]
+39. vue-lite-lib         Update vue-lite projects libraries           to: $HOST  by @ServiceStack  [lib,vue]
+40. react-lite-lib       Update react-lite projects libraries         to: $HOST  by @ServiceStack  [lib,react]
+41. grpc                 Configure gRPC (requires .NET Core 3.1)      to: $HOST  by @ServiceStack  [feature,grpc]
+42. grpc-android         Android gRPC SSL Channel Builder             to: .      by @ServiceStack  [java,grpc]
+43. bcl.proto            protobuf-net\bcl.proto                       to: .      by @ServiceStack  [grpc]
+44. example-validation   Contacts Validation Example                  to: $HOST  by @ServiceStack  [example,sharp]
+45. validation-contacts  Contacts Validation Example                  to: $HOST  by @ServiceStack  [example]
+46. feature-mq           Simple MQ Feature to test sending Messages   to: $HOST  by @ServiceStack  [feature,mq]
+47. feature-authrepo     List and Search Users registered in AuthRepo to: $HOST  by @ServiceStack  [feature]
+48. docker               Dockerfile example for .NET Core Sharp Apps  to: .      by @ServiceStack  [config]
+49. svg-action           Material Design Action Icons                 to: svg/   by @ServiceStack  [svg]
+50. svg-alert            Material Design Alert Icons                  to: svg/   by @ServiceStack  [svg]
+51. svg-av               Material Design Audio Visual Icons           to: svg/   by @ServiceStack  [svg]
+52. svg-communication    Material Design Communication Icons          to: svg/   by @ServiceStack  [svg]
+53. svg-content          Material Design Content Icons                to: svg/   by @ServiceStack  [svg]
+54. svg-device           Material Design Device Icons                 to: svg/   by @ServiceStack  [svg]
+55. svg-editor           Material Design Editor Icons                 to: svg/   by @ServiceStack  [svg]
+56. svg-file             Material Design File Icons                   to: svg/   by @ServiceStack  [svg]
+57. svg-hardware         Material Design Hardware Icons               to: svg/   by @ServiceStack  [svg]
+58. svg-image            Material Design Image Icons                  to: svg/   by @ServiceStack  [svg]
+59. svg-maps             Material Design Maps Icons                   to: svg/   by @ServiceStack  [svg]
+60. svg-navigation       Material Design Navigation Icons             to: svg/   by @ServiceStack  [svg]
+61. svg-places           Material Design Places Icons                 to: svg/   by @ServiceStack  [svg]
+62. svg-social           Material Design Social Icons                 to: svg/   by @ServiceStack  [svg]
+63. svg-toggle           Material Design Toggle Icons                 to: svg/   by @ServiceStack  [svg]
 
    Usage:  x mix <name> <name> ...
 
