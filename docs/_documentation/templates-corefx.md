@@ -121,11 +121,12 @@ Some solutions that have been known to resolve these issues include:
    - [System.Runtime.InteropServices.RuntimeInformation](https://stackoverflow.com/a/52637120/85785)
    - [System.Numerics.Vectors](https://github.com/dotnet/corefx/issues/30106#issuecomment-395248278)
    - [System.Net.Http](https://stackoverflow.com/a/48867478/85785)
- 3. If you had an existing binding redirect, try removing it
- 4. Adding `<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>` to your project's .csproj 
- 5. Uninstalling and Reinstalling the problem packages from your projects
- 6. Clean Solution and remove project artifacts, including Nuget `/packages` and project `/bin` and `/obj` folders
- 7. Upgrading to the latest version of the .NET Framework (v4.7.2+)
+ 3. [Install the missing .dll into the GAC](https://stackoverflow.com/a/62770487/85785)
+ 4. If you had an existing binding redirect, try removing it
+ 5. Adding `<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>` to your project's .csproj 
+ 6. Uninstalling and Reinstalling the problem packages from your projects
+ 7. Clean Solution and remove project artifacts, including Nuget `/packages` and project `/bin` and `/obj` folders
+ 8. Upgrading to the latest version of the .NET Framework (v4.7.2+)
 
 Many of these issues is the result of [older .NET Frameworks like .NET v4.6.1](https://github.com/dotnet/standard/issues/481)
 not properly supporting .NET Standard 2.0 which is mostly resolved by installing .NET Framework v4.7.1+.
