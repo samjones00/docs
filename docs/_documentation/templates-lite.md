@@ -90,7 +90,7 @@ The for Server C# development, start your .NET Web App in a new Terminal window 
 
 After changing your ServiceStack Services, you can re-generate their [Typed TypeScript DTOs](/typescript-add-servicestack-reference) with:
 
-    $ web ts
+    $ x ts
 
 Which will recursively update and re-generate all `*dto.ts` in the current and sub directories.
 
@@ -110,42 +110,79 @@ All the bundling logic for all `.css` and `.js` resources are contained within t
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="/lib/css/bootstrap/bootstrap.css">
     <title>{{ title ?? 'MyApp' }}</title>
-    {{ (debug ? '' : '.min') | assignTo: min }}
-    {{ ['/assets/css/'] | bundleCss({minify:!debug, cache:!debug, disk:!debug, out:`/css/bundle${min}.css`}) }}
 </head>
 <body>
-    <i hidden>{{ '/js/hot-fileloader.js' | ifDebugIncludeScript }}</i>
+{{ 'buttons,svg-auth,app' |> cssIncludes }}
+{{ 'svg-icons' |> cssIncludes |> svgFill('#41B883') }}
 
-    {{page}}
+{{var cssBundle = '/'.findFilesInDirectory("bundle.*.css").first() }}
+{{#if cssBundle }}
+    <link rel="stylesheet" href="/{{cssBundle.VirtualPath}}">
+{{else}}
+    {{ 'content:/src/css/' |> bundleCss({ minify:false, cache:false, out:'/app.bundle.css' }) }}
+{{/if}}
 
-    {{ [
-        `/lib/vue/dist/vue${min}.js`,
-        `/lib/vue-router/dist/vue-router${min}.js`,
-        '/lib/vue-class-component/vue-class-component.js',
-        '/lib/vue-property-decorator/vue-property-decorator.umd.js',
-        '/lib/@servicestack/client/servicestack-client.umd.js',
-    ] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/lib.bundle${min}.js` }) }}
+    <i hidden>{{ '/js/hot-fileloader.js' |> ifDebugIncludeScript }}</i>
+    <script>NAV_ITEMS = {{ 'GetNavItems' |> execService |> json }}</script>
+    <script>AUTH = {{ 'Authenticate'     |> execService({ ifErrorReturn: "null" }) |> json }}</script>
 
-    <script>
-        var ALIASES = {
-            'vue': { default: Vue },
-            'vue-router': { default: VueRouter },
-            'vue-class-component': VueClassComponent
-        };
-        window.exports = {};
-        window.require = function(name) {
-            return ALIASES[name] || exports[name] || window[name] || exports;
-        };
-    </script>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
 
-    {{ [
-        'content:/src/components/',
-        'content:/src/shared/',
-        'content:/src/',
-    ] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${min}.js` }) }}
+{{page}}
 
-    {{ scripts | raw }}
+    <div id="footer" style="text-align:center; position:absolute; bottom:50px; width:100%;">
+        <h4>
+        <img style="height:42px" src="{{ 'servicestack'.svgDataUri('#333') }}" />
+        <a href="https://github.com/NetCoreTemplates/vue-lite">Learn about this Vue template</a>
+        </h4>
+        <div>Copyright &copy; {{ now |> dateFormat('yyyy') }}</div>
+    </div>
+
+{{ [
+    `/lib/js/vue/vue.min.js`,
+    `/lib/js/vue-router/vue-router.min.js`,
+    `/lib/js/vue-class-component/vue-class-component.min.js`,
+    `/lib/js/vue-property-decorator/vue-property-decorator.min.js`,
+    `/lib/js/@servicestack/client/servicestack-client.min.js`,
+    `/lib/js/@servicestack/vue/servicestack-vue.min.js`,
+] |> map => `<script src="${it}"></script>` |> joinln |> raw }}
+    
+<script>
+var ALIASES = {
+    'vue': { default: Vue },
+    'vue-router': { default: VueRouter },
+    'vue-class-component': VueClassComponent,
+    'vue-property-decorator': VuePropertyDecorator,
+    '@servicestack/vue': ServiceStackVue
+};
+var global = window;
+window.exports = {};
+window.require = function(name) {
+    return ALIASES[name] || exports[name] || window[name] || exports;
+};
+Object.assign(window, window["@servicestack/client"]);
+</script>
+
+{{var jsBundle = '/'.findFilesInDirectory("bundle.*.js").first() }}
+{{#if jsBundle }}
+<script src="/{{jsBundle.VirtualPath}}"></script>
+{{else}}
+
+{{ [
+    'content:/src/components/',
+    'content:/src/shared/',
+    'content:/src/',
+] |> bundleJs({ minify:false, cache:false, iife:true, out:`/app.bundle.js` }) }}
+
+{{/if}}
+
+{{ scripts |> raw }}
+{{htmlError}}
 
 </body>
 </html>{% endraw %}
@@ -160,8 +197,7 @@ The first bundle created is the `.css` bundle that's appropriately located in th
 How and where the bundle is written depends on whether the page is loaded in Development (`debug`) or Release mode:
 
 ```hbs
-{% raw %}{{ (debug ? '' : '.min') | assignTo: min }}
-{{ ['/assets/css/'] | bundleCss({ minify:!debug, cache:!debug, disk:!debug, out:`/css/bundle${min}.css` }) }}{% endraw %}
+{% raw %}{{ 'content:/src/css/' |> bundleCss({ minify:false, cache:false, out:'/app.bundle.css' }) }}{% endraw %}
 ```
 
 #### Bundling Options
@@ -189,7 +225,7 @@ and ignored in subsequent references, e.g:
 {% raw %}{{ [
     '/assets/css/default.css', 
     '/assets/css/'
-   ] | bundleCss }}{% endraw %}
+   ] |> bundleCss }}{% endraw %}
 ```
 
 #### Hot Reloading of Static Resources
@@ -226,12 +262,13 @@ using the same bundling options as the `bundleCss` above:
 
 ```hbs
 {% raw %}{{ [
-    `/lib/vue/dist/vue${min}.js`,
-    `/lib/vue-router/dist/vue-router${min}.js`,
-    '/lib/vue-class-component/vue-class-component.js',
-    '/lib/vue-property-decorator/vue-property-decorator.umd.js',
-    '/lib/@servicestack/client/servicestack-client.umd.js',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/lib.bundle${min}.js` }) }}{% endraw %}
+    `/lib/js/vue/vue.min.js`,
+    `/lib/js/vue-router/vue-router.min.js`,
+    `/lib/js/vue-class-component/vue-class-component.min.js`,
+    `/lib/js/vue-property-decorator/vue-property-decorator.min.js`,
+    `/lib/js/@servicestack/client/servicestack-client.min.js`,
+    `/lib/js/@servicestack/vue/servicestack-vue.min.js`,
+] |> map => `<script src="${it}"></script>` |> joinln |> raw }}{% endraw %}
 ```
 
 #### Register UMD Module Mappings
@@ -241,15 +278,18 @@ When they don't match they need to be explicitly registered in the `ALIASES` obj
 
 ```html
 <script>
-    var ALIASES = {
-        'vue': { default: Vue },
-        'vue-router': { default: VueRouter },
-        'vue-class-component': VueClassComponent
-    };
-    window.exports = {};
-    window.require = function(name) {
-        return ALIASES[name] || exports[name] || window[name] || exports;
-    };
+var ALIASES = {
+    'vue': { default: Vue },
+    'vue-router': { default: VueRouter },
+    'vue-class-component': VueClassComponent,
+    'vue-property-decorator': VuePropertyDecorator,
+    '@servicestack/vue': ServiceStackVue
+};
+var global = window;
+window.exports = {};
+window.require = function(name) {
+    return ALIASES[name] || exports[name] || window[name] || exports;
+};
 </script>
 ```
 
@@ -307,65 +347,50 @@ Whilst not required you can copy the **exact same bundling configuration** in yo
 
 ```js
 {% raw %}
-* run in host project directory with `web run wwwroot/_bundle.ss` *
+* run in .csproj AfterPublish, manual usage: `x run _bundle.ss -to <path>` *
 
-false | to => debug
-(debug ? '' : '.min')       | to => min
-(debug ? '' : '[hash].min') | to => dist
+let dist = '[hash].min'
+{{ [`bundle${dist}.css`,`bundle${dist}.js`] 
+   |> map => vfsContent.findFilesInDirectory(to,it.replace('[hash]','.*'))
+   |> flat
+   |> do => vfsContent.deleteFile(it.VirtualPath) }}
 
-{{ [`/css/lib.bundle${dist}.css`,`/js/lib.bundle${dist}.js`,`/js/bundle${dist}.js`] 
-   | map => it.replace('[hash]','.*').findFiles()
-   | flat
-   | do => it.VirtualPath.deleteFile() }}
-
-* Copy same bundle definitions from _layout.html as-is *
-
-['!/assets/css/default.css','/assets/css/'] | bundleCss({ disk:!debug, out:`/css/lib.bundle${dist}.css` })
-
-{{ [
-    `/lib/vue/dist/vue${min}.js`,
-    `/lib/vue-router/dist/vue-router${min}.js`,
-    '/lib/vue-class-component/vue-class-component.js',
-    '/lib/vue-property-decorator/vue-property-decorator.umd.js',
-    '/lib/@servicestack/client/servicestack-client.umd.js',
-    '/lib/@servicestack/vue/servicestack-vue.umd.js',
-] | bundleJs({ disk:!debug, out:`/js/lib.bundle${dist}.js` }) }}
+[ 'content:/src/css/' ] |> bundleCss({ minify:true, disk:true, out:`content:${to}/bundle${dist}.css` })
 
 {{ [
     'content:/src/components/',
     'content:/src/shared/',
     'content:/src/',
-] | bundleJs({ minify:!debug, cache:!debug, disk:!debug, out:`/js/bundle${dist}.js`, iife:true }) }}
+] |> bundleJs({ minify:true, disk:true, out:`content:${to}/bundle${dist}.js`, iife:true }) }}
 {% endraw %}
 ```
 
-Then run it with:
+#### Bundling
 
-    $ web run wwwroot/_bundle.ss
+The integrated `.js` and `.css` bundling is configured to use a fast unminified in-memory bundle for an optimal development experience whilst
+it utilizes a an advanced minified bundle in production releases. 
 
-Which will create the production bundles, minify all already non-minified bundles and write them to disk with the paths written visible in the 
-`#Script` **_bundle.ss** output:
+When publishing, the project's **Bundle** task:
 
-```html
-<link rel="stylesheet" href="/css/bundle.min.css">
-
-<script src="/js/lib.bundle.min.js"></script>
-
-<script src="/js/bundle.min.js"></script>
+```xml
+<Target Name="Bundle" BeforeTargets="AfterPublish">
+    <Exec Command="x run _bundle.ss -to /bin/Release/netcoreapp3.1/publish/wwwroot" />
+</Target>    
 ```
 
-The bundles created by running `_bundle.ss` generates more advanced compression courtesy of the `web` tool's use of [NUglify's](https://github.com/xoofx/NUglify) 
-smarter and more advanced JS, CSS and HTML minifers. 
+Runs [_bundle.ss](https://github.com/NetCoreTemplates/vue-lite/blob/master/_bundle.ss) to produce an optimized, minified & hashed bundle using 
+ServiceStack's [built-in bundling](https://docs.servicestack.net/html-css-and-javascript-minification#optimal-library-bundles) 
+embedded in the [dotnet tools](https://docs.servicestack.net/dotnet-tool) which is pre-configured to use [NUglify's](https://github.com/xoofx/NUglify) 
+advanced compression.
 
-If you encounter any issues you can revert back to using ServiceStack's built-in `JSMin` and `CssMinifier` implementations by adding these 
-script arguments at the top of your `_bundle.css` script:
+### Publishing and Deployment
 
-```html
-<!--
-jsMinifier  ServiceStack
-cssMinifier ServiceStack
--->
-```
+The standard .NET Core tools can be used to publish:
+
+    $ dotnet publish -c Release
+
+Then deploy as normal, e.g. via [rsync deployments to Linux](https://docs.servicestack.net/netcore-deploy-rsync) or to an 
+[AWS EC2 container using Docker](https://docs.servicestack.net/deploy-netcore-docker-aws-ecs).
 
 ## Configure NUglify
 
@@ -374,7 +399,6 @@ You can configure your ServiceStack App to use Nuglify's Advanced HTML, CSS, JS 
     $ mix nuglify 
 
 Which will write [Configure.Nuglify.cs](https://gist.github.com/gistlyn/4bdb79d21f199c22b8a86f032c186e2d) to your **HOST** project.
-
 
 ### Using Cache breakers in minified bundles 
 
@@ -742,15 +766,6 @@ to upgrade to a multi-project solution.
 ### Updating "lite" project dependencies
 
 We've also enabled a novel approach for updating your "lite" project 3rd Party dependencies where instead of everyone maintaining their 
-own bespoke configuration and a tool like **libman** for updating their local dependencies, **vue-lite** projects can just run:
-
-    $ web +vue-lite-lib
-
-To update their **vue-lite** projects with the latest JS libraries and TypeScript definitions used in the default project template.
-
-For **react-lite** projects, run:
-
-    $ web +react-lite-lib
-
-Which just applies a gist of dependencies to your current project, overriding its existing versions with the latest.
-For more info on how this works see the [web +](/web-apply) .NET Core tool.
+own bespoke configuration and a tool like **libman** for updating their local dependencies, **vue-lite** projects can simplify update 
+their NuGet dependencies which will automatically upgrade **ServiceStack.Desktop** containing all the Vue, React, Bootstrap .js & .css 
+library dependencies.
