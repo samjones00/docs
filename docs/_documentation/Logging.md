@@ -77,6 +77,19 @@ using (log.PushProperty("Hello", "World"))
 
 Support for the additional context was added to `Log4net`, `NLog` and `Serilog` logging providers.
 
+#### Serilog notes
+
+Serilog `PushProperty` support requires [Serilog.Enrichers.Thread](https://www.nuget.org/packages/Serilog.Enrichers.Thread) NuGet package and its enricher enabled, e.g:
+
+```csharp
+var serilog = new LoggerConfiguration()
+  .Enrich.FromLogContext()
+  // additional config
+  .CreateLogger();
+
+LogManager.LogFactory = new SerilogFactory(serilog);
+```
+
 # Registration Examples
 
 Once on your App Startup, either In your `AppHost.cs` or `Global.asax` file inject the concrete logging implementation that your app should use, e.g.
