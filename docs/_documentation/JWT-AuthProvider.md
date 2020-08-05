@@ -38,6 +38,18 @@ As with all crypto keys you'll want to keep them confidential as if anyone gets 
 they'll be able to forge and sign their own JWT tokens letting them be able to impersonate any user, 
 roles or permissions!
 
+### Upgrade to v5.9.2
+
+If you're using JWT Auth please upgrade to v5.9.2 when possible to resolve a JWT signature verification issue comparing different lengthed signatures. 
+
+If you're not able to upgrade, as a temporary fix for older versions, you can ensure a minimum length signature check to your Custom `ValidateToken` callback with:
+
+```csharp
+new JwtAuthProvider(...) {
+    ValidateToken = (js,req) => req.GetJwtToken().LastRightPart('.').FromBase64UrlSafe().Length >= 32,
+}
+```
+
 #### RequireSecureConnection
 
 The JWT Auth Provider defaults to `RequireSecureConnection=true` which mandates for Authentication via either Provider to happen over a secure (HTTPS) connection as both bearer tokens should be kept highly confidential. You can specify `RequireSecureConnection=false` to disable this requirement for testing or within controlled internal environments.
