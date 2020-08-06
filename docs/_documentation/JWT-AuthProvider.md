@@ -42,7 +42,7 @@ roles or permissions!
 
 If you're using JWT Auth please upgrade to v5.9.2 when possible to resolve a JWT signature verification issue comparing different lengthed signatures. 
 
-If you're not able to upgrade, older versions should ensure a minimum length signature by using a custom `ValidateToken` callback, e.g:
+If you're not able to upgrade, older versions should ensure a minimum length signature with a custom `ValidateToken`, e.g:
 
 ```csharp
 new JwtAuthProvider(...) {
