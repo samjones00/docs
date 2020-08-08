@@ -360,6 +360,8 @@ public class UpdateNamedRockstar : RockstarBase,
 }
 ```
 
+#### Custom AutoQuery CRUD Services
+
 Alternatively the `[ConnectionInfo]` can be [used on Service implementations](/multitenancy#connectioninfo-attribute), but as AutoQuery doesn't 
 have them you'd need to provide custom implementations that can delegate to their respective Auto Crud API, e.g:
 
@@ -405,7 +407,7 @@ To coincide with AutoCRUD there's also support for [declarative validation](http
 Plugins.Add(new ValidationFeature());
 ```
 
-### AutoMap and AutoDefault
+### AutoMap and AutoDefault Attributes
 
 The `[AutoDefault]` attribute allows you to specify default values that the Data Model should be populated with using the same `#Script` expression support 
 available in `[AutoPopulate]` to populate constant values, cached constant expressions or results of full evaluated expressions.
@@ -441,6 +443,27 @@ public class CreateRockstarAutoMapDefault : ICreateDb<Rockstar>, IReturn<Rocksta
     [AutoDefault(Value = LivingStatus.Dead)]
     public LivingStatus? MapLivingStatus { get; set; }
 }
+```
+
+### AutoIgnore Attributes
+
+To send additional properties with your AutoQuery CRUD Request DTO which doesn't match the data model you can ignore the validation check
+by annotating properties with the `[AutoIgnore]` Attribute, e.g:
+
+```csharp
+public class CustomRockstarService : ICreateDb<Rockstar>, IReturn<RockstarWithIdResponse>
+{
+    public int Id { get; set; }
+    public int? Age { get; set; }
+    [AutoIgnore]
+    public CustomInfo CustomInfo { get;set; }
+}
+```
+
+Or you can ignore validation for all properties with the same name by registering it to `AutoQuery.IncludeCrudProperties`, e.g:
+
+```csharp
+AutoQuery.IncludeCrudProperties.Add(nameof(CustomInfo));
 ```
 
 ### Custom Complex Mapping
