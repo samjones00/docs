@@ -796,6 +796,18 @@ When specifying multiple order by's you can sort specific fields in reverse orde
     ?orderBy=Id,-Age,FirstName
     ?orderByDesc=-Id,Age,-FirstName
 
+### OrderBy Random
+
+`OrderBy` includes special support for returning results in Random order using `Random`, e.g:
+
+    /rockstars?OrderBy=Random
+
+Using Service Client:
+
+```csharp
+client.Get(new QueryRockstars { OrderBy = "Random" });
+``` 
+
 ## Service Clients Support
 
 One of the major benefits of using Typed DTO's to define your Service Contract is that it allows usage of ServiceStack's [.NET Service Clients](/csharp-client) which enables an end-to-end API without code-gen for [most .NET and PCL client platforms](https://github.com/ServiceStack/Hello). 
