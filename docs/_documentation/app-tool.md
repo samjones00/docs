@@ -57,6 +57,8 @@ Where it will run the .NET Core App and launch it within a CEF Windows Applicati
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/screenshot-mvc.png)](http://mvc.web-templates.io/)
 
+### Create Windows Desktop Shortcuts
+
 To make the experience of running .NET Core Desktop Apps even nicer you can use the `shortcut` command to create a Windows Shortcut for your App:
 
     $ app shortcut Acme.dll
