@@ -9,20 +9,7 @@ including **Login** and **Registration Forms** to **Sign In** and **Register** n
 It's a compact example that tries to cover a lot of use-cases typical in a real-world App, including maintaining a separate Data and DTO Model 
 and using C# idioms like Enum's for defining a finite list of options which are re-used to populate its HTML UI.
 
-### API-first development
-
-A strategy we recommend for maximizing re-use of your Services is to design them from an API-first point of view where all consumers 
-(e.g. [Mobile, Desktop](https://github.com/ServiceStackApps/HelloMobile) and Web UIs) have equal accessibility to your services since they 
-all consume the same published API's for all of their functionality.
-
-For web development this means that UI logic and Error handling should ideally be done on the client with JavaScript rather than behind 
-server-side pages which gets easily coupled to your server implementation rather than your external published APIs. Whilst this may be 
-perceived as a restriction we've found using JavaScript ends up being a productivity and responsiveness win which is more flexible and 
-better suited than C# in genericizing reusable functionality, reducing boilerplate, string manipulation, generating HTML views, 
-consuming ajax services, event handling, DOM binding and manipulation and other common web programming tasks.
-
-Whilst our preference is to utilize a client UI technology for most Web Development, we also include server development examples where
-the UI for the same App is re-implemented in **10 popular Web Development approaches**, each integrated with ServiceStack's validation.
+The UI for the same App is re-implemented in **10 popular Web Development approaches**, each integrated with ServiceStack's validation.
 
 As of this writing there **4 different server HTML** generated strategies that use HTML Form Posts to call back-end Services:
 
