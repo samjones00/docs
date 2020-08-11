@@ -28,10 +28,11 @@ Just like a normal HTTP Proxy, `ProxyFeature` forwards all the HTTP Request Head
  
 One potential use-case is to enable smart load balancing which lets you use C# to dynamically control which external downstream server requests are proxied to. 
  
-Thanks to ServiceStack's clean Service Gateway design you can use the clean POCO DTOs from any server instance, which you can get using the new [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) utils from either the public url or proxy endpoint url, e.g:
+Thanks to ServiceStack's clean Service Gateway design you can use the clean POCO DTOs from any server instance, which you can get using the 
+[x dotnet tool](https://docs.servicestack.net/dotnet-tool) or [npm servicestack-cli](https://github.com/ServiceStack/servicestack-cli) utils from either the public url or proxy endpoint url, e.g:
  
-    $ csharp-ref http://techstacks.io
-    $ csharp-ref https://external.domain.com/techstacks
+    $ x csharp http://techstacks.io
+    $ x csharp https://external.domain.com/techstacks
  
 The resulting DTOs can be used with any [.NET Service Client](/csharp-client#built-in-clients), configured with the proxy endpoint as the **BaseUrl**:
  
@@ -88,14 +89,12 @@ Plugins.Add(new ProxyFeature(
     {
         TransformResponse = async (res, responseStream) => 
         {
-            using (var reader = new StreamReader(responseStream, Encoding.UTF8))
-            {
-                var responseBody = await reader.ReadToEndAsync();
-                var replacedBody = responseBody.Replace(
-                    "http://techstacks.io",
-                    "https://external.domain.com/techstacks");
-                return MemoryStreamFactory.GetStream(replacedBody.ToUtf8Bytes());
-            }
+            using var reader = new StreamReader(responseStream, Encoding.UTF8);
+            var responseBody = await reader.ReadToEndAsync();
+            var replacedBody = responseBody.Replace(
+                "http://techstacks.io",
+                "https://external.domain.com/techstacks");
+            return MemoryStreamFactory.GetStream(replacedBody.ToUtf8Bytes());
         }
     });
 ```
