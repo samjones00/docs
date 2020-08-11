@@ -326,6 +326,27 @@ Which you could use to provide a tailored feed for specific clients:
 public class CustomFeedView { ... }
 ```
 
+### HTTP Verb Interface Markers
+
+You can decorate your Request DTO's using the `IGet`, `IPost`, `IPut`, `IDelete` and `IPatch` interface markers and the `Send` and  `SendAsync` API's will use it to automatically send the Request using the selected HTTP Method. E.g:
+
+```csharp
+public class HelloByGet : IGet, IReturn<HelloResponse>
+{
+    public string Name { get; set; }
+}
+public class HelloByPut : IPut, IReturn<HelloResponse> 
+{
+    public string Name { get; set; }
+}
+
+var response = client.Send(new HelloByGet { Name = "World" }); // GET
+
+await client.SendAsync(new HelloByPut { Name = "World" });     // PUT
+```
+
+Interface markers is supported in all .NET Service Clients, they're also included in the generated [Add ServiceStack Reference](/add-servicestack-reference) DTO's.
+
 ## Auto Route Generation Strategies
 
 Also related to this is registering Auto routes via the [Routes.AddFromAssembly](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ServiceRoutesExtensions.cs#L23) extension method, where this single call:
