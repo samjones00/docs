@@ -95,6 +95,8 @@ You can use `[ApiAllowableValues]` lets you anotate enum properties as well as a
 public string[] Includes { get; set; }
 ```
 
+### Group APIs with Tags
+
 You can tag the DTO with `[Tag]` attribute. Attributes are are annotated by the same tag are grouped by the tag name in Swagger UI. DTOs can have multiple tags, e.g:
 
 ```csharp
