@@ -15,7 +15,7 @@ You can create a new .NET Core F# project in a new empty directory using the [x 
     $ dotnet run
 
 Which will download the [init-fsharp Gist](https://gist.github.com/gistlyn/4802ba22b665e68c7257aef9f57c1934) to your local directory 
-where you can use its dep-free [/index.html](https://gist.github.com/gistlyn/4802ba22b665e68c7257aef9f57c1934#file-wwwroot-index-html) use its
+where you can use its dep-free [/index.html](https://gist.github.com/gistlyn/4802ba22b665e68c7257aef9f57c1934#file-wwwroot-index-html) and its
 `JsonServiceClient` to call its **/hello** API:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/init.png)
