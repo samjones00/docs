@@ -75,7 +75,7 @@ need to be changed to
 
 Here is the table for type migration
 
-| Swagger Type (DataType) | OpenAPI Type (DataType) | OpenAPI Format (Format) |
+| Swagger Type (DataType) | OpenAPI Type (DataType) | OpenAPI Format (Format)     |
 |-------------------------|-------------------------|-----------------------------|
 | Array                   | array                   |                             |
 | boolean                 | boolean                 |                             |

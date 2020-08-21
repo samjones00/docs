@@ -5,7 +5,24 @@ title: F# Resources
 
 Thanks to the simplicity, elegance, strong typing and philosophy of both solutions, FSharp and ServiceStack are quickly becoming a popular choice for creating friction-less REST and message-based remote services.
 
+### .NET Core F# Project
+
+You can create a new .NET Core F# project in a new empty directory using the [x dotnet tool](https://docs.servicestack.net/dotnet-tool) with:
+
+    $ dotnet tool install --global x 
+    $ md ProjectName && cd ProjectName
+    $ x mix init-fsharp
+    $ dotnet run
+
+Which will download the [init-fsharp Gist](https://gist.github.com/gistlyn/4802ba22b665e68c7257aef9f57c1934) to your local directory 
+where you can use its dep-free [/index.html](https://gist.github.com/gistlyn/4802ba22b665e68c7257aef9f57c1934#file-wwwroot-index-html) use its
+`JsonServiceClient` to call its **/hello** API:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/init.png)
+
 ### [Complete F# Console Self-Host Example](https://github.com/ServiceStack/Test/blob/713f1e2c9fce2351446b168d39fe8b0248f252fc/src/VS.FSharp.SelfHost/Program.fs)
+
+For .NET Framework you can use the `AppSelfHostBase` to create a stand-alone self-hosted Console App:
 
 ```fsharp
 open System
