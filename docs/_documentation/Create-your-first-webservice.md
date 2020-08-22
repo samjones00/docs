@@ -167,6 +167,8 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 </script>
 ```
 
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/init.png)
+
 ### Using mix to quickly create empty .NET Core Apps
 
 As this requires no external deps or prescribed JS frameworks, it's used in the [init and init-lts](/mix-tool#mix-usage) mix scripts which you can 
