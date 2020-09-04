@@ -141,6 +141,7 @@
     - [Razor UI Controls](/razor-ui-controls)
     - [.NET Core Clients](/netcore-clients)
     - [.NET Core Redis](/netcore-redis)
+    - [Deploy to Amazon Linux 2 AMI](/deploy-netcore-to-amazon-linux-2-ami)
     - [Deploy .NET Core Apps to AWS ECS](/deploy-netcore-docker-aws-ecs)
     - [Deploy .NET Core Apps using rsync](/netcore-deploy-rsync)
 - ##### Security
