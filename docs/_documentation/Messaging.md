@@ -306,6 +306,14 @@ This is useful for recovering failed messages after identifying and fixing bugs 
 previously causing exceptions, where you can replay and re-process DLQ messages and continue 
 processing them as normal.
 
+### Priority Queues
+
+MQ Servers spawns 2 threads for each handler, one to listen to the Message Inbox `mq:<Message>.inq` and another to listen on the Priority Queue located at `mq:<Message>.priorityq`. 
+
+You can white-list which messages to enable Priority Queue's for with `mqServer.PriorityQueuesWhitelist` or disable them all by setting:
+
+    mqServer.DisablePriorityQueues = true;
+
 ### OneWay HTTP Requests are published to MQ then executed
 
 Using the `SendOneWay()` Service Client APIs will publish DTO's to the `/oneway` [Pre-defined Route](/routing#pre-defined-routes):

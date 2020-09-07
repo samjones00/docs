@@ -112,7 +112,7 @@ mqServer.Start();
 
 Starting the MQ Server spawns 2 threads for each handler, one to listen to the Message Inbox `mq:Hello.inq` and another to listen on the Priority Queue located at `mq:Hello.priorityq`. 
 
-> Note: You can white-list which messages to enable Priority Queue's for with `mqServer.PriortyQueuesWhitelist` or disable them all by setting `mqServer.DisablePriorityQueues = true`.
+> Note: You can white-list which messages to enable Priority Queue's for with `mqServer.PriorityQueuesWhitelist` or disable them all by setting `mqServer.DisablePriorityQueues = true`.
 
 ### Allocating multiple threads for specific operations
 
@@ -360,7 +360,7 @@ In addition to sharing a similar architecture to [Redis MQ](/redis-mq), it also 
   - `Func<IMessage, IMessage>` **RequestFilter** - Execute global transformation or custom logic before a request is processed. Must be thread-safe.
   - `Func<object, object>` **ResponseFilter** - Execute global transformation or custom logic on the response. Must be thread-safe.
   - `Action<Exception>` **ErrorHandler** - Execute global error handler logic. Must be thread-safe.
-  - `string[]` **PriortyQueuesWhitelist** - If you only want to enable priority queue handlers (and threads) for specific msg types.
+  - `string[]` **PriorityQueuesWhitelist** - If you only want to enable priority queue handlers (and threads) for specific msg types.
   - `bool` **DisablePriorityQueues** - Don't listen on any Priority Queues
   - `string[]` **PublishResponsesWhitelist** - Opt-in to only publish responses on this white list. Publishes all responses by default.
   - `bool` **DisablePublishingResponses** - Don't publish any response messages
