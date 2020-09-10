@@ -437,11 +437,48 @@ you would subclass `BasicAuthProvider` instead.
 
 Both the default [BasicAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/BasicAuthProvider.cs) and [CredentialsAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/CredentialsAuthProvider.cs) (which it extends) can be extended, and their behavior overwritten. An example is below:
 
+#### ASync Custom AuthProvider
+
 ```csharp
 using ServiceStack;
 using ServiceStack.Auth;
 
+// From v5.9.3+
 public class CustomCredentialsAuthProvider : CredentialsAuthProvider
+{
+    public virtual async Task<bool> TryAuthenticateAsync(IServiceBase authService, 
+        string userName, string password, CancellationToken token=default)
+    {
+        //Add here your custom auth logic (database calls etc)
+        //Return true if credentials are valid, otherwise false
+    }
+
+    public override async Task<object> AuthenticateAsync(IServiceBase authService, 
+        IAuthSession session, Authenticate request, CancellationToken token = default)
+    {
+        //Fill IAuthSession with data you want to retrieve in the app eg:
+        session.FirstName = "some_firstname_from_db";
+        //...
+
+        //Call base method to Save Session and fire Auth/Session callbacks:
+        return await base.AuthenticateAsync(authService, session, tokens, authInfo, token).ConfigureAwait(false);
+
+        //Alternatively avoid built-in behavior and explicitly save session with
+        //session.IsAuthenticated = true;
+        //await authService.SaveSessionAsync(session, SessionExpiry, token);
+        //authService.Request.Items[Keywords.DidAuthenticate] = true;
+        //return null;
+    }
+}
+```
+
+#### Sync Custom AuthProvider
+
+```csharp
+using ServiceStack;
+using ServiceStack.Auth;
+
+public class CustomCredentialsAuthProvider : CredentialsAuthProviderSync
 {
     public override bool TryAuthenticate(IServiceBase authService, 
         string userName, string password)
