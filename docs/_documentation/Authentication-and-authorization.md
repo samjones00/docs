@@ -437,7 +437,7 @@ you would subclass `BasicAuthProvider` instead.
 
 Both the default [BasicAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/BasicAuthProvider.cs) and [CredentialsAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/CredentialsAuthProvider.cs) (which it extends) can be extended, and their behavior overwritten. An example is below:
 
-#### ASync Custom AuthProvider
+#### Async Custom AuthProvider
 
 ```csharp
 using ServiceStack;
