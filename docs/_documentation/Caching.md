@@ -73,7 +73,11 @@ container.Register<ICacheClient>(
 ```csharp
 var awsDb = new AmazonDynamoDBClient(
     AWS_ACCESS_KEY, AWS_SECRET_KEY, RegionEndpoint.USEast1);
-var cache = new DynamoDbCacheClient(new PocoDynamo(awsDb));
+
+container.Register<IPocoDynamo>(new PocoDynamo(awsDb));
+container.Register<ICacheClient>(c => new DynamoDbCacheClient(c.Resolve<IPocoDynamo>()));
+
+var cache = container.Resolve<ICacheClient>();
 cache.InitSchema();
 ```
 ##### NuGet Package: [ServiceStack.Aws](http://www.nuget.org/packages/ServiceStack.Aws)
