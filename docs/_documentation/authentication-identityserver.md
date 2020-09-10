@@ -59,7 +59,7 @@ services.AddAuthentication(options =>
     {
         options.SignInScheme = "Cookies";
 
-        options.Authority = "http://localhost:5000";
+        options.Authority = "https://localhost:5000";
         options.RequireHttpsMetadata = false;
 
         options.ClientId = "mvc";
@@ -215,7 +215,7 @@ public async Task<IActionResult> CallWebApi()
 
     var client = new HttpClient();
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-    var content = await client.GetStringAsync("http://localhost:5001/webapi-identity");
+    var content = await client.GetStringAsync("https://localhost:5001/webapi-identity");
 
     ViewBag.Json = JArray.Parse(content).ToString();
     return View("json");
@@ -232,7 +232,7 @@ public async Task<IActionResult> CallServiceStack()
     var client = new HttpClient();
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MimeTypes.Json)); 
-    var json = await client.GetStringAsync("http://localhost:5001/servicestack-identity");
+    var json = await client.GetStringAsync("https://localhost:5001/servicestack-identity");
 
     ViewBag.Json = json.IndentJson();
     return View("json");
@@ -249,7 +249,7 @@ public async Task<IActionResult> CallServiceClient()
 {
     var accessToken = await HttpContext.GetTokenAsync("access_token");
 
-    var client = new JsonServiceClient("http://localhost:5001/") {
+    var client = new JsonServiceClient("https://localhost:5001/") {
         BearerToken = accessToken
     };
     var response = await client.GetAsync(new GetIdentity());
@@ -267,7 +267,7 @@ Bearer Tokens issued by our central **IdentityServer**:
 ```csharp
 services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options => {
-        options.Authority = "http://localhost:5000";
+        options.Authority = "https://localhost:5000";
         options.RequireHttpsMetadata = false;
 
         options.Audience = "api1";
