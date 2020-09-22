@@ -50,7 +50,7 @@ Create the `deploy` user account with a `/home/deploy` home directory and add th
 
     $ sudo useradd -m deploy
 
-Create password:
+Create a password (optional):
 
     $ sudo passwd deploy
 
