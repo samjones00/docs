@@ -3,7 +3,7 @@ slug: deploy-netcore-to-amazon-linux-2-ami
 title: Deploying .NET Core Apps to Amazon Linux 2 AMI
 ---
 
-A common way for reliably hosting .NET Core Apps on Ubuntu is to use [supervisor](http://supervisord.org/index.html) to monitor the `dotnet` self-hosting processes behind an nginx reverse proxy which handles external HTTP requests to your website and proxies them to the dotnet process running your Web App on a local port. You'll need access to a Unix environment on your client Desktop, either using Linux, OSX or [Installing Windows Subsystem for Linux (WSL)](https://github.com/ServiceStack/redis-windows#option-1-install-redis-on-ubuntu-on-windows).
+A common way for reliably hosting .NET Core Apps on Linux is to use [supervisor](http://supervisord.org/index.html) to monitor the `dotnet` self-hosting processes behind an nginx reverse proxy which handles external HTTP requests to your website and proxies them to the dotnet process running your Web App on a local port. You'll need access to a Unix environment on your client Desktop, either using Linux, OSX or [Installing Windows Subsystem for Linux (WSL)](https://github.com/ServiceStack/redis-windows#option-1-install-redis-on-ubuntu-on-windows).
 
 ## Amazon Linux 2
 
@@ -70,7 +70,7 @@ To give `sudo` commands access to installed dotnet tools add it to `secure_path`
 
 > In vi type `i` to start editing a file and `ESC` to quit edit mode and `:wq` to save your changes before exiting.
 
-No we'll create an `~/apps` folder as the `deploy` user where your .NET Core Apps should be deployed to, e.g:
+Now we'll create an `~/apps` folder as the `deploy` user where your .NET Core Apps should be deployed to, e.g:
 
     $ sudo su - deploy
     $ mkdir ~/apps
@@ -89,6 +89,8 @@ Then use `yum` to install `supervisor`
 You'll also need to create a `supervisord.service` systemd script which you can install with:
 
     $ sudo x mix supervisord.service
+
+Which will write this [supervisord.service](https://gist.github.com/gistlyn/18dbaa471ea09f744493d5866ede599e) gist to `/usr/lib/systemd/system`.
 
 We'll also want to configure supervisor to look for our `*.conf` scripts in the conventional location:
 
