@@ -203,14 +203,14 @@ ssh deploy@ec2-<ip-address>.compute-1.amazonaws.com "sudo supervisorctl restart 
 
 To automate the entire deployment down to a single command you can add an npm script to your project's `package.json` that creates a production client and server build of your App before running WSL's `bash` to run the deploy script. All [Webpack Single Page App Templates](/templates-single-page-apps) already have a **publish** npm script, so you would just need to add a **deploy** script to run publish before running the above `deploy.sh`
 
-    "publish": "nuxt build && dotnet publish -c Release",
+    "publish": "dotnet publish -c Release",
     "deploy": "npm run publish && bash deploy.sh",
 
 Now to deploy your App you can just run:
 
     $ npm run deploy
 
-Which deploys your published App to your remote Ubuntu server instance using `rsync` to only copy the incremental parts of the App that's changed (typically completing in <1s) and `ssh` to run a remote command to restart the `suprvisord` process, starting the .NET Core App with the latest deployed version.
+Which deploys your published App to your remote Linux server instance using `rsync` to only copy the incremental parts of the App that's changed (typically completing in <1s) and `ssh` to run a remote command to restart the `suprvisord` process, starting the .NET Core App with the latest deployed version.
 
 After you deploy your and restart your `supervisor` Service your .NET Core App should now be publicly available at your chosen domain, if you have issues
 you can view your App's error log for info, e.g:
