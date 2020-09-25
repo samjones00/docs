@@ -1004,7 +1004,7 @@ public class PostPublicServices : PostServicesBase
 
     public object Any(QueryPosts request)
     {
-        var q = AutoQuery.CreateQuery(request, Request.GetRequestParams(), base.Request); //Populated SqlExpression
+        var q = AutoQuery.CreateQuery(request, Request.GetRequestParams(), Request); //Populated SqlExpression
         q.Where(x => x.Deleted == null);
         
         var states = request.Is ?? TypeConstants.EmptyStringArray;
