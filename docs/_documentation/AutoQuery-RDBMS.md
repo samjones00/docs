@@ -1044,7 +1044,7 @@ public interface IAutoQueryDb : IAutoCrudDb
     // Generic API to resolve the DB Connection to use for this request
     IDbConnection GetDb<From>(IRequest req = null);
 
-    // Generate a populated and Typed OrmLite SqlExpression using the same model as the source and output target
+    // Generate a populated and Typed OrmLite SqlExpression using same model as the source and output target
     SqlExpression<From> CreateQuery<From>(IQueryDb<From> dto, Dictionary<string, string> dynamicParams, 
         IRequest req = null, IDbConnection db = null);
 
@@ -1057,7 +1057,7 @@ public interface IAutoQueryDb : IAutoCrudDb
         IRequest req = null, IDbConnection db = null);
 
     // Generate a populated and Typed OrmLite SqlExpression using different models for source and output target
-    SqlExpression<From> CreateQuery<From, Into>(IQueryDb<From,Into> dto, Dictionary<string,string> dynamicParams, 
+    SqlExpression<From> CreateQuery<From, Into>(IQueryDb<From,Into> dto, Dictionary<string,string> dynamicArgs, 
         IRequest req = null, IDbConnection db = null);
 
     // Execute an OrmLite SqlExpression using different models for source and output target
