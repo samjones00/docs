@@ -980,7 +980,7 @@ In addition to inheriting all default Querying functionality in a `QueryDb<Post>
  - Prevents returning any `Deleted` Posts
  - Prevents returning any posts with a `closed` status unless the query specifically targets a closed label or status
  - Avoids any table joins by using PostgreSQL advanced Array data type for querying post `string` **labels** or `int` **technology ids**
- - Uses `AnyTechnologyIds` to return any posts in **an Organization linked to** or **tagged with** the specified technologies
+ - Uses `AnyTechnologyIds` to return any posts **tagged with** the specified technologies
 
 ```csharp
 [Route("/posts", "GET")]
