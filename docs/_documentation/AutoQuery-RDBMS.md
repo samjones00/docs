@@ -1018,20 +1018,12 @@ public class PostPublicServices : PostServicesBase
             var labelSlugs = states.Where(x => x != "closed" && x != "open")
                 .Map(x => x.GenerateSlug());
             if (labelSlugs.Count > 0)
-                q.And($"ARRAY[{new SqlInValues(labelSlugs).ToSqlInString()}] && labels");
+                q.And($"{PgSql.Array(labelSlugs)} && labels");
         }
 
         if (!request.AnyTechnologyIds.IsEmpty())
         {
-            var techIds = request.AnyTechnologyIds.Join(",");
-            var orgIds = request.AnyTechnologyIds.Map(id => GetOrganizationByTechnologyId(Db, id))
-                .Where(x => x != null)
-                .Select(x => x.Id)
-                .Join(",");
-            if (string.IsNullOrEmpty(orgIds))
-                orgIds = "NULL";
-
-            q.And($"(ARRAY[{techIds}] && technology_ids OR organization_id in ({orgIds}))");
+            q.And($"{PgSql.Array(request.AnyTechnologyIds)} && technology_ids");
         }
 
         return AutoQuery.Execute(request, q, base.Request);
