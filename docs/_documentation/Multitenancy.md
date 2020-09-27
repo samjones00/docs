@@ -275,10 +275,10 @@ DB as your other services, otherwise when called outside (e.g. on Startup) it us
 Registration configured with the connectionStrings for each Multitenant DB that it can use to create any
 missing UserAuth table schemas not found in any of the Multitenant databases. 
 
-### [Multi Tenancy Example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/MultiTennantAppHostTests.cs)
+### Multi Tenancy Example
 
 To show how easy it is to implement a Multi Tenancy Service with this feature we've added a stand-alone
-[Multi Tenancy AppHost Example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/MultiTennantAppHostTests.cs) 
+[Multi Tenancy AppHost Example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/MultiTenantAppHostTests.cs) 
 showing 2 different ways we can configure a Service to use different databases based on an incoming request.
 
 In this example we've configured our AppHost to use the **master.sqlite** database as default and registered
@@ -300,20 +300,18 @@ public class MultiTenantChangeDbAppHost : AppSelfHostBase
 
         const int noOfTenants = 3;
 
-        using (var db = dbFactory.OpenDbConnection())
+        using (var db = dbFactory.OpenDbConnection()) {
             InitDb(db, "MASTER", "Masters inc.");
+        }
 
-        noOfTenants.Times(i =>
-        {
+        noOfTenants.Times(i => {
             var tenantId = "T0" + (i + 1);
-            using (var db = dbFactory.OpenDbConnectionString(GetTenantConnString(tenantId)))
-                InitDb(db, tenantId, $"ACME {tenantId} inc.");
+            using var db = dbFactory.OpenDbConnectionString(GetTenantConnString(tenantId));
+            InitDb(db, tenantId, "ACME {0} inc.".Fmt(tenantId));
         });
 
         RegisterTypedRequestFilter<IForTenant>((req,res,dto) => 
-            req.Items[Keywords.DbInfo] = new ConnectionInfo { 
-                ConnectionString = GetTenantConnString(dto.TenantId)
-            });
+            req.Items[Keywords.DbInfo] = new ConnectionInfo { ConnectionString = GetTenantConnString(dto.TenantId)});
     }
 
     public void InitDb(IDbConnection db, string tenantId, string company)
@@ -322,12 +320,9 @@ public class MultiTenantChangeDbAppHost : AppSelfHostBase
         db.Insert(new TenantConfig { Id = tenantId, Company = company });
     }
 
-    public string GetTenantConnString(string tenantId)
-    {
-        return tenantId != null 
-            ? $"~/App_Data/tenant-{tenantId}.sqlite".MapAbsolutePath()
-            : null;
-    }
+    public string GetTenantConnString(string tenantId) => tenantId != null 
+        ? "~/App_Data/tenant-{0}.sqlite".Fmt(tenantId).MapAbsolutePath()
+        : null;
 }
 ```
 
@@ -378,10 +373,78 @@ var response = client.Get(new GetTenant { TenantId = "T01" }); //= Company: ACME
 
 var response = client.Get(new GetTenant { TenantId = "T02" }); //= Company: ACME T02 inc.
 
-var response = client.Get(new GetTenant { TenantId = "T03" }); //= Compnay: ACME T03 inc.
+var response = client.Get(new GetTenant { TenantId = "T03" }); //= Company: ACME T03 inc.
 
 client.Get(new GetTenant { TenantId = "T04" }); // throws WebServiceException
 ```
 
 An alternative way to support Multitenancy using a Custom DB Factory is available in 
-[MultiTennantAppHostTests.cs](https://github.com/ServiceStack/ServiceStack/blob/e392265456e12077087c1cd014c918913f409bc9/tests/ServiceStack.WebHost.Endpoints.Tests/MultiTennantAppHostTests.cs#L132).
+[MultiTenantAppHostTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/MultiTennantAppHostTests.cs#L129).
+
+```csharp
+public class MultiTenantCustomDbFactoryAppHost : AppSelfHostBase
+{
+    public MultiTenantCustomDbFactoryAppHost()
+        : base("Multi Tenant Test", typeof(MultiTenantCustomDbFactoryAppHost).Assembly) { }
+
+    public override void Configure(Container container)
+    {
+        var dbFactory = new OrmLiteConnectionFactory(
+            "~/App_Data/master.sqlite".MapAbsolutePath(), SqliteDialect.Provider);
+
+        const int noOfTenants = 3;
+
+        container.Register<IDbConnectionFactory>(c =>
+            new MultiTenantDbFactory(dbFactory));
+
+        var multiDbFactory = (MultiTenantDbFactory)container.Resolve<IDbConnectionFactory>();
+
+        using (var db = multiDbFactory.OpenTenant()) {
+            InitDb(db, "MASTER", "Masters inc.");
+        }
+
+        noOfTenants.Times(i => {
+            var tenantId = "T0" + (i + 1);
+            using var db = multiDbFactory.OpenTenant(tenantId);
+            InitDb(db, tenantId, "ACME {0} inc.".Fmt(tenantId));
+        });
+
+        GlobalRequestFilters.Add((req, res, dto) => {
+            if (dto is IForTenant forTenant)
+                RequestContext.Instance.Items.Add("TenantId", forTenant.TenantId);
+        });
+    }
+
+    public void InitDb(IDbConnection db, string tenantId, string company)
+    {
+        db.DropAndCreateTable<TenantConfig>();
+        db.Insert(new TenantConfig { Id = tenantId, Company = company });
+    }
+
+    public class MultiTenantDbFactory : IDbConnectionFactory
+    {
+        private readonly IDbConnectionFactory dbFactory;
+
+        public MultiTenantDbFactory(IDbConnectionFactory dbFactory)
+        {
+            this.dbFactory = dbFactory;
+        }
+
+        public IDbConnection OpenDbConnection()
+        {
+            var tenantId = RequestContext.Instance.Items["TenantId"] as string;
+            return OpenTenant(tenantId);
+        }
+
+        public IDbConnection OpenTenant(string tenantId = null)
+        {
+            return tenantId != null
+                ? dbFactory.OpenDbConnectionString(
+                    "~/App_Data/tenant-{0}.sqlite".Fmt(tenantId).MapAbsolutePath())
+                : dbFactory.OpenDbConnection();
+        }
+
+        public IDbConnection CreateDbConnection() => dbFactory.CreateDbConnection();
+    }
+}
+```
