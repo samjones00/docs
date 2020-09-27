@@ -311,7 +311,10 @@ public class MultiTenantChangeDbAppHost : AppSelfHostBase
         });
 
         RegisterTypedRequestFilter<IForTenant>((req,res,dto) => 
-            req.Items[Keywords.DbInfo] = new ConnectionInfo { ConnectionString = GetTenantConnString(dto.TenantId)});
+            req.Items[Keywords.DbInfo] = new ConnectionInfo { 
+                ConnectionString = GetTenantConnString(dto.TenantId)
+            }
+        );
     }
 
     public void InitDb(IDbConnection db, string tenantId, string company)
