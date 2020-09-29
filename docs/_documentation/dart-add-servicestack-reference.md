@@ -20,39 +20,39 @@ Due to the lack of reflection and Mirror support, consuming JSON APIs can be qui
 
 ### Example Usage
 
-You can use the same [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli#servicestackcli) simple command-line utility to easily Add and Update ServiceStack References for all supported languages:
+You can use the same [x dotnet tool](https://docs.servicestack.net/dotnet-tool) simple command-line utility to easily Add and Update ServiceStack References for all supported languages:
 
-    $ npm install -g @servicestack/cli
+Install [.NET Core](https://dotnet.microsoft.com/download) then install the `x` dotnet tool:
 
-This makes the `dart-ref` script globally available in your `PATH` which you can execute with the URL of the remote ServiceStack Instance you want to generated DTOs for, e.g:
+    $ dotnet tool install --global x
 
-    $ dart-ref https://www.techstacks.io
+You can then execute `x dart` with the URL of the remote ServiceStack Instance you want to generated DTOs for, e.g:
 
-This will generate Dart DTOs for the [entire TechStacks API](https://www.techstacks.io/metadata):
+    $ x dart https://techstacks.io
 
-    Saved to: techstacks.dtos.dart
+This will generate Dart DTOs for the [entire TechStacks API](https://techstacks.io/metadata):
 
-> If no name is specified in the 2nd argument, it's inferred from the URL, in this case it uses `techstacks`.
+    Saved to: dtos.dart
+
+> If no name is specified in the 2nd argument, it uses `dtos` if it doesn't already exist, otherwise falls back to infer it from the URL.
 
 To make API calls we need to use the `JsonServiceClient`, installed by adding the [servicestack](https://pub.dartlang.org/packages/servicestack#-installing-tab-) package to our Dart projects `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  servicestack: ^1.0.15
+  servicestack: ^1.0.17
 ```
 
-Saving `pubspec.yaml` in VS Code with the [Dart Code Extension](https://dartcode.org) automatically calls `flutter packages get` to add any new dependencies to your project.
+Saving `pubspec.yaml` in VS Code with the [Dart Code Extension](https://dartcode.org) automatically calls `pub get` or `flutter packages get` (in Flutter projects) to add any new dependencies to your project.
 
-We now have everything we need to be able to make typed API requests to any of [TechStacks APIs](https://www.techstacks.io/metadata) with a shared `JsonServiceClient` instance populated with the base URL of the remote endpoint, e.g:
-
-#### Flutter and Dart VM Usage
+We now have everything we need to be able to make typed API requests to any of [TechStacks APIs](https://techstacks.io/metadata) with a shared `JsonServiceClient` instance populated with the base URL of the remote endpoint, e.g:
 
 ```dart
 import 'package:servicestack/client.dart';
 
-import 'techstacks.dtos.dart';
+import 'dtos.dart';
 
-var client = new JsonServiceClient("https://www.techstacks.io");
+var client = new JsonServiceClient("https://techstacks.io");
 
 main() async {
   var response = await client.get(new GetTechnology(slug: "flutter"));
@@ -60,9 +60,82 @@ main() async {
 }
 ```
 
-See the [HelloFlutter](https://github.com/ServiceStackApps/HelloFlutter) project for a working example.
-
 Like C#, Dart has Generics and Type Inference so the `response` returned is the typed `HelloResponse` DTO giving us rich intelli-sense and compiler type safety. 
+
+#### Issues
+
+Please submit issues to https://github.com/ServiceStack/Issues
+
+### Platform neutral usage
+
+Both **dart:io** `JsonServiceClient` and **dart:html** `JsonWebClient` implement the same shared `IServiceClient` interface which support a platform-neutral source-compatible API using the
+`ClientFactory` APIs, e.g: 
+
+```dart
+import 'package:servicestack/web_client.dart' if (dart.library.io) 'package:servicestack/client.dart';
+
+main() async {
+  var client = ClientFactory.create('https://techstacks.io');
+  var response = await client.get(new GetTechnology(slug: "flutter"));
+  print("${response.technology.name}: ${response.technology.vendorUrl}");
+}
+```
+
+For advanced configuration you can use the `createWith(ClientOptions)` API, e.g you can use `dev.servicestack.com` which resolves to `10.0.2.2` 
+which in Android you can use to access `127.0.0.1` of the host OS allowing you to access your local development server.
+
+In this example we'll create either a typed Service Client to our local development server in **Debug** during development (ignoring its self-signed certificate)
+and our production server in **Release** mode: 
+
+```dart
+import 'package:servicestack/web_client.dart' if (dart.library.io) 'package:servicestack/client.dart';
+import 'package:flutter/foundation.dart';
+
+main() async {
+  var client = kDebugMode
+    ? ClientFactory.createWith(ClientOptions(baseUrl:'https://dev.servicestack.com:5001', ignoreCert:true))
+    : ClientFactory.create('https://techstacks.io');
+}
+```
+
+> Tip: if you add a `127.0.0.1 dev.servicestack.com` mapping in your OS's `hosts` file you'll be able to use `https://dev.servicestack.com` to access your dev server in your Host OS as well. 
+
+### Shared Initialization Configuration
+
+For more advanced configuration you can use the `ClientConfig.initClient` client factory filter to customize all service client instances 
+as done in this example to configure all client instances with any previously saved JWT Bearer & Refresh Tokens to enable authenticated access:
+
+```dart
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:servicestack/web_client.dart' if (dart.library.io) 'package:servicestack/client.dart';
+
+SharedPreferences prefs;
+AuthenticateResponse auth;
+IServiceClient client;
+
+Future<void> main() async {
+  prefs = await SharedPreferences.getInstance();
+
+  var json = prefs.get('auth');
+  auth = json != null
+    ? AuthenticateResponse.fromJson(json)
+    : null;
+
+  client = kDebugMode
+    ? ClientFactory.createWith(ClientOptions(baseUrl:'https://dev.servicestack.com:5001', ignoreCert:true))
+    : ClientFactory.create('https://techstacks.io');
+
+  ClientConfig.initClient = (client) {
+    if (auth != null) {
+      client.bearerToken = auth.bearerToken;
+      client.refreshToken = auth.refreshToken;
+    }
+  };
+
+  runApp(MyApp());
+}
+```
 
 #### AngularDart and Dart Web Usage
 
@@ -239,29 +312,29 @@ This creates a basic Flutter App which you can run in your Android Device or And
 Then to use `JsonServiceClient` add the `servicestack` dependency to your apps [pubspec.yaml](https://github.com/ServiceStackApps/HelloFlutter/blob/master/pubspec.yaml):
 
   dependencies:
-    servicestack: ^1.0.15
+    servicestack: ^1.0.17
 
 Saving `pubspec.yaml` automatically runs [flutter packages get](https://flutter.io/using-packages/) to install any new dependencies in your App. 
 
-Our App will be making API calls to 2 different ServiceStack instances which we'll need to get typed DTOs for using the `dart-ref` command-line utility:
+Our App will be making API calls to 2 different ServiceStack instances which we'll need to get typed DTOs for using the `x` command-line utility:
 
-    cd lib
-    dart-ref https://www.techstacks.io
-    dart-ref http://test.servicestack.net test
+    $ cd lib
+    $ x dart https://techstacks.io
+    $ x dart http://test.servicestack.net test
 
 Which will save the DTOs for each endpoint in different files:
 
-    Saved to: techstacks.dtos.dart
+    Saved to: dtos.dart
     Saved to: test.dtos.dart
 
-Incidentally you can get the latest version for all Dart Service References by running `dart-ref` without arguments:
+Incidentally you can get the latest version for all Dart Service References by running `x dart` without arguments:
 
-    dart-ref
+    $ x dart
 
 Which updates all Dart references in the current directory, including any customization options available in the header of each file:
 
     Updated: test.dtos.dart
-    Updated: techstacks.dtos.dart
+    Updated: dtos.dart
 
 This gives us everything we need to call Web Services in our Flutter App, by importing `package:servicestack/client.dart` containing `JsonServiceClient` as well as any generated DTOs.
 
