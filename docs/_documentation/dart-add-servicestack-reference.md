@@ -40,7 +40,7 @@ To make API calls we need to use the `JsonServiceClient`, installed by adding th
 
 ```yaml
 dependencies:
-  servicestack: ^1.0.17
+  servicestack: ^1.0.18
 ```
 
 Saving `pubspec.yaml` in VS Code with the [Dart Code Extension](https://dartcode.org) automatically calls `pub get` or `flutter packages get` (in Flutter projects) to add any new dependencies to your project.
@@ -107,20 +107,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:servicestack/web_client.dart' if (dart.library.io) 'package:servicestack/client.dart';
 
 SharedPreferences prefs;
-AuthenticateResponse auth;
 IServiceClient client;
+AuthenticateResponse auth;
 
 Future<void> main() async {
-  prefs = await SharedPreferences.getInstance();
-
-  var json = prefs.get('auth');
-  auth = json != null
-    ? AuthenticateResponse.fromJson(json)
-    : null;
-
-  client = kDebugMode
-    ? ClientFactory.createWith(ClientOptions(baseUrl:'https://dev.servicestack.com:5001', ignoreCert:true))
-    : ClientFactory.create('https://techstacks.io');
+  runApp(MyApp());
 
   ClientConfig.initClient = (client) {
     if (auth != null) {
@@ -129,7 +120,15 @@ Future<void> main() async {
     }
   };
 
-  runApp(MyApp());
+  prefs = await SharedPreferences.getInstance();
+
+  var json = prefs.getString('auth');
+  auth = json != null
+      ? AuthenticateResponse.fromJson(jsonDecode(json))
+      : null;
+
+  client = ClientFactory.createWith(ClientOptions(
+      baseUrl:'https://dev.servicestack.com:5001', ignoreCert:kDebugMode));
 }
 ```
 
@@ -308,7 +307,7 @@ This creates a basic Flutter App which you can run in your Android Device or And
 Then to use `JsonServiceClient` add the `servicestack` dependency to your apps [pubspec.yaml](https://github.com/ServiceStackApps/HelloFlutter/blob/master/pubspec.yaml):
 
   dependencies:
-    servicestack: ^1.0.17
+    servicestack: ^1.0.18
 
 Saving `pubspec.yaml` automatically runs [flutter packages get](https://flutter.io/using-packages/) to install any new dependencies in your App. 
 
