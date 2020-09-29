@@ -94,7 +94,7 @@ main() async {
 }
 ```
 
-> Tip: if you add a `127.0.0.1 dev.servicestack.com` mapping in your OS's `hosts` file you'll be able to use `https://dev.servicestack.com` to access your dev server in your Host OS as well. 
+> Tip: if you add a `127.0.0.1 dev.servicestack.com` mapping in your OS's `hosts` file you'll also be able to use `dev.servicestack.com` to access your local dev server in your Host OS. 
 
 ### Shared Initialization Configuration
 
