@@ -72,7 +72,7 @@ openssl req -x509 -out dev.crt -keyout dev.key -days 825 \
 openssl pkcs12 -export -out dev.pfx -inkey dev.key -in dev.crt -password pass:$PASSWORD
 ```
 
-This will generate a self-signed certificate `dev.crt`, a private key `dev.key` and a PKCS #12 `dev.pfx` certificate in macOS, Linux & Windows using WSL:
+This script uses OpenSSL to generate a self-signed certificate `dev.crt`, private key `dev.key` and a PKCS #12 `dev.pfx` certificate in macOS, Linux & Windows using WSL with:
 
     $ bash gen-dev-crt.sh
 
@@ -89,7 +89,7 @@ Import-Certificate -FilePath dev.crt -CertStoreLocation Cert:\CurrentUser\Root
 ```
 
 Where it will import the Certificate into the [Current User Certificate Store](https://docs.microsoft.com/en-us/windows/win32/seccrypto/system-store-locations#cert_system_store_current_user)
-which you can view/remove in **regedit.msc** by going to:
+which you can view/remove in **regedit.msc** at:
 
     Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\SystemCertificates\Root\Certificates\
 
@@ -133,7 +133,7 @@ Now after restarting your browser to reset its SSL caches you'll be able to use 
 
 ### Accessing from C# Clients
 
-As .NET is able to access your OS's trusted certificates you'll also be able to access the custom domains without additional configuration:
+As .NET has access your OS's trusted certificates you'll be able to access the custom domains without additional configuration:
 
 ```csharp
 var client = new JsonServiceClient("https://dev.servicestack.com:5001"); //.NET HttpWebRequest
@@ -145,16 +145,16 @@ var response = await client.GetAsync(new Hello { Name = "World" });
 
 ### Accessing from Native Applications
 
-Something you want to avoid is including your [certificate & private key within your Native application](https://letsencrypt.org/docs/certificates-for-localhost/#for-native-apps-talking-to-web-apps)
-which is considered a compromise of your private key which attackers can access to implement a successful [MitM attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
+Something you want to avoid is including your [certificate & private key with your Native application](https://letsencrypt.org/docs/certificates-for-localhost/#for-native-apps-talking-to-web-apps)
+which is considered a compromise of your private key that attackers can use to implement a successful [MitM attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
 
 ### Flutter Android
 
 Instead you'll want to either [install the self-signed certificate](https://blog.netspi.com/four-ways-bypass-android-ssl-verification-certificate-pinning/) on your local
 device/emulator where it wont be trusted by anyone else.
 
-Otherwise a far easier solution is to just ignore SSL certificates when accessing your local dev server
-via Dart's [badCertificateCallback](https://api.flutter.dev/flutter/dart-io/HttpClient/badCertificateCallback.html) property, e.g:
+Otherwise a far easier solution is to ignore SSL certificates when accessing your local dev server which you can do with Dart/Flutter using the `HttpClient` 
+[badCertificateCallback](https://api.flutter.dev/flutter/dart-io/HttpClient/badCertificateCallback.html) property:
 
 ```dart
 var httpClient = new HttpClient()
@@ -163,8 +163,8 @@ var httpClient = new HttpClient()
 ```
 
 Although ideally you'd use a constant value like [kDebugMode](https://api.flutter.dev/flutter/foundation/kDebugMode-constant.html) so that
-the `badCertificateCallback` pass-through doesn't make it into production builds, e.g. configuring a [ServiceStack Dart Service Client](/dart-add-servicestack-reference)
-for development or production services:
+the `badCertificateCallback` pass-through doesn't make it into production builds. Here's an example configuring a [ServiceStack Dart Service Client](/dart-add-servicestack-reference)
+to use development or production APIs:
 
 ```dart
 var client = kDebugMode
