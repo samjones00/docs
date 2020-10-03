@@ -163,7 +163,8 @@ var httpClient = new HttpClient()
 ```
 
 Although ideally you'd use a constant value like [kDebugMode](https://api.flutter.dev/flutter/foundation/kDebugMode-constant.html) so that
-the `badCertificateCallback` pass-through doesn't make it into production builds, e.g. you can create a [ServiceStack Dart Service Client](/dart-add-servicestack-reference)
+the `badCertificateCallback` pass-through doesn't make it into production builds, e.g. configuring a [ServiceStack Dart Service Client](/dart-add-servicestack-reference)
+for development or production services:
 
 ```dart
 var client = kDebugMode
@@ -175,13 +176,13 @@ var response = await client.get(Hello()..name=='World');
 
 ### Removing Certificate Artifacts
 
-If you're only working in Windows you'll most likely only end up using the PKCS #12 `dev.pfx` certificate which combines both the certificate & private key 
-so they can be safely removed to clear up the generated artifacts & remove clear-text access to the private key:
+If you're only using Windows you'll typically only end up using the PKCS #12 `dev.pfx` certificate combining both certificate & private key 
+which can be safely removed to clear unnecessary generated artifacts & clear-text copy of the private key:
 
     $ del dev.key
     $ del dev.crt
 
-Where as other OS's predominantly work with Certificates & Private Keys separately, which if needed can be later extracted from the `dev.pfx`:
+Where as other OS's predominantly use Certificates & Private Keys, which if needed can be later extracted from the `dev.pfx`:
 
 #### Extract Certificate
 
