@@ -51,9 +51,10 @@ Whether you use `local.servicestack.com` or `dev.servicestack.com` or your own h
 a self-signed certificate to be able to view it in a browser without certificate errors.
 
 To simplify creation of self-signed certificate for `*.servicestack.com` you can use the [dotnet mix tool](/mix-tool)
-to download the openssl script:
+to download the openssl script and running it:
 
     $ x mix gen-dev-crt.sh
+    $ bash gen-dev-crt.sh
 
 Which will write this script below to your projects HOST project:
 
@@ -72,9 +73,7 @@ openssl req -x509 -out dev.crt -keyout dev.key -days 825 \
 openssl pkcs12 -export -out dev.pfx -inkey dev.key -in dev.crt -password pass:$PASSWORD
 ```
 
-This script uses OpenSSL to generate a self-signed certificate `dev.crt`, private key `dev.key` and a PKCS #12 `dev.pfx` certificate in macOS, Linux & Windows using WSL with:
-
-    $ bash gen-dev-crt.sh
+Which uses OpenSSL to generate a self-signed certificate `dev.crt`, private key `dev.key` and a PKCS #12 `dev.pfx` certificate in macOS, Linux & Windows using WSL.
 
 ### Trust self-signed certificate
 
