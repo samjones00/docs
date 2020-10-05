@@ -39,7 +39,7 @@ Alternatively you can use a DNS record that resolves to `10.0.2.2`:
 
     dev.servicestack.com
 
-and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\hosts` for Windows) to include:
+and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\hosts` for Windows or `/system/etc/hosts` on macOS/Linux) to include:
 
 	127.0.0.1       dev.servicestack.com
 
