@@ -992,25 +992,45 @@ public class MyPlugin : IPreInitPlugin
 }
 ```
 
-### AuthFilterContext
+### Auth Response Filter
 
 Auth Providers can customize the `AuthenticateResponse` returned by implementing `IAuthResponseFilter` where 
-it will get called back with a populated [AuthFilterContext](https://github.com/ServiceStack/ServiceStack/blob/dfefd50b6ab5f03fce4f6dbbf445ec08150e0cba/src/ServiceStack/Auth/IAuthProvider.cs#L51):
+it will get called back with a populated [AuthFilterContext](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/IAuthProvider.cs)
+for successful Authenticate Request DTO requests or `AuthResultContext` for successful OAuth requests:
 
 ```csharp
+public interface IAuthResponseFilter
+{
+    // Intercept successful Authenticate Request DTO requests
+    void Execute(AuthFilterContext authContext);
+    
+    // Intercept successful OAuth redirect requests
+    Task ResultFilterAsync(AuthResultContext authContext, CancellationToken token=default);
+}
+
 public class AuthFilterContext
 {
     public AuthenticateService AuthService    // Instance of AuthenticateService
     public IAuthProvider AuthProvider         // Selected Auth Provider for Request
-    public IAuthSession Session               // Users Session
+    public IAuthSession Session               // Authenticated Users Session
     public Authenticate AuthRequest           // Auth Request DTO
     public AuthenticateResponse AuthResponse  // Auth Response DTO
-    public bool AlreadyAuthenticated          // User was already authenticated
-    public bool DidAuthenticate               // User Authenticated in this request
+    public string ReferrerUrl                 // Optimal Session Referrer URL to use redirects
+    public bool AlreadyAuthenticated          // If User was already authenticated
+    public bool DidAuthenticate               // If User Authenticated in this request
+}
+
+public class AuthResultContext
+{
+    public IHttpResult Result                 // Response returned for this successful Auth Request
+    public IServiceBase Service               // Instance of Service used in this Request
+    public IRequest Request                   // Current HTTP Request Context
+    public IAuthSession Session               // Authenticated Users Session
 }
 ```
 
-The filters can be used to modify properties on the `AuthenticateResponse` DTO or to completely replace what `AuthenticateResponse` is returned, specify a `AuthFeature.AuthResponseDecorator`.
+The filters can be used to modify properties on the `AuthenticateResponse` DTO or OAuth successful redirect requests.
+To completely replace the `AuthenticateResponse` returned, you can specify a `AuthFeature.AuthResponseDecorator`.
 
 ### ICustomUserAuth
 
