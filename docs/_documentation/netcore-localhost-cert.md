@@ -43,7 +43,7 @@ and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\h
 
 	127.0.0.1       dev.servicestack.com
 
-Which will let you use `dev.servicestack.com` in Android Emulators where it resolves to `10.0.2.2` and `127.0.0.1` in your OS.
+Which will let you use `dev.servicestack.com` in Android Emulators where it resolves to `10.0.2.2` which maps to `127.0.0.1` on your Host OS.
 
 ### Generating self-signed SSL Certificates for Custom Domains
 
