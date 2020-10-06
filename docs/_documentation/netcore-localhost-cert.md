@@ -35,7 +35,7 @@ mapping to include:
 
     10.0.2.2       local.servicestack.com
 
-Alternatively you can use a DNS record that resolves to `10.0.2.2`:
+Which can be quite cumbersome to change, alternatively an easier solution is to use a DNS record that resolves to `10.0.2.2`:
 
     dev.servicestack.com
 
@@ -43,7 +43,8 @@ and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\h
 
 	127.0.0.1       dev.servicestack.com
 
-Which will let you use `dev.servicestack.com` in Android Emulators where it resolves to `10.0.2.2` which maps to `127.0.0.1` on your Host OS.
+Which will let you use the same `dev.servicestack.com` to access your local dev server in both Android Emulators and your Host OS 
+so you can have a single domain & callback URL you can use in your OAuth Apps configuration.
 
 ### Generating self-signed SSL Certificates for Custom Domains
 
