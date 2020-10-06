@@ -39,7 +39,7 @@ Which can be quite cumbersome to change, alternatively an easier solution is to 
 
     dev.servicestack.com
 
-and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\hosts` for Windows or `/system/etc/hosts` on macOS/Linux) to include:
+and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\hosts` for Windows or `/etc/hosts` on macOS/Linux) to include:
 
 	127.0.0.1       dev.servicestack.com
 
