@@ -114,7 +114,7 @@ in your `appsettings.Development.json`:
   "Kestrel": {
     "Endpoints": {
       "Http": {
-        "Url": "https://localhost:5001",
+        "Url": "https://*:5001",
         "Protocols": "Http1",
         "Certificate": {
           "Path": "dev.pfx",
