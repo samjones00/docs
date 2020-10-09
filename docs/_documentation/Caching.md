@@ -90,6 +90,17 @@ container.Register<ICacheClient>(new AzureTableCacheClient(cacheConnStr));
 
 ##### NuGet Package: [ServiceStack.Azure](http://www.nuget.org/packages/ServiceStack.Azure)
 
+### Multi CacheClient
+
+The `MultiCacheClient` can be used to utilize a write-through multi-tiered cache client where all "writes" are made to all
+registered cache providers whilst "reads" are only accessed until a value exists. E.g. you can register a local memory
+and redis server backed Cache Client with:
+
+```csharp
+container.Register<ICacheClient>(c => new MultiCacheClient(
+    new MemoryCacheClient(),
+    c.Resolve<IRedisClientsManager>().GetCacheClient()));
+```
 
 ## Cache a response of a service
 
