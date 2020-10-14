@@ -27,7 +27,7 @@ Which you can use to view your local Web App typically on `https://localhost:500
 will allow you to register as valid domains & callback URLs in OAuth Apps you want to support. As this is a real DNS A record
 it will also work in emulators & different environments like WSL.
 
-### When needing to support Android
+### When developing for Android
 
 But to be able to access your local dev server from an Android Emulator you'd instead need to use the special `10.0.2.2` loopback
 IP, which you could support by [updating your Android Emulator /system/etc/hosts file](https://stackoverflow.com/a/53929946/85785)
@@ -45,6 +45,65 @@ and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\h
 
 Which will let you use the same `dev.servicestack.com` to access your local dev server in both Android Emulators and your Host OS 
 so you can have a single domain & callback URL you can use in your OAuth Apps configuration.
+
+### When developing for iOS
+
+As iOS is a heavily locked down OS you wont have the same opportunity to modify iOS's hosts file, instead the easiest way to configure 
+a custom address for a given domain is to configure it on the DNS Server. Fortunately this easy to setup in macOS with a 
+[lightweight, easy to configure DNS Server like Dnsmasq](https://passingcuriosity.com/2013/dnsmasq-dev-osx/) which lets
+you easily add custom DNS rules whilst falling back to use its default DNS resolution for non-configured addresses.
+
+The easiest way to install Dnsmasq on macOS is to use [Homebrew](https://brew.sh):
+
+    $ brew install dnsmasq
+
+Once installed copy over the default configuration files:
+
+    $ cp $(brew list dnsmasq | grep /dnsmasq.conf.example$) /usr/local/etc/dnsmasq.conf
+    $ sudo cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
+
+Then configure Dnsmasq to start automatically by registering it with **launchd**:
+
+    $ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+
+The easiest to configure the IP Address for a single domain is to still add it to `/etc/hosts`, e.g. if your local ASP.NET
+dev server is on a different server to your macOS being used to develop/test iOS Apps, you would use that IP Address instead:
+
+	192.168.0.2     dev.servicestack.com
+
+Alternatively you can maintain these rules in Dnsmasq's config which offers far greater flexibility:
+
+    $ sudo vi /usr/local/etc/dnsmasq.conf
+
+    address=/dev.servicestack.com/192.168.0.2
+
+In which case you'll also want to update the OS's resolver config to 
+[query your local DNS Server when resolving these addresses](https://www.stevenrombauts.be/2018/01/use-dnsmasq-instead-of-etc-hosts/#2-only-send-test-and-box-queries-to-dnsmasq).
+
+#### Restart Dnsmasq to apply changes
+
+After making changes to your DNS configuration, restart dnsmasq for it to take effect:
+
+    $ sudo launchctl stop homebrew.mxcl.dnsmasq
+    $ sudo launchctl start homebrew.mxcl.dnsmasq
+
+#### Update iOS to use your custom DNS Server
+
+First find out the current IP Address of your macOS instance:
+
+    $ ipconfig getifaddr en0
+
+Which you can get your iOS development device to use by going into your **Wi-Fi** Network Info in iOS **Settings**:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/ios-network-info.jpeg)
+
+Going to **Configure DNS**:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/ios-wifi-info.png)
+
+Then switching to use **Manual** DNS servers and adding your macOS IP Address where it will now be used to resolve DNS queries:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/ios-configure-dns.jpeg)
 
 ### Generating self-signed SSL Certificates for Custom Domains
 
