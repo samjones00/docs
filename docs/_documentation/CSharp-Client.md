@@ -191,6 +191,14 @@ var dto = responseStream.ReadFully()
 dto.Result //Hello, World
 ```
 
+Async download & write to file example:
+
+```csharp
+using var stream = await client.GetAsync<Stream>(new GetFile { Path = "/path/to/file.png" });
+var fs = File.Create(Path.Combine(uploadsDir, "file.png"));
+await stream.CopyToAsync(fs);
+```
+
 Or even access the populated `HttpWebResponse` object:
 
 ```csharp
