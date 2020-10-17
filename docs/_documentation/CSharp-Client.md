@@ -184,13 +184,11 @@ dto.Result //Hello, World
 Or as a Stream:
 
 ```csharp
-using (Stream responseStream = client.Get<Stream>("/poco/World")) 
-{
-    var dto = responseStream.ReadFully()
-        .FromUtf8Bytes()
-        .FromJson<PocoResponse>();
-    dto.Result //Hello, World
-}
+using Stream responseStream = client.Get<Stream>("/poco/World");
+var dto = responseStream.ReadFully()
+    .FromUtf8Bytes()
+    .FromJson<PocoResponse>();
+dto.Result //Hello, World
 ```
 
 Or even access the populated `HttpWebResponse` object:
@@ -200,12 +198,10 @@ HttpWebResponse webResponse = client.Get<HttpWebResponse>("/poco/World");
 
 webResponse.Headers["X-Response"] //= World
 
-using (var stream = webResponse.GetResponseStream())
-using (var sr = new StreamReader(stream)) 
-{
-    var dto = sr.ReadToEnd().FromJson<PocoResponse>();
-    dto.Result //Hello, World
-}
+using var stream = webResponse.GetResponseStream();
+using var sr = new StreamReader(stream);
+var dto = sr.ReadToEnd().FromJson<PocoResponse>();
+dto.Result //Hello, World
 ```
 
 ### Accessing raw service responses
@@ -267,10 +263,8 @@ public class BuiltInTypesService : Service
 Which let you access the results as you would a normal response:
 
 ```csharp
-using (HttpWebResponse response = client.Get(new Headers { Text = "World" }))
-{
-    response.Headers["X-Response"] // "World"
-}
+using HttpWebResponse response = client.Get(new Headers { Text = "World" });
+response.Headers["X-Response"] // "World"
 
 string response = client.Get(new Strings { Text = "World" });
 response // Hello, World
@@ -280,20 +274,16 @@ byte[] response = client.Get(new Bytes {
 });
 var guid = new Guid(response);
 
-using (Stream stream = client.Get(new Streams { Text = Guid.NewGuid().ToString() })) 
-{
-    var guid = new Guid(response.ReadFully());
-}
+using Stream stream = client.Get(new Streams { Text = Guid.NewGuid().ToString() });
+var guid = new Guid(response.ReadFully());
 ```
 
 All these APIs are also available asynchronously as well:
 
 ```csharp
-using (HttpWebResponse response = await client.GetAsync(
-    new Strings { Text = "Test" })) 
-{
-    response.Headers["X-Response"] // "World"
-}
+HttpWebResponse response = await client.GetAsync(
+    new Strings { Text = "Test" });
+response.Headers["X-Response"] // "World"
 
 string response = await client.GetAsync(
     new Strings { Text = "World" });
@@ -304,12 +294,10 @@ byte[] response = await client.GetAsync(new Bytes {
 });
 var guid = new Guid(response);
 
-using (Stream stream = await client.GetAsync(new Streams { 
+using Stream stream = await client.GetAsync(new Streams { 
     Text = Guid.NewGuid().ToString() 
-})) 
-{
-    var guid = new Guid(response.ReadFully());
-}
+});
+var guid = new Guid(response.ReadFully());
 ```
 
 > Note: You must explicitly dispose all APIs returning either `HttpWebResponse` or `Stream` as seen in the above examples.
@@ -598,12 +586,10 @@ the name of the file and the `Stream` of its contents, e.g:
 
 ```csharp
 var client = new JsonServiceClient(baseUrl);
-using (var fileStream = new FileInfo(filePath).OpenRead())
-{
-    var fileName = "upload.html";
-    var response = client.PostFile<FileUploadResponse>("/files/upload", 
-        fileStream, fileName, MimeTypes.GetMimeType(fileName));
-}
+using var fileStream = new FileInfo(filePath).OpenRead();
+var fileName = "upload.html";
+var response = client.PostFile<FileUploadResponse>("/files/upload", 
+    fileStream, fileName, MimeTypes.GetMimeType(fileName));
 ```
 
 Files uploaded using the `PostFile*` APIs are uploaded as a HTTP POST using the `multipart/form-data` Content-Type which can 
@@ -642,16 +628,14 @@ public class FileUpload : IReturn<FileUploadResponse>
 
 var client = new JsonHttpClient(baseUrl);
 var fileInfo = new FileInfo(filePath);
-using (var fileStream = fileInfo.OpenRead())
-{
-    var request = new FileUpload {
-        CustomerId = customerId,
-        CreatedDate = fileInfo.CreationTimeUtc,
-    };
+using var fileStream = fileInfo.OpenRead();
+var request = new FileUpload {
+    CustomerId = customerId,
+    CreatedDate = fileInfo.CreationTimeUtc,
+};
 
-    var response = client.PostFileWithRequest<FileUploadResponse>(
-        "/files/upload", fileStream, fileInfo.Name, request);
-}
+var response = client.PostFileWithRequest<FileUploadResponse>(
+    "/files/upload", fileStream, fileInfo.Name, request);
 ```
 
 ### Multiple File Uploads
@@ -661,35 +645,33 @@ streams within a single HTTP request. It supports populating Request DTO with an
 and POST'ed FormData in addition to multiple file upload data streams:
 
 ```csharp
-using (var stream1 = uploadFile1.OpenRead())
-using (var stream2 = uploadFile2.OpenRead())
-{
-    var client = new JsonServiceClient(baseUrl);
-    var response = client.PostFilesWithRequest<MultipleFileUploadResponse>(
-        "/multi-fileuploads?CustomerId=123",
-        new MultipleFileUpload { CustomerName = "Foo,Bar" },
-        new[] {
-            new UploadFile("upload1.png", stream1),
-            new UploadFile("upload2.png", stream2),
-        });
-}
+using var stream1 = uploadFile1.OpenRead();
+using var stream2 = uploadFile2.OpenRead();
+
+var client = new JsonServiceClient(baseUrl);
+var response = client.PostFilesWithRequest<MultipleFileUploadResponse>(
+    "/multi-fileuploads?CustomerId=123",
+    new MultipleFileUpload { CustomerName = "Foo,Bar" },
+    new[] {
+        new UploadFile("upload1.png", stream1),
+        new UploadFile("upload2.png", stream2),
+    });
 ```
 
 Example using only a Typed Request DTO. The `JsonHttpClient` also includes async equivalents for each of the 
 `PostFilesWithRequest` APIs:
 
 ```csharp
-using (var stream1 = uploadFile1.OpenRead())
-using (var stream2 = uploadFile2.OpenRead())
-{
-    var client = new JsonHttpClient(baseUrl);
-    var response = await client.PostFilesWithRequestAsync<MultipleFileUploadResponse>(
-        new MultipleFileUpload { CustomerId = 123, CustomerName = "Foo,Bar" },
-        new[] {
-            new UploadFile("upload1.png", stream1),
-            new UploadFile("upload2.png", stream2),
-        });
-}
+using var stream1 = uploadFile1.OpenRead();
+using var stream2 = uploadFile2.OpenRead();
+
+var client = new JsonHttpClient(baseUrl);
+var response = await client.PostFilesWithRequestAsync<MultipleFileUploadResponse>(
+    new MultipleFileUpload { CustomerId = 123, CustomerName = "Foo,Bar" },
+    new[] {
+        new UploadFile("upload1.png", stream1),
+        new UploadFile("upload2.png", stream2),
+    });
 ```
 
 ### ServiceClient URL Resolvers
