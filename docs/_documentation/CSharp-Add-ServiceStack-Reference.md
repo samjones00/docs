@@ -104,6 +104,17 @@ nativeTypes.MetadataTypesConfig.MakeVirtual = false;
 
 We'll go through and cover each of the above options to see how they affect the generated DTOs:
 
+### GlobalNamespace
+
+Specify which namespace the generated C# DTOs should use:
+
+```csharp
+namespace Acme 
+{
+    //...
+}
+```
+
 ### MakePartial
 
 Adds the `partial` modifier to all types, letting you extend generated DTOs with your own class separate from the generated types:
