@@ -102,6 +102,23 @@ nativeTypes.MetadataTypesConfig.MakeVirtual = false;
 ...
 ```
 
+### Customize DTO Type generation
+
+Some C# specific customization are statically configured like the `PreTypeFilter` available in all languages can be used to inject custom code 
+in the generated DTOs output. 
+
+E.g. you can use this feature to add the `[Serializable]` attribute on all C# DTO Types with:
+
+```csharp
+CSharpGenerator.PreTypeFilter = (sb, type) => 
+{
+    if (!type.IsEnum.GetValueOrDefault() && !type.IsInterface.GetValueOrDefault())
+    {
+        sb.AppendLine("[Serializable]");
+    }
+};
+```
+
 We'll go through and cover each of the above options to see how they affect the generated DTOs:
 
 ### GlobalNamespace
@@ -364,22 +381,6 @@ This lets you change the default DataContract XML namespace used for all C# name
 ```
 
 > Requires AddDataContractAttributes=true
-
-### Customize DTO Type generation 
-
-The `PreTypeFilter` available in all languages can be used to inject custom code in the generated DTOs output. 
-
-E.g. you can use this feature to add the `[Serializable]` attribute on all C# DTO Types with:
-
-```csharp
-CSharpGenerator.PreTypeFilter = (sb, type) => 
-{
-    if (!type.IsEnum.GetValueOrDefault() && !type.IsInterface.GetValueOrDefault())
-    {
-        sb.AppendLine("[Serializable]");
-    }
-};
-```
 
 ## Xamarin Studio
 
