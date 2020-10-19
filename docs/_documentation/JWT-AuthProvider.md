@@ -18,7 +18,16 @@ At a minimum you'll need to specify the `AuthKey` that will be used to Sign and 
 Whilst creating a new one in memory as above will work, a new Auth Key will be created every time the 
 AppDomain recycles which will invalidate all existing JWT Tokens created with the previous key. 
 
-So you'll typically want to generate the AuthKey out-of-band and configure it with the `JwtAuthProvider` at
+### Generate new Auth Key
+
+You can create a new **Base64 Auth Key** by running the code snippet below locally or 
+[on Gistlyn](https://gistlyn.com/?gist=a21185aaa7a49038564ec497460cec73):
+
+```csharp
+var base64Key = System.Convert.ToBase64String(ServiceStack.AesUtils.CreateKey());
+```
+
+You'll typically want to generate the AuthKey out-of-band and configure it with the `JwtAuthProvider` at
 registration which you can do in code using any of the [AppSettings providers](/appsettings):
 
 ```csharp
