@@ -365,7 +365,7 @@ whose default values can be modified at `AuthFeature.AuthSecretSession`:
  - `Roles`: Admin
  - `UserAuthId`: 0
 
-### Embedded Login Page fallback
+### Embedded Login Page
 
 `AuthFeature` adds a fallback **/login.html** page if the `HtmlRedirect` remains unchanged and no `/login.html` exists, otherwise
 if using a custom `/login` page in either **Razor** or **Script Pages** they'll continue to be used instead.
