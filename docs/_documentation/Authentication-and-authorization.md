@@ -383,6 +383,8 @@ new AuthFeature {
 }
 ```
 
+The login page supports same `continue` or `ReturnUrl` redirect params as [Logout API](#logout).
+
 ## World Validation
 
 See the annotated [World Validation Docs](/world-validation) for a detailed walks through and showcases the implementation 
