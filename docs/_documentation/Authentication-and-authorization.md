@@ -577,9 +577,11 @@ You can do a GET or POST to `/auth/logout` to logout the authenticated user or i
 client.Post(new Authenticate { provider = "logout" });
 ```
 
-> Logging out will remove the Users Session from the Server and Session Cookies from the Client and redirect to the url in Authenticate.Continue, session.ReferrerUrl, 'Referer' HTTP Header or AuthProvider.CallbackUrl.
+#### Redirect URL
 
-***
+Logging out will remove the Users Session from the Server and Session Cookies from the Client and redirect to the url in 
+`continue`, `ReturnUrl` or configured `AuthFeature.HtmlRedirectReturnParam` **QueryString** or **FormData** Request param. 
+If no redirect is specified it will fallback to redirect to `session.ReferrerUrl`, `Referer` HTTP Header or configured `AuthProvider.CallbackUrl`.
 
 ### Authenticating with .NET Service Clients
 
