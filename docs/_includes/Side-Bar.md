@@ -153,6 +153,7 @@
     - [Sessions](/sessions)
     - [JWT AuthProvider](/jwt-authprovider)
     - [API Key AuthProvider](/api-key-authprovider)
+    - [Sign in with Apple AuthProvider](/signin-with-apple)
     - [Open Id 2.0 Support](/openid)
     - [Restricting Services](/restricting-services)
     - [Anti Forgery](/anti-forgery)
