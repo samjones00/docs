@@ -79,7 +79,7 @@ Finally you can allow registration of any other OpenId 2.0 provider at run-time 
 
 The above sample markup from the [Bootstrap Api project Index.cshtml](https://github.com/ServiceStack/SocialBootstrapApi/blob/master/src/SocialBootstrapApi/Views/Shared/Index.cshtml#L366) page, which when rendered looks like:
 
-[![ServiceStack OpenId 2.0 Providers](http://www.servicestack.net/files/openid-form.png)](http://bootstrapapi.apphb.com)
+[![ServiceStack OpenId 2.0 Providers](https://raw.githubusercontent.com/ServiceStackV3/Mono/master/src/Mono/files/openid-form.png)](http://bootstrapapi.apphb.com)
 
 For a live demo of ServiceStack's Auth Providers in action check out the MVC + ServiceStack enabled [Bootstrap API project](http://bootstrapapi.apphb.com).
 
