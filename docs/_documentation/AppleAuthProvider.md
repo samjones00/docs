@@ -3,16 +3,16 @@ slug: signin-with-apple
 title: Sign in with Apple Auth Provider
 ---
 
-ServiceStack Sign In with Apple Integration Examples
+ServiceStack Sign In with Apple Auth Provider docs & Integration docs from [github.com/NetCoreApps/AppleSignIn](https://github.com/NetCoreApps/AppleSignIn).
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/web-signin-with-apple-login.png)
 
 ### Sign In with Apple Requirements
 
- - Membership **Team ID** from https://developer.apple.com/account/#/membership/
- - Create & configure **App ID** from https://developer.apple.com/account/resources/identifiers/list
- - Use **App ID** to create & configure **Service ID** from https://developer.apple.com/account/resources/identifiers/list/serviceId
- - Use **App ID** to create & configure **Private Key** from https://developer.apple.com/account/resources/authkeys/list
+ - Membership **Team ID** from [developer.apple.com/account/#/membership/](https://developer.apple.com/account/#/membership/)
+ - Create & configure **App ID** from [developer.apple.com/account/resources/identifiers/list](https://developer.apple.com/account/resources/identifiers/list)
+ - Use **App ID** to create & configure **Service ID** from [developer.apple.com/account/resources/identifiers/list/serviceId](https://developer.apple.com/account/resources/identifiers/list/serviceId)
+ - Use **App ID** to create & configure **Private Key** from [developer.apple.com/account/resources/authkeys/list](https://developer.apple.com/account/resources/authkeys/list)
 
 #### App Requirements Walkthrough
 
