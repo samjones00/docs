@@ -2,27 +2,43 @@
 slug: swift-add-servicestack-reference
 ---
 
-![Swift iOS, XCode and OSX Banner](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/swift-logo-banner.jpg)
+![Swift iOS, XCode and macOS Banner](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/swift-logo-banner.jpg)
 
 ## Swift
 
-ServiceStack's **Add ServiceStack Reference** feature lets iOS/OSX developers easily generate an native 
-typed Swift API for your ServiceStack Services using the `swift-ref` OSX command-line utility.
+ServiceStack's **Add ServiceStack Reference** feature lets iOS/macOS developers easily generate an native 
+typed Swift API for your ServiceStack Services using the `x` dotnet command-line tool.
 
-## @servicestack/cli - Simple command-line utils for ServiceStack
+## Simple command-line utils for ServiceStack
 
-The [@servicestack/cli command-line utils](https://github.com/ServiceStack/servicestack-cli) provides a simple command-line UX to easily Add and Update Swift ServiceStack References.
+The [x dotnet tool](https://docs.servicestack.net/dotnet-tool) provides a simple command-line UX to easily Add and Update Swift ServiceStack References.
 
-### Install swift-ref
+Prerequisites: Install [.NET Core](https://dotnet.microsoft.com/download).
 
-Prerequisites: Install [Node.js](https://nodejs.org/en/download/).
+    $ dotnet tool install --global x 
 
-    $ npm install -g @servicestack/cli
+This will make the `x` dotnet tool available in your `$PATH` which can now be used from within a **Terminal window** at your Xcode project folder.
 
-This will make the `swift-ref` script available in your `$PATH` which can now be used from within a **Terminal window** at your Xcode project folder.
+To use the latest `JsonServiceClient` you'll need to add a reference to ServiceStack Swift library using your preferred package manager:
 
-To use the latest `JsonServiceClient` with [PromiseKit v6](https://promisekit.org/news/2018/02/PromiseKit-6.0-Released/) you'll need to add
-a reference to ServiceStack Swift library using your preferred package manager:
+### Xcode
+
+From Xcode 12 the Swift Package Manager is built into Xcode.
+
+Go to **File** > **Swift Packages** > **Add Package Dependency**:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/xcode-swift-add-package.png)
+
+Add a reference to the ServiceStack.Swift GitHub repo:
+
+    https://github.com/ServiceStack/ServiceStack.Swift
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/xcode-add-servicestack-swift.png)
+
+After adding the dependency both [ServiceStack.Swift](https://github.com/ServiceStack/ServiceStack.Swift) and its 
+[PromiseKit](https://github.com/mxcl/PromiseKit) dependency will be added to your project:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/xcode-servicestack-swift-added.png)
 
 #### CocoaPods
 
@@ -49,60 +65,44 @@ package.dependencies.append(
 )
 ```
 
-### Inline JsonServiceClient.swift
-
-Prior to PromiseKit v6 you can use 
-[JsonServiceClient.swift](https://github.com/ServiceStack/ServiceStack.Swift/blob/master/dist/JsonServiceClient.swift)
-available as a single source file which you can drop in your project.
-
-The only change to the generated DTOs [overriding the DefaultImports](#defaultimports) to exclude `ServiceStack` module, e.g:
-
-```swift
-/*Options:
-...
-
-DefaultImports: Foundation
-*/
-```
-
 ### Add a new ServiceStack Reference
 
-To Add a new ServiceStack Reference, call `swift-ref` with the Base URL to a remote ServiceStack instance:
+To Add a new ServiceStack Reference, call `x swift` with the Base URL to a remote ServiceStack instance:
 
-    swift-ref {BaseUrl}
-    swift-ref {BaseUrl} {FileName}
+    x swift {BaseUrl}
+    x swift {BaseUrl} {FileName}
 
 Where if no FileName is provided, it's inferred from the host name of the remote URL, e.g:
 
-    swift-ref http://techstacks.io
+    x swift http://techstacks.io
 
 Downloads the Typed Swift DTOs for [techstacks.io](http://techstacks.io) and saves them to `techstacks.dtos.swift`. 
 
 Alternatively you can have it saved to a different FileName with:
 
-    swift-ref http://techstacks.io TechStacks
+    x swift http://techstacks.io TechStacks
 
 Which instead saves the DTOs to `TechStacks.dtos.swift`.
 
-`swift-ref` also downloads [ServiceStack's Swift Client](https://github.com/ServiceStack/ServiceStack.Swift) 
+`x swift` also downloads [ServiceStack's Swift Client](https://github.com/ServiceStack/ServiceStack.Swift) 
 and saves it to `JsonServiceClient.swift` which together with the Server DTOs contains all the dependencies 
 required to consume Typed Web Services in Swift.
 
 #### Update an existing ServiceStack Reference
 
-The easiest way to update all your Swift Server DTOs is to just call `swift-ref` without any arguments:
+The easiest way to update all your Swift Server DTOs is to just call `x swift` without any arguments:
 
-    swift-ref
+    x swift
 
 This will go through and update all your `*.dtos.swift` Service References.
 
-To Update a specific ServiceStack Reference, call `swift-ref` with the Filename:
+To Update a specific ServiceStack Reference, call `x swift` with the Filename:
 
-    swift-ref {FileName.dtos.swift}
+    x swift {FileName.dtos.swift}
 
 As an example, you can Update the Server DTOs added in the previous command with:
 
-    swift-ref TechStacks.dtos.swift
+    x swift TechStacks.dtos.swift
 
 Which also includes any 
 [Customization Options](https://docs.servicestack.net/swift-add-servicestack-reference#swift-configuration) 
@@ -386,7 +386,7 @@ The minor differences are primarily due to differences in Swift which instead of
 
 ### JsonServiceClient Usage
 
-If you've ever had to make HTTP requests using Objective-C's `NSURLConnection` or `NSURLSession` static classes in iOS or OSX, you'll appreciate the typing benefits and productivity offered by the higher-level API's in `JsonServiceClient` - which enable the same ideal client API's we've enjoyed in ServiceStack's .NET Clients, in Swift Apps! 
+If you've ever had to make HTTP requests using Objective-C's `NSURLConnection` or `NSURLSession` static classes in iOS or macOS, you'll appreciate the typing benefits and productivity offered by the higher-level API's in `JsonServiceClient` - which enable the same ideal client API's we've enjoyed in ServiceStack's .NET Clients, in Swift Apps! 
 
 > A nice benefit of using JsonServiceClient over static classes is that Service calls can be easily substituted and mocked with the above `ServiceClient` protocol, making it easy to test or stub out the external Gateway calls whilst the back-end is under development.
 
@@ -573,7 +573,7 @@ All remote Service Calls used by the App are encapsulated into a single [AppData
 
 ### MVC and Key-Value Observables (KVO)
 
-If you've ever had to implement `INotifyPropertyChanged` in .NET, you'll find the built-in model binding capabilities in iOS/OSX a refreshing alternative thanks to Objective-C's underlying `NSObject` which automatically generates change notifications for its KV-compliant properties. UIKit and Cocoa frameworks both leverage this feature to enable its [Model-View-Controller Pattern](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html). 
+If you've ever had to implement `INotifyPropertyChanged` in .NET, you'll find the built-in model binding capabilities in iOS/macOS a refreshing alternative thanks to Objective-C's underlying `NSObject` which automatically generates change notifications for its KV-compliant properties. UIKit and Cocoa frameworks both leverage this feature to enable its [Model-View-Controller Pattern](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html). 
 
 As keeping UI's updated with Async API callbacks can get unwieldy, we wanted to go through how we're taking advantage of NSObject's KVO support in Service Responses to simplify maintaining dynamic UI's.
 
@@ -704,13 +704,13 @@ public func loadImageAsync(url:String) -> Promise<UIImage?> {
 }
 ```
 
-## [TechStacks OSX Desktop App](https://github.com/ServiceStackApps/TechStacksDesktopApp)
+## [TechStacks macOS Desktop App](https://github.com/ServiceStackApps/TechStacksDesktopApp)
 
 As `JsonServiceClient.swift` has no external dependencies and only relies on core `Foundation` classes it 
-can be used anywhere Swift can including OSX Cocoa Desktop and Command Line Apps and Frameworks.
+can be used anywhere Swift can including macOS Cocoa Desktop and Command Line Apps and Frameworks.
 
 Most of the API's used in TechStacks iOS App are standard typed Web Services calls. There is also a 
-[TechStacks OSX Desktop](https://github.com/ServiceStackApps/TechStacksDesktopApp) 
+[TechStacks macOS Desktop](https://github.com/ServiceStackApps/TechStacksDesktopApp) 
 available which showcases how easy it is to call ServiceStack's dynamic 
 [AutoQuery Services](/autoquery) and how much auto-querying functionality they can provide for free.
 
