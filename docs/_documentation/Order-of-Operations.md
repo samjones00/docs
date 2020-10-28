@@ -39,13 +39,12 @@ Any time you close the Response in any of your filters, i.e. `httpRes.EndRequest
 
 MQ Requests are executed using `ServiceController.ExecuteMessage` for invoking **internal/trusted** Services such as [ServiceStack MQ](/messaging):
 
-  1. Any [Global Request Filters](/request-and-response-filters#message-queue-endpoints) get executed
-  2. Followed by [Request Filter Attributes][3] with **Priority >= 0**
-  3. Action Request Filters
-  4. Then your **Service is executed** with the configured [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and its **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
-  5. Action Response Filters
-  6. Then [Global Response Filters](/request-and-response-filters#message-queue-endpoints) 
-  7. Finally at the end of the Request `IAppHost.OnEndRequest` is fired
+  1. Any `Message` [Global Request Filters](/request-and-response-filters#message-queue-endpoints) get executed
+  2. Action Request Filters
+  3. Then your **Service is executed** with the configured [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and its **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
+  4. Action Response Filters
+  5. Then `Message` [Global Response Filters](/request-and-response-filters#message-queue-endpoints) 
+  6. Finally at the end of the Request `IAppHost.OnEndRequest` is fired
 
 ## RpcGateway
 
