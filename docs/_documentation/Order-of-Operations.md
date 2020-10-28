@@ -37,6 +37,8 @@ Any time you close the Response in any of your filters, i.e. `httpRes.EndRequest
 
 ## MQ (non-HTTP) Custom hooks
 
+MQ Requests are executed using `ServiceController.ExecuteMessage` for invoking **internal/trusted** Services such as [ServiceStack MQ](/messaging):
+
   1. Any [Global Request Filters](/request-and-response-filters#message-queue-endpoints) get executed
   2. Followed by [Request Filter Attributes][3] with **Priority >= 0**
   3. Action Request Filters
