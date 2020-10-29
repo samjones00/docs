@@ -7,6 +7,10 @@ title: ServiceStack Studio
 
 The richer metadata in ServiceStack Services allows Studio to logically group Services around Data Models, enabling its high-level semantic features like its native data-grid like UX over all AutoQuery Services to quickly discover, search, create, update and delete entities based on the available AutoQuery APIs and whether Authenticated Users have access to them.
 
+Install the [app dotnet tool](/netcore-windows-desktop) then launch with:
+
+#### [app://studio](app://studio)
+
 > YouTube: [youtu.be/2FFRLxs7orU](https://youtu.be/2FFRLxs7orU)
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-home.png)](https://youtu.be/2FFRLxs7orU)
