@@ -35,6 +35,17 @@ Requests handled by ServiceStack execute the custom hooks and filters in the fol
 
 Any time you close the Response in any of your filters, i.e. `httpRes.EndRequest()` the processing of the response is short-circuited and no further processing is done on that request.
 
+## Internal Service Gateway Requests
+
+Internal [Service Gateway](/service-gateway) Requests are executed using `ServiceController.GatewayExecuteAsync` API for invoking **internal/trusted** Services:
+
+  1. Any `Gateway` [Global Request Filters](/request-and-response-filters#global-request-and-response-filters) get executed
+  2. Any Validation Filters
+  3. Action Request Filters
+  4. Then your **Service is executed** with the configured [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) and its **OnBeforeExecute**, **OnAfterExecute** and **HandleException** custom hooks are fired
+  5. Action Response Filters
+  6. Then `Gateway` [Global Response Filters](/request-and-response-filters#global-request-and-response-filters) 
+
 ## MQ (non-HTTP) Custom hooks
 
 MQ Requests are executed using `ServiceController.ExecuteMessage` for invoking **internal/trusted** Services such as [ServiceStack MQ](/messaging):
