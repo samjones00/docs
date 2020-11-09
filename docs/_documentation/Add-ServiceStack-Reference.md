@@ -475,9 +475,9 @@ public class Request : IReturn<Response>
 
 Starting from a C# model, whilst naturally a better programmatic fit also ends up being richer and more expressive than XSD's which supports additional metadata annotations like Attributes and Interfaces. 
 
-### Enabled by default from v4.0.30+ ServiceStack Projects
+### Remove Native Types Feature
 
-Native Types is now available by default on all **v4.0.30+** ServiceStack projects. It can be disabled by removing the `NativeTypesFeature` plugin with:
+Native Types is enabled by default in ServiceStack projects. It can be disabled by removing the `NativeTypesFeature` plugin with:
 
 ```csharp
 Plugins.RemoveAll(x => x is NativeTypesFeature);
