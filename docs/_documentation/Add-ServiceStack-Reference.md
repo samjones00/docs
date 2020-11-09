@@ -477,7 +477,7 @@ Starting from a C# model, whilst naturally a better programmatic fit also ends u
 
 ### Remove Native Types Feature
 
-Native Types is enabled by default in ServiceStack projects. It can be disabled by removing the `NativeTypesFeature` plugin with:
+Native Types is enabled by default in ServiceStack projects. It can be disabled by removing the `NativeTypesFeature` plugin:
 
 ```csharp
 Plugins.RemoveAll(x => x is NativeTypesFeature);
