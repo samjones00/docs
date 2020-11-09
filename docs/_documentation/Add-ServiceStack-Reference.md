@@ -495,10 +495,10 @@ This model is then used to generate the generated types, which for C# is at `/ty
 
 ### Excluding Types from Add ServiceStack Reference
 
-To remove a type from the metadata and code generation you can annotate Request DTOs with `[Exclude(Feature.Metadata)]`, e.g:
+To remove a type from the metadata and code generation you can annotate Request DTOs with `[ExcludeMetadata]`, e.g:
 
 ```csharp
-[Exclude(Feature.Metadata)]
+[ExcludeMetadata]
 public class ExcludedFromMetadata
 {
     public int Id { get; set; }
