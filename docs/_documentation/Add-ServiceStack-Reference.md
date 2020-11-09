@@ -483,16 +483,6 @@ Native Types is enabled by default in ServiceStack projects. It can be disabled 
 Plugins.RemoveAll(x => x is NativeTypesFeature);
 ```
 
-### Generating Types from Metadata
-
-Behind the scenes ServiceStack captures all metadata on your Services DTOs including Sub -classes, Routes, `IReturn` marker, C# Attributes, textual Description as well as desired configuration into a serializable object model accessible from `/types/metadata`: 
-
-#### Live examples
-
-  - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata) ([JSON](http://stackapis.netcore.io/types/metadata.json))
-
-This model is then used to generate the generated types, which for C# is at `/types/csharp`.
-
 ### Excluding Types from Add ServiceStack Reference
 
 To remove a type from the metadata and code generation you can annotate Request DTOs with `[ExcludeMetadata]`, e.g:
@@ -547,6 +537,16 @@ nativeTypes.MetadataTypesConfig.AddImplicitVersion = 1;
 ```
 
 Alternatively you can configure [AddImplicitVersion in client Options](/csharp-add-servicestack-reference#addimplicitversion).
+
+### Generating Types from Metadata
+
+Behind the scenes ServiceStack captures all metadata on your Services DTOs including Sub -classes, Routes, `IReturn` marker, C# Attributes, textual Description as well as desired configuration into a serializable object model accessible from `/types/metadata`: 
+
+#### Live examples
+
+  - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata) ([JSON](http://stackapis.netcore.io/types/metadata.json))
+
+This model is then used to generate the generated types, which for C# is at `/types/csharp`.
 
 ### How it works
 
