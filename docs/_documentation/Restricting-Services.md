@@ -68,6 +68,18 @@ A popular configuration that takes advantage of this feature would be to only al
 public class InternalHttpAndExternalHttps { }
 ```
 
+### Hiding Services from Metadata
+
+You can use the `[Exclude*]` attributes to hide Services from appearing in your public metadata services:
+
+```csharp
+[ExcludeMetadata]
+public class InternalService : IReturnVoid {}
+
+[Exclude(Feature.Metadata | Feature.Soap)]
+public class InternalService : IReturnVoid {}
+```
+
 ### Restricting built-in Services
 
 In addition to statically annotating classes, you can also add .NET Attributes at runtime to restrict Services 
