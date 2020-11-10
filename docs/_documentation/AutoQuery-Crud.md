@@ -130,6 +130,7 @@ and to Query the Rockstar table you have the [full featureset of AutoQuery](/aut
 
 AutoQuery CRUD extends existing [querying functionality in AutoQuery](/autoquery-rdbms) with additional features covering common functionality in CRUD operations:
 
+ - `[AutoApply]` - Apply built-in composite generic behavior
  - `[AutoPopulate]` - Populate data models with generic user & system info
  - `[AutoFilter]` - Apply pre-configured filters to query operations
  - `[AutoMap]` - Map System Input properties to Data Model fields
