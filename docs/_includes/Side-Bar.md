@@ -6,7 +6,7 @@
     - [Servicify existing Systems](/servicify)
     - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
 - ##### Releases
-    - [Latest Release Notes](/releases/v5.9)
+    - [Latest Release Notes](/releases/v5.10)
     - [Release Notes History](/release-notes-history)
     - [Pre-release MyGet Packages](/myget)
 - ##### Getting Started
