@@ -126,6 +126,18 @@ public class DeleteRockstar : IDeleteDb<Rockstar>, IReturnVoid
 
 and to Query the Rockstar table you have the [full featureset of AutoQuery](/autoquery-rdbms) for a complete set of CRUD Services without needing to provide any implementations.
 
+### AutoQuery CRUD Attributes
+
+AutoQuery CRUD extends existing [querying functionality in AutoQuery](/autoquery-rdbms) with additional features covering common functionality in CRUD operations:
+
+ - `[AutoPopulate]` - Populate data models with generic user & system info
+ - `[AutoFilter]` - Apply pre-configured filters to query operations
+ - `[AutoMap]` - Map System Input properties to Data Model fields
+ - `[AutoDefault]` - Specify to fallback default values when not provided
+ - `[AutoIgnore]` - Ignore mapping Request DTO property to Data Model
+
+Each of these are covered in more detail in the docs and examples below.
+
 ### Advanced CRUD Example
 
 Lets now explore a more advanced example that implements Audit information as well as layered support for multi-tenancy to see how you can easily compose features.
