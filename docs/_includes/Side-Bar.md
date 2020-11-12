@@ -38,9 +38,9 @@
     - [Tour of Webpack](/tour-of-webpack)
 - ##### ServiceStack Studio
     - [Overview](/studio)
-    - [User Management](/studio-users)
-    - [AutoQuery UI](/studio-autoquery)
-    - [DB Validation Rules](/studio-validation-rules)
+    - [Studio - User Management](/studio-users)
+    - [Studio - AutoQuery UI](/studio-autoquery)
+    - [Studio - DB Validation Rules](/studio-validation-rules)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
