@@ -63,13 +63,13 @@ Whilst not optimized for it, **Studio** can also be launched headless in your de
 
 Where you'll then be able to view it by going to `https://localhost:5002`. Note if not launched in a browser **Studio** will have limited capacity and features, but will eventually be a supported mode for accessing **Studio** from macOS or Linux.
 
-### Home Page
+## Home Page
 
 From the home page you'll see all the top-level Admin Sections available that's enabled on the remote instance, in the initial release there's a UI for [Managing Users](/studio-users), accessing [AutoQuery Services](/studio-autoquery) and a UI for maintaining [DB Validation Rules](/studio-validation-rules) which automatically appear against each remote ServiceStack instance depending on whether they have each feature enabled or not.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/studio/studio-home.png)
 
-### [User Management](/studio-users)
+## [User Management](/studio-users)
 
 For ServiceStack instances with the `AdminUsersFeature` plugin, **Admin** users will be able to manage system users, change their passwords, Assign Roles & Permissions, temporarily Lock or permanently delete users. The plugin is highly flexible with graceful support for all Auth Providers, custom UserAuth data models and configurable editable & queryable fields.
 
@@ -79,13 +79,9 @@ For ServiceStack instances with the `AdminUsersFeature` plugin, **Admin** users 
 
 [Admin Users docs](/studio-users)
 
-### [AutoQuery UI](/studio-autoquery)
+## [AutoQuery UI](/studio-autoquery)
 
 Studio's AutoQuery UI provides an instant intuitive UI around your ServiceStack AutoQuery Services allowing users to immediately hit the ground running and input system data as per their fine-grained authorization rules and configured validation rules.
-
-> YouTube demo: [Create Bookings](https://youtu.be/XpHAaCTV7jE?t=361)
-
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)](https://youtu.be/XpHAaCTV7jE?t=361)
 
 > YouTube demo: [Querying Northwind](https://youtu.be/2FFRLxs7orU?t=16)
 
@@ -93,7 +89,11 @@ Studio's AutoQuery UI provides an instant intuitive UI around your ServiceStack 
 
 [AutoQuery UI docs](/studio-autoquery)
 
-### [Validation Rules UI](/studio-validation-rules)
+### AutoQuery + Studio Demo
+
+To see how productive the power combo of AutoQuery + ServiceStack Studio is together checkout the [AutoQuery CRUD Bookings Demo](/autoquery-crud-bookings) showing how to create a multi-user Bookings System from scratch within minutes.
+
+## [Validation Rules UI](/studio-validation-rules)
 
 For ServiceStack instances that have a Validation Source registered, **Admin** users will be able to specify additional Validation Rules & have them immediately applied at runtime, where they'll be instantly verified in all existing [ServiceStack Apps with Validation enabled](/world-validation) without any changes.
 
