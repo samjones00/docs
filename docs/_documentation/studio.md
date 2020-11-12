@@ -65,214 +65,43 @@ Where you'll then be able to view it by going to `https://localhost:5002`. Note 
 
 ### Home Page
 
-From the home page you'll see all the top-level Admin Sections available that's enabled on the remote instance, in the initial release there's a UI for accessing **AutoQuery Services** and a UI for maintaining **DB Validation Rules**.
+From the home page you'll see all the top-level Admin Sections available that's enabled on the remote instance, in the initial release there's a UI for [Managing Users](/studio-users), accessing [AutoQuery Services](/studio-autoquery) and a UI for maintaining [DB Validation Rules](/studio-validation-rules) which automatically appear against each remote ServiceStack instance depending on whether they have each feature enabled or not.
 
-### AutoQuery UI
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/studio/studio-home.png)
 
-Studio uses the rich declarative metadata of AutoQuery & Crud Services to infer the **data model** that each AutoQuery Service operates on and the **Operation Type** they provide. As a result it can logically group each Service around the Data Model they operate on to provide a more intuitive & natural UI for each of the different AutoQuery/CRUD operation types.
+### [User Management](/studio-users)
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)
+For ServiceStack instances with the `AdminUsersFeature` plugin, **Admin** users will be able to manage system users, change their passwords, Assign Roles & Permissions, temporarily Lock or permanently delete users. The plugin is highly flexible with graceful support for all Auth Providers, custom UserAuth data models and configurable editable & queryable fields.
 
-What UI features & tables are visible is reflected by whether the AutoQuery Service for that type exists and whether the currently authenticated User has access to them (i.e. Have the role required by each Service). So an unauthenticated user will see Northwind Crud's read-only **Region** table with no ability to update it & the **Territory** table, which as it isn't protected by a role will be visible to everyone, 
-but as all CRUD Write operations require authentication, all edit controls require authentication - as shown in the screenshot above where they're replaced with auth **Sign In** buttons.
+> YouTube demo - Create Users [youtu.be/XpHAaCTV7jE?t=321](https://youtu.be/XpHAaCTV7jE?t=321)
 
-Here are the relevant [NorthwindCrud auto-generation rules](https://github.com/NetCoreApps/NorthwindCrud/blob/master/Startup.cs) which defines this behavior:
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/studio/bookings-crud-screenshot.png)](https://youtu.be/XpHAaCTV7jE?t=321)
 
-```csharp
-var readOnlyTables = new[] { "Region" };
-GenerateCrudServices = new GenerateCrudServices {
-    ServiceFilter = (op,req) => {
-        // Require all Write Access to Tables to be limited to Authenticated Users
-        if (op.IsCrudWrite())
-        {
-            op.Request.AddAttributeIfNotExists(new ValidateRequestAttribute("IsAuthenticated"), 
-                x => x.Validator == "IsAuthenticated");
-        }
-    },
-    //Don't generate the Services or Types for Ignored Tables
-    IncludeService = op => !ignoreTables.Any(table => op.ReferencesAny(table)) &&
-        !(op.IsCrudWrite() && readOnlyTables.Any(table => op.ReferencesAny(table))),
-}
-```
+[Admin Users docs](/studio-users)
 
-Clicking on any of the **Auth** icons or the **Sign In** button on the top right will open up the Sign In dialog.
+### [AutoQuery UI](/studio-autoquery)
 
-### Integrated Auth Component
+Studio's AutoQuery UI provides an instant intuitive UI around your ServiceStack AutoQuery Services allowing users to immediately hit the ground running and input system data as per their fine-grained authorization rules and configured validation rules.
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/auth.png)
+> YouTube demo: [Create Bookings](https://youtu.be/XpHAaCTV7jE?t=361)
 
-The **Sign In** dialog supports most of ServiceStack's built-in Auth Providers with a different Auth Dialog tab depending which Auth Providers are enabled. 
-It looks at "auth family type" to determine how to Authenticate with each Auth Provider so it should still support your Custom Auth Providers if they inherit from existing Auth Providers, otherwise they can explicitly specify which Type of Auth they use by overriding the `Type` property getter with one of the following:
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)](https://youtu.be/XpHAaCTV7jE?t=361)
 
-  - **Bearer** - Authenticate with HTTP Authentication Bearer Token (e.g. JWT or API Key)
-  - **credentials** - Authenticate with Username/Password at `/auth/credentials`
-  - **oauth** - Authenticate with OAuth
-  - **session** - Alternative [session-based Auth Provider](/authentication-and-authorization#session-authentication-overview)
+> YouTube demo: [Querying Northwind](https://youtu.be/2FFRLxs7orU?t=16)
 
-The **session** tab is also displayed if a `credentials` or `auth` provider is enabled. It should serve as a fallback Auth option if your Custom Auth Provider doesn't fit into the existing family types as it opens the `/auth` page of the remote ServiceStack instance:
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)](https://youtu.be/2FFRLxs7orU?t=16)
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/auth-session.png)
+[AutoQuery UI docs](/studio-autoquery)
 
-Where you can login to the remote site via the new fallback `/login` page or uses your custom Login Page if exists. If your remote instance is configured to allow Studio CORS access, i.e:
+### [Validation Rules UI](/studio-validation-rules)
 
-```csharp
-appHost.Plugins.Add(new CorsFeature(allowOriginWhitelist:new[]{ "https://localhost:5002" }));
-```
+For ServiceStack instances that have a Validation Source registered, **Admin** users will be able to specify additional Validation Rules & have them immediately applied at runtime, where they'll be instantly verified in all existing [ServiceStack Apps with Validation enabled](/world-validation) without any changes.
 
-Clicking on the **copy** button will then be able to post the session Id back to Studio & close the auth popup otherwise you'd need to 
-manually close the popup and paste the session in.
+> YouTube demo: [Northwind Validation](https://youtu.be/2FFRLxs7orU?t=75)
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/auth-session-copy.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-validator-property.png)](https://youtu.be/2FFRLxs7orU?t=75)
 
-The **OAuth** tab is a little different since it requires an OAuth redirect and since most 3rd Party OAuth providers disallow embedding in iframes,
-it needs to popup an external url in your default browser which still provides a nice auth UX as you'd typically already be Signed In with your 
-Default browser, where it will redirect you back to your `/auth` page where you can copy either the **Session Id** or the OAuth **Access Token** 
-if you enable including OAuth Access Tokens in your `AuthenticateResponse` DTO with:
-
-```csharp
-appHost.Plugins.Add(new AuthFeature(...) {
-    IncludeOAuthTokensInAuthenticateResponse = true, // Include OAuth Keys in authenticated /auth page
-});
-```
-
-This allows you to [Authenticate via OAuth Access Token](/authentication-and-authorization#authentication-via-oauth-accesstokens) where you can test 
-the same Authentication that Mobile and Desktop using pre-existing Sign In Widgets who also authenticate via OAuth Access Tokens obtained by their native UI widget:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/auth-page.png)
-
-**Studio** is able to provide a seamless UX where it's able to monitor the Windows clipboard for changes & when detected close the window, return focus back to Studio who uses it to automatically Sign In with the copied token.
-
-### Desktop User State & Preferences
-
-As is expected from a normal Desktop App, the User State of the App is preserved across restarts, which Studio maintains in its `$HOME/.servicestack/studio/site.settings` JSON file which preserves amongst other things what remote ServiceStack instances you've connected to & last queries made on each table, etc. When 
-not running in a Desktop App it will save it to your browsers `localStorage`. You can force a save with `Ctrl+S` or by clicking on the **save icon** on the top right.
-
-### AutoCrud Querying
-
-The same querying behavior, supported filters, custom fields, paging, order by's, etc. demonstrated in **SharpData** above are also available in **Studio**, but implemented differently, where instead of calling the SharpData API directly, the filters are translated into the equivalent AutoQuery request and 
-the remote AutoQuery Services are called instead, but as they both result in the same UX and end result, users knowledge is transferable:
-
-#### Search Filters
-
- - Use `=null` or `!=null` to search `NULL` columns
- - Use `<=`, `<`, `>`, `>=`, `<>`, `!=` prefix to search with that operator
- - Use `,` trailing comma to perform an `IN (values)` search (integer columns only)
- - Use `%` suffix or prefix to perform a `LIKE` search
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-query-filters.png)
-
-### Export to Excel
-
-Likewise the fast, direct export into Excel is also available, one difference is that the total results returned in a query is controlled by the remote ServiceStack AutoQuery plugin whereas **SharpData** allows for unlimited sized queries:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-excel.png)
-
-### AutoCrud Partial Updates
-
-The UI is designed to look similar to a generic RDBMS Admin UI Table Editor where you can edit records in a table grid. If a `IPatchDb<Table>` AutoQuery Service exists for the Data Model & the Authenticated User has access to it. 
-
-If enabled all fields (excl PK) on that Request DTO will be editable in the UI, otherwise they'll appear Read-only like the **Id** column:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-crud-partial.png)
-
-### AutoCrud Create
-
-If the user has access to the `ICreateDb<Table>` Service they'll be able to add records by clicking the *+* icon on the top-right of the resultset which brings up the Create Entity modal:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-crud-create.png)
-
-### AutoCrud Update and Delete
-
-If the user has access to the `IUpdateDb<Table>` Service they'll be able to update records by clicking on the **edit** icon which will bring up the Edit Entity dialog. If they have access to the `IDeleteDb<Table>` Service they'll also be able to delete the entity from the same screen:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-crud-update.png)
-
-### API Log Viewer
-
-All API Requests the UI makes to remote ServiceStack instances are made via a generic .NET Core back-end Service Proxy which attaches the Signed In Authentication Info to each Request. Each API Request Studio makes is recorded in the log viewer at the bottom, showing the Verb and Parameters each API was called with:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-request-log.png)
-
-> You can copy the URL from **GET** API Requests or open them up in a new browser to view it in isolation. 
-
-### Executable Audit History
-
-If you Sign In as the **Admin** User (i.e. using `AuthSecret=zsecret`) you'll get super user access to access the other protected features like being able to view an **Audit History** of updates made to each record via AutoQuery that's enabled in **NorthwindCrud** with:
-
-```csharp
-// Add support for auto capturing executable audit history for AutoCrud Services
-container.AddSingleton<ICrudEvents>(c => new OrmLiteCrudEvents(c.Resolve<IDbConnectionFactory>()));
-container.Resolve<ICrudEvents>().InitSchema();
-```
-
-Where users in the `AutoQueryFeature.AccessRole` (default: Admin) role will be able to view the Audit history of each row:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-audit.png)
-
-> If creating & deleting an entity with the same Id, the Audit History of the previous entity will be retained & visible
-
-### Validators UI
-
-As an **Admin** you'll also have access to the [DB Validation Source](https://forums.servicestack.net/t/autocrud-preview/8298/29?u=mythz) Admin UI which will let you add declarative Type and Property Validators for each Request DTO in Studio. This is enabled in NorthwindCrud in [Configure.Validation.cs](https://github.com/NetCoreApps/NorthwindCrud/blob/master/Configure.Validation.cs):
-
-```csharp
-// Add support for dynamically generated db rules
-services.AddSingleton<IValidationSource>(c => 
-    new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>()));
-
-//...
-appHost.Plugins.Add(new ValidationFeature());
-appHost.Resolve<IValidationSource>().InitSchema();
-```
-
-Management of this feature is limited to users in the `ValidationFeature.AccessRole` (default: Admin).
-
-Clicking on the Validation **Lock Icon** on the top right will take you to the Validation Editor for that AutoQuery Request DTO which will include quick links to jump to different AutoQuery/Crud Services for the same Data Model.
-
-In the validation editor you'll be able to create **Type** and **Property** Validation Rules that either make use of an existing **Validator** or you can enter a custom `#Script` expression that must validate to `true`. The Validator UI is smart and will list all built-in and Custom Script Methods returning `ITypeValidator` or `IPropertyValidator` that's registered in the remote instance. The pre-defined list of validators are displayed in a list of "quick pick" buttons that enables fast adding/editing of validation rules.
-
-#### Verified Rules
-
-The `ModifyValidationRules` Service that Studio calls performs a lot of validation to ensure the Validation rule is accurate including executing the validator to make sure it returns the appropriate validator type and checking the syntax on any **Script** validation rules to ensure it's valid.
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-validator-property.png)
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-db-validators.png)
-
-The `ModifyValidationRules` back-end Service also takes care of invalidating the validation rule cache so that any saved Validators are immediately applied. 
-
-Despite being sourced from a DB, after the first access the validation rules are cached in memory where they'd have similar performance to validators declaratively added on Request DTOs in code.
-
-After you add your validation rules you will be able to click the **AutoQuery** icon on the top right to return to the AutoQuery editor. Be mindful of what Validation Rule you're adding to which DTO, e.g. a validation rule added to **CreateCategory** Service will only be applied to that Service which is used when creating entities, e,g. not for full entity or partial field updates.
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-validators-create.png)
-
-### Metadata App Export / Discovery
-
-The way a generic capability-based Admin UI's like Studio is possible is via the `/metadata/app` API descriptor which describes what plugins and features are enabled on the remote ServiceStack instance. All built-in plugins which provide functionality that can be remotely accessed add their info to the App's metadata. 
-
-This functionality is also available to your own plugins should you wish to attach info about your plugin where you can use the `AddToAppMetadata` extension method to return a populated `CustomPlugin` DTO describing the features made available by your plugin:
-
-```csharp
-public class MyPlugin : IPlugin
-{
-    public void Register(IAppHost appHost)
-    {
-        appHost.AddToAppMetadata(meta => {
-            meta.CustomPlugins[nameof(MyPlugin)] = new CustomPlugin {
-                AccessRole = RoleNames.AllowAnyUser,                   // Required Role to access Services
-                ServiceRoutes = new Dictionary<string, string[]> {
-                    { nameof(MyPluginService), new[] { "/myplugin/{Id}" } }, // Available Plugin Services
-                },
-                Enabled = new List<string> { "feature1", "feature2" }, // What plugin features are enabled
-                Meta = new Dictionary<string, string> {
-                    ["custom"] = "meta" // additional custom metadata you want returned for this plugin
-                }
-            };
-        });
-    }
-}
-```
+[Validation Rules docs](/studio-validation-rules)
 
 ### Studio Desktop App vs ServiceStack.Admin
 

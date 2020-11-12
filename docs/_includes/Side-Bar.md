@@ -2,7 +2,6 @@
 - ##### Overview
     - [Why ServiceStack](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
-    - [ServiceStack Studio](/studio)
     - [Servicify existing Systems](/servicify)
     - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
 - ##### Releases
@@ -37,6 +36,11 @@
     - [Desktop Templates](/templates-desktop)
     - [Vue, React, Angular Components](/spa-components)
     - [Tour of Webpack](/tour-of-webpack)
+- ##### ServiceStack Studio
+    - [Overview](/studio)
+    - [User Management](/studio-users)
+    - [AutoQuery UI](/studio-autoquery)
+    - [DB Validation Rules](/studio-validation-rules)
 - ##### Background Concepts
     - [What is a Message-based WebService](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
@@ -204,6 +208,7 @@
     - [AutoQuery CRUD](/autoquery-crud)
     - [AutoQuery Audit Log](/autoquery-audit-log)
     - [AutoGen](/autogen)
+    - [AutoQuery CRUD Bookings Demo](/autoquery-crud-bookings)
 - ##### Server Events
     - [Overview](/server-events)
     - [C# Client](/csharp-server-events-client)
