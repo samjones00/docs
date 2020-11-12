@@ -3,7 +3,7 @@ slug: studio-users
 title: Studio - User Management
 ---
 
-A glimpse of the Studio's **Users** Module can be seen in the [Bookings CRUD demo](https://youtu.be/XpHAaCTV7jE) who utilizes it to create **Employee** and **Manager** users. 
+A glimpse of the Studio's **Users** Module can be seen in the [Bookings CRUD demo](/autoquery-crud-bookings) who utilizes it to create **Employee** and **Manager** users. 
 
 ## User Admin Feature
 
