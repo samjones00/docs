@@ -75,7 +75,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcauth
 
-> .NET Core 3.1 MVC Website integrated with ServiceStack Auth
+> .NET 5.0 MVC Website integrated with ServiceStack Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)
 
@@ -83,7 +83,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcidentity
 
-> .NET Core 3.1 MVC Website integrated with ServiceStack using MVC Identity Auth
+> .NET 5.0 MVC Website integrated with ServiceStack using MVC Identity Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)
 
@@ -91,7 +91,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### mvcidentityserver
 
-> .NET Core 3.1 MVC Website integrated with ServiceStack using IdentityServer4 Auth
+> .NET 5.0 MVC Website integrated with ServiceStack using IdentityServer4 Auth
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)
 

@@ -54,7 +54,7 @@ Browse [source code](https://github.com/NetCoreTemplates/vue-lite), view [vue-li
 
     $ x new vue-lite ProjectName
 
-Alternatively you can create an ASP.NET Core 3.1 LTS project on **.NET Framework** with:
+Alternatively you can create an ASP.NET Core LTS project on **.NET Framework** with:
 
     $ x new vue-lite-corefx ProjectName
 
@@ -66,7 +66,7 @@ Browse [source code](https://github.com/NetCoreTemplates/react-lite), view [reac
 
     $ x new react-lite ProjectName
 
-Alternatively you can create an ASP.NET Core 3.1 LTS project on **.NET Framework** with:
+Alternatively you can create an ASP.NET Core LTS project on **.NET Framework** with:
 
     $ x new react-lite-corefx ProjectName
 

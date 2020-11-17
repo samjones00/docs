@@ -1,11 +1,11 @@
 ---
 slug: npm-new
-title: .NET Core 3.1 and ASP.NET Project Templates
+title: .NET 5.0 and ASP.NET Project Templates
 ---
 
 There are a number of the most popular starting ServiceStack v5 Project Templates available in the GitHub organizations:
 
- - **.NET Core 3.1 C# Templates** - [github.com/NetCoreTemplates](https://github.com/NetCoreTemplates)
+ - **.NET 5.0 C# Templates** - [github.com/NetCoreTemplates](https://github.com/NetCoreTemplates)
  - **.NET Framework C# Templates** - [github.com/NetFrameworkTemplates](https://github.com/NetFrameworkTemplates)
  - **ASP.NET Core .NET Framework C# Templates** - [github.com/NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates)
 

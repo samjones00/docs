@@ -16,7 +16,7 @@ We'll start by SSH'ing into your Amazon Linux server, e.g:
 
     $ ssh -i ~/pem/<my>.pem ec2-user@ec2-<ip-address>.compute-1.amazonaws.com
 
-### Install .NET Core 3.1
+### Install .NET 5.0
 
 Being based on RHEL you can use yum and the [Cent OS 7 Install Instructions](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos#centos-7-)
 to install .NET Core on Amazon Linux 2:

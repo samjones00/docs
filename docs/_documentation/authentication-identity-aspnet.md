@@ -3,7 +3,7 @@ slug: authentication-identity-aspnet
 title: Using ASP.NET Identity Auth in ServiceStack
 ---
 
-[mvcidentity](https://github.com/NetCoreTemplates/mvcidentity) is a .NET Core 3.1 MVC Website integrated with ServiceStack using ASP.NET Identity Auth:
+[mvcidentity](https://github.com/NetCoreTemplates/mvcidentity) is a .NET 5.0 MVC Website integrated with ServiceStack using ASP.NET Identity Auth:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvcidentity.png)](https://github.com/NetCoreTemplates/mvcidentity)
 

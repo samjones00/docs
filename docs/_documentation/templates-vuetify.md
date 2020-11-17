@@ -13,14 +13,14 @@ Given the productivity value Vuetify adds, we've created Vuetify templates for b
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vuetify-spa.png)](https://github.com/NetCoreTemplates/vuetify-spa)
 
- - [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa) - .NET Core 3.1 Vuetify Material Webpack App
+ - [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa) - .NET 5.0 Vuetify Material Webpack App
  - [vuetify-spa-netfx](https://github.com/NetFrameworkTemplates/vuetify-spa-netfx) - .NET Framework Vuetify Material Webpack App
  
 #### Vue Nuxt App
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vuetify-nuxt.png)](https://github.com/NetCoreTemplates/vuetify-nuxt)
 
- - [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt) - .NET Core 3.1 Vuetify Material Nuxt.js SPA Web App
+ - [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt) - .NET 5.0 Vuetify Material Nuxt.js SPA Web App
  - [vuetify-nuxt-netfx](https://github.com/NetFrameworkTemplates/vuetify-nuxt-netfx) - .NET Framework Vuetify Material Nuxt.js SPA Web App
 
 ### Client / Server Validation with Vuetify
