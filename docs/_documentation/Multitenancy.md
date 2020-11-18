@@ -279,7 +279,7 @@ missing UserAuth table schemas not found in any of the Multitenant databases.
 #### Extending UserAuth tables
 
 In the same way that you can use [Custom UserAuth tables in OrmLiteAuthRepository](/authentication-and-authorization#extending-userauth-tables), you can 
-also extend `OrmLiteAuthRepositoryMultitenancy` to utilize your own custom `UserAuth` tables with extended fields by configured them to use its generic Constructor, e.g:
+also extend `OrmLiteAuthRepositoryMultitenancy` to utilize your own custom `UserAuth` tables with extended fields by configuring them to use its generic class, e.g:
 
 ```csharp
 public class MyUserAuth : UserAuth { .... }
