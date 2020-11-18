@@ -270,10 +270,28 @@ public override IAuthRepository GetAuthRepository(IRequest req = null)
 }
 ```
 
+
 Now when `GetAuthRepository()` is called within the context of a request it uses the same Multitenancy 
 DB as your other services, otherwise when called outside (e.g. on Startup) it uses the default IOC 
 Registration configured with the connectionStrings for each Multitenant DB that it can use to create any
 missing UserAuth table schemas not found in any of the Multitenant databases. 
+
+#### Extending UserAuth tables
+
+In the same way that you can use [Custom UserAuth tables in OrmLiteAuthRepository](/authentication-and-authorization#extending-userauth-tables), you can 
+also extend `OrmLiteAuthRepositoryMultitenancy` to utilize your own custom `UserAuth` tables with extended fields by configured them to use its generic Constructor, e.g:
+
+```csharp
+public class MyUserAuth : UserAuth { .... }
+public class MyUserAuthDetails : UserAuthDetails { .... }
+```
+
+```csharp
+container.Register<IAuthRepository>(c =>
+    new OrmLiteAuthRepositoryMultitenancy<MyUserAuth, MyUserAuthDetails>(c.Resolve<IDbConnectionFactory>()) {
+        UseDistinctRoleTables = true
+    });
+```
 
 ### Multi Tenancy Example
 
