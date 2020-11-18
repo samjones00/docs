@@ -10,11 +10,11 @@ To complete the picture of making it easy as possible to compose ASP.NET Core Ap
 
 The same functionality is also built into the Windows [app](/netcore-windows-desktop) dotnet tool, both can be updated to the latest version with:
 
-.NET Core 3.1 (Windows/macOS/Linux):
+.NET 5.0 (Windows/macOS/Linux):
 
     $ dotnet tool update -g x
 
-.NET Core 3.1 (Windows x64):
+.NET 5.0 (Windows x64):
 
     $ dotnet tool update -g app
 
@@ -65,11 +65,11 @@ Although most of the time you're only going to run 2 commands, viewing available
 Where it displays different features that can be added to your App, where they're added to and the author of the Gist:
 
 ```
- 1. init                 Empty C# .NET Core 3.1 ServiceStack App      to: .      by @ServiceStack  [project,C#]
- 2. init-lts             Empty C# .NET Core 3.1 LTS ServiceStack App  to: .      by @ServiceStack  [project,VB]
- 3. init-vb              Empty VB .NET Core 3.1 LTS ServiceStack App  to: .      by @ServiceStack  [project,F#]
- 4. init-fsharp          Empty F# .NET Core 3.1 LTS ServiceStack App  to: .      by @ServiceStack  [project,C#]
- 5. init-corefx          Empty ASP.NET Core 3.1 LTS on .NET Framework to: .      by @ServiceStack  [project,C#]
+ 1. init                 Empty C# .NET 5.0 ServiceStack App      to: .      by @ServiceStack  [project,C#]
+ 2. init-lts             Empty C# .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,VB]
+ 3. init-vb              Empty VB .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,F#]
+ 4. init-fsharp          Empty F# .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,C#]
+ 5. init-corefx          Empty ASP.NET 5.0 LTS on .NET Framework to: .      by @ServiceStack  [project,C#]
  6. init-sharp-app       Empty ServiceStack #Script App               to: .      by @ServiceStack  [project,S#]
  7. bootstrap-sharp      Bootstrap + #Script Pages Starter Template   to: $HOST  by @ServiceStack  [ui,S#]
  8. redis                Use ServiceStack.Redis                       to: $HOST  by @ServiceStack  [db]
@@ -107,7 +107,7 @@ Where it displays different features that can be added to your App, where they'r
 40. northwind.sharpdata  northwind.sharpdata                          to: .      by @ServiceStack  [sharpdata]
 41. vue-lite-lib         Update vue-lite projects libraries           to: $HOST  by @ServiceStack  [lib,vue]
 42. react-lite-lib       Update react-lite projects libraries         to: $HOST  by @ServiceStack  [lib,react]
-43. grpc                 Configure gRPC (requires .NET Core 3.1)      to: $HOST  by @ServiceStack  [grpc]
+43. grpc                 Configure gRPC (requires .NET 5.0)      to: $HOST  by @ServiceStack  [grpc]
 44. grpc-android         Android gRPC SSL Channel Builder             to: .      by @ServiceStack  [java,grpc]
 45. bcl.proto            protobuf-net\bcl.proto                       to: .      by @ServiceStack  [grpc]
 46. example-validation   Contacts Validation Example                  to: $HOST  by @ServiceStack  [example]
