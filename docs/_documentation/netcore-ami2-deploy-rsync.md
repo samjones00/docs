@@ -25,11 +25,11 @@ to install .NET Core on Amazon Linux 2:
 
 If you just want a minimal ASP.NET Core runtime to run Web Apps you can just install:
 
-    $ sudo yum install aspnetcore-runtime-3.1
+    $ sudo yum install aspnetcore-runtime-5.0
 
 But if you'd also like to use dotnet tools like the [x super utility](/dotnet-tool) you'll need to install the SDK:
 
-    $ sudo yum install dotnet-sdk-3.1
+    $ sudo yum install dotnet-sdk-5.0
 
 Then install dotnet tools you want which will install under the `ec2-user` home directory at `~/.dotnet/tools`:
 
@@ -197,7 +197,7 @@ Then as the `deploy` user paste the contents of `id_rsa.pub` to `/home/deploy/.s
 [rsync](https://rsync.samba.org/) is a beautiful utility that provides a fast, secure file transfer over SSH which you can use to sync the contents of folders to a remote site. There's only 2 commands you need to run to deploy a local .NET Core App remotely, `rsync` to sync the published .NET Core App files and `supervisorctl` to restart the `supervisord` process that runs and monitor the .NET Core App which you can add to a [deploy.sh](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks/deploy.sh) that you can run with WSL bash:
 
 ```sh
-rsync -avz -e 'ssh' bin/Release/netcoreapp3.1/publish/ deploy@ec2-<ip-address>.compute-1.amazonaws.com:/home/deploy/apps/acme
+rsync -avz -e 'ssh' bin/Release/net5/publish/ deploy@ec2-<ip-address>.compute-1.amazonaws.com:/home/deploy/apps/acme
 ssh deploy@ec2-<ip-address>.compute-1.amazonaws.com "sudo supervisorctl restart app-acme"
 ```
 
