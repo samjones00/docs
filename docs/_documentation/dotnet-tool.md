@@ -3,7 +3,7 @@ slug: dotnet-tool
 title: ServiceStack's .NET Core Utility Belt
 ---
 
-Our `x` (`web` and `app`) .NET Core tools are a versatile invaluable companion for all ServiceStack developers where it's 
+Our `x` and `app` dotnet tools are a versatile invaluable companion for all ServiceStack developers where it's 
 jam packed with functionality to power a number of exciting scenarios where it serves as a [Sharp App](https://sharpscript.net/docs/sharp-apps) 
 delivery platform where they can be run as a .NET Core Windows Desktop App with `app` or as a cross-platform Web App launcher 
 using `web` and we've already how it's now a [`#Script` runner](https://sharpscript.net/docs/sharp-scripts) with `x run` and into a 
@@ -36,19 +36,21 @@ Usage:
 
   x new                     List available Project Templates
   x new <template> <name>   Create New Project From Template
+  x download <user>/<repo>  Download latest GitHub Repo Release
+  x get <url>               Download remote file                     (-out <file|dir>)
 
   x <lang>                  Update all ServiceStack References in directory (recursive)
-  x <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)   
-  x <lang>     <url> <file> Add ServiceStack Reference and save to file name        
-  x csharp     <url>        Add C# ServiceStack Reference            (Alias 'cs')   
-  x typescript <url>        Add TypeScript ServiceStack Reference    (Alias 'ts')   
-  x swift      <url>        Add Swift ServiceStack Reference         (Alias 'sw')   
-  x java       <url>        Add Java ServiceStack Reference          (Alias 'ja')   
-  x kotlin     <url>        Add Kotlin ServiceStack Reference        (Alias 'kt')   
-  x dart       <url>        Add Dart ServiceStack Reference          (Alias 'da')   
-  x fsharp     <url>        Add F# ServiceStack Reference            (Alias 'fs')   
-  x vbnet      <url>        Add VB.NET ServiceStack Reference        (Alias 'vb')   
-  x tsd        <url>        Add TypeScript Definition ServiceStack Reference        
+  x <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)
+  x <lang>     <url> <file> Add ServiceStack Reference and save to file name
+  x csharp     <url>        Add C# ServiceStack Reference            (Alias 'cs')
+  x typescript <url>        Add TypeScript ServiceStack Reference    (Alias 'ts')
+  x swift      <url>        Add Swift ServiceStack Reference         (Alias 'sw')
+  x java       <url>        Add Java ServiceStack Reference          (Alias 'ja')
+  x kotlin     <url>        Add Kotlin ServiceStack Reference        (Alias 'kt')
+  x dart       <url>        Add Dart ServiceStack Reference          (Alias 'da')
+  x fsharp     <url>        Add F# ServiceStack Reference            (Alias 'fs')
+  x vbnet      <url>        Add VB.NET ServiceStack Reference        (Alias 'vb')
+  x tsd        <url>        Add TypeScript Definition ServiceStack Reference
 
   x proto <url>             Add gRPC .proto ServiceStack Reference
   x proto <url> <name>      Add gRPC .proto and save to <name>.services.proto
@@ -64,6 +66,11 @@ Usage:
   x mix #<tag>              Search available gists
   x mix <gist-url>          Write all Gist text files to current directory
   x gist <gist-id>          Write all Gist text files to current directory
+
+  x alias                   Show all local gist aliases (for usage in mix or app's)
+  x alias <alias>           Print local alias value
+  x alias <alias> <gist-id> Set local alias with Gist Id or Gist URL
+  x unalias <alias>         Remove local alias
 
   x run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
   x watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
@@ -86,12 +93,14 @@ Usage:
   x uninstall               List Installed Sharp Apps
   x uninstall <app>         Uninstall Sharp App
 
-  x publish                 Publish Sharp App to Gist (requires token)
+  x publish                 Publish Current Directory to Gist (requires token)
+
+  x gist-new <dir>          Create new Gist with Directory Files (requires token)
+  x gist-update <id> <dir>  Update Gist ID with Directory Files  (requires token)
 
   x shortcut                Create Shortcut for Sharp App
   x shortcut <name>.dll     Create Shortcut for .NET Core App
 
-  x get <url>               Download remote file                     (-out <file|dir>)
 
   dotnet tool update -g x   Update to latest version
 
