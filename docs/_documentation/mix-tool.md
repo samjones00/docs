@@ -66,10 +66,10 @@ Where it displays different features that can be added to your App, where they'r
 
 ```
  1. init                 Empty C# .NET 5.0 ServiceStack App      to: .      by @ServiceStack  [project,C#]
- 2. init-lts             Empty C# .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,VB]
+ 2. init-lts             Empty C# .NET Core 3.1 LTS ServiceStack App  to: .      by @ServiceStack  [project,VB]
  3. init-vb              Empty VB .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,F#]
  4. init-fsharp          Empty F# .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,C#]
- 5. init-corefx          Empty ASP.NET 5.0 LTS on .NET Framework to: .      by @ServiceStack  [project,C#]
+ 5. init-corefx          Empty ASP.NET 2.1 LTS on .NET Framework to: .      by @ServiceStack  [project,C#]
  6. init-sharp-app       Empty ServiceStack #Script App               to: .      by @ServiceStack  [project,S#]
  7. bootstrap-sharp      Bootstrap + #Script Pages Starter Template   to: $HOST  by @ServiceStack  [ui,S#]
  8. redis                Use ServiceStack.Redis                       to: $HOST  by @ServiceStack  [db]
