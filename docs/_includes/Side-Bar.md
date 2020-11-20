@@ -151,6 +151,7 @@
 - ##### Security
     - [Overview](/security)
     - [Authentication & Authorization](/authentication-and-authorization)
+    - [Auth Repository](/auth-repository)
     - [Using ServiceStack Auth in MVC](/authentication-identity-servicestack)
     - [Using ASP.NET Identity Auth](/authentication-identity-aspnet)
     - [Using IdentityServer4 Auth](/authentication-identityserver)
