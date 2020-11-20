@@ -11,8 +11,8 @@ using `web` and we've already how it's now a [`#Script` runner](https://sharpscr
 
 These tools contains all the functionality ServiceStack Developers or API consumers need that can be used 
 [Create ServiceStack projects](/dotnet-new), run [Gist Desktop Apps](https://sharpscript.net/sharp-apps/gist-desktop-apps) 
-or generate typed endpoints for consuming ServiceStack Services via either
-[Add/Update ServiceStack References](/add-servicestack-reference) or by generating [grpc client proxies](/grpc#grpc-clients).
+or generate typed endpoints for consuming ServiceStack Services by either
+[Add/Update ServiceStack References](/add-servicestack-reference) or by generating [gRPC client proxies](/grpc#grpc-clients).
 
 To access available features, install with:
 

@@ -185,6 +185,87 @@ After clicking OK, the servers DTO's are added to the project, yielding an insta
 
 ![TypeScript native types](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/servicestackvs/add-typescript-reference-dtos.png)
 
+
+### Change Default Server Configuration
+
+The above defaults are also overridable on the ServiceStack Server by modifying the default config on the `NativeTypesFeature` Plugin, e.g:
+
+```csharp
+var nativeTypes = this.GetPlugin<NativeTypesFeature>();
+nativeTypes.MetadataTypesConfig.MakeVirtual = false;
+...
+```
+
+### Customize DTO Type generation
+
+Additional TypeScript specific customization can be statically configured like `PreTypeFilter`, `InnerTypeFilter` & `PostTypeFilter` (available in all languages) can be used to inject custom code in the generated DTOs output. 
+
+Use the `PreTypeFilter` to generate source code before and after a Type definition, e.g. this will append the `[Validate]` attribute on non enum & interface types:
+
+```csharp
+TypeScriptGenerator.PreTypeFilter = (sb, type) => {
+    if (!type.IsEnum.GetValueOrDefault() && !type.IsInterface.GetValueOrDefault())
+    {
+        sb.AppendLine("@Validate()");
+    }
+};
+``
+
+The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
+
+```csharp
+TypeScriptGenerator.InnerTypeFilter = (sb, type) => {
+    sb.AppendLine("id:string = `${Math.random()}`.substring(2);");
+};
+```
+
+There's also `PrePropertyFilter` & `PostPropertyFilter` for generating source before and after properties, e.g:
+
+```csharp
+TypeScriptGenerator.PrePropertyFilter = (sb , prop, type) => {
+    if (prop.Name == "Id")
+    {
+        sb.AppendLine("[PrimaryKey]");
+    }
+};
+```
+
+### Emit custom code
+
+To enable greater flexibility when generating complex Typed DTOs, you can use `[Emit{Language}]` attributes to generate code before each type or property.
+
+These attributes can be used to generate different attributes or annotations to enable client validation for different validation libraries in different languages, e.g:
+
+```csharp
+[EmitTypeScript("@Validate()")]
+[EmitCode(Lang.TypeScript | Lang.Swift | Lang.Dart, "// App User")]
+public class User : IReturn<User>
+{
+    [EmitTypeScript("@IsNotEmpty()", "@IsEmail()")]
+    [EmitCode(Lang.Swift | Lang.Dart, new[]{ "@isNotEmpty()", "@isEmail()" })]
+    public string Email { get; set; }
+}
+```
+
+Which will generate `[EmitTypeScript]` code in TypeScript DTOs:
+
+```typescript
+@Validate()
+// App User
+export class User implements IReturn<User>
+{
+    @IsNotEmpty()
+    @IsEmail()
+    public email: string;
+
+    public constructor(init?: Partial<User>) { (Object as any).assign(this, init); }
+    public createResponse() { return new User(); }
+    public getTypeName() { return 'User'; }
+}
+```
+
+Whilst the generic `[EmitCode]` attribute lets you emit the same code in multiple languages with the same syntax.
+
 ### Update ServiceStack Reference
 
 If your server has been updated and you want to update the client DTOs, simply **right-click** on the DTO file 

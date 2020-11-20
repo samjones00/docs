@@ -542,6 +542,88 @@ Alternatively you can configure [AddImplicitVersion in client Options](/csharp-a
 
 Behind the scenes ServiceStack captures all metadata on your Services DTOs including Sub -classes, Routes, `IReturn` marker, C# Attributes, textual Description as well as desired configuration into a serializable object model accessible from `/types/metadata`: 
 
+## Advanced Native Type Code gen
+
+To enable greater flexibility when generating complex Typed DTOs, you can use `[Emit{Language}]` attributes to generate code before each type or property.
+
+These attributes can be used to generate different attributes or annotations to enable client validation for different validation libraries in different languages, e.g:
+
+```csharp
+[EmitCSharp("[Validate]")]
+[EmitTypeScript("@Validate()")]
+[EmitCode(Lang.Swift | Lang.Dart, "@validate()")]
+public class User : IReturn<User>
+{
+    [EmitCSharp("[IsNotEmpty]","[IsEmail]")]
+    [EmitTypeScript("@IsNotEmpty()", "@IsEmail()")]
+    [EmitCode(Lang.Swift | Lang.Dart, new[]{ "@isNotEmpty()", "@isEmail()" })]
+    public string Email { get; set; }
+}
+```
+
+Which will generate `[EmitCsharp]` code in C# DTOs:
+
+```csharp
+[Validate]
+public partial class User
+    : IReturn<User>
+{
+    [IsNotEmpty]
+    [IsEmail]
+    public virtual string Email { get; set; }
+}
+```
+
+`[EmitTypeScript]` annotations in TypeScript DTOs:
+
+```typescript
+@Validate()
+export class User implements IReturn<User>
+{
+    @IsNotEmpty()
+    @IsEmail()
+    public email: string;
+
+    public constructor(init?: Partial<User>) { (Object as any).assign(this, init); }
+    public createResponse() { return new User(); }
+    public getTypeName() { return 'User'; }
+}
+```
+
+Whilst the generic `[EmitCode]` attribute lets you emit the same code in multiple languages with the same syntax.
+
+### Type Generation Filters
+
+In addition you can use the `PreTypeFilter`, `InnerTypeFilter` & `PostTypeFilter` to generate source code before and after a Type definition, e.g. this will append the `@validate()` annotation on non enum types:
+
+```csharp
+TypeScriptGenerator.PreTypeFilter = (sb, type) => {
+    if (!type.IsEnum.GetValueOrDefault())
+    {
+        sb.AppendLine("@Validate()");
+    }
+};
+```
+
+The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
+
+```csharp
+TypeScriptGenerator.InnerTypeFilter = (sb, type) => {
+    sb.AppendLine("id:string = `${Math.random()}`.substring(2);");
+};
+```
+
+There's also `PrePropertyFilter` & `PostPropertyFilter` for generating source before and after properties, e.g:
+
+```csharp
+TypeScriptGenerator.PrePropertyFilter = (sb , prop, type) => {
+    if (prop.Name == "Id")
+    {
+        sb.AppendLine("@IsInt()");
+    }
+};
+```
+
 #### Live examples
 
   - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata) ([JSON](http://stackapis.netcore.io/types/metadata.json))

@@ -104,20 +104,71 @@ nativeTypes.MetadataTypesConfig.MakeVirtual = false;
 
 ### Customize DTO Type generation
 
-Some C# specific customization are statically configured like the `PreTypeFilter` available in all languages can be used to inject custom code 
+Additional C# specific customization can be statically configured like `PreTypeFilter`, `InnerTypeFilter` & `PostTypeFilter` (available in all languages) can be used to inject custom code 
 in the generated DTOs output. 
 
-E.g. you can use this feature to add the `[Serializable]` attribute on all C# DTO Types with:
+Use the `PreTypeFilter` to generate source code before and after a Type definition, e.g. this will append the `[Validate]` attribute on non enum & interface types:
 
 ```csharp
-CSharpGenerator.PreTypeFilter = (sb, type) => 
-{
+CSharpGenerator.PreTypeFilter = (sb, type) => {
     if (!type.IsEnum.GetValueOrDefault() && !type.IsInterface.GetValueOrDefault())
     {
         sb.AppendLine("[Serializable]");
     }
 };
+``
+
+The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
+
+```csharp
+CSharpGenerator.InnerTypeFilter = (sb, type) => {
+    sb.AppendLine("public string Id { get; } = Guid.NewGuid().ToString();");
+};
 ```
+
+There's also `PrePropertyFilter` & `PostPropertyFilter` for generating source before and after properties, e.g:
+
+```csharp
+CSharpGenerator.PrePropertyFilter = (sb , prop, type) => {
+    if (prop.Name == "Id")
+    {
+        sb.AppendLine("[PrimaryKey]");
+    }
+};
+```
+
+### Emit custom code
+
+To enable greater flexibility when generating complex Typed DTOs, you can use `[Emit{Language}]` attributes to generate code before each type or property.
+
+These attributes can be used to generate different attributes or annotations to enable client validation for different validation libraries in different languages, e.g:
+
+```csharp
+[EmitCSharp("[Validate]")]
+[EmitCode(Lang.CSharp | Lang.Swift | Lang.Dart, "// App User")]
+public class User : IReturn<User>
+{
+    [EmitCSharp("[IsNotEmpty]","[IsEmail]")]
+    [EmitCode(Lang.Swift | Lang.Dart, new[]{ "@isNotEmpty()", "@isEmail()" })]
+    public string Email { get; set; }
+}
+```
+
+Which will generate `[EmitCsharp]` code in C# DTOs:
+
+```csharp
+[Validate]
+// App User
+public partial class User
+    : IReturn<User>
+{
+    [IsNotEmpty]
+    [IsEmail]
+    public virtual string Email { get; set; }
+}
+```
+
+Whilst the generic `[EmitCode]` attribute lets you emit the same code in multiple languages with the same syntax.
 
 We'll go through and cover each of the above options to see how they affect the generated DTOs:
 
