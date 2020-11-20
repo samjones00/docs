@@ -14,15 +14,52 @@ for the following cache providers:
   * [Aws DynamoDB](https://www.nuget.org/packages/ServiceStack.Aws/) - Uses Amazon's Dynamo DB backend hosted on Amazon Web Services
   * [Azure Table Storage](/azure#virtual-filesystem-backed-by-azure-blob-storage) - Uses Azure Table Storage for when your application is hosted on Azure.
 
-To configure which cache should be used, the particular client has to be registered in the IoC container:
+### Async Cache Clients
 
-### Memory cache:
-```csharp 
-//Optional: ServiceStack registers an MemoryCacheClient by default when no `ICacheClient` is registered
-container.Register<ICacheClient>(new MemoryCacheClient());
+All remote Caching Providers also implement the [ICacheClientAsync](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Caching/ICacheClientAsync.cs) async APIs whilst any other `ICacheClient` only providers like the local in-memory `MemoryCacheClient` are still able to use the `ICacheClientAsync` interface as they'll return an [Async Wrapper](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Caching/CacheClientAsyncWrapper.cs) over the underlying sync APIs. 
+
+So even if you're currently only using `MemoryCacheClient` or your own `ICacheClient` sync implementation, you can still use the async Caching Provider API now and easily switch to an async caching provider in future without code changes.
+
+The Async Caching Provider APIs are accessible via the `CacheAsync` property in ServiceStack `Service` or `ServiceStackController` classes, e.g:
+
+```csharp
+public async Task<object> Any(MyRequest request)
+{
+    var item = await CacheAsync.GetAsync<Item>("key");
+    //....
+}
+
+public class HomeController : ServiceStackController
+{
+    public async Task<ActionResult> Index()
+    {
+        var item = await CacheAsync.GetAsync<Item>("key");
+    }
+}
 ```
 
-##### NuGet Package: [ServiceStack](http://www.nuget.org/packages/ServiceStack)
+Whilst outside of ServiceStack you can `AppHost.GetCacheClientAsync()`, e.g:
+
+```csharp
+var cache = HostContext.AppHost.GetCacheClientAsync();
+var item = await cache.GetAsync<Item>("key");
+```
+
+### Configure Caching Providers
+
+To configure which cache should be used, the particular client has to be registered in the IoC container against the `ICacheClient` interface:
+
+### Memory cache:
+
+By default ServiceStack registers an MemoryCacheClient by default when no `ICacheClient` is registered so no registration is necessary.
+
+```csharp 
+//container.Register<ICacheClient>(new MemoryCacheClient());
+```
+
+Even if you have an alternative `ICacheClient` registered you can still access the in memory cache via the `LocalCache` property in your Services
+and ServiceStack MVC Controllers or anywhere else via the `HostContext.AppHost.GetMemoryCacheClient()` singleton as well as
+`[CacheResponse(UseLocalCache=true)]` when using the [Cache Response Attribute](/cacheresponse-attribute).
 
 ### Redis
 
