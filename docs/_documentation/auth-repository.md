@@ -161,9 +161,9 @@ public interface ICustomUserAuth
 If implementing a generic class like `OrmLiteAuthRepository<TUserAuth,TUserAuthDetails>` you can return new instances of the Generic Type Arguments with:
 
 ```csharp
-public IUserAuth CreateUserAuth() => (IUserAuth) typeof(TUserAuth).CreateInstance();
+IUserAuth CreateUserAuth() => (IUserAuth)typeof(TUserAuth).CreateInstance();
 
-public IUserAuthDetails CreateUserAuthDetails() => (IUserAuthDetails) typeof(TUserAuthDetails).CreateInstance();
+IUserAuthDetails CreateUserAuthDetails() => (IUserAuthDetails)typeof(TUserAuthDetails).CreateInstance();
 ```
 
 ### Adding additional metadata to the Meta dictionary fields
