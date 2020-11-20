@@ -22,9 +22,7 @@ Or if you had a previous version installed, update with:
 
     $ dotnet tool update -g x
 
-> The Windows-only `app` tool has better integration with Windows that can power [.NET Core Windows Desktop Apps](/netcore-windows-desktop).
-
-> All `web`, `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer Windows integration
+> Both `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer [Windows-only integration](/netcore-windows-desktop)
 
 #### Usage
 
