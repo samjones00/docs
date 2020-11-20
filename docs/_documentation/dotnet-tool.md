@@ -9,9 +9,10 @@ delivery platform where they can be run as a .NET Core Windows Desktop App with 
 using `web` and we've already how it's now a [`#Script` runner](https://sharpscript.net/docs/sharp-scripts) with `x run` and into a 
 [Live `#Script` playground](https://sharpscript.net/docs/sharp-scripts#live-script-with-web-watch) with `x watch`.
 
-They also contain all features from our [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli) npm tools
-so you'll **no longer need npm** to [create ServiceStack projects](/web-new) or 
-[Add/Update ServiceStack References](/add-servicestack-reference).
+These tools contains all the functionality ServiceStack Developers or API consumers need that can be used 
+[Create ServiceStack projects](/dotnet-new), run [Gist Desktop Apps](https://sharpscript.net/sharp-apps/gist-desktop-apps) 
+or generate typed endpoints for consuming ServiceStack Services via either
+[Add/Update ServiceStack References](/add-servicestack-reference) or by generating [grpc client proxies](/grpc#grpc-clients).
 
 To access available features, install with:
 
