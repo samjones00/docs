@@ -113,10 +113,10 @@ Use the `PreTypeFilter` to generate source code before and after a Type definiti
 CSharpGenerator.PreTypeFilter = (sb, type) => {
     if (!type.IsEnum.GetValueOrDefault() && !type.IsInterface.GetValueOrDefault())
     {
-        sb.AppendLine("[Serializable]");
+        sb.AppendLine("[Validate]");
     }
 };
-``
+```
 
 The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
 
