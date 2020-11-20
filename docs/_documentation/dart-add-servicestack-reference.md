@@ -773,7 +773,7 @@ Which will generate `[EmitDart]` code in Dart DTOs:
 ```dart
 @validate
 // App User
-class User implements IReturn<Order>, IConvertible
+class User implements IReturn<User>, IConvertible
 {
     @isNotEmpty
     @isEmail
