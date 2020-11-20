@@ -209,7 +209,7 @@ TypeScriptGenerator.PreTypeFilter = (sb, type) => {
         sb.AppendLine("@Validate()");
     }
 };
-``
+```
 
 The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
 

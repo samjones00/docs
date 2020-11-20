@@ -730,7 +730,7 @@ DartGenerator.PreTypeFilter = (sb, type) => {
         sb.AppendLine("@validate()");
     }
 };
-``
+```
 
 The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
 
