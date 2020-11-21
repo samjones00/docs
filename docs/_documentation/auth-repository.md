@@ -51,9 +51,44 @@ You can view other Auth Repository "mix ins" available with:
 
     $ x mix #auth
 
-and which RDBMS's and NoSQL Data Stores can be easily configured with a mix in:
+Which displays the current list of available Auth Repositories:
+
+```
+Results matching tag [auth]:
+
+   1. auth              Configure AuthFeature                        to: $HOST  by @ServiceStack [auth]
+   2. auth-db           Use OrmLite Auth Repository (requires auth)  to: $HOST  by @ServiceStack [auth]
+   3. auth-redis        Use Redis Auth Repository (requires auth)    to: $HOST  by @ServiceStack [auth]
+   4. auth-memory       Use Memory Auth Repository (requires auth)   to: $HOST  by @ServiceStack [auth]
+   5. auth-dynamodb     Use DynamoDB Auth Repository (requires auth) to: $HOST  by @ServiceStack [auth]
+   6. auth-mongodb      Use MongoDB Auth Repository (requires auth)  to: $HOST  by @ServiceStack [auth]
+   7. auth-ravendb      Use RavenDB Auth Repository (requires auth)  to: $HOST  by @ServiceStack [auth]
+   8. auth-marten       Use Marten Auth Repository (requires auth)   to: $HOST  by @ServiceStack [auth]
+   9. feature-authrepo  List and Search Users in an Auth Repo        to: $HOST  by @ServiceStack [feature,auth]
+```
+
+and search the available RDBMS's and NoSQL Data Stores:
 
     $ x mix #db
+
+That can be easily configured by a mix in:
+
+```
+Results matching tag [db]:
+
+   1. redis      Use ServiceStack.Redis                                             to: $HOST  by @ServiceStack  [db]
+   2. sqlserver  Use OrmLite with SQL Server                                        to: $HOST  by @ServiceStack  [db]
+   3. sqlite     Use OrmLite with SQLite                                            to: $HOST  by @ServiceStack  [db]
+   4. postgres   Use OrmLite with PostgreSQL                                        to: $HOST  by @ServiceStack  [db]
+   5. mysql      Use OrmLite with MySql                                             to: $HOST  by @ServiceStack  [db]
+   6. oracle     Use OrmLite with Oracle                                            to: $HOST  by @ServiceStack  [db]
+   7. firebird   Use OrmLite with Firebird                                          to: $HOST  by @ServiceStack  [db]
+   8. dynamodb   Use AWS DynamoDB and PocoDynamo                                    to: $HOST  by @ServiceStack  [db]
+   9. mongodb    Use MongoDB                                                        to: $HOST  by @ServiceStack  [db]
+  10. ravendb    Use RavenDB                                                        to: $HOST  by @ServiceStack  [db]
+  11. marten     Use Marten NoSQL with PostgreSQL                                   to: $HOST  by @ServiceStack  [db]
+  12. sharpdata  Instant JSON,CSV,XML,JSV data APIs around configured RDBMS tables  to: .      by @ServiceStack  [db]
+```    
 
 ### Async Auth Repositories
 
