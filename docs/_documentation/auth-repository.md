@@ -89,7 +89,7 @@ Results matching tag [db]:
   11. marten     Use Marten NoSQL with PostgreSQL  to: $HOST  by @ServiceStack  [db]
 ```    
 
-### Async Auth Repositories
+### Sync & Async Auth Repositories
 
 All built-in ServiceStack Auth Repositories implement both `IUserAuthRepository` and `IUserAuthRepositoryAsync` which you can use inside ServiceStack Services with the `AuthRepositoryAsync` property, e.g:
 
