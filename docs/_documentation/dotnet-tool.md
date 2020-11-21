@@ -62,7 +62,7 @@ Usage:
   x mix                     Show available gists to mixin            (Alias '+')
   x mix <name>              Write gist files locally, e.g:           (Alias +init)
   x mix init                Create empty .NET Core ServiceStack App
-  x mix #<tag>              Search available gists
+  x mix [tag]               Search available gists
   x mix <gist-url>          Write all Gist text files to current directory
   x gist <gist-id>          Write all Gist text files to current directory
 
@@ -207,7 +207,7 @@ for generating pre-set templates:
 x mix                     Show available gists to mixin         (Alias '+')
 x mix <name>              Write gist files locally, e.g:        (Alias +init)
 x mix init                Create empty .NET Core ServiceStack App
-x mix #<tag>              Search available gists
+x mix [tag]               Search available gists
 x gist <gist-id>          Write all Gist text files to current directory
 ```
 

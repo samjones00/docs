@@ -58,8 +58,8 @@ But if you also wanted to enable the new [Sign in with Apple](/signin-with-apple
 
 You can view all DB and Auth options available by searching for available layered gist configurations by tag:
 
-    $ app mix #db
-    $ app mix #auth
+    $ app mix [db]
+    $ app mix [auth]
 
 Typically the only configuration that needs updating is your DB connection string in [Configure.Db.cs](https://github.com/NetCoreApps/BookingsCrud/blob/main/Acme/Configure.Db.cs), in this case it's changed to use a persistent SQLite DB:
 

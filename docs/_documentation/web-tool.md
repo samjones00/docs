@@ -65,7 +65,7 @@ Usage:
   web mix                     Show available gists to mixin            (Alias '+')
   web mix <name>              Write gist files locally, e.g:           (Alias +init)
   web mix init                Create empty .NET Core ServiceStack App
-  web mix #<tag>              Search available gists
+  web mix [tag]               Search available gists
   web mix <gist-url>          Write all Gist text files to current directory
   web gist <gist-id>          Write all Gist text files to current directory
 
@@ -203,7 +203,7 @@ for generating pre-set templates:
 web mix                     Show available gists to mixin         (Alias '+')
 web mix <name>              Write gist files locally, e.g:        (Alias +init)
 web mix init                Create empty .NET Core ServiceStack App
-web mix #<tag>              Search available gists
+web mix [tag]               Search available gists
 web gist <gist-id>          Write all Gist text files to current directory
 ```
 

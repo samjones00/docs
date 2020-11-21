@@ -49,7 +49,7 @@ is to [mix them in](/mix-tool#composable-features), e.g. you can configure to us
 
 You can view other Auth Repository "mix ins" available with:
 
-    $ x mix #auth
+    $ x mix [auth]
 
 Which displays the current list of available Auth Repositories:
 
@@ -69,7 +69,7 @@ Results matching tag [auth]:
 
 and search the available RDBMS's and NoSQL Data Stores:
 
-    $ x mix #db
+    $ x mix [db]
 
 That can be easily configured by a mix in:
 

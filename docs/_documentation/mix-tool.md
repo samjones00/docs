@@ -54,8 +54,8 @@ Multi replace with escaped string example:
    x mix -replace term=with -replace "This Phrase"="With This" <name> <name> ...
 
 Only display available gists with a specific tag:
-  x mix #<tag>
-  x mix #<tag>,<tag>,<tag>
+  x mix [tag]
+  x mix [tag1,tag2]
 ```
 
 Although most of the time you're only going to run 2 commands, viewing available features with:
@@ -133,7 +133,7 @@ Where it displays different features that can be added to your App, where they'r
 
    Usage:  x mix <name> <name> ...
 
-  Search:  x mix #<tag> Available tags: auth, config, db, feature, lib, mq, project, react, sharp, svg, ui, vue
+  Search:  x mix [tag] Available tags: auth, config, db, feature, lib, mq, project, react, sharp, svg, ui, vue
 
 Advanced:  x mix ?
 ```
@@ -203,7 +203,9 @@ for example you can later configure your App to **enable auth** and configure it
 
 All DB servers are just as easily configurable, which we can quickly find using a `[db]` tag search:
 
-    $ x mix #db
+    $ x mix [db]
+
+> Tip: search term needs to be quoted in unix shells, e.g: '[db]'
 
 Which will list all available `[db]` providers:
 
@@ -224,7 +226,7 @@ Results matching tag [db]:
 
    Usage:  x mix <name> <name> ...
 
-  Search:  x mix #<tag> Available tags: auth, config, db, feature, lib, mq, project, react, sharp, svg, ui, vue
+  Search:  x mix [tag] Available tags: auth, config, db, feature, lib, mq, project, react, sharp, svg, ui, vue
 
 Advanced:  x mix ?
 ```
@@ -403,7 +405,7 @@ As it can take a while to piece together how to configure your preferred Auth Re
 and utilize [Auth Events](/sessions#session-events) to populate it, we now recommend using `mix` to configure
 your preferred Auth Repository, which you can query with:
 
-    $ x mix #auth
+    $ x mix [auth]
 
 To display the current list of available Auth Repositories:
 
@@ -426,7 +428,7 @@ Results matching tag [auth]:
 Likewise we now recommend using `mix` to configure your preferred MQ Service, other than being quicker to add,
 it proposes adopting a naming convention in app settings and file names that other `mix` features can also make use of:
 
-    $ x mix #mq
+    $ x mix [mq]
 
 Currently available list of MQ Services:
 

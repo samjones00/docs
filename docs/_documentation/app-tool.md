@@ -91,7 +91,7 @@ for generating pre-set templates:
 app mix                     Show available gists to mixin         (Alias '+')
 app mix <name>              Write gist files locally, e.g:        (Alias +init)
 app mix init                Create empty .NET Core ServiceStack App
-app mix #<tag>              Search available gists
+app mix [tag]               Search available gists
 app gist <gist-id>          Write all Gist text files to current directory
 ```
 
