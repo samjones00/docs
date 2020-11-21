@@ -76,18 +76,17 @@ That can be easily configured by a mix in:
 ```
 Results matching tag [db]:
 
-   1. redis      Use ServiceStack.Redis                                             to: $HOST  by @ServiceStack  [db]
-   2. sqlserver  Use OrmLite with SQL Server                                        to: $HOST  by @ServiceStack  [db]
-   3. sqlite     Use OrmLite with SQLite                                            to: $HOST  by @ServiceStack  [db]
-   4. postgres   Use OrmLite with PostgreSQL                                        to: $HOST  by @ServiceStack  [db]
-   5. mysql      Use OrmLite with MySql                                             to: $HOST  by @ServiceStack  [db]
-   6. oracle     Use OrmLite with Oracle                                            to: $HOST  by @ServiceStack  [db]
-   7. firebird   Use OrmLite with Firebird                                          to: $HOST  by @ServiceStack  [db]
-   8. dynamodb   Use AWS DynamoDB and PocoDynamo                                    to: $HOST  by @ServiceStack  [db]
-   9. mongodb    Use MongoDB                                                        to: $HOST  by @ServiceStack  [db]
-  10. ravendb    Use RavenDB                                                        to: $HOST  by @ServiceStack  [db]
-  11. marten     Use Marten NoSQL with PostgreSQL                                   to: $HOST  by @ServiceStack  [db]
-  12. sharpdata  Instant JSON,CSV,XML,JSV data APIs around configured RDBMS tables  to: .      by @ServiceStack  [db]
+   1. redis      Use ServiceStack.Redis            to: $HOST  by @ServiceStack  [db]
+   2. sqlserver  Use OrmLite with SQL Server       to: $HOST  by @ServiceStack  [db]
+   3. sqlite     Use OrmLite with SQLite           to: $HOST  by @ServiceStack  [db]
+   4. postgres   Use OrmLite with PostgreSQL       to: $HOST  by @ServiceStack  [db]
+   5. mysql      Use OrmLite with MySql            to: $HOST  by @ServiceStack  [db]
+   6. oracle     Use OrmLite with Oracle           to: $HOST  by @ServiceStack  [db]
+   7. firebird   Use OrmLite with Firebird         to: $HOST  by @ServiceStack  [db]
+   8. dynamodb   Use AWS DynamoDB and PocoDynamo   to: $HOST  by @ServiceStack  [db]
+   9. mongodb    Use MongoDB                       to: $HOST  by @ServiceStack  [db]
+  10. ravendb    Use RavenDB                       to: $HOST  by @ServiceStack  [db]
+  11. marten     Use Marten NoSQL with PostgreSQL  to: $HOST  by @ServiceStack  [db]
 ```    
 
 ### Async Auth Repositories
