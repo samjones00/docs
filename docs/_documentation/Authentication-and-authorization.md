@@ -379,7 +379,7 @@ Both the default [BasicAuthProvider](https://github.com/ServiceStack/ServiceStac
 using ServiceStack;
 using ServiceStack.Auth;
 
-// From v5.9.3+
+// From v5.10+
 public class CustomCredentialsAuthProvider : CredentialsAuthProvider
 {
     public virtual async Task<bool> TryAuthenticateAsync(IServiceBase authService, 
@@ -397,7 +397,7 @@ public class CustomCredentialsAuthProvider : CredentialsAuthProvider
         //...
 
         //Call base method to Save Session and fire Auth/Session callbacks:
-        return await base.AuthenticateAsync(authService, session, tokens, authInfo, token).ConfigureAwait(false);
+        return await base.AuthenticateAsync(authService, session, tokens, authInfo, token);
 
         //Alternatively avoid built-in behavior and explicitly save session with
         //session.IsAuthenticated = true;
