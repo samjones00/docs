@@ -11,6 +11,7 @@
 - ##### Getting Started
     - [Create your first WebService](/create-your-first-webservice)
     - [Your first WebService explained](/your-first-webservice-explained)
+    - [Explore ServiceStack](/explore-servicestack)
     - [ServiceStack's API Design](/api-design)
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)

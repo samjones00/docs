@@ -257,29 +257,9 @@ Compare and contrast with other major SPA JavaScript Frameworks:
 
 ServiceStack Services are also [easily consumable from all major Mobile and Desktop platforms](/why-servicestack#generate-instant-typed-apis-from-within-all-major-ides) including native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on Android with Java or Kotlin, OSX Desktop Applications as well as targeting the most popular .NET Mobile and Desktop platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF and WinForms.
 
-## Explore ServiceStack Apps
+## Explore ServiceStack
 
-A great way to learn new technology is to explore existing Apps built with it, where for ServiceStack you can find a number of simple focused Apps at:
-
- - [.NET Core Apps](https://github.com/NetCoreApps/LiveDemos)
- - [.NET Framework Apps](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
- - [Sharp Apps Examples](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098#live-demos)
-
-Many Apps are well documented like [World Validation](/world-validation) which covers how to re-implement a simple Contacts App UI in 
-**10 popular Web Development approaches** - all calling the same ServiceStack Services. 
-
-ServiceStack is a single code-base implementation that supports [.NET's most popular Server platforms](/why-servicestack#multiple-hosting-options) with
-near perfect source-code [compatibility with .NET Core](/netcore) so all .NET Frameworks Apps are still relevant in .NET Core, e.g. 
-the [EmailContacts guidance](https://github.com/ServiceStackApps/EmailContacts/) walks through the recommended setup and physical layout structure of typical medium-sized ServiceStack projects, including complete documentation of how to create the solution from scratch, whilst explaining all the ServiceStack features it makes use of along the way.
-
-### Sharp Apps
-
-[Sharp Apps](https://sharpscript.net/docs/sharp-apps) are a revolutionary new approach to dramatically simplify .NET Web App development with the 
-ultimate simplicity of being able to develop Apps in real-time while it's running & never needing to build or re-compile Apps. Their inherent simplicity
-makes it possible to build [Gist Desktop Apps](https://sharpscript.net/docs/gist-desktop-apps) they can be **run on-the-fly without installation** 
-and can be [deployed without CI or published assets](https://sharpscript.net/docs/deploying-sharp-apps) and updated 
-[with a single command](https://sharpscript.net/docs/deploying-sharp-apps).
-
+When you're ready to dive in further checkout our [Explore ServiceStack Guide](/explore-servicestack).
 
 ## Community Resources
 
