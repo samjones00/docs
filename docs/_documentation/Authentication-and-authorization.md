@@ -346,7 +346,7 @@ To illustrate Authentication integration with ServiceStack, see the authenticati
 ### .NET Core
 
   - [Apple Sign In](https://github.com/NetCoreApps/AppleSignIn)
-   - Apple Auth
+    - Apple Auth
   - [Bookings CRUD](https://github.com/NetCoreApps/BookingsCrud)
     - Credentials, Facebook, Google, Microsoft Auth
   - [New TechStacks](https://github.com/NetCoreApps/TechStacks)
