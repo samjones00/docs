@@ -325,6 +325,19 @@ See the annotated [World Validation Docs](/world-validation) for a detailed walk
 of how the most popular **Server HTML rendered** approaches and **Client UI rendered** technologies use the same built-in
 Authentication, Registration and protected Services.
 
+## Project Templates
+
+Most of [ServiceStack's Project Templates](/dotnet-new) are configured with Auth out-of-the-box or can be easily added to an empty [web](https://github.com/NetCoreTemplates/web)
+project template:
+
+    $ x new web ProjectName
+
+By [mixing in your desired auth](/mix-tool#mix-in-auth-repository) features, e.g. to configure your App to enable auth & maintain in SQL Server run:
+
+    $ x mix auth auth-db sqlserver
+
+Checkout the [Bookings CRUD YouTube demo](https://youtu.be/XpHAaCTV7jE) for a quick preview of this in action.
+
 ## Live Demos
 
 To illustrate Authentication integration with ServiceStack, see the authentication-enabled 
@@ -332,6 +345,10 @@ To illustrate Authentication integration with ServiceStack, see the authenticati
 
 ### .NET Core
 
+  - [Apple Sign In](https://github.com/NetCoreApps/AppleSignIn)
+   - Apple Auth
+  - [Bookings CRUD](https://github.com/NetCoreApps/BookingsCrud)
+    - Credentials, Facebook, Google, Microsoft Auth
   - [New TechStacks](https://github.com/NetCoreApps/TechStacks)
     - GitHub, Twitter and JWT Auth
   - [SimpleAuth.Mvc](https://github.com/NetCoreApps/SimpleAuth.Mvc)
