@@ -252,7 +252,7 @@ using var service = HostContext.ResolveService<RegisterService>(Request);
 var response = await service.PostAsync(new Register { ... });
 ```
 
-## Group Services by Tag
+### Group Services by Tag
 
 Related Services by can be grouped by annotating **Request DTOs** with the `[Tag]` attribute where they'll enable functionality in a number of ServiceStack's metadata services where they'll be used to [Group Services in Open API](https://swagger.io/docs/specification/grouping-operations-with-tags/).
 

@@ -36,6 +36,26 @@ If now the detail page of the specific service is inspected, the description con
 
 ![Metadata Detail Page](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/metadata-swagger-api.png)
 
+### Group Services by Tag
+
+Services can also be [grouped by Tag](/api-design#group-services-by-tag) by annotating them with the `[Tag]` attribute:
+
+```csharp
+[Tag("web")]
+public class WebApi : IReturn<MyResponse> {}
+
+[Tag("mobile")]
+public class MobileApi : IReturn<MyResponse> {}
+
+[Tag("web"),Tag("mobile")]
+public class WebAndMobileApi : IReturn<MyResponse> {}
+```
+
+Where they'll appear as a tab to additionally filter APIs in metadata pages:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/metadata/tag-groups.png)
+
+
 ## Adding Links to Metadata page
 
 ### Debug Links

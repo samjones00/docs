@@ -394,6 +394,22 @@ IncludeTypes: MyApp.ServiceModel.Admin/*
 
 This will include all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
 
+#### Include All Services in a Tag Group
+
+Services [grouped by Tag](/api-design#group-services-by-tag) can be used in the `IncludeTypes` where tags can be specified using braces in the format `{tag}` or `{tag1,tag2,tag3}`, e.g:
+
+```
+/* Options:
+IncludeTypes: {web,mobile}
+```
+
+Or individually:
+
+```
+/* Options:
+IncludeTypes: {web},{mobile}
+```
+
 ### ExcludeTypes
 Is used as a Blacklist to specify which types you would like excluded from being generated:
 

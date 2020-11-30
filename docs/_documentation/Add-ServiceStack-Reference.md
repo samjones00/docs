@@ -508,7 +508,7 @@ E.g you can limit types to only appear when the reference is added from localhos
 
 ```csharp
 [Restrict(LocalhostOnly = true)]
-public class ResrtictedToLocalhost { }
+public class RestrictedToLocalhost { }
 ```
 
 Or when added from within an internal network:
