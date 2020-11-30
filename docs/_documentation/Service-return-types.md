@@ -1,6 +1,8 @@
 ---
 slug: service-return-types
+title: Service Return Types
 ---
+
 From a birds-eye view ServiceStack can return any of:
 
   - Any **DTO** object -> serialized to Response ContentType

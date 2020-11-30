@@ -3,46 +3,48 @@ slug: api-design
 title: ServiceStack’s API design
 ---
 
+
+
 ServiceStack Services lets you return any kind of POCO, including naked collections:
 
 ```csharp
-[Route("/reqstars")]
-public class GetReqstars : IReturn<List<Reqstar>> { }
+[Route("/contacts")]
+public class GetContacts : IReturn<List<Contact>> { }
 
-public class ReqstarsService : Service
+public class ContactsService : Service
 {
-    public object Get(GetReqstars request) => Db.Select<Reqstar>();
+    public object Get(GetContact request) => Db.Select<Contact>();
 }
 ```
 
 That your C# clients can call with just:
 
 ```csharp
-List<Reqstar> response = client.Get(new GetReqstars());
+List<Contact> response = client.Get(new GetContacts());
 ```
 
-This will make a **GET** call to the custom `/reqstars` url, making it the **minimum effort required in any Typed REST API in .NET!** When the client doesn't contain the `[Route]` definition it automatically falls back to using ServiceStack's [pre-defined routes](http://www.servicestack.net/ServiceStack.Hello/#predefinedroutes) - saving an extra LOC!
+This will make a **GET** call to the custom `/contacts` url, making it the **minimum effort required in any Typed REST API in .NET!** When the client doesn't contain the `[Route]` definition it automatically falls back to using ServiceStack's [pre-defined routes](http://www.servicestack.net/ServiceStack.Hello/#predefinedroutes) - saving an extra LOC!
 
 ### Using explicit Response DTO
 
 A popular alternative to returning naked collections is to return explicit Response DTO, e.g:
 
 ```csharp
-[Route("/reqstars")]
-public class GetReqstars : IReturn<GetReqstarsResponse> { }
+[Route("/contacts")]
+public class GetContacts : IReturn<GetContactsResponse> { }
 
-public class GetReqstarsResponse 
+public class GetContactsResponse 
 {
-    public List<Reqstar> Results { get; set; }
+    public List<Contact> Results { get; set; }
     public ResponseStatus ResponseStatus { get; set; }
 }
 
-public class ReqstarsService : Service
+public class ContactsService : Service
 {
-    public object Get(GetReqstars request) 
+    public object Get(GetContacts request) 
     {
-        return new GetReqstarsResponse {
-            Results = Db.Select<Reqstar>()
+        return new GetContactsResponse {
+            Results = Db.Select<Contact>()
         };
     }
 }
@@ -102,12 +104,12 @@ public class Service : IService
 Lets revisit the Simple example from earlier:
 
 ```csharp
-[Route("/reqstars")]
-public class GetReqstars : IReturn<List<Reqstar>> { }
+[Route("/contacts")]
+public class GetContacts : IReturn<List<Contact>> { }
 
-public class ReqstarsService : Service
+public class ContactsService : Service
 {
-    public object Get(GetReqstars request) => Db.Select<Reqstar>();
+    public object Get(GetContacts request) => Db.Select<Contact>();
 }
 ```
 
@@ -119,7 +121,7 @@ ServiceStack maps HTTP Requests to your Services **Actions**. An Action is any m
     - Methods can have **Format** suffix to handle specific formats, e.g. if exists `GetJson` will handle **GET JSON** requests
   - Can specify either `T` or `object` Return type, both have same behavior 
 
-The above example will handle any `GetReqstars` request made on any **HTTP Verb** or **endpoint** and will return the complete `List<Reqstar>` contained in your configured RDBMS. 
+The above example will handle any `GetContacts` request made on any **HTTP Verb** or **endpoint** and will return the complete `List<Contact>` contained in your configured RDBMS. 
 
 ### Micro ORMs and ADO.NET's IDbConnection
 
@@ -144,19 +146,19 @@ instead copy the class definitions as-is, in both cases calling Services is exac
 #### Service Model Classes
 
 ```csharp
-[Route("/reqstars")]
-public class GetReqstars : IReturn<List<Reqstar>> { }
-public class Reqstar { ... }
+[Route("/contacts")]
+public class GetContacts : IReturn<List<Contact>> { }
+public class Contact { ... }
 ```
 
 Which can used in any ServiceClient with:
 
 ```csharp
 var client = new JsonServiceClient(BaseUri);
-List<Reqstar> response = client.Get(new GetReqstars());
+List<Contact> response = client.Get(new GetContacts());
 ```
 
-Which makes a **GET** web request to the `/reqstars` route. Custom Routes on Request DTO's are also not required as when none are defined the client automatically falls back to using ServiceStack's [pre-defined routes](/routing#pre-defined-routes).
+Which makes a **GET** web request to the `/contacts` route. Custom Routes on Request DTO's are also not required as when none are defined the client automatically falls back to using ServiceStack's [pre-defined routes](/routing#pre-defined-routes).
 
 ### Generating Typed DTOs
 
@@ -166,7 +168,7 @@ alternative way to get the Services typed DTOs on the client. In both cases the 
 
 ```csharp
 var client = new JsonServiceClient(BaseUri);
-var response = client.Get(new GetReqstars());
+var response = client.Get(new GetContacts());
 ```
 
 Add ServiceStack Reference is also available for [most popular languages](https://docs.servicestack.net/add-servicestack-reference) used in developing Web, Mobile and Desktop Apps.
@@ -177,7 +179,7 @@ When preferred, you can also use the previous more explicit client API (ideal fo
 lets you call the Service using just its route:
 
 ```csharp
-var response = client.Get<List<Reqstar>>("/reqstars");
+var response = client.Get<List<Contact>>("/contacts");
 ```
 
 > All these Service Client APIs **have async equivalents** with an `*Async` suffix.
@@ -187,12 +189,12 @@ var response = client.Get<List<Reqstar>>("/reqstars");
 A nice property of ServiceStack's message-based design is all functionality is centered around Typed Request DTOs which easily lets you take advantage of high-level value-added functionality like [Auto Batched Requests](/auto-batched-requests) or [Encrypted Messaging](/encrypted-messaging) which are enabled automatically without any effort or easily opt-in to enhanced functionality by decorating Request DTOs or thier Services with Metadata and [Filter Attributes](/filter-attributes) and everything works together, binded against typed models naturally.
 
 E.g. you can take advantage of [ServiceStack's Razor support](http://razor.servicestack.net/) and create a web page for this service by just adding a Razor view with the same name as the Request DTO in the `/Views` folder,
-which for the `GetReqstars` Request DTO you can just add `/Views/GetReqstars.cshtml` and it will get rendered with the Services Response DTO as its View Model when the Service is called from a browser (i.e. HTTP Request with `Accept: text/html`). 
+which for the `GetContacts` Request DTO you can just add `/Views/GetContacts.cshtml` and it will get rendered with the Services Response DTO as its View Model when the Service is called from a browser (i.e. HTTP Request with `Accept: text/html`). 
 
 Thanks to ServiceStack's built-in Content Negotiation you can fetch the HTML contents calling the same url: 
 
 ```csharp
-var html = $"{BaseUri}/reqstars".GetStringFromUrl(accept:"text/html");
+var html = $"{BaseUri}/contacts".GetStringFromUrl(accept:"text/html");
 ```
 
 This [feature is particularly nice](http://razor.servicestack.net/#unified-stack) as it lets you **re-use your existing services** to serve both Web and Native Mobile and Desktop clients.
@@ -202,10 +204,10 @@ This [feature is particularly nice](http://razor.servicestack.net/#unified-stack
 Service actions can also contain fine-grained application of Request and Response filters, e.g:
 
 ```csharp
-public class ReqstarsService : Service
+public class ContactsService : Service
 {
     [ClientCanSwapTemplates]
-    public object Get(GetReqstars request) => Db.Select<Reqstar>();
+    public object Get(GetContacts request) => Db.Select<Contact>();
 }
 ```
 
@@ -216,17 +218,17 @@ This Request Filter allows the client to [change the selected Razor **View** and
 ServiceStack Services lets you handle any HTTP Verb in the same way, e.g this lets you respond with CORS headers to a HTTP **OPTIONS** request with:
 
 ```csharp
-public class ReqstarsService : Service
+public class ContactsService : Service
 {
     [EnableCors]
-    public void Options(GetReqstar request) {}
+    public void Options(GetContact request) {}
 }
 ```
 
 Which if you now make an OPTIONS request to the above service, will emit the default `[EnableCors]` headers:
 
 ```csharp
-var webReq = (HttpWebRequest)WebRequest.Create(Host + "/reqstars");
+var webReq = (HttpWebRequest)WebRequest.Create(Host + "/contacts");
 webReq.Method = "OPTIONS";
 using (var webRes = webReq.GetResponse())
 {
@@ -241,25 +243,25 @@ using (var webRes = webReq.GetResponse())
 Handling a PATCH request is just as easy, e.g. here's an example of using PATCH to handle a partial update of a Resource:
 
 ```csharp
-[Route("/reqstars/{Id}", "PATCH")]
-public class UpdateReqstar : IReturn<Reqstar>
+[Route("/contacts/{Id}", "PATCH")]
+public class UpdateContact : IReturn<Contact>
 {
     public int Id { get; set; }
     public int Age { get; set; }
 }
 
-public Reqstar Patch(UpdateReqstar request)
+public Contact Patch(UpdateContact request)
 {
-    var reqstar = request.ConvertTo<Reqstar>();
-    Db.UpdateNonDefaults(reqstar);
-    return Db.SingleById<Reqstar>(request.Id);
+    var Contact = request.ConvertTo<Contact>();
+    Db.UpdateNonDefaults(Contact);
+    return Db.SingleById<Contact>(request.Id);
 }
 ```
 
 And the client call is just as easy as you would expect:
 
 ```csharp
-var response = client.Patch(new UpdateReqstar { Id = 1, Age = 18 });
+var response = client.Patch(new UpdateContact { Id = 1, Age = 18 });
 ```
 
 Although sending different HTTP Verbs are unrestricted in native clients, they're unfortunately not allowed in some web browsers and proxies. So to simulate a PATCH from an AJAX request you need to set the **X-Http-Method-Override** HTTP Header.
@@ -271,22 +273,22 @@ When following the [explicit Response DTO Naming convention](/error-handling#err
 [Error Handling](/error-handling) works naturally in ServiceStack where you can simply throw C# Exceptions, e.g:
 
 ```csharp
-public List<Reqstar> Post(Reqstar request)
+public List<Contact> Post(Contact request)
 {
     if (!request.Age.HasValue)
         throw new ArgumentException("Age is required");
 
-    Db.Insert(request.ConvertTo<Reqstar>());
-    return Db.Select<Reqstar>();
+    Db.Insert(request.ConvertTo<Contact>());
+    return Db.Select<Contact>();
 }
 ```
 
-This will result in an Error thrown on the client if it tried to create an empty Reqstar:
+This will result in an Error thrown on the client if it tried to create an empty Contact:
 
 ```csharp
 try
 {
-    var response = client.Post(new Reqstar());
+    var response = client.Post(new Contact());
 }
 catch (WebServiceException webEx)
 {
@@ -303,7 +305,7 @@ The same Service Clients Exception handling is also used to handle any HTTP erro
 ```csharp
 try
 {
-    var response = client.Send(new SearchReqstars());
+    var response = client.Send(new SearchContacts());
 }
 catch (WebServiceException webEx)
 {
@@ -341,43 +343,43 @@ These Rules only come into play when there are multiple routes that matches the 
 Lets see some examples of these rules in action using the routes defined in the [API Design test suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/ReqStarsService.cs):
 
 ```csharp
-[Route("/reqstars")]
-public class Reqstar {}
+[Route("/contacts")]
+public class Contact {}
 
-[Route("/reqstars", "GET")]
-public class GetReqstars {}
+[Route("/contacts", "GET")]
+public class GetContacts {}
 
-[Route("/reqstars/{Id}", "GET")]
-public class GetReqstar {}
+[Route("/contacts/{Id}", "GET")]
+public class GetContact {}
 
-[Route("/reqstars/{Id}/{Field}")]
-public class ViewReqstar {}
+[Route("/contacts/{Id}/{Field}")]
+public class ViewContact {}
 
-[Route("/reqstars/{Id}/delete")]
-public class DeleteReqstar {}
+[Route("/contacts/{Id}/delete")]
+public class DeleteContact {}
 
-[Route("/reqstars/{Id}", "PATCH")]
-public class UpdateReqstar {}
+[Route("/contacts/{Id}", "PATCH")]
+public class UpdateContact {}
 
-[Route("/reqstars/reset")]
-public class ResetReqstar {}
+[Route("/contacts/reset")]
+public class ResetContact {}
 
-[Route("/reqstars/search")]
-[Route("/reqstars/aged/{Age}")]
-public class SearchReqstars {}
+[Route("/contacts/search")]
+[Route("/contacts/aged/{Age}")]
+public class SearchContacts {}
 ```
 
 These are results for these HTTP Requests
 
-	GET   /reqstars           =>	GetReqstars
-	POST  /reqstars           =>	Reqstar
-	GET   /reqstars/search    =>	SearchReqstars
-	GET   /reqstars/reset     =>	ResetReqstar
-	PATCH /reqstars/reset     =>	ResetReqstar
-	PATCH /reqstars/1         =>	UpdateReqstar
-	GET   /reqstars/1         =>	GetReqstar
-	GET   /reqstars/1/delete  =>	DeleteReqstar
-	GET   /reqstars/1/foo     =>	ViewReqstar
+	GET   /contacts           =>	GetContacts
+	POST  /contacts           =>	Contact
+	GET   /contacts/search    =>	SearchContacts
+	GET   /contacts/reset     =>	ResetContact
+	PATCH /contacts/reset     =>	ResetContact
+	PATCH /contacts/1         =>	UpdateContact
+	GET   /contacts/1         =>	GetContact
+	GET   /contacts/1/delete  =>	DeleteContact
+	GET   /contacts/1/foo     =>	ViewContact
 
 And if there were multiple of the exact same routes declared like:
 
@@ -457,11 +459,11 @@ One limitation of Services is that you can't split the handling of a single Reso
 Although they're not needed or used anywhere [you can also use HTTP Verb interfaces](https://github.com/ServiceStack/ServiceStack/blob/34acc429ee04053ea766e4fb183e7aad7321ef5e/src/ServiceStack.Interfaces/IService.cs#L27) to enforce the correct signature required by the services, e.g:
 
 ```csharp
-public class MyService : Service, IAny<GetReqstars>, IGet<SearchReqstars>, IPost<Reqstar>
+public class MyService : Service, IAny<GetContacts>, IGet<SearchContacts>, IPost<Contact>
 {
-    public object Any(GetReqstars request) { .. }
-    public object Get(SearchReqstars request) { .. }
-    public object Post(Reqstar request) { .. }
+    public object Any(GetContacts request) { .. }
+    public object Get(SearchContacts request) { .. }
+    public object Post(Contact request) { .. }
 }
 ```
 
