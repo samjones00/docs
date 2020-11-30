@@ -165,16 +165,7 @@ public class MyRequest
 
 public class ContentTypeServices : Service
 {
-    public object Any(MyRequest request) => ...;    // Handles all other unspecified Verbs/Formats to /my-request
-
     public object GetJson(MyRequest request) => ..; // Handles GET /my-request for JSON responses
-
-    public object AnyHtml(MyRequest request) =>     // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
-        $@"<html>
-            <body>
-                <h1>AnyHtml {request.Name}</h1>
-            </body>
-        </html>";
 
     public object GetHtml(MyRequest request) =>     // Handles GET /my-request for HTML Responses
         $@"<html>
@@ -182,6 +173,15 @@ public class ContentTypeServices : Service
                 <h1>GetHtml {request.Name}</h1>
             </body>
         </html>";
+
+    public object AnyHtml(MyRequest request) =>     // Handles other POST/PUT/etc Verbs for HTML Responses
+        $@"<html>
+            <body>
+                <h1>AnyHtml {request.Name}</h1>
+            </body>
+        </html>";
+
+    public object Any(MyRequest request) => ...;    // Handles all other unspecified Verbs/Formats
 }
 ```
 
