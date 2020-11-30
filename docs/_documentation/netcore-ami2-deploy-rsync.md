@@ -220,7 +220,7 @@ you can view your App's error log for info, e.g:
 ### Setup Lets Encrypt
 
 If you're configuring an Internet Website you'll also likely want to configure it to use SSL, the easiest & free way is to use 
-[letsencrypt.org](https://letsencrypt.org/) which you can 
+[letsencrypt.org](https://letsencrypt.org/) which you can install with:
 
     $ sudo yum install certbot python2-certbot-nginx 
 
