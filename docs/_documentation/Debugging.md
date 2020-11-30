@@ -16,7 +16,7 @@ and how it can be enabled inside VS.NET by turning on **Enable source link suppo
 
 When enabled it should let you debug into the ServiceStack framework implementation, downloading the correct source files version from GitHub as and when needed.
 
-### All ServiceStack GitHub projects now use CI NuGet feed
+### All ServiceStack GitHub projects use CI NuGet feed
 
 In addition to using MSBuild generated packages all projects also utilize CI NuGet package feeds for external dependencies instead of copying 
 .dll's in `/lib` folders. As a consequence you'll no longer have to build external ServiceStack GitHub projects or use GitHub published releases, 

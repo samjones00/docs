@@ -13,7 +13,7 @@
     - [Your first WebService explained](/your-first-webservice-explained)
     - [Explore ServiceStack](/explore-servicestack)
     - [Service API Design](/api-design)
-    - [Service return types](/service-return-types)
+    - [Service Return Types](/service-return-types)
     - [Design RESTful Services](/design-rest-services)
     - [Design Message-based APIs](/design-message-based-apis)
     - [Modular Startup](/modular-startup)
