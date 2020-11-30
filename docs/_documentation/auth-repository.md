@@ -40,6 +40,10 @@ container.Register<IAuthRepository>(c =>
 
 Like the [caching providers](/caching) the `async` Auth Repositories makes use of this existing `IAuthRepository` registration which you can use in your Services to access either `IAuthRepositoryAsync` or `IAuthRepository` APIs above even for your own sync Auth Repos that only implement `IAuthRepository` as it will return a `IAuthRepositoryAsync` wrapper API in its place.
 
+### Auth Repository Admin APIs 
+
+If you're interested in implementing a User Management feature in your own Apps you may want to re-use the Admin APIs in the [User Admin Feature](/admin-users) which enable Service access to many User Auth Repository features.
+
 ### Mix in Auth Repository
 
 The easiest way to configure a User Auth Repository in your [Modular Startup](/modular-startup) App that new ASP.NET Core templates support

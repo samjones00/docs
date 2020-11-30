@@ -229,6 +229,7 @@
     - [Overview](/plugins)
     - [Open API](/openapi)
     - [Swagger API](/swagger-api)
+    - [User Admin Feature](/admin-users)
     - [CORS Feature](/corsfeature)
     - [Proxy Feature](/proxy-feature)
     - [Request logger](/request-logger)
