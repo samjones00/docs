@@ -66,24 +66,34 @@ The interface is used as a Marker interface that ServiceStack uses to find, regi
 ```csharp
 public class Service : IService 
 {
-    IRequest Request { get; }                 //HTTP Request Wrapper
-    IResponse Response { get; }               //HTTP Response Wrapper
-    IServiceGateway Gateway { get; }          //Built-in Service Gateway
-    IVirtualPathProvider VirtualFileSources   //Virtual FileSystem Sources
-    IVirtualFiles VirtualFiles { get; }       //Writable Virtual FileSystem
-    ICacheClient Cache { get; }               //Registered Caching Provider
-    MemoryCacheClient LocalCache { get; }     //Local InMemory Caching Provider
-    IDbConnection Db { get; }                 //Registered ADO.NET IDbConnection
-    IRedisClient Redis { get; }               //Registered RedisClient 
-    IMessageProducer MessageProducer { get; } //Message Producer for Registered MQ Server
-    IAuthRepository AuthRepository { get; }   //Registered User Repository
-    ISession SessionBag { get; }              //Dynamic Session Bag
-    TUserSession SessionAs<TUserSession>();   //Resolve Typed UserSession
-    T TryResolve<T>();                        //Resolve dependency at runtime
-    T ResolveService<T>();                    //Resolve an auto-wired service
-    void PublishMessage(T message);           //Publish messages to Registered MQ Server
-    bool IsAuthenticated { get; }             //Is Authenticated Request
-    void Dispose();                           //Override to implement custom Dispose
+    IRequest Request { get; }                          // HTTP Request Context
+    IResponse Response { get; }                        // HTTP Response Context
+    IServiceGateway Gateway { get; }                   // Built-in Service Gateway
+    IMessageProducer MessageProducer { get; }          // Message Producer for Registered MQ Server
+    void PublishMessage(T message);                    // Publish messages to Registered MQ Server
+    IVirtualPathProvider VirtualFileSources { get; }   // Virtual FileSystem Sources
+    IVirtualFiles VirtualFiles { get; }                // Writable Virtual FileSystem
+    ICacheClient Cache { get; }                        // Registered Caching Provider
+    ICacheClientAsync CacheAsync { get; }              // Registered Async Caching Provider (or sync wrapper)
+    MemoryCacheClient LocalCache { get; }              // Local InMemory Caching Provider
+    IDbConnection Db { get; }                          // Registered ADO.NET IDbConnection
+    IRedisClient Redis { get; }                        // Registered RedisClient 
+    ValueTask<IRedisClientAsync> GetRedisAsync();      // Registered Async RedisClient 
+    IAuthRepository AuthRepository { get; }            // Registered User Repository
+    IAuthRepositoryAsync AuthRepositoryAsync { get; }  // Registered Async User Repository
+    ISession SessionBag { get; }                       // Dynamic Session Bag
+    ISessionAsync SessionBagAsync { get; }             // Dynamic Async Session Bag
+    Task<TUserSession> SessionAsAsync<TUserSession>(); // Resolve Typed UserSession Async
+    TUserSession SessionAs<TUserSession>();            // Resolve Typed UserSession
+    IAuthSession GetSession() { get; }                 // Resolve base IAuthSession
+    Task<IAuthSession> GetSessionAsync();              // Resolve base IAuthSession Async
+    bool IsAuthenticated { get; }                      // Is Authenticated Request
+    T TryResolve<T>();                                 // Resolve dependency at runtime
+    T ResolveService<T>();                             // Resolve an auto-wired service
+    T GetPlugin<T>();                                  // Resolve optional registered Plugin
+    T AssertPlugin<T>();                               // Resolve required registered Plugin
+    void Dispose();                                    // Override to implement custom IDispose
+    ValueTask DisposeAsync();                          // implement IAsyncDisposable (.NET v4.7.2+)
 }
 ```
 
