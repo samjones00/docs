@@ -3,31 +3,60 @@ slug: api-design
 title: ServiceStack’s API design
 ---
 
+The primary difference between developing RPC vs ServiceStack's [Message-based Services](/what-is-a-message-based-web-service) is that the Services entire contract
+is defined by its typed messages, specifically the Request DTO which defines both the System inputs and identifies the System output. Typically both are POCO DTOs 
+however the [response can be any serializable object](/service-return-types).
 
-
-ServiceStack Services lets you return any kind of POCO, including naked collections:
+The simplest Service example that does this is:
 
 ```csharp
+public class MyRequest : IReturn<MyRequest> {}
+
+public class MyServices : Service
+{
+    public object Any(MyRequest request) => request;
+}
+```
+
+As only the `Any()` wildcard method is defined, it will get executed whenever the `MyRequest` Service is invoked via **any HTTP Verb**, [gRPC](/grpc), [MQ](/messaging) or [SOAP](/soap-support) Request. 
+
+The Request DTO is also all that's required to invoke it via any [Typed Generic Service Client](/clients-overview) in any supported language, e.g:
+
+```csharp
+MyRequest response = client.Get(new MyRequest());
+```
+
+All Services are accessible by their [pre-defined routes](/routing#pre-defined-routes), with a little extra code we can turn it into functional data-driven Service
+by returning a naked collection:
+
+```csharp
+public class Contact 
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
 [Route("/contacts")]
 public class GetContacts : IReturn<List<Contact>> { }
 
 public class ContactsService : Service
 {
-    public object Get(GetContact request) => Db.Select<Contact>();
+    public object Get(GetContacts request) => Db.Select<Contact>();
 }
 ```
 
-That your C# clients can call with just:
+Which your C# clients will still be able to call with:
 
 ```csharp
 List<Contact> response = client.Get(new GetContacts());
 ```
 
-This will make a **GET** call to the custom `/contacts` url, making it the **minimum effort required in any Typed REST API in .NET!** When the client doesn't contain the `[Route]` definition it automatically falls back to using ServiceStack's [pre-defined routes](http://www.servicestack.net/ServiceStack.Hello/#predefinedroutes) - saving an extra LOC!
+This will make a **GET** call to the custom `/contacts` URL and returns all `Contact` in the configured RDBMS using [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite)
+`Select()` extension method on the `Db` ADO.NET `IDbConnection`. Using `Get()` will limit access to this service from HTTP **GET** requests, all other HTTP Verbs to `/contacts` will return a 404 NotFound HTTP Error Response.
 
 ### Using explicit Response DTO
 
-A popular alternative to returning naked collections is to return explicit Response DTO, e.g:
+Our recommendation instead of returning naked collections is returning an explicit predictable Response DTO, e.g:
 
 ```csharp
 [Route("/contacts")]
@@ -41,16 +70,16 @@ public class GetContactsResponse
 
 public class ContactsService : Service
 {
-    public object Get(GetContacts request) 
-    {
-        return new GetContactsResponse {
-            Results = Db.Select<Contact>()
-        };
-    }
+    public object Get(GetContacts request) => new GetContactsResponse {
+        Results = Db.Select<Contact>()
+    };
 }
 ```
 
-Whilst slightly more verbose this style benefits from better versionability and more coarse-grained APIs as additional results can be added to the Response DTO without breaking existing clients. You'll also need to follow the above convention if you also wanted to [support SOAP clients and endpoints](/soap-support) or if you want to be able to handle Typed [Response Messages in MQ Services](/messaging#message-workflow).
+Whilst slightly more verbose this style benefits from [more resilience in evolving and versioning](https://stackoverflow.com/a/12413091/85785) message-based Services
+and more coarse-grained APIs as additional results can be added to the Response DTO without breaking existing clients. 
+
+You'll also need to follow the above convention if you also wanted to [support SOAP endpoints](/soap-support) or if you want to be able to handle Typed [Response Messages in MQ Services](/messaging#message-workflow).
 
 ## ServiceStack's API Design
 
@@ -121,7 +150,150 @@ ServiceStack maps HTTP Requests to your Services **Actions**. An Action is any m
     - Methods can have **Format** suffix to handle specific formats, e.g. if exists `GetJson` will handle **GET JSON** requests
   - Can specify either `T` or `object` Return type, both have same behavior 
 
-The above example will handle any `GetContacts` request made on any **HTTP Verb** or **endpoint** and will return the complete `List<Contact>` contained in your configured RDBMS. 
+### Content-Type Specific Service Implementations
+
+Service methods can also use `Verb{Format}` method names to provide a different implementation for handling a specific Content-Type. 
+
+The Service below defines several different implementation for handling the same Request:
+
+```csharp
+[Route("/my-request")]
+public class MyRequest 
+{
+    public string Name { get; set; }
+}
+
+public class ContentTypeServices : Service
+{
+    public object Any(MyRequest request) => ...;    // Handles all other unspecified Verbs/Formats to /my-request
+
+    public object GetJson(MyRequest request) => ..; // Handles GET /my-request for JSON responses
+
+    public object AnyHtml(MyRequest request) =>     // Handles POST/PUT/DELETE/etc /my-request for HTML Responses
+        $@"<html>
+            <body>
+                <h1>AnyHtml {request.Name}</h1>
+            </body>
+        </html>";
+
+    public object GetHtml(MyRequest request) =>     // Handles GET /my-request for HTML Responses
+        $@"<html>
+            <body>
+                <h1>GetHtml {request.Name}</h1>
+            </body>
+        </html>";
+}
+```
+
+### Optional *Async Suffixes
+
+In addition your Services can optionally have the `*Async` suffix which by .NET Standard (and ServiceStack) guidelines is preferred for Async methods to telegraph to client call sites that its response should be awaited.
+
+
+```csharp
+[Route("/contacts")]
+public class GetContacts : IReturn<List<Contact>> { }
+
+public class ContactsService : Service
+{
+    public async Task<object> GetAsync(GetContacts request) => 
+        await Db.SelectAsync<Contact>();
+
+    public object GetHtmlAsync(MyRequest request) =>
+        $@"<html>
+            <body>
+                <h1>GetHtml {request.Name}</h1>
+            </body>
+        </html>";
+}
+```
+
+If both exists (e.g. `Post()` and `PostAsync()`) the `*Async` method will take precedence and be invoked instead. 
+
+Allowing both is useful if you have internal services directly invoking other Services using `HostContext.ResolveService<T>()` where you can upgrade your Service to use an Async implementation without breaking existing clients, e.g. this is used in [RegisterService.cs](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/RegisterService.cs):
+
+```csharp
+[Obsolete("Use PostAsync")]
+public object Post(Register request)
+{
+    try
+    {
+        var task = PostAsync(request);
+        return task.GetResult();
+    }
+    catch (Exception e)
+    {
+        throw e.UnwrapIfSingleException();
+    }
+}
+
+/// <summary>
+/// Create new Registration
+/// </summary>
+public async Task<object> PostAsync(Register request)
+{
+    //... async impl
+}            
+```
+
+To change to use an async implementation whilst retaining backwards compatibility with existing call sites, e.g:
+
+```csharp
+using var service = HostContext.ResolveService<RegisterService>(Request);
+var response = service.Post(new Register { ... });
+```
+
+This is important if the response is ignored as the C# compiler wont give you any hints to await the response which can lead to timing issues where the Services is invoked but User Registration hasn't completed as-is often assumed.
+
+Alternatively you can rename your method to use `*Async` suffix so the C# compiler will fail on call sites so you can replace the call-sites to `await` the async `Task` response, e.g:
+
+```csharp
+using var service = HostContext.ResolveService<RegisterService>(Request);
+var response = await service.PostAsync(new Register { ... });
+```
+
+## Group Services by Tag
+
+Related Services by can be grouped by annotating **Request DTOs** with the `[Tag]` attribute where they'll enable functionality in a number of ServiceStack's metadata services where they'll be used to [Group Services in Open API](https://swagger.io/docs/specification/grouping-operations-with-tags/).
+
+This feature could be used to tag which Services are used by different platforms:
+
+```csharp
+[Tag("web")]
+public class WebApi : IReturn<MyResponse> {}
+
+[Tag("mobile")]
+public class MobileApi : IReturn<MyResponse> {}
+
+[Tag("web"),Tag("mobile")]
+public class WebAndMobileApi : IReturn<MyResponse> {}
+```
+
+Where they'll appear as a tab to additionally filter APIs in metadata pages:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/metadata/tag-groups.png)
+
+They're also supported in [Add ServiceStack Reference](/add-servicestack-reference) where it can be used in the [IncludeTypes](/csharp-add-servicestack-reference#includetypes) DTO customization option where tags can be specified using braces in the format `{tag}` or `{tag1,tag2,tag3}`, e.g:
+
+```
+/* Options:
+IncludeTypes: {web,mobile}
+```
+
+Or individually:
+
+```
+/* Options:
+IncludeTypes: {web},{mobile}
+```
+
+It works similar to [Dependent Type References wildcard syntax](/csharp-add-servicestack-reference#include-request-dto-and-its-dependent-types) where it expands all Request DTOs with the tag to include all its reference types so including a `{web}` tag would be equivalent to including all Request DTOs & reference types with that reference, e.g:
+
+```
+/* Options:
+IncludeTypes: WebApi.*,WebAndMobileApi.*
+```
+
 
 ### Micro ORMs and ADO.NET's IDbConnection
 

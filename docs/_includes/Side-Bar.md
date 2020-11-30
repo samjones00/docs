@@ -44,7 +44,7 @@
     - [Studio - AutoQuery UI](/studio-autoquery)
     - [Studio - DB Validation Rules](/studio-validation-rules)
 - ##### Background Concepts
-    - [What is a Message-based WebService](/what-is-a-message-based-web-service)
+    - [What is a Message-based Web Service](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
     - [Why Remote Services should use DTOs](/why-remote-services-use-dtos)
     - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
