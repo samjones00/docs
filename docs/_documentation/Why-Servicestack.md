@@ -17,11 +17,12 @@ Developed in the modern age, ServiceStack provides an alternate, cleaner POCO-dr
 - **Multiple Hosts** - Run in Web, Console, native Windows/OSX Desktop Apps, Windows Services
 - **Host Agnostic** - Services are decoupled from HTTP and can be hosted in MQ Services
 - **Highly testable** - Typed, idiomatic client APIs enable succinct, intuitive Integration tests
-- **Mature** - Stable with over 8+ years of development 
+- **Mature** - Stable with over 10+ years of development 
 - **Preserve Investment** - modern libraries that are [Continuously Improved](/release-notes-history) (not abandoned or replaced)
 - **Dependable** - Commercially supported and actively developed
+- **Increasing Value** - ServiceStack's [ever-growing features](https://servicestack.net/features) adds more capabilities around your Services with each release
 
-### [Features Overview](https://servicestack.net/features)
+### Features Overview
 
 ServiceStack is a simple, fast, versatile and highly-productive full-featured [Web](http://razor.servicestack.net) and 
 [Web Services](/web-services) Framework that's 
@@ -57,6 +58,8 @@ to the built-in support for
 or effortlessly enabling rich [HTTP Caching](/http-caching) and
 [Encrypted Messaging](/encrypted-messaging) 
 for all your existing services via [Plugins](/plugins).
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg)
 
 Your same Services also serve as the Controller in ServiceStack's [Smart Razor Views](http://razor.servicestack.net/)
 reducing the effort to serve both 
