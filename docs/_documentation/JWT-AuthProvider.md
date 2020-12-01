@@ -59,6 +59,20 @@ new JwtAuthProvider(...) {
 }
 ```
 
+### Enable Server Cookies
+
+A popular way for maintaining JWT Tokens on clients is via Secure HttpOnly Cookies, this default behavior can be configured on the server to return Authenticated Sessions in a stateless JWT Token on the server with `UseTokenCookie`:
+
+```csharp
+new JwtAuthProvider(appSettings) {
+    UseTokenCookie = true
+}
+```
+
+JWT Token Cookies are supported for most built-in Auth Providers including `Authenticate` Requests as well as **OAuth Web Flow** Sign Ins.
+
+The alternative to configuring on the server is for clients to request it with [UseTokenCookie on the Authenticate Request](#request-jwt-cookie-is-set-on-authentication) or in a [hidden FORM Input](#switching-existing-sites-to-jwt). 
+
 #### RequireSecureConnection
 
 The JWT Auth Provider defaults to `RequireSecureConnection=true` which mandates for Authentication via either Provider to happen over a secure (HTTPS) connection as both bearer tokens should be kept highly confidential. You can specify `RequireSecureConnection=false` to disable this requirement for testing or within controlled internal environments.
