@@ -476,6 +476,44 @@ Of which you can also find published on NorthwindCrud's home page:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/northwindcrud-home.png)
 
+
+### AutoGen Customizations
+
+AutoGen's [Instantly Servicify existing Systems](/servicify) feature works by automatically generating the AutoQuery & Crud APIs and Data Models for all tables in the configured RDBMS's. Further customization of the DataModel Names, the user-defined Route Path they're hosted at & the name of individual AutoQuery APIs for each operation using the `GenerateOperationsFilter`. 
+
+So if you had an existing table name called `applications` the default convention based names would be:
+ - Data Model: `Applications`
+ - APIs: `CreateApplications`, `PatchApplications`, `QueryApplications`, etc
+ - Route: `/applications`, `/applications/{Id}`
+
+You can change each of these default conventions with the new `GenerateOperationsFilter`, e.g:
+
+```csharp
+Plugins.Add(new AutoQueryFeature {
+    MaxLimit = 1000,
+    GenerateCrudServices = new GenerateCrudServices {
+        AutoRegister = true,
+        GenerateOperationsFilter = ctx => {
+            if (ctx.TableName == "applications")
+            {
+                ctx.DataModelName = "Application";
+                ctx.PluralDataModelName = "Apps";
+                ctx.RoutePathBase = "/apps";
+                ctx.OperationNames = new Dictionary<string, string> {
+                    [AutoCrudOperation.Create] = "CreateApp",
+                    [AutoCrudOperation.Patch] = "ModifyApp",
+                };
+            }
+        }
+    }
+});
+```
+
+Would result in:
+ - Data Model: `Application`
+ - APIs: `QueryApps`, `CreateApp`, `ModifyApp`
+ - Route: `/apps`, `/apps/{Id}`
+
 ### Retrying Dart gRPC Example
 
 We can see an immediate effect of these customizations in **NorthwindCrud** where most APIs now require Authentication:
