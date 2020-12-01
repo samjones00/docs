@@ -11,6 +11,12 @@ title: Why not OData?
  - Consumers are expected to be familiar with the database and table structures prior to consuming the Web service. This results in a tight coupling between service providers and consumers.
  - Performance will suffer due to dependencies on late binding and encoding/decoding between boundaries within the same service.
 
+This is ultimately where many auto querying solutions fall down, they're typically executed with black-box binary implementations 
+which only understand their opaque query languages normal Services wouldn't support, are exposed on unnatural routes you wouldn't use 
+and return unclean verbose wire formats normal Services wouldn't return. So when it comes to needing to replace their 
+implementation-specific APIs, it's often not feasible to reverse engineer a new implementation to match its existing Services contract and 
+would need to resort in creating a new incompatible API, breaking existing clients and violating its Systems
+
 ### OData Example
 
 We previously used one of [Netflix's OData examples to illustrate this](http://stackoverflow.com/a/9579090/85785) showing how to query for movies with specific ratings, a service available before [Netflix retired their OData catalog](http://developer.netflix.com/blog/read/Changes_to_the_Public_API_Program):
