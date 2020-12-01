@@ -23,14 +23,19 @@ the existing AutoQuery functionality and enhance it with custom behavior (e.g. i
 entire implementation can be replaced without breaking its design contract & existing client integrations, should it be necessary to
 reimplement later if the Service needs to be constructed to use alternative data sources.
 
-### Limitations of typical Auto querying Solutions
+### Rapidly develop data-driven systems
 
-This is ultimately where many [auto querying solutions fall down](/why-not-odata), they're typically executed with black-box binary implementations 
-which only understand their opaque query languages normal Services wouldn't support, are exposed on unnatural routes you wouldn't use 
-and return unclean verbose wire formats normal Services wouldn't return. So when it comes to needing to replace their 
-implementation-specific APIs, it's often not feasible to reverse engineer a new implementation to match its existing Services contract and 
-would need to resort in creating a new incompatible API, breaking existing clients and violating its Systems encapsulation which 
-should be one of the [core goals of Service design](/service-complexity-and-dto-roles#services).
+As AutoQuery lets you declaratively develop Services by just defining their API Contract with POCO DTOs you're able to develop entire 
+data-driven systems in a fraction of the time that it would take to implement them manually. In addition AutoQuery Services are semantically
+richer as all capabilities are declaratively defined around typed data models which makes it possible to build higher-level generic features
+like ServiceStack's Studio [Instant UI for AutoQuery Services](/studio-autoquery).
+
+With AutoQuery you can now build entire Apps declaratively to develop high-performance capable Services accessible via ServiceStack's 
+industry leading [myriad of Service endpoints](/why-servicestack#features-overview) and rich metadata services, all without needing to write any implementation!
+
+For a sample of the productivity enabled checkout the [Bookings CRUD](https://github.com/NetCoreApps/BookingsCrud) demo to create a multi-user ASP.NET Core Booking System from scratch within minutes with full Audit History, fine-grained permissions, declarative validation, run adhoc queries & export to Excel by just defining code-first high-performance AutoQuery CRUD Typed APIs 
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/XpHAaCTV7jE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Creating AutoQuery CRUD Services
 
@@ -136,6 +141,7 @@ AutoQuery CRUD extends existing [querying functionality in AutoQuery](/autoquery
  - `[AutoMap]` - Map System Input properties to Data Model fields
  - `[AutoDefault]` - Specify to fallback default values when not provided
  - `[AutoIgnore]` - Ignore mapping Request DTO property to Data Model
+ - `[AutoApply]` - Apply common generic behavior to AutoQuery CRUD Services
 
 Each of these are covered in more detail in the docs and examples below.
 
@@ -478,6 +484,150 @@ Or you can ignore validation for all properties with the same name by registerin
 ```csharp
 AutoQuery.IncludeCrudProperties.Add(nameof(CustomInfo));
 ```
+
+### Apply Generic CRUD Behaviors
+
+The AutoQuery Attributes are used to construct a metadata model of each operation used to enlist the desired functionality that each Service should have.
+This metadata model can also be programmatically constructed allowing you to codify conventions by grouping annotated attributes under a single `[AutoApply]`
+attribute resulting in the same behavior had the AutoQuery Request been annotated with the attributes directly, e.g:
+
+```csharp
+[AutoApply(Behavior.AuditQuery)]
+public class QueryBookings { ... } // Equivalent to:
+
+[AutoFilter(QueryTerm.Ensure, nameof(AuditBase.DeletedDate), Template = SqlTemplate.IsNull)]
+public class QueryBookings { ... }
+
+
+[AutoApply(Behavior.AuditCreate)]
+public class CreateBooking { ... } // Equivalent to:
+
+[AutoPopulate(nameof(AuditBase.CreatedDate),  Eval = "utcNow")]
+[AutoPopulate(nameof(AuditBase.CreatedBy),    Eval = "userAuthName")]
+[AutoPopulate(nameof(AuditBase.ModifiedDate), Eval = "utcNow")]
+[AutoPopulate(nameof(AuditBase.ModifiedBy),   Eval = "userAuthName")]
+public class CreateBooking { ... }
+```
+
+The `[AutoApply]` attribute is itself an inert marker for capturing what generic behavior you want applied to AutoQuery Services. 
+All built-in behavior is declared on the `Behavior` static class:
+
+```csharp
+public static class Behavior
+{
+    // Auto Filter SoftDeleted Results
+    public const string AuditQuery = nameof(AuditQuery);
+    
+    // Auto Populate CreatedDate, CreatedBy, ModifiedDate & ModifiedBy fields
+    public const string AuditCreate = nameof(AuditCreate);
+    
+    // Auto Populate ModifiedDate & ModifiedBy fields
+    public const string AuditModify = nameof(AuditModify);
+    
+    // Auto Populate DeletedDate & DeletedBy fields
+    public const string AuditDelete = nameof(AuditDelete);
+    
+    // Auto Populate DeletedDate & DeletedBy fields and changes IDeleteDb operation to Update
+    public const string AuditSoftDelete = nameof(AuditSoftDelete);
+}
+```
+
+This functionality is implemented by extending the metadata for AutoQuery CRUD Services with additional attributes in `AutoQueryFeature.AutoCrudMetadataFilters` delegate filters where they result in the same behavior as if the Request DTOs were annotated with attributes directly. E.g. Here's the built-in filter for implementing the above behaviors:
+
+```csharp
+public static void AuditAutoCrudMetadataFilter(AutoCrudMetadata meta)
+{
+    foreach (var applyAttr in meta.AutoApplyAttrs)
+    {
+        switch (applyAttr.Name)
+        {
+            case Behavior.AuditQuery:
+                meta.Add(new AutoFilterAttribute(
+                    QueryTerm.Ensure, nameof(AuditBase.DeletedDate), SqlTemplate.IsNull));
+                break;
+            case Behavior.AuditCreate:
+            case Behavior.AuditModify:
+                if (applyAttr.Name == Behavior.AuditCreate)
+                {
+                    meta.Add(new AutoPopulateAttribute(nameof(AuditBase.CreatedDate)) {
+                        Eval = "utcNow"
+                    });
+                    meta.Add(new AutoPopulateAttribute(nameof(AuditBase.CreatedBy)) {
+                        Eval = "userAuthName"
+                    });
+                }
+                meta.Add(new AutoPopulateAttribute(nameof(AuditBase.ModifiedDate)) {
+                    Eval = "utcNow"
+                });
+                meta.Add(new AutoPopulateAttribute(nameof(AuditBase.ModifiedBy)) {
+                    Eval = "userAuthName"
+                });
+                break;
+            case Behavior.AuditDelete:
+            case Behavior.AuditSoftDelete:
+                if (applyAttr.Name == Behavior.AuditSoftDelete)
+                    meta.SoftDelete = true;
+
+                meta.Add(new AutoPopulateAttribute(nameof(AuditBase.DeletedDate)) {
+                    Eval = "utcNow"
+                });
+                meta.Add(new AutoPopulateAttribute(nameof(AuditBase.DeletedBy)) {
+                    Eval = "userAuthName"
+                });
+                break;
+        }
+    }
+}
+```
+
+You can use this same functionality to describe your own custom generic functionality, e.g. Lets say you wanted to instead populate your base class with Audit Info containing different named properties with **local** `DateTime` and UserAuth `Id`. You can define your own Behavior name for this functionality:
+
+```csharp
+[AutoApply("MyUpdate")]
+public class UpdateBooking { ... }
+```
+
+and implement it with a custom `AutoCrudMetadataFilters` that populates the Audit `[AutoPopulate]` attributes on all Request DTOs marked with your Behavior name, e.g:
+
+```csharp
+void MyAuditFilter(AutoCrudMetadata meta)
+{
+    if (meta.HasAutoApply("MyUpdate"))
+    {
+        meta.Add(new AutoPopulateAttribute(nameof(MyBase.MyModifiedDate)) {
+            Eval = "now"
+        });
+        meta.Add(new AutoPopulateAttribute(nameof(MyBase.MyModifiedBy)) {
+            Eval = "userAuthId"
+        });
+    }
+}
+
+Plugins.Add(new AutoQueryFeature {
+    AutoCrudMetadataFilters = { MyAuditFilter },
+});
+```
+
+### AutoQuery CRUD Events
+
+AutoQuery includes `OnBefore*` and `OnAfter*` (sync & async) events for `Create`, `Update`, `Patch` & `Delete` that can be used to execute custom logic before or after each AutoQuery CRUD operation. E.g. if your system implements their own Audit history via RDBMS triggers, you can use the `OnBefore` **Delete** event to update the record with deleted info before the AutoQuery CRUD operation deletes it:
+
+```csharp
+Plugins.Add(new AutoQueryFeature {
+    OnBeforeDeleteAsync = async ctx => {
+        if (ctx.Dto is DeleteBooking deleteBooking)
+        {
+            var session = await ctx.Request.GetSessionAsync();
+            await ctx.Db.UpdateOnlyAsync(() => new Booking {
+                DeletedBy = session.UserAuthName,
+                DeletedDate = DateTime.UtcNow,
+            }, where: x => x.Id == deleteBooking.Id);
+        }                
+    },
+});
+```
+
+> Note: AutoQuery generates **async** Services by default which will invoke the `*Async` events, but if you implement a [sync Custom AutoQuery CRUD Service](/autoquery-crud#custom-autoquery-crud-services) it executes the **sync** events instead so you'd need to implement the `OnBeforeDelete` custom hook instead.
 
 ### Custom Complex Mapping
 
