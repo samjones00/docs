@@ -261,23 +261,23 @@ The method SessionFeature.GetSessionKey allows you to get a Session Key for a cu
 
 var sessionKey = SessionFeature.GetSessionKey();
 
-// geting an existing User Session or create a new one 
+// getting an existing User Session or create a new one 
 var userSession = SessionFeature.GetOrCreateSession<AuthUserSession>(CacheClient); 
 // or SessionFeature.GetOrCreateSession<CustomUserSession>(CacheClient); 
 ```
 
 ### Saving in Service
 
-As a typed session is just a disconnected POCO, it needs to explicitly saved to be persisted - which you can do with the [base.SaveSession()](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ServiceExtensions.cs#L68) Extension method.
+As a typed session is just a disconnected POCO, it needs to explicitly saved to be persisted - which you can do with the [base.SaveSession()](https://github.com/ServiceStack/ServiceStack/blob/6ac4bd1842c170f1569bb5aa1020a37c7bb4017d/src/ServiceStack/ServiceExtensions.cs#L73) Extension method.
 
 ```csharp
-public object Any(Request request)
+public async Task<object> Any(Request request)
 {
-    var session = base.SessionAs<AuthUserSession>();
+    var session = await base.SessionAsAsync<AuthUserSession>();
 
     // modify session
 
-    base.Request.SaveSession(session);
+    await base.Request.SaveSessionAsync(session);
 }
 ```
 
@@ -295,29 +295,30 @@ IHttpRequest httpReq = listenerCtx.ToRequest(); //HttpListenerContext
 IHttpRequest httpReq = HostContext.AppHost.TryGetCurrentRequest(); 
 ```
 
-Once you have access to the current `IRequest` you can save your typed session using the `SaveSession()` extension method:
+Once you have access to the current `IRequest` you can save your typed session using the `SaveSessionAsync()` extension method:
 
 ```csharp
-httpReq.SaveSession(session);
+await httpReq.SaveSessionAsync(session);
 ```
 
 This API is also available in MVC Controllers that inherit `ServiceStackController` or ASP.NET Pages that inherit `ServiceStackPage`:
 
 ```csharp
-base.SaveSession(session);
+await base.SaveSessionAsync(session);
 ```
 
 ### Intercept Saving Sessions
 
 Each time the Session is saved it's saved again with the default Session Expiry which can be specified on the top-level `AuthFeature.SessionExpiry` for temp Sessions or `AuthFeature.PermanentSessionExpiry` for permanent "Remember Me" Sessions.
 
-For fine-grained control you can intercept each time a Session is saved and change what Session Expiry it's saved with by overriding `OnSaveSession` in your AppHost:
+For fine-grained control you can intercept each time a Session is saved and change what Session Expiry it's saved with by overriding `OnSaveSessionAsync` in your AppHost:
 
 ```csharp
-public override void OnSaveSession(IRequest httpReq, IAuthSession session, TimeSpan? expiresIn=null)
+public override Task OnSaveSessionAsync(
+    IRequest httpReq, IAuthSession session, TimeSpan? expiresIn = null, CancellationToken token=default)
 {
     var customExpiry = ...
-    base.OnSaveSession(httpReq, session, customExpiry);
+    base.OnSaveSessionAsync(httpReq, session, customExpiry, token);
 }
 ```
 
@@ -331,7 +332,7 @@ in a [Request or Response Filter Attribute](/filter-attributes) or
 E.g. here's a Sliding Sessions example using a custom `[SlideExpiration]` Response Filter Attribute:
 
 ```csharp
-public class SlidingSessionAttribute : ResponseFilterAttribute
+public class SlidingSessionAttribute : ResponseFilterAsyncAttribute
 {
     public TimeSpan? Expiry { get; set; }
 
@@ -342,11 +343,11 @@ public class SlidingSessionAttribute : ResponseFilterAttribute
             : TimeSpan.FromSeconds(expirySecs);
 	}
 
-    public override void Execute(IRequest req, IResponse res, object responseDto)
+    public override async Task ExecuteAsync(IRequest req, IResponse res, object response)
     {
-        var session = req.GetSession();
+        var session = await req.GetSessionAsync();
         if (session != null) 
-            req.SaveSession(session, this.Expiry);
+            await req.SaveSessionAsync(session, this.Expiry);
     }
 }
 ```
@@ -366,11 +367,10 @@ Which just re-saves the Session in order to extend it with a new Session Expiry,
 instead be done in a Global Response Filter with:
 
 ```csharp
-GlobalResponseFilters.Add((req, res, dto) =>
-{
-    var session = req.GetSession();
+GlobalResponseFiltersAsync.Add(async (req, res, dto) => {
+    var session = await req.GetSessionAsync();
     if (session != null)
-        req.SaveSession(session, TimeSpan.FromMinutes(10));
+        await req.SaveSessionAsync(session, TimeSpan.FromMinutes(10));
 });
 ```
 
@@ -394,8 +394,8 @@ var ttl = req.GetCacheClient().GetTimeToLive(sessionKey);
 
 if (ttl != null && ttl <= TimeSpan.FromMinutes(10)) 
 {
-    var session = req.GetSession();
-    req.SaveSession(session, TimeSpan.FromMinutes(10));
+    var session = await req.GetSessionAsync();
+    await req.SaveSessionAsync(session, TimeSpan.FromMinutes(10));
 }
 ```
 
@@ -430,8 +430,8 @@ It's the same thing in ASP.NET Web Forms although this comes in the form of a [b
 You can access the dynamic UserSession Bag in ServiceStack services via the `base.SessionBag` property already built-in ServiceStack's [Service](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Service.cs) base class, e.g:
 
 ```csharp
-base.SessionBag["cart"] = new Cart { ... };
-var cart = base.SessionBag.Get<Cart>("cart");
+await base.SessionBagAsync.SetAsync("cart", new Cart { ... });
+var cart = await base.SessionBagAsync.GetAsync<Cart>("cart");
 ```
 
 ## Use HTTP Headers to Send Session Cookies

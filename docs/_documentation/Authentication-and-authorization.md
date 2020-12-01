@@ -855,8 +855,7 @@ public class MyPlugin : IPreInitPlugin
 ### Auth Response Filter
 
 Auth Providers can customize the `AuthenticateResponse` returned by implementing `IAuthResponseFilter` where 
-it will get called back with a populated [AuthFilterContext](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/IAuthProvider.cs)
-for successful Authenticate Request DTO requests or `AuthResultContext` for successful OAuth requests:
+it will get called back with a populated [AuthFilterContext](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/IAuthProvider.cs) for successful Authenticate Request DTO requests or `AuthResultContext` for successful OAuth requests:
 
 ```csharp
 public interface IAuthResponseFilter

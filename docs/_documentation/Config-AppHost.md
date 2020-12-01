@@ -96,7 +96,9 @@ SetConfig(new HostConfig {
     },
     AllowJsonpRequests = true,
     AllowRouteContentTypeExtensions = true,
-    AllowNonHttpOnlyCookies = false,
+    UseHttpOnlyCookies = true,  //default ;HttpOnly
+    UseSecureCookies = true,    //default ;Secure (https)
+    UseSameSiteCookies = false, //default ;SameSite=Lax
     DebugMode = false,
     StrictMode = Env.StrictMode,
     DefaultDocuments = new List<string> {
@@ -173,8 +175,6 @@ SetConfig(new HostConfig {
     MapExceptionToStatusCode = new Dictionary<Type, int>(),
     UseSaltedHash = false,
     FallbackPasswordHashers = new List<IPasswordHasher>(),
-    UseSameSiteCookies = false,
-    UseSecureCookies = true,   // good default to have, but needed if UseSameSiteCookies=true 
     AllowSessionIdsInHttpParams = false,
     AllowSessionCookies = true,
     RestrictAllCookiesToDomain = null,
