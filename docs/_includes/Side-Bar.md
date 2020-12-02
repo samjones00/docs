@@ -3,7 +3,7 @@
     - [Why ServiceStack](/why-servicestack)
     - [Architecture Overview](/architecture-overview)
     - [Servicify existing Systems](/servicify)
-    - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
+    - [Explore ServiceStack](/explore-servicestack)
 - ##### Releases
     - [Latest Release Notes](/releases/v5.10)
     - [Release Notes History](/release-notes-history)
@@ -11,7 +11,6 @@
 - ##### Getting Started
     - [Create your first WebService](/create-your-first-webservice)
     - [Your first WebService explained](/your-first-webservice-explained)
-    - [Explore ServiceStack](/explore-servicestack)
     - [Service API Design](/api-design)
     - [Service Return Types](/service-return-types)
     - [Design RESTful Services](/design-rest-services)
