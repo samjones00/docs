@@ -685,6 +685,50 @@ This also removes the our Session from the App Servers Cache as now the Users **
 contained solely in the JWT Cookie and is valid until the JWT Cookies Expiration, instead of determined
 by Server Session State.
 
+### Server Token Cookies
+
+In most cases the easiest way to utilize JWT with your other Auth Providers is to configure `JwtAuthProvider` to use `UseTokenCookie` to
+automatically return a JWT Token Cookie for all Auth Providers authenticating via `Authenticate` requests or after a successful OAuth Web Flow
+from an [OAuth Provider](/authentication-and-authorization#oauth-providers).
+
+This is what [techstacks.io](http://techstacks.io) uses to maintain Authentication via a JWT Token after Signing in with Twitter or GitHub:
+
+```csharp
+Plugins.Add(new AuthFeature(() => new CustomUserSession(), 
+    new IAuthProvider[] {
+        new TwitterAuthProvider(AppSettings),
+        new GithubAuthProvider(AppSettings),    
+        new JwtAuthProvider(AppSettings) {
+            UseTokenCookie = true,
+        }
+    }));
+```
+
+Clients can then detect whether a user is authenticated by sending an empty `Authenticate` request which either returns a `AuthenticateResponse` DTO
+containing basic Session Info for authenticated requests otherwise throws a **401 Unauthorized** response.
+
+So clients will be able to detect whether a user is authenticated with something like:
+
+```ts
+const client = new JsonServiceClient(BaseUrl);
+
+async function getSession() {
+    try {
+        return await client.get(new Authenticate());
+    } catch (e) {
+        return null;
+    }
+}
+
+const isAuthenticated = async () => await getSession() != null;
+
+//...
+
+if (await isAuthenticated()) {
+    // User is authenticated
+}
+```
+
 ### Converting an existing Authenticated Session into A JWT Token
 
 Another way we can access our Token is to call the `ConvertSessionToToken` Service which also converts our 
@@ -733,19 +777,23 @@ Likewise this API lets you convert Sessions created by any of the OAuth provider
 
 ### Switching existing Sites to JWT
 
-Thanks to the flexibility and benefits of using stateless JWT Tokens, the new [techstacks.io](http://techstacks.io) uses the TypeScript `JsonServiceClient` and generated TypeScript DTOs to [convert their existing Authenticated Session](https://github.com/NetCoreApps/TechStacks/blob/3b1c85398c03293bbae0675257e33f847a35da77/src/TechStacks/src/shared/gateway.js#L96) after Signing in with Twitter or GitHub:
+Existing sites that already have an [Authenticated Session](/sessions) can convert their current server Session into a JWT Token by sending a `ConvertSessionToToken` Request DTO or an empty **POST** request to its `/session-to-token` user-defined route:
 
 ```ts
-const authResponse = await authClient.post(new ConvertSessionToToken());
+const authResponse = await client.post(new ConvertSessionToToken());
 ```
 
-The older Angular TechStacks [angular.techstacks.io](http://angular.techstacks.io) also uses Twitter and Github OAuth to [use JWT with a single jQuery Ajax call](https://github.com/ServiceStackApps/TechStacks/blob/78ecd5e390e585c14f616bb27b24e0072b756040/src/TechStacks/TechStacks/js/user/services.js#L30):
+E.g. Single Page App can call this when their Web App is first loaded, which is ignored if the User isn't authenticated but if the Web App is loaded after 
+[Signing In via an OAuth Provider](https://docs.servicestack.net/authentication-and-authorization#oauth-providers) it will convert their OAuth Authenticated Session into a 
+stateless client JWT Token Cookie.
+
+This approach is also used by the old Angular TechStacks [angular.techstacks.io](http://angular.techstacks.io) after signing in via Twitter and Github OAuth to [use JWT with a single jQuery Ajax call](https://github.com/ServiceStackApps/TechStacks/blob/78ecd5e390e585c14f616bb27b24e0072b756040/src/TechStacks/TechStacks/js/user/services.js#L30):
 
 ```javascript
 $.post("/session-to-token");
 ```
 
-Whilst [Gistlyn uses the new Fetch API](https://github.com/ServiceStack/Gistlyn/blob/770768e7f7f6a7258ea948dbe1cee7f09b47ea8d/src/Gistlyn/src/app.tsx#L69) to convert an existing Github OAuth into a JWT Token Cookie:
+Whilst [Gistlyn uses the Fetch API](https://github.com/ServiceStack/Gistlyn/blob/770768e7f7f6a7258ea948dbe1cee7f09b47ea8d/src/Gistlyn/src/app.tsx#L69) to convert an existing Github OAuth into a JWT Token Cookie:
 
 ```ts
 fetch("/session-to-token", { method:"POST", credentials:"include" });
