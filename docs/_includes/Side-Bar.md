@@ -36,6 +36,7 @@
     - [Svelte Templates](/templates-svelte)
     - [Angular Templates](/templates-angular)
     - [Desktop Templates](/templates-desktop)
+    - [Blazor Templates](/templates-blazor)
     - [Vue, React, Angular Components](/spa-components)
     - [Tour of Webpack](/tour-of-webpack)
 - ##### ServiceStack Studio
