@@ -123,8 +123,8 @@ upon the initial page request (immediately, without an Ajax network request):
 
 ```hbs
 {% raw %}{{#script}}
-NAV_ITEMS = {{ 'GetNavItems'  | execService | json }};
-AUTH      = {{ 'Authenticate' | execService({ ifErrorReturn: "null" }) | json }};
+NAV_ITEMS = {{ 'GetNavItems'  |> execService |> json }};
+AUTH      = {{ 'Authenticate' |> execService({ ifErrorReturn: "null" }) |> json }};
 {{/script}}{% endraw %}
 ```
 
