@@ -26,8 +26,7 @@ The Request DTO is also all that's required to invoke it via any [Typed Generic 
 MyRequest response = client.Get(new MyRequest());
 ```
 
-All Services are accessible by their [pre-defined routes](/routing#pre-defined-routes), with a little extra code we can turn it into functional data-driven Service
-by returning a naked collection:
+All Services are accessible by their [pre-defined routes](/routing#pre-defined-routes), we can turn it into a functional data-driven Service by annotating it with a [user-defined route](/routing) and changing the implementation to return all App Contacts:
 
 ```csharp
 public class Contact 
@@ -51,8 +50,10 @@ Which your C# clients will still be able to call with:
 List<Contact> response = client.Get(new GetContacts());
 ```
 
-This will make a **GET** call to the custom `/contacts` URL and returns all `Contact` in the configured RDBMS using [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite)
-`Select()` extension method on the `Db` ADO.NET `IDbConnection`. Using `Get()` will limit access to this service from HTTP **GET** requests, all other HTTP Verbs to `/contacts` will return a 404 NotFound HTTP Error Response.
+This will make a **GET** call to the custom `/contacts` URL and returns all rows from the `Contact` Table in the configured RDBMS using [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite)
+`Select()` extension method on the `base.Db` ADO.NET `IDbConnection` property on ServiceStack's convenience `Service` base class. 
+
+Using `Get()` limits access to this service from HTTP **GET** requests only, all other HTTP Verbs requests to `/contacts` will return a **404 NotFound** HTTP Error Response.
 
 ### Using explicit Response DTO
 
