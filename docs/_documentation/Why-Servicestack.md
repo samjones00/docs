@@ -59,7 +59,7 @@ or effortlessly enabling rich [HTTP Caching](/http-caching) and
 [Encrypted Messaging](/encrypted-messaging) 
 for all your existing services via [Plugins](/plugins).
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg)
+<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" width="100%">
 
 Your same Services also serve as the Controller in ServiceStack's [Smart Razor Views](http://razor.servicestack.net/)
 reducing the effort to serve both 
