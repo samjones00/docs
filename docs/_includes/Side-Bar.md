@@ -4,12 +4,6 @@
     - [Architecture Overview](/architecture-overview)
     - [Servicify existing Systems](/servicify)
     - [Live Demos](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
-- ##### Background Concepts
-    - [What is a Message-based Web Service](/what-is-a-message-based-web-service)
-    - [Advantages of message-based Services](/advantages-of-message-based-web-services)
-    - [Why Remote Services should use DTOs](/why-remote-services-use-dtos)
-    - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
-    - [API First Development](/api-first-development)
 - ##### Releases
     - [Latest Release Notes](/releases/v5.10)
     - [Release Notes History](/release-notes-history)
@@ -45,6 +39,12 @@
     - [Blazor Templates](/templates-blazor)
     - [Vue, React, Angular Components](/spa-components)
     - [Tour of Webpack](/tour-of-webpack)
+- ##### Background Concepts
+    - [What is a Message-based Web Service](/what-is-a-message-based-web-service)
+    - [Advantages of message-based Services](/advantages-of-message-based-web-services)
+    - [Why Remote Services should use DTOs](/why-remote-services-use-dtos)
+    - [Complexity, Services and Role of DTOs](/service-complexity-and-dto-roles)
+    - [API First Development](/api-first-development)
 - ##### ServiceStack Studio
     - [Overview](/studio)
     - [Studio - User Management](/studio-users)
