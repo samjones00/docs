@@ -34,6 +34,17 @@ public interface IPostInitPlugin
 }
 ```
 
+#### Custom Logic after AppHost is initialized
+
+If your plugin implements `IAfterInitAppHost` it will get run after the AppHost has finished initializing:
+
+```csharp
+public interface IAfterInitAppHost
+{
+    void AfterInit(IAppHost appHost);
+}
+```
+
 #### Disabling Plugins via Feature Enum Flags
 
 All built-in Plugins are Registered and available via **base.Plugins** before your **Configure()** script is run so you have a chance to modify the behaviour or remove un-used plugins which is exactly what the short-hand:
