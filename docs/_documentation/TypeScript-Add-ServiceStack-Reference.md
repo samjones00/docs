@@ -225,7 +225,7 @@ There's also `PrePropertyFilter` & `PostPropertyFilter` for generating source be
 TypeScriptGenerator.PrePropertyFilter = (sb , prop, type) => {
     if (prop.Name == "Id")
     {
-        sb.AppendLine("[PrimaryKey]");
+        sb.AppendLine("@IsInt()");
     }
 };
 ```
