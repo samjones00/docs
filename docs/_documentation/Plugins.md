@@ -79,6 +79,12 @@ Which is also what the `this.GetPlugin<T>()` convenience extension method does:
 var htmlFormat = base.GetPlugin<HtmlFormat>();
 ```
 
+To resolve a required plugin it's recommended to use `AssertPlugin` instead which will throw if a required plugin was not registered:
+
+```csharp
+var htmlFormat = base.AssertPlugin<HtmlFormat>();
+```
+
 # List of Plugins added by Default
 
 A list of all of the plugins available on ServiceStack and how to add them:
