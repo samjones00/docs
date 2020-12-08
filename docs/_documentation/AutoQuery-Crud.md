@@ -711,7 +711,7 @@ public class UpdateRockstarVersion : RockstarBase, IPatchDb<RockstarVersion>,
 public class RockstarWithIdAndRowVersionResponse
 {
     public int Id { get; set; }
-    public uint RowVersion { get; set; }
+    public ulong RowVersion { get; set; }
     public ResponseStatus ResponseStatus { get; set; }
 }
 ```
