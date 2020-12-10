@@ -525,6 +525,32 @@ There's also the rarer option when you only want a service accessible from exter
 public class RestrictedToExternalRequests { }
 ```
 
+### Export Types
+
+By default the `NativeTypeFeature` doesn't emit any **System** types built into the Base Class Libraries, these can be 
+emitted for non-.NET Languages with the new `ExportTypes` list, e.g. if your DTO's exposes the `DayOfWeek` System Enum it can
+be exported by adding it to the pre-registered NativeTypesFeature's Plugin with:
+
+```csharp
+var nativeTypes = this.GetPlugin<NativeTypesFeature>();
+nativeTypes.MetadataTypesConfig.ExportTypes.Add(typeof(DayOfWeek));
+```
+
+If any of your DTO's has a `DayOfWeek` property it will emitted in the generated DTO's, Java example:
+
+```java
+public static enum DayOfWeek
+{
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday;
+}
+```
+
 ### Enable Versioning
 
 You can implement our [recommended Versioning strategy](http://stackoverflow.com/a/12413091/85785) 
