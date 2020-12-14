@@ -103,6 +103,18 @@ public class MyServices : Service
 
 Which will returns the the default `index.html` page using [#Script Pages](https://sharpscript.net/docs/sharp-pages).
 
+#### SPA Fallback
+
+This popular behavior is also available using the more convenient configuration (used in all [SPA Project Templates](/dotnet-new)) with:
+
+```csharp
+Plugins.Add(new SharpPagesFeature {
+    EnableSpaFallback = true
+}); 
+```
+
+#### Other Fallback Examples
+
 Examples of other HTML Fallback Response:
 
 ```csharp
@@ -118,7 +130,6 @@ return new HttpResult(request)
     View = "/default.cshtml"
 };
 ```
-
 
 ### Limiting to HTTP Verbs
 
