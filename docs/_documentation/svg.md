@@ -354,7 +354,7 @@ as opposed to being forced to choose from a limited library in a fixed bundle.
 As creating svg bundles just involves dropping SVG images inside your `/svg/{group}/` folder, we're also able take advantage of `mix`
 to import SVG image-sets into your App with a single command. You can view the current list of all SVG image-sets on `mix` with:
 
-    $ mix [svg]
+    $ x mix [svg]
 
 Currently all [Material Design Icons](https://material.io/resources/icons/?style=baseline) are available separately by their logical group names:
 
