@@ -9,13 +9,14 @@ ServiceStack.Text has extension methods which recursively dumps all the public p
 
 ```csharp
 string Dump<T>(this T instance);
-string SerializeAndFormat<T>(this T instance); //Wordier Alias
+string DumpTable<T>(this T instance);
 
-void PrintDump<T>(this T instance);
 void Print(this string text, params object[] args);
+void PrintDump<T>(this T instance);
+void PrintDumpTable<T>(this T instance);
 ```
 
-The convenient `PrintDump` and `Print()` extension just writes the output to the Console to provide a wrist-friendly API for a common use-case, e.g:
+The convenient `Print()`, `PrintDump()` and `PrintDumpTable()` extension just writes the output to the Console to provide a wrist-friendly API for a common use-case, e.g:
 
 ```
 var response = client.Send(request);
@@ -61,6 +62,46 @@ model.PrintDump();
         c: 3
     }
 }
+```
+
+### Dump Table
+
+Whilst to quickly visualize tabular data, e.g. returned from [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) or an API Response
+you can use the `PrintDump()` extension method to return the results formatted in an easy to read Markdown table, e.g:
+
+```csharp
+public class GithubRepo
+{
+    public string Name { get; set; }
+    public string Language { get; set; }
+    public int Watchers { get; set; }
+    public int Forks { get; set; }
+}
+
+var orgRepos = "https://api.github.com/orgs/dotnet/repos"
+    .GetJsonFromUrl(httpReq => httpReq.UserAgent = "ServiceStack")
+    .FromJson<GithubRepo[]>()
+    .OrderByDescending(x => x.Watchers)
+    .Take(10);
+
+orgRepos.PrintDump();
+```
+
+Which will output:
+
+```
+| #  | Name            | Language | Watchers | Forks |
+|----|-----------------|----------|----------|-------|
+| 1  | aspnetcore      | C#       | 20376    | 5793  |
+| 2  | corefx          |          | 17905    | 5340  |
+| 3  | core            | Shell    | 14975    | 3762  |
+| 4  | roslyn          | C#       | 13757    | 3186  |
+| 5  | coreclr         |          | 12436    | 2852  |
+| 6  | efcore          | C#       | 9765     | 2454  |
+| 7  | AspNetCore.Docs | C#       | 8268     | 20654 |
+| 8  | orleans         | C#       | 7147     | 1622  |
+| 9  | BenchmarkDotNet | C#       | 6048     | 639   |
+| 10 | reactive        | C#       | 4679     | 587   |
 ```
 
 ### Circular References
