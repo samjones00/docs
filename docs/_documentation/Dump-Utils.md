@@ -22,7 +22,7 @@ The convenient `Print()`, `PrintDump()` and `PrintDumpTable()` extension just wr
 var response = client.Send(request);
 response.PrintDump(); // Dumps contents to Console in human-friendly format
 
-"Top Technologies: {0}".Print(response.TopTechnologies.Dump());
+$"Top Technologies: {response.TopTechnologies.Dump()}".Print();
 ```
 
 ## Example Usage
