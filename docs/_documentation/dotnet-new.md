@@ -219,6 +219,12 @@ that when a new project is created with:
 
     $ x new <template> ProjectName
 
+### Install directly from your GitHub repo
+
+To create projects from your own GitHub projects use its qualified `user/repo` name, e.g:
+
+    $ x new <user>/<repo> ProjectName
+
 Replaces all occurrences in all text files, file and directory names, where:
 
  - `MyApp` is replaced with `ProjectName`
@@ -232,12 +238,6 @@ The tool installer then inspects the project contents and depending on what it f
  - Install libman packages if `libman.json` exists
 
 That after installation is complete, results in newly created projects being all setup and ready to run.
-
-### Install directly from your GitHub repo
-
-To create projects from your own GitHub projects use its qualified `user/repo` name, e.g:
-
-    $ x new <user>/<repo> ProjectName
 
 ### Available project templates
 
