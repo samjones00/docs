@@ -83,6 +83,29 @@ var response = await "https://example.org/secured".GetJsonFromUrlAsync(
     requestFilter: req => req.AddBearerToken(apiKey));
 ```
 
+#### Sending API Key in Request DTOs
+
+Similar to the `IHasSessionId` interface Request DTOs can also implement `IHasBearerToken` to send Bearer Tokens, e.g:
+
+```csharp
+public class Secure : IHasBearerToken
+{
+    public string BearerToken { get; set; }
+    public string Name { get; set; }
+}
+
+var response = client.Get(new Secure { BearerToken = apiKey, Name = "World" });
+```
+
+Alternatively you can set the `BearerToken` property on the Service Client once where it will automatically populate all Request DTOs 
+that implement `IHasBearerToken`, e.g:
+
+```csharp
+client.BearerToken = jwtToken;
+
+var response = client.Get(new Secure { Name = "World" });
+```
+
 #### Supported Auth Repositories
 
 The necessary functionality to support API Keys has been implemented in the following supported Auth Repositories:
