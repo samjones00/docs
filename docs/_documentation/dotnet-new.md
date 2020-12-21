@@ -203,7 +203,7 @@ Using GitHub for maintaining project templates yields us a lot of natural benefi
  - Browse and Restore Previous Project Releases
  - End users can raise issues with individual project templates and send PR contributions
 
-A quick way to get started is to fork one of the existing [.NET Project Templates](https://github.com/NetCoreTemplates/) like [web](https://github.com/NetCoreTemplates/web) or [empty](https://github.com/NetCoreTemplates/empty) templates.
+A quick way to get started is to fork one of the existing [.NET Project Templates](https://github.com/NetCoreTemplates/) like the [web](https://github.com/NetCoreTemplates/web) or [empty](https://github.com/NetCoreTemplates/empty) templates.
 
 ### Always up to date
 
