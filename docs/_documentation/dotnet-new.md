@@ -203,6 +203,8 @@ Using GitHub for maintaining project templates yields us a lot of natural benefi
  - Browse and Restore Previous Project Releases
  - End users can raise issues with individual project templates and send PR contributions
 
+A quick way to get started is to fork one of the existing [.NET Project Templates](https://github.com/NetCoreTemplates/) like [web](https://github.com/NetCoreTemplates/web) or [empty](https://github.com/NetCoreTemplates/empty) templates.
+
 ### Always up to date
 
 Importantly end users will always be able to view the latest list of project templates and create projects using the latest available version, 
@@ -230,6 +232,12 @@ The tool installer then inspects the project contents and depending on what it f
  - Install libman packages if `libman.json` exists
 
 That after installation is complete, results in newly created projects being all setup and ready to run.
+
+### Install directly from your GitHub repo
+
+To create projects from your own GitHub projects use its qualified `user/repo` name, e.g:
+
+    $ x new <user>/<repo> ProjectName
 
 ### Available project templates
 
