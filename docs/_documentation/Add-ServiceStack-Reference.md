@@ -426,6 +426,60 @@ To make API requests using TypeScript's async/await feature we'll need to create
 }
 ```
 
+### Integrate with Visual Studio
+
+You can also easily integrate this within your VS.NET dev workflows by [adding it as an External Tool](https://docs.microsoft.com/en-us/visualstudio/ide/managing-external-tools?view=vs-2019) in the **External Tools** dialog box by choosing `Tools > External Tools`:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/tool-ts-reference.png)
+
+|  ||
+|-|-|
+| Title             | Update TypeScript &Reference |
+| Command           | web.exe |
+| Arguments         | ts |
+| Initial directory | $(ProjectDir) |
+|  ||
+
+Which will then let you update all your `*dtos.ts` TypeScript References in your project by clicking on `Tools > Update TypeScript Reference` 
+or using the `ALT+T R` keyboard shortcut.
+
+If you wanted to Update your `*dtos.cs` **C# ServiceStack References** instead, just change Arguments to `cs`:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/tool-cs-reference.png)
+
+|  ||
+|-|-|
+| **Title**             | Update C# &Reference |
+| **Command**           | web.exe |
+| **Arguments**         | cs |
+| **Initial directory** | $(ProjectDir) |
+|  ||
+
+Refer to the [x usage output](#usage) above for the arguments or aliases for all other supported languages.
+
+### Integrate with Rider
+
+Just like with VS.NET above you can [add an External Tool](https://www.jetbrains.com/help/rider/Settings_Tools_External_Tools.html) 
+in [JetBrains Rider](https://www.jetbrains.com/rider/) by opening the Settings dialog with `CTRL+ALT+S` then searching for `external tools` 
+under the **Tools** category:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/rider-tool-ts-reference.png)
+
+|  ||
+|-|-|
+| **Name**              | Update TypeScript Reference |
+| **Command**           | web.exe |
+| **Arguments**         | ts |
+| **Working directory** | $FileParentDir$ |
+|  ||
+
+Now you can update your `*dtos.ts` TypeScript References in your project by clicking on `External Tools > Update TypeScript Reference`
+in the right-click context menu:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/rider-tool-ts-reference-run.png)
+
+If you're updating references frequently you can save time by [assigning it a keyboard shortcut](https://www.jetbrains.com/help/rider/Configuring_Keyboard_and_Mouse_Shortcuts.html).
+
 ## Advantages over WCF
 
  - **Simple** Server provides DTOs based on metadata and options provided. No heavy client side tools, just a HTTP request!
