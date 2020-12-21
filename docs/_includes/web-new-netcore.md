@@ -1,7 +1,7 @@
 || .NET Core C# Templates |
 |-|-|
 | [web](https://github.com/NetCoreTemplates/web)                | .NET 5.0 Empty Website |
-| [empty](https://github.com/NetCoreTemplates/web)                | .NET 5.0 Empty Single Project Website |
+| [empty](https://github.com/NetCoreTemplates/empty)                | .NET 5.0 Empty Single Project Website |
 | [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET 5.0 Angular 9 CLI Bootstrap App |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET 5.0 Aurelia CLI Bootstrap App |
 | [grpc](https://github.com/NetCoreTemplates/grpc)                | .NET 5.0 gRPC Services |
