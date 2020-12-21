@@ -133,7 +133,7 @@ you can click on the **ServiceStack Reference...** Menu Item to open the **Add S
 The **Add ServiceStack Reference** Dialog will be partially populated with the selected **Package** with the 
 package where the Dialog was launched from and the **File Name** defaulting to `dtos.kt` where the generated 
 Kotlin DTO's will be added to. All that's missing is the url of the remote ServiceStack instance you wish to 
-generate the DTO's for, e.g: `http://techstacks.io`:
+generate the DTO's for, e.g: `https://techstacks.io`:
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/kotlin/kotlin-add-servicestack-reference.png)
 
@@ -153,7 +153,7 @@ Like other Native Type languages, the generated DTO's can be further customized 
 /* Options:
 Date: 2015-04-17 15:16:08
 Version: 1
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 Package: org.layoric.myapplication
 GlobalNamespace: techstackdtos
@@ -242,7 +242,7 @@ To get started you'll just need an instance of `JsonServiceClient` initialized w
 remote ServiceStack instance you want to access, e.g:
 
 ```kotlin
-val client = JsonServiceClient("http://techstacks.io")
+val client = JsonServiceClient("https://techstacks.io")
 ```
 
 > The JsonServiceClient is made available after the [net.servicestack:android](https://bintray.com/servicestack/maven/ServiceStack.Android/view) package is automatically added to your **build.gradle** when adding a ServiceStack reference.
@@ -281,7 +281,7 @@ The path can either be a relative or absolute url in which case the **BaseUrl** 
 absolute url is used instead, e.g:
 
 ```kotlin
-val response = client.get("http://techstacks.io/overview", OverviewResponse::class.java)
+val response = client.get("https://techstacks.io/overview", OverviewResponse::class.java)
 ```
 
 ### AutoQuery Example Usage
@@ -462,7 +462,7 @@ Main UI thread), you'll instead need to use an instance of `AndroidServiceClient
 `JsonServiceClient` can be used to perform both Sync and Async requests:
 
 ```kotlin
-val client = AndroidServiceClient("http://techstacks.io")
+val client = AndroidServiceClient("https://techstacks.io")
 ```
 
 Like other Service Clients, there's an equivalent Async API matching their Sync counterparts which differs 
@@ -488,7 +488,7 @@ client.getAsync("/overview", OverviewResponse::class.java,
 Calling a Web Service using an absolute url:
 
 ```kotlin
-client.getAsync("http://techstacks.io/overview", OverviewResponse::class.java,
+client.getAsync("https://techstacks.io/overview", OverviewResponse::class.java,
     AsyncSuccess<OverviewResponse>() {
     })
 ```
@@ -775,7 +775,7 @@ be sent to the server to override any server defaults.
 Date: 2015-12-17 05:17:47
 Version: 4.051
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 Package: servicestack.net.techstacks
 //AddServiceStackTypes: True

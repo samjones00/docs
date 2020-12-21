@@ -1572,7 +1572,7 @@ With these goals in mind we've hand-picked and integrated a number of simple bes
 
 The new [servicestack-cli](https://github.com/ServiceStack/servicestack-cli) npm package replaces our existing `ss-util.exe` and OSX `swiftref` command-line programs to provide simple command-line utilities to easily Add and Update ServiceStack References for all of ServiceStack's 7 supported languages. Using it is as easy as choosing the language you want and the **BaseUrl** of the remote ServiceStack instance you want to download the Server DTOs for, e.g:
 
-    $ csharp-ref http://techstacks.io
+    $ csharp-ref https://techstacks.io
 
 ### Major Memory and Performance Improvements to ServiceStack.Text
 
@@ -1781,9 +1781,9 @@ In addition to Typed API Requests you can now also call Services using relative 
 ```ts
 client.get<GetTechnologyResponse>("/technology/ServiceStack")
 
-client.get<GetTechnologyResponse>("http://techstacks.io/technology/ServiceStack")
+client.get<GetTechnologyResponse>("https://techstacks.io/technology/ServiceStack")
 
-// GET http://techstacks.io/technology?Slug=ServiceStack
+// GET https://techstacks.io/technology?Slug=ServiceStack
 client.get<GetTechnologyResponse>("/technology", { Slug: "ServiceStack" }) 
 ```
 

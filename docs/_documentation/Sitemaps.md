@@ -19,7 +19,7 @@ Plugins.Add(new SitemapFeature
 });
 ```
 
-The above example uses [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) to generate a collection of `SitemapUrl` entries containing Absolute Urls for all [techstacks.io Technology Pages](http://techstacks.io/tech). This is another good showcase for the [Reverse Routing available on Request DTO's](/routing#reverse-routing) which provides a Typed API for generating Urls without any additional effort.
+The above example uses [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) to generate a collection of `SitemapUrl` entries containing Absolute Urls for all [techstacks.io Technology Pages](https://techstacks.io/tech). This is another good showcase for the [Reverse Routing available on Request DTO's](/routing#reverse-routing) which provides a Typed API for generating Urls without any additional effort.
 
 Once populated your sitemap will be available at `/sitemap.xml` which looks like:
 
@@ -27,7 +27,7 @@ Once populated your sitemap will be available at `/sitemap.xml` which looks like
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>http://techstacks.io/the-guardian</loc>
+  <loc>https://techstacks.io/the-guardian</loc>
   <lastmod>2015-01-14</lastmod>
   <changefreq>weekly</changefreq>
 </url>
@@ -35,7 +35,7 @@ Once populated your sitemap will be available at `/sitemap.xml` which looks like
 </urlset>
 ```
 
-Which you can checkout in this [live Sitemap example](http://techstacks.io/sitemap-techstacks.xml).
+Which you can checkout in this [live Sitemap example](https://techstacks.io/sitemap-techstacks.xml).
 
 ### Multiple Sitemap Indexes
 
@@ -78,21 +78,21 @@ SitemapIndex = {
 }});
 ```
 
-Which now generates the following `<sitemapindex/>` at [/sitemap.xml](http://techstacks.io/sitemap.xml):
+Which now generates the following `<sitemapindex/>` at [/sitemap.xml](https://techstacks.io/sitemap.xml):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap>
-  <loc>http://techstacks.io/sitemap-techstacks.xml</loc>
+  <loc>https://techstacks.io/sitemap-techstacks.xml</loc>
   <lastmod>2015-01-15</lastmod>
 </sitemap>
 <sitemap>
-  <loc>http://techstacks.io/sitemap-technologies.xml</loc>
+  <loc>https://techstacks.io/sitemap-technologies.xml</loc>
   <lastmod>2015-01-15</lastmod>
 </sitemap>
 <sitemap>
-  <loc>http://techstacks.io/sitemap-users.xml</loc>
+  <loc>https://techstacks.io/sitemap-users.xml</loc>
   <lastmod>2015-01-15</lastmod>
 </sitemap>
 </sitemapindex>
@@ -100,7 +100,7 @@ Which now generates the following `<sitemapindex/>` at [/sitemap.xml](http://tec
 
 With each entry linking to the urlset for each Sitemap:
 
- - [techstacks.io/sitemap-techstacks.xml](http://techstacks.io/sitemap-techstacks.xml)
- - [techstacks.io/sitemap-technologies.xml](http://techstacks.io/sitemap-technologies.xml)
- - [techstacks.io/sitemap-users.xml](http://techstacks.io/sitemap-users.xml)
+ - [techstacks.io/sitemap-techstacks.xml](https://techstacks.io/sitemap-techstacks.xml)
+ - [techstacks.io/sitemap-technologies.xml](https://techstacks.io/sitemap-technologies.xml)
+ - [techstacks.io/sitemap-users.xml](https://techstacks.io/sitemap-users.xml)
 

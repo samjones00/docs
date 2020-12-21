@@ -139,7 +139,7 @@ For AngularDart or Dart Web Apps import `web_client.dart` and use the `JsonWebCl
 ```dart
 import 'package:servicestack/web_client.dart';
 
-import 'techstacks.dtos.dart';              // Add ServiceStack Reference DTOs
+import 'dtos.dart';              // Add ServiceStack Reference DTOs
 
 //...
 var client = new JsonWebClient("https://www.techstacks.io");
@@ -156,7 +156,7 @@ is implemented by both `JsonServiceClient` and `JsonWebClient`:
 ```dart
 import 'package:servicestack/servicestack.dart';
 
-import 'techstacks.dtos.dart';              // Add ServiceStack Reference DTOs
+import 'dtos.dart';              // Add ServiceStack Reference DTOs
 
 //...
 fetchTechnologies(IServiceClient client) async {
@@ -339,7 +339,7 @@ Then create new `JsonServiceClient` instances initialized with the `BaseUrl` for
 import 'package:servicestack/client.dart';
 
 import 'test.dtos.dart';
-import 'techstacks.dtos.dart';
+import 'dtos.dart';
 
 const TestBaseUrl = "http://test.servicestack.net";
 const TechStacksBaseUrl = "https://www.techstacks.io";
@@ -621,7 +621,7 @@ import 'package:angular/angular.dart';
 import 'package:servicestack/web_client.dart';
 
 import '../dtos/test.dtos.dart';
-import '../dtos/techstacks.dtos.dart';
+import '../dtos/dtos.dart';
 
 @Component(
   selector: 'hello-world',

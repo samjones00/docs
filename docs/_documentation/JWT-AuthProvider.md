@@ -691,7 +691,7 @@ In most cases the easiest way to utilize JWT with your other Auth Providers is t
 automatically return a JWT Token Cookie for all Auth Providers authenticating via `Authenticate` requests or after a successful OAuth Web Flow
 from an [OAuth Provider](/authentication-and-authorization#oauth-providers).
 
-This is what [techstacks.io](http://techstacks.io) uses to maintain Authentication via a JWT Token after Signing in with Twitter or GitHub:
+This is what [techstacks.io](https://techstacks.io) uses to maintain Authentication via a JWT Token after Signing in with Twitter or GitHub:
 
 ```csharp
 Plugins.Add(new AuthFeature(() => new CustomUserSession(), 
@@ -811,7 +811,7 @@ option as a hidden variable in our FORM request:
 ```
 
 Which just like `ConvertSessionToToken` returns a populated session in the **ss-tok** Cookie so now 
-both [techstacks.io](http://techstacks.io) and [servicestack.net](https://servicestack.net) can maintain 
+both [techstacks.io](https://techstacks.io) and [servicestack.net](https://servicestack.net) can maintain 
 uninterrupted Sessions across multiple redeployments without a persistent Sessions cache.
 
 ### Fallback Auth and RSA Keys

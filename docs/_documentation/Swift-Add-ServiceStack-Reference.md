@@ -74,15 +74,15 @@ To Add a new ServiceStack Reference, call `x swift` with the Base URL to a remot
 
 Where if no FileName is provided, it's inferred from the host name of the remote URL, e.g:
 
-    x swift http://techstacks.io
+    x swift https://techstacks.io
 
-Downloads the Typed Swift DTOs for [techstacks.io](http://techstacks.io) and saves them to `dtos.swift`. 
+Downloads the Typed Swift DTOs for [techstacks.io](https://techstacks.io) and saves them to `dtos.swift`. 
 
 Alternatively you can have it saved to a different FileName with:
 
-    x swift http://techstacks.io TechStacks
+    x swift https://techstacks.io TechStacks
 
-Which instead saves the DTOs to `TechStacks.dtos.swift`.
+Which instead saves the DTOs to `dtos.swift`.
 
 `x swift` also downloads [ServiceStack's Swift Client](https://github.com/ServiceStack/ServiceStack.Swift) 
 and saves it to `JsonServiceClient.swift` which together with the Server DTOs contains all the dependencies 
@@ -102,7 +102,7 @@ To Update a specific ServiceStack Reference, call `x swift` with the Filename:
 
 As an example, you can Update the Server DTOs added in the previous command with:
 
-    x swift TechStacks.dtos.swift
+    x swift dtos.swift
 
 Which also includes any 
 [Customization Options](https://docs.servicestack.net/swift-add-servicestack-reference#swift-configuration) 
@@ -134,7 +134,7 @@ Date: 2017-02-02 02:41:09
 SwiftVersion: 3.0
 Version: 4.55
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 //BaseClass: 
 //AddModelExtensions: True
@@ -409,7 +409,7 @@ If you've ever had to make HTTP requests using Objective-C's `NSURLConnection` o
 To illustrate its usage we'll go through some client code to consume [TechStacks](https://github.com/ServiceStackApps/TechStacks) Services after adding a **ServiceStack Reference** to `http://techstaks.io`:
 
 ```swift
-var client = JsonServiceClient(baseUrl: "http://techstacks.io")
+var client = JsonServiceClient(baseUrl: "https://techstacks.io")
 var response = client.get(AppOverview())
 ```
 
@@ -578,7 +578,7 @@ JsonServiceClient.Global.responseFilter = {(res:NSURLResponse) in ... }
 ## [TechStacks iOS App](https://github.com/ServiceStackApps/TechStacksApp)
 
 To illustrate the ease-of-use and utility of ServiceStack's new Swift support you can checkout the 
-TechStacks native iOS App for [techstacks.io](http://techstacks.io) that has been recently published and is 
+TechStacks native iOS App for [techstacks.io](https://techstacks.io) that has been recently published and is 
 now available to download for free on the AppStore:
 
 [![TechStacks on AppStore](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/techstacks-appstore.png)](https://itunes.apple.com/us/app/techstacks/id965680615?ls=1&mt=8)
@@ -601,7 +601,7 @@ Firstly to enable KVO in your Swift DTO's we'll want to have each DTO inherit fr
 /* Options:
 Date: 2015-02-19 22:43:04
 Version: 1
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 BaseClass: NSObject
 ...

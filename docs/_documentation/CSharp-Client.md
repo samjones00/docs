@@ -739,8 +739,8 @@ The new `JsonHttpClient` is an alternative to the existing generic typed `JsonSe
 JsonHttpClient implements the full [IServiceClient API](https://gist.github.com/mythz/4683438240820b522d39) making it an easy drop-in replacement for your existing JsonServiceClient where in most cases it can simply be renamed to JsonHttpClient, e.g:
 
 ```csharp
-//IServiceClient client = new JsonServiceClient("http://techstacks.io");
-IServiceClient client = new JsonHttpClient("http://techstacks.io");
+//IServiceClient client = new JsonServiceClient("https://techstacks.io");
+IServiceClient client = new JsonHttpClient("https://techstacks.io");
 
 var response = await client.GetAsync(new GetTechnology { Slug = "servicestack" })
 ```

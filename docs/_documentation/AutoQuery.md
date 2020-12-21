@@ -50,7 +50,6 @@ If you're just getting started AutoQuery we also recommend using [ServiceStack S
 - [http://github.servicestack.net/ss_admin/](http://github.servicestack.net/ss_admin/)
 - [http://northwind.netcore.io/ss_admin/](http://northwind.netcore.io/ss_admin/)
 - [http://stackapis.netcore.io/ss_admin/](http://stackapis.netcore.io/ss_admin/)
-- [http://techstacks.io/ss_admin/](http://techstacks.io/ss_admin/)
 
 ## [Northwind](https://github.com/ServiceStackApps/Northwind)
 

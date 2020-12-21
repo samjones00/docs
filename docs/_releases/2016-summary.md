@@ -743,7 +743,7 @@ Likewise this API lets you convert Sessions created by any of the OAuth provider
 ### Switching existing Sites to JWT
 
 Thanks to the flexibility and benefits of using stateless JWT Tokens, we've upgraded both our Single Page App
-http://techstacks.io which uses Twitter and GitHub OAuth to [use JWT with a single Ajax call](https://github.com/ServiceStackApps/TechStacks/blob/78ecd5e390e585c14f616bb27b24e0072b756040/src/TechStacks/TechStacks/js/user/services.js#L30):
+https://techstacks.io which uses Twitter and GitHub OAuth to [use JWT with a single Ajax call](https://github.com/ServiceStackApps/TechStacks/blob/78ecd5e390e585c14f616bb27b24e0072b756040/src/TechStacks/TechStacks/js/user/services.js#L30):
 
 ```javascript
 $.post("/session-to-token");
@@ -761,7 +761,7 @@ option as a hidden variable in our FORM request:
 ```
 
 Which just like `ConvertSessionToToken` adds returns a populated session in the **ss-tok** Cookie so now 
-both [techstacks.io](http://techstacks.io) and [servicestack.net](https://servicestack.net) can maintain 
+both [techstacks.io](https://techstacks.io) and [servicestack.net](https://servicestack.net) can maintain 
 uninterrupted Sessions across multiple redeployments without a persistent Sessions cache.
 
 ## [Modernized OrmLite API Surface](/releases/v4.0.60#cleaner-modernized-api-surface)
@@ -1324,7 +1324,7 @@ An exciting new plugin available from the **ServiceStack.Admin** NuGet package w
 - http://github.servicestack.net/ss_admin/
 - http://northwind.netcore.io/ss_admin/
 - http://stackapis.netcore.io/ss_admin/
-- http://techstacks.io/ss_admin/
+- https://techstacks.io/ss_admin/
 
 It also ships with a number of productive features out-of-the-box:
 
@@ -1532,7 +1532,7 @@ you can click on the **ServiceStack Reference...** Menu Item to open the **Add S
 The **Add ServiceStack Reference** Dialog will be partially populated with the selected **Package** with the 
 package where the Dialog was launched from and the **File Name** defaulting to `dtos.kt` where the generated 
 Kotlin DTO's will be added to. All that's missing is the url of the remote ServiceStack instance you wish to 
-generate the DTO's for, e.g: `http://techstacks.io`:
+generate the DTO's for, e.g: `https://techstacks.io`:
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/kotlin/kotlin-add-servicestack-reference.png)
 
@@ -1555,7 +1555,7 @@ Like other Native Type languages, the generated DTO's can be further customized 
 /* Options:
 Date: 2015-04-17 15:16:08
 Version: 1
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 Package: org.layoric.myapplication
 GlobalNamespace: techstackdtos
@@ -1582,7 +1582,7 @@ Both Java and Kotlin use the same `JsonServiceClient` that you need to initializ
 the remote ServiceStack instance you want to access, e.g:
 
 ```kotlin
-val client = JsonServiceClient("http://techstacks.io")
+val client = JsonServiceClient("https://techstacks.io")
 ```
 
 > The JsonServiceClient is made available after the [net.servicestack:android](https://bintray.com/servicestack/maven/ServiceStack.Android/view) package is automatically added to your **build.gradle** when adding a ServiceStack reference.
@@ -1615,7 +1615,7 @@ the response into, e.g:
 val response = client.get("/overview", OverviewResponse::class.java)
 
 //Using an Absolute Url:
-val response = client.get("http://techstacks.io/overview", OverviewResponse::class.java)
+val response = client.get("https://techstacks.io/overview", OverviewResponse::class.java)
 ```
 
 ### AutoQuery Example Usage
@@ -1635,7 +1635,7 @@ Main UI thread), you'll instead need to use an instance of `AndroidServiceClient
 `JsonServiceClient` can be used to perform both Sync and Async requests which can be instantiated with:
 
 ```kotlin
-val client = AndroidServiceClient("http://techstacks.io")
+val client = AndroidServiceClient("https://techstacks.io")
 ```
 To provide an optimal experience for Kotlin and Java 8, we've added 
 [SAM overloads](https://kotlinlang.org/docs/reference/java-interop.html#sam-conversions) 
@@ -1675,7 +1675,7 @@ client.getAsync("/overview", OverviewResponse::class.java,
     })
 
 //Absolute Url:
-client.getAsync("http://techstacks.io/overview", OverviewResponse::class.java,
+client.getAsync("https://techstacks.io/overview", OverviewResponse::class.java,
     AsyncSuccess<OverviewResponse>() {
     })
 

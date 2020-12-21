@@ -67,7 +67,7 @@ To add a ServiceStack Reference, right-click (or press `Ctrl+Alt+Shift+R`) on th
 
 ![Add ServiceStack Reference Java Context Menu](https://github.com/ServiceStack/Assets/raw/master/img/servicestackidea/android-context-menu.png)
 
-The **Add ServiceStack Reference** Dialog will be partially populated with the selected **Package** with the package where the Dialog was launched from and the **File Name** defaulting to `dto.java` where the Plain Old Java Object (POJO) DTO's will be added to. All that's missing is the url of the remote ServiceStack instance you wish to generate the DTO's for, e.g: `http://techstacks.io`:
+The **Add ServiceStack Reference** Dialog will be partially populated with the selected **Package** with the package where the Dialog was launched from and the **File Name** defaulting to `dto.java` where the Plain Old Java Object (POJO) DTO's will be added to. All that's missing is the url of the remote ServiceStack instance you wish to generate the DTO's for, e.g: `https://techstacks.io`:
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/servicestackidea/android-dialog.png)
 
@@ -85,7 +85,7 @@ Like other Native Type languages, the generated DTO's can be further customized 
 /* Options:
 Date: 2015-04-17 15:16:08
 Version: 1
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 Package: org.layoric.myapplication
 GlobalNamespace: techstackdtos
@@ -162,7 +162,7 @@ The primary concession is due to Java's generic type erasure which forces the ad
 To get started you'll just need an instance of `JsonServiceClient` initialized with the **BaseUrl** of the remote ServiceStack instance you want to access, e.g:
 
 ```java
-JsonServiceClient client = new JsonServiceClient("http://techstacks.io");
+JsonServiceClient client = new JsonServiceClient("https://techstacks.io");
 ```
 
 > The JsonServiceClient is made available after the [net.servicestack:android](https://bintray.com/servicestack/maven/ServiceStack.Android/view) package is automatically added to your **build.gradle** when adding a ServiceStack reference.
@@ -189,7 +189,7 @@ OverviewResponse response = client.get("/overview", OverviewResponse.class);
 The path can either be a relative or absolute url in which case the **BaseUrl** is ignored and the full absolute url is used instead, e.g:
 
 ```java
-OverviewResponse response = client.get("http://techstacks.io/overview", OverviewResponse.class);
+OverviewResponse response = client.get("https://techstacks.io/overview", OverviewResponse.class);
 ```
 
 When initializing the Request DTO you can take advantage of the generated setters which by default return `this` allowing them to be created and chained in a single expression, e.g:
@@ -315,7 +315,7 @@ Whilst the `AndroidServiceClient` is contained in the **net.servicestack:android
 To make use of Async API's in an Android App (which you'll want to do to keep web service requests off the Main UI thread), you'll instead need to use an instance of `AndroidServiceClient` which as it inherits `JsonServiceClient` can be used to perform both Sync and Async requests:
 
 ```java
-AndroidServiceClient client = new AndroidServiceClient("http://techstacks.io");
+AndroidServiceClient client = new AndroidServiceClient("https://techstacks.io");
 ```
 
 Like other Service Clients, there's an equivalent Async API matching their Sync counterparts which differs by ending with an **Async** suffix which instead of returning a typed response, fires a **success(TResponse)** or **error(Exception)** callback with the typed response, e.g: 
@@ -343,7 +343,7 @@ client.getAsync("/overview", OverviewResponse.class, new AsyncResult<OverviewRes
 Example calling a Web Service with an absolute url:
 
 ```java
-client.getAsync("http://techstacks.io/overview", OverviewResponse.class, new AsyncResult<OverviewResponse>() {
+client.getAsync("https://techstacks.io/overview", OverviewResponse.class, new AsyncResult<OverviewResponse>() {
     @Override
     public void success(OverviewResponse response) {
     }
@@ -642,7 +642,7 @@ To override a value, remove the `//` and specify the value to the right of the `
 /* Options:
 Date: 2015-04-10 12:41:14
 Version: 1
-BaseUrl: http://techstacks.io
+BaseUrl: https://techstacks.io
 
 Package: net.servicestack.techstacks
 //GlobalNamespace: dto
