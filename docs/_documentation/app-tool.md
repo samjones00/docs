@@ -752,13 +752,6 @@ Which installs instantly thanks to the `7kb` .zip download that can then be open
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-install-spirals.png)
 
-### Publishing your App
-
-The unique characteristics of Sharp Apps affords us different ways of publishing your App, e.g. to save users from needing to install the 
-`app` tool you can run `publish` in your App's directory:
-
-    $ app publish
-
 ### Publishing Gist Apps
 
 As Sharp Apps are so lightweight a flexible deployment option is to deploy it to GitHub gists where they can be launched directly from HTML links using the `app://` URL scheme.
