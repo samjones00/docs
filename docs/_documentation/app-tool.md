@@ -879,4 +879,4 @@ The app can then be installed on other PC's by copying (or extracting) it to the
 
 You can later change which launch command the Shortcut uses by changing the **Target** in the Shortcut's **Properties**:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/2ea586cfb860bad40ff8f44962dbb0d924ceead9/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
