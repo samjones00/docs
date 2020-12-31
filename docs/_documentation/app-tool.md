@@ -761,7 +761,7 @@ The unique characteristics of Sharp Apps affords us different ways of publishing
 
 ### Publishing Gist Apps
 
-As Sharp Apps are so lightweight another 
+As Sharp Apps are so lightweight a flexible deployment option is to deploy it to GitHub gists where they can be launched directly from HTML links using the `app://` URL scheme.
 
 To create gists you'll need to generate a [GitHub Access Token](https://github.com/settings/tokens/new) with **gist** scope and add it to your `GITHUB_TOKEN` Environment Variable ([win](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10), [mac](https://apple.stackexchange.com/q/356441/12255), [linux](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux)).
 > (alternative: use -token arg in each publish command)
