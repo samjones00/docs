@@ -871,12 +871,9 @@ you can also bundle & distribute the app tool with your App to allow it to be la
     $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
       -arguments "^%USERPROFILE^%\apps\vuedesktop\app\app.dll ^%USERPROFILE^%\apps\vuedesktop\dist\app.settings"
 
-Escaping `^%` will preserve the `%USERPROFILE%` environment variable within the shortcut, without it the shortcut will include your resolved home dir in its path, e.g:
+Escaping `^%` will preserve the `%USERPROFILE%` environment variable within the shortcut, without it the shortcut will include your resolved home dir in its path.
 
-    $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
-      -arguments "%USERPROFILE%\apps\vuedesktop\app\app.dll %USERPROFILE%\apps\vuedesktop\dist\app.settings"
-
-This will create a shortcut that will launch the app using your local `app` install instead of requiring the user to install the `app` dotnet tool.
+This will create a shortcut that will launch the app using your local `app` install instead of requiring users to install the `app` dotnet tool.
 
 The app can then be installed on other PC's by copying (or extracting) it to their `%USERPROFILE%\apps\vuedesktop` folder & the Shortcut copied to their Desktop for easy access.
 
