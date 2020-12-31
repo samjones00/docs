@@ -864,7 +864,7 @@ And be visible to everyone with the `app` tool installed by running:
 Whilst our recommendation is to publish apps to gists where they can be launched using `app://` URL Schemes with auto updating, 
 you can also bundle & distribute the app tool with your App to allow it to be launched without needing the `app` dotnet tool installed:
 
-    $ md %USERPROFILE%\apps\vuedesktop && cd md %USERPROFILE%\apps\vuedesktop
+    $ md %USERPROFILE%\apps\vuedesktop && cd %USERPROFILE%\apps\vuedesktop
     $ xcopy /E <project-path>\dist dist\ && cd dist
     $ app --copy-self app
     $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
