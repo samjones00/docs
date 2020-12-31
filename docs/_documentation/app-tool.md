@@ -843,20 +843,45 @@ That returns the gist URL your app was published to:
 
 Which can now be opened via an [URL scheme](https://sharpscript.net/sharp-apps/app-index#app-url-schemes): 
 
-<h3><a href="app://48b2dcf9bccacab62ec9d8a073d5edb8">app://48b2dcf9bccacab62ec9d8a073d5edb8</a></h3>
+<h4><a href="app://48b2dcf9bccacab62ec9d8a073d5edb8">app://48b2dcf9bccacab62ec9d8a073d5edb8</a></h4>
 
 Or via the command line:
 
     $ app open 48b2dcf9bccacab62ec9d8a073d5edb8
 
+By default the latest Sharp App version is automatically downloaded and run on-the-fly each time it's run to ensure it's always running the latest published version of your app, but you can also enable offline apps and speed up app start times by running the latest downloaded app using `app run` or the `app:` URL scheme, e.g:
+
+<h4><a href="app:48b2dcf9bccacab62ec9d8a073d5edb8">app:48b2dcf9bccacab62ec9d8a073d5edb8</a></h4>
+
+    $ app run 48b2dcf9bccacab62ec9d8a073d5edb8
+
 ### Publish to the world
 
 To maximize reach and accessibility of your App you can publish it to our [Global App Registry](https://gist.github.com/gistlyn/802daba52b6fe6e2ed1430348dc596cb) by including an `appName` and `description` in your **app.settings** before publishing so it can be opened via its human-friendly `appName`, e.g:
 
-<h3><a href="app://vuedesktop">app://vuedesktop</a></h3>
+<h4><a href="app://vuedesktop">app://vuedesktop</a></h4>
 
-  $ app open vuedesktop
+    $ app open vuedesktop
 
 And be visible to everyone with the `app` tool installed by running:
 
     $ app open
+
+### Publishing self-encapsulated exe
+
+Whilst our recommendation is to publish apps to gists you can also 
+
+    $ md %USERPROFILE%\apps\vuedesktop && cd md %USERPROFILE%\apps\vuedesktop
+    $ xcopy /E %USERPROFILE%\.dotnet\tools\.store\app\<version>\app\<version>\tools\net5.0\any app\
+    $ xcopy /E C:\src\NetCoreTemplates\vue-desktop\dist dist\
+    $ cd dist && app shortcut
+
+Then inside the Window Shortcut properties, updated its **Target** to call your local `app` install instead, e.g:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/2ea586cfb860bad40ff8f44962dbb0d924ceead9/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
+
+    "C:\Program Files\dotnet\dotnet.exe" %USERPROFILE%\apps\vuedesktop\app\app.dll "%USERPROFILE%\apps\vuedesktop\dist\app.settings"
+
+Which will now launch the app using your local `app` install instead of requiring the user to install the `app` dotnet tool.
+
+The app can then be installed on other PC's by copying (or extracting) it to their `%USERPROFILE%\apps\vuedesktop` folder & the Shortcut copied to their Desktop for easy access.
