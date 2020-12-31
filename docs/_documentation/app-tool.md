@@ -780,7 +780,7 @@ If your app.settings contains the app metadata above, publishing the app will pu
 
 Then to publish your App to a new Gist, run:
 
-  $ app publish
+    $ app publish
 
 Which will publish your app to a new gist:
 
@@ -792,7 +792,7 @@ Which will publish your app to a new gist:
 
 To update your Gist run publish again:
 
-  $ app publish
+    $ app publish
 
 When your App is published the first time, the created gist URL will be saved in a local `.publish` text file & used for subsequent App publishes.
 
