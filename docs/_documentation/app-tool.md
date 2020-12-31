@@ -866,16 +866,20 @@ Whilst our recommendation is to publish apps to gists where they can be launched
 you can also bundle & distribute the app tool with your App to allow it to be launched without needing the `app` dotnet tool installed:
 
     $ md %USERPROFILE%\apps\vuedesktop && cd md %USERPROFILE%\apps\vuedesktop
-    $ xcopy /E %USERPROFILE%\.dotnet\tools\.store\app\<version>\app\<version>\tools\net5.0\any app\
-    $ xcopy /E C:\src\NetCoreTemplates\vue-desktop\dist dist\
-    $ cd dist && app shortcut
+    $ xcopy /E <project-path>\dist dist\ && cd dist
+    $ app --copy-self app
+    $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
+      -arguments "^%USERPROFILE^%\apps\vuedesktop\app\app.dll ^%USERPROFILE^%\apps\vuedesktop\dist\app.settings"
 
-Then inside the Window Shortcut properties, updated its **Target** to call your local `app` install instead, e.g:
+Escaping `^%` will preserve the `%USERPROFILE%` environment variable within the shortcut, without it the shortcut will include your resolved home dir in its path, e.g:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/2ea586cfb860bad40ff8f44962dbb0d924ceead9/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
+    $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
+      -arguments "%USERPROFILE%\apps\vuedesktop\app\app.dll %USERPROFILE%\apps\vuedesktop\dist\app.settings"
 
-    "C:\Program Files\dotnet\dotnet.exe" %USERPROFILE%\apps\vuedesktop\app\app.dll "%USERPROFILE%\apps\vuedesktop\dist\app.settings"
-
-Which will now launch the app using your local `app` install instead of requiring the user to install the `app` dotnet tool.
+This will create a shortcut that will launch the app using your local `app` install instead of requiring the user to install the `app` dotnet tool.
 
 The app can then be installed on other PC's by copying (or extracting) it to their `%USERPROFILE%\apps\vuedesktop` folder & the Shortcut copied to their Desktop for easy access.
+
+You can later change which launch command the Shortcut uses by changing the **Target** in the Shortcut's **Properties**:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/2ea586cfb860bad40ff8f44962dbb0d924ceead9/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
