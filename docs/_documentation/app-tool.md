@@ -868,7 +868,8 @@ you can also bundle & distribute the app tool with your App to allow it to be la
     $ xcopy /E <project-path>\dist dist\ && cd dist
     $ app --copy-self app
     $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
-      -arguments "^%USERPROFILE^%\apps\vuedesktop\app\app.dll ^%USERPROFILE^%\apps\vuedesktop\dist\app.settings"
+      -arguments "^%USERPROFILE^%\apps\vuedesktop\app\app.dll ^%USERPROFILE^%\apps\vuedesktop\dist\app.settings" ^
+      -workdir "^%USERPROFILE^%\apps\vuedesktop\dist"
 
 Escaping `^%` will preserve the `%USERPROFILE%` environment variable within the shortcut, without it the shortcut will include your resolved home dir in its path.
 
