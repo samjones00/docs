@@ -869,7 +869,8 @@ And be visible to everyone with the `app` tool installed by running:
 
 ### Publishing self-encapsulated exe
 
-Whilst our recommendation is to publish apps to gists you can also 
+Whilst our recommendation is to publish apps to gists where they can be launched using `app://` URL Schemes with auto updating, 
+you can also bundle & distribute the app tool with your App to allow it to be launched without needing the `app` dotnet tool installed:
 
     $ md %USERPROFILE%\apps\vuedesktop && cd md %USERPROFILE%\apps\vuedesktop
     $ xcopy /E %USERPROFILE%\.dotnet\tools\.store\app\<version>\app\<version>\tools\net5.0\any app\
