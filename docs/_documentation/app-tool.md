@@ -752,46 +752,111 @@ Which installs instantly thanks to the `7kb` .zip download that can then be open
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-install-spirals.png)
 
-### Publishing your App with binaries
+### Publishing your App
 
 The unique characteristics of Sharp Apps affords us different ways of publishing your App, e.g. to save users from needing to install the 
 `app` tool you can run `publish` in your App's directory:
 
     $ app publish
 
-Which will copy your App to the `publish/app` folder and the `app` tool binaries in the `publish/cef` folder:
+### Publishing Gist Apps
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-publish.png)
+As Sharp Apps are so lightweight another 
 
-A Desktop shortcut is also generated for convenience although this is dependent on where the App is installed on the end users computer. 
-If you know it will be in a fixed location you can update the **Target** and **Start in** properties to reference the `cef\app.dll` and
-`/app` folder:
+To create gists you'll need to generate a [GitHub Access Token](https://github.com/settings/tokens/new) with **gist** scope and add it to your `GITHUB_TOKEN` Environment Variable ([win](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10), [mac](https://apple.stackexchange.com/q/356441/12255), [linux](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux)).
+> (alternative: use -token arg in each publish command)
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-shortcut-properties.png)
+Before publishing our App, our **app.settings** looks something like:
 
-This includes all `app` binaries needed to run Sharp Apps which compresses to **89 MB** in a `.zip` or **61 MB** in 7-zip `.7z` archive.
+    debug true
+    name Spirals
+    CefConfig { width:1100, height:900 }
 
-### Publishing a self-contained Windows 64 executable
+To make your App listed in our Global App Directory, include the following metadata about your App:
 
-But that's not all, we can even save end users who want to run your app the inconvenience of installing .NET Core :) by creating a self-contained 
-executable with:
+    appName     <app alias>    # required: alpha-numeric snake-case characters only, 30 chars max
+    description <app summary>  # required: 20-150 chars
+    tags        <app tags>     # optional: space delimited, alpha-numeric snake-case, 3 tags max
 
-    $ app publish-exe
+The `appName` is the globally unique short alias you want your App to be launched as, e.g:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/app-publish-exe.png)
+    app://my-alias
+    $ app open my-alias
 
-This downloads the [WebWin](https://github.com/ServiceStack/WebWin) self-contained .NET 5.0 binaries and copies then to `publish/win` folder with 
-the app copied to `publish/app`.
+If your app.settings contains the app metadata above, publishing the app will publish your App to a Gist & register your App's alias to the Global App Directory.
 
-This publishing option includes a self-contained .NET Core with all `app` binaries which compresses to **121 MB** in a `.zip` or **83 MB** in 7-zip `.7z` archive.
+Then to publish your App to a new Gist, run:
+
+  $ app publish
+
+Which will publish your app to a new gist:
+
+    published to: https://gist.github.com/gistlyn/4e06df1f1b9099526a7c97721aa7f69c
+
+    Run published App:
+
+        app open spirals
+
+To update your Gist run publish again:
+
+  $ app publish
+
+When your App is published the first time, the created gist URL will be saved in a local `.publish` text file & used for subsequent App publishes.
+
+After it's published anyone will now be able to run your App locally with the global alias (if specified):
+
+    app://spirals
+    $ app open spirals
+
+The Gist Id:
+
+    app://4e06df1f1b9099526a7c97721aa7f69c
+    $ app open 4e06df1f1b9099526a7c97721aa7f69c
+
+Or Gist URL:
+
+    $ app open https://gist.github.com/gistlyn/4e06df1f1b9099526a7c97721aa7f69c
+
+Users that are not on Windows can use the `x` dotnet tool instead to launch your App in their preferred browser:
+
+    $ x open spirals
+
+If preferred, Windows users can also launch your Gist Desktop App in their preferred browser (i.e. instead of a Chromium Desktop Shell) with the `xapp://` URL Scheme:
+
+    xapp://spirals
+
+### Vue Desktop Template
+
+To simplify the development UX we've created the [vue-desktop](https://github.com/NetCoreTemplates/vue-desktop) .NET Core Desktop Project Template with integrated scripts for building, bundling and publishing Windows Desktop Apps:
+
+> YouTube [youtu.be/kRnQSWdqH6U](https://youtu.be/kRnQSWdqH6U)
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/kRnQSWdqH6U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+Where you can build, bundle and publish your App to a gist with its `publish-app` npm script:
+
+    $ npm run publish-app
+
+That returns the gist URL your app was published to:
+
+    published to: https://gist.github.com/gistlyn/48b2dcf9bccacab62ec9d8a073d5edb8
+
+Which can now be opened via an [URL scheme](https://sharpscript.net/sharp-apps/app-index#app-url-schemes): 
+
+<h3><a href="app://48b2dcf9bccacab62ec9d8a073d5edb8">app://48b2dcf9bccacab62ec9d8a073d5edb8</a></h3>
+
+Or via the command line:
+
+    $ app open 48b2dcf9bccacab62ec9d8a073d5edb8
 
 ### Publish to the world
 
-To maximize reach and accessibility of your App leave a comment on the [App Gallery](https://gist.github.com/gistlyn/f555677c98fb235dccadcf6d87b9d098)
-where after we link to it on [NetCoreWebApps](https://github.com/sharp-apps) it will available to all users when they look for available apps in:
+To maximize reach and accessibility of your App you can publish it to our [Global App Registry](https://gist.github.com/gistlyn/802daba52b6fe6e2ed1430348dc596cb) by including an `appName` and `description` in your **app.settings** before publishing so it can be opened via its human-friendly `appName`, e.g:
 
-    $ app list
+<h3><a href="app://vuedesktop">app://vuedesktop</a></h3>
 
-Which can then be installed with:
+  $ app open vuedesktop
 
-    $ app install spirals
+And be visible to everyone with the `app` tool installed by running:
+
+    $ app open
