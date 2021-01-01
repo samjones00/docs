@@ -81,6 +81,10 @@ a:hover {
     position: fixed;
     width: 100%;
     box-shadow: 0 0 1px rgba(0,0,0,0.25);
+    padding: .45rem 1rem;
+}
+.navbar-brand {
+    padding-bottom: 0;
 }
 #body {
     position: relative;
