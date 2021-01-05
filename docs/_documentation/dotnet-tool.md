@@ -37,7 +37,19 @@ Usage:
   x new <template> <name>   Create New Project From Template
   x download <user>/<repo>  Download latest GitHub Repo Release
   x get <url>               Download remote file                     (-out <file|dir>)
-  x stream <url>            Stream URL contents to console output
+  x stream <url>            Stream URL contents to console stdout
+
+  x mix                     Show available gists to mixin            (Alias '+')
+  x mix <name>              Write gist files locally, e.g:           (Alias +init)
+  x mix init                Create empty .NET Core ServiceStack App
+  x mix [tag]               Search available gists
+  x mix <gist-url>          Write all Gist text files to current directory
+  x gist <gist-id>          Write all Gist text files to current directory
+
+  x publish                 Publish Current Directory to Gist    (requires token)
+  x gist-open <gist>        Download and open Gist folder            (-out <dir>)
+  x gist-new <dir>          Create new Gist with Directory Files (requires token)
+  x gist-update <id> <dir>  Update Gist ID with Directory Files  (requires token)
 
   x <lang>                  Update all ServiceStack References in directory (recursive)
   x <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)
@@ -60,26 +72,6 @@ Usage:
   x proto-<lang> <file|dir> Update gRPC .proto and re-gen language   (-out <dir>)
   x proto-<lang>            Update all gRPC .proto's and re-gen lang (-out <dir>)
 
-  x mix                     Show available gists to mixin            (Alias '+')
-  x mix <name>              Write gist files locally, e.g:           (Alias +init)
-  x mix init                Create empty .NET Core ServiceStack App
-  x mix [tag]               Search available gists
-  x mix <gist-url>          Write all Gist text files to current directory
-  x gist <gist-id>          Write all Gist text files to current directory
-
-  x alias                   Show all local gist aliases (for usage in mix or app's)
-  x alias <alias>           Print local alias value
-  x alias <alias> <gist-id> Set local alias with Gist Id or Gist URL
-  x unalias <alias>         Remove local alias
-
-  x run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
-  x watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
-                            Language File Extensions:
-                              .ss - #Script source file
-                              .sc - #Script `code` source file
-                              .l  - #Script `lisp` source file
-  x lisp                    Start Lisp REPL
-
   x open                    List of available Sharp Apps
   x open <app>              Install and run Sharp App
 
@@ -93,15 +85,21 @@ Usage:
   x uninstall               List Installed Sharp Apps
   x uninstall <app>         Uninstall Sharp App
 
-  x publish                 Publish Current Directory to Gist (requires token)
-
-  x gist-open <gist>        Download and open Gist folder            (-out <dir>)
-  x gist-new <dir>          Create new Gist with Directory Files (requires token)
-  x gist-update <id> <dir>  Update Gist ID with Directory Files  (requires token)
+  x alias                   Show all local gist aliases (for usage in mix or app's)
+  x alias <alias>           Print local alias value
+  x alias <alias> <gist-id> Set local alias with Gist Id or Gist URL
+  x unalias <alias>         Remove local alias
 
   x shortcut                Create Shortcut for Sharp App
   x shortcut <name>.dll     Create Shortcut for .NET Core App
 
+  x run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
+  x watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
+                            Language File Extensions:
+                              .ss - #Script source file
+                              .sc - #Script `code` source file
+                              .l  - #Script `lisp` source file
+  x lisp                    Start Lisp REPL
 
   dotnet tool update -g x   Update to latest version
 
