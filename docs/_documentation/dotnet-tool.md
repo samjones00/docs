@@ -37,6 +37,7 @@ Usage:
   x new <template> <name>   Create New Project From Template
   x download <user>/<repo>  Download latest GitHub Repo Release
   x get <url>               Download remote file                     (-out <file|dir>)
+  x stream <url>            Stream URL contents to console output
 
   x <lang>                  Update all ServiceStack References in directory (recursive)
   x <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)
@@ -74,9 +75,9 @@ Usage:
   x run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
   x watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
                             Language File Extensions:
-                                   .ss - #Script source file
-                                   .sc - #Script `code` source file
-                                   .l  - #Script `lisp` source file
+                              .ss - #Script source file
+                              .sc - #Script `code` source file
+                              .l  - #Script `lisp` source file
   x lisp                    Start Lisp REPL
 
   x open                    List of available Sharp Apps
@@ -94,6 +95,7 @@ Usage:
 
   x publish                 Publish Current Directory to Gist (requires token)
 
+  x gist-open <gist>        Download and open Gist folder            (-out <dir>)
   x gist-new <dir>          Create new Gist with Directory Files (requires token)
   x gist-update <id> <dir>  Update Gist ID with Directory Files  (requires token)
 
