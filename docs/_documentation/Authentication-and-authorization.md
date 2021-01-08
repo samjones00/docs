@@ -414,7 +414,7 @@ public class CustomCredentialsAuthProvider : CredentialsAuthProvider
         //...
 
         //Call base method to Save Session and fire Auth/Session callbacks:
-        return await base.AuthenticateAsync(authService, session, tokens, authInfo, token);
+        return await base.OnAuthenticatedAsync(authService, session, tokens, authInfo, token);
 
         //Alternatively avoid built-in behavior and explicitly save session with
         //session.IsAuthenticated = true;
