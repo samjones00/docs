@@ -128,9 +128,8 @@ we could create a generic method to ensure that all string properties are trimme
 ```csharp
 T TrimStrings<T>(T instance)
 {
-    var map = instance.ToObjectDictionary();
     var updateStrings = new Dictionary<string, object>();
-    map.ForEach((key, value) => {
+    instance.ToObjectDictionary().ForEach((key, value) => {
         if (value is string strValue && strValue?.Length > 0)
         {
             var trimmed = strValue.Trim();
