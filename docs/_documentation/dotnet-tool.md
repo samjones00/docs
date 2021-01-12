@@ -36,7 +36,7 @@ Usage:
   x new                     List available Project Templates
   x new <template> <name>   Create New Project From Template
   x download <user>/<repo>  Download latest GitHub Repo Release
-  x get <url>               Download remote file                     (-out <file|dir>)
+  x get <url>               Download URL to file                     (-out <file|dir>)
   x stream <url>            Stream URL contents to console stdout
 
   x mix                     Show available gists to mixin            (Alias '+')
@@ -46,10 +46,10 @@ Usage:
   x mix <gist-url>          Write all Gist text files to current directory
   x gist <gist-id>          Write all Gist text files to current directory
 
-  x publish                 Publish Current Directory to Gist    (requires token)
+  x publish                 Publish Current Directory to Gist        (requires token)
+  x gist-new <dir>          Create new Gist with Directory Files     (requires token)
+  x gist-update <id> <dir>  Update Gist ID with Directory Files      (requires token)
   x gist-open <gist>        Download and open Gist folder            (-out <dir>)
-  x gist-new <dir>          Create new Gist with Directory Files (requires token)
-  x gist-update <id> <dir>  Update Gist ID with Directory Files  (requires token)
 
   x <lang>                  Update all ServiceStack References in directory (recursive)
   x <file>                  Update existing ServiceStack Reference (e.g. dtos.cs)
@@ -109,7 +109,7 @@ Options:
     -d, --debug               Run in Debug mode for Development
     -r, --release             Run in Release mode for Production
     -s, --source              Change GitHub Source for App Directory
-    -f, --force               Quiet mode, always approve, never prompt
+    -f, --force               Quiet mode, always approve, never prompt   (Alias 'y')
         --token               Use GitHub Auth Token
         --clean               Delete downloaded caches
         --verbose             Display verbose logging
