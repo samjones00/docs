@@ -5,7 +5,7 @@ title: Secure SSL Redis connections
 
 [ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis) client includes support for SSL making it suitable for accessing remote Redis server instances over a secure SSL connection.
 
-Redis is normally used as a back-end datastore whose access is typically limited to Internal networks or authorized networks protected via firewalls, when communicating outside of your VPC you'll typically want to enable SSL. 
+Redis is normally used as a back-end datastore whose access is typically limited to Internal networks or authorized networks protected via firewalls, when communicating outside of your VPC you'll typically want to communicate over SSL. 
 
 ### General SSL Info
 
@@ -46,8 +46,7 @@ using var client = redisManager.GetClient();
 If using `RedisSentinel` SSL needs to be specified on both host connection string and `HostFilter`, e.g: 
 
 ```csharp
-var sentinel = new RedisSentinel(connString, masterName)
-{
+var sentinel = new RedisSentinel(connString, masterName) {
     HostFilter = host => $"{host}?ssl=true&sslprotocols=Tls12"
 };
 container.Register(c => sentinel.Start());
