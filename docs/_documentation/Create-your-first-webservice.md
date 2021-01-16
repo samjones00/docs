@@ -131,7 +131,7 @@ ServiceStack's clean Web Services design makes it simple and intuitive to be abl
 </script>
 ```
 
-### dep-free JsonServiceClient in HTML Pages
+### Dependency-free JsonServiceClient & Typed DTOs in Web Pages
 
 A **dep-free alternative** to jQuery that works in all modern browsers is to use the 
 [UMD @servicestack/client](https://github.com/ServiceStack/servicestack-client) built into `ServiceStack.dll` along with the transpiled 
@@ -161,11 +161,11 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 </script>
 ```
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
-
-Then to update your App's TypeScript DTOs, compile them to JavaScript & move it to `/wwwroot`, run:
+Where you can update your App's server DTOs by transpiling them to JavaScript & moving to `/wwwroot`:
 
     $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
 
 ### Using mix to quickly create empty .NET Core Apps
 
