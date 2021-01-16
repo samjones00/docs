@@ -3,61 +3,86 @@ slug: javascript-client
 title: JavaScript Client
 ---
 
-Of course, you're able to call your ServiceStack webservice from your 
-ajax and JavaScript clients, too. 
-
-### [Using TypeScript](/typescript-add-servicestack-reference#typescript-serviceclient)
-
-The best tooling available for Ajax clients is to use ServiceStack's 
-[integrated TypeScript support](/typescript-add-servicestack-reference) where
-you can use the TypeScript `JsonServiceClient` with 
-TypeScript Add ServiceStack Reference DTO's to get the same productive end-to-end
-Typed APIs available in ServiceStack's Typed .NET Clients, e.g:
+Whilst you can use any of the multitude of Ajax libraries to consume ServiceStack's pure JSON REST APIs, leveraging
+the [integrated TypeScript](/typescript-add-servicestack-reference) support still offers the best development UX 
+for calling ServiceStack's JSON APIs in JavaScript where you can use the TypeScript `JsonServiceClient` with 
+[TypeScript Add ServiceStack Reference](/typescript-add-servicestack-reference#typescript-serviceclient)
+DTO's to get the same productive end-to-end Typed APIs available in ServiceStack's Typed .NET Clients, e.g:
 
 ```ts
-var client = new JsonServiceClient(baseUrl);
+let client = new JsonServiceClient(baseUrl);
 
-var request = new Hello();
-request.Name = "World";
-
-client.get(request)
+client.get(new Hello({ Name: 'World' }))
   .then(r => console.log(r.Result));
 ```
 
-The generated JavaScript of the TypeScript Service Client has no dependencies other than [fetch-everywhere](https://github.com/lucasfeliciano/fetch-everywhere) 
-polyfill for W3C's [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) available:
+### Using JavaScript Typed DTOs in Web Apps
 
- - [index.js](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.js) - The @servicestack/client JavaScript library
- - [index.d.ts](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.d.ts) - Type declarations (for IDEs tooling and TypeScript)
+To get started quickly you can use the `init-js` [mix gist](/mix-tool) to create an empty .NET 5 project:
 
-Hosted on unpkg.com CDN:
+    $ md ProjectName && cd ProjectName
+    $ x mix init-js
 
- - [index.js](https://unpkg.com/@servicestack/client) (`https://unpkg.com/@servicestack/client`)
- - [index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) (`https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts`)
+That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
+
+With a single command you can update your App's TypeScript DTOs, compile them to JavaScript & move them to `/wwwroot` with:
+
+    $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
+
+Then to use them in your Web Page create a basic UMD loader then include the UMD `@servicestack/client` library and `dtos.js`:
+
+```html
+<script>
+  var exports = { __esModule:true }, module = { exports:exports }
+  function require(name) { return exports[name] || window[name] }
+</script>
+<script src="/js/servicestack-client.js"></script>
+<script src="/dtos.js"></script>
+```
+
+We can then import the library and DTO types in the global namespace to use them directly:
+
+```js
+Object.assign(window, exports) //import
+
+var client = new JsonServiceClient()
+client.get(new Hello({ name: name }))
+    .then(function(r) {
+        console.log(r.result)
+    })
+```
+
+This uses the `@servicestack/client` built into `ServiceStack.dll`, if preferred you can use the version hosted on unpkg.com CDN:
+
+ - [https://unpkg.com/@servicestack/client](https://unpkg.com/@servicestack/client)
+
+If needed for IDE intelli-sense, the TypeScript definition for the `@servicestack/client` is available from:
+
+ - [https://unpkg.com/@servicestack/client/dist/index.d.ts](https://unpkg.com/@servicestack/client/dist/index.d.ts)
 
 The npm-free [Vue and React lite Templates](/templates-lite) are some examples that makes use of the stand-alone `@servicestack/client` libraries.
 
-### Using TypeScript JsonServiceClient in JavaScript projects
+### Using TypeScript JsonServiceClient in npm projects
 
-Despite its name the TypeScript JsonServiceClient can also be used in non-TypeScript projects. 
 The [/@servicestack/client](https://www.npmjs.com/package/@servicestack/client) follows the recommended guidance for TypeScript modules which doesn't 
 bundle any TypeScript `.ts` source files, just the generated [index.js](https://unpkg.com/@servicestack/client) and 
-[index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript
-npm projects as any other module, e.g:
-
+[index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript npm projects as any other module, e.g:
 
 ```js
 import { JsonServiceClient } from "@servicestack/client";
 ```
 
 Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded
-and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [@servicestack/cli][4] npm tool:
+and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [x dotnet tool](/dotnet-tool)
+to download the DTOs of a remote ServiceStack API with:
 
     $ npm install -g @servicestack/cli
 
-Then download the DTOs of a remote ServiceStack API with:
 
-    $ typescript-ref http://yourdomain.org dtos.ts
+    $ dotnet tool install --global x 
+    $ x typescript http://yourdomain.org
 
 For JavaScript projects that haven't configured transpilation of TypeScript, you'll need to use TypeScript to generate the `dtos.js` JavaScript version
 which can be used instead:
@@ -80,16 +105,16 @@ let response = await client.get(new GetConfig());
 
 #### Updating DTOs
 
-To update your generated DTOs when your server API changes, run `typescript-ref` without any arguments:
+To update your generated DTOs when your server API changes, run `x typescript` or its shorter `x ts` alias without any arguments:
 
-    $ typescript-ref 
+    $ x ts
 
 Which will update to the latest version of `dtos.ts`. This can be easily automated with an [npm script][5], e.g:
 
 ```json
 {
   "scripts": {
-    "dtos": "cd path/to/dtos && typescript-ref && tsc -m ES6 dtos.ts",
+    "dtos": "cd path/to/dtos && x ts && tsc -m ES6 dtos.ts",
     }
 }
 ```
@@ -99,7 +124,6 @@ Which will let you update and compile the dtos with:
     $ npm run dtos
 
 The [TechStacks][6] (Vue/Nuxt) and [React Native Mobile App][7] (React) are examples of JavaScript-only projects using the TypeScript `JsonServiceClient` in this way.
-
 
 ### jQuery JsonServiceClient
 
