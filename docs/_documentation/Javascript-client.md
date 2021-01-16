@@ -54,7 +54,7 @@ client.get(new Hello({ name: name }))
     })
 ```
 
-This uses the `@servicestack/client` built into `ServiceStack.dll`, if preferred you can use the version hosted on unpkg.com CDN:
+An CDN alternative to using the `@servicestack/client` built into `ServiceStack.dll` is to reference it from unpkg.com:
 
  - [https://unpkg.com/@servicestack/client](https://unpkg.com/@servicestack/client)
 
