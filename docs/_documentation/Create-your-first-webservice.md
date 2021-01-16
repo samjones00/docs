@@ -138,36 +138,34 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 [TypeScript Generated DTOs](/typescript-add-servicestack-reference) to enable a more typed Promise API:
 
 ```html
+<h2><a href="/json/metadata?op=Hello">Hello</a> API</h2>
 <input type="text" id="txtName" onkeyup="callHello(this.value)">
 <div id="result"></div>
 
-<script src="/js/servicestack-client.js"></script>
 <script>
-    Object.assign(window, window['@servicestack/client']); //import into global namespace
+  var exports = { __esModule:true }, module = { exports:exports }
+  function require(name) { return exports[name] || window[name] }
+</script>
+<script src="/js/servicestack-client.js"></script>
+<script src="/dtos.js"></script>
+<script>
+    Object.assign(window, exports) //import
 
-    // generate typed dtos with https://docs.servicestack.net/typescript-add-servicestack-reference
-    var Hello = /** @class */ (function () {
-        function Hello(init) { Object.assign(this, init); }
-        Hello.prototype.createResponse = function () { return new HelloResponse(); };
-        Hello.prototype.getTypeName = function () { return 'Hello'; };
-        return Hello;
-    }());
-    var HelloResponse = /** @class */ (function () {
-        function HelloResponse(init) { Object.assign(this, init); }
-        return HelloResponse;
-    }());
-
-    var client = new JsonServiceClient();
+    var client = new JsonServiceClient()
     function callHello(val) {
         client.get(new Hello({ name: val }))
             .then(function(r) {
                 document.getElementById('result').innerHTML = r.result;
-            });
+            })
     }
 </script>
 ```
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/init.png)
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
+
+Then to update your App's TypeScript DTOs, compile them to JavaScript & move it to `/wwwroot`, run:
+
+    $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
 
 ### Using mix to quickly create empty .NET Core Apps
 

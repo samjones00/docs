@@ -21,13 +21,13 @@ client.get(new Hello({ Name: 'World' }))
 To get started quickly you can use the `init-js` [mix gist](/mix-tool) to create an empty .NET 5 project:
 
     $ md ProjectName && cd ProjectName
-    $ x mix init-js
+    $ x mix init
 
 That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
 
-With a single command you can update your App's TypeScript DTOs, compile them to JavaScript & move them to `/wwwroot` with:
+With a single command you can update your App's TypeScript DTOs, compile them to JavaScript & move them to `/wwwroot`:
 
     $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
 
