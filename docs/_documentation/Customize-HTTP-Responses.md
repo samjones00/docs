@@ -218,6 +218,26 @@ class MyServices : Service
 }
 ```
 
+#### Async Callbacks
+
+For async callbacks your Services can implement `IServiceBeforeFilterAsync` and `IServiceAfterFilterAsync`, e.g:
+
+```csharp
+public class MyServices : Service, IServiceBeforeFilterAsync, IServiceAfterFilterAsync
+{
+    public async Task OnBeforeExecuteAsync(object requestDto)
+    {
+        //...
+    }
+
+    public async Task<object> OnAfterExecuteAsync(object response)
+    {
+        //...
+        return response;
+    }
+}
+```
+
 If you're implementing `IService` instead of inheriting the concrete `Service` class, you can implement the interfaces directly:
 
 ```csharp
