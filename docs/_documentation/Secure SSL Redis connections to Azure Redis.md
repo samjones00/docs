@@ -1,11 +1,61 @@
 ---
 slug: ssl-redis-azure
-title: Secure SSL Redis connections to Azure Redis
+title: Secure SSL Redis connections
 ---
 
-With the release of **v4.0.33+**, the [ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis) client has added support for SSL making it suitable for accessing remote Redis server instances over a secure SSL connection.
+[ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis) client includes support for SSL making it suitable for accessing remote Redis server instances over a secure SSL connection.
 
-Redis is normally used as a back-end datastore whose access is typically limited to Internal networks or authorized networks protected via firewalls. The new SSL Support in the Redis Client also enables secure access to a redis-server instance over the Internet and public networks as well, a scenario that's been recently popularized by Cloud hosting environments like [Azure Redis Cache](http://azure.microsoft.com/en-us/services/cache/).
+Redis is normally used as a back-end datastore whose access is typically limited to Internal networks or authorized networks protected via firewalls, when communicating outside of your VPC you'll typically want to enable SSL. 
+
+### General SSL Info
+
+ServiceStack.Redis uses .NET's [SslStream](https://docs.microsoft.com/en-us/dotnet/api/system.net.security.sslstream.-ctor?view=net-5.0#System_Net_Security_SslStream__ctor_System_IO_Stream_System_Boolean_System_Net_Security_RemoteCertificateValidationCallback_System_Net_Security_LocalCertificateSelectionCallback_) to establish its SSL connection where you can configure its [RemoteCertificateValidationCallback](https://docs.microsoft.com/en-us/dotnet/api/system.net.security.remotecertificatevalidationcallback?view=net-5.0) to validate whether to accept the specified certificate for authentication:
+
+```csharp
+RedisConfig.CertificateValidationCallback = (object sender,
+    X509Certificate certificate,
+    X509Chain chain,
+    SslPolicyErrors sslPolicyErrors) => {
+    //...
+};
+```
+
+And a [LocalCertificateSelectionCallback](https://docs.microsoft.com/en-us/dotnet/api/system.net.security.localcertificateselectioncallback?view=net-5.0) to select the local SSL certificate used for authentication:
+
+```csharp
+RedisConfig.CertificateSelectionCallback = (object sender,
+    string targetHost,
+    X509CertificateCollection localCertificates,
+    X509Certificate remoteCertificate,
+    string[] acceptableIssuers) => {
+    //...
+}
+```
+
+### Specify SSL and TLS Version
+
+You can specify to use SSL and what TLS version to use on your connection string, e.g:
+
+```csharp
+var connString = $"redis://{Host}?ssl=true&sslprotocols=Tls12&password={Password.UrlEncode()}";
+var redisManager = new RedisManagerPool(connString);
+using var client = redisManager.GetClient();
+//...
+```
+
+If using `RedisSentinel` SSL needs to be specified on both host connection string and `HostFilter`, e.g: 
+
+```csharp
+var sentinel = new RedisSentinel(connString, masterName)
+{
+    HostFilter = host => $"{host}?ssl=true&sslprotocols=Tls12"
+};
+container.Register(c => sentinel.Start());
+```
+
+### Secure SSL Redis connections to Azure Redis
+
+The SSL Support in the Redis Client also enables secure access to a redis-server instance over the Internet and public networks as well, a scenario that's been recently popularized by Cloud hosting environments like [Azure Redis Cache](http://azure.microsoft.com/en-us/services/cache/).
 
 ## Getting Started
 
