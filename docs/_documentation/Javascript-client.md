@@ -31,7 +31,7 @@ With a single command you can update your App's TypeScript DTOs, compile them to
 
     $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
 
-Then to use them in your Web Page create a basic UMD loader then include the UMD `@servicestack/client` library and `dtos.js`:
+To use them in your Web Page create a basic UMD loader and include the UMD `@servicestack/client` library & `dtos.js`:
 
 ```html
 <script>
