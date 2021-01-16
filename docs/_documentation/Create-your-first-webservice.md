@@ -149,15 +149,15 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 <script src="/js/servicestack-client.js"></script>
 <script src="/dtos.js"></script>
 <script>
-    Object.assign(window, exports) //import
+  Object.assign(window, exports) //import
 
-    var client = new JsonServiceClient()
-    function callHello(val) {
-        client.get(new Hello({ name: val }))
-            .then(function(r) {
-                document.getElementById('result').innerHTML = r.result;
-            })
-    }
+  var client = new JsonServiceClient()
+  function callHello(val) {
+    client.get(new Hello({ name: val }))
+      .then(function(r) {
+          document.getElementById('result').innerHTML = r.result;
+      })
+  }
 </script>
 ```
 
