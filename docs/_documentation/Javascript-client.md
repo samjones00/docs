@@ -54,6 +54,28 @@ client.get(new Hello({ name: name }))
     })
 ```
 
+### Rich intelli-sense support
+
+Even pure HTML/JS Apps that don't use TypeScript or any external dependencies will still benefit from the Server 
+generated `dtos.ts` and `servicestack-client.d.ts` definitions as Smart IDEs like 
+[Rider](https://www.jetbrains.com/rider/) can make use of them to provide a rich productive development UX
+on both the built-in `/js/servicestack-client.js` library:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-client.png)
+
+As well as your App's server generated DTOs:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto.png)
+
+Including their typed partial constructors:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto-props.png)
+
+So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
+experience without any additional build time or tooling complexity.
+
+### CDN Resources
+
 An CDN alternative to using the `@servicestack/client` built into `ServiceStack.dll` is to reference it from unpkg.com:
 
  - [https://unpkg.com/@servicestack/client](https://unpkg.com/@servicestack/client)

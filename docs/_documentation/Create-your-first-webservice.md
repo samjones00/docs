@@ -167,6 +167,26 @@ Where you can update your App's server DTOs by transpiling them to JavaScript & 
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
 
+### Rich intelli-sense support
+
+Even pure HTML/JS Apps that don't use TypeScript or any external dependencies will still benefit from the Server 
+generated `dtos.ts` and `servicestack-client.d.ts` definitions as Smart IDEs like 
+[Rider](https://www.jetbrains.com/rider/) can make use of them to provide a rich productive development UX
+on both the built-in `/js/servicestack-client.js` library:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-client.png)
+
+As well as your App's server generated DTOs:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto.png)
+
+Including their typed partial constructors:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto-props.png)
+
+So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
+experience without any additional build time or tooling complexity.
+
 ### Using mix to quickly create empty .NET Core Apps
 
 As this requires no external deps or prescribed JS frameworks, it's used in the [init and init-lts](/mix-tool#mix-usage) mix scripts which you can 
