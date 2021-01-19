@@ -163,7 +163,7 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 
 Where you can update your App's server DTOs by transpiling them to JavaScript & moving to `/wwwroot`:
 
-    $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
+    $ npm run dtos
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
 

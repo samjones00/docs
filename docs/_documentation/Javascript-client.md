@@ -29,7 +29,7 @@ That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a
 
 With a single command you can update your App's TypeScript DTOs, compile them to JavaScript & move them to `/wwwroot`:
 
-    $ x ts && tsc -m umd dtos.ts && move /y dtos.js wwwroot
+    $ npm run dtos
 
 To use them in your Web Page create a basic UMD loader and include the UMD `@servicestack/client` library & `dtos.js`:
 
