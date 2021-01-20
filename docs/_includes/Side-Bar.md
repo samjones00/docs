@@ -285,5 +285,6 @@
     - [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text)
     - [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
     - [Stripe](https://github.com/ServiceStack/Stripe)
+    - [vuedesktop.com](https://www.vuedesktop.com)
 - ##### Future
     - [Roadmap](/roadmap)
