@@ -135,7 +135,7 @@ ServiceStack's clean Web Services design makes it simple and intuitive to be abl
 
 A **dep-free alternative** to jQuery that works in all modern browsers is to use the 
 [UMD @servicestack/client](https://github.com/ServiceStack/servicestack-client) built into `ServiceStack.dll` along with the transpiled 
-[TypeScript Generated DTOs](/typescript-add-servicestack-reference) to enable a more typed Promise API:
+[TypeScript Generated DTOs](/typescript-add-servicestack-reference) to enable an optimal typed modern async API:
 
 ```html
 <h2><a href="/json/metadata?op=Hello">Hello</a> API</h2>
