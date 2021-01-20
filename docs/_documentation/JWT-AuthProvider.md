@@ -622,18 +622,18 @@ new JwtAuthProvider {
 These expiry times are use-case specific so you'll want to check what values are appropriate for your System.
 The `ExpireTokensIn` property controls how long a client is allowed to make Authenticated Requests with the same JWT Token, whilst the `ExpireRefreshTokensIn` property controls how long the client can keep requesting new JWT Tokens using the same Refresh Token before needing to re-authenticate and generate a new one.
 
-#### Requires User Auth Repository or IUserSessionSource
+#### Requires User Auth Repository or IUserSessionSourceAsync
 
 One limitation for Refresh Tokens support is that it must be configured to use a 
 [User Auth Repository](/authentication-and-authorization#user-auth-repository)
 which is the persisted data source used to rehydrate the User Session that's embedded in the JWT Token.
 
-Users who are not using an `IAuthRepository` can instead implement the `IUserSessionSource` interface:
+Users who are not using an `IAuthRepository` can instead implement the `IUserSessionSourceAsync` interface:
 
 ```csharp
-public interface IUserSessionSource
+public interface IUserSessionSourceAsync
 {
-    IAuthSession GetUserSession(string userAuthId);
+    Task<IAuthSession> GetUserSessionAsync(string userAuthId, CancellationToken token=default);
 }
 ```
 
