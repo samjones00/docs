@@ -107,7 +107,7 @@ The Unit Test project contains all your Unit and Integration tests. It's also a 
 
 ### jQuery
 
-ServiceStack's clean Web Services design makes it simple and intuitive to be able to call ServiceStack Services from any kind of client from a [simple Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
+ServiceStack's clean Web Services design makes it simple and intuitive to be able to call ServiceStack Services from any ajax client, e.g. from a [simple Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
 
 ```html
 <div>
