@@ -93,6 +93,9 @@ Usage:
   x shortcut                Create Shortcut for Sharp App
   x shortcut <name>.dll     Create Shortcut for .NET Core App
 
+  x scripts                 List all available package.json scripts
+  x scripts <name>          Run package.json script
+
   x run <name>.ss           Run #Script within context of AppHost   (or <name>.html)
   x watch <name>.ss         Watch #Script within context of AppHost (or <name>.html)
                             Language File Extensions:
@@ -110,6 +113,7 @@ Options:
     -r, --release             Run in Release mode for Production
     -s, --source              Change GitHub Source for App Directory
     -f, --force               Quiet mode, always approve, never prompt   (Alias 'y')
+    -e, --eval                Evaluate #Script Code
         --token               Use GitHub Auth Token
         --clean               Delete downloaded caches
         --verbose             Display verbose logging
