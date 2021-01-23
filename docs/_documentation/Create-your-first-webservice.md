@@ -271,7 +271,7 @@ Compare and contrast with other major SPA JavaScript Frameworks:
  - [Angular v4 hello.ts](https://github.com/NetCoreTemplates/angular-lite-spa/blob/master/MyApp/src/modules/app/home/hello.ts)
  - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
 
-### Install a .NET Project Template
+### Full .NET Project Templates
 
 The above `init` projects allow you to create a minimal web app, to create a more complete ServiceStack App with the recommended project structure, start with one of our C# project templates instead:
 
