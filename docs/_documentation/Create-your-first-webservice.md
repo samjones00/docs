@@ -275,7 +275,7 @@ Compare and contrast with other major SPA JavaScript Frameworks:
 
 The above `init` projects allow you to create a minimal web app, to create a more complete ServiceStack App with the recommended project structure, start with one of our C# project templates instead:
 
-#### [/dotnet-new](C# Project Templates)
+#### [C# Project Templates](/dotnet-new)
 
 ### Integrated in Major IDEs and popular Mobile & Desktop platforms
 
