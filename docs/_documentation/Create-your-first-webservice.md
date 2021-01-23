@@ -271,6 +271,12 @@ Compare and contrast with other major SPA JavaScript Frameworks:
  - [Angular v4 hello.ts](https://github.com/NetCoreTemplates/angular-lite-spa/blob/master/MyApp/src/modules/app/home/hello.ts)
  - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
 
+### Install a .NET Project Template
+
+The above `init` projects allow you to create a minimal web app, to create a more complete ServiceStack App with the recommended project structure, start with one of our C# project templates instead:
+
+#### [/dotnet-new](C# Project Templates)
+
 ### Integrated in Major IDEs and popular Mobile & Desktop platforms
 
 ServiceStack Services are also [easily consumable from all major Mobile and Desktop platforms](/why-servicestack#generate-instant-typed-apis-from-within-all-major-ides) including native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on Android with Java or Kotlin, OSX Desktop Applications as well as targeting the most popular .NET Mobile and Desktop platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF and WinForms.
