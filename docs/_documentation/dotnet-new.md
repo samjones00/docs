@@ -227,9 +227,12 @@ To create projects from your own GitHub projects use its qualified `user/repo` n
 
 Replaces all occurrences in all text files, file and directory names, where:
 
+ - `My_App` is replaced with `Project_Name`
  - `MyApp` is replaced with `ProjectName`
- - `my-app` is replaced with `project-name`
  - `My App` is replaced with `Project Name`
+ - `my-app` is replaced with `project-name`
+ - `myapp` is replaced with `projectname`
+ - `my_app` is replaced with `project_name`
 
 The tool installer then inspects the project contents and depending on what it finds will:
 
