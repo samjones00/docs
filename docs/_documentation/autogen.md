@@ -394,6 +394,8 @@ Plugins.Add(new AutoQueryFeature {
         IncludeType = type => !ignoreTables.Contains(type.Name),
     }
 });
+
+Plugins.Add(new ValidationFeature()); // Enable Validation
 ```
 
 To assist in code-generation a number of high-level APIs are available to help with identifying Services, e.g:
