@@ -12,6 +12,14 @@ attributes which are decoupled from their Validator implementation so they're su
 
 The validators are incorporated into ServiceStack's existing Fluent Validation model so it [works with existing UI form binding](/world-validation). 
 
+### Validation Feature
+
+All of ServiceStack's Fluent Validation features is encapsulated in the `ValidationFeature` plugin which can be registered in your AppHost with:
+
+```csharp
+Plugins.Add(new ValidationFeature());
+```
+
 ### Property Validators
 
 The Property Validator attributes provide an alternative way to apply Request DTO validation rules, the best way to demonstrate them 
