@@ -188,11 +188,11 @@ So if the order gets updated, you should delete the cache manually:
 ```csharp
 public class CachedOrdersService : Service
 {
-    public object Put(CachedOrders request)
+    public async Task Put(CachedOrders request)
     {
         //The order gets updated...
         var cacheKey = "some_unique_key_for_order";
-        return base.Request.RemoveFromCache(base.Cache, cacheKey);
+        await CacheAsync.ClearCachesAsync(cacheKey);
     }
 }
 ```
