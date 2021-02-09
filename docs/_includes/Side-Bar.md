@@ -38,6 +38,7 @@
     - [Blazor Templates](/templates-blazor)
     - [Vue, React, Angular Components](/spa-components)
     - [Tour of Webpack](/tour-of-webpack)
+    - [Cross platform dotnet scripts](/dotnet-scripts)
 - ##### Background Concepts
     - [What is a Message-based Web Service](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
