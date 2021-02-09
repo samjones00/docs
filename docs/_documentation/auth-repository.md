@@ -317,7 +317,7 @@ If you're using a [Custom UserAuth Table](/auth-repository#extending-userauth-ta
 
 ### IManageRoles API
 
-The [IManageRoles API](https://github.com/ServiceStack/ServiceStack/blob/4398438e058851847033f2da923fe0221a75d3b3/src/ServiceStack/Auth/IAuthRepository.cs#L72) 
+The [IManageRoles API](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/IAuthRepository.cs#L72) 
 can be implemented by any `IAuthRepository` to provide an alternative strategy for querying and managing Users Roles and permissions. 
 
 This API is being used in the `OrmLiteAuthRepository` to provide an alternative way to store Roles and Permission in their own distinct table rather than being blobbed with the rest of the User Auth data. 
@@ -332,7 +332,51 @@ container.Register<IAuthRepository>(c =>
 ```
 
 When enabled, roles and permissions are persisted in the distinct **UserAuthRole** table instead of being blobbed on the UserAuth. The `IAuthSession.HasRole()` and `IAuthSession.HasPermission()` on the Users Session should be used to check if a User has a specified Role or Permission.
- 
+
+If you're persisting roles in a different table you'll need to use the `IManageRoles` APIs to access & manage a users role, e.g:
+
+```csharp
+var manageRoles = (IManageRolesAsync)base.AuthRepositoryAsync;  // async
+var manageRoles = (IManageRoles)base.AuthRepository;            // sync
+```
+
+These APIs can be used with `OrmLiteAuthRepository` whether Roles are persisted in external tables or not.
+
+```csharp
+public interface IManageRoles
+{
+    ICollection<string> GetRoles(string userAuthId);
+    ICollection<string> GetPermissions(string userAuthId);
+    void GetRolesAndPermissions(string userAuthId, out ICollection<string> roles, out ICollection<string> permissions);
+
+    bool HasRole(string userAuthId, string role);
+    bool HasPermission(string userAuthId, string permission);
+
+    void AssignRoles(string userAuthId,
+        ICollection<string> roles = null, ICollection<string> permissions = null);
+
+    void UnAssignRoles(string userAuthId,
+        ICollection<string> roles = null, ICollection<string> permissions = null);
+}
+
+public interface IManageRolesAsync
+{
+    Task<ICollection<string>> GetRolesAsync(string userAuthId, CancellationToken ct);
+    Task<ICollection<string>> GetPermissionsAsync(string userAuthId, CancellationToken ct);
+    Task<Tuple<ICollection<string>,ICollection<string>>> GetRolesAndPermissionsAsync(
+        string userAuthId, CancellationToken ct);
+
+    Task<bool> HasRoleAsync(string userAuthId, string role, CancellationToken ct);
+    Task<bool> HasPermissionAsync(string userAuthId, string permission, CancellationToken ct);
+
+    Task AssignRolesAsync(string userAuthId,
+        ICollection<string> roles = null, ICollection<string> permissions = null, CancellationToken token);
+
+    Task UnAssignRolesAsync(string userAuthId,
+        ICollection<string> roles = null, ICollection<string> permissions = null, CancellationToken token);
+}
+```
+
 More examples of this are in [ManageRolesTests.cs](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.Common.Tests/ManageRolesTests.cs).
 
 ### Assigning Roles and Permissions
