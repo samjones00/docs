@@ -92,6 +92,7 @@ In a similar vein we can also evaluate a [#Script Expression](https://sharpscrip
 
 `#Script` lets you evaluate [1000+ .NET #Script Methods](https://sharpscript.net/docs/scripts-reference) using [JavaScript syntax](https://sharpscript.net/docs/syntax) including a number of common Windows and Bash shell commands:
 
+{% capture unixscripts %}
 | #Script | Windows | Unix |
 |-|-|-|
 | mv(from,to)    | MOVE /Y from to     | mv -f from to   |
@@ -102,6 +103,11 @@ In a similar vein we can also evaluate a [#Script Expression](https://sharpscrip
 | mkdir(target)  | MKDIR target        | mkdir -p target |
 | cat(target)    | type target         | type target     |
 | touch(target)  | CALL >> target      | touch target    |
+{% endcapture %}
+
+<div class='markdown-body pb-3'>
+{{ unixscripts | markdownify }}
+</div>
 
 Using Unix `/` Path separators are replaced to use `\` in Windows commands.
 
@@ -109,6 +115,7 @@ Using Unix `/` Path separators are replaced to use `\` in Windows commands.
 
 Alternatively you can also call .NET's [File](https://docs.microsoft.com/en-us/dotnet/api/system.io.file) and [Directory](https://docs.microsoft.com/en-us/dotnet/api/system.io.directory) static methods:
 
+{% capture netscripts %}
 | #Script |
 |-|
 | File.Copy(from,to)               |
@@ -139,4 +146,8 @@ Alternatively you can also call .NET's [File](https://docs.microsoft.com/en-us/d
 | Directory.GetDirectoryRoot(path) |
 | Directory.Move(from,to)          |
 | Directory.Copy(from,to)          |
+{% endcapture %}
 
+<div class='markdown-body pb-3'>
+{{ netscripts | markdownify }}
+</div>
