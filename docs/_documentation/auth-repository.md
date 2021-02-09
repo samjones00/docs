@@ -347,7 +347,8 @@ public interface IManageRoles
 {
     ICollection<string> GetRoles(string userAuthId);
     ICollection<string> GetPermissions(string userAuthId);
-    void GetRolesAndPermissions(string userAuthId, out ICollection<string> roles, out ICollection<string> permissions);
+    void GetRolesAndPermissions(string userAuthId, out ICollection<string> roles, 
+        out ICollection<string> permissions);
 
     bool HasRole(string userAuthId, string role);
     bool HasPermission(string userAuthId, string permission);
@@ -361,13 +362,13 @@ public interface IManageRoles
 
 public interface IManageRolesAsync
 {
-    Task<ICollection<string>> GetRolesAsync(string userAuthId, CancellationToken ct);
-    Task<ICollection<string>> GetPermissionsAsync(string userAuthId, CancellationToken ct);
+    Task<ICollection<string>> GetRolesAsync(string userAuthId, CancellationToken token);
+    Task<ICollection<string>> GetPermissionsAsync(string userAuthId, CancellationToken token);
     Task<Tuple<ICollection<string>,ICollection<string>>> GetRolesAndPermissionsAsync(
-        string userAuthId, CancellationToken ct);
+        string userAuthId, CancellationToken token);
 
-    Task<bool> HasRoleAsync(string userAuthId, string role, CancellationToken ct);
-    Task<bool> HasPermissionAsync(string userAuthId, string permission, CancellationToken ct);
+    Task<bool> HasRoleAsync(string userAuthId, string role, CancellationToken token);
+    Task<bool> HasPermissionAsync(string userAuthId, string permission, CancellationToken token);
 
     Task AssignRolesAsync(string userAuthId,
         ICollection<string> roles = null, ICollection<string> permissions = null, CancellationToken token);
