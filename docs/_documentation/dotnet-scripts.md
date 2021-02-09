@@ -88,6 +88,12 @@ In a similar vein we can also evaluate a [#Script Expression](https://sharpscrip
 }
 ```
 
+Which our latest templates have adopted, that can be run with either `npm run`, `x scripts` or its `x s` alias:
+
+    $ npm run dtos
+    $ x scripts dtos
+    $ x s dtos
+
 ### Shell Script Methods
 
 `#Script` lets you evaluate [1000+ .NET #Script Methods](https://sharpscript.net/docs/scripts-reference) using [JavaScript syntax](https://sharpscript.net/docs/syntax) including a number of common Windows and Bash shell commands:
