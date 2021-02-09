@@ -229,6 +229,92 @@ appHost.Plugins.Add(new AuthFeature(
     () => new CustomUserSession(), ...);
 ```
 
+### IAuthRepository APIs
+
+Inside your Services you can access the **async** `base.AuthRepositoryAsync` and **sync** `IAuthRepository` APIs with:
+
+```csharp
+await base.AuthRepositoryAsync.CreateUserAuthAsync(...);
+```
+
+You can use the Async APIs with every Auth Repository as an async wrapper is returned for Auth Repositories which only support the Sync APIs.
+
+If you need to access the Auth Repository from inside a sync method you can access the **sync** APIs from `base.AuthRepository`, e.g:
+
+```csharp
+base.AuthRepository.CreateUserAuth(...);
+```
+
+All ServiceStack's built-in Auth Repositories support the extended `IUserAuthRepository` APIs which your Services can use to manage your App's registered users:
+
+```csharp
+public interface IUserAuthRepository : IAuthRepository
+{
+    IUserAuth CreateUserAuth(IUserAuth newUser, string password);
+    IUserAuth UpdateUserAuth(IUserAuth existingUser, IUserAuth newUser);
+    IUserAuth UpdateUserAuth(IUserAuth existingUser, IUserAuth newUser, string password);
+    IUserAuth GetUserAuth(string userAuthId);
+    void DeleteUserAuth(string userAuthId);
+}
+
+public interface IUserAuthRepositoryAsync : IAuthRepositoryAsync
+{
+    Task<IUserAuth> CreateUserAuthAsync(IUserAuth newUser, string password, CancellationToken token);
+    Task<IUserAuth> UpdateUserAuthAsync(IUserAuth existingUser, IUserAuth newUser, CancellationToken token);
+    Task<IUserAuth> UpdateUserAuthAsync(IUserAuth existingUser, IUserAuth newUser, string password, CancellationToken ct);
+    Task<IUserAuth> GetUserAuthAsync(string userAuthId, CancellationToken token);
+    Task DeleteUserAuthAsync(string userAuthId, CancellationToken token);
+}
+
+public interface IAuthRepository
+{
+    void LoadUserAuth(IAuthSession session, IAuthTokens tokens);
+    void SaveUserAuth(IAuthSession authSession);
+    List<IUserAuthDetails> GetUserAuthDetails(string userAuthId);
+    IUserAuthDetails CreateOrMergeAuthSession(IAuthSession authSession, IAuthTokens tokens);
+
+    IUserAuth GetUserAuth(IAuthSession authSession, IAuthTokens tokens);
+    IUserAuth GetUserAuthByUserName(string userNameOrEmail);
+    void SaveUserAuth(IUserAuth userAuth);
+    bool TryAuthenticate(string userName, string password, out IUserAuth userAuth);
+    bool TryAuthenticate(Dictionary<string, string> digestHeaders, 
+        string privateKey, int nonceTimeOut, string sequence, out IUserAuth userAuth);
+}
+
+public interface IAuthRepositoryAsync
+{
+    Task LoadUserAuthAsync(IAuthSession session, IAuthTokens tokens, CancellationToken token);
+    Task SaveUserAuthAsync(IAuthSession authSession, CancellationToken token);
+    Task<List<IUserAuthDetails>> GetUserAuthDetailsAsync(string userAuthId, CancellationToken token);
+    Task<IUserAuthDetails> CreateOrMergeAuthSessionAsync(IAuthSession authSession, IAuthTokens tokens, CancellationToken ct);
+
+    Task<IUserAuth> GetUserAuthAsync(IAuthSession authSession, IAuthTokens tokens, CancellationToken token);
+    Task<IUserAuth> GetUserAuthByUserNameAsync(string userNameOrEmail, CancellationToken token);
+    Task SaveUserAuthAsync(IUserAuth userAuth, CancellationToken token);
+    Task<IUserAuth> TryAuthenticateAsync(string userName, string password, CancellationToken token);
+    Task<IUserAuth> TryAuthenticateAsync(Dictionary<string, string> digestHeaders, 
+        string privateKey, int nonceTimeOut, string sequence, CancellationToken token);
+}
+```
+
+### Updating UserAuth tables directly
+
+If you need finer-grained access than the shared APIs above, you can update the `UserAuth` and `UserAuthDetails` POCOs 
+in your preferred persistence provider directly.
+
+E.g. if you're using the `OrmLiteAuthRepository` to store your Users in an RDBMS back-end you can use 
+[OrmLite APIs](https://github.com/ServiceStack/ServiceStack.OrmLite) to update the user details stored in the `UserAuth` and `UserAuthDetails`
+tables, e.g:
+
+```csharp
+Db.UpdateOnly(() => new UserAuth { DisplayName = newName }, where: q => q.Id == userId);
+```
+
+Which will only update the `DisplayName` column for the specified user.
+
+If you're using a [Custom UserAuth Table](/auth-repository#extending-userauth-tables) (e.g. `AppUser`) instead of the default `UserAuth` you would need to update that POCO data model instead.
+
+
 ### IManageRoles API
 
 The [IManageRoles API](https://github.com/ServiceStack/ServiceStack/blob/4398438e058851847033f2da923fe0221a75d3b3/src/ServiceStack/Auth/IAuthRepository.cs#L72) 
