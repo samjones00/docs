@@ -84,25 +84,25 @@ esprimaAst.ToJson().IndentJson().Print();
 
 Which will display the same output as seen in the new [JS Expression Viewer](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205):
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/expression-viewer.png)](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/expression-viewer.png)](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205)
 
 From the AST output we can visualize how the different operator precedence is applied to an Expression. 
 Expression viewer also lets us explore and evaluate different JavaScript Expressions with custom arguments:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/logical-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=1%20%3C%202%20%26%26%20(t%20%7C%7C%203%20%3E%204)%20%26%26%20f&t=true&f=false)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/logical-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=1%20%3C%202%20%26%26%20(t%20%7C%7C%203%20%3E%204)%20%26%26%20f&t=true&f=false)
 
 An [abusage Brendan Eich regrets](https://brendaneich.com/2012/04/the-infernal-semicolon/) that is enforced is limiting
 the `||` and `&&` binary operators to boolean expressions, which themselves always evaluate to a boolean value.
 
 Instead to replicate `||` coalescing behavior on falsy values you can use C#'s `??` null coalescing operator as seen in:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/ternary-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=a%20%3E%20(c%20%3F%3F%20b)%20%3F%20a%20%3A%20b&a=1&b=2)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/ternary-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=a%20%3E%20(c%20%3F%3F%20b)%20%3F%20a%20%3A%20b&a=1&b=2)
 
 #### Lambda Expressions
 
 You can use lambda expressions in all functional filters:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/lambda-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=map(range(1%2Ccount)%2C%20x%20%3D%3E%20x%20*%20x)&count=5)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/lambda-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=map(range(1%2Ccount)%2C%20x%20%3D%3E%20x%20*%20x)&count=5)
 
 Using either normal lambda expression syntax:
 
@@ -145,7 +145,7 @@ But like C# also lets you use member property names:
 
 Many of ES6/7 features are also implemented like Template Literals:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/template-literals.png)](https://sharpscript.net/docs/expression-viewer#expression=%60Hello%2C%20%24%7Bname%7D!%20%24%7Ba%20%3F%20pow(1%2B2%2Ca)%20%3A%20''%7D%60&name='World'&a=3)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/template-literals.png)](https://sharpscript.net/docs/expression-viewer#expression=%60Hello%2C%20%24%7Bname%7D!%20%24%7Ba%20%3F%20pow(1%2B2%2Ca)%20%3A%20''%7D%60&name='World'&a=3)
 
 > Backtick quoted strings also adopt the same [escaping behavior of JavaScript strings](https://sharpscript.net/docs/syntax#template-literals) 
 whilst all other quoted strings preserve unescaped string values.
@@ -154,15 +154,15 @@ whilst all other quoted strings preserve unescaped string values.
 
 Other advanced ES6/7 features supported include the object spread, array spread and argument spread operators:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/object-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=keys(%7B%20...a%2C%20c%3A3%2C%20...%7Bd%3A%204%7D%20%7D)&a=%7B%20b%3A%202%20%7D)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/object-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=keys(%7B%20...a%2C%20c%3A3%2C%20...%7Bd%3A%204%7D%20%7D)&a=%7B%20b%3A%202%20%7D)
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/array-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B1%2C%20...%5Brange(2%2Cpow(...%5B3%2Ce%5D))%5D%2C%201%5D&e=2)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/array-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B1%2C%20...%5Brange(2%2Cpow(...%5B3%2Ce%5D))%5D%2C%201%5D&e=2)
 
 #### Bitwise Operators
 
 All JavaScript Bitwise operators are also supported:
 
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/script/bitwise-operators.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B3%251%2C%203%261%2C%203%7C1%2C%203%5E1%2C%203%3C%3C1%2C%203%20%3E%3E%201%2C%20~1%5D&e=2)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/bitwise-operators.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B3%251%2C%203%261%2C%203%7C1%2C%203%5E1%2C%203%3C%3C1%2C%203%20%3E%3E%201%2C%20~1%5D&e=2)
 
 Essentially Templates supports most JavaScript Expressions, not statements which are covered with 
 [Templates Blocks support](https://sharpscript.net/docs/blocks) 
