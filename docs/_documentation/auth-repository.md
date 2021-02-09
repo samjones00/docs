@@ -261,7 +261,7 @@ public interface IUserAuthRepositoryAsync : IAuthRepositoryAsync
 {
     Task<IUserAuth> CreateUserAuthAsync(IUserAuth newUser, string password, CancellationToken token);
     Task<IUserAuth> UpdateUserAuthAsync(IUserAuth existingUser, IUserAuth newUser, CancellationToken token);
-    Task<IUserAuth> UpdateUserAuthAsync(IUserAuth existingUser, IUserAuth newUser, string password, CancellationToken ct);
+    Task<IUserAuth> UpdateUserAuthAsync(IUserAuth existingUser, IUserAuth newUser, string password);
     Task<IUserAuth> GetUserAuthAsync(string userAuthId, CancellationToken token);
     Task DeleteUserAuthAsync(string userAuthId, CancellationToken token);
 }
@@ -286,7 +286,7 @@ public interface IAuthRepositoryAsync
     Task LoadUserAuthAsync(IAuthSession session, IAuthTokens tokens, CancellationToken token);
     Task SaveUserAuthAsync(IAuthSession authSession, CancellationToken token);
     Task<List<IUserAuthDetails>> GetUserAuthDetailsAsync(string userAuthId, CancellationToken token);
-    Task<IUserAuthDetails> CreateOrMergeAuthSessionAsync(IAuthSession authSession, IAuthTokens tokens, CancellationToken ct);
+    Task<IUserAuthDetails> CreateOrMergeAuthSessionAsync(IAuthSession authSession, IAuthTokens tokens);
 
     Task<IUserAuth> GetUserAuthAsync(IAuthSession authSession, IAuthTokens tokens, CancellationToken token);
     Task<IUserAuth> GetUserAuthByUserNameAsync(string userNameOrEmail, CancellationToken token);
