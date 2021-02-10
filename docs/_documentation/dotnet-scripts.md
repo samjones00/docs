@@ -51,7 +51,7 @@ Which can be used interchangeably with `npm run` to execute command scripts on W
 
 ### Cross platform scripts
 
-Whilst we now have a pure .NET alternative for running **package.json** scripts should we need it, we still have the issue of maintaining scripts to support multiple platforms. Most of the time this isn't an issue when calling cross-platform tools like `x` or `tsc` which supports the same command syntax on all platforms, but it starts to become an issue if also needing to some file operations.
+Whilst we now have a pure .NET alternative for running **package.json** scripts should we need it, we still have the issue of maintaining scripts to support multiple platforms. Most of the time this isn't an issue when calling cross-platform tools like `x` or `tsc` which supports the same command syntax on all platforms, but it starts to become an issue if also needing to perform some file operations.
 
 An example of this is the script to generate JS DTOs in our [pure JS dep-free Project templates](/create-your-first-webservice#dependency-free-jsonserviceclient--typed-dtos-in-web-pages) which uses TypeScript to transpile the DTOs then needs to move the generated `dtos.js` to `wwwroot`. If only needing to support Windows the script would simply be:
 
