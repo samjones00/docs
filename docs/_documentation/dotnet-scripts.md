@@ -107,7 +107,7 @@ Which our latest templates have adopted, that can be run with either `npm run`, 
 | rm(from,to)    | DEL /Y from to      | rm -f from to   |
 | rmdir(target)  | RMDIR /Q /S target  | rm -f target    |
 | mkdir(target)  | MKDIR target        | mkdir -p target |
-| cat(target)    | type target         | type target     |
+| cat(target)    | type target         | cat target      |
 | touch(target)  | CALL >> target      | touch target    |
 {% endcapture %}
 
