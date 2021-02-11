@@ -324,7 +324,7 @@ The implementation of Chat is a great way to explore different Server Event feat
 One feature common to chat clients is to get details of all the active subscribers in a channel which we can get from the built-in `/event-subscribers` route, e.g:
 
 ```javascript
-$.getJSON("/event-subscribers?channel=@channel", function (users) {
+$.getJSON(`/event-subscribers?channel=${channel}`, function (users) {
     $.map(users, function(user) {
         usersMap[user.userId] = user;
         refCounter[user.userId] = (refCounter[user.userId] || 0) + 1;
@@ -361,10 +361,10 @@ When a selector is specified in Chat it routes the message to the `/channels/{Ch
 ```javascript
 if (msg[0] == "/") {
     parts = $.ss.splitOnFirst(msg, " ");
-    $.post("/channels/@channel/raw", 
+    $.post(`/channels/${channel}/raw`, 
         { from: activeSub.id, toUserId: to, message: parts[1], selector: parts[0].substring(1) });
 } else {
-    $.post("/channels/@channel/chat", 
+    $.post(`/channels/${channel}/chat`, 
         { from: activeSub.id, toUserId: to, message: msg, selector: "cmd.chat" });
 }
 ```
