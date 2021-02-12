@@ -34,6 +34,7 @@
     - [React Templates](/templates-react)
     - [Svelte Templates](/templates-svelte)
     - [Angular Templates](/templates-angular)
+    - [AWS Templates](/templates-aws)
     - [Desktop Templates](/templates-desktop)
     - [Blazor Templates](/templates-blazor)
     - [Vue, React, Angular Components](/spa-components)
