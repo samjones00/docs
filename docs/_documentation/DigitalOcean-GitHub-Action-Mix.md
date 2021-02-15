@@ -2,6 +2,9 @@
 title: Deploying to Digital Ocean Droplet directly via GitHub Actions and SSH
 slug: do-github-action-mix-deployment
 ---
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/github-action-do-tutorial-header.png)
+
 GitHub Actions are a great tool for automating builds, tests and deployments in a composable and flexible way. The ServiceStack tool `x mix` provides templates to incorporate into your existing applications and repositories.
 
 We've created a mix template for building and deploying your ServiceStack app with GitHub Actions, GitHub Container Repository and Docker Compose all via SSH for a minimalist server hosting setup.
@@ -17,6 +20,7 @@ In this tutorial, we'll be using a Digital Ocean Droplet as the target server an
 
 ## Droplet Setup
 Since we are deploying a simple ServiceStack application, we are going to use the cheapest `Basic Droplet` at $5USD/month. This is plenty to host even multiple low traffic ServiceStack applications but your use case might have different hardware requirements.
+
 #### Create your new droplet
 The basic droplet we are going to create will have the following configuration.
 
