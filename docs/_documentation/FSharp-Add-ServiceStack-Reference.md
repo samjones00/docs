@@ -39,7 +39,7 @@ let client = new JsonServiceClient("http://stackapis.netcore.io")
 let response = client.Get(new SearchQuestions(
     Tags = new List<string>([ "redis"; "ormlite" ])))        
 
-TypeSerializer.PrintDump(response)
+Inspect.printDump(response)
 ```
 
 ### Change Default Server Configuration

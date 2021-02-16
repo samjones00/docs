@@ -23,15 +23,36 @@ With the VB.Net code generated on the Server, the role of [ServiceStackVS's](/cr
 ![Add VB.Net ServiceStack Reference Demo](https://github.com/ServiceStack/Assets/raw/master/img/servicestackvs/servicestack%20reference/addref-vbnet.gif)
 
 ## Update ServiceStack Reference
+
 If your server has been updated and you want to update to client DTOs, simply right-click on the DTO file within VS.NET and select `Update ServiceStack Reference`. 
 
 ![VBNet update demo](https://github.com/ServiceStack/Assets/raw/master/img/servicestackvs/servicestack%20reference/updateref-vbnet.gif)
+
+### Simple Usage Example
+
+Async Example:
+
+```vb
+Dim client = New JsonServiceClient("https://techstacks.io")
+
+Dim response = Await client.SendAsync(New AppOverview())
+response.PrintDump()
+```
+
+Sync Example:
+
+```vb
+Dim client = New JsonServiceClient("https://techstacks.io")
+
+Dim response = client.Send(New AppOverview())
+response.PrintDump()
+```
 
 ## DTO Customization Options 
 
 The header comments in the generated DTO's allows for further customization of how they're generated where ServiceStackVS automatically watches for any file changes and updates the generated DTO's with any custom Options provided. Options that are preceded by a VB.Net Class comment `'''` are defaults from the server that can be overridden, e.g:
 
-```VB.Net
+```vb
 ' Options:
 'Date: 2014-10-21 00:45:05
 'Version: 1
@@ -53,7 +74,7 @@ The header comments in the generated DTO's allows for further customization of h
 
 To override these options on the client, the comment has to be changed to start with a single `'` instead of triple `'''`. This convention is due to VB.Net not having block quotes. For example, if we did't want our classes to be partial by default for the VB.Net client, our options would look like below.
 
-```VB.Net
+```vb
 ' Options:
 'Date: 2014-10-21 00:45:05
 'Version: 1
@@ -95,7 +116,7 @@ We'll go through and cover each of the above options to see how they affect the 
 
 Adds the `partial` modifier to all types, letting you extend generated DTO's with your own class separate from the generated types:
 
-```VB.Net
+```vb
 Public Partial Class GetAnswers
 ```
 
@@ -103,7 +124,7 @@ Public Partial Class GetAnswers
 
 Adds the `virtual` modifier to all properties:
 
-```VB.Net
+```vb
 Public Partial Class GetAnswers
     ...
     Public Overridable Property QuestionId As Integer
@@ -114,7 +135,7 @@ End Class
 
 Add .NET's DataContract's [ExtensionDataObject](http://msdn.microsoft.com/en-us/library/system.runtime.serialization.extensiondataobject(v=vs.110).aspx) to all DTO's:
 
-```VB.Net
+```vb
 Public Partial Class Hello
             ...
     Implements IExtensibleDataObject
@@ -127,7 +148,7 @@ End Class
 
 AddReturnMarker annotates Request DTO's with an `IReturn(Of T)` marker referencing the Response type ServiceStack infers your Service to return:
 
-```VB.Net
+```vb
 Public Partial Class GetAnswers
     Implements IReturn(Of GetAnswersResponse)
 ``` 
@@ -138,7 +159,7 @@ Public Partial Class GetAnswers
 
 Converts any textual Description in `<Description>` attributes as VB.Net class Doc comments which allows your API to add intellisense in client projects:
 
-```VB.Net
+```vb
 '''<Summary>
 '''Get a list of Answers for a Question
 '''</Summary>
@@ -149,7 +170,7 @@ Public Class GetAnswers
 
 Decorates all DTO types with `<DataContract>` and properties with `<DataMember>` as well as adding default XML namespaces for all VB.Net namespaces used:
 
-```VB.Net
+```vb
 <Assembly: ContractNamespace("http://schemas.servicestack.net/types", ClrNamespace:="StackApis.ServiceModel.Types")>
 <Assembly: ContractNamespace("http://schemas.servicestack.net/types", ClrNamespace:="StackApis.ServiceModel")>
 ...
@@ -165,7 +186,7 @@ End Class
 
 Populates a DataMember Order index for all properties:
 
-```VB.Net
+```vb
 <DataContract>
 Public Partial Class GetAnswers
     ...
@@ -180,7 +201,7 @@ End Class
 
 Emit `<GeneratedCode>` attribute on all generated Types:
 
-```VB.Net
+```vb
 <GeneratedCode>
 Public Partial Class GetAnswers ...
 ```
@@ -189,7 +210,7 @@ Public Partial Class GetAnswers ...
 
 Automatically add a `ResponseStatus` property on all Response DTO's, regardless if it wasn't already defined:
 
-```VB.Net
+```vb
 Public Partial Class GetAnswers
     ...
     Public Overridable Property ResponseStatus As ResponseStatus
@@ -200,7 +221,7 @@ End Class
 
 Lets you specify the Version number to be automatically populated in all Request DTO's sent from the client: 
 
-```VB.Net
+```vb
 Public Partial Class GetAnswers
     Public Overridable Property Version As Integer
     Public Sub New()
@@ -216,7 +237,7 @@ This lets you know what Version of the Service Contract that existing clients ar
 
 Lets you automatically initialize collections in Request DTO's:
 
-```VB.Net
+```vb
 Public Partial Class SearchQuestions
     Public Sub New()
         Tags = New List(Of String)
@@ -234,7 +255,7 @@ IncludeTypes: GetTechnology,GetTechnologyResponse
 ```
 Will only generate `GetTechnology` and `GetTechnologyResponse` DTO's, e.g:
 
-```vbnet
+```vb
 Public Partial Class GetTechnology ...
 Public Partial Class GetTechnologyResponse ...
 ```
