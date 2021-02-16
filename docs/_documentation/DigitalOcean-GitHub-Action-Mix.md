@@ -55,7 +55,7 @@ Eg, with a Linux `ssh` client, the command would be `ssh root@<your_IP_or_domain
 Installing Docker for Ubuntu 20.04 can be done via the repository with some setup or via Docker provided convenience scripts.
 
 #### Docker via Repository
-```
+```bash
 sudo apt-get update
 
 sudo apt-get install \
@@ -78,7 +78,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 #### Docker via convenience script
 
-```
+```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
@@ -91,11 +91,61 @@ Now we have Docker and docker-compose installed on our new Droplet, we want to s
 
 In the `x mix release-ghr-vanilla` template, we include `deploy/nginx-proxy-compose.yml` file which can be copied to the droplet and run.
 
+Here is the nginx docker-compose file in full.
+
+```yml
+version: '2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - dhparam:/etc/nginx/dhparam
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    network_mode: bridge
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nginx-proxy-le
+    restart: always
+    environment:
+      - DEFAULT_EMAIL=you@example.com
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    network_mode: bridge
+
+volumes:
+  conf:
+  vhost:
+  html:
+  dhparam:
+  certs:
+  acme:
+
+networks:
+  default:
+    external:
+      name: webproxy
+```
+
 `scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
 
 Once copied, we can use `docker-compose` to bring up the nginx reverse proxy.
 
-```
+```bash
 docker-compose -f ~/nginx-proxy-compose.yml up -d
 ```
 
