@@ -60,9 +60,32 @@ github "ServiceStack/ServiceStack.Swift" ~> 1.1
 #### SwiftPM
 
 ```swift
-package.dependencies.append(
-    .Package(url: "ServiceStack/ServiceStack.Swift", majorVersion: 1)
-)
+dependencies: [
+    .package(url: "https://github.com/ServiceStack/ServiceStack.Swift", from: "1.0.0"),
+],
+```
+
+### Simple Usage Example
+
+Async usage example:
+
+```swift
+import ServiceStack
+
+client.getAsync(AppOverview())
+    .then({ (r:AppOverviewResponse) in
+        r.topTechnologies.count //= 100
+        //... 
+    })
+```
+
+Sync usage example:
+
+```swift
+import ServiceStack
+
+let client = JsonServiceClient(baseUrl: "https://techstacks.io")
+let response = client.get(AppOverview())
 ```
 
 ### Add a new ServiceStack Reference
