@@ -444,7 +444,7 @@ Whilst the sync API's are easy to use their usage should be limited in backgroun
 
 ```swift
 client.getAsync(AppOverview())
-    .then { 
+    .done { 
         $0.topTechnologies.count //= 100
         //... 
     }
@@ -454,7 +454,7 @@ Swift also lets you continue marking it up with explicit Type Information and op
 
 ```swift
 client.getAsync(AppOverview())
-    .then({ (r:AppOverviewResponse) in
+    .done({ (r:AppOverviewResponse) in
         r.topTechnologies.count //= 100
         //... 
     })
@@ -559,7 +559,7 @@ public class HelloByPut : IReturn, IPut
 let response = try client.send(HelloByGet())  //GET
 
 client.sendAsync(HelloByPut())                //PUT
-    .then { }
+    .done { }
 ```
 
 ### Custom Routes
@@ -647,7 +647,7 @@ Which is all that's needed to allow properties to be observed as they'll automat
 ```swift
 func loadOverview() -> Promise<AppOverviewResponse> {
     return client.getAsync(AppOverview())
-        .then { r in
+        .done { r in
             self.overview = r
             self.allTiers = r.allTiers
             self.topTechnologies = r.topTechnologies
@@ -657,7 +657,7 @@ func loadOverview() -> Promise<AppOverviewResponse> {
 
 func loadAllTechnologies() -> Promise<GetAllTechnologiesResponse> {
     return client.getAsync(GetAllTechnologies())
-        .then { r in
+        .done { r in
             self.allTechnologies = r.results
             return r
         }
@@ -665,7 +665,7 @@ func loadAllTechnologies() -> Promise<GetAllTechnologiesResponse> {
 
 func loadAllTechStacks() -> Promise<GetAllTechnologyStacksResponse> {
     return client.getAsync(GetAllTechnologyStacks())
-        .then { r in
+        .done { r in
             self.allTechnologyStacks = r.results
             return r
         }
@@ -733,7 +733,7 @@ public func loadImageAsync(url:String) -> Promise<UIImage?> {
     }
     
     return client.getDataAsync(url)
-        .then { (data:NSData) -> UIImage? in
+        .done { (data:NSData) -> UIImage? in
             if let image = UIImage(data:data) {
                 self.imageCache[url] = image
                 return image
@@ -788,7 +788,7 @@ func searchTechStacks(query:String, field:String? = nil, operand:String? = nil)
     
     let request = FindTechStacks<TechnologyStack>()
     return client.getAsync(request, query:queryString)
-        .then { (r:QueryResponse<TechnologyStack>) -> QueryResponse<TechnologyStack> in
+        .done { (r:QueryResponse<TechnologyStack>) -> QueryResponse<TechnologyStack> in
             self.filteredTechStacks = r.results
             return r
         }
@@ -804,7 +804,7 @@ func searchTechnologies(query:String, field:String? = nil, operand:String? = nil
     
     let request = FindTechnologies<Technology>()
     return client.getAsync(request, query:queryString)
-        .then { (r:QueryResponse<Technology>) -> QueryResponse<Technology> in
+        .done { (r:QueryResponse<Technology>) -> QueryResponse<Technology> in
             self.filteredTechnologies = r.results
             return r
         }
