@@ -73,10 +73,10 @@ Async usage example:
 import ServiceStack
 
 client.getAsync(AppOverview())
-    .then({ (r:AppOverviewResponse) in
+    .done { r in
         r.topTechnologies.count //= 100
         //... 
-    })
+    }
 ```
 
 Sync usage example:
