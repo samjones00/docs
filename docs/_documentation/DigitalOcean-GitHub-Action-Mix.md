@@ -9,9 +9,16 @@ GitHub Actions are a great tool for automating builds, tests and deployments in 
 
 We've created a mix template for building and deploying your ServiceStack app with GitHub Actions, GitHub Container Repository and Docker Compose all via SSH for a minimalist server hosting setup.
 
-Specifically, we'll be `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created.
+Specifically, we'll be `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created. This can be run at the root of the project folder, for example if you wanted to create an empty web application you would run:
+```
+x new web DropletApp
+# wait until creation finished
+cd DropletApp
+x mix build release-ghr-vanilla
+# 'y' to process with writing files from x mix.
+```
 
-But first, we'll need to setup a server host.
+Once you want to deploy, we'll need to setup our Droplet server for deployments.
 
 > `x mix release-*` are designed to be used with ServiceStack applications that were created with most `x new` project templates that follow the ServiceStack recommended project structure. They are designed to be a starting point that you can edit once created to suit your needs.
 
