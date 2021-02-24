@@ -136,6 +136,10 @@ networks:
 
 `scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
 
+```
+scp -i <path to private ssh key> ./nginx-proxy-compose.yml root@<server_floating_ip>:~/nginx-proxy.compose.yml
+```
+
 Once copied, we can use `docker-compose` to bring up the nginx reverse proxy.
 
 ```bash
