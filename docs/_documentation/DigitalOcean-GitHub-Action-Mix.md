@@ -178,6 +178,7 @@ Files provided by the `release-ghr-vanilla` are:
 - **deploy/nginx-proxy-compose.yml** - File provided to get nginx reserve proxy setup as used by steps above.
 
 Once these steps are done, we can push our application to a new repository in GitHub.
+> The account or organization of your repository at the time of writing needs to "Enable improved container support". See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
 
 ### Create secrets
 The `x mix` templates needs 6 pieces of information to perform the deployment.
