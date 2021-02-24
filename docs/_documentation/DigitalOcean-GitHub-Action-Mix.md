@@ -52,29 +52,7 @@ Eg, with a Linux `ssh` client, the command would be `ssh root@<your_IP_or_domain
 > Note the user may change depending on how your server is setup. See `man ssh` for more details/options.
 
 ### Install docker and docker-compose
-Installing Docker for Ubuntu 20.04 can be done via the repository with some setup or via Docker provided convenience scripts.
-
-#### Docker via Repository
-```bash
-sudo apt-get update
-
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-    
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-```
+Installing Docker for Ubuntu 20.04 can be done via the repository with some setup or via Docker provided convenience scripts. For a more detailed walk through, [DigitalOcean have a good write up here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04). Scripted included below for ease of use.
 
 #### Docker via convenience script
 
@@ -83,8 +61,16 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 > These scripts required sudo privileges, see [Docker notes regarding security](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
-
+> Full repository based [script available here](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
 > Docker is installed remoting under root in this example for simplification. Information of Docker security can be found in the [Docker docs](https://docs.docker.com/engine/security/#docker-daemon-attack-surface)
+
+### Docker-compose install
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+Run `docker-compose --version` to confirm.
+> See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
 
 ### Get nginx reverse proxy and letsencrypt running
 Now we have Docker and docker-compose installed on our new Droplet, we want to setup a nginx reverse proxy. This handles mapping a domain/subdomain requests to specific docker applications as well as TLS registration via LetEncrypt.
