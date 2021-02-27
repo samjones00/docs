@@ -1053,7 +1053,7 @@ This is another release jam-packed with some killer features, the release notes 
 We'll list the highlights below to provide a quick overview, but when you can please checkout the full
 [v4.0.56 Release Notes](/releases/v4.0.56) for the finer details of each feature.
 
-## [ServiceStack VS Templates Update](https://github.com/ServiceStack/ServiceStack/blob/master/docs/2016/servicestackvs/v1.0.22.md)
+## ServiceStack VS Templates Update
 
 React Desktop Apps received a major update with much faster Startup times on Windows that now features auto-updating support built-in courtesy of [Squirrel Windows][2] integration! Whilst the OSX App can now be built using Xamarin's free Community Edition :smile:  
 
