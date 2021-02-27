@@ -9,9 +9,16 @@ GitHub Actions are a great tool for automating builds, tests and deployments in 
 
 We've created a mix template for building and deploying your ServiceStack app with GitHub Actions, GitHub Container Repository and Docker Compose all via SSH for a minimalist server hosting setup.
 
-Specifically, we'll be `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created.
+Specifically, we'll be `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created. This can be run at the root of the project folder, for example if you wanted to create an empty web application you would run:
+```
+x new web DropletApp
+# wait until creation finished
+cd DropletApp
+x mix build release-ghr-vanilla
+# 'y' to process with writing files from x mix.
+```
 
-But first, we'll need to setup a server host.
+Once you want to deploy, we'll need to setup our Droplet server for deployments.
 
 > `x mix release-*` are designed to be used with ServiceStack applications that were created with most `x new` project templates that follow the ServiceStack recommended project structure. They are designed to be a starting point that you can edit once created to suit your needs.
 
@@ -52,29 +59,7 @@ Eg, with a Linux `ssh` client, the command would be `ssh root@<your_IP_or_domain
 > Note the user may change depending on how your server is setup. See `man ssh` for more details/options.
 
 ### Install docker and docker-compose
-Installing Docker for Ubuntu 20.04 can be done via the repository with some setup or via Docker provided convenience scripts.
-
-#### Docker via Repository
-```bash
-sudo apt-get update
-
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-    
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-```
+Installing Docker for Ubuntu 20.04 can be done via the repository with some setup or via Docker provided convenience scripts. For a more detailed walk through, [DigitalOcean have a good write up here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04). Scripted included below for ease of use.
 
 #### Docker via convenience script
 
@@ -83,8 +68,16 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 > These scripts required sudo privileges, see [Docker notes regarding security](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
-
+> Full repository based [script available here](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
 > Docker is installed remoting under root in this example for simplification. Information of Docker security can be found in the [Docker docs](https://docs.docker.com/engine/security/#docker-daemon-attack-surface)
+
+### Docker-compose install
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+Run `docker-compose --version` to confirm.
+> See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
 
 ### Get nginx reverse proxy and letsencrypt running
 Now we have Docker and docker-compose installed on our new Droplet, we want to setup a nginx reverse proxy. This handles mapping a domain/subdomain requests to specific docker applications as well as TLS registration via LetEncrypt.
@@ -143,6 +136,10 @@ networks:
 
 `scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
 
+```
+scp -i <path to private ssh key> ./nginx-proxy-compose.yml root@<server_floating_ip>:~/nginx-proxy.compose.yml
+```
+
 Once copied, we can use `docker-compose` to bring up the nginx reverse proxy.
 
 ```bash
@@ -181,6 +178,7 @@ Files provided by the `release-ghr-vanilla` are:
 - **deploy/nginx-proxy-compose.yml** - File provided to get nginx reserve proxy setup as used by steps above.
 
 Once these steps are done, we can push our application to a new repository in GitHub.
+> The account or organization of your repository at the time of writing needs to "Enable improved container support". See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
 
 ### Create secrets
 The `x mix` templates needs 6 pieces of information to perform the deployment.
