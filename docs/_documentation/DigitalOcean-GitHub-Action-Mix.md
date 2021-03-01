@@ -18,7 +18,7 @@ x mix build release-ghr-vanilla
 # 'y' to process with writing files from x mix.
 ```
 
-Once you want to deploy, we'll need to setup our Droplet server for deployments.
+Pushing your new application to GitHub, the `build.yml` will run a `dotnet build` and `dotnet test` within the CI environment. For deployments, we want to get a server setup for hosting the new application.
 
 > `x mix release-*` are designed to be used with ServiceStack applications that were created with most `x new` project templates that follow the ServiceStack recommended project structure. They are designed to be a starting point that you can edit once created to suit your needs.
 
@@ -43,7 +43,7 @@ The rest of the options, leave as default.
 ### Create your new SSH key
 If you ended up using an existing SSH key, now would be the time to create one specifically for deploying applications to this server, and only that function.
 
-The reason this is important is because we will be using the private key within our GitHub Actions, which means the private key generated will be leaving your local computer and stored within GitHub Secrets. In the event that this key is compromised, we want to limit its function.
+The reason this is important is because we will be using the private key within our GitHub Actions, which means the private key generated will be leaving your local computer and stored within GitHub Secrets. In the event that this key is compromised, we want to limit its use.
 
 Digital Ocean has some excellent documentation for [this process here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04).
 
@@ -80,7 +80,7 @@ Run `docker-compose --version` to confirm.
 > See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
 
 ### Get nginx reverse proxy and letsencrypt running
-Now we have Docker and docker-compose installed on our new Droplet, we want to setup a nginx reverse proxy. This handles mapping a domain/subdomain requests to specific docker applications as well as TLS registration via LetEncrypt.
+Now we have Docker and docker-compose installed on our new Droplet, we want to setup a nginx reverse proxy running in Docker. This will handle mapping a domain/subdomain requests to specific docker applications as well as TLS registration via LetEncrypt. When a new docker container starts up and joins the bridge network, the nginx and letsencrypt companion detect the new application and look to see if routing and TLS certificate is needed.
 
 In the `x mix release-ghr-vanilla` template, we include `deploy/nginx-proxy-compose.yml` file which can be copied to the droplet and run.
 
@@ -134,7 +134,7 @@ networks:
       name: webproxy
 ```
 
-`scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
+You can use `scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
 
 ```
 scp -i <path to private ssh key> ./nginx-proxy-compose.yml root@<server_floating_ip>:~/nginx-proxy-compose.yml
@@ -146,9 +146,7 @@ Once copied, we can use `docker-compose` to bring up the nginx reverse proxy.
 docker-compose -f ~/nginx-proxy-compose.yml up -d
 ```
 
-To confirm these are running, you can run `docker ps`.
-
-> The external network named `webproxy` in the `nginx-proxy-compose.yml` is used by your docker applications for automatic LetsEncrypt registration.
+To confirm these are running, you can run `docker ps` so have a look at what containers are running on your server.
 
 ## Domain setup
 Now our droplet server is all setup to host our docker apps, we want to make referring to our server easier via setting up some DNS records.
@@ -157,7 +155,7 @@ Specifically, we want to create an `A` record pointing to our Floating IP of our
 > You'll need to use whichever service you use to manage the DNS of your domains.
 
 ## GitHub Repository Setup
-Now we are ready to deploy to our server, first we'll need an application to deploy!
+With the Droplet server all setup, first we'll need an application to deploy!
 
 We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application.
 
@@ -167,15 +165,16 @@ Once this is created, we can navigate to the root directory of the project and u
 x mix build release-ghr-vanilla
 ```
 
-The `build` mix provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container repository and deploys the application via SSH to our new Droplet.
+The `build` mix provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container repository (ghcr.io) and deploys the application via SSH + `docker-compose` to our new Droplet.
 
-Just like other `x mix` templates ServiceStack provides, these are *starting* points to help get things running quickly with known patterns. Unlike external dependencies, they just copy the templated code that is editable and not tied to any code generation service that will update these files.
+Just like other `x mix` templates ServiceStack provides, these are a *starting* point to help get things running quickly with known patterns. Unlike external dependencies, they just copy the templated code that is editable and not tied to any code generation service that will update these files.
 
 Files provided by the `release-ghr-vanilla` are:
 
 - **.github/workflows/release.yml** - Release GitHub Action Workflow
 - **deploy/docker-compose-template.yml** - Templated docker-compose file used by the application
 - **deploy/nginx-proxy-compose.yml** - File provided to get nginx reserve proxy setup as used by steps above.
+- **Dockerfile** - Self contained Docker that builds, publishes and hosts your application.
 
 Once these steps are done, we can push our application to a new repository in GitHub.
 > The account or organization of your repository at the time of writing needs to "Enable improved container support". See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
@@ -184,14 +183,14 @@ Once these steps are done, we can push our application to a new repository in Gi
 The `x mix` templates needs 6 pieces of information to perform the deployment.
 
 - CR_PAT - GitHub Personal Token with read/write access to packages.
-- DEPLOY_HOST - hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server.
+- DEPLOY_HOST - hostname used to SSH to, this should be a domain or subdomain with A record pointing to the server's IP adddress.
 - DEPLOY_PORT - SSH port, usually 22
 - DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
 - DEPLOY_KEY - SSH private key used to remotely access deploy server/app host.
 - LETSENCRYPT_EMAIL - Email address for your TLS certificate generation
 
 The `CR_PAT` can be created via your [GitHub Settings->Developer Settings->Personal access tokens page](https://github.com/settings/tokens/), and selecting the `write:packages` permission. Copy the token somewhere secure, so we can use it when creating the secrets.
-> Both the creation of the token and use in secrets are only available on creation, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
+> Both the creation of the token and use in secrets are *only available on creation*, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
 
 Repository secrets can be created under Settings->Secrets.
 
@@ -202,5 +201,8 @@ Provide a version number and name, the version will be used to tag the Docker im
 
 Go to the Actions tab in your repository to see the progress of your deployment.
 
-> The initial deployment might take upto a minute for LetEncrypt to generate and use the certificate with your domain.
-> If you are having problems with your app hosting, be sure to check the logs in the nginx and your app docker containers for any startup issues.
+> The initial deployment might take upto a minute for LetEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup before doing this, otherwise further delays related to DNS TTL will likely occur.
+> If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
+
+### Wrapping up
+Having a CI process from the very start of a project/prototype is something that pays off quickly even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
