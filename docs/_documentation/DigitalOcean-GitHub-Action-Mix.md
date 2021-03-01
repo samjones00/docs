@@ -204,5 +204,8 @@ Go to the Actions tab in your repository to see the progress of your deployment.
 > The initial deployment might take upto a minute for LetEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup before doing this, otherwise further delays related to DNS TTL will likely occur.
 > If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
 
+### GitHub Container Repository Pricing
+
+
 ### Wrapping up
-Having a CI process from the very start of a project/prototype is something that pays off quickly even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
+Having a CI process from the very start of a project/prototype is something that pays off quickly even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
