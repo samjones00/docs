@@ -165,7 +165,7 @@ Once this is created, we can navigate to the root directory of the project and u
 x mix build release-ghr-vanilla
 ```
 
-The `build` mix provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container repository (ghcr.io) and deploys the application via SSH + `docker-compose` to our new Droplet.
+The `build` mix provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container Registry (ghcr.io) and deploys the application via SSH + `docker-compose` to our new Droplet.
 
 Just like other `x mix` templates ServiceStack provides, these are a *starting* point to help get things running quickly with known patterns. Unlike external dependencies, they just copy the templated code that is editable and not tied to any code generation service that will update these files.
 
@@ -204,8 +204,15 @@ Go to the Actions tab in your repository to see the progress of your deployment.
 > The initial deployment might take upto a minute for LetEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup before doing this, otherwise further delays related to DNS TTL will likely occur.
 > If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
 
-### GitHub Container Repository Pricing
+### GitHub Container Registry Pricing
+If you're already have a Pro or Team plan, you get free allowances to using the GitHub Container Registry. It has the same pricing as the GitHub Packages product which is summarized as the following for Pro or Team.
 
+- 2GB storage free
+- 10GB data transfer free
+- Additional storage $0.25 per GB
+- Additional transfer out $0.50 per GB (GitHub Actions are free)
+
+With Docker images though, they can get large pretty quickly. While GitHub Container Registry is still in beta, it is free to use but additional storage and transfer costs are something to keep in mind. Hopefully use of retention policies and other features can help manage to keep these prices down.
 
 ### Wrapping up
 Having a CI process from the very start of a project/prototype is something that pays off quickly even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
