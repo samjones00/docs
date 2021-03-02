@@ -227,7 +227,11 @@ Repository secrets can be created under Settings->Secrets.
 ### Tag release
 To kick off any new deployment, we use GitHub Releases.
 
-Provide a version number and name, the version will be used to tag the Docker image in GHCR.io.
+Provide a version number and name, the version will be used to tag the Docker image in GHCR.io. If you are using the GitHub CLI, you can also do this via the command line. For example,
+
+```bash
+gh release create v1.0 -t "CI Deploy" --notes ""
+```
 
 Go to the Actions tab in your repository to see the progress of your deployment.
 
