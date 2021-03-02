@@ -847,47 +847,54 @@ Once added to your project, use VS.NET's JavaScript doc comments to reference th
 in your `.ts` scripts. The example below shows how to use the above TypeScript definitions to create a 
 typed Request/Response utilizing jQuery's Ajax API to fire off a new Ajax request on every keystroke:
 
-```html
-/// <reference path="MyApis.dtos.d.ts"/>
+```xml
+/// <reference path="dtos.d.ts"/>
 ...
 
 <input type="text" id="txtHello" data-keyup="sayHello" /> 
 <div id="result"></div>
 
 <script>
-$(document).bindHandlers({
+bindHandlers({
     sayHello: function () {
         var request: dtos.Hello = {};
         request.title = "Dr";
         request.name = this.value;
         
-        $.getJSON(createUrl("/hello", request), request, 
-            function (r: dtos.HelloResponse) {
+        $.getJSON(createUrl("/hello/{Name}", request), request, 
+            function (r: HelloResponse) {
                 $("#result").html(r.result);
             });
     }
 });
-
-function createUrl(path: string, params: any): string {
-    for (var key in params) {
-        path += path.indexOf('?') < 0 ? "?" : "&";
-        path += key + "=" + encodeURIComponent(params[key]);
-    }
-    return path;
-}
 </script>
 ```
 
-Here we're just using a simple inline `createUrl()` function to show how we're creating the url for the 
-**GET** HTTP Request by appending all Request DTO properties in the QueryString, resulting in a HTTP GET 
-Request that looks like:
+Here we're using the built-in `createUrl()` servicestack client API to create the url for the **GET** HTTP Request 
+using the Route definition for the API you want to call and the Request DTO which results in:
 
-    /hello?title=Dr&name=World
+    /hello/World?title=Dr
 
-There's also a new `$.ss.createUrl()` API in 
-[ss-utils.js](/ss-utils-js)
-which also handles .NET Route definitions where it will populate any variables in the `/path/{info}` 
-instead of adding them to the `?QueryString`, e.g:
+We're also able to use the `HelloResponse` type definition to take advantage of typed DTO compile time safety in TypeScript code bases.
+
+### Angular HTTP Client
+
+Likewise you can use `createUrl()` to utilize Angular's built-in Rx-enabled HTTP Client with ServiceStack’s ambient TypeScript declarations when utilizing Angular's built-in dependencies is preferable.
+
+ServiceStack’s ambient TypeScript interfaces are leveraged to enable a Typed that lets you reuse your APIs Route definitions (emitted in comments above each Request DTO) to provide a pleasant UX for making API calls using Angular's HTTP Client:
+
+```ts
+import { createUrl } from '@servicestack/client';
+...
+
+this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r => {
+    this.result = r.result;
+});
+```
+
+### ss-utils.js 
+
+Likewise if using [ss-utils.js](/ss-utils-js) you can use the `$.ss.createUrl()` API for the same functionality, e.g:
 
 ```js
 $(document).bindHandlers({

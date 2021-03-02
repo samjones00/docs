@@ -57,7 +57,7 @@ class Program
 ```
 
 ### Complete VB.NET Console Host Example
-```vbnet
+```vb
 Imports System
 Imports ServiceStack
 

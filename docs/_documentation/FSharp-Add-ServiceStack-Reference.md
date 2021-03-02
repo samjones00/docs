@@ -39,7 +39,7 @@ let client = new JsonServiceClient("http://stackapis.netcore.io")
 let response = client.Get(new SearchQuestions(
     Tags = new List<string>([ "redis"; "ormlite" ])))        
 
-TypeSerializer.PrintDump(response)
+Inspect.printDump(response)
 ```
 
 ### Change Default Server Configuration
@@ -54,7 +54,7 @@ typesConfig.AddDataContractAttributes = false;
 
 ## Constraints
 
-As the ordering contraint in F# conflicted with the ordering of types by C# namespaces, the cleanest approach was to add all DTO's under a single namespace. By default the namespace used will be the base **ServiceModel** namespace which is overridable with the `GlobalNamespace` Config:
+As the ordering constraint in F# conflicted with the ordering of types by C# namespaces, the cleanest approach was to add all DTO's under a single namespace. By default the namespace used will be the base **ServiceModel** namespace which is overridable with the `GlobalNamespace` Config:
 
 ```csharp
 typesConfig.GlobalNamespace = "Client.Namespace";
