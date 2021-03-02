@@ -191,6 +191,7 @@ The `x mix` templates needs 6 pieces of information to perform the deployment.
 
 The `CR_PAT` can be created via your [GitHub Settings->Developer Settings->Personal access tokens page](https://github.com/settings/tokens/), and selecting the `write:packages` permission. Copy the token somewhere secure, so we can use it when creating the secrets.
 > Both the creation of the token and use in secrets are *only available on creation*, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
+> The `CR_PAT` (Container Registry Personal Access Token) is required during the beta of GitHub Container Registry, however once released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to avoid higher data transfer charges.
 
 Repository secrets can be created under Settings->Secrets.
 
@@ -213,6 +214,7 @@ If you're already have a Pro or Team plan, you get free allowances to using the 
 - Additional transfer out $0.50 per GB (GitHub Actions are free)
 
 With Docker images though, they can get large pretty quickly. While GitHub Container Registry is still in beta, it is free to use but additional storage and transfer costs are something to keep in mind. Hopefully use of retention policies and other features can help manage to keep these prices down.
+> Once GitHub Container Registry is released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to avoid higher data transfer charges.
 
 ### Wrapping up
 Having a CI process from the very start of a project/prototype is something that pays off quickly even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
