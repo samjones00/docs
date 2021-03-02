@@ -848,7 +848,7 @@ in your `.ts` scripts. The example below shows how to use the above TypeScript d
 typed Request/Response utilizing jQuery's Ajax API to fire off a new Ajax request on every keystroke:
 
 ```xml
-/// <reference path="MyApis.dtos.d.ts"/>
+/// <reference path="dtos.d.ts"/>
 ...
 
 <input type="text" id="txtHello" data-keyup="sayHello" /> 
