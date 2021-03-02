@@ -157,7 +157,7 @@ Specifically, we want to create an `A` record pointing to our Floating IP of our
 ## GitHub Repository Setup
 With the Droplet server all setup, first we'll need an application to deploy!
 
-We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application.
+We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application. 
 
 Once this is created, we can navigate to the root directory of the project and use `x mix` to get started with our GitHub Actions.
 
@@ -179,6 +179,24 @@ Files provided by the `release-ghr-vanilla` are:
 Once these steps are done, we can push our application to a new repository in GitHub.
 > The account or organization of your repository at the time of writing needs to "Enable improved container support". See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
 
+#### Full Steps
+- Create empty repository in GitHub, *don't add any files*
+- Locally create application using `x new`.
+```bash
+x new web WebApp
+cd WebApp
+git init
+git add -A
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin <copy git URL from GitHub page>
+git push -u origin main
+x mix build release-ghr-vanilla
+git add -A
+git commit -m "Add GitHub Action files"
+git push
+```
+
 ### Create secrets
 The `x mix` templates needs 6 pieces of information to perform the deployment.
 
@@ -188,6 +206,17 @@ The `x mix` templates needs 6 pieces of information to perform the deployment.
 - DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
 - DEPLOY_KEY - SSH private key used to remotely access deploy server/app host.
 - LETSENCRYPT_EMAIL - Email address for your TLS certificate generation
+
+These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_set) for ease of creation. Eg, using the GitHub CLI the following can be set.
+
+```bash
+gh secret set CR_PAT -b"<CR_PAT, Container Registry Personal Access Token>"
+gh secret set DEPLOY_HOST -b"<DEPLOY_HOST, domain or subdomain for your application and server host.>"
+gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
+gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"
+gh secret set DEPLOY_KEY -b"<DEPLOY_KEY, SSH private key used to remotely access deploy server/app host.>"
+gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TLS certificate generation, eg me@example.com>"
+```
 
 The `CR_PAT` can be created via your [GitHub Settings->Developer Settings->Personal access tokens page](https://github.com/settings/tokens/), and selecting the `write:packages` permission. Copy the token somewhere secure, so we can use it when creating the secrets.
 > Both the creation of the token and use in secrets are *only available on creation*, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
