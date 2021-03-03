@@ -327,7 +327,7 @@ class Connections extends React.Component {
                 $this.setState({ successMessage: "Connection was changed" });
             }
         });
-    },
+    }
 
     render() {
         var conn = this.state.connection;
@@ -343,7 +343,9 @@ class Connections extends React.Component {
                     </div>
                     <p className="actions">
                         <img className="loader" src="/img/ajax-loader.gif" />
-                        <button id="btnConnect" className="btn btn-default btn-primary">Change Connection</button>
+                        <button id="btnConnect" className="btn btn-default btn-primary">
+                            Change Connection
+                        </button>
                     </p>
                     <p className="bg-success">{this.state.successMessage}</p>
                     <p className="bg-danger error-summary"></p>
