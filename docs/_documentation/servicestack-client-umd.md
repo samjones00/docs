@@ -110,11 +110,11 @@ ServiceStack's built-in [Fluent Validation](/validation) and [error handling](/e
 
 The first thing to notice is the **action** url is created with a typed API populated using the [Reverse Routing](/routing#reverse-routing) `ToPostUrl()` extension method that looks at `CreateContact` Request DTO to return the best matching route based on the Route definitions and the fields populated in the Request DTO instance, in this case the empty Request DTO matches `[Route("/contacts", "POST")]` so returns `/contacts`.
 
-Other significant parts in this HTML Form is that the **INPUT** field names match up with the Request DTO it posts to and that it includes Bootstraps **class="help-block"** placeholders adjacent to each INPUT element which is what **ss-utils.js** uses to bind the field validation errors.
+Other significant parts in this HTML Form is that the **INPUT** field names match up with the Request DTO it posts to and that it includes Bootstraps **class="help-block"** placeholders adjacent to each INPUT element which is what's used to bind the field validation errors.
 
 ## Binding HTML Forms
 
-You can ajaxify a HTML FORM by using ss-utils `bindForm` jQuery mixin, e.g:
+You can ajaxify a HTML FORM by using `bootstrapForm`, e.g:
 
 ```js
 let $ = sel => document.querySelector(sel);
@@ -154,7 +154,7 @@ public class ContactsValidator : AbstractValidator<CreateContact>
 }
 ```
 
-The Request DTO is first validated with the above declarative rules and if it fails returns a structured error response which ss-utils uses to bind the validation errors to all the invalid field **class=help-block** (or **help-inline**) placeholders:
+The Request DTO is first validated with the above declarative rules and if it fails returns a structured error response which is used to bind the validation errors to all the invalid field **class=help-block** (or **help-inline**) placeholders:
 
 ![HTML Validation](https://raw.github.com/ServiceStack/EmailContacts/master/src/EmailContacts/Content/html-validation.png)
 
@@ -202,7 +202,7 @@ function addContacts(contacts) {
 }
 ```
 
-This showcases some of the declarative event support in ss-utils which allows you to invoke event handlers without needing to maintain bookkeeping of event handlers when adding or removing elements. 
+This showcases some of the declarative event support allows you to invoke event handlers without needing to maintain bookkeeping of event handlers when adding or removing elements. 
 You can instead define one set of event handlers for the entire page with `bindHandlers`, e.g:
 
 ### bindHandlers
@@ -225,7 +225,7 @@ bindHandlers({
 
 The matching event handler will be invoked whenever an element with **data-{event}={handlerName}** is clicked, e.g: `data-click='showContact'`.
  
-In addition to **click**, a number of other jQuery events can be declared in this way, as defined in:
+In addition to **click**, a number of other DOM events can be declared in this way, as defined in:
 
 ```js
 ['click','dblclick','change','focus','blur','focusin','focusout',
@@ -303,7 +303,7 @@ return new HttpResult(response) {
 
 In this case the page event handler named **showLoginPopup** will be invoked if it exists.
 
-As we expect these features to be popular when developing ajax apps we've provided shorter typed aliases for the above examples:
+Alternatively you can use the shorter typed aliases for the above examples:
 
 ```csharp
 return HttpResult.SoftRedirect(new ViewContact { Id = newContact.Id }.ToGetUrl(), newContact);
