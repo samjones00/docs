@@ -171,9 +171,9 @@ The `validate` callback can be used to add client side validation logic which ca
 ```js
 bootstrapForm($("form"), {
     validate: function(){
-        var params = serializeForm($(this));
+        var params = serializeForm(this);
         if (params.Password != params.Confirm) {
-            applyErrors($(this), {
+            applyErrors(this, {
                 errors: [{
                     fieldName: 'Password',
                     message: 'Passwords to not match'
