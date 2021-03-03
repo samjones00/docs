@@ -193,9 +193,8 @@ An interesting difference in the dynamically generated HTML are the presence of 
 function addContacts(contacts) {
     var html = contacts.map(function (c) {
         return `<li data-id='${c.id}' data-click='showContact'>
-                    <span class='glyphicon glyphicon-user' style='margin: 0 5px 0 0'></span>
                     ${c.name} (${c.age})
-                    <span class="glyphicon glyphicon-remove-circle" data-click="deleteContact"></span>
+                    <span data-click="deleteContact"></span>
                 </li>`;
     });
     $("#contacts").insertAdjacentHTML('beforeend', html.join(''));
