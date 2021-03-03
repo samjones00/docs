@@ -218,7 +218,7 @@ bindHandlers({
     },
     deleteContact: function () {
         var id = this.closest("li").getAttribute("data-id");
-        client.delete(new DeleteContact({ id: id });
+        client.delete(new DeleteContact({ id: id }));
     }
 });
 ```
