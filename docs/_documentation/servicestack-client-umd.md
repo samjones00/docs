@@ -334,7 +334,7 @@ class Connections extends React.Component {
         return (
           <div id="connections-page">
             <div className="content">
-                <form id="formConnection" className="form-inline" onSubmit={this.onSubmit} action="/connection">
+                <form className="form-inline" onSubmit={this.onSubmit} action="/connection">
                     <h2>Redis Connection</h2>
                     <div className="form-group">
                         <input name="host" type="text" />
