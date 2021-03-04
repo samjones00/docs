@@ -197,7 +197,7 @@ To start any new deployment, we use GitHub Releases.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/github-create-new-release.png)
 
-Provide a version number and name, the version will be used to tag the Docker image in GHCR.io. If you are using the GitHub CLI, you can also do this via the command line. For example,
+Provide a version number and name, the version will be used to tag the Docker image in ECR. If you are using the GitHub CLI, you can also do this via the command line. For example,
 
 ```
 gh release create v1.0 -t "CI Deploy" --notes ""
