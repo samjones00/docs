@@ -60,7 +60,7 @@ git push
 
 ## AWS Setup
 
-If you're use to setting up larger AWS infrastructure, you'll likely have experienced how costs can rise easily or seen complex infrastructure architect for a web application doing 5 requests/sec with minimal users. These types of setups can be unnecessarily costly and complex and if you are a solo developer or small team (for which is pattern is more suited) and is likely not a well matched starting point. As your application infrastructure needs evolve, so can your cloud provider environment, this template provides a starting point with AWS ECS while keeping costs to a minimum.
+If you're use to setting up larger AWS infrastructure, you'll likely have experienced how costs can rise easily or seen complex infrastructure architected small for a web application doing 5 requests/sec with minimal users. These types of setups can be unnecessarily costly and complex and if you are a solo developer or small team (for which is pattern is more suited), is likely not suitable starting point. As your application infrastructure needs evolve, so can your cloud provider environment, this template provides a starting point with AWS ECS while keeping costs to a minimum.
 
 As previously stated above, this template needs the following in AWS:
 
