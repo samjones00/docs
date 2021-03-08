@@ -107,12 +107,12 @@ reference by adding the dependency below:
 ```
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'net.servicestack:android:1.0.46'
+    implementation 'net.servicestack:android:1.0.47'
 }
 ```
 
 This also lets you to change which ServiceStack Client library version you want to use, the example above uses 
-**1.0.46**. The **net.servicestack:android** dependency contains the `AndroidServiceClient` and 
+**1.0.47**. The **net.servicestack:android** dependency contains the `AndroidServiceClient` and 
 `JavaServiceClient` that your projects use to call remote ServiceStack Services using the typed Kotlin DTO's
 added to your project by the **Add ServiceStack Reference** feature.
 
