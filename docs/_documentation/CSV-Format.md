@@ -21,27 +21,42 @@ The `CsvSerializer` is maintained in the [ServiceStack.Text](https://github.com/
 
 ### How to register your own custom format with ServiceStack
 
-What makes the 'CSV' format different is its the first format added using the new extensions API. The complete code to register the CSV format is:
+Registering a custom format is done by registering the Format's Content-Type with to your AppHost's `ContentTypes` API, e.g:
 
 ```csharp
-//Register the 'text/csv' content-type and serializers 
-//(format is inferred from the last part of the content-type)
+//Register the 'text/csv' content-type format
+//Note: Format is inferred from the last part of the content-type, e.g. 'csv'
 
-this.ContentTypes.Register(ContentType.Csv,
-    CsvSerializer.SerializeToStream, CsvSerializer.DeserializeFromStream);
-
-//ResponseFilter to add 'Content-Disposition' header for browsers to open in Spreadsheet
-this.ResponseFilters.Add((req, res, dto) =>
+public class CsvFormat : IPlugin
 {
-    if (req.ResponseContentType == ContentType.Csv)
+    public void Register(IAppHost appHost)
     {
-        res.AddHeader(HttpHeaders.ContentDisposition,
-            string.Format("attachment;filename={0}.csv", req.OperationName));
+        appHost.ContentTypes.Register(MimeTypes.Csv,
+            SerializeToStream, 
+            CsvSerializer.DeserializeFromStream);
+
+        //ResponseFilter to add 'Content-Disposition' header for browsers to open in Spreadsheet
+        appHost.GlobalResponseFilters.Add((req, res, dto) => {
+            if (req.ResponseContentType == MimeTypes.Csv) {
+                var fileName = req.OperationName + ".csv";
+                res.AddHeader(HttpHeaders.ContentDisposition, $"attachment;{HttpExt.GetDispositionFileName(fileName)}");
+            }
+        });
     }
-});
+
+    void SerializeToStream(IRequest req, object request, Stream stream) =>
+        CsvSerializer.SerializeToStream(request, stream);
+}
 ```
 
-Note: **ServiceStack already does this for you** though it still serves a good example to show how you can plug-in your own custom format. If you wish, you can remove the `CsvFormat` with (inside AppHost.Configure()):
+We recommend encapsulating Custom Formats registrations into a [Plugin](/plugins) as done with the built-in 
+[CsvFormat](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Formats/CsvFormat.cs) which is added by default:
+
+```csharp
+Plugins.Add(new CsvFormat()); //added by default
+```
+
+Which makes it easy to register, detect and remove. E.g. to remove built-in support for CSV you can just remove it from the `Plugins` collection:
 
 ```csharp
 Plugins.RemoveAll(x => x is CsvFormat);

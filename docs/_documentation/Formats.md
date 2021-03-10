@@ -98,6 +98,49 @@ public class HtmlServices : Service
 
 This feature is also available for other built-in Content Types: `[JsonOnly]`, `[XmlOnly]`, `[JsvOnly]` and `[CsvOnly]`.
 
+## Registering a Custom Format
+
+Registering a custom format is done by registering the Format's Content-Type with to your AppHost's `ContentTypes` API, e.g:
+
+```csharp
+//Register the 'text/csv' content-type format
+//Note: Format is inferred from the last part of the content-type, e.g. 'csv'
+
+public class CsvFormat : IPlugin
+{
+    public void Register(IAppHost appHost)
+    {
+        appHost.ContentTypes.Register(MimeTypes.Csv,
+            SerializeToStream, 
+            CsvSerializer.DeserializeFromStream);
+
+        //ResponseFilter to add 'Content-Disposition' header for browsers to open in Spreadsheet
+        appHost.GlobalResponseFilters.Add((req, res, dto) => {
+            if (req.ResponseContentType == MimeTypes.Csv) {
+                var fileName = req.OperationName + ".csv";
+                res.AddHeader(HttpHeaders.ContentDisposition, $"attachment;{HttpExt.GetDispositionFileName(fileName)}");
+            }
+        });
+    }
+
+    void SerializeToStream(IRequest req, object request, Stream stream) =>
+        CsvSerializer.SerializeToStream(request, stream);
+}
+```
+
+We recommend encapsulating Custom Formats registrations into a [Plugin](/plugins) as done with the built-in 
+[CsvFormat](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Formats/CsvFormat.cs) which is added by default:
+
+```csharp
+Plugins.Add(new CsvFormat()); //added by default
+```
+
+Which makes it easy to register, detect and remove. E.g. to remove built-in support for CSV you can just remove it from the `Plugins` collection:
+
+```csharp
+Plugins.RemoveAll(x => x is CsvFormat);
+```
+
 ### XmlSerializerFormat Plugin
 
 The `XmlSerializerFormat` plugin changes ServiceStack to serialize XML with .NET `XmlSerializer` instead of .NET XML 
