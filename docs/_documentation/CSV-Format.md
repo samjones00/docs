@@ -39,7 +39,8 @@ public class CsvFormat : IPlugin
         appHost.GlobalResponseFilters.Add((req, res, dto) => {
             if (req.ResponseContentType == MimeTypes.Csv) {
                 var fileName = req.OperationName + ".csv";
-                res.AddHeader(HttpHeaders.ContentDisposition, $"attachment;{HttpExt.GetDispositionFileName(fileName)}");
+                res.AddHeader(HttpHeaders.ContentDisposition, 
+                    $"attachment;{HttpExt.GetDispositionFileName(fileName)}");
             }
         });
     }
