@@ -7,9 +7,9 @@ slug: templates-aws
 
 ## aws-lambda
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/6ZfUc_28wQc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="896" height="525" src="https://www.youtube.com/embed/8mpGNTsSlvE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-> YouTube: [https://youtu.be/6ZfUc_28wQc](https://youtu.be/6ZfUc_28wQc)
+> YouTube: [https://youtu.be/8mpGNTsSlvE](https://youtu.be/8mpGNTsSlvE)
 
 This project lets you create a .NET 5 empty ServiceStack web project ready for deployment as a AWS Lambda Function wired with API GateWay and packaged via a Docker image.
 
