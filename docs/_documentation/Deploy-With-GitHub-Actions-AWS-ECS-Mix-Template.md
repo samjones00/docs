@@ -149,6 +149,11 @@ docker-compose -f ~/nginx-proxy-compose.yml up -d
 This will run an nginx reverse proxy along with a companion container that will watch for additional containers in the same docker bridge network and attempt to initialize them with valid TLS certificates. This includes containers created and managed by the ECS agent.
 > If the container doesn't have the environment variable `VIRTUAL_HOST` set, it will be ignored. See the `task-definition-template.json` environment for more details.
 
+### IAM Deploy User
+For GitHub Actions to authenticate with AWS, you'll need a user with programmatic access and sufficient permissions to initialize the ECS + ECR resources. Once the initial deployment is complete, reduced access can be used for just uploading to ECR and promoting new releases to ECS. See the README in the Mix template for example of reduced access IAM policy for deployments.
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/release-ecr-aws-iam-create.png)
+
 ### Route 53
 
 To enough the nginx-proxy-lets-ecrypt-companion to work, a domain or subdomain DNS entry is needed to point to our EC2 host. You can use any DNS management tool, but in this example we will be using Route53.
