@@ -72,7 +72,7 @@ As previously stated above, this template needs the following in AWS:
 ### ECS Cluster
 
 An empty ECS Cluster is needed as the GitHub Action process won't create this for you. You can choose to use the ECS Cluster wizard to create you an Auto-scaling Group, security groups, etc but the idea to start with is to just start with an empty ECS Cluster that an EC2 instance will join when we create it. This pattern doesn't scale horizontally with additional EC2 instances, but since it does use ECS, changing to use a load balancer and target groups can be introduced once they are needed.
-> If you know you need horizontal scaling, it would be suggested to jump straight to using Application Load Balancer with Target Groups to manage your cluster services routing with the additional costs that come with that. The cheapest an ALB costs is ~$25/month, costs also scales up with requests.
+> If you know you need horizontal scaling, it would be suggested to jump straight to using Application Load Balancer with Target Groups to manage your cluster services routing with the additional costs that come with that. The base cost of an ALB is ~$20/month, costs also scales up with requests. [See pricing details](https://aws.amazon.com/elasticloadbalancing/pricing/), the use of "LCU"s makes it highly dependent on your use case.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/create-cluster-ecs-1.png) ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/create-cluster-ecs-2.png)
 
@@ -148,6 +148,11 @@ docker-compose -f ~/nginx-proxy-compose.yml up -d
 
 This will run an nginx reverse proxy along with a companion container that will watch for additional containers in the same docker bridge network and attempt to initialize them with valid TLS certificates. This includes containers created and managed by the ECS agent.
 > If the container doesn't have the environment variable `VIRTUAL_HOST` set, it will be ignored. See the `task-definition-template.json` environment for more details.
+
+### IAM Deploy User
+For GitHub Actions to authenticate with AWS, you'll need a user with programmatic access and sufficient permissions to initialize the ECS + ECR resources. Once the initial deployment is complete, reduced access can be used for just uploading to ECR and promoting new releases to ECS. See the README in the Mix template for example of reduced access IAM policy for deployments.
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/release-ecr-aws-iam-create.png)
 
 ### Route 53
 
