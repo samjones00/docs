@@ -72,7 +72,7 @@ As previously stated above, this template needs the following in AWS:
 ### ECS Cluster
 
 An empty ECS Cluster is needed as the GitHub Action process won't create this for you. You can choose to use the ECS Cluster wizard to create you an Auto-scaling Group, security groups, etc but the idea to start with is to just start with an empty ECS Cluster that an EC2 instance will join when we create it. This pattern doesn't scale horizontally with additional EC2 instances, but since it does use ECS, changing to use a load balancer and target groups can be introduced once they are needed.
-> If you know you need horizontal scaling, it would be suggested to jump straight to using Application Load Balancer with Target Groups to manage your cluster services routing with the additional costs that come with that. The cheapest an ALB costs is ~$25/month, costs also scales up with requests.
+> If you know you need horizontal scaling, it would be suggested to jump straight to using Application Load Balancer with Target Groups to manage your cluster services routing with the additional costs that come with that. The base cost of an ALB is ~$20/month, costs also scales up with requests. [See pricing details](https://aws.amazon.com/elasticloadbalancing/pricing/), the use of "LCU"s makes it highly dependent on your use case.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/create-cluster-ecs-1.png) ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/create-cluster-ecs-2.png)
 
