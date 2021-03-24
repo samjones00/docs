@@ -119,7 +119,13 @@ Using Unix `/` Path separators are replaced to use `\` in Windows commands.
 
 #### File and Directory APIs
 
-Alternatively you can also call .NET's [File](https://docs.microsoft.com/en-us/dotnet/api/system.io.file) and [Directory](https://docs.microsoft.com/en-us/dotnet/api/system.io.directory) static methods:
+Alternatively you can also call .NET's [File](https://docs.microsoft.com/en-us/dotnet/api/system.io.file) and [Directory](https://docs.microsoft.com/en-us/dotnet/api/system.io.directory) static methods, e.g:
+
+```json
+"scripts": {
+    "dtos": "x ts && tsc -m umd dtos.ts && x -e \"File.Move('dtos.js','wwwroot/dtos.js')\""
+}
+```
 
 {% capture netscripts %}
 | #Script |
