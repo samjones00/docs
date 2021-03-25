@@ -1,9 +1,7 @@
 ---
-title: Using `x mix` to get GitHub Actions to configure projects to deploy to AWS ECS
+title: GitHub Actions mix template - Deploy to AWS ECS
 slug: mix-github-actions-aws-ecs
 ---
-
-# GitHub Actions mix template - Deploy to AWS ECS
 
 AWS EC2 Container Service (ECS) is a managed container orchestration environment that while not as flexible as Kubernetes, it provides some great integration if you are already in an AWS environment, especially for hosting HTTP APIs. However, when just getting started on a project, setting up Application Load Balancers, CloudFront CDN, AutoScaling Groups etc can be a high entry point from a monthly cost and complexity standpoint. It also provides an alternative to 'serverless' solutions that avoid issues like cold starts as well as polluting any of your code with cloud provider specific implementation.
 
