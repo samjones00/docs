@@ -39,17 +39,20 @@ AWS ECS Agent that runs on the EC2 instance manages with ECS when to create/dest
 
 Now that we have the high level overview out of the way, lets get your apps running! For this tutorial, we'll start with a new ServiceStack application using `x new` and incorporate the GitHub Action templates to get our CI environment started.
 
-First, create your new empty git repository on GitHub. Don't add any generated files.
+First, create your new  git repository on GitHub.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/github-create-new-repo.png)
 
+Once created, follow the GitHub wizard and clone it to your local machine.
+
 Then you can use the following commands to get your new ServiceStack application setup in GitHub with GitHub Actions.
 > Choose the appropriate web template from `x new` for your needs as most templates are compatible GitHub Actions `x mix` templates.
+> Make sure to run `x new` from the directory where you want your project files, like a local repository directory.
 
 ```
-x new web WebApp
+git clone <Git URL>
 cd WebApp
-git init
+x new web WebApp
 git add -A
 git commit -m "Initial commit"
 git branch -M main
