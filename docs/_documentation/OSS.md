@@ -1,6 +1,6 @@
 ---
 slug: oss
-title: Free for OSS
+title: FREE for OSS
 ---
 
 ServiceStack's [AGPL/FLOSS Exception](https://github.com/ServiceStack/ServiceStack/blob/master/license.txt) allows free usage of ServiceStack's Source Code on GitHub in OSS projects without a commercial license.
@@ -47,3 +47,5 @@ OSS projects building from source can use the OSS License Key below to allow unr
 ```
 1001-e1JlZjoxMDAxLE5hbWU6VGVzdCBCdXNpbmVzcyxUeXBlOkJ1c2luZXNzLEhhc2g6UHVNTVRPclhvT2ZIbjQ5MG5LZE1mUTd5RUMzQnBucTFEbTE3TDczVEF4QUNMT1FhNXJMOWkzVjFGL2ZkVTE3Q2pDNENqTkQyUktRWmhvUVBhYTBiekJGUUZ3ZE5aZHFDYm9hL3lydGlwUHI5K1JsaTBYbzNsUC85cjVJNHE5QVhldDN6QkE4aTlvdldrdTgyTk1relY2eis2dFFqTThYN2lmc0JveHgycFdjPSxFeHBpcnk6MjAxMy0wMS0wMX0=
 ```
+
+Which can be registered using any of ServiceStack's [license registration options](https://servicestack.net/download#register).
