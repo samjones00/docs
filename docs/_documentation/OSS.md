@@ -10,12 +10,12 @@ ServiceStack's [AGPL/FLOSS Exception](https://github.com/ServiceStack/ServiceSta
 In order to get the best source-based development experience using the latest version of ServiceStack in your Projects, clone the ServiceStack
 Repos you want to use:
 
- - https://github.com/ServiceStack/ServiceStack
- - https://github.com/ServiceStack/ServiceStack.Text
- - https://github.com/ServiceStack/ServiceStack.Redis
- - https://github.com/ServiceStack/ServiceStack.OrmLite
- - https://github.com/ServiceStack/ServiceStack.Aws
- - https://github.com/ServiceStack/ServiceStack.Azure
+ - [ServiceStack/ServiceStack](https://github.com/ServiceStack/ServiceStack)
+ - [ServiceStack/ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text)
+ - [ServiceStack/ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Text)
+ - [ServiceStack/ServiceStack.OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite)
+ - [ServiceStack/ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
+ - [ServiceStack/ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure)
 
 Then reference the `*.Source.csproj` of each project you want to reference in your solution. 
 
