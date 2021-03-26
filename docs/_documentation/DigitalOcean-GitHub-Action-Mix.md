@@ -161,9 +161,16 @@ Specifically, we want to create an `A` record pointing to our Floating IP of our
 ## GitHub Repository Setup
 With the Droplet server all setup, first we'll need an application to deploy!
 
-We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application. 
+First we'll need to create a new repository on GitHub. This setup will work with public or private repositories, select your options and clone it to your local machine.
 
-Once this is created, we can navigate to the root directory of the project and use `x mix` to get started with our GitHub Actions.
+```bash
+git clone <GitHub URL>
+cd <project name>
+```
+
+We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application. Run this in your newly cloned repository folder.
+
+The `x new` command gives us a working application from a template, `x mix` allows us to add additional templated files that work with these templates.
 
 ```
 x mix build release-ghr-vanilla
