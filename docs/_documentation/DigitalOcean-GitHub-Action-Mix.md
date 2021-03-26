@@ -180,8 +180,22 @@ Files provided by the `release-ghr-vanilla` are:
 - **deploy/nginx-proxy-compose.yml** - File provided to get nginx reserve proxy setup as used by steps above.
 - **Dockerfile** - Self contained Docker that builds, publishes and hosts your application.
 
+
+### Make sure GitHub `Enable improved container support` is turned on
+The account or organization of your repository at the time of writing needs to "Enable improved container support". 
+
+Goto: 
+
+- `Account`
+- `Settings`
+- `Packages`
+- `Improved container support`
+- select `Enable improved container support`
+- Save.
+
+> See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
+
 Once these steps are done, we can push our application to a new repository in GitHub.
-> The account or organization of your repository at the time of writing needs to "Enable improved container support". See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
 
 #### Full Steps
 - Create empty repository in GitHub, *don't add any files*
