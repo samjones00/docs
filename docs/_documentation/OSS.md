@@ -30,13 +30,13 @@ local lib folder and included as `.dll` references.
 
 As each ServiceStack project is a standard `.csproj`, you can alternatively choose to build and reference NuGet packages instead:
 
-    $ dotnet pack -c Release *.csproj
+    $ dotnet pack -c Release <project>.csproj
 
 #### Use build.proj to generate all packages
 
 Each repo has a `/build/build.proj` that can be run to generate all library NuGet packages in each repo, e.g:
 
-    $ msbuild build.proj /property:Configuration=Release;MinorVersion=10;PatchVersion=1
+    $ msbuild build.proj /property:Configuration=Release;MinorVersion=<MINOR>;PatchVersion=1
 
 Which can be referenced as a [local Nuget package feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds).
 
