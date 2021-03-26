@@ -47,8 +47,17 @@ The reason this is important is because we will be using the private key within 
 
 Digital Ocean has some excellent documentation for [this process here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04).
 
+
 ### Enable floating IP
 Once your Droplet is started, you'll want to `Enable Floating IP` so that we have a static public IP address to route to for a domain/subdomain.
+
+This can be done via 
+- `Manage` 
+- `Droplets`
+- `Select your droplet`
+- click `Enable Floating IP` at the top right.
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/digital-ocean-enable-floating-ip.png)
 
 ## Docker setup
 Now that our Droplet is running and has a public IP address, we'll want to setup Docker and docker-compose.
@@ -127,11 +136,6 @@ volumes:
   dhparam:
   certs:
   acme:
-
-networks:
-  default:
-    external:
-      name: webproxy
 ```
 
 You can use `scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
@@ -214,7 +218,7 @@ gh secret set CR_PAT -b"<CR_PAT, Container Registry Personal Access Token>"
 gh secret set DEPLOY_HOST -b"<DEPLOY_HOST, domain or subdomain for your application and server host.>"
 gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
 gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"
-gh secret set DEPLOY_KEY -b"<DEPLOY_KEY, SSH private key used to remotely access deploy server/app host.>"
+gh secret set DEPLOY_KEY < [path to ssh key]
 gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TLS certificate generation, eg me@example.com>"
 ```
 
