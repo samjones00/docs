@@ -19,7 +19,7 @@ Repos you want to use:
 
 Then reference the `*.Source.csproj` of each project you want to reference in your solution. 
 
-This approach is used in our [Test.csproj](https://github.com/NetCoreApps/Test/blob/master/src/Test/Test.csproj) as it allows us to debug directly into ServiceStack library source code the same as any other source project in our solution.
+This approach is used in our [Test.csproj](https://github.com/NetCoreApps/Test/blob/master/src/Test/Test.csproj) allowing us to debug directly into ServiceStack library source code just like any other project reference in our solution.
 
 ### Use Local Libraries
 
