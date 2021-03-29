@@ -89,6 +89,8 @@ services.AddAuthentication(options =>
     });
 ```
 
+### ASP.NET Core Identity Auth Adapter
+
 The only customization needed in ServiceStack is to specify the different custom name being used for `RoleClaimType`:
 
 ```csharp

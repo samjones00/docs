@@ -130,13 +130,14 @@ public static class AppExtensions
 }
 ```
 
+### ASP.NET Core Identity Auth Adapter
+
 Where you'll able to use it to perform adhoc DB queries, in this case calling `GetIdentityUserRolesById()` to populate the Users roles:
 
 ```csharp
 new NetCoreIdentityAuthProvider(AppSettings) 
 {
-    PopulateSessionFilter = (session, principal, req) => 
-    {
+    PopulateSessionFilter = (session, principal, req) => {
         session.Roles = ApplicationServices.DbExec(db => db.GetIdentityUserRolesById(session.Id));
     }
 }
@@ -150,8 +151,7 @@ To improve performance and save the DB hit, we recommend caching the User Roles 
 ```csharp
 new NetCoreIdentityAuthProvider(AppSettings) 
 {
-    PopulateSessionFilter = (session, principal, req) => 
-    {
+    PopulateSessionFilter = (session, principal, req) => {
         session.Roles = req.GetMemoryCacheClient().GetOrCreate(
             IdUtils.CreateUrn(nameof(session.Roles), session.Id),
             TimeSpan.FromMinutes(5),
@@ -175,8 +175,7 @@ Plugins.Add(new AuthFeature(() => new CustomUserSession(),
         new NetCoreIdentityAuthProvider(AppSettings) // Adapter to enable ASP.NET Identity Auth in ServiceStack
         {
             AdminRoles = { "Manager" }, // Automatically Assign additional roles to Admin Users
-            PopulateSessionFilter = (session, principal, req) => 
-            {
+            PopulateSessionFilter = (session, principal, req) => {
                 //Example of populating ServiceStack Session Roles + Custom Info from EF Identity DB
                 var user = req.GetMemoryCacheClient().GetOrCreate(
                     IdUtils.CreateUrn(nameof(ApplicationUser), session.Id),
