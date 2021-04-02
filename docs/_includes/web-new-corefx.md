@@ -1,6 +1,7 @@
 || ASP.NET Core Framework Templates |
 |-|-|
 | [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx)        | .NET Framework ASP.NET Core Website |
+| [empty-corefx](https://github.com/NetFrameworkCoreTemplates/empty-corefx)        | .NET Framework ASP.NET Core Single Project Website |
 | [vue-lite-corefx](https://github.com/NetFrameworkCoreTemplates/vue-lite-corefx)   | .NET Framework ASP.NET Core lite (npm-free) Vue SPA using TypeScript |
 | [react-lite-corefx](https://github.com/NetFrameworkCoreTemplates/react-lite-corefx) | .NET Framework ASP.NET Core lite (npm-free) React SPA using TypeScript |
 | [script-corefx](https://github.com/NetFrameworkCoreTemplates/script-corefx)      | .NET Framework ASP.NET Core #Script Pages Bootstrap Website |

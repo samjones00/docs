@@ -677,6 +677,7 @@ Other issues from being a less popular scenario is not being able to reference t
 To make it as easy as possible to get started you can use the [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) containing popular starting templates for running ASP.NET Core Apps on .NET Framework (default v4.7) which as a convention all have the `-corefx` suffix: 
 
  - [web-corefx](https://github.com/NetFrameworkCoreTemplates/web-corefx) - .NET Framework ASP.NET Core Website
+ - [empty-corefx](https://github.com/NetFrameworkCoreTemplates/empty-corefx) - .NET Framework ASP.NET Core Single Project Website
  - [selfhost-corefx](https://github.com/NetFrameworkCoreTemplates/selfhost-corefx) - .NET Framework ASP.NET Core self-hosting Console App
  - [mvc-corefx](https://github.com/NetFrameworkCoreTemplates/mvc-corefx) - .NET Framework ASP.NET Core MVC Website
  - [razor-corefx](https://github.com/NetFrameworkCoreTemplates/razor-corefx) - .NET Framework ASP.NET Core Website with ServiceStack.Razor
