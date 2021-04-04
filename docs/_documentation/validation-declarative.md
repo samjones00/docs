@@ -100,6 +100,8 @@ public class ValidateLessThanAttribute : ValidateAttribute
 }
 ```
 
+### Generic Validator Attributes
+
 So the same Typed Validator above is equivalent to using the untyped generic `[Validate]` attribute below:
 
 ```csharp
