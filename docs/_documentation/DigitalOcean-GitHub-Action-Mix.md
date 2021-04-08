@@ -5,17 +5,21 @@ slug: do-github-action-mix-deployment
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/github-action-do-tutorial-header.png)
 
-GitHub Actions are a great tool for automating builds, tests and deployments in a composable and flexible way. The ServiceStack tool `x mix` provides templates to incorporate into your existing applications and repositories.
+GitHub Actions are a great tool for automating builds, tests and deployments in a composable and flexible way. The ServiceStack `x` tool provides mix templates to incorporate into your existing applications and repositories that can speed up different types of workflows.
 
 We've created a mix template for building and deploying your ServiceStack app with GitHub Actions, GitHub Container Repository and Docker Compose all via SSH for a minimalist server hosting setup.
 
-Specifically, we'll be `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created. This can be run at the root of the project folder, for example if you wanted to create an empty web application you would run:
+Specifically, we'll be using `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created. This can be run at the root of your local repository folder, for example if you wanted to create an empty web application you would run:
+
 ```
-x new web DropletApp
-# wait until creation finished
+git clone git@github.com:<your user or org>/DropletApp.git
 cd DropletApp
+x new web DropletApp
 x mix build release-ghr-vanilla
 # 'y' to process with writing files from x mix.
+git add -A
+git commit -m "New ServiceStack project"
+git push
 ```
 
 Pushing your new application to GitHub, the `build.yml` will run a `dotnet build` and `dotnet test` within the CI environment. For deployments, we want to get a server setup for hosting the new application.
@@ -41,7 +45,7 @@ The basic droplet we are going to create will have the following configuration.
 The rest of the options, leave as default.
 
 ### Create your new SSH key
-If you ended up using an existing SSH key, now would be the time to create one specifically for deploying applications to this server, and only that function.
+If you ended up using an existing SSH key, now would be the time to create one specifically for deploying applications to this server, and **only that function**.
 
 The reason this is important is because we will be using the private key within our GitHub Actions, which means the private key generated will be leaving your local computer and stored within GitHub Secrets. In the event that this key is compromised, we want to limit its use.
 
@@ -49,7 +53,7 @@ Digital Ocean has some excellent documentation for [this process here](https://w
 
 
 ### Enable floating IP
-Once your Droplet is started, you'll want to `Enable Floating IP` so that we have a static public IP address to route to for a domain/subdomain.
+Once your Droplet has started, you'll want to `Enable Floating IP` so that we have a static public IP address to route to for a domain/subdomain.
 
 This can be done via 
 - `Manage` 
@@ -57,10 +61,10 @@ This can be done via
 - `Select your droplet`
 - click `Enable Floating IP` at the top right.
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/digital-ocean-enable-floating-ip.png)
+![Enable Floating IP option](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/digital-ocean-enable-floating-ip.png)
 
 ## Docker setup
-Now that our Droplet is running and has a public IP address, we'll want to setup Docker and docker-compose.
+Now that our Droplet is running and has a public IP address, we'll want to install Docker and docker-compose.
 
 SSH into your Droplet using the appropriate SSH key and your preferred SSH client (straight `ssh`, Putty for Windows, etc).
 
@@ -88,8 +92,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 Run `docker-compose --version` to confirm.
 > See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
 
-### Get nginx reverse proxy and letsencrypt running
-Now we have Docker and docker-compose installed on our new Droplet, we want to setup a nginx reverse proxy running in Docker. This will handle mapping a domain/subdomain requests to specific docker applications as well as TLS registration via LetEncrypt. When a new docker container starts up and joins the bridge network, the nginx and letsencrypt companion detect the new application and look to see if routing and TLS certificate is needed.
+### Get nginx reverse proxy and letsencrypt companion running
+Now we have Docker and docker-compose installed on our new Droplet, we want to setup an nginx reverse proxy running in Docker. This will handle mapping requests to specific domain/subdomain requests to specific docker applications that have matching configuration as well as TLS registration via LetEncrypt. When a new docker container starts up and joins the bridge network, the nginx and letsencrypt companion detect the new application and look to see if routing and TLS certificate is needed.
 
 In the `x mix release-ghr-vanilla` template, we include `deploy/nginx-proxy-compose.yml` file which can be copied to the droplet and run.
 
@@ -116,7 +120,7 @@ services:
     network_mode: bridge
 
   letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
+    image: jrcs/letsencrypt-nginx-proxy-companion:2.0
     container_name: nginx-proxy-le
     restart: always
     environment:
@@ -138,7 +142,7 @@ volumes:
   acme:
 ```
 
-You can use `scp` or just creating a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
+You can use `scp` or shared clipboard to copy the short YML file over. For this example, we are going to copy it straight to the `~/` (home) directory.
 
 ```
 scp -i <path to private ssh key> ./nginx-proxy-compose.yml root@<server_floating_ip>:~/nginx-proxy-compose.yml
@@ -153,15 +157,15 @@ docker-compose -f ~/nginx-proxy-compose.yml up -d
 To confirm these are running, you can run `docker ps` so have a look at what containers are running on your server.
 
 ## Domain setup
-Now our droplet server is all setup to host our docker apps, we want to make referring to our server easier via setting up some DNS records.
+Now our droplet server is all setup to host our docker applications, we want to make referring to our server easier by setting up a DNS record.
 
-Specifically, we want to create an `A` record pointing to our Floating IP of our droplet.
-> You'll need to use whichever service you use to manage the DNS of your domains.
+Specifically, we want to create an `A` record pointing to our Floating IP of our Droplet server.
+> You will need to use your DNS provider service to manage the DNS records of your domains.
 
 ## GitHub Repository Setup
 With the Droplet server all setup, first we'll need an application to deploy!
 
-First we'll need to create a new repository on GitHub. This setup will work with public or private repositories, select your options and clone it to your local machine.
+Create a new repository on GitHub. This setup will work with public or private repositories, select your options and clone it to your local machine.
 
 ```bash
 git clone <GitHub URL>
@@ -170,13 +174,15 @@ cd <project name>
 
 We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application. Run this in your newly cloned repository folder.
 
-The `x new` command gives us a working application from a template, `x mix` allows us to add additional templated files that work with these templates.
+The `x new` command gives us a working ServiceStack project from a template, `x mix` allows us to add additional templated files that work with templated ServiceStack projects.
+
+Now our project is created, you can mix in our GitHub Action templates in the local repository folder by running:
 
 ```
 x mix build release-ghr-vanilla
 ```
 
-The `build` mix provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container Registry (ghcr.io) and deploys the application via SSH + `docker-compose` to our new Droplet.
+The `build` mix template provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container Registry (ghcr.io) and deploys the application via SSH + `docker-compose` to our new Droplet.
 
 Just like other `x mix` templates ServiceStack provides, these are a *starting* point to help get things running quickly with known patterns. Unlike external dependencies, they just copy the templated code that is editable and not tied to any code generation service that will update these files.
 
@@ -190,6 +196,7 @@ Files provided by the `release-ghr-vanilla` are:
 
 ### Make sure GitHub `Enable improved container support` is turned on
 The account or organization of your repository at the time of writing needs to "Enable improved container support". 
+> This step may no longer be required once Improved Container Support is generally available.
 
 Goto: 
 
@@ -202,28 +209,33 @@ Goto:
 
 > See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
 
-Once these steps are done, we can push our application to a new repository in GitHub.
+Once these steps are done, our GitHub Actions will be able to push Docker images to GitHub Container Registry.
 
 #### Full Steps
-- Create empty repository in GitHub, *don't add any files*
-- Locally create application using `x new`.
+
+**Create new repository in GitHub first.**
+
 ```bash
-x new web WebApp
+git clone git@github.com:<your user or org>/WebApp.git # Where "WebApp" is the name of your repository
 cd WebApp
-git init
-git add -A
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin <copy git URL from GitHub page>
-git push -u origin main
+x new web WebApp
 x mix build release-ghr-vanilla
 git add -A
-git commit -m "Add GitHub Action files"
+git commit -m "Add new ServiceStack project with GitHub Action files"
 git push
 ```
 
+##### Steps overview
+
+- Create a new GitHub repository
+- Clone new repository locally
+- Change directory to new repository
+- Locally create ServiceStack project using `x new`.
+- Mix in GitHub Actions using `x mix`
+- Commit and push changes to GitHub
+
 ### Create secrets
-The `x mix` templates needs 6 pieces of information to perform the deployment.
+The `x mix` templates needs **6 pieces of information** to perform the deployment, this information is added to the GitHub repository as the following *secrets*.
 
 - CR_PAT - GitHub Personal Token with read/write access to packages.
 - DEPLOY_HOST - hostname used to SSH to, this should be a domain or subdomain with A record pointing to the server's IP adddress.
@@ -255,12 +267,12 @@ To kick off any new deployment, we use GitHub Releases.
 Provide a version number and name, the version will be used to tag the Docker image in GHCR.io. If you are using the GitHub CLI, you can also do this via the command line. For example,
 
 ```bash
-gh release create v1.0 -t "CI Deploy" --notes ""
+gh release create v1 -t "v1" --notes ""
 ```
 
 Go to the Actions tab in your repository to see the progress of your deployment.
 
-> The initial deployment might take upto a minute for LetEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup before doing this, otherwise further delays related to DNS TTL will likely occur.
+> The initial deployment might take upto a minute for LetsEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup **before publishing the Release**, otherwise further delays related to DNS TTL will likely occur.
 > If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
 
 ### GitHub Container Registry Pricing
@@ -275,4 +287,4 @@ With Docker images though, they can get large pretty quickly. While GitHub Conta
 > Once GitHub Container Registry is released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to [avoid higher data transfer charges](https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-packages#about-billing-for-github-packages).
 
 ### Wrapping up
-Having a CI process from the very start of a project/prototype is something that pays off quickly even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
+Having a CI process from the very start of a project/prototype is something that pays off quickly, even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
