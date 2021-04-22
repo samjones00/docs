@@ -196,6 +196,7 @@ pre.highlight {
 
 .text-green-500	{ --tw-text-opacity: 1; color: rgba(16, 185, 129, var(--tw-text-opacity)) }
 
+.video-hd { width: 896px; height: 504px }
 
 @media (max-width: 1580px) {
     #content {
@@ -243,10 +244,13 @@ pre.highlight {
     #sidebar-toggle {
         display: block;
     }
+    .video-hd { width: 768px; height: 432px }
 }
 @media (max-width: 414px) {
     #content img { max-width: 414px !important; }
+    .video-hd { width: 414px; height: 233px }
 }
 @media (max-width: 375px) {
     #content img { max-width: 375px !important; }
+    .video-hd { width: 375px; height: 211px }
 }
