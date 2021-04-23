@@ -10,7 +10,7 @@ Thanks to the simplicity, elegance, strong typing and philosophy of both solutio
 You can create a new .NET Core F# project in a new empty directory using the [x dotnet tool](https://docs.servicestack.net/dotnet-tool) with:
 
     $ dotnet tool install --global x 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init-fsharp
     $ dotnet run
 

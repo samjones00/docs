@@ -412,7 +412,7 @@ lets walk through how easy it to create one of our own.
 
 For this example we'll create a small App that leverages one of the advanced Web technologies in SVG that would be cumbersome to create using a native GUI toolkit. To start let's create a folder for our app called `spirals` and initialize and empty Sharp App with `app init`:
 
-    $ md spirals
+    $ mkdir spirals
     $ cd spirals && app init
 
 We could have started from one of the [more complete Sharp App Templates](https://sharpscript.net/docs/sharp-apps#getting-started) but this gives

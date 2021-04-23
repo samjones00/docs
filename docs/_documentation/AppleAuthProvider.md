@@ -36,7 +36,7 @@ As the elliptic curve algorithms required to integrate with Sign In with Apple r
 
 A quick way to can create a working project from scratch with your preferred configuration using the [mix tool](/mix-tool), e.g: 
 
-    $ md web && cd web
+    $ mkdir web && cd web
     $ x mix init auth-ext auth-db sqlite
 
 This creates an empty project, with Auth Enabled, adds the **ServiceStack.Extensions** NuGet package, registers OrmLite, SQLite and the `OrmLiteAuthRepository`.

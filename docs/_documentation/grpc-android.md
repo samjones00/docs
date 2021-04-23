@@ -108,7 +108,7 @@ Now run your App and click the Action button to make a plain-text gRPC Request:
 To use gRPC SSL we'll need a copy of our gRPC's Service SSL Certificate which we can make available to our
 Android App by saving it to our App's `assets` directory:
 
-    $ md ..\assets
+    $ mkdir ..\assets
     $ x get https://todoworld.servicestack.net/grpc.crt -out ../assets
 
 Building an TLS Channel configured with a self-signed SSL Certificate requires a bit of effort with OK HTTP

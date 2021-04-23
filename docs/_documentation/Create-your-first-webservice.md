@@ -197,7 +197,7 @@ quickly add & run using the [x dotnet tool](/dotnet-tool):
 
 Which can be used to quickly create & run a new .NET Core App in an empty directory:
 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init
     $ dotnet run
 
@@ -208,7 +208,7 @@ directory name for the new Project name.
 
 Use `init-vb` to create a VB .NET Core App:
 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init-vb
     $ dotnet run
 
@@ -218,7 +218,7 @@ Which will install the [init-vb Gist](https://gist.github.com/gistlyn/88f2792fc4
 
 Use `init-fsharp` to create a F# .NET Core App:
 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init-vb
     $ dotnet run
 
