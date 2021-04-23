@@ -20,9 +20,10 @@ includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to explore
 
 Importantly, the dotnet tools lets you create [.NET Core, .NET Framework](/dotnet-new) and [ASP.NET Core on .NET Framework](/templates-corefx) projects.
 Unless you're restricted to working with .NET Framework you'll want to start with a [.NET Core project template](/dotnet-new#usage), for this example
-we'll start with the Empty [web](https://github.com/NetCoreTemplates/web) template:
+we'll start with the Empty [web](https://github.com/NetCoreTemplates/web) template which implicitly uses the folder name for the Project Name:
 
-    $ x new web WebApp
+    $ mkdir WebApp && cd WebApp
+    $ x new web
 
 ## Step 3: Run your project
 
@@ -117,17 +118,17 @@ ServiceStack's clean Web Services design makes it simple and intuitive to be abl
     </div>
 </div>
 <script>
-    $('#Name').keyup(function () {
-        var name = $(this).val();
-        if (name) {
-            $.getJSON('/hello/' + name)
-                .success(function (response) {
-                    $('#result').html(response.Result);
-                });
-        } else {
-            $('#result').html('');
-        }
-    });
+$('#Name').keyup(function () {
+    let name = $(this).val();
+    if (name) {
+        $.getJSON('/hello/' + name)
+            .success(function (response) {
+                $('#result').html(response.Result);
+            });
+    } else {
+        $('#result').html('');
+    }
+});
 </script>
 ```
 
@@ -149,15 +150,15 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 <script src="/js/servicestack-client.js"></script>
 <script src="/dtos.js"></script>
 <script>
-  Object.assign(window, exports) //import
+Object.assign(window, exports) //import
 
-  var client = new JsonServiceClient()
-  function callHello(val) {
-    client.get(new Hello({ name: val }))
-      .then(function(r) {
-          document.getElementById('result').innerHTML = r.result;
-      })
-  }
+let client = new JsonServiceClient()
+function callHello(val) {
+client.get(new Hello({ name: val }))
+  .then(function(r) {
+      document.getElementById('result').innerHTML = r.result;
+  })
+}
 </script>
 ```
 
