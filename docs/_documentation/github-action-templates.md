@@ -15,12 +15,38 @@ The simple build and test step is available using the `mix` name of `build`, whi
 
 Templates currently available are:
 
-| Name                      | Docker Repository | Deployment and Hosting                                    |
-| ------------------------- |:---------------------------------:| -------------------------------------:    |
-| `release-ghr-vanilla`     | GitHub Container Repository       | SSH + `docker-compose`                    |
-| `release-ecr-vanilla`     | AWS Elastic Container Repository  | SSH + `docker-compose`                    |
-| `release-hub-vanilla`     | Docker Hub                        | SSH + `docker-compose`                    |
-| `release-ecr-aws`         | AWS Elastic Container Repository  | AWS ECS without Application Load Balancer |
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th style="text-align: center">Docker Repository</th>
+      <th style="text-align: right">Deployment and Hosting</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">release-ghr-vanilla</code></td>
+      <td style="text-align: center">GitHub Container Repository</td>
+      <td style="text-align: right">SSH + <code class="language-plaintext highlighter-rouge">docker-compose</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">release-ecr-vanilla</code></td>
+      <td style="text-align: center">AWS Elastic Container Repository</td>
+      <td style="text-align: right">SSH + <code class="language-plaintext highlighter-rouge">docker-compose</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">release-hub-vanilla</code></td>
+      <td style="text-align: center">Docker Hub</td>
+      <td style="text-align: right">SSH + <code class="language-plaintext highlighter-rouge">docker-compose</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">release-ecr-aws</code></td>
+      <td style="text-align: center">AWS Elastic Container Repository</td>
+      <td style="text-align: right">AWS ECS without Application Load Balancer</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### release-ghr-vanilla
 Using GitHub Container Repository (ghcr.io) and deploying to a Linux host with `docker-compose` via SSH, this provides a GitHub centric option for prototyping your application. A [full tutorial using Digital Ocean as our Linux host provider is available](https://docs.servicestack.net/do-github-action-mix-deployment) as well as an accompanying video.
