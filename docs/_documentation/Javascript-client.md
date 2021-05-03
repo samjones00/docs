@@ -20,7 +20,7 @@ client.get(new Hello({ Name: 'World' }))
 
 To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET 5 project:
 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init
 
 That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:

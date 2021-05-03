@@ -17,7 +17,7 @@ without any external file references with the single `<script/>` reference:
 
 This is used by the updated [mix init](/mix-tool#mix-usage) gists when generating its empty Web Apps:
 
-    $ md web && cd web
+    $ mkdir web && cd web
     $ x mix init
     $ dotnet run
 

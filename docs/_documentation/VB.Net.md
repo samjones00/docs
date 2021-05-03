@@ -10,7 +10,7 @@ There are some nostalgic developers who prefer not to leave their VB.NET days be
 You can create a new VB .NET Core project in a new empty directory using the [x dotnet tool](https://docs.servicestack.net/dotnet-tool) with:
 
     $ dotnet tool install --global x 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init-vb
     $ dotnet run
 
@@ -24,7 +24,7 @@ where you can use its dep-free [/index.html](https://gist.github.com/gistlyn/88f
 
 The [vb-auth](https://github.com/NetCoreApps/vb-auth) VB.NET .NET Core project created with [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
     $ x mix init-vb
 
 Configured with [OrmLite + SQL Server](https://github.com/ServiceStack/ServiceStack.OrmLite), 

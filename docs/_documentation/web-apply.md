@@ -118,7 +118,7 @@ Search:  web + #<tag>      Available tags: auth, config, db, example, lib, proje
 
 From this list we can see that we can create an **Empty .NET 5.0 ServiceStack App** by starting in a new App Folder:
 
-    $ md ProjectName && cd ProjectName
+    $ mkdir ProjectName && cd ProjectName
 
 Then applying the `init` labelled gist which will be saved to the `'.'` current directory:
 

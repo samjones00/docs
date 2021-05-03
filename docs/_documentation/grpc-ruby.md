@@ -49,7 +49,7 @@ Generate `Gemfile` and install dependencies:
 
 Add protoc generated TodoWorld DTOs and gRPC Service Client:
 
-    $ md lib
+    $ mkdir lib
     $ x proto-ruby https://todoworld.servicestack.net -out lib
 
 ### Ruby protoc gRPC insecure Example

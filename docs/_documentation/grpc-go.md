@@ -19,7 +19,7 @@ Create new **TodoWorld** Go module:
 
 Add protoc generated TodoWorld DTOs and gRPC GrpcServiceClient to `services/` folder:
 
-    $ md services
+    $ mkdir services
     $ x proto-go https://todoworld.servicestack.net -out services
 
 ### Go protoc gRPC insecure Example
@@ -61,7 +61,7 @@ func main() {
 
 Alternatively above Go example can be created with:
 
-    $ md client
+    $ mkdir client
     $ x mix todoworld-go -out client
 
 Run example:

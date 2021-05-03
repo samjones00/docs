@@ -172,8 +172,7 @@ It's also now accessible via [ServiceStack's gRPC endpoint](/grpc) which opens y
 
 We can test Dart's gRPC integration and development workflow in a new Dart Console App we can create with:
 
-    $ md dart-grpc
-    $ cd dart-grpc
+    $ mkdir dart-grpc && cd dart-grpc
     $ pub global activate stagehand
     $ stagehand console-full
 

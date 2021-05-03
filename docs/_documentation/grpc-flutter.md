@@ -108,7 +108,7 @@ where clicking the icon should display the result of your plain-text gRPC Servic
 To use gRPC SSL we'll need a copy of our gRPC's Service SSL Certificate which we can make available to our
 Flutter App by saving it to our App's `assets` directory:
 
-    $ md assets
+    $ mkdir assets
     $ x get https://todoworld.servicestack.net/grpc.crt -out assets
 
 As loading assets is an asynchronous operation we'll need to preload it either by loading it in `main()` and
