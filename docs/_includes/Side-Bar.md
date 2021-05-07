@@ -40,6 +40,10 @@
     - [Vue, React, Angular Components](/spa-components)
     - [Tour of Webpack](/tour-of-webpack)
     - [Cross platform dotnet scripts](/dotnet-scripts)
+- ##### GitHub Action Templates
+    - [Overview](/github-action-templates)
+    - [GitHub Container Repository & Digital Ocean](/do-github-action-mix-deployment)
+    - [AWS ECR & ECS with NGINX](/mix-github-actions-aws-ecs)
 - ##### Background Concepts
     - [What is a Message-based Web Service](/what-is-a-message-based-web-service)
     - [Advantages of message-based Services](/advantages-of-message-based-web-services)
