@@ -577,7 +577,133 @@ The Route on the Action that was declared first gets selected, i.e:
 
 ### Custom Hooks
 
-The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customisation feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](/request-and-response-filters).
+The ability to extend ServiceStack's service execution pipeline with Custom Hooks is an advanced customization feature that for most times is not needed as the preferred way to add composable functionality to your services is to use [Request / Response Filter attributes](/filter-attributes) or apply them globally with [Global Request/Response Filters](/request-and-response-filters).
+
+### Custom Serialized Responses
+
+The new `IHttpResult.ResultScope` API provides an opportunity to execute serialization within a custom scope, e.g. this can
+be used to customize the serialized response of adhoc services that's different from the default global configuration with:
+
+```csharp
+return new HttpResult(dto) {
+    ResultScope = () => JsConfig.With(new Config { IncludeNullValues =  true })
+};
+```
+
+Which enables custom serialization behavior by performing the serialization within the custom scope, equivalent to:
+
+```csharp
+using (JsConfig.With(new Config { IncludeNullValues =  true }))
+{
+    var customSerializedResponse = Serialize(dto);
+}
+```
+
+### Request and Response Converters
+
+The [Encrypted Messaging Feature](/encrypted-messaging) takes advantage of Request and Response Converters that let you change the Request DTO and Response DTO's that get used in ServiceStack's Request Pipeline where:
+
+#### Request Converters
+
+Request Converters are executed directly after any [Custom Request Binders](/serialization-deserialization#create-a-custom-request-dto-binder):
+
+```csharp
+appHost.RequestConverters.Add(async (req, requestDto) => {
+    //Return alternative Request DTO or null to retain existing DTO
+});
+```
+
+#### Response Converters
+
+Response Converters are executed directly after the Service:
+
+```csharp
+appHost.ResponseConverters.Add(async (req, response) =>
+    //Return alternative Response or null to retain existing Service response
+});
+```
+
+### Intercept Service Requests
+
+As an alternative to creating a [Custom Service Runner](#using-a-custom-servicerunner) to intercept
+different events when processing ServiceStack Requests, you can instead override the `OnBeforeExecute()`, `OnAfterExecute()` and `OnExceptionAsync()`
+callbacks in your `Service` class (or base class) to intercept and modify Request DTOs, Responses or Error Responses, e.g:
+
+```csharp
+class MyServices : Service
+{
+    // Log all Request DTOs that implement IHasSessionId
+    public override void OnBeforeExecute(object requestDto)
+    {
+        if (requestDto is IHasSessionId dtoSession)
+        {
+            Log.Debug($"{nameof(OnBeforeExecute)}: {dtoSession.SessionId}");
+        }
+    }
+
+    //Return Response DTO Name in HTTP Header with Response
+    public override object OnAfterExecute(object response)
+    {
+        return new HttpResult(response) {
+            Headers = {
+                ["X-Response"] = response.GetType().Name
+            }
+        };
+    }
+
+    //Return custom error with additional metadata
+    public override Task<object> OnExceptionAsync(object requestDto, Exception ex)
+    {
+        var error = DtoUtils.CreateErrorResponse(requestDto, ex);
+        if (error is IHttpError httpError)
+        {                
+            var errorStatus = httpError.Response.GetResponseStatus();
+            errorStatus.Meta = new Dictionary<string,string> {
+                ["InnerType"] = ex.InnerException?.GetType().Name
+            };
+        }
+        return Task.FromResult(error);
+    }
+}
+```
+
+#### Async Callbacks
+
+For async callbacks your Services can implement `IServiceBeforeFilterAsync` and `IServiceAfterFilterAsync`, e.g:
+
+```csharp
+public class MyServices : Service, IServiceBeforeFilterAsync, IServiceAfterFilterAsync
+{
+    public async Task OnBeforeExecuteAsync(object requestDto)
+    {
+        //...
+    }
+
+    public async Task<object> OnAfterExecuteAsync(object response)
+    {
+        //...
+        return response;
+    }
+}
+```
+
+If you're implementing `IService` instead of inheriting the concrete `Service` class, you can implement the interfaces directly:
+
+```csharp
+// Handle all callbacks
+public class MyServices : IService, IServiceFilters
+{
+    //..
+}
+
+// Or individually, just the callbacks you want
+public class MyServices : IService, IServiceBeforeFilter, IServiceAfterFilter, IServiceErrorFilter
+{
+    //..
+}
+```
+
+### Custom Service Runner
 
 The [IServiceRunner](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IServiceRunner.cs) decouples the execution of your service from the implementation of it which provides an alternative custom hook which lets you add custom behavior to all Services without needing to use a base Service class. 
 
