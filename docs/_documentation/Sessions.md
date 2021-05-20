@@ -42,7 +42,7 @@ The general recommendation is to use typed sessions, which will give you type-sa
 
 ### Auth with Request AuthProviders
 
-Auth Providers that authenticate with each request that implement `IAuthWithRequest` like [JWT](/jwt-authprovider), [API Key](/api-key-authprovider) and `BasicAuthProvider` don't persist Users Sessions in the cache, they're only the `IRequest` and only last for the duration of the Request.
+Auth Providers that authenticate with each request that implement `IAuthWithRequest` like [JWT](/jwt-authprovider), [API Key](/api-key-authprovider) and `BasicAuthProvider` don't persist Users Sessions in the cache, they're only in the `IRequest` and only last for the duration of the Request.
 
 #### Overriding a User Session
 
@@ -69,6 +69,8 @@ public class CustomUserSession : AuthUserSession
 By inheriting [AuthUserSession](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/AuthUserSession.cs) you're able to keep all the users session together in 1 POCO, which allows you to access everything in 1 cache read or write.
 
 > When inheriting from `AuthUserSession` you will need to annotate your properties with `[DataMember]` as AuthUserSession is a DataContract class.
+
+> When using JWT and `UseTokenCookie`, sessions are not saved in cache, instead they are encaptulated in the stateless `ss-tok` cookie. JWT only keeps data essential to authenication, any additional data should be resolved only as needed. Custom claims can be added using `PopulateSessionFilter`/`CreatePayloadFilter`. See [JWT docs](https://docs.servicestack.net/jwt-authprovider#limit-to-essential-info) for more info.
 
 To tell ServiceStack to use your Custom Typed Session instead, register it in the `AuthFeature` plugin:
 
