@@ -235,7 +235,7 @@ To keep the JWT Token small we're only storing the essential User Info above in 
 the Token is restored it will only be partially populated. You can detect when a Session was partially 
 populated from a JWT Token with the new `FromToken` boolean property.
 
-#### Limit JWTs to Essential Info
+#### Limit to Essential Info
 
 Only the above partial information is included as JWTs are typically resent with every request their size has an impact 
 that adds overhead to each HTTP Request where special consideration should be given to limit its payload to only include 
