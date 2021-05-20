@@ -235,6 +235,20 @@ To keep the JWT Token small we're only storing the essential User Info above in 
 the Token is restored it will only be partially populated. You can detect when a Session was partially 
 populated from a JWT Token with the new `FromToken` boolean property.
 
+#### Limit JWTs to Essential Info
+
+Only the above partial information is included as JWTs are typically resent with every request their size has an impact 
+that adds overhead to each HTTP Request where special consideration should be given to limit its payload to only include 
+essential information identifying the User, any authorization info or other info that needs to accessed by most requests, 
+e.g. TenantId for usage in partitioned queries or Display Info shown on each server generated page, etc.
+
+Any other info is recommended to not be included in JWT's, instead they should be sourced from the App's data sources 
+using the identifying user info stored in JWTs when needed. 
+
+You can add any additional properties you want included in JWTs and authenticated User Infos by using the 
+`CreatePayloadFilter` and `PopulateSessionFilter` filters below, be mindful to include only minimal essential
+info and keep the properties names small to reduce the size (and request overhead) of JWTs.
+
 #### Modifying the Payload
 
 Whilst only limited info is embedded in the payload by default, all matching 
