@@ -14,7 +14,7 @@ Specifically, we'll be using `x mix build release-ghr-vanilla` which has GitHub 
 ```
 git clone git@github.com:<your user or org>/DropletApp.git
 cd DropletApp
-x new web DropletApp
+x new web
 x mix build release-ghr-vanilla
 # 'y' to process with writing files from x mix.
 git add -A
@@ -172,7 +172,8 @@ git clone <GitHub URL>
 cd <project name>
 ```
 
-We are going to use `x new web DropletApp` as a command to create a blank ServiceStack application. Run this in your newly cloned repository folder.
+We are going to use `x new web` as a command to create a blank ServiceStack application. Run this in your newly cloned repository folder, the project name will be derived from the repository directory name.
+> If you create the project in a new directory before hand and want to name it, use `x new web <project name>`.
 
 The `x new` command gives us a working ServiceStack project from a template, `x mix` allows us to add additional templated files that work with templated ServiceStack projects.
 
@@ -218,7 +219,7 @@ Once these steps are done, our GitHub Actions will be able to push Docker images
 ```bash
 git clone git@github.com:<your user or org>/WebApp.git # Where "WebApp" is the name of your repository
 cd WebApp
-x new web WebApp
+x new web
 x mix build release-ghr-vanilla
 git add -A
 git commit -m "Add new ServiceStack project with GitHub Action files"
