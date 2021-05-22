@@ -237,9 +237,9 @@ populated from a JWT Token with the new `FromToken` boolean property.
 
 #### Limit to Essential Info
 
-Only the above partial information is included as JWTs are typically resent with every request where their size has an impact 
-that adds overhead to each HTTP Request so special consideration should be given to limit its payload to only include 
-essential information identifying the User, any authorization info or other info that needs to accessed by most requests, 
+Only the above partial information is included in JWT payloads as JWTs are typically resent with every request that
+adds overhead to each HTTP Request so special consideration should be given to limit its payload to only 
+include essential information identifying the User, any authorization info or other info that needs to accessed by most requests, 
 e.g. TenantId for usage in partitioned queries or Display Info shown on each server generated page, etc.
 
 Any other info is recommended to not be included in JWT's, instead they should be sourced from the App's data sources 
