@@ -44,6 +44,12 @@ For example to create a new **Vue Single Page App**, run:
 
     $ x new vue-spa ProjectName
 
+Alternatively you can write new project files directly into an empty repository using the Directory Name as the ProjectName:
+
+    $ git clone https://github.com/<User>/<ProjectName>.git
+    $ cd <ProjectName>
+    $ x new vue-spa
+
 ## Modernized Project Templates
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)
@@ -66,7 +72,7 @@ protected Pages and Services and auth redirect flow to Sign In and Forbidden pag
 
 #### angular-spa
 
-> Angular 9 CLI Bootstrap App
+> Angular 12 CLI Bootstrap App
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)
 
