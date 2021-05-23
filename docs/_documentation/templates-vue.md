@@ -19,6 +19,10 @@ See the documentation in each project for more info on features of each template
 
 Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
+<iframe width="896" height="525" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+> YouTube: [https://youtu.be/4HphWPrKwb0](https://youtu.be/4HphWPrKwb0)
+
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-spa.png)](https://github.com/NetCoreTemplates/vue-spa)
 
  > Live Demo: [vue-spa.web-templates.io](http://vue-spa.web-templates.io)
