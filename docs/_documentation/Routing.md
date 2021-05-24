@@ -438,6 +438,65 @@ public class AppHost : AppHostBase
 }
 ```
 
+### Uploading Files
+
+You can access uploaded files independently of the Request DTO using `Request.Files`. e.g:
+
+```csharp
+public object Post(MyFileUpload request)
+{
+    if (this.Request.Files.Length > 0)
+    {
+        var uploadedFile = base.Request.Files[0];
+        uploadedFile.SaveTo(MyUploadsDirPath.CombineWith(file.FileName));
+    }
+    return HttpResult.Redirect("/");
+}
+```
+
+ServiceStack's [imgur.servicestack.net](http://imgur.servicestack.net) example shows how to access the [byte stream of multiple uploaded files](https://github.com/ServiceStackApps/Imgur/blob/master/src/Imgur/Global.asax.cs#L62), e.g:
+
+```csharp
+public object Post(Upload request)
+{
+    foreach (var uploadedFile in base.Request.Files
+       .Where(uploadedFile => uploadedFile.ContentLength > 0))
+    {
+        using (var ms = new MemoryStream())
+        {
+            uploadedFile.WriteTo(ms);
+            WriteImage(ms);
+        }
+    }
+    return HttpResult.Redirect("/");
+}
+```
+
+### Reading directly from the Request Stream
+
+Instead of registering a custom binder you can skip the serialization of the request DTO, you can add the [IRequiresRequestStream](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequiresRequestStream.cs) interface to directly retrieve the stream without populating the request DTO.
+
+```csharp
+//Request DTO
+public class RawBytes : IRequiresRequestStream
+{
+    /// <summary>
+    /// The raw Http Request Input Stream
+    /// </summary>
+    Stream RequestStream { get; set; }
+}
+```
+
+Which tells ServiceStack to skip trying to deserialize the request so you can read in the raw HTTP Request body yourself, e.g:
+
+```csharp
+public object Post(RawBytes request)
+{
+    byte[] bytes = request.RequestStream.ReadFully();
+    string text = bytes.FromUtf8Bytes(); //if text was sent
+}
+```
+
 ### Pluralize and Singularize
 
 In order to use optimal user-friendly routes in [AutoGen AutoQuery Services](/autogen), an interned version of 
