@@ -70,103 +70,111 @@ of the ServiceStack Features added in this release, namely:
 Most Project Templates are now integrated with Credentials Auth and Facebook, Google and Facebook 3rd Party OAuth providers, complete with
 protected Pages and Services and auth redirect flow to Sign In and Forbidden pages. 
 
+#### vue-spa
+
+> Vue CLI Bootstrap App
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-spa.png)](https://github.com/NetCoreTemplates/vue-spa)
+
+    $ x new vue-spa ProjectName                # .NET 5
+    $ x new vue-spa-netfx ProjectName          # Classic ASP.NET on .NET Framework
+
+#### react-spa
+
+> React Create App CLI Bootstrap App
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-spa.png)](https://github.com/NetCoreTemplates/react-spa)
+
+    $ x new react-spa ProjectName              # .NET 5
+    $ x new react-spa-netfx ProjectName        # Classic ASP.NET on .NET Framework
+
+#### svelte-spa
+
+> Svelte SPA App with Bootstrap
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/svelte-spa.png)](https://github.com/NetCoreTemplates/svelte-spa)
+
+    $ x new /svelte-spa ProjectName            # .NET 5
+
 #### angular-spa
 
 > Angular 12 CLI Bootstrap App
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)](https://github.com/NetCoreTemplates/angular-spa)
 
-    $ x new angular-spa ProjectName            # .NET Core
+    $ x new angular-spa ProjectName            # .NET 5
     $ x new angular-spa-netfx ProjectName      # Classic ASP.NET on .NET Framework
 
 #### mvcauth
 
 > .NET 5.0 MVC Website integrated with ServiceStack Auth
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)](https://github.com/NetCoreTemplates/mvcauth)
 
-    $ x new mvcauth ProjectName                # .NET Core
+    $ x new mvcauth ProjectName                # .NET 5
 
 #### mvcidentity
 
 > .NET 5.0 MVC Website integrated with ServiceStack using MVC Identity Auth
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)](https://github.com/NetCoreTemplates/mvcidentity)
 
-    $ x new mvcidentity ProjectName            # .NET Core
+    $ x new mvcidentity ProjectName            # .NET 5
 
 #### mvcidentityserver
 
 > .NET 5.0 MVC Website integrated with ServiceStack using IdentityServer4 Auth
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)](https://github.com/NetCoreTemplates/mvcidentityserver)
 
-    $ x new mvcidentityserver ProjectName      # .NET Core
-
-#### razor
-
-> ServiceStack.Razor Bootstrap Website
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/razor.png)
-
-    $ x new razor ProjectName                  # .NET Core
-    $ x new razor-corefx ProjectName           # ASP.NET Core on .NET Framework
-    $ x new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
-
-#### react-spa
-
-> React Create App CLI Bootstrap App
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-spa.png)
-
-    $ x new react-spa ProjectName              # .NET Core
-    $ x new react-spa-netfx ProjectName        # Classic ASP.NET on .NET Framework
+    $ x new mvcidentityserver ProjectName      # .NET 5
 
 #### react-lite
 
 > ASP.NET Core Simple + lite (npm-free) React SPA using TypeScript
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-lite.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-lite.png)](https://github.com/NetCoreTemplates/react-lite)
 
-    $ x new react-lite ProjectName             # .NET Core
+    $ x new react-lite ProjectName             # .NET 5
     $ x new react-lite-corefx ProjectName      # ASP.NET Core on .NET Framework
-
-#### script
-
-> #Script Pages Bootstrap Website
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/script.png)
-
-    $ x new script ProjectName                 # .NET Core
-    $ x new script-corefx ProjectName          # ASP.NET Core on .NET Framework
-    $ x new script-netfx ProjectName           # Classic ASP.NET on .NET Framework
-
-#### vue-spa
-
-> Vue CLI Bootstrap App
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-spa.png)
-
-    $ x new vue-spa ProjectName                # .NET Core
-    $ x new vue-spa-netfx ProjectName          # Classic ASP.NET on .NET Framework
 
 #### vue-lite
 
 > ASP.NET Core Simple + lite (npm-free) Vue SPA using TypeScript
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-lite.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-lite.png)](https://github.com/NetCoreTemplates/vue-lite)
 
-    $ x new vue-lite ProjectName               # .NET Core
+    $ x new vue-lite ProjectName               # .NET 5
     $ x new vue-lite-corefx ProjectName        # ASP.NET Core on .NET Framework
 
 #### vue-nuxt
 
 > Nuxt.js SPA App with Bootstrap
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-nuxt.png)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-nuxt.png)](https://github.com/NetCoreTemplates/vue-nuxt)
 
-    $ x new vue-nuxt ProjectName               # .NET Core
+    $ x new vue-nuxt ProjectName               # .NET 5
     $ x new vue-nuxt-netfx ProjectName         # Classic ASP.NET on .NET Framework
+
+#### script
+
+> #Script Pages Bootstrap Website
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/script.png)](https://github.com/NetCoreTemplates/script)
+
+    $ x new script ProjectName                 # .NET 5
+    $ x new script-corefx ProjectName          # ASP.NET Core on .NET Framework
+    $ x new script-netfx ProjectName           # Classic ASP.NET on .NET Framework
+
+#### razor
+
+> ServiceStack.Razor Bootstrap Website
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/razor.png)]((https://github.com/NetCoreTemplates/razor))
+
+    $ x new razor ProjectName                  # .NET 5
+    $ x new razor-corefx ProjectName           # ASP.NET Core on .NET Framework
+    $ x new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
 
 
 ### Create Customized Projects with mix
