@@ -141,7 +141,6 @@ AutoQuery CRUD extends existing [querying functionality in AutoQuery](/autoquery
  - `[AutoMap]` - Map System Input properties to Data Model fields
  - `[AutoDefault]` - Specify to fallback default values when not provided
  - `[AutoIgnore]` - Ignore mapping Request DTO property to Data Model
- - `[AutoApply]` - Apply common generic behavior to AutoQuery CRUD Services
 
 Each of these are covered in more detail in the docs and examples below.
 
