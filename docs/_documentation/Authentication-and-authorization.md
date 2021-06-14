@@ -992,11 +992,11 @@ public class ImpersonateUser
 
 public class MyAdminServices : Service
 {
-    public object Any(ImpersonateUser request)
+    public async Task<object> Any(ImpersonateUser request)
     {
         using (var service = base.ResolveService<AuthenticateService>()) //In Process
         {
-            return service.Post(new Authenticate {
+            return await service.PostAsync(new Authenticate {
                 provider = AuthenticateService.CredentialsProvider,
                 UserName = request.UserName,
                 UseTokenCookie = true, // if using JWT
