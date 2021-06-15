@@ -52,6 +52,10 @@ You can clear your local NuGet packages cache in any OS by running the command-l
 
     $ nuget locals all -clear
 
+If you don't have `nuget` in your Systems `PATH`, it can also be invoked from the `dotnet` tool:
+
+    $ dotnet nuget locals all -clear
+
 If you're using VS.NET you can also clear them from `Tools -> Options -> NuGet Package Manager` and click **Clear All NuGet Cache(s)**:
 
 ![Clear Packages Cache](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/myget/clear-package-cache.png)
