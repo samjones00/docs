@@ -122,7 +122,7 @@ when resolving **Scoped** dependencies it resolves them in a Singleton scope ins
 they instead been resolved from `context.RequestServices.GetService<T>()`.
 
 One way to be able to inject scoped dependencies into your Services is to register the `IHttpContextAccessor`
-where they'll be resolved from ASP.NET Core's Request context:
+where they'll be resolved from ASP.NET Core's RequestServices context:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

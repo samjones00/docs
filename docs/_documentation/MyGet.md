@@ -52,7 +52,7 @@ You can clear your local NuGet packages cache in any OS by running the command-l
 
     $ nuget locals all -clear
 
-If you don't have `nuget` in your Systems `PATH`, it can also be invoked from the `dotnet` tool:
+If `nuget` is not in your Systems `PATH`, it can also be invoked from the `dotnet` tool:
 
     $ dotnet nuget locals all -clear
 
