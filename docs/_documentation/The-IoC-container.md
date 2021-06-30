@@ -114,6 +114,44 @@ container.RegisterAutoWiredType(typeof(MyType), typeof(IMyType), ReuseScope.None
 - `ReuseScope.Request`: Request scope (a instance is used per request lifetime)
 - `ReuseScope.None`: Transient scope (a new instance is created every time)
 
+#### Scoped Dependencies
+
+In ASP.NET Core ServiceStack is pre-configured to use a `NetCoreContainerAdapter` where it will also resolve any 
+dependencies declared in your .NET Core Startup using `app.ApplicationServices`. One side-effect of this is that 
+when resolving **Scoped** dependencies it resolves them in a Singleton scope instead of the Request Scope had 
+they instead been resolved from `context.RequestServices.GetService<T>()`.
+
+One way to be able to inject scoped dependencies into your Services is to register the `IHttpContextAccessor`
+where they'll be resolved from ASP.NET Core's Request context:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+     services.AddHttpContextAccessor();
+     services.AddScoped<IScoped, Scoped>();
+}
+```
+
+Otherwise if you need to resolve Request Scoped .NET Core dependencies you can resolve them from `IRequest`, e.g:
+
+```csharp
+public object Any(MyRequest request)
+{
+    var requestScope = base.Request.TryResolve<IScoped>();
+}
+```
+
+Alternatively you can register the dependencies in ServiceStack's IOC instead, e.g:
+
+```csharp
+public override void Configure(Container container)
+{
+    services.RegisterAutoWiredAs<Scoped,IScoped>()
+        .ReusedWithin(ReuseScope.Request);
+}
+```
+
+Where they'd be resolved within ServiceStack's Request Scope instead of via ASP.NET Core's RequestServices.
 
 ### ASP.NET Core IServiceProvider APIs
 
