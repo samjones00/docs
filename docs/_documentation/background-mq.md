@@ -295,7 +295,7 @@ public class BackgroundAdminServices : Service
 }
 ```
 
-This lets you can call [/mq/stats](https://www.techstacks.io/mq/stats.json) to view a summary of **all messages processed** since the last time the App was restarted and [/mq/status](https://www.techstacks.io/mq/status) to view **all Queues** the Background Service is currently listening to and the **statistics of each individual MQ worker**. 
+This lets you can call [/mq/stats](https://techstacks.io/mq/stats.json) to view a summary of **all messages processed** since the last time the App was restarted and [/mq/status](https://techstacks.io/mq/status) to view **all Queues** the Background Service is currently listening to and the **statistics of each individual MQ worker**. 
 
 Here's a snapshot of what this looks like for TechStacks with 4 threads listening to `SendNotification` messages and 1 thread listening to `SendSystemEmail`:
 

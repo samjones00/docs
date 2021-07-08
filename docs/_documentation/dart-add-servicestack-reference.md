@@ -142,7 +142,7 @@ import 'package:servicestack/web_client.dart';
 import 'dtos.dart';              // Add ServiceStack Reference DTOs
 
 //...
-var client = new JsonWebClient("https://www.techstacks.io");
+var client = new JsonWebClient("https://techstacks.io");
 var response = await client.get(new GetTechnology(slug: "flutter"));
 ```
 
@@ -238,7 +238,7 @@ AngularDart or Dart Web Apps can use `JsonWebClient` by importing `web_client.da
 ```dart
 import 'package:servicestack/web_client.dart';
 
-var client = new JsonWebClient("https://www.techstacks.io");
+var client = new JsonWebClient("https://techstacks.io");
 ```
 
 ### IServiceClient API
@@ -342,7 +342,7 @@ import 'test.dtos.dart';
 import 'dtos.dart';
 
 const TestBaseUrl = "http://test.servicestack.net";
-const TechStacksBaseUrl = "https://www.techstacks.io";
+const TechStacksBaseUrl = "https://techstacks.io";
 
 var testClient = new JsonServiceClient(TestBaseUrl);
 var techstacksClient = new JsonServiceClient(TechStacksBaseUrl);
@@ -632,7 +632,7 @@ class HelloWorldComponent {
   var result = "";
   var imageSrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="; // 1x1 pixel
   static const TestBaseUrl = "http://test.servicestack.net";
-  static const TechStacksBaseUrl = "https://www.techstacks.io";
+  static const TechStacksBaseUrl = "https://techstacks.io";
   var testClient = new JsonWebClient(TestBaseUrl);
   var techstacksClient = new JsonWebClient(TechStacksBaseUrl);
 
@@ -816,7 +816,7 @@ to override any server defaults.
 Date: 2018-05-01 08:09:24
 Version: 5.10
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: https://www.techstacks.io
+BaseUrl: https://techstacks.io
 
 //GlobalNamespace: 
 //AddServiceStackTypes: True

@@ -640,7 +640,7 @@ to override any server defaults.
 Date: 2018-05-01 08:09:43
 Version: 5.10
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: https://www.techstacks.io
+BaseUrl: https://techstacks.io
 
 //GlobalNamespace: 
 //MakePropertiesOptional: True
