@@ -25,6 +25,22 @@ as now the **master** repo of all GitHub projects can be built from a clean chec
 The pre-release packages are still published using the **same version number** so if you get a build error from having a cached stale package
 you'll need to [clear your local packages cache](/myget#redownloading-myget-packages) to download the latest build packages from the CI NuGet packages feed.
 
+### Linking to Source projects
+
+In order to get the best source-based development experience using the latest version of ServiceStack in your Projects, clone the ServiceStack
+Repos you want to use:
+
+ - [ServiceStack/ServiceStack](https://github.com/ServiceStack/ServiceStack)
+ - [ServiceStack/ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text)
+ - [ServiceStack/ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Text)
+ - [ServiceStack/ServiceStack.OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite)
+ - [ServiceStack/ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
+ - [ServiceStack/ServiceStack.Azure](https://github.com/ServiceStack/ServiceStack.Azure)
+
+Then reference the `*.Source.csproj` of each project you want to reference in your solution. 
+
+This approach is used in our [Test.csproj](https://github.com/NetCoreApps/Test/blob/master/src/Test/Test.csproj) allowing us to debug directly into ServiceStack library source code just like any other project reference in our solution.
+
 ### Alternatives Debugging Solutions
 
 [GitLink](https://oren.codes/2015/09/23/enabling-source-code-debugging-for-your-nuget-packages-with-gitlink/)
