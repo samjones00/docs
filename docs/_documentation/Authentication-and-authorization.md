@@ -399,15 +399,16 @@ using ServiceStack.Auth;
 // From v5.10+
 public class CustomCredentialsAuthProvider : CredentialsAuthProvider
 {
-    public virtual async Task<bool> TryAuthenticateAsync(IServiceBase authService, 
+    public override async Task<bool> TryAuthenticateAsync(IServiceBase authService, 
         string userName, string password, CancellationToken token=default)
     {
         //Add here your custom auth logic (database calls etc)
         //Return true if credentials are valid, otherwise false
     }
 
-    public override async Task<object> AuthenticateAsync(IServiceBase authService, 
-        IAuthSession session, Authenticate request, CancellationToken token = default)
+    public override async Task<IHttpResult> OnAuthenticatedAsync(IServiceBase authService, 
+        IAuthSession session, IAuthTokens tokens, Dictionary<string, string> authInfo, 
+        CancellationToken token=default)
     {
         //Fill IAuthSession with data you want to retrieve in the app eg:
         session.FirstName = "some_firstname_from_db";
