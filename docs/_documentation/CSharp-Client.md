@@ -745,6 +745,8 @@ IServiceClient client = new JsonHttpClient("https://techstacks.io");
 var response = await client.GetAsync(new GetTechnology { Slug = "servicestack" })
 ```
 
+> Note: As .NET's HttpClient only supports async APIs it needs to use "sync over async" to implement sync APIs which should be avoided. If your API needs to make sync API calls it should use the `JsonServiceClient` instead.
+
 #### Install
 
 JsonHttpClient can be downloaded from NuGet at:
