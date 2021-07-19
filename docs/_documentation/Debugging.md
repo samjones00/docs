@@ -106,6 +106,8 @@ By-pass protected services using query string:
 
     /my-service?authsecret=secretz
 
+Or if using a Service Client it can be sent in the `authsecret` Cookie or `X-Param-Override-authsecret` HTTP Header.
+
 ## Debug Links
 
 To provide better visibility to the hidden functionality in ServiceStack we've added **Debug Info** links 
