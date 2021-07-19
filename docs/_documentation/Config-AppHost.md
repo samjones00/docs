@@ -3,6 +3,10 @@ slug: host-configuration
 title: AppHost Configuration
 ---
 
+<iframe width="896" height="525" src="https://www.youtube.com/embed/mOpx5mUGoqI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+> YouTube: [https://youtu.be/mOpx5mUGoqI](https://youtu.be/mOpx5mUGoqI)
+
 ### Anatomy of a ServiceStack AppHost
 
 All ServiceStack App's are configured within an AppHost which typically consists of the following elements:
