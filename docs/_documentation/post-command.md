@@ -18,20 +18,20 @@ Or if you had a previous version installed, update with:
 The `info` command lets you describe the features and APIs available on a remote ServiceStack endpoint including the version of ServiceStack 
 it's running, its registered Content Types, Plugins and Auth Providers as well as all its public APIs, their routes and Response Types.
 
-Use `x info` to display usage examples and available options:
+Use `x inspect` to display usage examples and available options:
 
 ```
-Usage: x info <base-url>
-       x info <base-url> <request>
-       x info <base-url> <request> -lang <csharp|python|typescript|dart|java|kotlin|swift|fsharp|vbnet>
-       x info <base-url> <request> -lang <cs|py|ts|da|ja|kt|sw|fs|vb>
+Usage: x inspect <base-url>
+       x inspect <base-url> <request>
+       x inspect <base-url> <request> -lang <csharp|python|typescript|dart|java|kotlin|swift|fsharp|vbnet>
+       x inspect <base-url> <request> -lang <cs|py|ts|da|ja|kt|sw|fs|vb>
 ```
 
 ### info <baseurl>
 
 This this command to display high-level information about the endpoint in a human-friendly format, e.g:
 
-    $ x info https://techstacks.io
+    $ x inspect https://techstacks.io
 
 Output:
 
@@ -159,7 +159,7 @@ Routes with an associated HTTP Verb, e.g. `GET:/technology` only allows access w
 
 Adding an API Name to the command will let you describe a specific API Endpoint to learn more about its features, restrictions & capabilities, e.g:
 
-    $ x info https://techstacks.io LockTechStack
+    $ x inspect https://techstacks.io LockTechStack
 
 Which will output the APIs description, any tags it was annotated with, its defined routes as well as any Auth Requirements along with all the 
 available Auth Providers registered, e.g:
@@ -241,13 +241,13 @@ This same simplified usage scenario is also available in each of [Add ServiceSta
 Where the `-lang` option can be used to change what language to return the DTO Types in:
 
 ```
-Usage: x info <base-url> <request> -lang <csharp|python|typescript|dart|java|kotlin|swift|fsharp|vbnet>
-       x info <base-url> <request> -lang <cs|py|ts|da|ja|kt|sw|fs|vb>
+Usage: x inspect <base-url> <request> -lang <csharp|python|typescript|dart|java|kotlin|swift|fsharp|vbnet>
+       x inspect <base-url> <request> -lang <cs|py|ts|da|ja|kt|sw|fs|vb>
 ```
 
 For example to view the DTOs in Swift run:
 
-    $ x info https://techstacks.io LockTechStack -lang swift
+    $ x inspect https://techstacks.io LockTechStack -lang swift
 
 Output:
 
@@ -372,6 +372,22 @@ Content-Type: application/json; charset=utf-8
 ### Invoking APIs with Arguments
 
 To invoke an API with arguments we can use a JavaScript Object Literal which allows a wrist-friendly syntax for invoking any API including rich [AutoQuery APIs](https://servicestack.net/autoquery) which thanks to its human friendly output allows quickly inferring Query result-sets from a glance, e.g:
+
+#### Quote Arguments in Unix Shells
+
+Since JavaScript operators have special meaning in Unix shells you'd need to wrap the object literal in double quotes to have the shell pass it verbatim to the command tool without evaluating it, e.g:
+
+Windows / Linux / macOS:
+
+    $ x send https://techstacks.io FindTechnologies "{Ids:[1,2,6],VendorName:'Google',Take:1}"
+
+Windows Only:
+
+    $ x send https://techstacks.io FindTechnologies {Ids:[1,2,6],VendorName:'Google',Take:1}
+
+So requests that doesn't use any special batch characters can be sent with or without quotes. An alternative way to by pass the shell is to redirect a JSON Request body instead, e.g:
+
+    $ x send https://techstacks.io FindTechnologies < FindTechnologies.json
 
 #### Last 5 Recorded Dates of Vaccinated people in Alaska
 
@@ -518,12 +534,6 @@ existingLogs:
 ]
 ```
 
-#### Can use URL Encoding to escape characters
-
-The Request Arguments can be URL Encoded should you need to escape any special shell characters used, e.g:
-
-    $ x send https://covid-vac-watch.netcore.io QueryVaccinationRates %7BLocation%3A'New%20Jersey'%7D
-
 ## Authentication
 
 To support making Authenticated Requests most of ServiceStack's built-in Authentication Options are supported from the options below:
@@ -607,7 +617,7 @@ When the `JwtAuthProvider` is configured a successful Authentication Response wi
 **Linux / macOS:**
 
     $ TOKEN=...
-    $ x send -token $TOKEN http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -token $TOKEN http://test.servicestack.net HelloSecure "{name:'World'}"
 
 
 Output:
