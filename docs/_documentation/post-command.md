@@ -13,10 +13,10 @@ Or if you had a previous version installed, update with:
 
     $ dotnet tool update -g x
 
-## info command
+## inspect command
 
-The `info` command lets you describe the features and APIs available on a remote ServiceStack endpoint including the version of ServiceStack 
-it's running, its registered Content Types, Plugins and Auth Providers as well as all its public APIs, their routes and Response Types.
+The `inspect` command lets you inspect features and APIs available on a remote ServiceStack endpoint including the version of ServiceStack 
+running, the App's registered Content Types, Plugins and Auth Providers as well as its public APIs, their routes and Response Types.
 
 Use `x inspect` to display usage examples and available options:
 
@@ -27,7 +27,7 @@ Usage: x inspect <base-url>
        x inspect <base-url> <request> -lang <cs|py|ts|da|ja|kt|sw|fs|vb>
 ```
 
-### info <baseurl>
+### inspect <baseurl>
 
 This this command to display high-level information about the endpoint in a human-friendly format, e.g:
 
