@@ -27,7 +27,7 @@ Usage: x inspect <base-url>
        x inspect <base-url> <request> -lang <cs|py|ts|da|ja|kt|sw|fs|vb>
 ```
 
-### inspect <baseurl>
+### inspect ServiceStack App
 
 This this command to display high-level information about the endpoint in a human-friendly format, e.g:
 
@@ -155,7 +155,7 @@ Auth Providers:     twitter (oauth), github (oauth), jwt (Bearer), servicestack 
 
 Routes with an associated HTTP Verb, e.g. `GET:/technology` only allows access with that specific verb, if unspecified any verb can be used.
 
-### info <baseurl> <request>
+### inspect API
 
 Adding an API Name to the command will let you describe a specific API Endpoint to learn more about its features, restrictions & capabilities, e.g:
 
