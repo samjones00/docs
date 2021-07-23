@@ -708,7 +708,7 @@ features that we're not able to support, these include:
 Whilst we lost our beloved **ServiceStack.Razor** support we developed a completely new implementation backed 
 by .NET Core MVC where we were able to implement most of ServiceStack.Razor user-facing features
 so porting should still be relatively straightforward with some minor syntax and configuration changes needed. 
-This new implementation is available in **ServiceStack.Mvc.Core** package and can be seen in action in 
+This new implementation is available in **ServiceStack.Mvc** package and can be seen in action in 
 the [Razor Rockstars .NET Core demo](http://razor.netcore.io).
 
 ### AppSelfHostBase Source-compatible Self-Host
