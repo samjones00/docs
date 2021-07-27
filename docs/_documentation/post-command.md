@@ -392,17 +392,16 @@ Output:
 
 ```
 offset:   0
-
-total:    183
+total:    195
 
 results:
-| # | id  | date                        | peopleVaccinated |
-|---|-----|-----------------------------|------------------|
-| 1 | 366 | 2021-07-13T00:00:00.0000000 | 369207           |
-| 2 | 365 | 2021-07-12T00:00:00.0000000 | 369011           |
-| 3 | 364 | 2021-07-11T00:00:00.0000000 | 368702           |
-| 4 | 363 | 2021-07-10T00:00:00.0000000 | 368156           |
-| 5 | 362 | 2021-07-09T00:00:00.0000000 | 367466           |
+| # | id    | date                        | peopleVaccinated |
+|---|-------|-----------------------------|------------------|
+| 1 | 12308 | 2021-07-25T00:00:00.0000000 |           372940 |
+| 2 | 12307 | 2021-07-24T00:00:00.0000000 |           372902 |
+| 3 | 12306 | 2021-07-23T00:00:00.0000000 |           372132 |
+| 4 | 12305 | 2021-07-22T00:00:00.0000000 |           371514 |
+| 5 | 12304 | 2021-07-21T00:00:00.0000000 |           371062 |
 ```
 
 #### Multi conditional TechStacks query
@@ -413,22 +412,21 @@ Output:
 
 ```
 offset:   0
-
 total:    18
 
 results:
 | #  | id | name                   | vendorName   | tier                   | viewCount | favCount |
 |----|----|------------------------|--------------|------------------------|-----------|----------|
-| 1  | 1  | ServiceStack           | ServiceStack | Server                 | 4204      | 5        |
-| 2  | 2  | PostgreSQL             | PostgreSQL   | Data                   | 2291      | 4        |
-| 3  | 6  | AWS RDS                | Amazon       | Data                   | 625       | 1        |
-| 4  | 7  | AngularJS              | Google       | Client                 | 5012      | 1        |
-| 5  | 13 | Google Closure Library | Google       | Client                 | 390       | 1        |
-| 6  | 15 | Dart                   | Google       | ProgrammingLanguage    | 320       | 2        |
-| 7  | 18 | Go                     | Google       | ProgrammingLanguage    | 3865      | 2        |
-| 8  | 57 | LevelDB                | Google       | Data                   | 325       | 1        |
-| 9  | 61 | Firebase               | Google       | Data                   | 722       | 1        |
-| 10 | 72 | Google Cloud Platform  | Google       | HardwareInfrastructure | 269       | 1        |
+| 1  |  1 | ServiceStack           | ServiceStack | Server                 |      4204 |        5 |
+| 2  |  2 | PostgreSQL             | PostgreSQL   | Data                   |      2291 |        4 |
+| 3  |  6 | AWS RDS                | Amazon       | Data                   |       625 |        1 |
+| 4  |  7 | AngularJS              | Google       | Client                 |      5012 |        1 |
+| 5  | 13 | Google Closure Library | Google       | Client                 |       390 |        1 |
+| 6  | 15 | Dart                   | Google       | ProgrammingLanguage    |       320 |        2 |
+| 7  | 18 | Go                     | Google       | ProgrammingLanguage    |      3865 |        2 |
+| 8  | 57 | LevelDB                | Google       | Data                   |       325 |        1 |
+| 9  | 61 | Firebase               | Google       | Data                   |       722 |        1 |
+| 10 | 72 | Google Cloud Platform  | Google       | HardwareInfrastructure |       269 |        1 |
 ```
 
 ### Invoking Complex APIs
@@ -497,36 +495,49 @@ Content-Type: application/json; charset=utf-8
 
 For requests that get significantly large it may be more convenient to maintain the request body in a separate file that you can pipe into the command instead, e.g:
 
-    $ x send http://test.servicestack.net StoreLogs < StoreLogs.json
+    $ x send http://test.servicestack.net StoreLogs -raw < StoreLogs.json
 
-Which when the `-raw` option is not specified will display the response in a more human-friendly format:
+Output:
+```
+POST /json/reply/StoreLogs HTTP/1.1
+Host: test.servicestack.net
+Accept: application/json
+Content-Type: application/json
+Content-Length: 157
+
+{"Loggers":[{"Id":786,"Devices":[{"Id":5955,"Type":"Panel","TimeStamp":1,"Channels":[{"Name":"Temperature","Value":"58"},{"Name":"Status","Value":"On"}]}]}]}
+
+Server: nginx/1.18.0, (Ubuntu)
+Date: Tue, 27 Jul 2021 10:41:42 GMT
+Transfer-Encoding: chunked
+Connection: keep-alive
+Set-Cookie: ss-id=dWGE5A2e5RPzauEYJNDz; path=/; samesite=strict; httponly, ss-pid=5i2e37Mb0VUlgWKuyKTk; expires=Sat, 27 Jul 2041 10:41:42 GMT; path=/; samesite=strict; httponly
+Vary: Accept
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Headers: Content-Type, Allow, Authorization, X-Args
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
+X-Powered-By: ServiceStack/5.111 NetCore/Linux
+Content-Type: application/json; charset=utf-8
+
+{"existingLogs":[{"id":786,"devices":[{"id":5955,"type":"Panel","timeStamp":1,"channels":[{"name":"Temperature","value":"58"},{"name":"Status","value":"On"}]}]}]}
+```
+
+Or remove the `-raw` option to display the response in a more human-friendly readable format:
 
 ```
-existingLogs:
-[
-        {
-                id: 786,
-                devices:
-                [
-                        {
-                                id: 5955,
-                                type: Panel,
-                                timeStamp: 1,
-                                channels:
-                                [
-                                        {
-                                                name: Temperature,
-                                                value: 58
-                                        },
-                                        {
-                                                name: Status,
-                                                value: On
-                                        }
-                                ]
-                        }
-                ]
-        }
-]
+[existingLogs]
+id:       786
+
+[devices]
+id:         5955
+type:       Panel
+timeStamp:  1
+
+channels:
+| # | name        | value |
+|---|-------------|-------|
+| 1 | Temperature | 58    |
+| 2 | Status      | On    |
 ```
 
 ## Authentication
@@ -554,21 +565,15 @@ Which if successful will return a populated human-friendly `AuthenticateResponse
 
 ```
 userId:          2
-
-sessionId:       t8MRnQdrRnAGnXiAqm3l
-
+sessionId:       QfJLhmd8XQxeuAIqvoCY
 userName:        admin
-
 displayName:     admin DisplayName
-
-bearerToken:     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjNuLyJ9.eyJzdWIiOjIsImlhdCI6MTYyNjg0OTEzMCwiZXhwIjoxNjI4MDU4NzMwLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJGaXJzdCBhZG1pbiIsImZhbWlseV9uYW1lIjoiTGFzdCBhZG1pbiIsIm5hbWUiOiJhZG1pbiBEaXNwbGF5TmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwicm9sZXMiOlsiQWRtaW4iXSwianRpIjo5fQ.uLp_QkmBo6J6TlXiUPl0Iq6TkTbF0xzncbUI1HmDro4
-
-refreshToken:    eyJ0eXAiOiJKV1RSIiwiYWxnIjoiSFMyNTYiLCJraWQiOiIzbi8ifQ.eyJzdWIiOjIsImlhdCI6MTYyNjg0OTEzMCwiZXhwIjoxNjU4Mzg1MTMwLCJqdGkiOi05fQ.enqGH6jLudY2-6arIP4jGLU3YiySaYpExtJg4oONRWw
-
+bearerToken:     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjNuLyJ9.eyJzdWIiOjIsImlhdCI6MTYyNzM4MjY5NiwiZXhwIjoxNjI4NTkyMjk2LCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJGaXJzdCBhZG1pbiIsImZhbWlseV9uYW1lIjoiTGFzdCBhZG1pbiIsIm5hbWUiOiJhZG1pbiBEaXNwbGF5TmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwicm9sZXMiOlsiQWRtaW4iXSwianRpIjozfQ.j80f1KYsNRDhygO817NSaqYg7DIR1ptLZQUB1mZd_R8
+refreshToken:    eyJ0eXAiOiJKV1RSIiwiYWxnIjoiSFMyNTYiLCJraWQiOiIzbi8ifQ.eyJzdWIiOjIsImlhdCI6MTYyNzM4MjY5NiwiZXhwIjoxNjU4OTE4Njk2LCJqdGkiOi0zfQ.nkwDYvmB5_QHm6hmVv8Thfl2Iz8W_LUDf6bspb-Nu2c
 profileUrl:      data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3E .path%7B%7D %3C/style%3E %3Cg id='male-svg'%3E%3Cpath fill='%23556080' d='M1 92.84V84.14C1 84.14 2.38 78.81 8.81 77.16C8.81 77.16 19.16 73.37 27.26 69.85C31.46 68.02 32.36 66.93 36.59 65.06C36.59 65.06 37.03 62.9 36.87 61.6H40.18C40.18 61.6 40.93 62.05 40.18 56.94C40.18 56.94 35.63 55.78 35.45 47.66C35.45 47.66 32.41 48.68 32.22 43.76C32.1 40.42 29.52 37.52 33.23 35.12L31.35 30.02C31.35 30.02 28.08 9.51 38.95 12.54C34.36 7.06 64.93 1.59 66.91 18.96C66.91 18.96 68.33 28.35 66.91 34.77C66.91 34.77 71.38 34.25 68.39 42.84C68.39 42.84 66.75 49.01 64.23 47.62C64.23 47.62 64.65 55.43 60.68 56.76C60.68 56.76 60.96 60.92 60.96 61.2L64.74 61.76C64.74 61.76 64.17 65.16 64.84 65.54C64.84 65.54 69.32 68.61 74.66 69.98C84.96 72.62 97.96 77.16 97.96 81.13C97.96 81.13 99 86.42 99 92.85L1 92.84Z'/%3E%3C/g%3E%3C/svg%3E
 
-roles:
-  Admin
+[roles]
+Admin
 ```
 
 ### Authentication -cookies
@@ -639,31 +644,22 @@ Output:
 ```
 [JWT Header]
 typ:  JWT
-
 alg:  HS256
-
 kid:  3n/
 
 
 [JWT Payload]
 sub:                 2
-
 iat:                 1626849130 (Wed, 21 Jul 2021 06:32:10 GMT)
-
 exp:                 1628058730 (Wed, 04 Aug 2021 06:32:10 GMT)
-
 email:               admin@gmail.com
-
 given_name:          First admin
-
 family_name:         Last admin
-
 name:                admin DisplayName
-
 preferred_username:  admin
 
-roles:
-  Admin
+[roles]
+Admin
 
 jti:                 9
 ```
@@ -742,15 +738,11 @@ Output:
 
 ```
 userId:          1
-
-sessionId:       kv5BfYihTkjoFB9QTraO
-
+sessionId:       FoCHJK9Apl9mrcaq3ceE
 userName:        admin@email.com
-
 displayName:     Admin User
-
 profileUrl:      data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3E .path%7B%7D %3C/style%3E %3Cg id='male-svg'%3E%3Cpath fill='%23556080' d='M1 92.84V84.14C1 84.14 2.38 78.81 8.81 77.16C8.81 77.16 19.16 73.37 27.26 69.85C31.46 68.02 32.36 66.93 36.59 65.06C36.59 65.06 37.03 62.9 36.87 61.6H40.18C40.18 61.6 40.93 62.05 40.18 56.94C40.18 56.94 35.63 55.78 35.45 47.66C35.45 47.66 32.41 48.68 32.22 43.76C32.1 40.42 29.52 37.52 33.23 35.12L31.35 30.02C31.35 30.02 28.08 9.51 38.95 12.54C34.36 7.06 64.93 1.59 66.91 18.96C66.91 18.96 68.33 28.35 66.91 34.77C66.91 34.77 71.38 34.25 68.39 42.84C68.39 42.84 66.75 49.01 64.23 47.62C64.23 47.62 64.65 55.43 60.68 56.76C60.68 56.76 60.96 60.92 60.96 61.2L64.74 61.76C64.74 61.76 64.17 65.16 64.84 65.54C64.84 65.54 69.32 68.61 74.66 69.98C84.96 72.62 97.96 77.16 97.96 81.13C97.96 81.13 99 86.42 99 92.85L1 92.84Z'/%3E%3C/g%3E%3C/svg%3E
 
-roles:
-  Admin
+[roles]
+Admin
 ```
