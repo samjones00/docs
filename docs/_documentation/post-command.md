@@ -185,28 +185,23 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using ServiceStack;
 using ServiceStack.DataAnnotations;
-using MyApp;
 
 
-namespace MyApp
+public partial class LockStackResponse
 {
+}
 
-    public partial class LockStackResponse
-    {
-    }
+///<summary>
+///Limit updates to TechStack to Owner or Admin users
+///</summary>
+[Route("/admin/techstacks/{TechnologyStackId}/lock")]
+public partial class LockTechStack
+    : IReturn<LockStackResponse>, IPut
+{
+    [Validate("GreaterThan(0)")]
+    public virtual long TechnologyStackId { get; set; }
 
-    ///<summary>
-    ///Limit updates to TechStack to Owner or Admin users
-    ///</summary>
-    [Route("/admin/techstacks/{TechnologyStackId}/lock")]
-    public partial class LockTechStack
-        : IReturn<LockStackResponse>, IPut
-    {
-        [Validate("GreaterThan(0)")]
-        public virtual long TechnologyStackId { get; set; }
-
-        public virtual bool IsLocked { get; set; }
-    }
+    public virtual bool IsLocked { get; set; }
 }
 ```
 
