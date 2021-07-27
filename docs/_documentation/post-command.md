@@ -522,8 +522,11 @@ Content-Type: application/json; charset=utf-8
 {"existingLogs":[{"id":786,"devices":[{"id":5955,"type":"Panel","timeStamp":1,"channels":[{"name":"Temperature","value":"58"},{"name":"Status","value":"On"}]}]}]}
 ```
 
-Or remove the `-raw` option to display the response in a more human-friendly readable format:
+Remove the `-raw` option to display the response in a more human-friendly readable format:
 
+    $ x send http://test.servicestack.net StoreLogs < StoreLogs.json
+
+Output:
 ```
 [existingLogs]
 id:       786
