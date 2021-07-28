@@ -352,8 +352,9 @@ GET /json/reply/GetLocations HTTP/1.1
 Host: covid-vac-watch.netcore.io
 Accept: application/json
 
+HTTP/1.1 200 OK
 Server: nginx/1.19.3
-Date: Wed, 21 Jul 2021 05:53:00 GMT
+Date: Wed, 28 Jul 2021 07:39:34 GMT
 Transfer-Encoding: chunked
 Connection: keep-alive
 Vary: Accept
@@ -444,11 +445,12 @@ GET /json/reply/StoreLogs?Loggers=%5b%7bId%3a786,Devices%3a%5b%7bId%3a5955,Type%
 Host: test.servicestack.net
 Accept: application/json
 
+HTTP/1.1 200 OK
 Server: nginx/1.18.0, (Ubuntu)
-Date: Wed, 21 Jul 2021 05:53:40 GMT
+Date: Wed, 28 Jul 2021 07:40:26 GMT
 Transfer-Encoding: chunked
 Connection: keep-alive
-Set-Cookie: ss-id=EsNs9YviGt2SNecRa4wR; path=/; samesite=strict; httponly, ss-pid=CvFUcYYDGs2RVbhKqecv; expires=Sun, 21 Jul 2041 05:53:40 GMT; path=/; samesite=strict; httponly
+Set-Cookie: ss-id=nt6W8DDHatjwf0kToEUa; path=/; samesite=strict; httponly, ss-pid=GsP8tmccacQn0fH8vOAD; expires=Sun, 28 Jul 2041 07:40:26 GMT; path=/; samesite=strict; httponly
 Vary: Accept
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Headers: Content-Type, Allow, Authorization, X-Args
@@ -476,11 +478,12 @@ Content-Length: 157
 
 {"Loggers":[{"Id":786,"Devices":[{"Id":5955,"Type":"Panel","TimeStamp":1,"Channels":[{"Name":"Temperature","Value":"58"},{"Name":"Status","Value":"On"}]}]}]}
 
+HTTP/1.1 200 OK
 Server: nginx/1.18.0, (Ubuntu)
-Date: Wed, 21 Jul 2021 06:00:58 GMT
+Date: Wed, 28 Jul 2021 07:40:54 GMT
 Transfer-Encoding: chunked
 Connection: keep-alive
-Set-Cookie: ss-id=II9YVs4gh0JNUSkRLLpT; path=/; samesite=strict; httponly, ss-pid=o4wFLOJEwlZYIPGVwCgI; expires=Sun, 21 Jul 2041 06:00:58 GMT; path=/; samesite=strict; httponly
+Set-Cookie: ss-id=X1BmXXrr9vr5DIpAoxFM; path=/; samesite=strict; httponly, ss-pid=J8kDBiJ37WEOnywRdGMS; expires=Sun, 28 Jul 2041 07:40:54 GMT; path=/; samesite=strict; httponly
 Vary: Accept
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Headers: Content-Type, Allow, Authorization, X-Args
@@ -507,11 +510,12 @@ Content-Length: 157
 
 {"Loggers":[{"Id":786,"Devices":[{"Id":5955,"Type":"Panel","TimeStamp":1,"Channels":[{"Name":"Temperature","Value":"58"},{"Name":"Status","Value":"On"}]}]}]}
 
+HTTP/1.1 200 OK
 Server: nginx/1.18.0, (Ubuntu)
-Date: Tue, 27 Jul 2021 10:41:42 GMT
+Date: Wed, 28 Jul 2021 07:41:38 GMT
 Transfer-Encoding: chunked
 Connection: keep-alive
-Set-Cookie: ss-id=dWGE5A2e5RPzauEYJNDz; path=/; samesite=strict; httponly, ss-pid=5i2e37Mb0VUlgWKuyKTk; expires=Sat, 27 Jul 2041 10:41:42 GMT; path=/; samesite=strict; httponly
+Set-Cookie: ss-id=kScY3mYF06e3iuPaCnaD; path=/; samesite=strict; httponly, ss-pid=hpbimtl9dIWA1IbJPMXN; expires=Sun, 28 Jul 2041 07:41:38 GMT; path=/; samesite=strict; httponly
 Vary: Accept
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Headers: Content-Type, Allow, Authorization, X-Args
