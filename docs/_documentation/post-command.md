@@ -309,6 +309,16 @@ Options:
 
 HTTP APIs can be invoked with a specific HTTP Verb or **send** which will use the APIs preferred HTTP Method when it can be inferred e.g. Request DTO is annotated with `IVerb` interface marker or its implementation uses a HTTP Verb method name instead of `Any()`.
 
+### UI for generating post commands
+
+Whilst the syntax for invoking APIs from the command line should be fairly intuitive, you may benefit from using the UI in [apps.servicestack.net](https://apps.servicestack.net) to craft the initial API call that can be copied by clicking the copy icon from **Invoke API from command line** command:
+
+[![](../images/apps/post-command-ui.png)](https://apps.servicestack.net/#techstacks.io/csharp/AutoQuery/FindTechnologies(Ids:[1,2,3],VendorName:Google,Take:5,Fields:%22Id,%20Name,%20VendorName,%20Slug,%20Tier,%20FavCount,%20ViewCount%22))
+
+This is quick way for using a UI to bootstrap the initial post command that you can continue iterating on and invoking locally.
+
+> Note: [apps.servicestack.net](https://apps.servicestack.net) requires your remote ServiceStack App is accessible from the Internet
+
 ### Invoking APIs without arguments
 
 APIs that don't require arguments can be invoked with just their names, e.g. we can invoke the [GetLocations](https://covid-vac-watch.netcore.io/json/metadata?op=GetLocations)
