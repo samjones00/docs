@@ -43,18 +43,59 @@ Once installed you can launch JupyterLab's UI from a directory containing your N
 
 ### Jupyter Notebook
 
-
+The original Jupyter Notebook Web Application offering a simplified single document UI:
 
 ![](../images/apps/jupyter-notebook-preview.png)
 
+Install with Python's pip package manager:
+
+    $ pip install notebook
+
+Then launch from any directory containing Notebooks to open them from the Jupyter Notebook App:
+
+    $ jupyter notebook
 
 ### PyCharm
 
+JetBrains likely offers the most functional and capable IDEs for authoring and viewing Notebooks whose [Notebook support](https://www.jetbrains.com/help/pycharm/jupyter-notebook-support.html) is built-in to their leading Python IDE - [PyCharm](https://www.jetbrains.com/pycharm/).
+
+In addition to all the source code assistance and analysis you can expect from JetBrains smart IDEs to assist in writing Python, it also supports debugging as well as multiple edit and preview modes. 
+
 ![](../images/apps/jupyter-pycharm.png)
+
+PyCharm is ideal for Python programmers and maintaining Notebooks as part of a Python project where it takes care of creating a Python virtual environment for the project, installing required local dependencies and executing Notebooks within the projects venv context.
+
+#### JetBrains DataSpell
+
+Jupyter's popularity with Data Scientists has prompted JetBrains to develop a [stand-alone DataSpell IDE](https://www.jetbrains.com/dataspell/) optimized for working with Data with a more refined lightweight UX for working with Notebooks:
+
+![](../images/apps/jupyter-dataspell.png)
 
 ### VS Code
 
+Visual Studio Code is another IDE popular with Python Developers that has their own [built-in UX for Jupyter Notebooks](https://code.visualstudio.com/docs/datascience/jupyter-notebooks):
+
 ![](../images/apps/jupyter-vscode.png)
+
+It provides a nicer UX over the traditional Notebook UX with niceties like intelli-sense and variable explorer and is better at opening stand-alone Notebooks outside the context of a Python project where its able to make use of pip's global OS packages.
+
+Whilst its Python notebook support is still the most complete, it's the optimal UX for working with **C# and F# Notebooks** with its [.NET Interactive Notebooks](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode) extension, currently in Preview that's maintained as part of the [github.com/dotnet/interactive](https://github.com/dotnet/interactive) project.
+
+## Cloud Notebook Apps
+
+The proliferation of Notebooks as an interactive computing platform facilitating the transfer of knowledge popular in machine learning, data analysis and education has spawned a number of cloud services that hosts...
+
+### binder
+
+https://mybinder.org/v2/gh/ServiceStack/jupyter-notebooks/HEAD
+
+#### covid-vac
+
+![](../images/apps/jupyterlab-mybinder-covid-vac.png)
+
+#### TechStacks
+
+![](../images/apps/jupyterlab-mybinder-techstacks.png)
 
 
 ### Google Colab
@@ -69,4 +110,3 @@ Once installed you can launch JupyterLab's UI from a directory containing your N
 
 
 ![](../images/apps/jupyter-colab-FindTechnologies.png)
-![](../images/apps/jupyterlab-mybinder-covid-vac.png)
