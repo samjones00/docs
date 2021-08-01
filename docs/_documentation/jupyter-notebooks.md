@@ -127,6 +127,8 @@ The beauty of Notebook's retaining their executed outputs within the same docume
 
 [![](../images/apps/apps-languages.png)](https://apps.servicestack.net)
 
+As an example here's the same API in a C# and F# Jupyter Notebook instead:
+
 ### C# TechStacks FindTechnologies Notebook
 
 [/csharp/techstacks.io-FindTechnologies.ipynb](https://github.com/ServiceStack/jupyter-notebooks/blob/main/csharp/techstacks.io-FindTechnologies.ipynb)
