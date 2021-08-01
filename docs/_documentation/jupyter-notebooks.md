@@ -3,7 +3,7 @@ slug: jupyter-notebooks
 title: Jupyter Notebooks
 ---
 
-![](../images/apps/jupyter-splash.png)
+[![](../images/apps/jupyter-splash.png)](https://jupyter.org)
 
 Initially forged from the [Interactive Python](https://ipython.org) project, [Jupyter](https://jupyter.org) is an exciting initiative to support an open standards, language agnostic interactive computing platform where it provides the ideal integrated exploratory programming environment for data science and scientific computing as represented by its 3 core languages for these domains in [Julia](https://julialang.org), [Python](https://python.org) and [R](https://www.r-project.org) (Ju-Py-R).
 
@@ -123,11 +123,13 @@ When executed in either a Binder or self-hosted **notebook** web app it will ren
 
 Thanks to executed Notebooks retaining their executed outputs and GitHub's [built-in support of rendering Jupyter Notebooks](https://docs.github.com/en/github/managing-files-in-a-repository/working-with-non-code-files/working-with-jupyter-notebook-files-on-github), we can also view pre-rendered Notebooks directly in GitHub, e.g. you can view the pre-rendered output of the above Python Notebook directly on GitHub at: [techstacks.io-FindTechnologies.ipynb](https://github.com/ServiceStack/jupyter-notebooks/blob/main/techstacks.io-FindTechnologies.ipynb).
 
-The beauty of Notebook's retaining their executed outputs within the same document is that it makes it possible to share rendered Notebooks on GitHub in different languages. As of this writing [apps.servicestack.net](https://apps.servicestack.net) lets you download Notebooks for any publicly accessible ServiceStack API in **C#**, **Python** and **F#**:
+The beauty of Notebook's retaining their executed outputs within the same document is that it makes it possible to share rendered Notebooks on GitHub written in different languages. 
+
+Which we can demonstrate using [apps.servicestack.net](https://apps.servicestack.net) which lets you download Notebooks for any publicly accessible ServiceStack API in **C#**, **Python** and **F#**:
 
 [![](../images/apps/apps-languages.png)](https://apps.servicestack.net)
 
-As an example here's the same API in a C# and F# Jupyter Notebook instead:
+Then use the languages tab to download the same API in a C# and F# Jupyter Notebook instead:
 
 ### C# TechStacks FindTechnologies Notebook
 
@@ -143,14 +145,28 @@ As an example here's the same API in a C# and F# Jupyter Notebook instead:
 
 ### Google Colab
 
- - Share by Google Drive
- - Export to GitHub
+Google Colab is another **FREE** hosted Jupyter notebook service that can open Notebooks stored in Google Drive or loaded from GitHub and can be shared just as you would with Google Docs or Sheets, which requires no install to use, while providing free access to computing resources including GPUs where it's executed in a virtual machine private to your account. 
 
+Built into GDrive, you can open any `.ipynb` Jupyter Notebooks with Google's Colab service making it a great way to share private Notebooks between users using Google Drive.
 
-![](../images/apps/jupyter-sagemaker.png)
+Whilst you can upload your Python Jupyter Notebooks manually, the quickest way to open your ServiceStack API in Colab is to Save it directly in GDrive with the **Save** button:
 
-![](../images/apps/jupyter-datalore.png)
+![](../images/apps/apps-python-notebook-gdrive.png)
 
+Then click on the saved `.ipynb` Notebook to open it in Colab where like other Notebook services will let you see the last pre-executed rendered output. Running a cell with the **Play** icon or `CTRL+Enter` will execute the Notebook in a private virtual machine to update the captured outputs with live results:
 
 ![](../images/apps/jupyter-colab-FindTechnologies.png)
 
+## JetBrains Datalore
+
+[Datalore](https://datalore.jetbrains.com) is JetBrains premium cloud hosted service for hosting and running Jupyter Notebooks within a shared team environment. It's online Notebook App features PyCharm's code insights and autocompletion, real-time collaborative editing and also includes built-in Terminal support for running remote commands and `.py` scripts:
+
+![](../images/apps/jupyter-datalore.png)
+
+## Amazon SageMaker
+
+[Amazon SageMaker](https://aws.amazon.com/sagemaker/) is Amazon's comprehensive ML service that helps data scientists and developers to prepare, build, train, and deploy high-quality machine learning (ML) models.
+
+Included as part of their offering is [Amazon SageMaker Notebook Instances](https://docs.aws.amazon.com/sagemaker/latest/dg/nbi.html) which is a machine learning (ML) compute instance running the Jupyter Notebook App. SageMaker manages creating the instance and related resources. Use Jupyter notebooks in your notebook instance to prepare and process data, write code to train models, deploy models to SageMaker hosting, and test or validate your models.
+
+![](../images/apps/jupyter-sagemaker.png)
