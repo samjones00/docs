@@ -15,7 +15,11 @@ At the core of Jupyter is the "Notebook" (Nb) - an open JSON document format tha
 
 ### Create Python, C# and F# Jupyter Notebooks for any ServiceStack API
 
-By leveraging [Add ServiceStack Reference's](/add-servicestack-reference) rich, typed ecosystem we're able to tap into the exciting interactive world of Jupyter Notebooks where any of your API consumers will easily be able to generate custom-tailored notebooks for any of your APIs using a Simple UI or command-line tools:
+By leveraging [Add ServiceStack Reference's](/add-servicestack-reference) rich, typed ecosystem we're able to tap into the exciting interactive world of Jupyter Notebooks where ServiceStack API consumers are now able to generate custom-tailored notebooks for ServiceStack API using a [Simple UI](https://apps.servicestack.net) or generated from a single command-line if preferred.
+
+Generating Python Notebooks with [Python ServiceStack Reference](/python-add-servicestack-reference) will let you get the most out of Jupyter Notebooks ecosystem, tooling and free hosting cloud services. 
+
+Alternatively .NET Teams can use the [dotnet/interactive](https://github.com/dotnet/interactive) Kernels and [.NET Interactive Notebooks VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode) to generate and execute C# and F# Notebooks:
 
 [![](../images/apps/notebook-py.png)](/jupyter-notebooks-python)
 [![](../images/apps/notebook-cs.png)](/jupyter-notebooks-csharp)
