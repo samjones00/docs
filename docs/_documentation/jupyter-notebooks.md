@@ -107,7 +107,7 @@ The [ServiceStack/jupyter-notebooks](https://github.com/ServiceStack/jupyter-not
 
 In addition to previewing the raw data response in human-friendly markdown and HTML tables, you can also leverage Python's powerful [pandas](https://pandas.pydata.org) and [matplotlib](https://matplotlib.org) libraries to plot a quick visualization of the typed `QueryVaccinationRates` AutoQuery response:
 
-![](../images/apps/jupyterlab-mybinder-covid-vac.png)
+[![](../images/apps/jupyterlab-mybinder-covid-vac.png)](https://github.com/ServiceStack/jupyter-notebooks/blob/main/covid-vac-watch.netcore.io.ipynb)
 
 ### TechStacks
 
@@ -117,7 +117,7 @@ The [techstacks.io-FindTechnologies.ipynb](https://github.com/ServiceStack/jupyt
 
 When executed in either a Binder or self-hosted **notebook** web app it will render API responses that looks like:
 
-![](../images/apps/jupyterlab-mybinder-techstacks.png)
+[![](../images/apps/jupyterlab-mybinder-techstacks.png)](https://github.com/ServiceStack/jupyter-notebooks/blob/main/techstacks.io-FindTechnologies.ipynb)
 
 ### GitHub Auto Preview
 
