@@ -19,7 +19,7 @@ By leveraging [Add ServiceStack Reference's](/add-servicestack-reference) rich, 
 
 Generating Python Notebooks with [Python ServiceStack Reference](/python-add-servicestack-reference) will let you get the most out of Jupyter Notebooks ecosystem, tooling and free hosting cloud services. 
 
-Alternatively .NET Teams can use the [dotnet/interactive](https://github.com/dotnet/interactive) Kernels and [.NET Interactive Notebooks VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode) to generate and execute C# and F# Notebooks:
+Alternatively .NET Teams can use [.NET Interactive ](https://github.com/dotnet/interactive) Kernels and [Notebooks VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode) to generate and execute C# and F# Notebooks:
 
 [![](../images/apps/notebook-py.png)](/jupyter-notebooks-python)
 [![](../images/apps/notebook-cs.png)](/jupyter-notebooks-csharp)
