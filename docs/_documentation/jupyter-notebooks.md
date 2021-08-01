@@ -93,7 +93,7 @@ To run your Notebooks on Binder head over to https://mybinder.org and paste the 
 
 E.g. our [ServiceStack/jupyter-notebooks](https://github.com/ServiceStack/jupyter-notebooks) GitHub repo is available from:
 
-#### https://mybinder.org/v2/gh/ServiceStack/jupyter-notebooks/HEAD
+#### [https://mybinder.org/v2/gh/ServiceStack/jupyter-notebooks/HEAD](https://mybinder.org/v2/gh/ServiceStack/jupyter-notebooks/HEAD)
 
 Where behind-the-scenes Binder will build and host a Docker image of your repo and launch a dedicated `notebook` Web App instance to view an execute your repo's Notebooks:
 
