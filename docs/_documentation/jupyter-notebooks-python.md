@@ -32,6 +32,30 @@ All populated API Requests are also deep-linkable so they can be easily document
 
 **[apps.servicestack.net/#techstacks.io/python/AutoQuery/FindTechnologies(Ids:[1,2,4,6],VendorName:Google,Take:10)](https://apps.servicestack.net/#techstacks.io/python/AutoQuery/FindTechnologies(Ids:[1,2,4,6],VendorName:Google,Take:10,Fields:%22Id,%20Name,%20VendorName,%20Slug,%20Tier,%20FavCount,%20ViewCount%22))**
 
+### Google Colab
+
+[Google Colab](https://research.google.com/colaboratory/) is a **FREE** hosted Jupyter notebook service from Google that can open Notebooks stored in Google Drive that can be shared just as you would with Google Docs or Sheets, which requires no install to use, while providing free access to computing resources including GPUs where it's executed in a virtual machine private to your account. 
+
+Whilst you can upload your Python Jupyter Notebooks manually, the quickest way to open your ServiceStack API in Colab is to Save it directly in GDrive with the **Save** button:
+
+![](../images/apps/apps-python-notebook-gdrive.png)
+
+Then click on the saved `.ipynb` Notebook to open it in Colab where like other Notebook services will let you see the last pre-executed rendered output. Running a cell with the **Play** icon or `CTRL+Enter` will execute the Notebook in a private virtual machine to update the captured outputs with live results:
+
+![](../images/apps/jupyter-colab-FindTechnologies.png)
+
+### GitHub Auto Preview
+
+Thanks to executed Notebooks retaining their executed outputs and GitHub's [built-in support of rendering Jupyter Notebooks](https://docs.github.com/en/github/managing-files-in-a-repository/working-with-non-code-files/working-with-jupyter-notebook-files-on-github), we can also view pre-rendered Notebooks directly in GitHub, e.g. you can view the pre-rendered output of the above Python Notebook directly on GitHub at: [techstacks.io-FindTechnologies.ipynb](https://github.com/ServiceStack/jupyter-notebooks/blob/main/techstacks.io-FindTechnologies.ipynb).
+
+[![](../images/apps/jupyter-github-python.png)](https://github.com/ServiceStack/jupyter-notebooks/blob/main/techstacks.io-FindTechnologies.ipynb)
+
+### Instant Client Apps command-line generator
+
+For increased flexibility and scriptability Instant Client Apps will also generate a command-line argument of your pre-populated API Request you can use to generate a Python Jupyter Notebook locally, e.g:
+
+![](../images/apps/apps-jupyter-command-line.png)
+
 ## Generate Notebook using command-line
 
 Jupyter Commands lets you generate Python Jupyter Notebooks for calling ServiceStack APIs in a single command.
