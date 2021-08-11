@@ -92,7 +92,3 @@ Output:
 ```
 Saved to: techstacks.io-FindTechStacks.ipynb
 ```
-
-> Jupyter Notebooks can also be created with the API Explorer UI at [apps.servicestack.net](https://apps.servicestack.net).
-
-### 
