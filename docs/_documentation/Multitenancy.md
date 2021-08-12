@@ -8,7 +8,7 @@ ServiceStack provides a number of ways of changing the database connection used 
 ### Change Database Connection at Runtime
 
 The default implementation of `IAppHost.GetDbConnection(IRequest)` includes an easy way to change the DB Connection that can be done by populating the 
-[ConnectionInfo](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ConnectionInfo.cs) 
+[ConnectionInfo](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/ConnectionInfo.cs) 
 POCO in any
 [Request Filter in the Request Pipeline](/order-of-operations):
 
