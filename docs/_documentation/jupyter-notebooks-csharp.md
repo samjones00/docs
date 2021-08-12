@@ -3,6 +3,8 @@ slug: jupyter-notebooks-csharp
 title: C# Jupyter Notebooks
 ---
 
+![](../images/apps/jupyter-csharp.png)
+
 Jupyter Commands lets you generate C# Jupyter Notebooks for calling ServiceStack APIs in a single command.
 
 All command line utils used are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
