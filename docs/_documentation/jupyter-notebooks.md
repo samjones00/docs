@@ -165,7 +165,7 @@ Then click on the saved `.ipynb` Notebook to open it in Colab where like other N
 
 [Datalore](https://datalore.jetbrains.com) is JetBrains premium cloud hosted service for hosting and running Jupyter Notebooks within a shared team environment. It's online Notebook App features PyCharm's code insights and autocompletion, real-time collaborative editing and also includes built-in Terminal support for running remote commands and `.py` scripts:
 
-![](../images/apps/jupyter-datalore.png)
+[![](../images/apps/jupyter-datalore.png)](https://datalore.jetbrains.com)
 
 ## Amazon SageMaker
 
