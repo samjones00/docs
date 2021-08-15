@@ -745,3 +745,166 @@ from typing import *
 from enum import Enum, IntEnum
 ```
 
+### DataClass
+
+Change what `dataclass` decorator is used, e.g:
+
+```python
+""" Options:
+...
+DataClass: init=False
+"""
+```
+
+Will decorate every DTO with:
+
+```python
+@dataclass(init=False)
+class GetTechnology(IReturn[GetTechnologyResponse], IRegisterStats, IGet):
+    slug: Optional[str] = None
+```
+
+
+### DataClassJson
+
+Change what `dataclass_json` decorator is used, e.g:
+
+```python
+""" Options:
+...
+DataClassJson: letter_case=LetterCase.PASCAL
+"""
+```
+
+Will decorate every DTO with:
+
+```python
+@dataclass_json(letter_case=LetterCase.PASCAL)
+class GetTechnology(IReturn[GetTechnologyResponse], IRegisterStats, IGet):
+    slug: Optional[str] = None
+```
+
+Which will result in each type being serialized with PascalCase.
+
+## Customize Serialization
+
+The `servicestack` client lib allows for flexible serialization customization where you can change how different .NET Types are serialized and deserialized into native Python types.
+
+To illustrate this we'll walk through how serialization of properties containing binary data to Base64 is implemented.
+
+First we specify the Python DTO generator to emit `bytes` type hint for the popular .NET binary data types:
+
+```csharp
+PythonGenerator.TypeAliases[typeof(byte[]).Name] = "bytes";
+PythonGenerator.TypeAliases[typeof(Stream).Name] = "bytes";
+```
+
+In the Python app we can then specify the serializers and deserializers to use for deserializing properties with the `bytes` data type which converts binary data to/from Base64:
+
+```python
+from servicestack import TypeConverters
+
+def to_bytearray(value: Optional[bytes]):
+    if value is None:
+        return None
+    return base64.b64encode(value).decode('ascii')
+
+def from_bytearray(base64str: Optional[str]):
+    return base64.b64decode(base64str)
+
+TypeConverters.serializers[bytes] = to_bytearray
+TypeConverters.deserializers[bytes] = from_bytearray
+```
+
+## Inspect Utils
+
+To help clients with inspecting API Responses the `servicestack` library also includes a number of helpful utils to quickly visualizing API outputs.
+
+For a basic indented object graph you can use `dump` to capture and `printdump` to print the output of any API Response, e.g:
+
+```python
+from dataclasses import dataclass
+from dataclasses_json import dataclass_json, Undefined
+from typing import Optional
+from servicestack import printdump, printtable
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
+@dataclass
+class GithubRepo:
+    name: str
+    description: Optional[str] = None
+    homepage: Optional[str] = None
+    lang: Optional[str] = field(metadata=config(field_name="language"),default=None)
+    watchers: Optional[int] = 0
+    forks: Optional[int] = 0
+
+response = requests.get(f'https://api.github.com/orgs/python/repos')
+orgRepos = GithubRepo.schema().loads(response.text, many=True)
+orgRepos.sort(key=operator.attrgetter('watchers'), reverse=True)
+
+print(f'Top 3 {orgName} Repos:')
+printdump(orgRepos[0:3])
+```
+
+Output:
+
+```
+Top 3 python Repos:
+[
+    {
+        name: mypy,
+        description: Optional static typing for Python 3 and 2 (PEP 484),
+        homepage: http://www.mypy-lang.org/,
+        lang: Python,
+        watchers: 9638,
+        forks: 1564
+    },
+    {
+        name: peps,
+        description: Python Enhancement Proposals,
+        homepage: https://www.python.org/dev/peps/,
+        lang: Python,
+        watchers: 2459,
+        forks: 921
+    },
+    {
+        name: typeshed,
+        description: Collection of library stubs for Python, with static types,
+        homepage: ,
+        lang: Python,
+        watchers: 1942,
+        forks: 972
+    }
+]
+```
+
+For tabular resultsets you can use `table` to capture and `printtable` to print API resultsets in a human-friendly markdown table with an optional `headers` parameter to specify the order and columns to display, e.g:
+
+```python
+print(f'\nTop 10 {orgName} Repos:')
+printtable(orgRepos[0:10],headers=['name','lang','watchers','forks'])
+```
+
+Output:
+
+```
+Top 10 python Repos:
++--------------+-----------+------------+---------+
+| name         | lang      |   watchers |   forks |
+|--------------+-----------+------------+---------|
+| mypy         | Python    |       9638 |    1564 |
+| peps         | Python    |       2459 |     921 |
+| typeshed     | Python    |       1942 |     972 |
+| pythondotorg | Python    |       1038 |     432 |
+| asyncio      |           |        945 |     178 |
+| typing       | Python    |        840 |     130 |
+| raspberryio  | Python    |        217 |      38 |
+| typed_ast    | C         |        171 |      43 |
+| planet       | Python    |        100 |     145 |
+| psf-salt     | SaltStack |         87 |      50 |
++--------------+-----------+------------+---------+
+```
+
+Alternatively you can use `htmldump` to generate API responses in a HTML UI which is especially useful in [Python Jupyter Notebooks](/jupyter-notebooks-python) to easily visualize API responses, e.g:
+
+[![](../images/apps/jupyterlab-mybinder-techstacks.png)](https://github.com/ServiceStack/jupyter-notebooks/blob/main/techstacks.io-FindTechnologies.ipynb)
