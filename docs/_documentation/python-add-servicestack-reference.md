@@ -383,3 +383,365 @@ request = GetTechnology()
 ```
 
 ### Making Typed API Requests
+
+Making API Requests in Python is the same as all other [ServiceStack's Service Clients](/clients-overview) by sending a populated Request DTO using a `JsonServiceClient` which returns typed Response DTO.
+
+So the only things we need to make any API Request is the `JsonServiceClient` from the `servicestack` package and any DTO's we're using from generated Python ServiceStack Reference, e.g:
+
+```python
+from .dtos import GetTechnology, GetTechnologyResponse
+from servicestack import JsonServiceClient
+
+client = JsonServiceClient("https://techstacks.io")
+
+request = GetTechnology()
+request.slug = "ServiceStack"
+
+r: GetTechnologyResponse = client.get(request)  # typed to GetTechnologyResponse
+tech = r.technology                             # typed to Technology
+
+print(f"{tech.name} by {tech.vendor_name} ({tech.product_url})")
+print(f"`{tech.name} TechStacks: {r.technology_stacks}")
+```
+
+### Constructors Initializer
+
+All Python Reference dataclass DTOs also implements **__init__** making them much nicer to populate using a constructor expression with named params syntax we're used to in C#, so instead of:
+
+```python
+request = Authenticate()
+request.provider = "credentials"
+request.user_name = user_name
+request.password = password
+request.remember_me = remember_me
+response = client.post(request)
+```
+
+You can populate DTOs with a single constructor expression without any loss of Python's Typing benefits:
+
+```python
+response = client.post(Authenticate(
+    provider='credentials',
+    user_name=user_name,
+    password=password,
+    remember_me=remember_me))
+```
+
+### Sending additional arguments with Typed API Requests
+
+Many AutoQuery Services utilize [implicit conventions](/autoquery-rdbms#implicit-conventions) to query fields that aren't explicitly defined on AutoQuery Request DTOs, these can be queried by specifying additional arguments with the typed Request DTO, e.g:
+
+```python
+request = FindTechStacks()
+
+r:QueryResponse[TechnologyStackView] = client.get(request, args={"vendorName": "ServiceStack"})
+```
+
+### Making API Requests with URLs
+
+In addition to making Typed API Requests you can also call Services using relative or absolute urls, e.g:
+
+```python
+client.get("/technology/ServiceStack", response_as=GetTechnologyResponse)
+
+client.get("https://techstacks.io/technology/ServiceStack", response_as=GetTechnologyResponse)
+
+# https://techstacks.io/technology?Slug=ServiceStack
+args = {"slug":"ServiceStack"}
+client.get("/technology", args=args, response_as=GetTechnologyResponse) 
+```
+
+as well as POST Request DTOs to custom urls:
+
+```python
+client.post_url("/custom-path", request, args={"slug":"ServiceStack"})
+
+client.post_url("http://example.org/custom-path", request)
+```
+
+### Raw Data Responses
+
+The `JsonServiceClient` also supports Raw Data responses like `string` and `byte[]` which also get a Typed API once declared on Request DTOs using the `IReturn<T>` marker:
+
+```csharp
+public class ReturnString : IReturn<string> {}
+public class ReturnBytes : IReturn<byte[]> {}
+```
+
+Which can then be accessed as normal, with their Response typed to a JavaScript `str` or `bytes` for raw `byte[]` responses:
+
+```python
+str:str = client.get(ReturnString())
+
+data:bytes = client.get(ReturnBytes())
+```
+
+### Authenticating using Basic Auth
+
+Basic Auth support is implemented in `JsonServiceClient` and follows the same API made available in the C# Service Clients where the `userName/password` properties can be set individually, e.g:
+
+```python
+client = JsonServiceClient(baseUrl)
+client.username = user
+client.password = pass
+
+response = client.get(SecureRequest())
+```
+
+Or use `client.set_credentials()` to have them set both together.
+
+### Authenticating using Credentials
+
+Alternatively you can authenticate using userName/password credentials by 
+[adding a Python Reference](#add-python-reference) 
+to your remote ServiceStack Instance and sending a populated `Authenticate` Request DTO, e.g:
+
+```python
+request = Authenticate()
+request.provider = "credentials"
+request.user_name = user_name
+request.password = password
+request.remember_me = true
+
+response:AuthenticateResponse = client.post(request)
+```
+
+This will populate the `JsonServiceClient` with [Session Cookies](/sessions#cookie-session-ids) 
+which will transparently be sent on subsequent requests to make authenticated requests.
+
+### Authenticating using JWT
+
+Use the `bearer_token` property to Authenticate with a [ServiceStack JWT Provider](/jwt-authprovider) using a JWT Token:
+
+```python
+client.bearer_token = jwt
+```
+
+Alternatively you can use just a [Refresh Token](/jwt-authprovider#refresh-tokens) instead:
+
+```python
+client.refresh_token = refresh_token
+```
+
+Where the client will automatically fetch a new JWT Bearer Token using the Refresh Token for authenticated requests.
+
+### Authenticating using an API Key
+
+Use the `bearer_token` property to Authenticate with an [API Key](/api-key-authprovider):
+
+```python
+client.bearer_token = api_key
+```
+
+### Transparently handle 401 Unauthorized Responses
+
+If the server returns a 401 Unauthorized Response either because the client was Unauthenticated or the 
+configured Bearer Token or API Key used had expired or was invalidated, you can use `onAuthenticationRequired`
+callback to re-configure the client before automatically retrying the original request, e.g:
+
+```python
+auth_client = JsonServiceClient(AUTH_URL)
+
+client.on_authentication_required = lambda c=client, a=auth_client: [
+    a.set_credentials(username, password),
+    client.set_bearer_token(cast(AuthenticateResponse, a.get(Authenticate())).bearer_token)
+]
+
+# Automatically retries requests returning 401 Responses with new bearerToken
+response = client.get(Secured())
+```
+
+### Automatically refresh Access Tokens
+
+With the [Refresh Token support in JWT](/jwt-authprovider#refresh-tokens) 
+you can use the `refresh_token` property to instruct the Service Client to automatically fetch new JWT Tokens behind the scenes before automatically retrying failed requests due to invalid or expired JWTs, e.g:
+
+```python
+# Authenticate to get new Refresh Token
+auth_client = JsonServiceClient(AUTH_URL)
+auth_client.username = username
+auth_client.password = password
+auth_response = auth_client.get(Authenticate())
+
+# Configure client with RefreshToken
+client.refresh_token = auth_response.refresh_token
+
+# Call authenticated Services and clients will automatically retrieve new JWT Tokens as needed
+response = client.get(Secured())
+```
+
+Use the `refresh_token_uri` property when refresh tokens need to be sent to a different ServiceStack Server, e.g:
+
+```python
+client.refresh_token = refresh_token
+client.refresh_token_uri = AUTH_URL + "/access-token"
+```
+
+## DTO Customization Options 
+
+In most cases you'll just use the generated Python DTO's as-is, however you can further customize how the DTO's are generated by overriding the default options.
+
+The header in the generated DTO's show the different options Python native types support with their defaults. Default values are shown with the comment prefix of `//`. To override a value, remove the `#` and specify the value to the right of the `:`. Any uncommented value will be sent to the server to override any server defaults.
+
+The DTO comments allows for customizations for how DTOs are generated. The default options that were used to generate the DTO's are repeated in the header comments of the generated DTOs, options that are preceded by a Python comment `#` are defaults from the server, any uncommented value will be sent to the server 
+to override any server defaults.
+
+```python
+""" Options:
+Date: 2021-08-15 08:26:46
+Version: 5.111
+Tip: To override a DTO option, remove "#" prefix before updating
+BaseUrl: https://techstacks.io
+
+#GlobalNamespace: 
+#MakePropertiesOptional: False
+#AddServiceStackTypes: True
+#AddResponseStatus: False
+#AddImplicitVersion: 
+#AddDescriptionAsComments: True
+#IncludeTypes: 
+#ExcludeTypes: 
+#DefaultImports: datetime,decimal,marshmallow.fields:*,servicestack:*,typing:*,dataclasses:dataclass/field,dataclasses_json:dataclass_json/LetterCase/Undefined/config,enum:Enum/IntEnum
+#DataClass: 
+#DataClassJson: 
+"""
+```
+
+We'll go through and cover each of the above options to see how they affect the generated DTO's:
+
+### Change Default Server Configuration
+
+The above defaults are also overridable on the ServiceStack Server by modifying the default config on the `NativeTypesFeature` Plugin, e.g:
+
+```csharp
+//Server example in C#
+var nativeTypes = this.GetPlugin<NativeTypesFeature>();
+nativeTypes.MetadataTypesConfig.AddResponseStatus = true;
+...
+```
+
+We'll go through and cover each of the above options to see how they affect the generated DTO's:
+
+### GlobalNamespace
+
+As Python lacks the concept of namespaces this just emits a comment with the namespace name:
+
+```python
+# module dtos
+```
+
+### AddResponseStatus
+
+Automatically add a `response_status` property on all Response DTO's, regardless if it wasn't already defined:
+
+```python
+class GetTechnologyResponse:
+    ...
+    response_status: Optional[ResponseStatus] = None
+```
+
+### AddImplicitVersion
+
+Lets you specify the Version number to be automatically populated in all Request DTO's sent from the client: 
+
+```python
+class GetTechnology(IReturn[GetTechnologyResponse], IRegisterStats, IGet):
+    version: int = 1
+    ...
+```
+
+This lets you know what Version of the Service Contract that existing clients are using making it easy to implement ServiceStack's [recommended versioning strategy](http://stackoverflow.com/a/12413091/85785). 
+
+### IncludeTypes
+
+Is used as a Whitelist to specify only the types you would like to have code-generated:
+
+```
+""" Options:
+IncludeTypes: GetTechnology,GetTechnologyResponse
+```
+
+Will only generate `GetTechnology` and `GetTechnologyResponse` DTO's:
+
+```python
+class GetTechnologyResponse:
+    ...
+class GetTechnology:
+    ...
+```
+
+#### Include Generic Types
+
+Use .NET's Type Name to include Generic Types, i.e. the Type name separated by the backtick followed by the number of generic arguments, e.g:
+
+```
+IncludeTypes: IReturn`1,MyPair`2
+```
+
+#### Include Request DTO and its dependent types
+
+You can include a Request DTO and all its dependent types with a `.*` suffix on the Request DTO, e.g:
+
+```
+""" Options:
+IncludeTypes: GetTechnology.*
+```
+
+Which will include the `GetTechnology` Request DTO, the `GetTechnologyResponse` Response DTO and all Types that they both reference.
+
+#### Include All Types within a C# namespace
+
+If your DTOs are grouped into different namespaces they can be all included using the `/*` suffix, e.g:
+
+```
+""" Options:
+IncludeTypes: MyApp.ServiceModel.Admin/*
+```
+
+This will include all DTOs within the `MyApp.ServiceModel.Admin` C# namespace. 
+
+#### Include All Services in a Tag Group
+
+Services [grouped by Tag](/api-design#group-services-by-tag) can be used in the `IncludeTypes` where tags can be specified using braces in the format `{tag}` or `{tag1,tag2,tag3}`, e.g:
+
+```
+""" Options:
+IncludeTypes: {web,mobile}
+```
+
+Or individually:
+
+```
+""" Options:
+IncludeTypes: {web},{mobile}
+```
+
+### ExcludeTypes
+Is used as a Blacklist to specify which types you would like excluded from being generated:
+
+```
+""" Options:
+ExcludeTypes: GetTechnology,GetTechnologyResponse
+```
+
+Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generated.
+
+### DefaultImports
+
+The `module:Symbols` short-hand syntax can be used for specifying additional imports in your generated Python DTO. There are 3 different syntaxes for specifying different Python imports:
+
+```python
+""" Options:
+...
+DefaultImports: datetime,typing:*,enum:Enum/IntEnum
+"""
+```
+
+Which will generate the popular import form of:
+
+```python
+import datetime
+from typing import *
+from enum import Enum, IntEnum
+```
+
