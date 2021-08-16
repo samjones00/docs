@@ -120,7 +120,7 @@ The code above does several things.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/jupyter-lab-visual-example.png)
 
-## Try it out yourtself using MyBinder with generated notebooks
+## Try it out yourself using MyBinder with generated notebooks
 
 Another way to work with Jupyter, C# and ServiceStack generated notebooks is to do with via [MyBinder](https://mybinder.org/). MyBinder is a free hosted service that gives you an isolated docker container to run your notebooks if you are just trying something out.
 
