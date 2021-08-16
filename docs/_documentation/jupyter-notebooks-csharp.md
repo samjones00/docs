@@ -133,4 +133,4 @@ Another way to work with Jupyter, C# and ServiceStack generated notebooks is to 
 - Open the new notebook and **run** the generated cells.
 - Add a new cell with the same code for Plotly.NET as above and run
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/servicestack-reference/mybinder-example.png)
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/jupyter-mybinder-visual-example.png)
