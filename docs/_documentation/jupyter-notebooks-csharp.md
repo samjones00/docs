@@ -88,6 +88,8 @@ x jupyter-csharp https://covid-vac-watch.netcore.io QueryVaccinationRates
 
 This will generate the file `covid_vac_watch.netcore.io-QueryVaccinationRates.ipynb` in that directory. This file has everything that is needed to call the `QueryVaccinationRates` service and display data in the response.
 
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/jupyter-lab-csharp-example.png)
+
 ### Visualize the data
 
 These generated notebooks are designed to be a starting point with all the data plumbing setup done for you. Taking this example further, we can visualize the data using [Plotly.NET](https://plotly.net/), a NuGet library that generates plotly.js visuals using .NET. Run at least the first two cells and then add a new cell at the bottom of the generated notebook with the following code.
@@ -115,6 +117,8 @@ The code above does several things.
 - Declares `using` statement.
 - Transforms response data into 2 equal list of primitive data.
 - Generates a plot with `Date` on the X axis and `DailyVaccinations` on the Y axis.
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/jupyter-lab-visual-example.png)
 
 ## Try it out yourtself using MyBinder with generated notebooks
 
