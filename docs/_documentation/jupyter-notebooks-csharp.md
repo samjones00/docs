@@ -94,7 +94,7 @@ This will generate the file `covid_vac_watch.netcore.io-QueryVaccinationRates.ip
 
 These generated notebooks are designed to be a starting point with all the data plumbing setup done for you. Taking this example further, we can visualize the data using [Plotly.NET](https://plotly.net/), a NuGet library that generates plotly.js visuals using .NET. Run at least the first two cells and then add a new cell at the bottom of the generated notebook with the following code.
 
-```Csharp
+```csharp
 #r "nuget: Plotly.NET, 2.0.0-preview.6"
 #r "nuget: Plotly.NET.Interactive, 2.0.0-preview.6"
 

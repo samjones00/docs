@@ -7,7 +7,7 @@ title: Jupyter Notebooks
 
 Initially forged from the [Interactive Python](https://ipython.org) project, [Jupyter](https://jupyter.org) is an exciting initiative to support an open standards, language agnostic interactive computing platform where it provides the ideal integrated exploratory programming environment for data science and scientific computing as represented by its 3 core languages for these domains in [Julia](https://julialang.org), [Python](https://python.org) and [R](https://www.r-project.org) (Ju-Py-R).
 
-However its popularity, thriving ecosystem and rich tooling has seen it grow to encompass a wide range of interactive computing use-cases including data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more which now sees it support over 40 programming languages.
+However its popularity, thriving ecosystem and rich tooling has seen it grow to encompass a wide range of interactive computing use-cases including data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more which now sees it support **over 40 programming languages**.
 
 ### Jupyter Notebooks
 
@@ -83,7 +83,7 @@ Visual Studio Code is another IDE popular with Python Developers that has their 
 
 It provides a nicer UX over the traditional Notebook UX with niceties like intelli-sense and variable explorer and is better at opening stand-alone Notebooks outside the context of a Python project where its able to make use of pip's global OS packages.
 
-Whilst its Python notebook support is still the most complete, it's the optimal UX for working with **C# and F# Notebooks** with its [.NET Interactive Notebooks](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode) extension, currently in Preview that's maintained as part of the [github.com/dotnet/interactive](https://github.com/dotnet/interactive) project.
+Whilst its Python notebook support is still the most complete, it's the optimal UI for working with **C# and F# Notebooks** with its [.NET Interactive Notebooks](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode) extension, currently in Preview that's maintained as part of the [github.com/dotnet/interactive](https://github.com/dotnet/interactive) project.
 
 ## Cloud Notebook Services
 
