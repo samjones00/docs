@@ -6,11 +6,12 @@ title: Add ServiceStack Reference
 ServiceStack's **Add ServiceStack Reference** feature allows adding generated Native Types for the most popular typed languages and client platforms directly from within most major IDE's starting with [ServiceStackVS](/create-your-first-webservice#step-1-download-and-install-servicestackvs) - providing a simpler, cleaner and more versatile alternative to WCF's legacy **Add Service Reference** feature built into VS.NET.
 
 Add ServiceStack Reference now supports 
+[C#](/csharp-add-servicestack-reference), 
+[TypeScript](/typescript-add-servicestack-reference), 
+[Python](/python-add-servicestack-reference), 
 [Swift](/swift-add-servicestack-reference), 
 [Java](/java-add-servicestack-reference), 
 [Kotlin](/kotlin-add-servicestack-reference), 
-[C#](/csharp-add-servicestack-reference), 
-[TypeScript](/typescript-add-servicestack-reference), 
 [Dart](/dart-add-servicestack-reference), 
 [F#](/fsharp-add-servicestack-reference) and 
 [VB.NET](/vbnet-add-servicestack-reference)
@@ -26,6 +27,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
 <tr>
     <td><a href="/csharp-add-servicestack-reference">C#</a></td>
     <td><a href="/typescript-add-servicestack-reference">TypeScript</a></td>
+    <td><a href="/python-add-servicestack-reference">Python</a></td>
     <td><a href="/swift-add-servicestack-reference">Swift</a></td>
     <td><a href="/java-add-servicestack-reference">Java</a></td>
     <td><a href="/kotlin-add-servicestack-reference">Kotlin</a></td>
@@ -212,6 +214,31 @@ ServiceStackVS offers the generation and updating of these clients through the s
                     style="fill:#00c4b3;stroke-width:0.41459444" />
                 </a>
             </g>
+            <g id="python" transform="translate(600.000000, 390.000000) scale(0.45)" fill-rule="nonzero">
+                <a href="/python-add-servicestack-reference">
+                <rect x="0" y="0" width="480" height="120" fill="rgba(0,0,0,0)"><title>Python</title></rect>
+                <defs>
+                    <linearGradient id="c">
+                        <stop offset="0" stop-color="#b8b8b8" stop-opacity=".498"/>
+                        <stop offset="1" stop-color="#7f7f7f" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="a">
+                        <stop offset="0" stop-color="#ffd43b"/>
+                        <stop offset="1" stop-color="#ffe873"/>
+                    </linearGradient>
+                    <linearGradient id="b">
+                        <stop offset="0" stop-color="#5a9fd4"/>
+                        <stop offset="1" stop-color="#306998"/>
+                    </linearGradient>
+                    <linearGradient gradientTransform="matrix(.56254 0 0 .56797 -9.4 -5.305)" gradientUnits="userSpaceOnUse" xlink:href="#a" id="e" y2="137.273" x2="112.031" y1="192.352" x1="150.961"/>
+                    <linearGradient gradientTransform="matrix(.56254 0 0 .56797 -9.4 -5.305)" gradientUnits="userSpaceOnUse" xlink:href="#b" id="d" y2="114.398" x2="135.665" y1="20.604" x1="26.649"/>
+                    <radialGradient gradientTransform="matrix(0 -.2964 1.43676 0 -128.544 150.52)" gradientUnits="userSpaceOnUse" xlink:href="#c" id="f" fy="132.286" fx="61.519" r="29.037" cy="132.286" cx="61.519"/>
+                </defs>
+                <path d="M179.022 58.668c0-14.562-4.152-22.038-12.457-22.448a23.4 23.4 0 00-9.669 1.589c-2.505.897-4.191 1.784-5.078 2.68v34.759c5.312 3.333 10.03 4.883 14.143 4.64 8.704-.576 13.061-7.643 13.061-21.22zm10.244.604c0 7.398-1.735 13.539-5.224 18.422-3.89 5.527-9.28 8.373-16.17 8.529-5.196.165-10.547-1.462-16.054-4.874v31.59l-8.909-3.177v-70.12c1.462-1.794 3.343-3.334 5.624-4.64 5.303-3.09 11.745-4.679 19.329-4.757l.126.127c6.93-.088 12.272 2.758 16.025 8.529 3.499 5.292 5.253 12.076 5.253 20.371zm54.447 20.732c0 9.923-.994 16.794-2.982 20.615-1.998 3.821-5.8 6.872-11.414 9.143-4.552 1.793-9.474 2.768-14.757 2.934l-1.472-5.614c5.37-.732 9.153-1.463 11.346-2.194 4.318-1.462 7.28-3.703 8.909-6.706 1.306-2.446 1.949-7.115 1.949-14.026v-2.32c-6.092 2.769-12.476 4.143-19.153 4.143-4.386 0-8.256-1.374-11.59-4.142-3.742-3.012-5.614-6.833-5.614-11.463V33.296l8.91-3.05v37.32c0 3.987 1.286 7.058 3.86 9.212 2.572 2.154 5.906 3.187 9.99 3.11 4.084-.089 8.46-1.668 13.11-4.757V31.59h8.908zm34.778 5.731a35.662 35.662 0 01-2.934.127c-5.039 0-8.967-1.199-11.774-3.606-2.798-2.408-4.201-5.732-4.201-9.972v-35.09h-6.102V31.59h6.102V16.707l8.899-3.168V31.59h10.01v5.605h-10.01V72.04c0 3.343.897 5.712 2.69 7.096 1.54 1.14 3.987 1.793 7.32 1.959zm53.941-.731h-8.91V50.617c0-3.5-.818-6.511-2.446-9.026-1.881-2.846-4.493-4.27-7.846-4.27-4.084 0-9.192 2.155-15.323 6.463v41.22h-8.909V2.807L297.908 0v37.439c5.692-4.143 11.91-6.22 18.665-6.22 4.718 0 8.538 1.59 11.463 4.758 2.933 3.167 4.396 7.115 4.396 11.832zm47.351-27.74c0-5.595-1.063-10.215-3.178-13.87-2.514-4.454-6.423-6.803-11.706-7.047-9.767.565-14.64 7.564-14.64 20.976 0 6.15 1.014 11.287 3.06 15.41 2.613 5.253 6.531 7.846 11.756 7.758 9.805-.078 14.708-7.817 14.708-23.227zm9.757.059c0 7.963-2.037 14.591-6.102 19.884-4.474 5.926-10.654 8.899-18.539 8.899-7.817 0-13.909-2.973-18.305-8.9-3.987-5.292-5.975-11.92-5.975-19.883 0-7.486 2.154-13.783 6.462-18.91 4.552-5.439 10.537-8.168 17.935-8.168 7.398 0 13.422 2.73 18.061 8.168 4.309 5.127 6.463 11.424 6.463 18.91zm51.074 27.681h-8.908V48.667c0-3.986-1.2-7.096-3.597-9.337-2.398-2.233-5.595-3.315-9.581-3.227-4.23.078-8.256 1.462-12.077 4.143v44.758h-8.909v-45.86c5.127-3.733 9.845-6.17 14.153-7.31 4.064-1.062 7.651-1.589 10.741-1.589 2.115 0 4.104.205 5.975.614 3.5.81 6.345 2.31 8.539 4.513 2.446 2.437 3.664 5.361 3.664 8.782z" fill="#646464"/>
+                <path d="M60.51 6.398c-4.583.021-8.96.412-12.812 1.094-11.347 2.004-13.407 6.2-13.407 13.937v10.219h26.813v3.406H24.229c-7.793 0-14.616 4.684-16.75 13.594-2.462 10.213-2.571 16.586 0 27.25 1.906 7.938 6.457 13.594 14.25 13.594h9.219v-12.25c0-8.85 7.657-16.657 16.75-16.657h26.78c7.456 0 13.407-6.138 13.407-13.625V21.43c0-7.267-6.13-12.726-13.406-13.938-4.606-.767-9.385-1.115-13.969-1.094zm-14.5 8.219c2.77 0 5.031 2.298 5.031 5.125 0 2.816-2.261 5.093-5.03 5.093-2.78 0-5.032-2.277-5.032-5.093 0-2.827 2.252-5.125 5.031-5.125z" fill="url(#d)" transform="translate(-5.591 -3.262)"/>
+                <path d="M91.229 35.054V46.96c0 9.231-7.826 17-16.75 17H47.698c-7.336 0-13.407 6.279-13.407 13.625v25.532c0 7.266 6.319 11.54 13.407 13.625 8.487 2.495 16.626 2.946 26.78 0 6.751-1.955 13.407-5.888 13.407-13.625V92.898H61.104v-3.406h40.187c7.793 0 10.697-5.436 13.407-13.594 2.799-8.399 2.68-16.476 0-27.25-1.926-7.757-5.604-13.594-13.407-13.594zM76.166 99.71c2.78 0 5.032 2.278 5.032 5.094 0 2.827-2.252 5.125-5.032 5.125-2.77 0-5.03-2.298-5.03-5.125 0-2.816 2.26-5.094 5.03-5.094z" fill="url(#e)" transform="translate(-5.591 -3.262)"/>
+                </a>
+            </g>
         </g>
     </g>
 </svg>
@@ -254,6 +281,7 @@ Options for the generated DTOs can be further customized by updating the comment
 
 * [C# Options](/csharp-add-servicestack-reference#change-default-server-configuration)
 * [TypeScript Options](/typescript-add-servicestack-reference#change-default-server-configuration)
+* [Python Options](/python-add-servicestack-reference#swift-configuration)
 * [Swift Options](/swift-add-servicestack-reference#swift-configuration)
 * [Java Options](/java-add-servicestack-reference#java-configuration)
 * [Kotlin Options](/kotlin-add-servicestack-reference#kotlin-configuration)
@@ -286,6 +314,11 @@ This will make the following utilities available from your command-line which wi
     <td>x typescript</td>
     <td>x ts</td>
     <td>TypeScript</td>
+</tr>
+<tr>
+    <td>x python</td>
+    <td>x py</td>
+    <td>Python</td>
 </tr>
 <tr>
     <td>x java</td>
@@ -719,6 +752,7 @@ The Add ServiceStack Reference dialog just takes the URL provided and requests t
 - `/types/csharp` - C# 
 - `/types/typescript` - TypeScript 
 - `/types/typescript.d` - Ambient TypeScript Definitions
+- `/types/python` - Python
 - `/types/swift` - Swift 
 - `/types/java` - Java 
 - `/types/kotlin` - Kotlin 
