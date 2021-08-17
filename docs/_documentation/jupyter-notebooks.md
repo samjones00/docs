@@ -15,10 +15,10 @@ At the core of Jupyter is the "Notebook" (Nb) - an open JSON document format tha
 
 ### Create Python, C# and F# Jupyter Notebooks for any ServiceStack API
 
-<div style="display: flex;flex-wrap: wrap">
+<div style="display: flex;flex-wrap: wrap;justify-content: center">
 <iframe style="margin:5px" width="896" height="525" src="https://www.youtube.com/embed/h6UwDuXt8MA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<iframe style="margin:5px" width="430" height="270" src="https://www.youtube.com/embed/vt92pbet5bY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<iframe style="margin:5px" width="430" height="270" src="https://www.youtube.com/embed/PxH3K5WIDx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe style="margin:3px" width="416" height="250" src="https://www.youtube.com/embed/vt92pbet5bY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe style="margin:3px" width="416" height="250" src="https://www.youtube.com/embed/PxH3K5WIDx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 By leveraging [Add ServiceStack Reference's](/add-servicestack-reference) rich, typed ecosystem we're able to tap into the exciting interactive world of Jupyter Notebooks where ServiceStack API consumers are now able to generate custom-tailored notebooks for ServiceStack API using a [Simple UI](https://apps.servicestack.net) or generated from a single command-line if preferred.
