@@ -7,6 +7,8 @@ title: C# Jupyter Notebooks
 
 Jupyter Commands lets you generate C# Jupyter Notebooks for calling ServiceStack APIs in a single command.
 
+<iframe width="896" height="525" src="https://www.youtube.com/embed/vt92pbet5bY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 All command line utils used are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
 
     $ dotnet tool install --global x 
