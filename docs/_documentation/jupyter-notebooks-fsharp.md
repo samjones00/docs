@@ -7,6 +7,8 @@ title: F# Jupyter Notebooks
 
 Jupyter Commands lets you generate F# Jupyter Notebooks for calling ServiceStack APIs in a single command.
 
+<iframe width="896" height="525" src="https://www.youtube.com/embed/PxH3K5WIDx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 All command line utils used are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
 
     $ dotnet tool install --global x 
