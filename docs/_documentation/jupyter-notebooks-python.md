@@ -9,6 +9,8 @@ Whilst the [Jupyter project](https://jupyter.org) has designed its Notebooks to 
 
 Thanks to [Python Add ServiceStack Reference](/python-add-servicestack-reference) support for generating typed Python data classes for your ServiceStack Service DTOs, your API consumers are able to tap into the beautiful [interactive world of Jupyter Notebooks](/jupyter-notebooks) who can leverage end-to-end typed APIs with your Services Python DTOs and the generic [servicestack](https://pypi.org/project/servicestack/) Python package containing both the generic `JsonServiceClient` for making typed API requests as well as useful utilities for easily previewing API Responses in human-readable HTML or markdown table formats.
 
+<iframe width="896" height="525" src="https://www.youtube.com/embed/h6UwDuXt8MA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ## Instant Client Apps
 
 Easiest way to generate a Python Notebook for a publicly available ServiceStack instance is to use Instant Client Apps UI at:
