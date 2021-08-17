@@ -5,7 +5,7 @@
     - [Servicify existing Systems](/servicify)
     - [Explore ServiceStack](/explore-servicestack)
 - ##### Releases
-    - [Latest Release Notes](/releases/v5.11)
+    - [Latest Release Notes](/releases/v5.12)
     - [Release Notes History](/release-notes-history)
     - [Pre-release MyGet Packages](/myget)
 - ##### Getting Started
@@ -20,6 +20,7 @@
     - [dotnet tool - Win/Mac/Linux Utility Belt](/dotnet-tool)
     - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
     - [mix tool - Mix n' Match .NET Apps](/mix-tool)
+    - [Post Command - Call APIs from command-line](/post-command)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [ASP.NET Core on .NET Framework](/templates-corefx)
@@ -120,10 +121,16 @@
     - [Dart Client](/dart-add-servicestack-reference#example-usage)
     - [Silverlight Client](/silverlight-client)
     - [MQ Clients](/messaging#mq-client-architecture)
+- ##### Jupyter Notebooks
+    - [Overview](/jupyter-notebooks)
+    - [Python Jupyter Notebooks](/jupyter-notebooks-python)
+    - [C# Jupyter Notebooks](/jupyter-notebooks-csharp)
+    - [F# Jupyter Notebooks](/jupyter-notebooks-fsharp)
 - ##### Add ServiceStack Reference
     - [Overview](/add-servicestack-reference)
     - [C# Add Reference](/csharp-add-servicestack-reference)
     - [TypeScript Add Reference](/typescript-add-servicestack-reference)
+    - [Python Add Reference](/python-add-servicestack-reference)
     - [Swift Add Reference](/swift-add-servicestack-reference)
     - [Java Add Reference](/java-add-servicestack-reference)
     - [Kotlin Add Reference](/kotlin-add-servicestack-reference)

@@ -5,6 +5,7 @@ slug: release-notes-history
 
 ### 2021
 
+- [v5.12](/releases/v5.12)
 - [v5.11](/releases/v5.11)
 
 ### 2020
