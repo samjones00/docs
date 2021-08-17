@@ -164,7 +164,7 @@ Adding an API Name to the command will let you describe a specific API Endpoint 
 Which will output the APIs description, any tags it was annotated with, its defined routes as well as any Auth Requirements along with all the 
 available Auth Providers registered, e.g:
 
-```
+```csharp
 # LockTechStack
 Limit updates to TechStack to Owner or Admin users
 
@@ -215,7 +215,7 @@ Only the Request and Response DTOs representing the APIs Inputs and Outputs are 
 
 Which will include all referenced types used in this API:
 
-```
+```csharp
 # GetTechnology
 Tags:               [Tech]
 Routes:             /technology/{Slug}
@@ -371,7 +371,7 @@ For example to view the DTOs in Swift run:
 
 Output:
 
-```
+```swift
 # LockTechStack
 Limit updates to TechStack to Owner or Admin users
 
