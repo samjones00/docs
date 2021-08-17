@@ -205,7 +205,132 @@ public partial class LockTechStack
 }
 ```
 
-Whilst the C# code defines the API Service Contract including any user-defined routes, its Response Type including all referenced DTO Types, what HTTP Verb it should be called with as well as any declarative validation rules when defined. The properties on the Request DTO define the Typed Inputs that the API Accepts whilst the Response DTO describes what a successful Response will return.
+Whilst the C# code defines the API Service Contract including any user-defined routes, its Response Type, what HTTP Verb it should be called with as well as any declarative validation rules when defined. The properties on the Request DTO define the Typed Inputs that the API Accepts whilst the Response DTO describes what a successful Response will return.
+
+### View all Referenced DTOs
+
+Only the Request and Response DTOs representing the APIs Inputs and Outputs are displayed by default, to include all referenced types you can use the [IncludeTypes syntax](/csharp-add-servicestack-reference#include-request-dto-and-its-dependent-types), e.g:
+
+    $ x inspect https://techstacks.io GetTechnology.*
+
+Which will include all referenced types used in this API:
+
+```
+# GetTechnology
+Tags:               [Tech]
+Routes:             /technology/{Slug}
+
+# C# DTOs:
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using ServiceStack;
+using ServiceStack.DataAnnotations;
+
+
+[Route("/technology/{Slug}")]
+public partial class GetTechnology
+    : IReturn<GetTechnologyResponse>, IRegisterStats, IGet
+{
+    public virtual string Slug { get; set; }
+}
+
+public partial class GetTechnologyResponse
+{
+    public GetTechnologyResponse()
+    {
+        TechnologyStacks = new List<TechnologyStack>{};
+    }
+
+    public virtual DateTime Created { get; set; }
+    public virtual Technology Technology { get; set; }
+    public virtual List<TechnologyStack> TechnologyStacks { get; set; }
+    public virtual ResponseStatus ResponseStatus { get; set; }
+}
+
+public partial interface IRegisterStats
+{
+}
+
+public partial class Technology
+    : TechnologyBase
+{
+}
+
+public partial class TechnologyBase
+{
+    public virtual long Id { get; set; }
+    public virtual string Name { get; set; }
+    public virtual string VendorName { get; set; }
+    public virtual string VendorUrl { get; set; }
+    public virtual string ProductUrl { get; set; }
+    public virtual string LogoUrl { get; set; }
+    public virtual string Description { get; set; }
+    public virtual DateTime Created { get; set; }
+    public virtual string CreatedBy { get; set; }
+    public virtual DateTime LastModified { get; set; }
+    public virtual string LastModifiedBy { get; set; }
+    public virtual string OwnerId { get; set; }
+    public virtual string Slug { get; set; }
+    public virtual bool LogoApproved { get; set; }
+    public virtual bool IsLocked { get; set; }
+    public virtual TechnologyTier Tier { get; set; }
+    public virtual DateTime? LastStatusUpdate { get; set; }
+    public virtual int? OrganizationId { get; set; }
+    public virtual long? CommentsPostId { get; set; }
+    public virtual int ViewCount { get; set; }
+    public virtual int FavCount { get; set; }
+}
+
+public partial class TechnologyStack
+    : TechnologyStackBase
+{
+}
+
+public partial class TechnologyStackBase
+{
+    public virtual long Id { get; set; }
+    public virtual string Name { get; set; }
+    public virtual string VendorName { get; set; }
+    public virtual string Description { get; set; }
+    public virtual string AppUrl { get; set; }
+    public virtual string ScreenshotUrl { get; set; }
+    public virtual DateTime Created { get; set; }
+    public virtual string CreatedBy { get; set; }
+    public virtual DateTime LastModified { get; set; }
+    public virtual string LastModifiedBy { get; set; }
+    public virtual bool IsLocked { get; set; }
+    public virtual string OwnerId { get; set; }
+    public virtual string Slug { get; set; }
+    [StringLength(int.MaxValue)]
+    public virtual string Details { get; set; }
+
+    [StringLength(int.MaxValue)]
+    public virtual string DetailsHtml { get; set; }
+
+    public virtual DateTime? LastStatusUpdate { get; set; }
+    public virtual int? OrganizationId { get; set; }
+    public virtual long? CommentsPostId { get; set; }
+    public virtual int ViewCount { get; set; }
+    public virtual int FavCount { get; set; }
+}
+
+public enum TechnologyTier
+{
+    ProgrammingLanguage,
+    Client,
+    Http,
+    Server,
+    Data,
+    SoftwareInfrastructure,
+    OperatingSystem,
+    HardwareInfrastructure,
+    ThirdPartyServices,
+}
+```
 
 Thanks to ServiceStack's [unique message-based design](https://youtu.be/Vae0ALalIP0) the code contract used to define the Service is also all that's needed to invoke the API along with the generic ServiceStack Client library which for .NET is available in the **ServiceStack.Client** NuGet package:
 
