@@ -20,7 +20,7 @@
     - [dotnet tool - Win/Mac/Linux Utility Belt](/dotnet-tool)
     - [app tool - .NET Core Windows Desktop](/netcore-windows-desktop)
     - [mix tool - Mix n' Match .NET Apps](/mix-tool)
-    - [Post Command - Call APIs from command-line](/post-command)
+    - [Post Command - APIs from command-line](/post-command)
 - ##### VS.NET Templates
     - [Overview](/templates-overview) 
     - [ASP.NET Core on .NET Framework](/templates-corefx)
