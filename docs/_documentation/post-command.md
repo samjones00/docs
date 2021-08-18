@@ -522,7 +522,7 @@ So requests that doesn't use any special batch characters can be sent with or wi
 
 #### Last 5 Recorded Dates of Vaccinated people in Alaska
 
-    $ x send https://covid-vac-watch.netcore.io QueryVaccinationRates {Location:'Alaska',orderBy:'-date',take:5,Fields:'id,date,peopleVaccinated',include:'total'}
+    $ x send https://covid-vac-watch.netcore.io QueryVaccinationRates "{Location:'Alaska',orderBy:'-date',take:5,Fields:'id,date,peopleVaccinated',include:'total'}"
 
 Output:
 
@@ -542,7 +542,7 @@ results:
 
 #### Multi conditional TechStacks query
 
-    $ x send https://techstacks.io FindTechnologies {Ids:[1,2,6],VendorName:'Google',Take:10,Fields:'Id,Name,VendorName,Tier,FavCount,ViewCount'}
+    $ x send https://techstacks.io FindTechnologies "{Ids:[1,2,6],VendorName:'Google',Take:10,Fields:'Id,Name,VendorName,Tier,FavCount,ViewCount'}"
 
 Output:
 
@@ -571,7 +571,7 @@ As ServiceStack APIs supports [nested complex types in query strings](https://do
 
 #### Example GET Request
 
-    $ x GET http://test.servicestack.net StoreLogs {Loggers:[{Id:786,Devices:[{Id:5955,Type:'Panel',TimeStamp:1,Channels:[{Name:'Temperature',Value:'58'},{Name:'Status',Value:'On'}]}]}]} -raw
+    $ x GET http://test.servicestack.net StoreLogs "{Loggers:[{Id:786,Devices:[{Id:5955,Type:'Panel',TimeStamp:1,Channels:[{Name:'Temperature',Value:'58'},{Name:'Status',Value:'On'}]}]}]}" -raw
 
 Where they're sent on the query string:
 
@@ -600,7 +600,7 @@ Content-Type: application/json; charset=utf-8
 
 As well as HTTP Requests with Request bodies where only the method used needs to change whilst the Request JS Object literal stays exactly the same, e.g:
 
-    $ x POST http://test.servicestack.net StoreLogs {Loggers:[{Id:786,Devices:[{Id:5955,Type:'Panel',TimeStamp:1,Channels:[{Name:'Temperature',Value:'58'},{Name:'Status',Value:'On'}]}]}]} -raw
+    $ x POST http://test.servicestack.net StoreLogs "{Loggers:[{Id:786,Devices:[{Id:5955,Type:'Panel',TimeStamp:1,Channels:[{Name:'Temperature',Value:'58'},{Name:'Status',Value:'On'}]}]}]}" -raw
 
 Where instead of being sent on the query string it's posted inside a JSON Request body, irrespective of how its sent a ServiceStack API supporting any HTTP Method by being implemented with the `Any()` method name will result in an identical response:
 
@@ -697,7 +697,7 @@ Options:
 
 Since Username/Password Credentials Auth is a normal ServiceStack API we can invoke it like normal, e.g:
 
-    $ x send http://test.servicestack.net Authenticate {provider:'credentials',username:'admin',password:'test'}
+    $ x send http://test.servicestack.net Authenticate "{provider:'credentials',username:'admin',password:'test'}"
 
 However to hide your credentials from command history logs you'll likely want to maintain your credentials in a separate file, e.g:
 
@@ -726,7 +726,7 @@ Likely the easiest and most versatile authentication option would be to use a se
 
 We can test that it's working by first trying to call an Authentication protected Service without any Authentication options, e.g:
 
-    $ x send http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send http://test.servicestack.net HelloSecure "{name:'World'}"
 
 Output:
 
@@ -736,7 +736,7 @@ The remote server returned an error: (401) Not Authenticated.
 
 Then re-trying the request, providing the **cookies.xml** that was populated after the success Authentication:
 
-    $ x send -cookies cookies.xml http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -cookies cookies.xml http://test.servicestack.net HelloSecure "{name:'World'}"
 
 Output:
 
@@ -758,7 +758,7 @@ When the `JwtAuthProvider` is configured a successful Authentication Response wi
 
 **Linux / macOS:**
 
-    $ TOKEN=...
+    $ export TOKEN=...
     $ x send -token $TOKEN http://test.servicestack.net HelloSecure "{name:'World'}"
 
 
@@ -810,11 +810,11 @@ jti:                 9
 
 When the `BasicAuthProvider` is configured we can authenticate with HTTP Basic Auth using the `-basic` command line option which supports both clear text:
 
-    $ x send -basic admin:test http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -basic admin:test http://test.servicestack.net HelloSecure "{name:'World'}"
 
 Output:
 
-    $ x send -basic admin:test http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -basic admin:test http://test.servicestack.net HelloSecure "{name:'World'}"
 
 As well as Base64 encoded credentials which we can convert using the `x base64` tool, e.g:
 
@@ -826,7 +826,7 @@ Output:
 YWRtaW46dGVzdA==
 ```
 
-    $ x send -basic YWRtaW46dGVzdA== http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -basic YWRtaW46dGVzdA== http://test.servicestack.net HelloSecure "{name:'World'}"
 
 Output:
 
@@ -837,7 +837,7 @@ result:  Hello, World!
 Although a Base64 encoded password does not offer much protection for your password (e.g. it can be decoded with `x unbase64 YWRtaW46dGVzdA==`), to avoid your password from being captured in shell command history we can instead read it from a plain text file, e.g:
 
     $ set /P basic=<credentials.txt
-    $ x send -basic %basic% http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -basic %basic% http://test.servicestack.net HelloSecure "{name:'World'}"
 
 Output:
 
@@ -855,7 +855,7 @@ SetConfig(new HostConfig { AdminAuthSecret = "secretz" });
 
 It can be used to authenticated with using the `-authsecret` option:
 
-    $ x send -authsecret secretz http://test.servicestack.net HelloSecure {name:'World'}
+    $ x send -authsecret secretz http://test.servicestack.net HelloSecure "{name:'World'}"
 
 
 Output:
