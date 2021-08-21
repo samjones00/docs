@@ -427,6 +427,7 @@ Usage: x <send|GET|POST|PUT|DELETE|PATCH> <base-url> <request>
 
 Options:
  -raw                   Show raw HTTP Headers and Body
+ -json                  Show Body as JSON
  -token <token>         Use JWT or API Key Bearer Token
  -basic <user:pass>     Use HTTP Basic Auth
  -authsecret <secret>   Use Admin Auth Secret
@@ -478,6 +479,8 @@ locations:
 
 By default APIs return a human friendly text output optimal for reading at a glance. 
 
+### raw HTTP output
+
 If preferred you can instead view the full HTTP Response including HTTP Headers by adding the `-raw` flag, e.g:
 
     $ x send https://covid-vac-watch.netcore.io GetLocations -raw
@@ -501,6 +504,34 @@ Content-Type: application/json; charset=utf-8
 
 {"locations":["Alabama","Alaska","American Samoa","Arizona","Arkansas","Bureau of Prisons","California","Colorado","Connecticut","Delaware","Dept of Defense","District of Columbia","Federated States of Micronesia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indian Health Svc","Indiana","Iowa","Kansas","Kentucky","Long Term Care","Louisiana","Maine","Marshall Islands","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York State","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Republic of Palau","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","United States","Utah","Vermont","Veterans Health","Virgin Islands","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}
 ```
+
+### json Response output
+
+Alternatively use `-jspn` if you're only interested in viewing the JSON response, e.g:
+
+    $ x send https://covid-vac-watch.netcore.io GetLocations -json
+
+Output:
+
+```json
+{"locations":["Alabama","Alaska","American Samoa","Arizona","Arkansas","Bureau of Prisons","California","Colorado","Connecticut","Delaware","Dept of Defense","District of Columbia","Federated States of Micronesia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indian Health Svc","Indiana","Iowa","Kansas","Kentucky","Long Term Care","Louisiana","Maine","Marshall Islands","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York State","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Republic of Palau","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","United States","Utah","Vermont","Veterans Health","Virgin Islands","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}
+```
+
+This is useful if you want to capture the results in a `.json` text file for inspection with other JSON aware tools:
+
+    $ x send https://covid-vac-watch.netcore.io GetLocations -json > results.json
+
+[jq](https://stedolan.github.io/jq/) is a popular command-line tool for querying JSON outputs that's useful for inspecting the JSON response of one command to chain using it in others. A useful usecase is for parse an `AuthenticateResponse` to capture the JWT `bearerToken` property with `jq -r .bearerToken`:
+
+    $ TOKEN=$(x send http://test.servicestack.net Authenticate "{provider:'credentials',username:'admin',password:'test'}" -json | jq -r .bearerToken)
+
+Then using it to make stateless Authenticated requests, e.g:
+
+    $ x send -token $TOKEN http://test.servicestack.net HelloSecure "{name:'World'}"
+
+Output:
+
+    result:  Hello, World!
 
 ### Invoking APIs with Arguments
 
@@ -760,7 +791,7 @@ When the `JwtAuthProvider` is configured a successful Authentication Response wi
 
 **Linux / macOS:**
 
-    $ export TOKEN=...
+    $ TOKEN=...
     $ x send -token $TOKEN http://test.servicestack.net HelloSecure "{name:'World'}"
 
 
@@ -769,6 +800,22 @@ Output:
 ```
 result:  Hello, World!
 ```
+
+### Capturing bearerToken with `#Script` expression
+
+A dependency-free solution for capturing the `bearerToken` is to utilize the [#Script](https://sharpscript.net) eval expression support in `x` to make an API Request and parsing the JSON response and parsing it with #Script methods, e.g:
+
+    $ TOKEN=$(x -e "'http://test.servicestack.net/auth' |> urlTextContents({method:'POST',accept:'application/json',data:'provider=credentials&username=admin&password=test'}) |> parseJson |> get('bearerToken')")
+
+Then using it to make stateless Authenticated requests, e.g:
+
+    $ x send -token $TOKEN http://test.servicestack.net HelloSecure "{name:'World'}"
+
+### Capturing bearerToken with jq
+
+[jq](https://stedolan.github.io/jq/) is a versatile command for extracting info from JSON outputs which can extract the raw string "bearerToken" property value of an `AuthenticateResponse` with `jq -r .bearerToken`, e.g:
+
+    $ TOKEN=$(x send http://test.servicestack.net Authenticate "{provider:'credentials',username:'admin',password:'test'}" -json | jq -r .bearerToken)
 
 ### Inspect JWTs
 
