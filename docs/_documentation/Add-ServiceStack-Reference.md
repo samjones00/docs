@@ -243,13 +243,17 @@ ServiceStackVS offers the generation and updating of these clients through the s
     </g>
 </svg>
 
-## Example Usage
-
-> C# Xamarin.Android Example in VS.NET
-
-<iframe width="896" height="525" src="https://www.youtube.com/embed/EaUcPXVeLpk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+### C# Xamarin.Android Example in VS.NET
 
 Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### Call ServiceStack APIs from a Flutter App with native Dart client and DTOs
+
+Walk through showing how you can use ServiceStack's Dart client library with your Flutter Android application to quickly get up and running with Add ServiceStack Reference.
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## C# Mobile and Desktop Apps
 

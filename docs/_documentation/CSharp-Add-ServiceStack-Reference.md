@@ -11,7 +11,7 @@ Our goal with Native Types is to provide an alternative for sharing DTO dlls, th
 
 > C# Xamarin.Android Example in VS.NET
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/EaUcPXVeLpk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Add ServiceStack Reference
 
