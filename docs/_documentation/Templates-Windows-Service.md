@@ -3,7 +3,7 @@ title: Windows Service VS.NET Project Templates
 slug: templates-windows-service
 ---
 
-The Windows Service Template makes it super easy to create and install self-hosted ServiceStack solutions running within vanilla Windows Services without needing to rely on any additional 3rd Party packages or dependencies.
+Inside [ServiceStack VS.NET Extension](/templates-overview#servicestackvs-vsnet-extension) the Windows Service Template makes it easy to create and install self-hosted ServiceStack solutions running within vanilla Windows Services without needing to rely on any additional 3rd Party packages or dependencies.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/new-project-winservice.png)
 
