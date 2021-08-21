@@ -11,9 +11,7 @@ Install the [app dotnet tool](/netcore-windows-desktop) then launch with:
 
 #### [app://studio](app://studio)
 
-> YouTube: [youtu.be/2FFRLxs7orU](https://youtu.be/2FFRLxs7orU)
-
-[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-home.png)](https://youtu.be/2FFRLxs7orU)
+<iframe width="896" height="525" src="https://www.youtube.com/embed/kN7371bqUII" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 **Studio** replaces the [ServiceStack Admin UI](https://github.com/ServiceStack/Admin) where it provides a UX-friendly UI for accessing AutoQuery & Crud Services but will also gain UI features for taking advantage of various ServiceStack Plugins & Features, e.g. in this initial release it includes UI's for **Managing DB Validation Rules** & for viewing the **Executable Audit History of Tables** updated through AutoCrud Services.
 
