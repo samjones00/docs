@@ -35,7 +35,7 @@
     - [React Templates](/templates-react)
     - [Svelte Templates](/templates-svelte)
     - [Angular Templates](/templates-angular)
-    - [AWS Templates](/templates-aws)
+    - [AWS Lambda Templates](/templates-aws)
     - [Desktop Templates](/templates-desktop)
     - [Blazor Templates](/templates-blazor)
     - [Vue, React, Angular Components](/spa-components)
@@ -43,7 +43,7 @@
     - [Cross platform dotnet scripts](/dotnet-scripts)
 - ##### GitHub Action Templates
     - [Overview](/github-action-templates)
-    - [GitHub Container Repository & Digital Ocean](/do-github-action-mix-deployment)
+    - [GitHub GHR & Digital Ocean](/do-github-action-mix-deployment)
     - [AWS ECR & ECS with NGINX](/mix-github-actions-aws-ecs)
 - ##### Background Concepts
     - [What is a Message-based Web Service](/what-is-a-message-based-web-service)

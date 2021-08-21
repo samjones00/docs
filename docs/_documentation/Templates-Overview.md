@@ -68,6 +68,21 @@ The [ServiceStackVS VS.NET extension](#servicestackvs-vsnet-extension) contains 
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png)](/templates-single-page-apps)
 
+
+### [Vue SPA Template](https://github.com/NetCoreTemplates/vue-spa)
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+> YouTube: [https://youtu.be/4HphWPrKwb0](https://youtu.be/4HphWPrKwb0)
+
+### [AWS Lambda Template](https://github.com/NetCoreTemplates/aws-lambda)
+
+This project lets you create a .NET 5 empty ServiceStack web project ready for deployment as a AWS Lambda Function wired with API GateWay and packaged via a Docker image.
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/8mpGNTsSlvE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+> YouTube: [https://youtu.be/8mpGNTsSlvE](https://youtu.be/8mpGNTsSlvE)
+
 ### Website Templates
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/web.png)
