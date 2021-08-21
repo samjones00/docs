@@ -175,3 +175,5 @@ After defining your AutoQuery APIs, start your App then you can use [ServiceStac
 ### [app://studio](app://studio)
 
 > If your browser is open, the quickest way to launch it is just to type `app://studio` in your URL bar
+
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-home.png)](https://youtu.be/2FFRLxs7orU)
