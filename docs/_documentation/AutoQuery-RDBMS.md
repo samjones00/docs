@@ -1329,6 +1329,50 @@ var response = client.Get(new SearchQuestions {
 });
 ```
 
+## AutoQuery CRUD Batch Requests
+
+All AutoQuery CRUD operations support auto batch implementations which will by default execute all AutoQuery CRUD Requests within a DB transaction.
+
+By default it will generate AutoBatch implementations for all CRUD operations and can be changed to only generate implementations for specific CRUD operations by changing:
+
+```csharp
+Plugins.Add(new AutoQueryFeature {
+    GenerateAutoBatchImplementationsFor = new() { AutoCrudOperation.Create }
+});
+```
+
+It also wont generate implementations for custom AutoBatch implementations, e.g. you can add a custom implementation that does what the generated implementation would've done and execute using the same DB Connection and Transaction with:
+
+```csharp
+public class CustomAutoQueryServices : Service
+{
+    public IAutoQueryDb AutoQuery { get; set; }
+
+    public object Any(CreateItem[] requests)
+    {
+        using var db = AutoQuery.GetDb<Item>(Request);
+        using var dbTrans = db.OpenTransaction();
+
+        var results = new List<object>();
+        foreach (var request in requests)
+        {
+            var response = await AutoQuery.CreateAsync(request, Request, db);
+            results.Add(response);
+        }
+
+        dbTrans.Commit();
+        return results;            
+    }
+}
+```
+
+As AutoQuery Services are normal ServiceStack Services they can re-use the existing Service Client support for [Auto Batched Requests](/auto-batched-requests), e.g:
+
+```csharp
+var client = new JsonServiceClient(BaseUrl);
+var response = client.SendAll(new CreateItem[] { ... });
+```
+
 # AutoQuery Examples
 
 ## AutoQuery Viewer
