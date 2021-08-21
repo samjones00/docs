@@ -281,6 +281,10 @@ The above `init` projects allow you to create a minimal web app, to create a mor
 
 ServiceStack Services are also [easily consumable from all major Mobile and Desktop platforms](/why-servicestack#generate-instant-typed-apis-from-within-all-major-ides) including native iPhone and iPad Apps on iOS with Swift, Mobile and Tablet Apps on Android with Java or Kotlin, OSX Desktop Applications as well as targeting the most popular .NET Mobile and Desktop platforms including Xamarin.iOS, Xamarin.Android, Windows Store, WPF and WinForms.
 
+## Fundamentals - AppHost and Configuration
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/mOpx5mUGoqI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ## Explore ServiceStack
 
 When you're ready to dive in further checkout our [Explore ServiceStack Guide](/explore-servicestack).
