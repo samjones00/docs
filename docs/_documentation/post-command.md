@@ -479,32 +479,6 @@ locations:
 
 By default APIs return a human friendly text output optimal for reading at a glance. 
 
-### raw HTTP output
-
-If preferred you can instead view the full HTTP Response including HTTP Headers by adding the `-raw` flag, e.g:
-
-    $ x send https://covid-vac-watch.netcore.io GetLocations -raw
-
-Output:
-
-```
-GET /json/reply/GetLocations HTTP/1.1
-Host: covid-vac-watch.netcore.io
-Accept: application/json
-
-HTTP/1.1 200 OK
-Server: nginx/1.19.3
-Date: Wed, 28 Jul 2021 07:39:34 GMT
-Transfer-Encoding: chunked
-Connection: keep-alive
-Vary: Accept
-X-Powered-By: ServiceStack/5.111 NetCore/Linux
-Strict-Transport-Security: max-age=31536000
-Content-Type: application/json; charset=utf-8
-
-{"locations":["Alabama","Alaska","American Samoa","Arizona","Arkansas","Bureau of Prisons","California","Colorado","Connecticut","Delaware","Dept of Defense","District of Columbia","Federated States of Micronesia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indian Health Svc","Indiana","Iowa","Kansas","Kentucky","Long Term Care","Louisiana","Maine","Marshall Islands","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York State","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Republic of Palau","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","United States","Utah","Vermont","Veterans Health","Virgin Islands","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}
-```
-
 ### json Response output
 
 Alternatively use `-jspn` if you're only interested in viewing the JSON response, e.g:
@@ -532,6 +506,38 @@ Then using it to make stateless Authenticated requests, e.g:
 Output:
 
     result:  Hello, World!
+
+### raw HTTP output
+
+If preferred you can instead view the full HTTP Response including HTTP Headers by adding the `-raw` flag, e.g:
+
+    $ x send https://covid-vac-watch.netcore.io GetLocations -raw
+
+Output:
+
+```
+GET /json/reply/GetLocations HTTP/1.1
+Host: covid-vac-watch.netcore.io
+Accept: application/json
+
+HTTP/1.1 200 OK
+Server: nginx/1.19.3
+Date: Wed, 28 Jul 2021 07:39:34 GMT
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept
+X-Powered-By: ServiceStack/5.111 NetCore/Linux
+Strict-Transport-Security: max-age=31536000
+Content-Type: application/json; charset=utf-8
+
+{"locations":["Alabama","Alaska","American Samoa","Arizona","Arkansas","Bureau of Prisons","California","Colorado","Connecticut","Delaware","Dept of Defense","District of Columbia","Federated States of Micronesia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indian Health Svc","Indiana","Iowa","Kansas","Kentucky","Long Term Care","Louisiana","Maine","Marshall Islands","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York State","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Republic of Palau","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","United States","Utah","Vermont","Veterans Health","Virgin Islands","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}
+```
+
+### Using Rider HTTP Scratch Tools
+
+A productive way to further re-iterate on the HTTP Request is to copy+paste the HTTP Request Header into JetBrains Rider’s HTTP Rest tool where you can run it and customize it using their text editor UI by going to **New Scratch File** and selecting **HTTP Request** or via `Tools > HTTP Client > Create Request in HTTP Client`:
+
+![](../images/apps/post-command-httpscratch-GetLocations.png)
 
 ### Invoking APIs with Arguments
 
