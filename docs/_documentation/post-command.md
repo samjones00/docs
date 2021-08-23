@@ -5,7 +5,7 @@ title: Post Command - HTTP API Command Line Utils
 
 Post Command is a collection of command line utils that lets you easily discover, inspect and invoke ServiceStack endpoints from a single command.
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/VKUc_sFVnF4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="896" height="525" src="https://www.youtube.com/embed/FcXG4RnlVQk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 All command line utils are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
 
