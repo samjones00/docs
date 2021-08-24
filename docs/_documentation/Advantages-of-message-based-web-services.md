@@ -165,6 +165,8 @@ So in contrast to method signatures, message-based designs offer many advantages
 
 All these properties make messages a better choice for distributed systems, where all this functionality can be achieved with generic solutions since it's much easier to pass around and serialize messages than method signature invocations.
 
+<iframe class="video-hd" src="https://www.youtube.com/embed/Vae0ALalIP0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### Message designs are well known
 
 Although none of these qualities are new, message-based designs have been very well known for decades and are used in many of the most highly respected real-time distributed technologies: including Erlang processes, Java's JMS, Scala's Actors, Go's go-routines, Dart's isolates, F#'s Mailboxes as well as in industrial strength Message Queues which (amongst many other benefits) provide deferred, durable and reliable execution - which are a strong force in most other platforms.
