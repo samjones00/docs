@@ -46,113 +46,40 @@ Content Types:      application/json, application/xml, application/jsv, text/htm
 Plugins:            html, csv, autoroutes, metadata, ssref, httpcache, svg, sharp, auth, sitemap, cors, validation, autoquerymeta, autoquery, openapi, session
 Auth Providers:     twitter (oauth), github (oauth), jwt (Bearer), servicestack (credentials)
 
-| #   | Api                                | Routes                                                    | Response                                   |
-|-----|------------------------------------|-----------------------------------------------------------|--------------------------------------------|
-| 1   | Ping                               | /ping                                                     |                                            |
-| 2   | GetOrganization                    | GET:/orgs/{Id}                                            | GetOrganizationResponse                    |
-| 3   | GetOrganizationBySlug              | GET:/organizations/{Slug}                                 | GetOrganizationResponse                    |
-| 4   | GetOrganizationMembers             | GET:/orgs/{Id}/members                                    | GetOrganizationMembersResponse             |
-| 5   | GetOrganizationAdmin               | GET:/orgs/{Id}/admin                                      | GetOrganizationAdminResponse               |
-| 6   | CreateOrganizationForTechnology    | POST:/orgs/posts/new                                      | CreateOrganizationForTechnologyResponse    |
-| 7   | CreateOrganization                 | POST:/orgs                                                | CreateOrganizationResponse                 |
-| 8   | UpdateOrganization                 | PUT:/orgs/{Id}                                            | UpdateOrganizationResponse                 |
-| 9   | DeleteOrganization                 | DELETE:/orgs/{Id}                                         |                                            |
-| 10  | LockOrganization                   | PUT:/orgs/{Id}/lock                                       |                                            |
-| 11  | AddOrganizationLabel               | POST:/orgs/{OrganizationId}/labels                        | OrganizationLabelResponse                  |
-| 12  | UpdateOrganizationLabel            | PUT:/orgs/{OrganizationId}/members/{Slug}                 | OrganizationLabelResponse                  |
-| 13  | RemoveOrganizationLabel            | DELETE:/orgs/{OrganizationId}/labels/{Slug}               |                                            |
-| 14  | AddOrganizationCategory            | POST:/orgs/{OrganizationId}/categories                    | AddOrganizationCategoryResponse            |
-| 15  | UpdateOrganizationCategory         | PUT:/orgs/{OrganizationId}/categories/{Id}                | UpdateOrganizationCategoryResponse         |
-| 16  | DeleteOrganizationCategory         | DELETE:/orgs/{OrganizationId}/categories/{Id}             |                                            |
-| 17  | AddOrganizationMember              | POST:/orgs/{OrganizationId}/members                       | AddOrganizationMemberResponse              |
-| 18  | UpdateOrganizationMember           | PUT:/orgs/{OrganizationId}/members/{Id}                   | UpdateOrganizationMemberResponse           |
-| 19  | RemoveOrganizationMember           | DELETE:/orgs/{OrganizationId}/members/{UserId}            |                                            |
-| 20  | SetOrganizationMembers             | POST:/orgs/{OrganizationId}/members/set                   | SetOrganizationMembersResponse             |
-| 21  | GetOrganizationMemberInvites       | GET:/orgs/{OrganizationId}/invites                        | GetOrganizationMemberInvitesResponse       |
-| 22  | RequestOrganizationMemberInvite    | POST:/orgs/{OrganizationId}/invites                       | RequestOrganizationMemberInviteResponse    |
-| 23  | UpdateOrganizationMemberInvite     | PUT:/orgs/{OrganizationId}/invites/{UserId}               | UpdateOrganizationMemberInviteResponse     |
-| 24  | QueryPosts                         | GET:/posts                                                | QueryResponse<Post>                        |
-| 25  | GetPost                            | GET:/posts/{Id}                                           | GetPostResponse                            |
-| 26  | CreatePost                         | POST:/posts                                               | CreatePostResponse                         |
-| 27  | UpdatePost                         | PUT:/posts/{Id}                                           | UpdatePostResponse                         |
-| 28  | DeletePost                         | DELETE:/posts/{Id}                                        | DeletePostResponse                         |
-| 29  | LockPost                           | PUT:/posts/{Id}/lock                                      |                                            |
-| 30  | HidePost                           | PUT:/posts/{Id}/hide                                      |                                            |
-| 31  | ChangeStatusPost                   | PUT:/posts/{Id}/status/{Status}                           |                                            |
-| 32  | ActionPostReport                   | POST:/posts/{PostId}/report/{Id}                          |                                            |
-| 33  | CreatePostComment                  | POST:/posts/{PostId}/comments                             | CreatePostCommentResponse                  |
-| 34  | UpdatePostComment                  | PUT:/posts/{PostId}/comments/{Id}                         | UpdatePostCommentResponse                  |
-| 35  | DeletePostComment                  | DELETE:/posts/{PostId}/comments/{Id}                      | DeletePostCommentResponse                  |
-| 36  | ActionPostCommentReport            | POST:/posts/{PostId}/comments/{PostCommentId}/report/{Id} |                                            |
-| 37  | GetUserPostCommentVotes            | /user/comments/votes                                      | GetUserPostCommentVotesResponse            |
-| 38  | PinPostComment                     | PUT:/posts/{PostId}/comments/{Id}/pin                     | PinPostCommentResponse                     |
-| 39  | GetUsersByEmails                   | /users/by-email                                           | GetUsersByEmailsResponse                   |
-| 40  | GetUserPostActivity                | /user/posts/activity                                      | GetUserPostActivityResponse                |
-| 41  | GetUserOrganizations               | /user/organizations                                       | GetUserOrganizationsResponse               |
-| 42  | UserPostVote                       | PUT:/posts/{Id}/vote                                      | UserPostVoteResponse                       |
-| 43  | UserPostFavorite                   | PUT:/posts/{Id}/favorite                                  | UserPostFavoriteResponse                   |
-| 44  | UserPostReport                     | PUT:/posts/{Id}/report                                    | UserPostReportResponse                     |
-| 45  | UserPostCommentVote                | GET:/posts/{PostId}/comments/{Id}                         | UserPostCommentVoteResponse                |
-| 46  | UserPostCommentReport              | PUT:/posts/{PostId}/comments/{Id}/report                  | UserPostCommentReportResponse              |
-| 47  | StorePreRender                     | PUT:/prerender/{Path*}                                    |                                            |
-| 48  | GetPreRender                       | GET:/prerender/{Path*}                                    | string                                     |
-| 49  | SessionInfo                        | /my-session                                               | SessionInfoResponse                        |
-| 50  | SubscribeToOrganization            | PUT:/orgs/{OrganizationId}/subscribe                      |                                            |
-| 51  | SubscribeToPost                    | PUT:/posts/{PostId}/subscribe                             |                                            |
-| 52  | DeleteOrganizationSubscription     | DELETE:/orgs/{OrganizationId}/subscribe                   |                                            |
-| 53  | DeletePostSubscription             | DELETE:/posts/{PostId}/subscribe                          |                                            |
-| 54  | GetTechnologyPreviousVersions      | GET:/technology/{Slug}/previous-versions                  | GetTechnologyPreviousVersionsResponse      |
-| 55  | GetAllTechnologies                 | GET:/technology                                           | GetAllTechnologiesResponse                 |
-| 56  | FindTechnologies                   | /technology/search                                        | QueryResponse<TechnologyView>              |
-| 57  | QueryTechnology                    | /technology/query                                         | QueryResponse<TechnologyView>              |
-| 58  | GetTechnology                      | /technology/{Slug}                                        | GetTechnologyResponse                      |
-| 59  | GetTechnologyFavoriteDetails       | /technology/{Slug}/favorites                              | GetTechnologyFavoriteDetailsResponse       |
-| 60  | CreateTechnology                   | POST:/technology                                          | CreateTechnologyResponse                   |
-| 61  | UpdateTechnology                   | PUT:/technology/{Id}                                      | UpdateTechnologyResponse                   |
-| 62  | DeleteTechnology                   | DELETE:/technology/{Id}                                   | DeleteTechnologyResponse                   |
-| 63  | GetTechnologyStackPreviousVersions | GET:/techstacks/{Slug}/previous-versions                  | GetTechnologyStackPreviousVersionsResponse |
-| 64  | GetPageStats                       | /pagestats/{Type}/{Slug}                                  | GetPageStatsResponse                       |
-| 65  | ClearCache                         | /cache/clear                                              | string                                     |
-| 66  | HourlyTask                         | /tasks/hourly                                             | HourlyTaskResponse                         |
-| 67  | FindTechStacks                     | /techstacks/search                                        | QueryResponse<TechnologyStackView>         |
-| 68  | QueryTechStacks                    | /techstacks/query                                         | QueryResponse<TechnologyStackView>         |
-| 69  | Overview                           | /overview                                                 | OverviewResponse                           |
-| 70  | AppOverview                        | /app-overview                                             | AppOverviewResponse                        |
-| 71  | GetAllTechnologyStacks             | GET:/techstacks                                           | GetAllTechnologyStacksResponse             |
-| 72  | GetTechnologyStack                 | GET:/techstacks/{Slug}                                    | GetTechnologyStackResponse                 |
-| 73  | GetTechnologyStackFavoriteDetails  | /techstacks/{Slug}/favorites                              | GetTechnologyStackFavoriteDetailsResponse  |
-| 74  | GetConfig                          | /config                                                   | GetConfigResponse                          |
-| 75  | CreateTechnologyStack              | POST:/techstacks                                          | CreateTechnologyStackResponse              |
-| 76  | UpdateTechnologyStack              | PUT:/techstacks/{Id}                                      | UpdateTechnologyStackResponse              |
-| 77  | DeleteTechnologyStack              | DELETE:/techstacks/{Id}                                   | DeleteTechnologyStackResponse              |
-| 78  | GetFavoriteTechStack               | GET:/favorites/techtacks                                  | GetFavoriteTechStackResponse               |
-| 79  | AddFavoriteTechStack               | PUT:/favorites/techtacks/{TechnologyStackId}              | FavoriteTechStackResponse                  |
-| 80  | RemoveFavoriteTechStack            | DELETE:/favorites/techtacks/{TechnologyStackId}           | FavoriteTechStackResponse                  |
-| 81  | GetFavoriteTechnologies            | GET:/favorites/technology                                 | GetFavoriteTechnologiesResponse            |
-| 82  | AddFavoriteTechnology              | PUT:/favorites/technology/{TechnologyId}                  | FavoriteTechnologyResponse                 |
-| 83  | RemoveFavoriteTechnology           | DELETE:/favorites/technology/{TechnologyId}               | FavoriteTechnologyResponse                 |
-| 84  | GetUserFeed                        | /my-feed                                                  | GetUserFeedResponse                        |
-| 85  | GetUsersKarma                      | GET:/users/karma                                          | GetUsersKarmaResponse                      |
-| 86  | GetUserInfo                        | /userinfo/{UserName}                                      | GetUserInfoResponse                        |
-| 87  | UserAvatar                         | GET:/users/{UserName}/avatar                              | Task<TResult>                              |
-| 88  | MqStart                            | /mq/start                                                 | string                                     |
-| 89  | MqStop                             | /mq/stop                                                  | string                                     |
-| 90  | MqStats                            | /mq/stats                                                 | string                                     |
-| 91  | MqStatus                           | /mq/status                                                | string                                     |
-| 92  | SyncDiscourseSite                  | /sync/discourse/{Site}                                    | SyncDiscourseSiteResponse                  |
-| 93  | LogoUrlApproval                    | /admin/technology/{TechnologyId}/logo                     | LogoUrlApprovalResponse                    |
-| 94  | LockTechStack                      | /admin/techstacks/{TechnologyStackId}/lock                | LockStackResponse                          |
-| 95  | LockTech                           | /admin/technology/{TechnologyId}/lock                     | LockStackResponse                          |
-| 96  | DummyTypes                         | /json/oneway/DummyTypes                                   |                                            |
-| 97  | EmailTest                          | /email/post/{PostId}                                      | EmailTestRespoonse                         |
-| 98  | ImportUser                         | /json/reply/ImportUser                                    | ImportUserResponse                         |
-| 99  | ImportUserVoiceSuggestion          | /import/uservoice/suggestion                              | ImportUserVoiceSuggestionResponse          |
-| 100 | Authenticate                       | /auth /auth/{provider}                                    | AuthenticateResponse                       |
-| 101 | AssignRoles                        | /assignroles                                              | AssignRolesResponse                        |
-| 102 | UnAssignRoles                      | /unassignroles                                            | UnAssignRolesResponse                      |
-| 103 | ConvertSessionToToken              | /session-to-token                                         | ConvertSessionToTokenResponse              |
-| 104 | GetAccessToken                     | /access-token                                             | GetAccessTokenResponse                     |
-| 105 | QueryPostComments                  | GET:/posts/comment                                        | QueryResponse<PostComment>                 |
+| #   | Api                             | Routes                                         | Response                                |
+|-----|---------------------------------|------------------------------------------------|-----------------------------------------|
+| 1   | Ping                            | /ping                                          |                                         |
+| 2   | GetOrganization                 | GET:/orgs/{Id}                                 | GetOrganizationResponse                 |
+| 3   | GetOrganizationBySlug           | GET:/organizations/{Slug}                      | GetOrganizationResponse                 |
+| 4   | GetOrganizationMembers          | GET:/orgs/{Id}/members                         | GetOrganizationMembersResponse          |
+| 5   | GetOrganizationAdmin            | GET:/orgs/{Id}/admin                           | GetOrganizationAdminResponse            |
+| 6   | CreateOrganizationForTechnology | POST:/orgs/posts/new                           | CreateOrganizationForTechnologyResponse |
+| 7   | CreateOrganization              | POST:/orgs                                     | CreateOrganizationResponse              |
+| 8   | UpdateOrganization              | PUT:/orgs/{Id}                                 | UpdateOrganizationResponse              |
+| 9   | DeleteOrganization              | DELETE:/orgs/{Id}                              |                                         |
+| 10  | LockOrganization                | PUT:/orgs/{Id}/lock                            |                                         |
+| 11  | AddOrganizationLabel            | POST:/orgs/{OrganizationId}/labels             | OrganizationLabelResponse               |
+| 12  | UpdateOrganizationLabel         | PUT:/orgs/{OrganizationId}/members/{Slug}      | OrganizationLabelResponse               |
+| 13  | RemoveOrganizationLabel         | DELETE:/orgs/{OrganizationId}/labels/{Slug}    |                                         |
+| 14  | AddOrganizationCategory         | POST:/orgs/{OrganizationId}/categories         | AddOrganizationCategoryResponse         |
+| 15  | UpdateOrganizationCategory      | PUT:/orgs/{OrganizationId}/categories/{Id}     | UpdateOrganizationCategoryResponse      |
+| 16  | DeleteOrganizationCategory      | DELETE:/orgs/{OrganizationId}/categories/{Id}  |                                         |
+| 17  | AddOrganizationMember           | POST:/orgs/{OrganizationId}/members            | AddOrganizationMemberResponse           |
+| 18  | UpdateOrganizationMember        | PUT:/orgs/{OrganizationId}/members/{Id}        | UpdateOrganizationMemberResponse        |
+| 19  | RemoveOrganizationMember        | DELETE:/orgs/{OrganizationId}/members/{UserId} |                                         |
+| 20  | SetOrganizationMembers          | POST:/orgs/{OrganizationId}/members/set        | SetOrganizationMembersResponse          |
+| 21  | GetOrganizationMemberInvites    | GET:/orgs/{OrganizationId}/invites             | GetOrganizationMemberInvitesResponse    |
+| 22  | RequestOrganizationMemberInvite | POST:/orgs/{OrganizationId}/invites            | RequestOrganizationMemberInviteResponse |
+| 23  | UpdateOrganizationMemberInvite  | PUT:/orgs/{OrganizationId}/invites/{UserId}    | UpdateOrganizationMemberInviteResponse  |
+| 24  | QueryPosts                      | GET:/posts                                     | QueryResponse<Post>                     |
+| 25  | GetPost                         | GET:/posts/{Id}                                | GetPostResponse                         |
+| 26  | CreatePost                      | POST:/posts                                    | CreatePostResponse                      |
+| 27  | UpdatePost                      | PUT:/posts/{Id}                                | UpdatePostResponse                      |
+| 28  | DeletePost                      | DELETE:/posts/{Id}                             | DeletePostResponse                      |
+| 29  | LockPost                        | PUT:/posts/{Id}/lock                           |                                         |
+| 30  | HidePost                        | PUT:/posts/{Id}/hide                           |                                         |
+
+...
 ```
 
 Routes with an associated HTTP Verb, e.g. `GET:/technology` only allows access with that specific verb, if unspecified any verb can be used.
