@@ -102,7 +102,10 @@ The only requirements for Python apps to perform typed API Requests are the gene
 
 Or if preferred can be installed with [conda](https://conda.io):
 
-    $ conda install servicestack
+    $ conda install conda-build.
+
+ - Add conda-forge as channel using `conda config --add channels conda-forge`
+ - On root directory run `conda build .`
 
 ### PyCharm ServiceStack Plugin
 
