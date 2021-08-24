@@ -22,6 +22,8 @@ Developed in the modern age, ServiceStack provides an alternate, cleaner POCO-dr
 - **Dependable** - Commercially supported and actively developed
 - **Increasing Value** - ServiceStack's [ever-growing features](https://servicestack.net/features) adds more capabilities around your Services with each release
 
+<iframe class="video-hd" src="https://www.youtube.com/embed/Vae0ALalIP0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### Features Overview
 
 ServiceStack is a simple, fast, versatile and highly-productive full-featured [Web](http://razor.servicestack.net) and 
