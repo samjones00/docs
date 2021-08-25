@@ -207,7 +207,7 @@ Both though allow you to write directly to the Response OutputStream without any
 
 ### Customizing HTTP Headers
 
-If you want to customize the HTTP headers at the sametime you just need to implement [IHasOptions](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IHasOptions.cs) where any Dictionary Entry is written to the Response HttpHeaders.
+If you want to customize the HTTP headers at the same time you just need to implement [IHasOptions](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IHasOptions.cs) where any Dictionary Entry is written to the Response HttpHeaders.
 
 ```csharp
 public interface IHasOptions
