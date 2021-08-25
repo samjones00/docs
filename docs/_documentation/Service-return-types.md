@@ -194,12 +194,12 @@ See the [PartialContentResultTests](https://github.com/ServiceStack/ServiceStack
 
 ## Writing directly to the Response Stream
 
-In addition to returning plain C# objects, ServiceStack allows you to return any **Stream** or IStreamWriter (which is a bit more flexible on how you write to the response stream):
+In addition to returning plain C# objects, ServiceStack allows you to return any **Stream** or `IStreamWriterAsync` (which is a bit more flexible on how you write to the response stream):
 
 ```csharp
-public interface IStreamWriter
+public interface IStreamWriterAsync
 {
-    void WriteTo(Stream stream);
+    Task WriteToAsync(Stream responseStream, CancellationToken token=default);
 }
 ```
 
