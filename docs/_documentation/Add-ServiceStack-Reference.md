@@ -243,6 +243,19 @@ ServiceStackVS offers the generation and updating of these clients through the s
     </g>
 </svg>
 
+### IDE Integration
+
+To provide a seamless Development Experience, Add ServiceStack Reference is available as a plugin in most major IDEs which will allow your API Consumers to 
+be able easily add a typed Service Reference to your Services with just its URL in their preferred language from within JetBrains Rider, VS.NET, Android Studio, PyCharm, IntelliJ IDEA, RubyMine, PhpStorm, WebStorm and Eclipse:
+
+[![](../images/service-reference/ide-plugins-spash.png)](https://www.youtube.com/watch?v=JKsgrstNnYY)
+
+Here's a quick walk through installing the **ServiceStack** plugin and using it to add a remote ServiceStack Reference in a new C# Application:
+
+<iframe width="896" height="525" src="https://www.youtube.com/embed/JKsgrstNnYY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+Whilst VSCode and other IDEs will be able to [Simple Command Line Utility](#simple-command-line-utilities) for adding and updating multiple Services references with a single command.
+
 ### C# Xamarin.Android Example in VS.NET
 
 Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
@@ -293,7 +306,7 @@ Options for the generated DTOs can be further customized by updating the comment
 * [F# Options](/fsharp-add-servicestack-reference#change-default-server-configuration)
 * [VB.Net Options](/vbnet-add-servicestack-reference)
 
-## Simple command-line utilities for ServiceStack
+## Simple command-line utilities
 
 The [x dotnet tool](/dotnet-tool) provides simple command-line utilities to easily Add and Update ServiceStack References for all of ServiceStack's supported languages.
 
