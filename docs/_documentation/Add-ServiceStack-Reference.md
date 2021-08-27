@@ -248,7 +248,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
 To provide a seamless Development Experience, Add ServiceStack Reference is available as a plugin in most major IDEs which will allow your API Consumers to 
 be able easily add a typed Service Reference to your Services with just its URL in their preferred language from within JetBrains Rider, VS.NET, Android Studio, PyCharm, IntelliJ IDEA, RubyMine, PhpStorm, WebStorm and Eclipse:
 
-[![](../images/service-reference/ide-plugins-spash.png)](https://www.youtube.com/watch?v=JKsgrstNnYY)
+[![](../images/servicestack-reference/ide-plugins-splash.png)](https://www.youtube.com/watch?v=JKsgrstNnYY)
 
 Here's a quick walk through installing the **ServiceStack** plugin and using it to add a remote ServiceStack Reference in a new C# Application:
 

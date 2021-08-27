@@ -81,7 +81,11 @@ back-end choice for powering rich, native iPhone and iPad Apps on iOS with Swift
 with Java, OSX Desktop Applications as well as targeting the most popular .NET PCL platforms including Xamarin.iOS, Xamarin.Android, 
 Windows Store, WPF, WinForms and Silverlight: 
 
-<img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/ide-ss-plugin-logos.png" align="right" />
+[![](../images/servicestack-reference/ide-plugins-splash.png)](https://www.youtube.com/watch?v=JKsgrstNnYY)
+
+#### [JetBrains Rider ServiceStack Plugin](https://www.youtube.com/watch?v=JKsgrstNnYY)
+
+The **ServiceStack** Rider plugin is installable directly from JetBrains Marketplace and enables seamless integration with JetBrains Rider for easily generating C#, TypeScript, F# and VB.NET Typed APIs from just a remote ServiceStack Base URL.
 
 #### [VS.NET integration with ServiceStackVS](/create-your-first-webservice#step-1-download-and-install-servicestackvs)
 
@@ -105,19 +109,13 @@ support for developing iOS and Android mobile Apps using
 development experience developing Client applications with 
 [Mono Develop on Linux](/csharp-add-servicestack-reference.html#xamarin-studio-for-linux)
 
-#### [Xcode integration with ServiceStackXC Plugin](/swift-add-servicestack-reference.html)
-
-Providing [an instant Native Typed API in Swift](/swift-add-servicestack-reference.html) 
-including generic Service Clients enabling a highly-productive workflow and effortless consumption of Web Services from 
-native iOS and OSX Applications - directly from within Xcode!
-
-#### [Android Studio integration with ServiceStackIDEA](/java-add-servicestack-reference.html)
+#### [Android Studio integration with ServiceStack Plugin](/java-add-servicestack-reference.html)
 
 Providing [an instant Native Typed API in Java](/java-add-servicestack-reference.html) 
 and [Kotlin](/kotlin-add-servicestack-reference.html)
 including idiomatic Java Generic Service Clients supporting Sync and Async Requests by leveraging Android's AsyncTasks to enable the creation of services-rich and responsive native Java or Kotlin Mobile Apps on the Android platform - directly from within Android Studio!
 
-#### [IntelliJ integration with ServiceStackIDEA](/java-add-servicestack-reference.html#install-servicestack-idea-from-the-plugin-repository)
+#### [JetBrains IDEs integration with ServiceStack IDEA plugin](/java-add-servicestack-reference.html#install-servicestack-idea-from-the-plugin-repository)
 
 The ServiceStack IDEA plugin is installable directly from IntelliJ's Plugin repository and enables seamless integration with IntelliJ Java Maven projects for generating a Typed API to quickly and effortlessly consume remote ServiceStack Web Services from pure cross-platform Java or Kotlin Clients.
 
@@ -128,11 +126,9 @@ The unmatched productivity offered by [Java Add ServiceStack Reference](/java-ad
 from the [Eclipse MarketPlace](https://marketplace.eclipse.org/content/servicestackeclipse) to provide deep integration of Add ServiceStack Reference with Eclipse Java Maven Projects
 enabling Java Developers to effortlessly Add and Update the references of their evolving remote ServiceStack Web Services.
 
-#### [@servicestack/cli - Simple command-line utilities for ServiceStack](/add-servicestack-reference.html#simple-command-line-utilities-for-servicestack)
+#### [Simple command-line utilities for ServiceStack](/add-servicestack-reference.html#simple-command-line-utilities)
 
-In addition to our growing list of supported IDE's, the [@servicestack/cli](https://github.com/ServiceStack/servicestack-cli)
-cross-platform command-line npm scripts makes it easy for build servers, automated tasks and command-line runners of your 
-favorite text editors to easily Add and Update ServiceStack References!
+In addition to our growing list of supported IDE's, the [x dotnet tool](https://docs.servicestack.net/dotnet-tool) allows VS Code and other cross-platform IDEs, build servers, shell scripts and other automated tasks to easily Add and Update ServiceStack References with a single command.
 
 ## Simple Customer Database REST Services Example
 
