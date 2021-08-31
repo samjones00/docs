@@ -90,7 +90,8 @@ From the root of your local git repository, run the following command where `jup
 docker build . -t jupyter-reports
 ```
 > This will likely take a few minutes locally due to all the required packages and size of the numerous dependencies.
-> INSERT IMAGE of successful build
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/docker-build.png)
 
 To run your newly built Docker image, use the following command where `<absolute-path-of-git-repo>` is the location of your local git repository. This can't be a relative.
 
@@ -100,7 +101,8 @@ docker run -it --rm -p 8888:8888 -v <absolute-path-of-git-repo>:/home/jovyan/Not
 > Jupyter will generate working directory called `.ipynb_checkpoints` which you can add to your .gitignore. 
 
 Running this will output a local `127.0.0.1` address to use in your browser with an authentication toke you will need to copy and paste to your preferred browser.
-> INSERT IMAGE of example run output and initial jupyter screen
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/docker-run.png)
 
 ## Example notebook report
 
@@ -111,8 +113,8 @@ Now that we have our environment built and running, we want to create a report t
 To jump start the process of getting the data you need to create your report in a notebook, we can use the ServiceStack `x` tool to generate the plumbing code we need to fetch data from a specific ServiceStack host and service.
 
 For example, working with the [Chinook sample application](https://chinook.netcore.io) which has details of orders from all over the world, we can produce a report based on invoice data.
-> INSERT IMAGE of metadata page.
 
+![Metadata page of the Chinook sample application hosted at chinook.netcore.io](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/chinook-metadata.png)
 
 Running the following command from a new `notebooks` directory in our local git repository, we can generate a working notebook that already integrates with the Chinook sample web services, specifically the `QueryInvoices` service.
 ```shell
@@ -120,11 +122,16 @@ x jupyter-python https://chinook.netcore.io QueryInvoices
 ```
 
 Once generated, we can navigate to this notebook in the jupyter environment using our browser.
-> INSERT IMAGE of open notebook in jupyter
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/jupyter-notebook.png)
 
 The first cell contains all the typed code for our integration with the Chinook service and initializes the `JsonServiceClient` with the ServiceStack host.
 
-The second cell performs the query, we can provide more details here based on the specific service. If you are unsure of how you can use a specific service you can use Instant Client Apps to explore the service or use `x inspect <host> <api name>`.
+The second cell performs the query, we can provide more details here based on the specific service. If you are unsure of how you can use a specific service you can use [Instant Client Apps](https://apps.servicestack.net) to explore the service or use `x inspect <host> <api name>`.
+
+```python
+response = client.send(QueryInvoices())
+```
 
 In our example, we are going to query all invoices and filter locally to generate some different visuals.
 
@@ -137,7 +144,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-The above code will use the `pip` [magic]() to install `pandas` and `matplotlib` libraries and import them for use.
+The above code will use the `pip` [magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-pip) to install `pandas` and `matplotlib` libraries and import them for use.
 
 We know the structure of the data returning from the service based on the response Data Transfer Objects (DTOs) declared in the first cell. 
 
@@ -181,15 +188,19 @@ df.groupby('year')['total'].sum().astype(float).plot.bar();
 ```
 > For statements generating plots, remember to end the statement with a semicolon as to avoid unwanted metadata about the statement return type.
 
+![Sales by year example](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/sales-by-year.png)
+
 Working through the breakdown of data by generating additional plots with headings we end up with a basic report we can present to someone not familiar with python development. To export to PDF we can use the web UI of Jupyter by going to `File`->`Download as`->`PDF via LaTeX (.pdf)`.
->INSERT IMAGE download menu
+
+![Download PDF menu](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/download-pdf-menu.png)
 
 Looking at the resultant PDF, we can see we can still see the code related input and output. If this was something we would present to people not familiar with software development or python, this is unnecessary noise that we can filter out while still leaving the notebook in a state that is runnable for those working on it.
 
 First, clear the cell output you don't want to include in your final result PDF. This will include from cells that install dependencies using `%pip install` and anything else which you think doesn't add value to the final report. This can be done by selecting the cell in the web UI, going to the `Cell` menu and clicking `Current Outputs`->`Clear`.
 
 Once this is done, we will need to run a command from a Terminal in the context of our running Docker container. The easiest way to do this is to use the Jupyter web UI itself. From the file explorer view, at the top right a menu button called `New` can be dropped down and a `Terminal` option can be selected.
-> INSERT IMAGE of the terminal
+
+![New terminal](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/new-terminal.png)
 
 Navigating to the folder of your notebook report, you can use a utility called `nbconvert` to run a similar command to what is happening when using the `Download as` menu, but this time with additional arguments to further refine the output. Specifically, the `--TemplateExporter.exclude_input=True` option.
 
@@ -202,7 +213,8 @@ The generated PDF will be visible in the Jupyter file explorer web UI so you can
 ### Using MyBinder.org
 
 Now that we have finished the report we wanted to write, we might want a colleague review the work in a managed environment they can access straight from a browser. MyBinder.org is limited to only public GitHub repositories but the same workflow work be applicable to your own managed BinderHub environment.
-> INSERT IMAGE MyBinder.org interface
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/my-binder-ui.png)
 
 Reviewing notebooks is convenient using services like MyBinder, but changes are ephemeral, so while *reviews* can be done using this workflow, changes need to be made in an environment where files can be committed back to the remote GitHub repository.
 
