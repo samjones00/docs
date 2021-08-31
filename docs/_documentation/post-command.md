@@ -408,7 +408,7 @@ By default APIs return a human friendly text output optimal for reading at a gla
 
 ### json Response output
 
-Alternatively use `-jspn` if you're only interested in viewing the JSON response, e.g:
+Alternatively use `-json` if you're only interested in viewing the JSON response, e.g:
 
     $ x send https://covid-vac-watch.netcore.io GetLocations -json
 
