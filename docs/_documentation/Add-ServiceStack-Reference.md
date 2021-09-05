@@ -462,19 +462,21 @@ Result:
 
     https://servicestack.net
 
-#### Enabling TypeScript async/await 
 
-To make API requests using TypeScript's async/await feature we'll need to create a TypeScript `tsconfig.json` config file that imports ES6 promises and W3C fetch definitions:
+### Built in Authentication
 
-```json
-{
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": [ "es2015", "dom" ]
-  }
-}
-```
+One of the benefits of utilizing smart generic Service Clients is being able to embed high-level generic functionality like 
+Authentication that would be tedious and error prone for all API Consumers to have to implement manually.
+
+All smart generic Service Clients have support for most of [built-in Authentication](/authentication-and-authorization) options
+including [OAuth Providers](https://github.com/ServiceStackApps/AndroidJavaChat) and [Sign In with Apple](/signin-with-apple)
+that are able to take advantage of the integrated and transparent JWT and Refresh Token Cookie support.
+
+### Refresh Token Cookies supported in all Service Clients
+
+{% capture md %}{% include jwt-service-clients.md %}{% endcapture %}
+{{ md | markdownify }}
+
 
 ### Integrate with Visual Studio
 
