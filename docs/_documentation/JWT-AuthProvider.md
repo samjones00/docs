@@ -1099,10 +1099,26 @@ let response = await client.post(new SecureRequest({ name: "World" }));
 Inspect.printDump(response); // print API Response into human-readable format
 ```
 
+#### Python Service Client
+
+```python
+client = JsonServiceClient(baseUrl)
+authRequest = Authenticate(provider="credentials", user_name=user_name, password=password)
+authResponse = client.post(authRequest)
+
+# When no longer valid, Auto Refreshes JWT Bearer Token using Refresh Token Cookie
+response = client.post(SecureRequest(name="World"))
+
+#client.token_cookie         # JWT Bearer Token
+#client.refresh_token_cookie # JWT Refresh Token
+
+printdump(response) # print API Response into human-readable format
+```
+
 #### Dart Service Clients
 
 ```dart
-var client = new JsonServiceClient(baseUrl);
+var client = ClientFactory.create(baseUrl);
 var authRequest = Authenticate(provider:"credentials", userName:userName, password:password);
 var authResponse = await client.post(authRequest)
 
