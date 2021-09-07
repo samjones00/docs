@@ -126,6 +126,7 @@
     - [Python Jupyter Notebooks](/jupyter-notebooks-python)
     - [C# Jupyter Notebooks](/jupyter-notebooks-csharp)
     - [F# Jupyter Notebooks](/jupyter-notebooks-fsharp)
+    - [Reports and Testing](/jupyter-notebooks-reporting)
 - ##### Add ServiceStack Reference
     - [Overview](/add-servicestack-reference)
     - [C# Add Reference](/csharp-add-servicestack-reference)
