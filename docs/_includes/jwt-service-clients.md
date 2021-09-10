@@ -26,6 +26,7 @@ var authRequest = new Authenticate {
     provider = "credentials",
     UserName = userName,
     Password = password,
+    RememberMe = true
 };
 var authResponse = client.Post(authRequest);
 
@@ -42,7 +43,7 @@ Inspect.printDump(response); // print API Response into human-readable format (a
 
 ```ts
 let client = new JsonServiceClient(baseUrl);
-let authRequest = new Authenticate({ provider:"credentials", userName, password });
+let authRequest = new Authenticate({provider:"credentials",userName,password,rememberMe});
 let authResponse = await client.post(authRequest);
 
 // In Browser can't read "HttpOnly" Token Cookies by design, In Node.js can access client.cookies  
@@ -57,7 +58,8 @@ Inspect.printDump(response); // print API Response into human-readable format
 
 ```python
 client = JsonServiceClient(baseUrl)
-authRequest = Authenticate(provider="credentials", user_name=user_name, password=password)
+authRequest = Authenticate(
+    provider="credentials", user_name=user_name, password=password, rememberMe=true)
 authResponse = client.post(authRequest)
 
 # When no longer valid, Auto Refreshes JWT Bearer Token using Refresh Token Cookie
@@ -92,7 +94,8 @@ JsonServiceClient client = new JsonServiceClient(baseUrl);
 Authenticate authRequest = new Authenticate()
     .setProvider("credentials")
     .setUserName(userName)
-    .setPassword(password));
+    .setPassword(password)
+    .setRememberMe(true));
 AuthenticateResponse authResponse = client.post(authRequest);
 
 //client.getTokenCookie();         // JWT Bearer Token
@@ -112,6 +115,7 @@ val authResponse = client.post(Authenticate().apply {
     provider = "credentials"
     userName = userName
     password = password
+    rememberMe = true
 })
 
 //client.tokenCookie         // JWT Bearer Token
@@ -133,6 +137,7 @@ let authRequest = Authenticate()
 authRequest.provider = "credentials"
 authRequest.userName = userName
 authRequest.password = password
+authRequest.rememberMe = true
 let authResponse = try client.post(authRequest)
 
 //client.getTokenCookie()        // JWT Bearer Token
