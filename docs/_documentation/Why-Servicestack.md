@@ -426,7 +426,7 @@ of different formats, including:
 
 ### Multiple Endpoints
 
-Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can also be consumed from [SOAP 1.1 and 1.2](/soap-support) endpoints as well as a number of [MQ Servers](/messaging):
+Whilst ServiceStack is fundamentally a premier HTTP Framework, its Services can also be consumed from new [gRPC](/grpc) as well as legacy [SOAP 1.1 and 1.2](/soap-support) endpoints as well as a number of [MQ Servers](/messaging):
 
   - [Background MQ Service](/background-mq)
   - [Rabbit MQ Server](/rabbit-mq)
