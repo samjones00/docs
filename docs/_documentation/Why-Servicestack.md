@@ -441,15 +441,16 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
 #### Windows, OSX or Linux
  - **.NET Core 2.1+**
    - [Web App or SelfHost](https://github.com/NetCoreApps/LiveDemos#servicestack-net-core-live-demos)
- - **.NET Framework 4.5+ or Mono**
-   - [Any ASP.NET host](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
-   - [Stand-alone, Self-Hosted HttpListener](/self-hosting)
-   - [Entire App ILMerged into a single cross-platform App.exe](https://github.com/ServiceStack/ServiceStack.Gap#self-hosting-console-app)
+   - [Worker Service](/messaging#worker-service-templates)
 
 #### Windows
- - [Stand-alone Windows Service](/templates-windows-service)
- - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
- - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
+ - **.NET Framework 4.5+**
+   - [ASP.NET Core 2.1 LTS](/templates-corefx)
+   - [Classic ASP.NET System.Web](https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos)
+   - [Stand-alone, Self-Hosted HttpListener](/self-hosting)
+   - [Stand-alone Windows Service](/templates-windows-service)
+   - [Hosted inside WinForms with Chromium Embedded Framework](https://github.com/ServiceStack/ServiceStack.Gap#winforms-with-chromium-embedded-framework)
+   - [Windows and Azure Service Fabric](https://github.com/ServiceStackApps/HelloServiceFabric)
 
 #### OSX
  - [Hosted inside Mac OSX Cocoa App with Xamarin.Mac](https://github.com/ServiceStack/ServiceStack.Gap#mac-osx-cocoa-app-with-xmarainmac)
