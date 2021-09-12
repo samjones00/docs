@@ -363,12 +363,14 @@ artifacts or markup.
 
 Our generic Service clients covers the most popular Mobile, Desktop and Server platforms with first-class implementations for Xamarin, Android, Java and TypeScript which now includes:
 
- - [C#/.NET Service Clients](/csharp-client)
+ - [.NET Service Clients](/csharp-client)
+    - C# / VB.NET / F#
+    - .NET Core 2.1+
+    - .NET Framework 4.5+
+    - Blazor WASM
     - Xamarin.iOS
     - Xamarin.Android
     - UWP
-    - .NET Framework 4.5+
-    - .NET Core
     - Silverlight
  - [TypeScript Service Client](/typescript-add-servicestack-reference#typescript-serviceclient)
     - Web
@@ -376,22 +378,24 @@ Our generic Service clients covers the most popular Mobile, Desktop and Server p
     - React Native
         - iOS
         - Android
+ - [Python Service Client](/python-add-servicestack-reference)
+ - [Dart](/dart-add-servicestack-reference)
+   - Flutter
+        - iOS
+        - Android
+   - Web / Angular.dart
  - [Java Service Client](/java-add-servicestack-reference#jsonserviceclient-api)
     - Android
     - JVM 1.7+ (Java, Kotlin, Scala, etc)
         - Java Clients
         - Java Servers
+ - [Kotlin Service Client](/kotlin-add-servicestack-reference)
  - [Swift Service Client](/swift-add-servicestack-reference#swift-client-usage)
     - iOS
     - OSX
     - [Swift Package Manager Apps](https://github.com/ServiceStackApps/swift-techstacks-console)
  - [JavaScript (jQuery)](/ss-utils-js)
    - Web
- - [Dart](/dart-add-servicestack-reference)
-   - Flutter
-        - iOS
-        - Android
-   - Web / Angular.dart
  - [MQ Clients](/messaging#mq-client-architecture)
    - Background MQ
    - Rabbit MQ
@@ -411,6 +415,7 @@ of different formats, including:
  - [CSV](/csv-format)
  - [MsgPack](/messagepack-format)
  - [ProtoBuf](/protobuf-format)
+ - [gRPC](/grpc)
  - [Wire](/wire-format)
  - [SOAP 1.1/1.2](/soap-support)
  - HTML
