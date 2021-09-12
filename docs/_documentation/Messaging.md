@@ -44,13 +44,17 @@ Results matching tag [mq]:
 
 If you'd instead prefer to develop stand-alone MQ Servers (i.e. without HTTP access) then it can be beneficial to run the MQ Server in an ASP.NET Core Worker Service by starting from a pre-configured project template:
 
+<div class='markdown-body'>
+{% capture projects %}
 || .NET Core C# Worker Service Templates |
 |-|-|
 | [worker-rabbitmq](https://github.com/NetCoreTemplates/worker-rabbitmq)        | .NET 5.0 Rabbit MQ Worker Service |
 | [worker-redismq](https://github.com/NetCoreTemplates/worker-redismq)        | .NET 5.0 Redis MQ Worker Service |
 | [worker-servicebus](https://github.com/NetCoreTemplates/worker-servicebus)        | .NET 5.0 Azure Service Bus MQ Worker Service |
 | [worker-sqs](https://github.com/NetCoreTemplates/worker-sqs)        | .NET 5.0 AWS SQS MQ Worker Service |
-
+{% endcapture %}
+{{ projects | markdownify }}
+</div>
 
 ### feature-mq
 
