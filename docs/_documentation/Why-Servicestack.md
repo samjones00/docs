@@ -130,6 +130,12 @@ enabling Java Developers to effortlessly Add and Update the references of their 
 
 In addition to our growing list of supported IDE's, the [x dotnet tool](https://docs.servicestack.net/dotnet-tool) allows VS Code and other cross-platform IDEs, build servers, shell scripts and other automated tasks to easily Add and Update ServiceStack References with a single command.
 
+#### [Invoke ServiceStack APIs from the command-line](/post-command)
+
+Easily inspect and invoke C# .NET Web APIs from the command-line with Post Command which allows you to both inspect and
+call any ServiceStack API with just its name and a JS Object literal. API Responses returned in human-friendly markdown tables by default or 
+optionally as JSON & raw HTTP.
+
 ## Simple Customer Database REST Services Example
 
 This example is also available as a [stand-alone integration test](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/CustomerRestExample.cs):

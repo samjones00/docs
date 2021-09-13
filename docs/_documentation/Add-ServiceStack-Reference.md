@@ -463,6 +463,12 @@ Result:
     https://servicestack.net
 
 
+#### [Invoke ServiceStack APIs from the command-line](/post-command)
+
+Easily inspect and invoke C# .NET Web APIs from the command-line with Post Command which allows you to both inspect and
+call any ServiceStack API with just its name and a JS Object literal. API Responses returned in human-friendly markdown tables by default or 
+optionally as JSON & raw HTTP.
+
 ### Built in Authentication
 
 One of the benefits of utilizing smart generic Service Clients is being able to embed high-level generic functionality like 
