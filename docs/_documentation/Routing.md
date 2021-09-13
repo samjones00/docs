@@ -490,9 +490,9 @@ public class RawBytes : IRequiresRequestStream
 Which tells ServiceStack to skip trying to deserialize the request so you can read in the raw HTTP Request body yourself, e.g:
 
 ```csharp
-public object Post(RawBytes request)
+public async Task<object> PostAsync(RawBytes request)
 {
-    byte[] bytes = request.RequestStream.ReadFully();
+    byte[] bytes = await request.RequestStream.ReadFullyAsync();
     string text = bytes.FromUtf8Bytes(); //if text was sent
 }
 ```
