@@ -24,7 +24,7 @@ ServiceStack is a single code-base implementation that supports [.NET's most pop
 near perfect source-code [compatibility with .NET Core](/netcore) so all .NET Frameworks Apps are still relevant in .NET Core, e.g. 
 the [EmailContacts guidance](https://github.com/ServiceStackApps/EmailContacts) walks through the recommended setup and physical layout structure of typical medium-sized ServiceStack projects, including complete documentation of how to create the solution from scratch, whilst explaining all the ServiceStack features it makes use of along the way.
 
-## Starting Project Creator
+## Starting Project Templates
 
 Once you've familiarized yourself with ServiceStack and are ready to use it in action, get started with a customized starting project template from our online template builder at:
 
