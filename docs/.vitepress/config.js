@@ -10,7 +10,7 @@ module.exports = {
     title: 'Documentation',
     description: 'ServiceStack Docs',
     themeConfig: {
-        repo: 'ServiceStack/vitepress-docs',
+        repo: 'ServiceStack/docs',
         docsDir: 'docs',
         editLinks: true,
         editLinkText: 'Edit this page on GitHub',
