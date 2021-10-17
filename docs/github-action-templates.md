@@ -13,6 +13,8 @@ Since hosting architectures can vary so much, these templates are designed to ge
 
 The simple build and test step is available using the `mix` name of `build`, while the deployment `mix` templates use the naming convension `release-{docker image repository}-{hosting configuration}`. For example, `release-ghr-vanilla` where `ghr` uses GitHub for the Docker Repository and `vanilla` for our minimalist deployment that uses SSH and `docker-compose`.
 
+## GitHub Action Templates
+
 Templates currently available are:
 
 <table style="width:100%">

@@ -3,7 +3,7 @@ title: gRPC Server Events
 slug: server-events-grpc
 ---
 
-### Server Stream gRPC Services
+## Server Stream gRPC Services
 
 In addition to standard Services which gRPC Refers to as **Unary RPC**, i.e. where clients sends a single request to the server and 
 gets a single response back. Another very useful communication style supported by gRPC is **Server streaming**:
@@ -13,7 +13,7 @@ the client sends a request to the server and gets a stream to read a sequence of
 until there are no more messages. gRPC guarantees message ordering within an individual RPC call
 :::
 
-#### StreamServerEvents
+### StreamServerEvents
 
 This communication channel is especially useful in [Server Events](/server-events) which operates in a similar style with clients connecting to 
 a long-lived HTTP connection that streams back "real-time Events" over the light and efficient 
@@ -32,7 +32,7 @@ rpc ServerStreamServerEvents(StreamServerEvents) returns (stream StreamServerEve
 
 Which gives all `protoc` supported languages a Typed Client for consuming your [Server Events](/server-events).
 
-#### GrpcServiceClient Streams
+### GrpcServiceClient Streams
 
 When using the generic `GrpcServiceClient` you're able to take advantage of C#'s 8 new `await foreach` syntax sugar for consuming gRPC Server Streams.
 
@@ -86,7 +86,7 @@ EVENT todos.update [todos]: #1 gRPC
 EVENT todos.delete [todos]: 1
 ```
 
-#### protoc Dart Streams
+### protoc Dart Streams
 
 Other `protoc` languages will require using their own language constructs for consuming gRPC Streams,
 here's the [example for Dart](https://todoworld.servicestack.net/#dart) that also has a pleasant API for consuming Server Streams:

@@ -23,7 +23,7 @@ Note: To view the web services in a different format simply append **?format={ex
 ?format=[json|xml|html|csv|jsv]
 ```
 
-### Lightweight Customizable HTML Templates
+## Lightweight Customizable HTML Templates
 
 ServiceStack's auto HTML response pages can be overridden specific routes by populating `HtmlFormat.PathTemplates`
 with a lightweight HTML template, e.g. the `/auth` page is pre-configured with:

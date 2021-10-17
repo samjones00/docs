@@ -7,7 +7,7 @@ One of the best ways to improve performance, efficiency and reduce latency is to
 
 A common use-case that can be improved are clients making multiple requests to the same API, but due to the lack of a better alternative batched API or control over the server implementation, will default to making multiple N+1 web service requests. 
 
-### All Services support Batching
+## All Services support Batching
 
 Thanks to it's [message-based design](/advantages-of-message-based-web-services), ServiceStack is able to enable high-level generic functionality like Request Batching which is now implicitly available for all Services, without any additional effort - where multiple requests of the same type can be sent together in a single HTTP Request.
 
@@ -42,13 +42,13 @@ public class MyServices : Service
 }
 ```
 
-### Request Execution Flow
+## Request Execution Flow
 
 From the Service's point of view nothing changes. Request DTO's still get executed one at a time, through all existing filters just as if they we're sent on their own. They're just delivered together within a single HTTP Request, in this case POST'ed as JSON to the `/json/reply/Request[]` [pre-defined route](/routing#pre-defined-routes):
 
 ![Auto Batched Requests](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/auto-batched-requests.png)
 
-### Custom Batched Requests Implementations
+## Custom Batched Requests Implementations
 
 If a client was previously calling the same API 100 times, the existing overhead of 100 HTTP Requests would be reduced to just **1 HTTP Request** when batched. Although the above Service would still be calling Redis 100 times to store each Response.
 
@@ -102,7 +102,7 @@ public class MyServices : Service
 
 Just like with normal Batched Requests, Custom Batched implementations are still executed one at a time through all request/response filters, taking advantage of any existing logic/validation. 
 
-### Defining a Request DTO to accept a collection of Types
+## Defining a Request DTO to accept a collection of Types
 
 If you instead only wanted multiple Requests to be treated as a single Request through the entire pipeline you can create a new Request DTO that inherits from `List<TRequest>` which then gets treated as a normal Request DTO e, g:
 
@@ -123,7 +123,7 @@ public class MyServices : Service
 
 More examples of Auto Batched Requests and its behavior can be found in the [ReplyAllTests suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/ReplyAllTests.cs).
 
-### Auto Batch Index
+## Auto Batch Index
 
 The current index of the Auto Batched Request being processed is now being maintained in `IRequest.Items[Keywords.AutoBatchIndex]`.
 

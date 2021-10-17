@@ -5,7 +5,7 @@ title: Vue Components
 
 A collection of Vue and Vuetify Components you might find useful for use in your own Apps:
 
-### Vuetify Markdown Editor
+## Vuetify Markdown Editor
 
 To make contributing ServiceStack Community content as pleasant as possible we've developed a custom Markdown Editor that enhances a Vuetify Text Input component with editing features optimal for authoring Markdown of developer content.
 
@@ -41,7 +41,7 @@ export default {
 
 See the Project Page for [documented Example Usage](https://github.com/ServiceStack/servicestack-editor/blob/master/README.md#example-usage) of its features and how to make use of it within an existing component.
 
-### Beautiful, free Hero Backgrounds
+## Beautiful, free Hero Backgrounds
 
 [@servicestack/images](https://github.com/ServiceStack/images) is a growing hand-picked curated collection of beautiful free images from [unsplash.com](https://unsplash.com) that's an easy drop-in to any Website, with backgrounds being served from GitHub's CDN.
 

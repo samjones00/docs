@@ -9,7 +9,7 @@ The Cancellable Requests Feature makes it easy to design long-running Services t
 Plugins.Add(new CancellableRequestsFeature());
 ```
 
-### Designing a Cancellable Service
+## Designing a Cancellable Service
 
 Then in your Service you can wrap your implementation within a disposable `ICancellableRequest` block which encapsulates a Cancellation Token that you can watch to determine if the Request has been cancelled, e.g: 
 
@@ -28,7 +28,7 @@ public object Any(TestCancelRequest req)
 }
 ```
 
-### Cancelling a remote Service
+## Cancelling a remote Service
 
 To be able to cancel a Server request on the client, the client must first **Tag** the request which it does by assigning the `X-Tag` HTTP Header with a user-defined string in a Request Filter before calling a cancellable Service, e.g:
 

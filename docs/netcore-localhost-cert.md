@@ -18,7 +18,7 @@ $ dotnet dev-certs https --trust
 
 To trust the local development certificate and remove the SSL Certificate error in your browser.
 
-### When localhost is not allowed
+## When localhost is not allowed
 
 However for Apps needing to support OAuth providers that don't allow `localhost` domains like **Sign In with Apple** you would need
 to use a different domain. A popular workaround is to use a DNS name that resolves to `127.0.0.1` in which case you can use:
@@ -31,7 +31,7 @@ Which you can use to view your local Web App typically on `https://localhost:500
 will allow you to register as valid domains & callback URLs in OAuth Apps you want to support. As this is a real DNS A record
 it will also work in emulators & different environments like WSL.
 
-### When developing for Android
+## When developing for Android
 
 But to be able to access your local dev server from an Android Emulator you'd instead need to use the special `10.0.2.2` loopback
 IP, which you could support by [updating your Android Emulator /system/etc/hosts file](https://stackoverflow.com/a/53929946/85785)
@@ -56,7 +56,7 @@ and instead update your OS hosts file (e.g. `%SystemRoot%\System32\drivers\etc\h
 Which will let you use the same `dev.servicestack.com` to access your local dev server in both Android Emulators and your Host OS 
 so you can have a single domain & callback URL you can use in your OAuth Apps configuration.
 
-### When developing for iOS
+## When developing for iOS
 
 As iOS is a heavily locked down OS you wont have the same opportunity to modify iOS's hosts file, instead the easiest way to configure 
 a custom address for a given domain is to configure it on the DNS Server. Fortunately this easy to setup in macOS with a 
@@ -102,7 +102,7 @@ address=/dev.servicestack.com/192.168.0.2
 In which case you'll also want to update the OS's resolver config to 
 [query your local DNS Server when resolving these addresses](https://www.stevenrombauts.be/2018/01/use-dnsmasq-instead-of-etc-hosts/#2-only-send-test-and-box-queries-to-dnsmasq).
 
-#### Restart Dnsmasq to apply changes
+### Restart Dnsmasq to apply changes
 
 After making changes to your DNS configuration, restart dnsmasq for it to take effect:
 
@@ -111,7 +111,7 @@ $ sudo launchctl stop homebrew.mxcl.dnsmasq
 $ sudo launchctl start homebrew.mxcl.dnsmasq
 ```
 
-#### Update iOS to use your custom DNS Server
+### Update iOS to use your custom DNS Server
 
 First find out the current IP Address of your macOS instance:
 
@@ -131,7 +131,7 @@ Then switching to use **Manual** DNS servers and adding your macOS IP Address wh
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/ios-configure-dns.jpeg)
 
-### Generating self-signed SSL Certificates for Custom Domains
+## Generating self-signed SSL Certificates for Custom Domains
 
 Whether you use `local.servicestack.com` or `dev.servicestack.com` or your own hostname, you'll need to create and trust
 a self-signed certificate to be able to view it in a browser without certificate errors.

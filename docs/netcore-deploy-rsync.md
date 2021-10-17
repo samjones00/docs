@@ -5,7 +5,7 @@ title: Deploying .NET Core Apps to Ubuntu with rsync
 
 A common way for reliably hosting .NET Core Apps on Ubuntu is to use [supervisor](http://supervisord.org/index.html) to monitor the `dotnet` self-hosting processes behind an nginx reverse proxy which handles external HTTP requests to your website and proxies them to the dotnet process running your Web App on a local port. You'll need access to a Unix environment on your client Desktop, either using Linux, OSX or [Installing Windows Subsystem for Linux (WSL)](https://github.com/ServiceStack/redis-windows#option-1-install-redis-on-ubuntu-on-windows).
 
-### Setup the deploy User Account
+## Setup the deploy User Account
 
 We'll start by creating a dedicated user account for hosting and running your .NET Core Apps to mitigate potential abuse. SSH into your Ubuntu server and create the `deploy` user account with a `/home/deploy` home directory and add them to the `sudo` group:
 
@@ -32,7 +32,7 @@ To allow `deploy` to run `supervisorctl` without prompting for a password:
 In vi type `i` to start editing a file and `ESC` to quit edit mode and `:wq` to save your changes before exiting
 :::
 
-### Setup supervisor
+## Setup supervisor
 
 Install supervisor using apt-get:
 
@@ -57,7 +57,7 @@ user=deploy
 stopsignal=INT
 ```
 
-### Setup nginx
+## Setup nginx
 
 You'll also need to create a separate config for each website on nginx in /etc/nginx/sites-available/. You can use the same template for each website but you'll need to change the server_name with the domain name you want to use for the App and use a different port number for each App:
 
@@ -99,11 +99,11 @@ After this we can tell nginx to reload its configuration, as there's nothing lis
 $ /etc/init.d/nginx reload
 ```
 
-### Setting up SSH keys
+## Setting up SSH keys
 
 We can now exit our remote Linux server and return to our local machine and prepare our deployment script. Before doing this we recommend [setting up SSH and copying your SSH public key to your remote server](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2) which is both more secure and more convenient than using a password.
 
-### Create the deployment script
+## Create the deployment script
 
 [rsync](https://rsync.samba.org/) is a beautiful utility that provides a fast, secure file transfer over SSH which you can use to sync the contents of folders to a remote site. There's only 2 commands you need to run to deploy a local .NET Core App remotely, `rsync` to sync the published .NET Core App files and `supervisorctl` to restart the `supervisord` process that runs and monitor the .NET Core App which you can add to a [deploy.sh](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks/deploy.sh) that you can run with WSL bash:
 

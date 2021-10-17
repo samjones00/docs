@@ -15,13 +15,17 @@ appHost.Plugins.Add(new ValidationFeature());
 appHost.Resolve<IValidationSource>().InitSchema();
 ```
 
-Management of this feature is limited to users in the `ValidationFeature.AccessRole` (default: Admin).
+::: info
+Management of this feature is limited to users in the `ValidationFeature.AccessRole` (default: **Admin**)
+:::
+
+## DB Validation UI
 
 Clicking on the Validation **Lock Icon** on the top right will take you to the Validation Editor for that AutoQuery Request DTO which will include quick links to jump to different AutoQuery/Crud Services for the same Data Model.
 
 In the validation editor you'll be able to create **Type** and **Property** Validation Rules that either make use of an existing **Validator** or you can enter a custom `#Script` expression that must validate to `true`. The Validator UI is smart and will list all built-in and Custom Script Methods returning `ITypeValidator` or `IPropertyValidator` that's registered in the remote instance. The pre-defined list of validators are displayed in a list of "quick pick" buttons that enables fast adding/editing of validation rules.
 
-#### Verified Rules
+### Verified Rules
 
 The `ModifyValidationRules` Service that Studio calls performs a lot of validation to ensure the Validation rule is accurate including executing the validator to make sure it returns the appropriate validator type and checking the syntax on any **Script** validation rules to ensure it's valid.
 

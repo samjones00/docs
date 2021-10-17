@@ -10,7 +10,7 @@ A strategy we recommend for maximizing re-use of your Services is to design them
 (e.g. Desktop, Mobile and Web UIs) have equal accessibility to your services since they all consume the same published API's for all of 
 their functionality.
 
-### Benefits of Services
+## Benefits of Services
 
 This is the development model ServiceStack has always promoted and what most of its features are centered around, where your Services Contract is 
 defined by decoupled impl-free DTOs. If your Services retain this property then they'll be able to encapsulate any of its capabilities of 
@@ -25,7 +25,7 @@ enable more seamless integrations in a variety of different scenarios including 
 [Web, Mobile and Desktop Apps](/why-servicestack#multiple-clients) that reduce the effort and complexity required to call your Services 
 in all consumers - multiplicatively increasing the value provided.
 
-### API First Development Model
+## API First Development Model
 
 The typical practice in .NET has been you need to maintain **separate controllers** and logic for your **HTML UIs** and **API controllers** 
 for your **HTTP APIs**. This approach forces code duplication and breaks your systems well-defined Service Contracts where any custom

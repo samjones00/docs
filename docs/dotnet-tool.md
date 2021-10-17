@@ -18,6 +18,8 @@ These tools contains all the functionality ServiceStack Developers or API consum
 or generate typed endpoints for consuming ServiceStack Services by either
 [Add/Update ServiceStack References](/add-servicestack-reference) or by generating [gRPC client proxies](/grpc#grpc-clients).
 
+## Install
+
 To access available features, install with:
 
 ```bash
@@ -34,7 +36,7 @@ $ dotnet tool update -g x
 Both `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer [Windows-only integration](/netcore-windows-desktop)
 :::
 
-#### Usage
+## Usage
 
 Then run `x` without any arguments to view Usage:
 
@@ -260,9 +262,11 @@ The quick demo below shows the kind of exploratory programming available where y
 query an objects `props`, query the Lisp interpreter's global `symbols` table containing all its global state including all 
 defined lisp functions, macros and variables:
 
-> YouTube: [youtu.be/RR7yk6ReNnQ](https://youtu.be/RR7yk6ReNnQ)
-
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/web-lisp.gif)](https://youtu.be/RR7yk6ReNnQ)
+
+::: info YouTube
+[youtu.be/RR7yk6ReNnQ](https://youtu.be/RR7yk6ReNnQ)
+:::
 
 ### Annotated REPL Walk through
 

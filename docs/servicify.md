@@ -52,7 +52,7 @@ And if you can access it from Dart, you can access it from all platforms Dart ru
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autogen-grpc-flutter.jpg)](https://youtu.be/3iz9aM1AlGA)
 
-### React Native Typed Client
+## React Native Typed Client
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/react-native-logo.svg" width="300" align="right">
 
@@ -60,6 +60,8 @@ gRPC is just [one of the endpoints ServiceStack Services](/why-servicestack#mult
 
 Like [TypeScript](/typescript-add-servicestack-reference) which can be used in Browser & Node TypeScript code-bases as well as JavaScript-only code-bases like [React Native](https://reactnative.dev) - a highly productive Reactive UI for developing iOS and Android Apps:
 
-> YouTube: [youtu.be/6-SiLAbY63w](https://youtu.be/6-SiLAbY63w)
-
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autogen-react-native.png)](https://youtu.be/6-SiLAbY63w)
+
+::: info YouTube
+[youtu.be/6-SiLAbY63w](https://youtu.be/6-SiLAbY63w)
+:::

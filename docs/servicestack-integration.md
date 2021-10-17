@@ -35,11 +35,11 @@ public class ServiceStackController : Controller
 }
 ```
 
-### Use ServiceStack Authentication
+## Use ServiceStack Authentication
 
 One benefit of integration with ServiceStack is to be able to make use of ServiceStack's simple and flexible [Authentication Providers](/authentication-and-authorization) which require minimal configuration and supports a number of different [Session Providers](/caching) and persistent [Data Store back-ends](/authentication-and-authorization#userauth-persistence---the-iuserauthrepository) to make it easy to integrate with an existing environment.
 
-### New MVC and WebForms Examples
+### MVC and WebForms Examples
 
 To illustrate the seamless integration with ServiceStack, we've created 2 new authentication-enabled example websites:
 
@@ -88,7 +88,9 @@ public ActionResult Login(string userName, string password, string redirect=null
 }
 ```
 
-> Since the above example calls the Service method directly any exceptions raised by the Service implementation are thrown and caught as normal.
+::: info
+Since the above example calls the Service method directly any exceptions raised by the Service implementation are thrown and caught as normal
+:::
 
 #### Using Execute to process Request DTO's
 

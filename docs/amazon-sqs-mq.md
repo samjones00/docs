@@ -3,7 +3,7 @@ slug: amazon-sqs-mq
 title: Amazon SQS MQ
 ---
 
-Support for registering Amazon Simple Queue Service (SQS) as an [MQ Server](/messaging) in ServiceStack is available in [ServiceStack.Aws](https://www.nuget.org/packages/ServiceStack.Aws) NuGet package:
+Support for registering Amazon Simple Queue Service (SQS) as an [MQ Server](/messaging) is available in [ServiceStack.Aws](https://www.nuget.org/packages/ServiceStack.Aws) NuGet package:
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Aws" Version="5.*" />`
@@ -25,7 +25,7 @@ AfterInitCallbacks.Add(appHost => mqServer.Start());
 
 When an MQ Server is registered, ServiceStack automatically publishes Requests accepted on the "One Way" [pre-defined route](https://github.com/ServiceStack/ServiceStack/wiki/Routing#pre-defined-routes) to the registered MQ broker. The message is later picked up and executed by a Message Handler on a background Thread.
 
-### SQS MQ Server Example
+## SQS MQ Server Example
 
 The [AWS Email Contacts](https://github.com/ServiceStackApps/AwsApps/tree/master/src/AwsApps/emailcontacts) example shows the same long-running 
 [EmailContact Service](https://github.com/ServiceStackApps/AwsApps/blob/4817f5c6ad69defd74d528403bfdb03e5958b0b3/src/AwsApps/emailcontacts/EmailContactServices.cs#L81)
@@ -74,7 +74,7 @@ mqServer.RegisterHandler<EmailContacts.EmailContact>(ExecuteMessage);
 AfterInitCallbacks.Add(appHost => mqServer.Start());
 ```
 
-### Intercepting Filters
+## Intercepting Filters
 
 A number of new filters are available on `SqsMqServer` and `SqsMqClient` which will let you intercept and apply custom logic before SQS messages are 
 sent and received:
@@ -87,7 +87,7 @@ Action<DeleteMessageRequest> DeleteMessageRequestFilter
 Action<ChangeMessageVisibilityRequest> ChangeMessageVisibilityRequestFilter
 ```
 
-### Polling Duration
+## Polling Duration
 
 The polling duration used to poll SQS queues can be configured with:
 

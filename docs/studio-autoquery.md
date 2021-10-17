@@ -7,6 +7,8 @@ Studio uses the rich declarative metadata of AutoQuery & Crud Services to infer 
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)
 
+## AutoQuery UI
+
 What UI features & tables are visible is reflected by whether the AutoQuery Service for that type exists and whether the currently authenticated User has access to them (i.e. Have the role required by each Service). So an unauthenticated user will see Northwind Crud's read-only **Region** table with no ability to update it & the **Territory** table, which as it isn't protected by a role will be visible to everyone, 
 but as all CRUD Write operations require authentication, all edit controls require authentication - as shown in the screenshot above where they're replaced with auth **Sign In** buttons.
 

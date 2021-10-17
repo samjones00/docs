@@ -28,6 +28,6 @@ the [EmailContacts guidance](https://github.com/ServiceStackApps/EmailContacts) 
 
 Once you've familiarized yourself with ServiceStack and are ready to use it in action, get started with a customized starting project template from our online template builder at:
 
-## [servicestack.net/start](https://servicestack.net/start)
+<h2 class="text-center pb-2"><a href="https://servicestack.net/start">servicestack.net/start</a></h2>
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/overview/servicestack-start.png)](https://servicestack.net/start)

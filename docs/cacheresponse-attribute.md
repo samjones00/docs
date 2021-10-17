@@ -27,7 +27,7 @@ public object Any(GetCustomer request)
 }
 ```
 
-### Caching AutoQuery Services
+## Caching AutoQuery Services
 
 Request Filter attributes can also be applied on Request DTO's, as we seen with [AutoQuery DynamoDB's QueryRockstarAlbums](/autoquery-dynamodb#caching-autoquery-services) Request DTO:
 
@@ -113,7 +113,7 @@ ServiceStack falls back to use the `HttpCacheFeature.DefaultMaxAge` which defaul
 in addition to the `VaryByUser` flag will construct a unique cache key for each user and return an additional 
 `Vary: Cookie` HTTP Response Header.
 
-### Advanced CacheInfo Customization
+## Advanced CacheInfo Customization
 
 One limitation of using a .NET Attribute to specify caching behavior is that we're limited to using 
 .NET constant primitives prohibiting the use of allowing custom lambda's to capture custom behavior. 

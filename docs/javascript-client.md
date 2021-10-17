@@ -16,12 +16,14 @@ client.get(new Hello({ Name: 'World' }))
   .then(r => console.log(r.Result));
 ```
 
-### Using JavaScript Typed DTOs in Web Apps
+## Using JavaScript Typed DTOs in Web Apps
 
 To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET 5 project:
 
-    $ mkdir ProjectName && cd ProjectName
-    $ x mix init
+```bash
+$ mkdir ProjectName && cd ProjectName
+$ x mix init
+```
 
 That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
 
@@ -29,7 +31,9 @@ That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a
 
 With a single command you can update your App's TypeScript DTOs, compile them to JavaScript & move them to `/wwwroot`:
 
-    $ npm run dtos
+```bash
+$ npm run dtos
+```
 
 To use them in your Web Page create a basic UMD loader and include the UMD `@servicestack/client` library & `dtos.js`:
 
@@ -96,24 +100,26 @@ bundle any TypeScript `.ts` source files, just the generated [index.js](https://
 import { JsonServiceClient } from "@servicestack/client";
 ```
 
-Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded
-and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [x dotnet tool](/dotnet-tool)
+Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [x dotnet tool](/dotnet-tool)
 to download the DTOs of a remote ServiceStack API with:
 
-    $ npm install -g @servicestack/cli
-
-
-    $ dotnet tool install --global x 
-    $ x typescript http://yourdomain.org
+```bash
+$ dotnet tool install --global x 
+$ x typescript http://yourdomain.org
+```
 
 For JavaScript projects that haven't configured transpilation of TypeScript, you'll need to use TypeScript to generate the `dtos.js` JavaScript version
 which can be used instead:
 
-    $ tsc dtos.ts 
+```bash
+$ tsc dtos.ts 
+```
 
 Use the [--module compiler flag](https://www.typescriptlang.org/docs/handbook/compiler-options.html) if needing to generate a specific module version, e.g:
 
-    $ tsc -m ES6 dtos.ts
+```bash
+$ tsc -m ES6 dtos.ts
+```
 
 The generated `dtos.js` can then be used with the `JsonServiceClient` to provide a succinct Typed API:
 
@@ -129,7 +135,9 @@ let response = await client.get(new GetConfig());
 
 To update your generated DTOs when your server API changes, run `x typescript` or its shorter `x ts` alias without any arguments:
 
-    $ x ts
+```bash
+$ x ts
+```
 
 Which will update to the latest version of `dtos.ts`. This can be easily automated with an [npm script][5], e.g:
 
@@ -143,7 +151,9 @@ Which will update to the latest version of `dtos.ts`. This can be easily automat
 
 Which will let you update and compile the dtos with:
 
-    $ npm run dtos
+```bash
+$ npm run dtos
+```
 
 The [TechStacks][6] (Vue/Nuxt) and [React Native Mobile App][7] (React) are examples of JavaScript-only projects using the TypeScript `JsonServiceClient` in this way.
 

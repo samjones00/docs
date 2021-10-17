@@ -7,7 +7,7 @@ The ServiceStack.Text JSON Serializers are only designed for serializing Typed P
 
 A more flexible approach to read any arbitrary JavaScript or JSON data structures is to use the high-performance and memory efficient JSON utils in [#Script](https://sharpscript.net) implementation of JavaScript.
 
-### Install
+## Install
 
 The `#Script` JSON and JS Utils are available from the [ServiceStack.Common](https://www.nuget.org/packages/ServiceStack.Common) NuGet package:
 
@@ -27,7 +27,7 @@ JSON.parse("[{a:1}]") //= new List<object> { new Dictionary<string, object> { { 
 
 It can be used to parse dynamic JSON and any primitive JavaScript data type. The inverse API of `JSON.stringify()` is also available.
 
-### Eval
+## Eval
 
 Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [#Script Sandbox](https://sharpscript.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:
 
@@ -64,7 +64,7 @@ var result = (ReadOnlyMemory<byte>)JS.eval("serialize(target)", scope);
 Where the `serialize()` method only needs to be registered once in the host project that creates the context that all your DSL's are executed within, 
 the implementations of which can later be substituted without any changes to existing scripts or needing to change any package/Assembly references.
 
-### JavaScript Expressions
+## JavaScript Expressions
 
 The JavaScript Expressions support in ServiceStack follows the [syntax tree used by Esprima](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html), JavaScript's leading lexical language parser for JavaScript, but adapted to suit C# conventions using PascalCase properties and each AST Type prefixed 
 with `Js*` to avoid naming collisions with C#'s LINQ Expression Types which often has the same name. 
@@ -100,7 +100,7 @@ Instead to replicate `||` coalescing behavior on falsy values you can use C#'s `
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/ternary-expression.png)](https://sharpscript.net/docs/expression-viewer#expression=a%20%3E%20(c%20%3F%3F%20b)%20%3F%20a%20%3A%20b&a=1&b=2)
 
-#### Lambda Expressions
+### Lambda Expressions
 
 You can use lambda expressions in all functional filters:
 
@@ -133,7 +133,7 @@ be implicitly assigned to the `it` binding:
 
 As it's results in more wrist-friendly and readable code, [most LINQ Examples](https://sharpscript.net/linq/projection-operators#linq15-selectmany---compound-from-2) use the shorthand lambda expression syntax above.
 
-#### Shorthand properties
+### Shorthand properties
 
 Other language enhancements include support for [JavaScript's shorthand property names](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Syntax):
 
@@ -149,7 +149,7 @@ But like C# also lets you use member property names:
 ```
 :::
 
-#### Template Literals
+### Template Literals
 
 Many of ES6/7 features are also implemented like Template Literals:
 
@@ -160,7 +160,7 @@ Backtick quoted strings also adopt the same [escaping behavior of JavaScript str
 whilst all other quoted strings preserve unescaped string values
 :::
 
-#### Spread Operators
+### Spread Operators
 
 Other advanced ES6/7 features supported include the object spread, array spread and argument spread operators:
 
@@ -168,7 +168,7 @@ Other advanced ES6/7 features supported include the object spread, array spread 
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/array-spread.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B1%2C%20...%5Brange(2%2Cpow(...%5B3%2Ce%5D))%5D%2C%201%5D&e=2)
 
-#### Bitwise Operators
+### Bitwise Operators
 
 All JavaScript Bitwise operators are also supported:
 
@@ -179,7 +179,7 @@ Essentially Templates supports most JavaScript Expressions, not statements which
 or mutations using Assignment Expressions and Operators. All assignments still need to be explicitly performed through an 
 [Assignment Filter](https://sharpscript.net/docs/default-scripts#assignment).
 
-#### Evaluating JavaScript Expressions
+### Evaluating JavaScript Expressions
 
 The built-in JavaScript expressions support is also useful outside of dynamic pages where they can be evaluated with `JS.eval()`:
 
@@ -223,7 +223,7 @@ expr.Invoke(2,4)        //= 20
 expr.Invoke(2,4, scope) //= 3
 ```
 
-#### Parsing JS Expressions
+### Parsing JS Expressions
 
 Evaluating JS expressions with `JS.eval()` is a wrapper around parsing the JS expression into an AST tree then evaluating it, e.g:
 
@@ -234,7 +234,7 @@ expr.Evaluate(); //= 20
 
 When needing to evaluate the same expression multiple times you can cache and execute the AST to save the cost of parsing the expression again.
 
-#### DSL example
+### DSL example
 
 If implementing a DSL containing multiple expressions as done in many of the [Block argument expressions](https://sharpscript.net/docs/blocks) 
 you can instead use the `ParseJsExpression()` extension method to return a literal Span advanced to past the end of the expression with the parsed 
@@ -260,7 +260,7 @@ if (literal.StartsWith("take "))
 Resulting in `where` populated with the [c.Age == 27](https://sharpscript.net/docs/expression-viewer#expression=c.Age%20%3D%3D%2027&c=%7B%20Age%3A27%20%7D) `BinaryExpression` and `take` with the [1 + 2](https://sharpscript.net/docs/expression-viewer#expression=1%20%2B%202)
 `BinaryExpression`.
 
-#### Immutable and Comparable
+### Immutable and Comparable
 
 Unlike C#'s LINQ Expressions which can't be compared for equality, #Script Expressions are both Immutable and Comparable which can be used 
 in caches and compared to determine if 2 Expressions are equivalent, e.g:
@@ -291,7 +291,7 @@ var scope = JS.CreateScope(args:new Dictionary<string, object> {
 expr.Evaluate(scope) //= true
 ```
 
-### Helper Types
+## Helper Types
 
 As scripting makes prevalent usage of Object Dictionaries and Key/Value pairs there's a couple of UX Friendly Generic collections to
 reduce boilerplate if you're repeatedly using these collections:

@@ -39,7 +39,7 @@ IServiceClient msgPackClient = new MsgPackServiceClient(baseUrl).WithCache(share
 IServiceClient jsonClient = new JsonHttpClient(baseUrl).WithCache(sharedCache);
 ```
 
-### Improved Performance and Reliability
+## Improved Performance and Reliability
 
 When caching is enabled on Services, the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also  offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience and as they're available in all supported PCL client platforms - we recommend their use where HTTP Caching is enabled on the Server.  
 

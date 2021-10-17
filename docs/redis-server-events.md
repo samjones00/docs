@@ -1,5 +1,5 @@
 ---
-slug: redis-server-events
+title: Redis ServerEvents
 ---
 
 One limitation the default `MemoryServerEvents` implementation has is being limited for use within a single App Server where all client connections are maintained. This is no longer a limitation with the new **Redis ServerEvents back-end** which utilizes a distributed redis-server back-end to provide a scale-out option capable of serving fan-out/load-balanced App Servers. If you're familiar with SignalR, this is akin to [SignalR's scaleout with Redis back-end](http://www.asp.net/signalr/overview/signalr-20/performance-and-scaling/scaleout-with-redis).
@@ -8,7 +8,7 @@ One limitation the default `MemoryServerEvents` implementation has is being limi
 
 ![Redis ServerEvents Scale Out](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/gap/Chat/redis-scaleout.png)
 
-### Enabling Redis ServerEvents
+## Enable Redis ServerEvents
 
 As a drop-in replacement it can easily be configured with just a few lines of code, as seen in the updated Chat App which can run on either [Memory or Redis ServerEvents providers](https://github.com/ServiceStackApps/Chat/blob/326617e88272d7cc0a8b7513272cf055378957e2/src/Chat/Global.asax.cs#L46-L54):
 

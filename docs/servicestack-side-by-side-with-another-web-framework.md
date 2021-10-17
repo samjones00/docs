@@ -87,7 +87,7 @@ If you used Nuget to install the bits, remove the original handler from the web.
     preCondition="integratedMode" resourceType="Unspecified" allowPathInfo="true" />
 ```
 
-### Enable ASP.NET Sessions
+## Enable ASP.NET Sessions
 
 If you want ServiceStack Services to be able to access ASP.NET Session you can use a decorated `IHttpHandlerFactory` below
 that returns a `SessionHandlerDecorator` that's decorated with `IRequiresSessionState` to tell ASP.NET to enable Sessions for these handlers:

@@ -37,7 +37,7 @@ Once populated your sitemap will be available at `/sitemap.xml` which looks like
 
 Which you can checkout in this [live Sitemap example](https://techstacks.io/sitemap-techstacks.xml).
 
-### Multiple Sitemap Indexes
+## Multiple Sitemap Indexes
 
 For larger websites, Sitemaps also support multiple [Sitemap indexes](https://support.google.com/webmasters/answer/75712?hl=en) which lets you split sitemap urls across multiple files. To take advantage of this in `SitemapFeature` you would instead populate the `SitemapIndex` collection with multiple `Sitemap` entries. An example of this is in the full [Sitemap used by techstacks.io](https://github.com/ServiceStackApps/TechStacks/blob/a114348e905b4334e93a5408c2fb76c5fb589501/src/TechStacks/TechStacks/AppHost.cs#L90-L128):
 

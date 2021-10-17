@@ -51,7 +51,7 @@ $ rlwrap telnet localhost 5005
 Where you now have full scriptability of the running server as allowed by [#Script Pages](https://sharpscript.net/docs/sharp-pages) `SharpPagesFeature` which
 allows [scripting of all .NET Types](https://sharpscript.net/docs/script-net#allowscriptingofalltypes) by default. 
 
-#### TechStacks TCP Lisp REPL Demo
+## TechStacks TCP Lisp REPL Demo
 
 In this demo we'll explore some of the possibilities of scripting the live [techstacks.io](https://techstacks.io) Server where we can 
 `resolve` IOC dependencies to send out tweets using its registered `ITwitterUpdates` dependency, view the source and load a remote 
@@ -71,7 +71,7 @@ they're processed in the background by its configured [MQ Server](/messaging) th
 [youtu.be/HO523cFkDfk](https://youtu.be/HO523cFkDfk)
 :::
 
-### Password Protection 
+## Password Protection 
 
 Since TCP Server effectively opens your remote Server up to being scripted you'll want to ensure the TCP Server is only accessible
 within a trusted network, effectively treating it the same as [Redis Security Model](https://redis.io/topics/security).
@@ -96,7 +96,7 @@ SetConfig(new HostConfig {
 });
 ```
 
-#### Annotated Lisp TCP REPL Transcript
+## Annotated Lisp TCP REPL Transcript
 
 ```lisp
 ; resolve `ITwitterUpdates` IOC dependency and assign it to `twitter`

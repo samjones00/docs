@@ -7,7 +7,7 @@ The `BackgroundMqService` is a full-featured `IMessageService` implementation th
 
 To illustrate an example we'll walkthrough TechStacks implementation of what's likely the most popular use of background job in Web Apps - sending emails... 
 
-### Using Background Service to send Emails
+## Using Background Service to send Emails
 
 Configuring the `BackgroundMqService` is the same as every other MQ Server, i.e. register it in the IOC and register handlers for the Request DTO of each Service you want to be able to run in the background:
 
@@ -222,7 +222,7 @@ private async Task RecordEmailSentToUser(long notificationId, int userId)
 }
 ```
 
-### Replaying Messages
+## Replaying Messages
 
 The `RetryPendingNotifications` Service replays incomplete notifications by publishing new `SendNotification` messages which are executed by the `BackgroundMqService` as normal. 
 This also lets you replay failed notifications by setting `Failed` to `null` and recalling the Service. As the state of each task is persisted after each step, it can fail at any point and the replayed task will be able to restart where it left off.
@@ -251,7 +251,7 @@ public object Any(RetryPendingNotifications request)
 }
 ```
 
-### MQ Status
+## MQ Status
 
 The other benefit from persisting the status of each tasks is being able to inspect the `Notification` and `EmailTemplate` table to be able to monitor the progress of each Task. 
 

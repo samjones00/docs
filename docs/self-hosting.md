@@ -7,7 +7,7 @@ Otherwise it's very easy to host ServiceStack in a Console App or Windows Servic
 
 If using this in a .NET standard console app, you should reference [ServiceStack.Kestrel](https://www.nuget.org/packages/ServiceStack.Kestrel) NuGet package.
 
-### Complete C# Console Host Example
+## Complete C# Console Host Example
 
 ```csharp
 using System;
@@ -56,7 +56,7 @@ class Program
 }
 ```
 
-### Complete VB.NET Console Host Example
+## Complete VB.NET Console Host Example
 ```vb
 Imports System
 Imports ServiceStack
@@ -108,7 +108,7 @@ Public Class Program
 End Class
 ```
 
-### Complete F# Console Host Example
+## Complete F# Console Host Example
 
 ```fsharp
 open System
@@ -143,15 +143,15 @@ let main args =
 
 When any of these are running, you can call your hello service at `http://localhost:1337/hello/World!`
 
-### Windows Service Template
+## Windows Service Template
 
 You can use [winservice-netfx](https://github.com/NetFrameworkTemplates/winservice-netfx) to create a Windows Service but as this requires Visual Studio it's faster to continue creating new Windows Service projects within VS.NET using the **ServiceStack Windows Service Empty** Project Template.
 
-### Serving Razor Views or Static Files from HttpListener
+## Serving Razor Views or Static Files from HttpListener
 
 The PhysicalPath for self-hosted HttpListener hosts is at the same directory where the `.exe` is run (e.g. in `/bin`). To serve any static files or execute any Razor Views you need to set the **Copy Output Directory** of all static assets you want available to `Copy if newer`. The [ServiceStack.Gap](https://github.com/ServiceStack/ServiceStack.Gap) feature provides an alternative packaging approach that can embed static resources and pre-compile razor views into a single `.exe` for the most optimal deployment.
 
-### Serve Static Files from your Project Path
+## Serve Static Files from your Project Path
 
 An alternative way for the Self-Hosted Console Application to find your Static files and Razor Views is to change the physical path so it points at your project directory. This enables an optimal **Live Reloading** development experience since its serving the original source Views you edit directly in your Project and not any copies that are copied to your `/bin`. 
 
@@ -170,11 +170,11 @@ SetConfig(new HostConfig {
 You will still need to "Copy to Output Directory" in RELEASE builds if you're not using [Embedded Resources](/virtual-file-system#embedded-resources) so the Console App can locate the Razor Views and Static files at runtime
 :::
 
-### Host as a Windows or Linux Console Host, Windows Service or Linux Daemon
+## Host as a Windows or Linux Console Host, Windows Service or Linux Daemon
 
 This will run in as a Console Host in any Operating System with .NET 3.5 or Mono installed. In addition this can also be wrapped-up and run inside a [Windows Service](https://github.com/ServiceStack/ServiceStack.Examples/tree/master/src/StarterTemplates/WinServiceAppHost) or run as a [Linux Daemon](/servicestack-as-daemon-on-linux) which you can optionally elect to serve behind [Apache or Nginx reverse proxies](/servicestack-as-daemon-on-linux).
 
-### Easily Convert to an ASP.NET Web Service
+## Easily Convert to an ASP.NET Web Service
 
 As both AppHostBase and AppHostHttpListenerBase follow the same API they are easily convertible between the two. Here's some step-by-step instructions showing you how to convert an [F# Console Host to an ASP.NET Web Service on OSX!](http://www.servicestack.net/mythz_blog/?p=785)
 

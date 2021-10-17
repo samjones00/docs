@@ -5,7 +5,7 @@ title: Service Discovery
 
 ServiceStack is fortunate to have a vibrant community which quickly saw the capabilities on offer in [Service Gateway](/service-gateway) whom have jumped in with a number of high-quality, well-documented and supported value-added OSS solutions:
 
-### [ServiceStack.Discovery.Consul](https://github.com/MacLeanElectrical/servicestack-discovery-consul)
+## [ServiceStack.Discovery.Consul](https://github.com/MacLeanElectrical/servicestack-discovery-consul)
 
 The [ConsulFeature](https://github.com/MacLeanElectrical/servicestack-discovery-consul) plugin 
 by [Scott Mackay](https://github.com/wwwlicious) leverages the hardened distributed Discovery Services and 
@@ -49,7 +49,7 @@ public class MyService : Service
 
 ![RequestDTO Service Discovery](https://raw.githubusercontent.com/MacLeanElectrical/servicestack-discovery-consul/master/assets/RequestDTOServiceDiscovery.png)
 
-### [ServiceStack.Discovery.Redis](https://github.com/rsafier/ServiceStack.Discovery.Redis)
+## [ServiceStack.Discovery.Redis](https://github.com/rsafier/ServiceStack.Discovery.Redis)
 
 The [RedisServiceDiscoveryFeature](https://github.com/rsafier/ServiceStack.Discovery.Redis) by
 [Richard Safier](https://github.com/rsafier) has similar goals to provide transparent service discovery 
@@ -103,7 +103,7 @@ with any Redis GUI:
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/RedisDiscoveryScreenshot.png)
 
-#### [ServiceStack.SimpleCloudControl](https://github.com/rsafier/ServiceStack.SimpleCloudControl)
+### [ServiceStack.SimpleCloudControl](https://github.com/rsafier/ServiceStack.SimpleCloudControl)
 
 In addition to this Redis Discovery Service Richard is also developing a series of ServiceStack plugins 
 that enhances the functionality of ServiceStack.Discovery.Redis and provides cluster awareness to 

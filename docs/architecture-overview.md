@@ -11,11 +11,11 @@ supporting multiple back-ends and all working seamlessly together. Our best-prac
 architecture is purposely kept simple, introduces minimal new concepts or artificial constructs that 
 can all be eloquently captured in the diagram below:
 
-### Server Architecture
+## Server Architecture
 
 ![ServiceStack Logical Architecture View](/images/overview/servicestack-logical-view-02.png) 
 
-### Client Architecture
+## Client Architecture
 
 ServiceStack's [Message-based design](/advantages-of-message-based-web-services) allows us to easily support [typed, generic and re-usable Service Clients](/clients-overview) for all our popular formats:
 

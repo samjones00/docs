@@ -355,7 +355,9 @@ lets you call the Service using just its route:
 var response = client.Get<List<Contact>>("/contacts");
 ```
 
-> All these Service Client APIs **have async equivalents** with an `*Async` suffix.
+::: info
+All these Service Client APIs **have async equivalents** with an `*Async` suffix
+:::
 
 ## Everything Just Works
 

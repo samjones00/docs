@@ -2,7 +2,7 @@
 slug: versioning
 ---
 
-### Implicit Versioning
+## Implicit Versioning
 
 You can populate Version numbers in all Request DTO's implementing `IHasVersion`, i.e:
 
@@ -26,7 +26,7 @@ Which will auto populate each Request DTO that implements `IHasVersion`, e.g:
 client.Get(new Hello { Name = "World" });  // Hello.Version=2
 ```
 
-#### Version Abbreviation Convention
+### Version Abbreviation Convention
 
 A popular convention for specifying versions in API requests is with the `?v=1` QueryString which ServiceStack now uses as a fallback for populating any Request DTO's that implement `IHasVersion` (as above).
 

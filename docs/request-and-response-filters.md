@@ -6,7 +6,7 @@ title: Request & Response filters
 ServiceStack's Global Request and Response filter lets you apply your own generic custom behavior to ServiceStack Requests.
 These should be registered in your `AppHost.Configure()` Startup: 
 
-### Global Request Filters
+## Global Request Filters
 
 The Request Filters are applied before the service gets called and accepts:
 ([IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs), [IResponse](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IResponse.cs), RequestDto) e.g:
@@ -23,7 +23,7 @@ this.GlobalRequestFilters.Add((req, res, requestDto) =>
 });
 ```
 
-#### Async 
+### Async 
 
 Use `GlobalRequestFiltersAsync` when you need to make async requests in your Global Request Filters, e.g:
 
@@ -68,7 +68,7 @@ GlobalRequestFiltersAsync.Add(async (req,res,dto) => {
 })
 ```
 
-### Global Response Filters
+## Global Response Filters
 
 The Response Filters are applied after your service is called and accepts:
 ([IRequest](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequest.cs), [IResponse](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IResponse.cs), ResponseDto) e.g:
@@ -85,7 +85,7 @@ this.GlobalResponseFilters.Add((req, res, responseDto) =>
 });
 ```
 
-### Global Request and Response Filters
+## Global Request and Response Filters
 
   - `PreRequestFilters` - Global Filter executed at the start of all ServiceStack Requests
   - `GlobalRequestFilters` - Global Request Filter for ServiceStack Service Requests
@@ -181,6 +181,6 @@ public override void Configure(Container container)
 }
 ```
 
-### Message Queue Endpoints
+## Message Queue Endpoints
 
 Non-HTTP requests like [Redis MQ](/redis-mq) are treated as _Internal Requests_ which only execute the alternate `GlobalMessageRequestFilters` and `GlobalMessageResponseFilters` and Action [Filter attributes](/filter-attributes). 

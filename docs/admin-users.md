@@ -14,7 +14,7 @@ The `AdminUsersFeature` provides Admin User Management APIs enabling remote prog
  - Rich Metadata aggregating only App-specific Roles & Permissions defined in your App
  - User Events allow you to execute custom logic before & after each Created/Updated/Deleted User
 
-### Installation
+## Installation
 
 User Admin Plugin is a lightweight API around Auth Repository APIs with no additional dependencies that can be registered with:
 
@@ -22,11 +22,11 @@ User Admin Plugin is a lightweight API around Auth Repository APIs with no addit
 Plugins.Add(new AdminUsersFeature());
 ```
 
-### Usage Example
+## Usage Example
 
 Please see ServiceStack Studio's [User Admin Module](/studio-users) for docs & examples of available customization options in `AdminUsersFeature`.
 
-### Admin User Services
+## Admin User Services
 
 The Admin User back-end APIs themselves can also be used to manage users within your own Apps. 
 

@@ -5,7 +5,7 @@ title: Hot Reloading
 
 ServiceStack includes 2 Hot Reloading solutions to automatically detect file changes and reload your page on save.
 
-### Hot Reload Static Files
+## Hot Reload Static Files
 
 If you're not developing your Website with `#Script` or are developing a Single Page App where it's mostly contained in static files
 you can use the `HotReloadFeature` plugin which has added support for monitoring multiple File Search Patterns and can now be configured

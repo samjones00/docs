@@ -3,7 +3,7 @@ slug: modularizing-services
 ---
 ServiceStack only allows a **single App Host** for each App Domain. As you might be able to infer from the name, the role of the **Host** project is to be the conduit for binding all your services concrete dependencies, plugins, filters and everything else your service needs. The configuration of your service should be immutable after everything is initialized in your `AppHost.Configure()` method. The [Physical project structure wiki page](/physical-project-structure) wiki shows the recommended physical project structure for typical solutions.
 
-### Modularizing services in multiple assemblies
+## Modularizing services in multiple assemblies
 
 Whilst you can only have 1 AppHost, you can have multiple services spread across multiple assemblies. In that case you have to provide a list of assemblies containing the services to the AppHostBase constructor, e.g:
 
@@ -37,7 +37,7 @@ public class AppHost : AppHostBase
 }
 ```
 
-### Encapsulating Services inside Plugins
+## Encapsulating Services inside Plugins
 
 One way of modularizing services is to encapsulate them inside [Plugins](/plugins) which allows you to manually register services, custom routes, filters, content types, allow customization and anything else your module needs.
 
@@ -109,7 +109,7 @@ in [different Hosting Options](/why-servicestack#multiple-hosting-options), it m
 across many of your ServiceStack projects, e.g. you can easily replace `Configure.Auth.cs` in all your projects to ensure they're running
 the same Auth Configuration without impacting any of the projects other bespoke host configuration.
 
-#### Bundle Startup Logic in your Services Assembly
+### Bundle Startup Logic in your Services Assembly
 
 It also allows you to maintain any necessary Startup configuration that your Services implementation needs alongside the Services themselves.
 
@@ -126,7 +126,7 @@ public class ContactsHostConfig : IConfigureAppHost
 
 There are **3 different Startup interfaces** you can use depending on when you want your configuration to run.
 
-#### Register additional Service Assemblies on Startup
+### Register additional Service Assemblies on Startup
 
 Use `IPreConfigureAppHost` for Startup logic you want to run before the AppHost starts initialization, this is
 run before `AppHost.Config` is initialized or Services are registered so has limited configurability but is useful
@@ -139,7 +139,7 @@ public class ConfigureContactsServices : IPreConfigureAppHost
 }
 ```
 
-#### Register no-touch Startup before and after your AppHost's Configure
+### Register no-touch Startup before and after your AppHost's Configure
 
 Use `IConfigureAppHost` for Startup logic you want to run immediately **before** `AppHost.Configure()`:
 

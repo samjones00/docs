@@ -3,7 +3,7 @@ slug: adhoc-utils
 title: Adhoc Utils
 ---
 
-### Image Utils
+## Image Utils
 
 The `Image.ResizeToPng()` and `Image.CropToPng()` [extension methods](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ImageExtensions.cs) 
 can be used to resize and crop `System.Drawing` Images, e.g:
@@ -38,7 +38,7 @@ public Stream Get(Crop request)
 }
 ```
 
-### Enum Utils
+## Enum Utils
 
 The `EnumUtils.GetValues()`, `IEnumerable<Enum>.ToKeyValuePairs()` and `Enum.ToDescription()` extension methods
 makes it easy to create data sources from Enums that can be annotated with `[ApiMember]` and `[Description]` attributes:

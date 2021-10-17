@@ -5,7 +5,7 @@ title: JSV Format
 
 ServiceStack provides a fast, compact format called JSV:
 
-### JSV Text Format (JSON + CSV)
+## JSV Text Format (JSON + CSV)
 
 JSV is a text-based format that is optimized for both size and speed.
 
