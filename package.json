@@ -1,0 +1,31 @@
+{
+  "name": "vitepress-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@servicestack/client": "^1.0.55",
+    "autoprefixer": "^10.3.7",
+    "markdown-it-container": "^3.0.0",
+    "postcss": "^8.3.9",
+    "tailwindcss": "^2.2.17",
+    "vitepress": "^0.20.0",
+    "vue-clipboard3": "^1.0.1"
+  },
+  "scripts": {
+    "postinstall": "node -e \"var fs=require('fs'),js='node_modules/vitepress/dist/client/app/router.js';fs.writeFileSync(js,fs.readFileSync(js,'utf8').replace(\\\"url.pathname += '.html';\\\",''))\"",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:build-mpa": "vitepress build --mpa docs #gens static .html with no js, but broken now",
+    "docs:serve": "vitepress serve docs"
+  },
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
+  },
+  "dependencies": {
+    "sass": "^1.43.2"
+  }
+}
