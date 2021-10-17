@@ -1,5 +1,4 @@
 ---
-slug: install-servicestackvs
 title: Install ServiceStackVS
 ---
 
