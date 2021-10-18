@@ -1,6 +1,7 @@
 ---
-slug: self-hosting
+title: Self-Hosting
 ---
+
 The quickest way to create a Self-Hosting application is to Create a new self-hosting VS.NET Project Template from [ServiceStackVS VS.NET Extension](https://github.com/ServiceStack/ServiceStackVS#servicestack-vsnet-templates).
 
 Otherwise it's very easy to host ServiceStack in a Console App or Windows Service. You just have to Install the [ServiceStack NuGet package](https://www.nuget.org/packages/ServiceStack) and derive your AppHost from `AppSelfHostBase` instead of `AppHostBase`:

@@ -1,5 +1,5 @@
 ---
-slug: architecture-overview
+title: Architecture Overview
 ---
 
 Ultimately behind-the-scenes ServiceStack is just built on top of ASP.NET's Raw 

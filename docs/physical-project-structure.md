@@ -1,10 +1,10 @@
 ---
-slug: physical-project-structure
+title: Physical Project Structure
 ---
 
 The Recommended structure below is built into all ServiceStackVS VS.NET Templates where creating any new ServiceStack project will create a solution with a minimum of 4 projects:
 
-<img align="right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
+<img class="ml-4 float-right" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/solution-layout.png" />
 
 ### Host Project
 

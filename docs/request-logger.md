@@ -1,6 +1,7 @@
 ---
-slug: request-logger
+title: Request Loggers
 ---
+
 Add an In-Memory `IRequestLogger` and service with the default route at `/requestlogs` which maintains a live log of the most recent requests (and their responses). Supports multiple config options incl. Rolling-size capacity, error and session tracking, hidden request bodies for sensitive services, etc.
 
 ```cs

@@ -1,6 +1,5 @@
 ---
 layout: default
-title: ServiceStack Resources
 ---
 
 <link rel="stylesheet" href="/css/fontawesome.min.css">

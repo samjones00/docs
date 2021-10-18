@@ -1,6 +1,7 @@
 ---
-slug: modularizing-services
+title: Modularizing Services
 ---
+
 ServiceStack only allows a **single App Host** for each App Domain. As you might be able to infer from the name, the role of the **Host** project is to be the conduit for binding all your services concrete dependencies, plugins, filters and everything else your service needs. The configuration of your service should be immutable after everything is initialized in your `AppHost.Configure()` method. The [Physical project structure wiki page](/physical-project-structure) wiki shows the recommended physical project structure for typical solutions.
 
 ## Modularizing services in multiple assemblies

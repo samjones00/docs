@@ -1,9 +1,6 @@
 ---
-slug: advanced-deployment-octopus-deploy
 title: Advanced Deployments with Octopus Deploy
 ---
-
-*by [Darren Reid](https://twitter.com/layoric)*
 
 ## Deploying and Installing SSL certificates with Octopus Deploy
 
