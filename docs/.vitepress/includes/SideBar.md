@@ -5,7 +5,7 @@
     - [Servicify existing Systems](/servicify)
     - [Explore ServiceStack](/explore-servicestack)
 - ##### Releases
-    - [Latest Release Notes](/releases/v5.12)
+    - [Latest Release Notes](/releases/v5_12)
     - [Release Notes History](/release-notes-history)
     - [Pre-release MyGet Packages](/myget)
 - ##### Getting Started

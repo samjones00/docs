@@ -92,7 +92,7 @@ ServiceStack Versions adopt the following 3-part versioning scheme:
 
 ### Major versions 
 
-The `{MAJOR}` is reserved for Major releases like [v5 containing structural changes](/releases/v5.0.0) that may require changes to external environment and/or project configurations. Major structural releases should be few and far between with currently no plans for any in the immediate future.
+The `{MAJOR}` is reserved for Major releases like [v5 containing structural changes](/releases/v5_0_0) that may require changes to external environment and/or project configurations. Major structural releases should be few and far between with currently no plans for any in the immediate future.
 
 ### Minor versions
 

@@ -465,7 +465,7 @@ In addition to supporting multiple formats and endpoints, ServiceStack can also 
 
 ### Target Multiple platforms
 
-With multi-targeted projects creating both .NET Framework and .NET Standard builds you can optionally run your same ServiceStack App on multiple platforms as seen with the [Hello Mobile Shared Gateway](https://docs.servicestack.net/releases/v5.0.0#run-aspnet-core-apps-on-the-net-framework) project where its same shared [ServiceStack Server.Common project](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) is used to host the same App running on:
+With multi-targeted projects creating both .NET Framework and .NET Standard builds you can optionally run your same ServiceStack App on multiple platforms as seen with the [Hello Mobile Shared Gateway](/releases/v5_0_0#run-aspnet-core-apps-on-the-net-framework) project where its same shared [ServiceStack Server.Common project](https://github.com/ServiceStackApps/HelloMobile#servicestack-server-app) is used to host the same App running on:
 
  - [Server.NetCore](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.NetCore) - hosting the ServiceStack Services in a **ASP.NET Core 2.1 App**
  - [Server.NetCoreFx](https://github.com/ServiceStackApps/HelloMobile/tree/master/src/Server.NetCoreFx) - hosting in a **ASP.NET Core App** on the **.NET Framework**

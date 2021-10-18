@@ -73,7 +73,7 @@ offer a more productive & enjoyable Reactive UI development model than any C#/XA
 Ultimately as [staunch enemy's of complexity](https://docs.servicestack.net/service-complexity-and-dto-roles) we're
 philosophically against reliance on heavy complicated tooling and instead have adopted a Vue Chromium Desktop approach
 for the development of [ServiceStack Studio](https://docs.servicestack.net/studio) - an App that 
-[wouldn't have been feasible](https://docs.servicestack.net/releases/v5.9#highly-productive-live-reloading-development-experience)
+[wouldn't have been feasible](/releases/v5_9#highly-productive-live-reloading-development-experience)
 if needing to use any C# & XAML UI FX or WinForms historically used to develop .NET Desktop Apps.  
 
 ### Blazor WASM Starting Project Template

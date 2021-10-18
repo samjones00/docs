@@ -5,9 +5,9 @@ title: Release Notes Summary
 
 > [Release Notes History](/release-notes-history)
 
-# [v5.0.2 Update](https://docs.servicestack.net/releases/v5.0.0)
+# [v5.0.2 Update](/releases/v5_0_0)
 
-Happy New 2018 All! We hope you’ve all had a long, relaxing break over the holidays and are re-energized for a productive start to the new year. We have a new v5.0.2 release ready for the start of the new year. A summary of the changes are included below, for the full details see the [v5 Release Notes](https://docs.servicestack.net/releases/v5.0.0).
+Happy New 2018 All! We hope you’ve all had a long, relaxing break over the holidays and are re-energized for a productive start to the new year. We have a new v5.0.2 release ready for the start of the new year. A summary of the changes are included below, for the full details see the [v5 Release Notes](/releases/v5_0_0).
 
 ### Future Versioning Updates
 
@@ -244,7 +244,7 @@ Support for leading zeros in integers was restored.
 
 The theme of this major v5 release is integration and unification with the newly released .NET Standard 2.0 which offers the broadest compatibility and stabilized API surface for .NET Core and the version we've chosen to standardize around.
 
-We'll do our best to summarize new features here but if you have time we encourage you to read the [full v5 Release Notes](https://docs.servicestack.net/releases/v5.0.0), as this is a major version upgrade we recommend at least reviewing the [v5 Changes and Migration Notes](https://docs.servicestack.net/releases/v5.0.0#v5-changes-and-migration-notes) before upgrading. Whilst the user-facing source code impact is minimal, we've taken the opportunity of a major version window to perform some logical re-structuring and some potentially breaking changes from **replacing PCL clients** to use .NET Standard 2.0, moving .NET Framework implementations to different projects, making SOAP Support, Mini Profiler and Markdown Razor opt-in and to be able to utilize the latest NuGet package dependencies **ServiceStack.RabbitMQ** requires **.NET v4.5.1** and **ServiceStack.Azure** requires **.NET v4.5.2**.
+We'll do our best to summarize new features here but if you have time we encourage you to read the [full v5 Release Notes](/releases/v5_0_0), as this is a major version upgrade we recommend at least reviewing the [v5 Changes and Migration Notes](/releases/v5_0_0#v5-changes-and-migration-notes) before upgrading. Whilst the user-facing source code impact is minimal, we've taken the opportunity of a major version window to perform some logical re-structuring and some potentially breaking changes from **replacing PCL clients** to use .NET Standard 2.0, moving .NET Framework implementations to different projects, making SOAP Support, Mini Profiler and Markdown Razor opt-in and to be able to utilize the latest NuGet package dependencies **ServiceStack.RabbitMQ** requires **.NET v4.5.1** and **ServiceStack.Azure** requires **.NET v4.5.2**.
 
 All .NET Standard builds have been upgraded to **.NET Standard 2.0** where now both `.Core` and `.Signed` NuGet package variants have been unified into ServiceStack's main NuGet packages - unifying them into a single suite of NuGet packages and release cadence. All **.NET 4.5 builds are Strong Named** by default using the `servicestack.snk` signing key that's in the [/src](https://github.com/ServiceStack/ServiceStack/tree/master/src) folder of each Project. The .NET Standard builds continue to remain unsigned so they can be built on each platform with .NET Core's `dotnet build` command.
 
@@ -940,11 +940,11 @@ Thread.Sleep(ExecUtils.CalculateFullJitterBackOffDelay(retriesAttempted));
 await Task.Delay(ExecUtils.CalculateFullJitterBackOffDelay(retriesAttempted));
 ```
 
-# [v4.5.14 Release Notes](/releases/v4.5.14)
+# [v4.5.14 Release Notes](/releases/v4_5_14)
 
 In this release we've added a new simple, fast and highly-versatile alternative to Razor for developing Server generated Websites, official support for .NET Core 2.0, new ServiceStack.Azure NuGet package for deeper integration with ServiceStack Apps hosted on Azure and a number of new features and enhancements across ServiceStack.
 
-Please see the full release notes for what's in this Release: https://docs.servicestack.net/releases/v4.5.14
+Please see the full release notes for what's in this Release: https://docs.servicestack.net/releases/v4_5_14
 
 ### .NET Core 2.0 Ready
 
@@ -1531,7 +1531,7 @@ The new `[IgnoreOnInsert]` and `[IgnoreOnUpdate]` attributes can be used to igno
  - The new `SqlConcat`, `SqlCurrency`, `SqlBool` and `SqlLimit` APIs can help creating cross-platform SQL, see [SqlDialectTests.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/SqlDialectTests.cs) for examples.
 
 
-# [v4.5.10 Release Notes](/releases/v4.5.10)
+# [v4.5.10 Release Notes](/releases/v4_5_10)
 
 We've developed new Angular4, React, Aurelia and Vue.js Single Page App VS.NET templates for ASP.NET which have been re-imagined to incorporate the latest gold standard in modern Single Page App development and integrated to provide the ideal development experience within VS.NET, optimal bundling and packaging for production including one-click Web App deployments using MS Web Deploy. 
 
@@ -1676,11 +1676,11 @@ The `WebServiceException` Message returns the the more appropriate `ResponseStat
  - The Basic Auth Credentials are auto-sent in `JsonHttpClient` 401 Challenged Responses
  - Empty Collections are now ignored AutoQuery Filters
 
-That's a high-level overview, please see the # [v4.5.10 Release Notes](/releases/v4.5.10) for the full details.
+That's a high-level overview, please see the # [v4.5.10 Release Notes](/releases/v4_5_10) for the full details.
 
 Enjoy!
 
-# [v4.5.8 Release Notes](/releases/v4.5.8)
+# [v4.5.8 Release Notes](/releases/v4_5_8)
 
 We've got a another feature-packed release with a number of exciting new features  new support for the [Open API specification](https://github.com/OAI/OpenAPI-Specification) 
 enabling new integration possibilities with 
@@ -1693,7 +1693,7 @@ Fluent Validation with support for Async validators, Async Request Filters, a nu
 OSS ServiceStack projects developed by the community and lots more use-case driven features and 
 refinements across the entire ServiceStack suite!
 
-Please see the [v4.5.8 Release Notes](/releases/v4.5.8) for the full details, for a quick summary we'll highlight the major features below:
+Please see the [v4.5.8 Release Notes](/releases/v4_5_8) for the full details, for a quick summary we'll highlight the major features below:
 
 ## [Open API](/openapi)
 
@@ -1945,7 +1945,7 @@ GlobalRequestFiltersAsync.Add(async (req,res,dto) => {
 
 ## Enhanced Compression Options
 
-We've followed up [Request Compression](/releases/v4.5.6#clientserver-request-compression) added in the last release
+We've followed up [Request Compression](/releases/v4_5_6#clientserver-request-compression) added in the last release
 with more compression features in this release including:
 
 ### `[CompressResponse]` Attribute
@@ -2166,11 +2166,11 @@ Docker Image since `microsoft/dotnet:latest` was changed to only support project
 msbuild format.
 
 This covers a high-level view of the major features added in this release, please see the 
-[v4.5.8 Release Notes](/releases/v4.5.8) for the full details and other features added in this release.
+[v4.5.8 Release Notes](/releases/v4_5_8) for the full details and other features added in this release.
 
-# [v4.5.6 Release Notes](/releases/v4.5.6)
+# [v4.5.6 Release Notes](/releases/v4_5_6)
 
-For the full details of this release please see the [full v4.5.6 release notes](https://docs.servicestack.net/releases/v4.5.6).
+For the full details of this release please see the [full v4.5.6 release notes](/releases/v4_5_6).
 
 ## New Angular2 Single Page App template!
 
@@ -2416,6 +2416,6 @@ Plugins.Add(new AuthFeature(...,
     }));
 ```
 
-That covers the major features, for the full details please see the full release notes at: https://docs.servicestack.net/releases/v4.5.6
+That covers the major features, for the full details please see the full release notes at: https://docs.servicestack.net/releases/v4_5_6
 
 # [2016 Release Notes Summary](/releases/2016-summary)
