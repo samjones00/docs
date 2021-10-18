@@ -1,6 +1,7 @@
 ---
-slug: metadata-page
+title: Metadata Pages
 ---
+
 ServiceStack will automatically generate a metadata page about the webservice. The metadata can be found under the URL `/metadata`:
 
 ![Example](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/metadata-chat.png)

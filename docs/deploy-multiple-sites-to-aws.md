@@ -1,8 +1,6 @@
 ---
-slug: deploy-multiple-sites-to-aws
+title: Deploy Multiple Sites to a single AWS EC2 instance
 ---
-
-*by [Darren Reid](https://twitter.com/layoric)*
 
 ### Why deploy multiple sites to a single AWS instance?
 

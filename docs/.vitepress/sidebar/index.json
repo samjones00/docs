@@ -91,23 +91,6 @@
     ]
   },
   {
-    "text": "GitHub Action Templates",
-    "children": [
-      {
-        "text": "Overview",
-        "link": "/github-action-templates"
-      },
-      {
-        "text": "GitHub GHR & Digital Ocean",
-        "link": "/do-github-action-mix-deployment"
-      },
-      {
-        "text": "AWS ECR & ECS with NGINX",
-        "link": "/mix-github-actions-aws-ecs"
-      }
-    ]
-  },
-  {
     "text": "Background Concepts",
     "children": [
       {
@@ -315,31 +298,6 @@
     ]
   },
   {
-    "text": "Jupyter Notebooks",
-    "children": [
-      {
-        "text": "Overview",
-        "link": "/jupyter-notebooks"
-      },
-      {
-        "text": "Python Jupyter Notebooks",
-        "link": "/jupyter-notebooks-python"
-      },
-      {
-        "text": "C# Jupyter Notebooks",
-        "link": "/jupyter-notebooks-csharp"
-      },
-      {
-        "text": "F# Jupyter Notebooks",
-        "link": "/jupyter-notebooks-fsharp"
-      },
-      {
-        "text": "Reports and Testing",
-        "link": "/jupyter-notebooks-reporting"
-      }
-    ]
-  },
-  {
     "text": "Add ServiceStack Reference",
     "children": [
       {
@@ -410,6 +368,48 @@
       {
         "text": "Azure Service Bus MQ",
         "link": "/azure-service-bus-mq"
+      }
+    ]
+  },
+  {
+    "text": "Jupyter Notebooks",
+    "children": [
+      {
+        "text": "Overview",
+        "link": "/jupyter-notebooks"
+      },
+      {
+        "text": "Python Jupyter Notebooks",
+        "link": "/jupyter-notebooks-python"
+      },
+      {
+        "text": "C# Jupyter Notebooks",
+        "link": "/jupyter-notebooks-csharp"
+      },
+      {
+        "text": "F# Jupyter Notebooks",
+        "link": "/jupyter-notebooks-fsharp"
+      },
+      {
+        "text": "Reports and Testing",
+        "link": "/jupyter-notebooks-reporting"
+      }
+    ]
+  },
+  {
+    "text": "GitHub Action Templates",
+    "children": [
+      {
+        "text": "Overview",
+        "link": "/github-action-templates"
+      },
+      {
+        "text": "GitHub GHR & Digital Ocean",
+        "link": "/do-github-action-mix-deployment"
+      },
+      {
+        "text": "AWS ECR & ECS with NGINX",
+        "link": "/mix-github-actions-aws-ecs"
       }
     ]
   },

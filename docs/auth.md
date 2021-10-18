@@ -2,7 +2,8 @@
 slug: auth
 title: Security Overview
 ---
-<iframe class="video-hd" src="https://www.youtube.com/embed/XKq7TkZAzeg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe class="video-hd mt-8" src="https://www.youtube.com/embed/XKq7TkZAzeg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 See the [Authentication and Authorization](/authentication-and-authorization) docs to learn about Authentication in ServiceStack which
 is encompassed by the high-level Overview:

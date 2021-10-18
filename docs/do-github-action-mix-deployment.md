@@ -1,6 +1,5 @@
 ---
-title: Deploying to Digital Ocean Droplet directly via GitHub Actions and SSH
-slug: do-github-action-mix-deployment
+title: Deploying to Digital Ocean via GitHub Actions and SSH
 ---
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/github-action-do-tutorial-header.png)

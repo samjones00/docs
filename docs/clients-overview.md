@@ -1,5 +1,5 @@
 ---
-slug: clients-overview
+title: Service Clients Overview
 ---
 As ServiceStack is just a pure HTTP web service it can be accessed with any HTTP-capable client. 
 
