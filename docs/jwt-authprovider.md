@@ -6,7 +6,7 @@ title: JWT Auth Provider
 import jwtServiceClients from './.vitepress/includes/jwt-service-clients.md';
 </script>
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/NTCUT7atoLo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/NTCUT7atoLo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 The `JwtAuthProvider` is our integrated Auth solution for the popular [JSON Web Tokens](https://jwt.io/) (JWT) industry standard which is easily enabled by registering the `JwtAuthProvider` with the `AuthFeature` plugin:
 

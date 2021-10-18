@@ -16,7 +16,7 @@ register and configure multiple Auth Providers you want to allow in your Applica
 additional features like whether to enable built-in Registration for Registering new Users as well as Assign/UnAssign Roles Services
 that Admins can use to assign Roles/Permissions to existing users.
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/XKq7TkZAzeg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/XKq7TkZAzeg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Highly customizable and versatile
 
@@ -72,7 +72,7 @@ The following OAuth Providers are built into ServiceStack and can be used in bot
 | **VK**            | `VkAuthProvider`             | **/auth/vkcom**          | [vk.com/editapp?act=create](http://vk.com/editapp?act=create) |
 | **Odnoklassniki** | `OdnoklassnikiAuthProvider`  | **/auth/odnoklassniki**  | [www.odnoklassniki.ru/devaccess](http://www.odnoklassniki.ru/devaccess) |
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/aQqF3Sf2fco" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/aQqF3Sf2fco" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Session Authentication Overview
 
@@ -125,7 +125,7 @@ The following Auth Providers below implement `IAuthWithRequest` and Authenticate
 | **Basic Auth**    | `BasicAuthProvider`          | Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
 | **Digest Auth**   | `DigestAuthProvider`         | Digest Auth  | Authentication using [HTTP Digest Auth](https://en.wikipedia.org/wiki/Digest_access_authentication) |
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/NTCUT7atoLo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/NTCUT7atoLo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Some other special Auth Providers that Authenticate per-request include:
 
