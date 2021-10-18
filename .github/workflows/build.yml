@@ -2,9 +2,8 @@ name: Build Server
 
 on:
   push:
-    paths:
-      - 'docs/**'
-      - 'package.json'
+    branches:
+      - master
 
 jobs:
   build:
