@@ -22,6 +22,8 @@ that encodes to **32 chars** using URL-safe Base64 (Same as Stripe)
 Like most ServiceStack providers the new API Key Auth Provider is simple to use, integrates seamlessly with
 ServiceStack existing Auth model and includes Typed end-to-end client/server support. 
 
+<iframe width="896" height="525" src="https://www.youtube.com/embed/NTCUT7atoLo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 For familiarity and utility we've modeled our implementation around Stripe's API Key functionality whilst
 sharing many of the benefits of ServiceStack's Auth Providers:
 
