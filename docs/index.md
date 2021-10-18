@@ -136,7 +136,7 @@ title: ServiceStack Resources
             </p>
         </div>
         <div class="w-full sm:w-1/2 text-center mt-8">
-            <a href="https://github.com/ServiceStack/ServiceStack.Aws">
+            <a href="/aws">
                 <div class="mb-2">
                     <i class="fab fa-aws text-6xl"></i>
                 </div>
@@ -147,7 +147,7 @@ title: ServiceStack Resources
             </p>
         </div>
         <div class="w-full sm:w-1/2 text-center mt-8">
-            <a href="https://github.com/ServiceStack/ServiceStack.Azure">
+            <a href="/azure">
                 <div class="mb-2">
                     <i class="fab fa-microsoft text-6xl"></i>
                 </div>
@@ -169,7 +169,7 @@ title: ServiceStack Resources
             </p>
         </div>
         <div class="w-full sm:w-1/2 text-center mt-8">
-            <a href="https://github.com/ServiceStack/PocoDynamo">
+            <a href="/aws-pocodynamo">
                 <div class="service-icon">
                     <svg class="w-20 h-20 inline-block" viewBox="0 0 256 289" xmlns="http://www.w3.org/2000/svg">
                         <path d="M165.258 288.501h3.508l57.261-28.634.953-1.347V29.964l-.953-1.354L168.766 0h-3.551l.043 288.501" fill="#0099e6"></path>
