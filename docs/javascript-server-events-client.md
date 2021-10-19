@@ -16,7 +16,9 @@ var source = new EventSource(
     '/event-stream?channel=channel&t=' + new Date().getTime());
 ```
 
-> The default url `/event-stream` can be modified with `ServerEventsFeature.StreamPath`
+::: info
+The default url `/event-stream` can be modified with `ServerEventsFeature.StreamPath`
+:::
 
 As this is the native `EventSource` object, you can interact with it directly, e.g. you can add custom error handlers with:
 
@@ -58,7 +60,9 @@ ServiceStack Server Events has 4 built-in events sent during a subscriptions lif
  - **onLeave** - sent when a user leaves the channel.
  - **onUpdate** - sent when a users channels subscription was updated
 
-> The onJoin/onLeave/onUpdate events can be turned off with `ServerEventsFeature.NotifyChannelOfSubscriptions=false`.
+::: info
+The onJoin/onLeave/onUpdate events can be turned off with `ServerEventsFeature.NotifyChannelOfSubscriptions=false`
+:::
 
 All other messages can be handled with the catch-all:
 

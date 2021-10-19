@@ -32,7 +32,11 @@ The above configuration will use Redis ServerEvents if there's a `RedisHost` **a
 <add key="RedisHost" value="localhost:6379" />
 ```
 
-> RedisServerEvents is in the [ServiceStack.Server](http://www.nuget.org/packages/ServiceStack.Server) NuGet Package.
+RedisServerEvents is in the [ServiceStack.Server](http://www.nuget.org/packages/ServiceStack.Server) NuGet Package:
+
+::: nuget
+`<PackageReference Include="ServiceStack.Redis" Version="5.*" />`
+:::
 
 ### Cross-platform Memory and Redis ServerEvent Enabled Chat.exe
 
