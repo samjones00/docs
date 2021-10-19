@@ -37,9 +37,9 @@
 
 
 .nav-bar-title {
-    background: url(../../images/logo-only.svg) no-repeat;
-    font-size: 1.6rem !important;
-    padding-left: 2.5rem;
+  background: url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhYiIgZGF0YS1pY29uPSJzZXJ2aWNlc3RhY2siIHJvbGU9ImltZyIgCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTYgNTEyIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtc2VydmljZXN0YWNrIGZhLXctMTYgZmEtOXgiPgogICAgPHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNODggMjE2YzgxLjcgMTAuMiAyNzMuNyAxMDIuMyAzMDQgMjMySDBjOTkuNS04LjEgMTg0LjUtMTM3IDg4LTIzMnptMzItMTUyYzMyLjMgMzUuNiA0Ny43IDgzLjkgNDYuNCAxMzMuNkMyNDkuMyAyMzEuMyAzNzMuNyAzMjEuMyA0MDAgNDQ4aDk2QzQ1NS4zIDIzMS45IDIyMi44IDc5LjUgMTIwIDY0eiIgY2xhc3M9IiI+PC9wYXRoPgo8L3N2Zz4=) no-repeat;
+  font-size: 1.6rem !important;
+  padding-left: 2.5rem;
 }
 
 
