@@ -2,8 +2,13 @@
 slug: jamstack-with-vitepress-servicestack
 title: JAMStack with Vitepress and ServiceStack
 ---
-# {{ $frontmatter.title }}
+<script setup>
+import typeSenseSearch from './src/components/typesense-search.vue';
+</script>
+
 JAMStack, unlike other acronyms about the choice of technology, is a very broad architecture that stands for:
+
+<typeSenseSearch></typeSenseSearch>
 
 - JavaScript
 - API
