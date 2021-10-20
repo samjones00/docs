@@ -1,6 +1,6 @@
 ---
 slug: jupyter-notebooks-reporting
-title: Jupyter Notebooks for Reporting and Testing
+title: Jupyter Notebooks for Reporting
 ---
 
 Jupyter Notebooks provide a rich set of interactive computing tools that can be used for many different use cases.
@@ -233,9 +233,3 @@ Now that we have finished the report we wanted to write, we might want a colleag
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/my-binder-ui.png)
 
 Reviewing notebooks is convenient using services like MyBinder, but changes are ephemeral, so while *reviews* can be done using this workflow, changes need to be made in an environment where files can be committed back to the remote GitHub repository.
-
-## Advantages for testing
-
-Generating reports based on data coming from services makes for a repeatable process for a task that usually doesn't have repeatability in mind. Good testing also needs repeatability to be able to validate what the problem is and share that context with other developers. 
-
-For example, when raising a good bug report with developers of a library or framework, being able to show the problem in a repeatable process and environment makes the job of discovering the root cause a lot easier for maintainers of that library or framework. This repeatability also serves as a known shared context of the problem being raised and this can drastically improve communication between developers as that context is tangible and interactive. 
