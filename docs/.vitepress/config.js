@@ -37,7 +37,8 @@ module.exports = {
         }
     },
     head: [
-        ['script', { src: 'custom.js' }]
+        ['script', { src: 'custom.js' }],
+        ['script', { src: 'meta.js', defer:true }],
     ],
     markdown: {
         config: md => {
