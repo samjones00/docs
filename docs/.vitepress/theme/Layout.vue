@@ -1,5 +1,5 @@
 <!--.vitepress/theme/MyLayout.vue-->
-<script setup lang="ts">
+<script setup>
 import { ref, defineAsyncComponent, nextTick } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress';
@@ -9,7 +9,7 @@ const openSearch = ref(false);
 const showSearch = () => {
   openSearch.value = true
   nextTick(() => {
-    const el = document.querySelector('#docsearch-input') as HTMLInputElement;
+    const el = document.querySelector('#docsearch-input');
     el?.focus();
   })
 };
@@ -19,11 +19,11 @@ const TypesenseDialog = defineAsyncComponent(() =>
 const KeyboardEvents = defineAsyncComponent(() => 
   import('../../src/components/keyboard-events.vue'));
 
-const onKeyDown = (e:KeyboardEvent) => {
+const onKeyDown = (e) => {
   if (e.code === 'Escape') {
     hideSearch();
   }
-  else if ((e.target as HTMLElement).tagName != 'INPUT') {
+  else if ((e.target).tagName != 'INPUT') {
     console.log('onKeyDown', e, e.target);
     if (e.ctrlKey && e.code == 'KeyK') {
       showSearch();
@@ -35,8 +35,10 @@ const onKeyDown = (e:KeyboardEvent) => {
 
 <template>
 <div @keydown="onKeyDown">
-  <KeyboardEvents @keydown="onKeyDown" />
-  <TypesenseDialog :open="openSearch" @hide="hideSearch" />
+  <ClientOnly>
+    <KeyboardEvents @keydown="onKeyDown" />
+    <TypesenseDialog :open="openSearch" @hide="hideSearch" />
+  </ClientOnly>
   <Layout>
     <template #navbar-search>
       <button class="flex rounded-full p-0 bg-gray-100 border-solid border-gray-100 text-gray-400 cursor-pointer
