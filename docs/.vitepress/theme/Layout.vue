@@ -14,8 +14,8 @@ const showSearch = () => {
   })
 };
 const hideSearch = () => openSearch.value = false;
-const TypesenseDialog = defineAsyncComponent(() => 
-  import('../../src/components/TypesenseDialog.vue'));
+const TypeSenseDialog = defineAsyncComponent(() => 
+  import('../../src/components/TypeSenseDialog.vue'));
 const KeyboardEvents = defineAsyncComponent(() => 
   import('../../src/components/KeyboardEvents.vue'));
 
@@ -36,7 +36,7 @@ const onKeyDown = (e:KeyboardEvent) => {
 <div @keydown="onKeyDown">
   <ClientOnly>
     <KeyboardEvents @keydown="onKeyDown" />
-    <TypesenseDialog :open="openSearch" @hide="hideSearch" />
+    <TypeSenseDialog :open="openSearch" @hide="hideSearch" />
   </ClientOnly>
   <Layout>
     <template #navbar-search>

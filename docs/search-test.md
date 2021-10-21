@@ -2,7 +2,7 @@
 title: Search Testing
 ---
 <script setup>
-import typeSenseSearch from './src/components/typesense-search.vue';
+import TypeSenseDialog from './src/components/TypeSenseDialog.vue';
 </script>
 
-<ClientOnly><typeSenseSearch></typeSenseSearch></ClientOnly>
+<ClientOnly><TypeSenseDialog :open="true" /></ClientOnly>
