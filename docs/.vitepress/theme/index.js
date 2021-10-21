@@ -27,9 +27,9 @@ export default {
         app.component('serverContactUis',serverContactUis)
         app.component('HelloApi',HelloApi)
         app.component('ytEmbed', ytEmbed)
+        // v-focus attribute directive example
         app.directive('focus', {
             mounted(el) {
-                console.log('-focus', el)
                 el.focus()
             }
         })

@@ -1,5 +1,5 @@
 <!--.vitepress/theme/MyLayout.vue-->
-<script setup>
+<script setup lang="ts">
 import { ref, defineAsyncComponent, nextTick } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress';
@@ -9,7 +9,7 @@ const openSearch = ref(false);
 const showSearch = () => {
   openSearch.value = true
   nextTick(() => {
-    const el = document.querySelector('#docsearch-input');
+    const el = document.querySelector('#docsearch-input') as HTMLInputElement;
     el?.focus();
   })
 };
@@ -19,12 +19,11 @@ const TypesenseDialog = defineAsyncComponent(() =>
 const KeyboardEvents = defineAsyncComponent(() => 
   import('../../src/components/keyboard-events.vue'));
 
-const onKeyDown = (e) => {
+const onKeyDown = (e:KeyboardEvent) => {
   if (e.code === 'Escape') {
     hideSearch();
   }
-  else if ((e.target).tagName != 'INPUT') {
-    console.log('onKeyDown', e, e.target);
+  else if ((e.target as HTMLElement).tagName != 'INPUT') {
     if (e.ctrlKey && e.code == 'KeyK') {
       showSearch();
       e.preventDefault();
