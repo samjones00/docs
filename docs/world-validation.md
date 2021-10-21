@@ -94,7 +94,7 @@ What it looks like after submitting an empty form with Server Exception Errors r
 
 All Server Examples submits a HTML Form Post and renders full page responses:
 
-<serverLoginUis></serverLoginUis>
+<ServerLoginUis></ServerLoginUis>
 
 ### About Server Implementations
 
@@ -125,7 +125,7 @@ hidden input fields: `errorView` to tell it which page it should render on **fai
 
 In contrast to full page reloads all Client UIs submit Ajax forms and bind their JSON Error Response to the UI for a more fluid and flicker-free UX:
 
-<clientLoginUis></clientLoginUis>
+<ClientLoginUis></ClientLoginUis>
 
 ### About Client Implementations
 
@@ -153,7 +153,7 @@ Here's an example of what a partially submitted invalid form looks like:
 
 ### Server UIs
 
-<serverContactUis></serverContactUis>
+<ServerContactUis></ServerContactUis>
 
 ### About Server Implementations
 
@@ -206,7 +206,7 @@ Razor equivalents, either in the base `ViewPage<T>` class like `RedirectIfNotAut
 
 ### Client UIs
 
-<clientContactUis></clientContactUis>
+<ClientContactUis></ClientContactUis>
 
 ### About Client Implementations
 

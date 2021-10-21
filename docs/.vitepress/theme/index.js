@@ -1,14 +1,14 @@
 import DefaultTheme from 'vitepress/theme'
-import cleanUrlsMd from './../includes/clean-urls.md'
-import webNewCorefxMd from '../includes/web-new-corefx.md'
-import webTroubleMd from '../includes/web-trouble.md'
+import CleanUrlsMd from './../includes/clean-urls.md'
+import WebNewCorefxMd from '../includes/web-new-corefx.md'
+import WebTroubleMd from '../includes/web-trouble.md'
 
-import clientLoginUis from '../../src/components/client-login-uis.vue'
-import clientContactUis from '../../src/components/client-contacts-uis.vue'
-import serverLoginUis from '../../src/components/server-login-uis.vue'
-import serverContactUis from '../../src/components/server-contacts-uis.vue'
+
+import ClientLoginUis from '../../src/components/ClientLoginUis.vue'
+import ClientContactUis from '../../src/components/ClientContactsUis.vue'
+import ServerLoginUis from '../../src/components/ServerLoginUis.vue'
+import ServerContactUis from '../../src/components/ServerContactsUis.vue'
 import HelloApi from "../../src/components/HelloApi.vue";
-import ytEmbed from '../../src/components/yt-embed.vue';
 
 import './custom.css'
 
@@ -18,15 +18,15 @@ export default {
     ...DefaultTheme,
     Layout: Layout,
     enhanceApp: ({ app }) => {
-        app.component('cleanUrlsMd',cleanUrlsMd)
-        app.component('webNewCorefxMd',webNewCorefxMd)
-        app.component('webTroubleMd',webTroubleMd)
-        app.component('clientLoginUis',clientLoginUis)
-        app.component('clientContactUis',clientContactUis)
-        app.component('serverLoginUis',serverLoginUis)
-        app.component('serverContactUis',serverContactUis)
+        app.component('CleanUrlsMd',CleanUrlsMd)
+        app.component('WebNewCorefxMd',WebNewCorefxMd)
+        app.component('WebTroubleMd',WebTroubleMd)
+        app.component('ClientLoginUis',ClientLoginUis)
+        app.component('ClientContactUis',ClientContactUis)
+        app.component('ServerLoginUis',ServerLoginUis)
+        app.component('ServerContactUis',ServerContactUis)
         app.component('HelloApi',HelloApi)
-        app.component('ytEmbed', ytEmbed)
+
         // v-focus attribute directive example
         app.directive('focus', {
             mounted(el) {

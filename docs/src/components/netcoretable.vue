@@ -480,7 +480,7 @@
 
 <script>
 export default {
-  name: "netcoretable"
+  name: "NetCoreTable"
 }
 </script>
 

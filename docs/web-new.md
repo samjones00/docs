@@ -265,4 +265,4 @@ These are the only sources `x new` looks at to create ServiceStack projects, whi
 
     $ x new
 
-<webTroubleMd></webTroubleMd>
+<WebTroubleMd></WebTroubleMd>

@@ -15,9 +15,9 @@ const showSearch = () => {
 };
 const hideSearch = () => openSearch.value = false;
 const TypesenseDialog = defineAsyncComponent(() => 
-  import('../../src/components/typesense-dialog.vue'));
+  import('../../src/components/TypesenseDialog.vue'));
 const KeyboardEvents = defineAsyncComponent(() => 
-  import('../../src/components/keyboard-events.vue'));
+  import('../../src/components/KeyboardEvents.vue'));
 
 const onKeyDown = (e:KeyboardEvent) => {
   if (e.code === 'Escape') {

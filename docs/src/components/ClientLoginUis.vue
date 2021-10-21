@@ -31,7 +31,7 @@ import tab3 from '../../.vitepress/includes/validation/login/client-jquery.md';
 import tab4 from '../../.vitepress/includes/validation/login/client-razor.md';
 
 export default {
-  name: "client-login-uis",
+  name: "ClientLoginUis",
   components: {
     tab1,
     tab2,

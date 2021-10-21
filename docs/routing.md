@@ -758,7 +758,7 @@ equally well in reverse where the page for a route will be exactly where you thi
 
 Some great references on designing RESTful Pretty URLs are the [Clean URL examples in Wikipedia](https://en.wikipedia.org/wiki/Clean_URL#Structure):
 
-<cleanUrlsMd></cleanUrlsMd>
+<CleanUrlsMd></CleanUrlsMd>
 
 #### Get Inspired by GitHub
 

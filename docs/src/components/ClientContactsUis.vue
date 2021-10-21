@@ -2,22 +2,22 @@
   <button class="border-0 py-2 px-4 box-border rounded bg-white text-lg cursor-pointer"
           :class="{'text-white': isActive('tab1'), 'bg-blue-600': isActive('tab1'),
           'text-blue-600': !isActive('tab1')}"
-          @click="currentTabComponent = 'tab1'">Script Pages
+          @click="currentTabComponent = 'tab1'">Vuetify
   </button>
   <button class="border-0 py-2 px-4 box-border rounded bg-white text-lg cursor-pointer"
           :class="{'text-white': isActive('tab2'), 'bg-blue-600': isActive('tab2'),
           'text-blue-600': !isActive('tab2')}"
-          @click="currentTabComponent = 'tab2'">Server TypeScript
+          @click="currentTabComponent = 'tab2'">Client TypeScript
   </button>
   <button class="border-0 py-2 px-4 box-border rounded bg-white text-lg cursor-pointer"
           :class="{'text-white': isActive('tab3'), 'bg-blue-600': isActive('tab3'),
           'text-blue-600': !isActive('tab3')}"
-          @click="currentTabComponent = 'tab3'">Server jQuery
+          @click="currentTabComponent = 'tab3'">Client jQuery
   </button>
   <button class="border-0 py-2 px-4 box-border rounded bg-white text-lg cursor-pointer"
           :class="{'text-white': isActive('tab4'), 'bg-blue-600': isActive('tab4'),
           'text-blue-600': !isActive('tab4')}"
-          @click="currentTabComponent = 'tab4'">Server Razor
+          @click="currentTabComponent = 'tab4'">Client Razor
   </button>
   <keep-alive>
     <component :is="currentTabComponent" class="mt-4"></component>
@@ -25,13 +25,13 @@
 </template>
 
 <script>
-import tab1 from "../../.vitepress/includes/validation/contacts/server-sharp.md";
-import tab2 from "../../.vitepress/includes/validation/contacts/server-ts.md";
-import tab3 from "../../.vitepress/includes/validation/contacts/server-jquery.md";
-import tab4 from "../../.vitepress/includes/validation/contacts/server-razor.md";
+import tab1 from '../../.vitepress/includes/validation/contacts/vuetify.md';
+import tab2 from '../../.vitepress/includes/validation/contacts/client-ts.md';
+import tab3 from '../../.vitepress/includes/validation/contacts/client-jquery.md';
+import tab4 from '../../.vitepress/includes/validation/contacts/client-razor.md';
 
 export default {
-  name: "server-contacts-uis",
+  name: "ClientContactsUis",
   components: {
     tab1,
     tab2,
