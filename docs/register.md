@@ -7,17 +7,10 @@ The ServiceStack license key allows un-restricted access to ServiceStack package
 
 There are multiple ways of registering your license key, all options only need to be added to your top-level host projects:
 
-### a) Add it to your Web.Config or appsettings.json
+### a) Add it to the projects appsettings.json or Web.Config
 
-The easiest way to register your license key is in to copy the servicestack:license appSetting into your Web.config or App.config's `<appSettings/>` config section, e.g:
-
-```xml
-<appSettings>
-    <add key="servicestack:license" value="{licenseKeyText}" />
-</appSettings>
-```
-
-For ASP.NET Core Apps add it to your appsettings.json instead:
+Easiest way to register your license key is to add the **servicestack license** appSetting.
+For ASP.NET Core Apps add it to **appsettings.json**:
 
 ```json
 {
@@ -25,6 +18,18 @@ For ASP.NET Core Apps add it to your appsettings.json instead:
         "license": "{licenseKeyText}"
     }
 }
+```
+
+::: info
+Non ServiceStack .NET Core **AppHost** Apps (i.e. just using Redis or OrmLite) will also need to explicitly register the license key from IConfiguration: `Licensing.RegisterLicense(Configuration.GetValue<string>("servicestack:license"));`
+:::
+
+For .NET Framework Applications add it to the **Web.config** or App.config's `<appSettings/>` config section:
+
+```xml
+<appSettings>
+    <add key="servicestack:license" value="{licenseKeyText}" />
+</appSettings>
 ```
 
 ### b) Add it in code before your Application Starts Up
