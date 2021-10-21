@@ -1,0 +1,22 @@
+{
+  "index_name": "typesense_docs",
+  "allowed_domains": ["172.17.0.2"],
+  "start_urls": [
+    {
+      "url": "http://172.17.0.2:8080/"
+    }
+  ],
+  "stop_urls": ["http://172.17.0.2:8080/releases/"],
+  "selectors": {
+    "default": {
+      "lvl0": ".content h1",
+      "lvl1": ".content h2",
+      "lvl2": ".content h3",
+      "lvl3": ".content h4",
+      "lvl4": ".content h5",
+      "text": ".content p, .content ul li, .content table tbody tr"
+    }
+  },
+  "scrape_start_urls": false,
+  "strip_chars": " .,;:#"
+}
