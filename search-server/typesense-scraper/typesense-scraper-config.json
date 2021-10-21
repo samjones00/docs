@@ -3,10 +3,10 @@
   "allowed_domains": ["172.17.0.2","docs.servicestack.net"],
   "start_urls": [
     {
-      "url": "https://docs.servicestack.net/"
+      "url": "http://172.17.0.2:8080/"
     }
   ],
-  "stop_urls": ["https://docs.servicestack.net/release*"],
+  "stop_urls": ["http://172.17.0.2:8080/release*"],
   "selectors": {
     "default": {
       "lvl0": ".content h1",
