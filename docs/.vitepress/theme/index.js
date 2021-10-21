@@ -3,6 +3,7 @@ import CleanUrlsMd from './../includes/clean-urls.md'
 import WebNewCorefxMd from '../includes/web-new-corefx.md'
 import WebTroubleMd from '../includes/web-trouble.md'
 
+import NotFound from '../../src/components/NotFound.vue'
 
 import ClientLoginUis from '../../src/components/ClientLoginUis.vue'
 import ClientContactUis from '../../src/components/ClientContactsUis.vue'
@@ -17,6 +18,7 @@ import Layout from './Layout.vue';
 export default {
     ...DefaultTheme,
     Layout: Layout,
+    NotFound: NotFound,
     enhanceApp: ({ app }) => {
         app.component('CleanUrlsMd',CleanUrlsMd)
         app.component('WebNewCorefxMd',WebNewCorefxMd)
