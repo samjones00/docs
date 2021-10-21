@@ -124,10 +124,10 @@ jobs:
           CLUSTER_NAME: ${{ env.cluster_name }}
         with:
           input: search-server/typesense-server/typesense-task-def.json
-          output: typesense-data/task-definition.json
+          output: task-definition.json
 
       - name: Create task definition if doesn't exist
-        run: aws ecs describe-task-definition --task-definition ${{ env.app_name }} || aws ecs register-task-definition --cli-input-json file://typesense-data/task-definition.json
+        run: aws ecs describe-task-definition --task-definition ${{ env.app_name }} || aws ecs register-task-definition --cli-input-json file://task-definition.json
 
       - name: Create ECS Service if not exists.
         run: aws ecs describe-services --cluster ${{ env.cluster_name }} --services ${{ env.app_name }} | jq '.services[0]' -e || aws ecs create-service --cluster ${{ env.cluster_name }} --service-name ${{ env.app_name }} --task-definition ${{ env.app_name }} --desired-count 1
@@ -135,7 +135,7 @@ jobs:
       - name: Deploy new revision of the task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: typesense-data/task-definition.json
+          task-definition: task-definition.json
           service: ${{ env.app_name }}
           cluster: ${{ env.cluster_name }}
           force-new-deployment: true
