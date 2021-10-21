@@ -55,7 +55,7 @@ const search = (txt:any) => {
               if (titleOnly === groupName) {
                 item.type = 'doc';
               }
-              else if (titleOnly === stripHtml(item.snippetHtml)) {
+              if (titleOnly === stripHtml(item.snippetHtml)) {
                 item.snippetHtml = "";
               }
               group.push(item);
@@ -145,24 +145,6 @@ const onKeyDown = (e:KeyboardEvent) => {
 
 function stripHtml(s:string) {
   return s.replace(/<[^>]*>?/gm, '');
-}
-
-function isScrolledIntoView(el:HTMLElement, elParent:HTMLElement) {
-    let { top, bottom } = el.getBoundingClientRect();
-    let height = window.innerHeight;
-
-    height = (elParent as any).clientHeight + elParent.getBoundingClientRect().top;
-    const dim = (e:HTMLElement|any) => {
-      let { offsetHeight, offsetTop, clientHeight, clientTop } = e;
-      return ({ 
-        rect:e.getBoundingClientRect(), 
-        offsetHeight, offsetTop, clientHeight, clientTop });
-    };
-    console.log({ el: dim(el), parent: dim(elParent)});
-
-    // Only completely visible elements return true:
-    let isVisible = (top >= 0) && (bottom <= height);
-    return isVisible;
 }
 
 </script>

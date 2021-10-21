@@ -10,6 +10,7 @@ const showSearch = () => {
   openSearch.value = true
   nextTick(() => {
     const el = document.querySelector('#docsearch-input') as HTMLInputElement;
+    el?.select();
     el?.focus();
   })
 };
