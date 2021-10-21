@@ -3,7 +3,9 @@ slug: swagger-api
 title: Swagger API
 ---
 
-> `SwaggerFeature` implements Swagger 1.2 whilst [Open API](/openapi) implements the newer Swagger 2.0 / Open API specification. For new projects we recommend using [Open API](/openapi) which also has broader industry adoption.
+::: warning DEPRECATED
+`SwaggerFeature` implements Swagger 1.2 whilst [Open API](/openapi) implements the newer Swagger 2.0 / Open API specification. For new projects we recommend using [Open API](/openapi) which also has broader industry adoption
+:::
 
 [Swagger](http://swagger.io/) is a specification and complete framework implementation for describing, producing, consuming, and visualizing RESTful web services. ServiceStack implements the 
 [Swagger 1.2 Spec](https://github.com/swagger-api/swagger-spec/blob/master/versions/1.2.md) back-end and embeds the Swagger UI front-end in a separate plugin which is available under [Swagger NuGet package](http://nuget.org/packages/ServiceStack.Api.Swagger/):
