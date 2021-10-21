@@ -101,7 +101,42 @@ $ docker build . -t jupyter-reports
 This will likely take a few minutes locally due to all the required packages and size of the numerous dependencies
 :::
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/docker-build.png)
+```
+[+] Building 572.3s (25/25) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 3.68kB                                                                             0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/jupyter/base-notebook:latest                                            7.2s
+ => [auth] jupyter/base-notebook:pull token for registry-1.docker.io                                               0.0s
+ => [ 1/19] FROM docker.io/jupyter/base-notebook:latest@sha256:5a942551e592d9ee167c353dec8015f5781fa69fece97a093  15.6s
+ => => resolve docker.io/jupyter/base-notebook:latest@sha256:5a942551e592d9ee167c353dec8015f5781fa69fece97a0934f6  0.0s
+...
+ => => extracting sha256:67bf56c81c699383f5a229fdc62a2664c94a7798d35511454e29df1c6a1afd05                          0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 3.67kB                                                                                0.0s
+ => [ 2/19] WORKDIR /home/jovyan                                                                                   1.4s
+ => [ 3/19] RUN apt-get update                                                                                    73.9s
+ => [ 4/19] RUN apt-get install -y curl                                                                           22.2s
+ => [ 5/19] RUN apt-get install -y texlive-xetex         texlive-fonts-recommended         texlive-latex-recomm  375.2s
+ => [ 6/19] RUN apt-get update     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends    5.1s
+ => [ 7/19] RUN dotnet_sdk_version=5.0.102     && curl -SL --output dotnet.tar.gz https://dotnetcli.azureedge.net  8.2s
+ => [ 8/19] COPY ./ /home/jovyan/Notebooks/                                                                        0.3s
+ => [ 9/19] RUN echo "<configuration>  <solution>    <add key="disableSourceControlIntegration" value="true" />    0.5s
+ => [10/19] RUN echo "<Project Sdk="Microsoft.NET.Sdk.Web">  <PropertyGroup>    <TargetFramework>net5.0</TargetFr  0.6s
+ => [11/19] RUN chown -R 1000 /home/jovyan                                                                         1.0s
+ => [12/19] RUN pip install nteract_on_jupyter                                                                    14.6s
+ => [13/19] RUN dotnet tool install -g Microsoft.dotnet-interactive                                               12.8s
+ => [14/19] RUN dotnet tool install -g x                                                                           6.5s
+ => [15/19] RUN dotnet restore /home/jovyan/preload.csproj                                                        16.4s
+ => [16/19] RUN echo "/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/jovyan/.d  0.3s
+ => [17/19] RUN dotnet interactive jupyter install                                                                 2.7s
+ => [18/19] RUN pip install nbconvert                                                                              1.1s
+ => [19/19] WORKDIR /home/jovyan/Notebooks/                                                                        0.0s
+ => exporting to image                                                                                             6.2s
+ => => exporting layers                                                                                            6.2s
+ => => writing image sha256:ab54b9fd600007d3badbd7e99927e4c2bfa2dcc2334586c1e76619d1a0e56cbd                       0.0s
+```
 
 To run your newly built Docker image, use the following command where `<absolute-path-of-git-repo>` is the location of your local git repository. This can't be a relative.
 
@@ -210,7 +245,11 @@ Working through the breakdown of data by generating additional plots with headin
 
 ![Download PDF menu](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/download-pdf-menu.png)
 
-[Looking at the resultant PDF](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/public/jupyter-samples/jupyter-reports-standard.pdf), we can see we can still see the code related input and output. If this was something we would present to people not familiar with software development or python, this is unnecessary noise that we can filter out while still leaving the notebook in a state that is runnable for those working on it.
+[Looking at the resultant PDF](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/public/jupyter-samples/jupyter-reports-standard.pdf), we can see we can still see the code related input and output. 
+
+![Output PDF](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/pdf-standard.png)
+
+If this was something we would present to people not familiar with software development or python, this is unnecessary noise that we can filter out while still leaving the notebook in a state that is runnable for those working on it.
 
 First, clear the cell output you don't want to include in your final result PDF. This will include from cells that install dependencies using `%pip install` and anything else which you think doesn't add value to the final report. This can be done by selecting the cell in the web UI, going to the `Cell` menu and clicking `Current Outputs`->`Clear`.
 
@@ -225,6 +264,21 @@ jupyter nbconvert --to pdf chinook.netcore.io-QueryInvoices.ipynb --TemplateExpo
 ```
 
 The generated PDF will be visible in the Jupyter file explorer web UI so you can open and [download the result](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/public/jupyter-samples/jupyter-reports-clean.pdf).
+
+![Clean output PDF](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/pdf-clean.png)
+
+### HTML Output
+The same process can be done for outputing straight HTML for easy sharing on a static site. Using the `Export Notebook As` menu, selecting HTML we get what we can see in our Jupyter environment with all the context and code.
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/html-standard.png)
+
+Using the terminal again to produce HTML, we can strip the code away to produce a clean report.
+
+```shell
+jupyter nbconvert --to html chinook.netcore.io-QueryInvoices.ipynb --TemplateExporter.exclude_input=True
+```
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/html-clean.png)
 
 ### Using MyBinder.org
 
