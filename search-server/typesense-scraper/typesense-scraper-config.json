@@ -6,7 +6,7 @@
       "url": "https://docs.servicestack.net/"
     }
   ],
-  "stop_urls": ["https://docs.servicestack.net/releases/"],
+  "stop_urls": ["https://docs.servicestack.net/release*"],
   "selectors": {
     "default": {
       "lvl0": ".content h1",
