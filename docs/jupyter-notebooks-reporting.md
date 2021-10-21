@@ -210,7 +210,7 @@ Working through the breakdown of data by generating additional plots with headin
 
 ![Download PDF menu](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/jupyter/reports-and-testing/download-pdf-menu.png)
 
-Looking at the resultant PDF, we can see we can still see the code related input and output. If this was something we would present to people not familiar with software development or python, this is unnecessary noise that we can filter out while still leaving the notebook in a state that is runnable for those working on it.
+[Looking at the resultant PDF](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/public/jupyter-samples/jupyter-reports-standard.pdf), we can see we can still see the code related input and output. If this was something we would present to people not familiar with software development or python, this is unnecessary noise that we can filter out while still leaving the notebook in a state that is runnable for those working on it.
 
 First, clear the cell output you don't want to include in your final result PDF. This will include from cells that install dependencies using `%pip install` and anything else which you think doesn't add value to the final report. This can be done by selecting the cell in the web UI, going to the `Cell` menu and clicking `Current Outputs`->`Clear`.
 
@@ -224,7 +224,7 @@ Navigating to the folder of your notebook report, you can use a utility called `
 jupyter nbconvert --to pdf chinook.netcore.io-QueryInvoices.ipynb --TemplateExporter.exclude_input=True
 ```
 
-The generated PDF will be visible in the Jupyter file explorer web UI so you can open and download the result.
+The generated PDF will be visible in the Jupyter file explorer web UI so you can open and [download the result](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/public/jupyter-samples/jupyter-reports-clean.pdf).
 
 ### Using MyBinder.org
 
