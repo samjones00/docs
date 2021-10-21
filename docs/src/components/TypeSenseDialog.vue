@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { useRouter } from 'vitepress';
 
 defineProps<{ open: boolean }>();
 const emit = defineEmits<{ (event: 'hide'): void }>();
 const router = useRouter();
  
-declare var META_FILES:any;
-
 const results = ref({ groups:[], allItems:[] });
 const query = ref("");
 
@@ -24,7 +22,7 @@ const search = (txt:any) => {
       lastQuery = query.value;
       clearTimeout(timeout)
       fetch('https://search.docs.servicestack.net/collections/typesense_docs/documents/search?q='
-          + query.value + '&query_by=content', {
+          + query.value + '&query_by=content,hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3&group_by=hierarchy.lvl0', {
         headers: {
           // Search only API key for Typesense.
           'x-typesense-api-key': 'N4N8bF0XwyvzwCGwm3CKB0QcnwyWtygo'
@@ -35,33 +33,43 @@ const search = (txt:any) => {
           let idx = 0;
           const groups:any = {};
           const meta:any = { groups:[], allItems:[] };
+          //console.log(data)
 
-          data.hits.forEach((hit:any) => {
-            let pos = hit.document.url_without_anchor.indexOf('/', 'https://'.length);
-            let doc = hit.document;
-            let relativePath = doc.url_without_anchor.substring(pos);
-            let info = META_FILES[relativePath];
-            if (!groups[relativePath]) {
-              meta.groups.push({ path:relativePath, docTitle:info?.title });
-            }
-            let group = groups[relativePath] ?? (groups[relativePath] = []);
-            let item = {
-              id: ++idx,
-              titleHtml: doc.hierarchy.lvl3 ?? doc.hierarchy.lvl2 ?? doc.hierarchy.lvl1 ?? doc.hierarchy.lvl0 ?? info?.title,
-              snippetHtml: hit.highlights.length > 0 ? hit.highlights[0].snippet : null,
-              // search results have wrong domain, use relative
-              url: doc.url.substring(doc.url.indexOf('/', 'https://'.length))
-            };
-            group.push(item);
+          data.grouped_hits.forEach((gh:any) => {
+            let groupName = gh.group_key[0];
+            meta.groups.push({ group: groupName });
+            let group = groups[groupName] ?? (groups[groupName] = []);
+            gh.hits.forEach((hit:any) => {
+              let doc = hit.document;
+              let highlight = hit.highlights.length > 0 ? hit.highlights[0] : null;
+              let item = {
+                id: ++idx,
+                titleHtml: doc.hierarchy.lvl3 ?? doc.hierarchy.lvl2 ?? doc.hierarchy.lvl1 ?? doc.hierarchy.lvl0,
+                snippetHtml: highlight?.snippet,
+                // search result type for icon
+                type: highlight?.field === 'content' ? 'content' : 'heading',
+                // search results have wrong domain, use relative
+                url: doc.url.substring(doc.url.indexOf('/', 'https://'.length))
+              };
+              let titleOnly = stripHtml(item.titleHtml);
+              if (titleOnly === groupName) {
+                item.type = 'doc';
+              }
+              else if (titleOnly === stripHtml(item.snippetHtml)) {
+                item.snippetHtml = "";
+              }
+              group.push(item);
+            });
           });
 
           meta.groups.forEach((g:any) => {
-            g.items = groups[g.path] ?? [];
+            g.items = groups[g.group] ?? [];
             g.items.forEach((item:any) => {
               meta.allItems.push(item);
             });
           });
 
+          //console.log(meta)
           results.value = meta;
         })
       })
@@ -85,14 +93,46 @@ const next = (id:number, step:number) => {
   return nextPos >= 0 ? meta.allItems[nextPos] : meta.allItems[meta.allItems.length + nextPos];
 }
 
+let ScrollCounter = 0;
+
 const onKeyDown = (e:KeyboardEvent) => {
   const meta:any = results.value;
   if (!meta || meta.allItems.length === 0) return;
-  if (e.code === 'ArrowDown') {
-    selectedIndex.value = next(selectedIndex.value, 1).id;
-    e.preventDefault();
-  } else if (e.code === 'ArrowUp') {
-    selectedIndex.value = next(selectedIndex.value, -1).id;
+  if (e.code === 'ArrowDown' || e.code === 'ArrowUp' || e.code === 'Home' || e.code === 'End') {
+    selectedIndex.value = e.code === 'Home'
+      ? meta.allItems[0]?.id
+      : e.code === 'End'
+        ? meta.allItems[meta.allItems.length-1]?.id
+        : next(selectedIndex.value, e.code === 'ArrowUp' ? -1 : 1).id;
+    nextTick(() => {
+      let el = document.querySelector('[aria-selected=true]') as HTMLElement,
+          elGroup = el?.closest('.group-result') as HTMLElement,
+          elParent = elGroup?.closest('.group-results') as HTMLElement;
+      
+      ScrollCounter++;
+      let counter = ScrollCounter;
+
+      if (el && elGroup && elParent) {
+        if (el === elGroup.firstElementChild?.nextElementSibling && elGroup === elParent.firstElementChild) {
+          //console.log('scrollTop', 0)
+          elParent.scrollTo({ top: 0, left: 0 });
+        } else if (el === elGroup.lastElementChild && elGroup === elParent.lastElementChild) {
+          //console.log('scrollEnd', elParent.scrollHeight)
+          elParent.scrollTo({ top: elParent.scrollHeight, left: 0 });
+        } else {
+          if (typeof IntersectionObserver != 'undefined') {
+            let observer = new IntersectionObserver((entries:any[]) => {
+              if (entries[0].intersectionRatio <= 0) {
+                //console.log('el.scrollIntoView()', counter, ScrollCounter)
+                if (counter == ScrollCounter) el.scrollIntoView();
+              }
+              observer.disconnect();
+            });
+            observer.observe(el);
+          }
+        }
+      }
+    })
     e.preventDefault();
   } else if (e.code === 'Enter') {
     let match = meta.allItems.find((x:any) => x.id === selectedIndex.value);
@@ -103,12 +143,34 @@ const onKeyDown = (e:KeyboardEvent) => {
   }
 };
 
+function stripHtml(s:string) {
+  return s.replace(/<[^>]*>?/gm, '');
+}
+
+function isScrolledIntoView(el:HTMLElement, elParent:HTMLElement) {
+    let { top, bottom } = el.getBoundingClientRect();
+    let height = window.innerHeight;
+
+    height = (elParent as any).clientHeight + elParent.getBoundingClientRect().top;
+    const dim = (e:HTMLElement|any) => {
+      let { offsetHeight, offsetTop, clientHeight, clientTop } = e;
+      return ({ 
+        rect:e.getBoundingClientRect(), 
+        offsetHeight, offsetTop, clientHeight, clientTop });
+    };
+    console.log({ el: dim(el), parent: dim(elParent)});
+
+    // Only completely visible elements return true:
+    let isVisible = (top >= 0) && (bottom <= height);
+    return isVisible;
+}
+
 </script>
 
 <template>
-  <div class="search-dialog hidden flex bg-black bg-opacity-25" :class="{ open }" 
+  <div class="search-dialog hidden flex bg-black bg-opacity-25 items-center" :class="{ open }" 
        @click="$emit('hide')">
-    <div class="dialog"  @click.stop="false">
+    <div class="dialog absolute" style="max-height:70vh;" @click.stop="false">
       <div class="p-2 flex flex-col">
         <div class="flex">
           <label class="pt-4 mt-0.5 pl-2" for="docsearch-input">
@@ -120,12 +182,17 @@ const onKeyDown = (e:KeyboardEvent) => {
                 @focus="selectedIndex=1" @blur="selectedIndex=-1" @keydown="onKeyDown">
           <div class="mt-5 mr-3"><button class="search-cancel" @click="$emit('hide')">Cancel</button></div>
         </div>
-        <div v-if="results.allItems.length" class="border-0 border-t border-solid border-gray-400 mx-2 py-2">
-          <div v-for="g in results.groups" :key="g.path" class="group-result mb-2">
-            <h3 class="m-0 text-lg text-gray-600">{{ g.docTitle }}</h3>
+        <div v-if="results.allItems.length" class="group-results border-0 border-t border-solid border-gray-400 mx-2 pr-1 py-2 overflow-y-scroll" style="max-height:60vh">
+          <div v-for="g in results.groups" :key="g.group" class="group-result mb-2">
+            <h3 class="m-0 text-lg text-gray-600" v-html="g.group"></h3>
             <div v-for="result in g.items" :key="result.id" :aria-selected="result.id == selectedIndex"
-                 class="group-item rounded-lg bg-gray-50 mb-1 p-2" @mouseover="onHover(result.id)" @click="go(result.url)">
-              <div class="">
+                 class="group-item rounded-lg bg-gray-50 mb-1 p-2 flex" @mouseover="onHover(result.id)" @click="go(result.url)">              
+              <div class="min-w-min mr-2 flex items-center">
+                <svg v-if="result.type=='doc'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                <svg v-else-if="result.type=='content'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
+              </div>
+              <div class="overflow-hidden">
                 <div class="snippet overflow-ellipsis overflow-hidden whitespace-nowrap text-sm" v-html="result.snippetHtml"></div>
                 <h4><a class="text-sm text-gray-600" :href="result.url" v-html="result.titleHtml"></a></h4>
               </div>
@@ -220,6 +287,9 @@ input[type=search]::-webkit-search-cancel-button{
     line-height: 1.25rem;
     cursor: pointer;
 }
+.search-dialog ::-webkit-scrollbar { width:4px; }
+.search-dialog ::-webkit-scrollbar-thumb { background-color:rgb(249, 250, 251); }
+
 @media (min-width: 720px) {
   .nav {
     display: none;
