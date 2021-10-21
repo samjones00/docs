@@ -16,7 +16,7 @@
   "scripts": {
     "postinstall": "node postinstall.js",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs && node docs-meta.js",
+    "docs:build": "vitepress build docs",
     "docs:build-mpa": "vitepress build --mpa docs #gens static .html with no js, but broken now",
     "docs:serve": "vitepress serve docs"
   },
