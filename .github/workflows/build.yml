@@ -48,6 +48,8 @@ jobs:
         run: |
           echo "TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }}" >> $GITHUB_ENV
           export TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }}
+          mkdir -p ${GITHUB_WORKSPACE}/typesense-data
+          cp ./search-server/typesense-server/Dockerfile ${GITHUB_WORKSPACE}/typesense-data/Dockerfile
           cp ./search-server/typesense-scraper/typesense-scraper-config.json typesense-scraper-config.json
           envsubst < "./search-server/typesense-scraper/typesense-scraper.env" > "typesense-scraper-updated.env"
           docker run -i -d -p 8080:8080 -v ${GITHUB_WORKSPACE}/docs/.vitepress/dist:/public danjellz/http-server
@@ -56,7 +58,7 @@ jobs:
           sleep 5
           docker run -i --env-file typesense-scraper-updated.env -e "CONFIG=$(cat typesense-scraper-config.json | jq -r tostring)" typesense/docsearch-scraper
           curl 'http://172.17.0.3:8108/keys' -X POST -H "X-TYPESENSE-API-KEY: ${TYPESENSE_API_KEY}" -H 'Content-Type: application/json' -d '{"value": "N4N8bF0XwyvzwCGwm3CKB0QcnwyWtygo","description": "Search only","actions": ["documents:search"],"collections":["*"]}'
-          cp ./search-server/typesense-server/Dockerfile ${GITHUB_WORKSPACE}/typesense-data/Dockerfile
+          
       - name: repository name fix
         run: echo "image_repository_name=docs-search" >> $GITHUB_ENV
 
