@@ -37,7 +37,7 @@ const search = (txt:any) => {
           const meta:any = { groups:[], allItems:[] };
 
           data.hits.forEach((hit:any) => {
-            let pos = hit.document.url_without_anchor.indexOf('/', 'https://'.length);
+            let pos = hit.document.url_without_anchor.indexOf('/', 'http://'.length);
             let doc = hit.document;
             let relativePath = doc.url_without_anchor.substring(pos);
             let info = META_FILES[relativePath];
@@ -49,7 +49,8 @@ const search = (txt:any) => {
               id: ++idx,
               titleHtml: doc.hierarchy.lvl3 ?? doc.hierarchy.lvl2 ?? doc.hierarchy.lvl1 ?? doc.hierarchy.lvl0 ?? info?.title,
               snippetHtml: hit.highlights.length > 0 ? hit.highlights[0].snippet : null,
-              url: doc.url,
+              // search results have wrong domain, use relative
+              url: doc.url.substring(doc.url.indexOf('/', 'http://'.length + 1))
             };
             group.push(item);
           });
