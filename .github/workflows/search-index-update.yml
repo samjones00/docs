@@ -30,7 +30,6 @@ jobs:
         echo "$(./search-server/commit-date-check.sh)"
         echo "::set-output name=run_update::$(./search-server/commit-date-check.sh)\n"
     - name: Create search index
-      if: ${{ steps.date_check.outputs.run-update == 'update' }}
       run: |
         echo "TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }}" >> $GITHUB_ENV
         export TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }}
@@ -42,26 +41,26 @@ jobs:
         sleep 5
         docker run -i --env-file typesense-scraper-updated.env -e "CONFIG=$(cat typesense-scraper-config.json | jq -r tostring)" typesense/docsearch-scraper
         curl 'http://172.17.0.2:8108/keys' -X POST -H "X-TYPESENSE-API-KEY: ${TYPESENSE_API_KEY}" -H 'Content-Type: application/json' -d '{"value": "N4N8bF0XwyvzwCGwm3CKB0QcnwyWtygo","description": "Search only","actions": ["documents:search"],"collections":["*"]}'
+    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: repository name fix
-      if: ${{ steps.date_check.outputs.run-update == 'update' }}
       run: echo "image_repository_name=docs-search" >> $GITHUB_ENV
+    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: Configure AWS credentials
-      if: ${{ steps.date_check.outputs.run-update == 'update' }}
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
+    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: Login to Amazon ECR
-      if: ${{ steps.date_check.outputs.run-update == 'update' }}
       id: login_ecr
       uses: aws-actions/amazon-ecr-login@v1
+    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: Build and push to ECR
-      if: ${{ steps.date_check.outputs.run-update == 'update' }}
       id: push_image_to_ecr
       uses: docker/build-push-action@v2.2.2
       with:
@@ -69,6 +68,7 @@ jobs:
         context: ./typesense-data/
         push: true
         tags: ${{ steps.login_ecr.outputs.registry }}/${{ env.image_repository_name }}:latest
+    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
   deploy_ecs:
     needs: build
@@ -100,7 +100,6 @@ jobs:
           echo "typesense_api_key=${{ secrets.TYPESENSE_API_KEY }}" >> $GITHUB_ENV
 
       - name: Populate task definition template
-        if: ${{ needs.build.outputs.run_update == 'update' }}
         uses: danielr1996/envsubst-action@1.0.0
         env:
           RELEASE_VERSION: latest
@@ -114,20 +113,21 @@ jobs:
         with:
           input: search-server/typesense-server/typesense-task-def.json
           output: task-definition.json
+      - if: ${{ needs.build.outputs.run_update == 'update' }}
 
       - name: Create task definition if doesn't exist
-        if: ${{ needs.build.outputs.run_update == 'update' }}
         run: aws ecs describe-task-definition --task-definition ${{ env.app_name }} || aws ecs register-task-definition --cli-input-json file://task-definition.json
+      - if: ${{ needs.build.outputs.run_update == 'update' }}
 
       - name: Create ECS Service if not exists.
-        if: ${{ needs.build.outputs.run_update == 'update' }}
         run: aws ecs describe-services --cluster ${{ env.cluster_name }} --services ${{ env.app_name }} | jq '.services[0]' -e || aws ecs create-service --cluster ${{ env.cluster_name }} --service-name ${{ env.app_name }} --task-definition ${{ env.app_name }} --desired-count 1
+      - if: ${{ needs.build.outputs.run_update == 'update' }}
 
       - name: Deploy new revision of the task definition
-        if: ${{ needs.build.outputs.run_update == 'update' }}
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: task-definition.json
           service: ${{ env.app_name }}
           cluster: ${{ env.cluster_name }}
           force-new-deployment: true
+      - if: ${{ needs.build.outputs.run_update == 'update' }}
