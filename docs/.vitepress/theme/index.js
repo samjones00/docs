@@ -1,3 +1,4 @@
+import { watch } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import CleanUrlsMd from './../includes/clean-urls.md'
 import WebNewCorefxMd from '../includes/web-new-corefx.md'
@@ -35,5 +36,12 @@ export default {
                 el.focus()
             }
         })
+
+        // Only run this on the client. Not during build.
+        if (typeof window !== 'undefined' && window.ga) {
+            watch(() => router.route.data.relativePath, (path) => {
+                ga('send', 'pageview', path);
+            }, { immediate: true });
+        }
     }
 };
