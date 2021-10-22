@@ -23,6 +23,33 @@ jobs:
         with:
           node-version: 14
 
+      - name: Check commit date
+        id: date_check
+        run: |
+          chmod +x ./search-server/commit-date-check.sh
+          echo "$(./search-server/commit-date-check.sh)"
+          echo "::set-output name=run_update::$(./search-server/commit-date-check.sh)\n"
+
+      uses: actions/github-script@v2
+      id: check
+      with:
+        script: |
+          const { owner, repo } = context.repo
+          const update = "${{ steps.date_check.outputs.run-update == 'update' }}"
+          if (!update) {
+            console.log('Cancelling ...');
+            const run_id = "${{ github.run_id }}";
+            await github.actions.cancelWorkflowRun({ owner, repo, run_id });
+            return 'stop'
+          } else {
+            return 'build'
+          }
+        result-encoding: string
+
+      - name: Waiting for cancellation
+        run: sleep 60
+        if: steps.check.outputs.result == 'stop'
+
       - name: Create search index
         run: |
           echo "TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }}" >> $GITHUB_ENV
