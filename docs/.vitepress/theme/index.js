@@ -20,7 +20,7 @@ export default {
     ...DefaultTheme,
     Layout: Layout,
     NotFound: NotFound,
-    enhanceApp: ({ app }) => {
+    enhanceApp: ({ app, router, siteData }) => {
         app.component('CleanUrlsMd',CleanUrlsMd)
         app.component('WebNewCorefxMd',WebNewCorefxMd)
         app.component('WebTroubleMd',WebTroubleMd)
