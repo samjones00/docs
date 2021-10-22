@@ -39,7 +39,7 @@ export default {
 
         // Only run this on the client. Not during build.
         if (typeof window !== 'undefined' && window.ga) {
-            watch(() => router.route.data.relativePath, (path) => {
+            watch(() => router.route, (path) => {
                 ga('send', 'pageview', path);
             }, { immediate: true });
         }
