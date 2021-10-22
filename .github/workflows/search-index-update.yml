@@ -29,6 +29,24 @@ jobs:
         chmod +x ./search-server/commit-date-check.sh
         echo "$(./search-server/commit-date-check.sh)"
         echo "::set-output name=run_update::$(./search-server/commit-date-check.sh)\n"
+    - uses: actions/github-script@v2
+      id: check
+      with:
+        script: |
+          const { owner, repo } = context.repo
+          const update = "${{ steps.date_check.outputs.run-update == 'update' }}"
+          if (!update) {
+            console.log('Cancelling ...');
+            const run_id = "${{ github.run_id }}";
+            await github.actions.cancelWorkflowRun({ owner, repo, run_id });
+            return 'stop'
+          } else {
+            return 'build'
+          }
+        result-encoding: string
+    - name: Waiting for cancellation
+      run: sleep 60
+      if: steps.check.outputs.result == 'stop'
     - name: Create search index
       run: |
         echo "TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }}" >> $GITHUB_ENV
@@ -41,11 +59,9 @@ jobs:
         sleep 5
         docker run -i --env-file typesense-scraper-updated.env -e "CONFIG=$(cat typesense-scraper-config.json | jq -r tostring)" typesense/docsearch-scraper
         curl 'http://172.17.0.2:8108/keys' -X POST -H "X-TYPESENSE-API-KEY: ${TYPESENSE_API_KEY}" -H 'Content-Type: application/json' -d '{"value": "N4N8bF0XwyvzwCGwm3CKB0QcnwyWtygo","description": "Search only","actions": ["documents:search"],"collections":["*"]}'
-    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: repository name fix
       run: echo "image_repository_name=docs-search" >> $GITHUB_ENV
-    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -53,12 +69,10 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: Login to Amazon ECR
       id: login_ecr
       uses: aws-actions/amazon-ecr-login@v1
-    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
     - name: Build and push to ECR
       id: push_image_to_ecr
@@ -68,7 +82,6 @@ jobs:
         context: ./typesense-data/
         push: true
         tags: ${{ steps.login_ecr.outputs.registry }}/${{ env.image_repository_name }}:latest
-    - if: ${{ steps.date_check.outputs.run-update == 'update' }}
 
   deploy_ecs:
     needs: build
@@ -113,15 +126,12 @@ jobs:
         with:
           input: search-server/typesense-server/typesense-task-def.json
           output: task-definition.json
-      - if: ${{ needs.build.outputs.run_update == 'update' }}
 
       - name: Create task definition if doesn't exist
         run: aws ecs describe-task-definition --task-definition ${{ env.app_name }} || aws ecs register-task-definition --cli-input-json file://task-definition.json
-      - if: ${{ needs.build.outputs.run_update == 'update' }}
 
       - name: Create ECS Service if not exists.
         run: aws ecs describe-services --cluster ${{ env.cluster_name }} --services ${{ env.app_name }} | jq '.services[0]' -e || aws ecs create-service --cluster ${{ env.cluster_name }} --service-name ${{ env.app_name }} --task-definition ${{ env.app_name }} --desired-count 1
-      - if: ${{ needs.build.outputs.run_update == 'update' }}
 
       - name: Deploy new revision of the task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -130,4 +140,3 @@ jobs:
           service: ${{ env.app_name }}
           cluster: ${{ env.cluster_name }}
           force-new-deployment: true
-      - if: ${{ needs.build.outputs.run_update == 'update' }}
