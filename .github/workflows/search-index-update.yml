@@ -36,7 +36,7 @@ jobs:
         with:
           script: |
             const { owner, repo } = context.repo
-            const update = "${{ steps.date_check.outputs.run-update == 'update' }}"
+            const update = ${{ steps.date_check.outputs.run-update == 'update' }}
             if (!update) {
               console.log('Cancelling ...');
               const run_id = "${{ github.run_id }}";
