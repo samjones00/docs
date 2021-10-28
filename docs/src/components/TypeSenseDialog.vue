@@ -20,9 +20,11 @@ const search = (txt:any) => {
     if (timeout != null) {
       if (lastQuery === query.value) return;
       lastQuery = query.value;
-      clearTimeout(timeout)
+      clearTimeout(timeout);
+      // typesense API reference: https://typesense.org/docs/0.21.0/api/documents.html#search
       fetch('https://search.docs.servicestack.net/collections/typesense_docs/documents/search?q='
-          + query.value + '&query_by=content,hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3&group_by=hierarchy.lvl0', {
+          + encodeURIComponent(query.value)
+          + '&query_by=content,hierarchy.lvl0,hierarchy.lvl1,hierarchy.lvl2,hierarchy.lvl3&group_by=hierarchy.lvl0', {
         headers: {
           // Search only API key for Typesense.
           'x-typesense-api-key': 'N4N8bF0XwyvzwCGwm3CKB0QcnwyWtygo'
