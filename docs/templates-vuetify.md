@@ -3,6 +3,16 @@ slug: templates-vuetify
 title: Vuetify Project Templates
 ---
 
+<div class="my-8 ml-20"><svg style="max-width:200px" viewBox="0 0 682 682" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M340.771 639.454C509.596 639.454 646.454 502.596 646.454 333.771C646.454 164.948 509.596 28.0893 340.771 28.0893C171.948 28.0893 35.0893 164.948 35.0893 333.771C35.0893 502.596 171.948 639.454 340.771 639.454ZM340.771 645.543C512.957 645.543 652.543 505.957 652.543 333.771C652.543 161.585 512.957 22 340.771 22C168.585 22 29 161.585 29 333.771C29 505.957 168.585 645.543 340.771 645.543Z" fill="#AEDDFF"/>
+<path d="M494.907 83.8146C504.797 83.8146 512.815 75.7972 512.815 65.9073C512.815 56.0174 504.797 48 494.907 48C485.017 48 477 56.0174 477 65.9073C477 75.7972 485.017 83.8146 494.907 83.8146Z" fill="#1697F6"/>
+<path d="M203.907 627.815C213.797 627.815 221.815 619.797 221.815 609.907C221.815 600.017 213.797 592 203.907 592C194.017 592 186 600.017 186 609.907C186 619.797 194.017 627.815 203.907 627.815Z" fill="#1697F6"/>
+<path d="M340.723 334.485L260.488 145.008H340.723V334.485Z" fill="#1697F6"/>
+<path d="M258.949 202.198H169L340.723 537.158V390.107L258.949 202.198Z" fill="#7BC6FF"/>
+<path d="M340.723 145L340.723 334.485L420.955 145.008H340.723" fill="#1867C0"/>
+<path d="M422.487 202.198H512.436L340.723 537.158V390.107L422.487 202.198Z" fill="#AEDDFF"/>
+</svg></div>
+
 Quite simply Vuetify is a suite of rich high-level reusable Vue Components that makes it easy to develop beautiful Material designed applications. In many ways it realizes the promise that [Web Components](https://www.webcomponents.org/introduction) were meant to deliver by being able to quickly compose rich Applications from a pre-set of reusable high-level components which have often been marred by their poor integration with the premier JavaScript frameworks Apps are built with. 
 
 We believe Vuetify is one of the best UI Component libraries available which realizes this promise of increased productivity with its broad number of actively maintained and beautifully designed components that offers both a consistent development model and a consistent visual aesthetic that follows [Google's Material Design](https://material.io/guidelines/). Behind the scenes Vuetify components are just Vue components that can be added to any existing Vue App where you can choose to use as much of or as little of Vuetify components as you'd like.
