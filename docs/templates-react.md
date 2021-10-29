@@ -54,7 +54,9 @@ Bootstrapped with [create-react-app](https://github.com/facebook/create-react-ap
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/react-spa.png)](https://github.com/NetCoreTemplates/react-spa)
 
-> Live Demo: [react-spa.web-templates.io](http://react-spa.web-templates.io)
+::: info Live Demo
+[react-spa.web-templates.io](http://react-spa.web-templates.io)
+:::
 
 Create new React 16 Project for .NET 5.0:
 
@@ -75,7 +77,9 @@ and cross-platform Console App Hosts:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/react-desktop-apps-netfx.png)](https://github.com/NetFrameworkTemplates/react-desktop-apps-netfx)
 
-> Live Demo: [react-desktop-apps-netfx.web-templates.io](http://react-desktop-apps-netfx.web-templates.io)
+::: info Live Demo
+[react-desktop-apps-netfx.web-templates.io](http://react-desktop-apps-netfx.web-templates.io)
+:::
 
 Create new React Project for .NET Framework:
 
@@ -91,8 +95,7 @@ Gistlyn is the ultimate collaborative tool for trying out and exploring C# and .
 from a zero install - modern browser. It's ideal for use as a companion tool for trying out libraries during 
 development or on the go from the comfort of your iPad by going to [gistlyn.com](http://gistlyn.com). 
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/gistlyn/home-screenshot.png)](http://gistlyn.com)
-> Live Demo: [gistlyn.com](http://gistlyn.com)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/gistlyn/home-screenshot.png)](https://github.com/ServiceStack/Gistlyn)
 
 ## [Web, Node.js and React Native ServerEvents Apps](https://github.com/ServiceStackApps/typescript-server-events)
 

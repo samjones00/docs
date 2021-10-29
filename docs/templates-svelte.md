@@ -44,7 +44,9 @@ $ x new svelte-spa ProjectName
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/screencasts/svelte-spa-youtube.png)](https://youtu.be/cKlFABFECnQ)
 
-> [YouTube Demo](https://youtu.be/cKlFABFECnQ)
+::: info YouTube
+[youtu.be/cKlFABFECnQ](https://youtu.be/cKlFABFECnQ)
+:::
 
 Run the `dev` npm script or Gulp task and leave it running in the background:
 

@@ -24,11 +24,16 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
 <iframe width="896" height="525" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-> YouTube: [https://youtu.be/4HphWPrKwb0](https://youtu.be/4HphWPrKwb0)
+
+::: info YouTube
+[youtu.be/4HphWPrKwb0](https://youtu.be/4HphWPrKwb0)
+:::
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-spa.png)](https://github.com/NetCoreTemplates/vue-spa)
 
- > Live Demo: [vue-spa.web-templates.io](http://vue-spa.web-templates.io)
+::: info Live Demo
+[vue-spa.web-templates.io](http://vue-spa.web-templates.io)
+:::
 
 Create new Vue 2.5 Project for .NET 5.0:
 
@@ -48,7 +53,9 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/) and the [vuetify cli plugi
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vuetify-spa.png)](https://github.com/NetCoreTemplates/vuetify-spa)
 
- > Live Demo: [vuetify-spa.web-templates.io](http://vuetify-spa.web-templates.io)
+::: info Live Demo
+[vuetify-spa.web-templates.io](http://vuetify-spa.web-templates.io)
+:::
 
 Create new Vuetify Project for .NET 5.0:
 
@@ -68,7 +75,9 @@ Bootstrapped with [Nuxt.js starter template](https://nuxtjs.org/guide/installati
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-nuxt.png)](https://github.com/NetCoreTemplates/vue-nuxt)
 
- > Live Demo: [vue-nuxt.web-templates.io](http://vue-nuxt.web-templates.io)
+::: info Live Demo
+[vue-nuxt.web-templates.io](http://vue-nuxt.web-templates.io)
+:::
 
 Create new Nuxt.js v1.4.2 Project for .NET 5.0:
 
@@ -88,7 +97,9 @@ Bootstrapped with [Nuxt.js + Vuetify.js starter template](https://github.com/vue
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vuetify-nuxt.png)](https://github.com/NetCoreTemplates/vuetify-nuxt)
 
- > Live Demo: [vuetify-nuxt.web-templates.io](http://vuetify-nuxt.web-templates.io)
+::: info Live Demo
+[vuetify-nuxt.web-templates.io](http://vuetify-nuxt.web-templates.io)
+:::
 
 Create new Nuxt Vuetify Project for .NET 5.0:
 
@@ -110,7 +121,9 @@ TechStacks makes it easy to find, discuss and share information on your favorite
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/techstacks-new.png)](https://techstacks.io)
 
-> Live Demo: [techstacks.io](https://techstacks.io)
+::: info Live Demo
+[techstacks.io](https://techstacks.io)
+:::
 
 #### Features
 
