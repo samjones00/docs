@@ -21,11 +21,12 @@ const KeyboardEvents = defineAsyncComponent(() =>
   import('../../src/components/KeyboardEvents.vue'));
 
 const onKeyDown = (e:KeyboardEvent) => {
+  console.log(e.code)
   if (e.code === 'Escape') {
     hideSearch();
   }
   else if ((e.target as HTMLElement).tagName != 'INPUT') {
-    if (e.ctrlKey && e.code == 'KeyK') {
+    if (e.code == 'Slash' || (e.ctrlKey && e.code == 'KeyK')) {
       showSearch();
       e.preventDefault();
     }
@@ -48,7 +49,7 @@ const onKeyDown = (e:KeyboardEvent) => {
           </svg>
           <span class="text-lg mr-1">Search</span>
           <span style="opacity:1;" class="hidden sm:block text-gray-400 text-sm leading-5 py-0 px-1.5 my-0.5 mr-1.5 border border-gray-300 border-solid rounded-md">
-            <span class="sr-only">Press </span><kbd class="font-sans"><abbr title="Control" class="no-underline">Ctrl </abbr></kbd><span class="sr-only"> and </span><kbd class="font-sans">K</kbd><span class="sr-only"> to search</span>
+            <span class="sr-only">Press </span><kbd class="font-sans">/</kbd><span class="sr-only"> to search</span>
           </span>
       </button>
     </template>
