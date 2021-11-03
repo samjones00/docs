@@ -10,12 +10,14 @@
 }
 
 @media (min-width: 960px) {
-    .sidebar {
-        width: 22rem !important;
-    }
     .sidebar-link > .sidebar-link-item {
         padding-right: 0.25rem !important;
     }
+}
+@media (min-width: 1360px) {
+  .sidebar {
+    width: 22rem !important;
+  }
 }
 
 .video-hd { width: 896px; height: 504px }
