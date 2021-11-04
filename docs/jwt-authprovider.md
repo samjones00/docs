@@ -41,8 +41,18 @@ new JwtAuthProvider(AppSettings) {
 }
 ```
 
-Or alternatively you can configure most `JwtAuthProvider` properties in your **Web.config** `<appSettings/>` 
-(default AppSettings Provider) following the `jwt.{PropertyName}` format:
+Or alternatively you can configure most `JwtAuthProvider` properties in your **appsettings.json** or **Web.config** `<appSettings/>` 
+following the `jwt.{PropertyName}` format:
+
+#### appsettings.json
+
+```json
+{
+    "jwt.AuthKeyBase64": "{Base64AuthKey}"
+}
+```
+
+#### Web.config
 
 ```xml
 <add key="jwt.AuthKeyBase64" value="{Base64AuthKey}" />
