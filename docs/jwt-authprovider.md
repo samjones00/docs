@@ -25,8 +25,7 @@ AppDomain recycles which will invalidate all existing JWT Tokens created with th
 
 ### Generate new Auth Key
 
-You can create a new **Base64 Auth Key** by running the code snippet below locally or 
-[on Gistlyn](https://gistlyn.com/?gist=a21185aaa7a49038564ec497460cec73):
+You can create a new **Base64 Auth Key** by running the code snippet below locally:
 
 ```csharp
 var base64Key = System.Convert.ToBase64String(ServiceStack.AesUtils.CreateKey());

@@ -36,10 +36,12 @@ If you're not using or don't have VS.NET installed, you can add the MyGet feed t
 </configuration>
 ```
 
-Download `NuGet.Config` for usage in local project using [mix tool](/mix-tool):
+Download `NuGet.Config` for usage in local project using [mix dotnet tool](/mix-tool):
 
 ```bash
-$ web mix myget
+$ dotnet tool install --global x
+
+$ x mix myget
 ```
 
 ## Redownloading MyGet packages
