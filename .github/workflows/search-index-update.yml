@@ -28,7 +28,7 @@ jobs:
         run: |
           chmod +x ./search-server/commit-date-check.sh
           echo "$(./search-server/commit-date-check.sh)"
-          echo "::set-output name=run_update::$(./search-server/commit-date-check.sh)\n"
+          echo "run_update=$(./search-server/commit-date-check.sh)" >> $GITHUB_ENV
 
       - name: GH script check
         uses: actions/github-script@v2
@@ -36,7 +36,7 @@ jobs:
         with:
           script: |
             const { owner, repo } = context.repo
-            const update = ${{ steps.date_check.outputs.run_update == 'update' }}
+            const update = ${{ env.run_update == 'update' }}
             if (!update) {
               console.log('Cancelling ...');
               const run_id = "${{ github.run_id }}";
