@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      run_update: ${{ steps.date_check.outputs.run-update }}
+      run_update: ${{ steps.date_check.outputs.run_update }}
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
