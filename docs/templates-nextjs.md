@@ -3,22 +3,25 @@ slug: templates-nextjs
 title: NextJS JAMStack Template
 ---
 
-## NextJS
+<div class="flex flex-wrap justify-center">
+    <img src="/images/jamstack/next-black.svg" />
+    <img src="/images/jamstack/jamstack-logo.svg" style="display: block" />
+</div>
 
-NextJS is a framework built on top of React that aims to solve a lot of the pain points related to rapidly developing a React application.
-NextJS takes care of setting up common patterns for development, and built-in features like routing, pre-rendering, CSS/Sass support, hot reload, any many more,
+[NextJS](https://nextjs.org/) is a framework built on top of [React](https://reactjs.org/) that aims to solve a lot of the pain points related to rapidly developing a React application.
+NextJS takes care of setting up common patterns for development, and built-in features like [routing](https://nextjs.org/docs/routing/introduction), [CSS/Sass support](https://nextjs.org/docs/basic-features/built-in-css-support), [Fast Refresh](https://nextjs.org/docs/basic-features/fast-refresh), any many more,
 making it a very attractive way to build React applications.
 
 ## NextJS and JAMStack
 
 NextJS enables the building of a static site generation through the use of the [`next export`](https://nextjs.org/docs/advanced-features/static-html-export) command.
 This allows us to host the generated static site anywhere we like and have a clean separation between the generated static site and a well-defined webservice API provided by ServiceStack.
-The JAMStack pattern promotes this separation of JavaScript, API and Markup (JAM) as the architecture of websites and applications that deliver great performance but also flexibility.
+The [JAMStack](https://jamstack.org/) pattern promotes this separation of JavaScript, API and Markup (JAM) as the architecture of websites and applications that deliver great performance but also flexibility.
 It is common to have content heavy sites, using statically generated *Markup*, that utilize modern frontend libraries and *JavaScript* combined with data from an *API* to make content compelling and interactive.
 
 ## NextJS and Edge Functions
 
-NextJS creators, Vercel, also offer a way to host *Edge Functions* using JavaScript can integrate with their other hosting services.
+NextJS creators, Vercel, also offer a way to host [*Edge Functions*](https://vercel.com/docs/concepts/functions/edge-functions) using JavaScript can integrate with their other hosting services.
 This provides a convenient and fast way to provide custom server functionality without worrying about the hosting.
 
 However, as convenient as they are, these don't produce a well-defined HTTP API for easy reuse outside your web application.
@@ -36,7 +39,25 @@ Following this JAMStack pattern, the `nextjs-jam` template has a separate folder
 
 ## UI project
 
+The UI project is based off the NextJS [Blog Starter TypeScript](https://github.com/vercel/next.js/tree/canary/examples/blog-starter-typescript) template, providing a familiar NextJS developer workflow.
+This project has support for statically generated pages from both Markdown files and TSX files.
+
+This template has been extended with authentication coming from the ServiceStack `api` application enabled with the IdentityAuth provider and JWT. 
+Admin, profile, sign-in and signup pages have been added with example integration to get you started.
+
+This provides a pattern for content heavy Markdown in the `_posts` directory that perform well for SEO since they output static HTML pages.
+
+Tailwind is also incorporated into this template as well, enabling you to take advantage of [Tailwind component providers](https://tailwindui.com/) that can be dropped straight into your TSX pages.
+
 ## API project
+
+The ServiceStack application is in the root `api` directory and by default will be hosted on `http://localhost:5000` for local development.
+The AppHost project has been configured with several features built-in to the template
+
+- Auth - IdentityAuth + JWT
+- AuthRepository - Custom AppUser, EntityFramework with Identity roles
+- AppHost - CORS and SharpPages Plugins
+- Database - EntityFramework using SQLite
 
 ## Development vs Production
 
@@ -76,7 +97,6 @@ The above use of the `CorsFeature` plugin in `Configure.AppHost.cs` shows we are
 
 ![](./images/jamstack/nextjs-hosted.svg)
 
-
 ## Deployment process
 
 JAMStack deployments are extremely flexible since the UI and API are logically separated.
@@ -88,7 +108,7 @@ The UI project is hosted directly on [GitHub Pages](https://pages.github.com/) w
 To support both, the `npm publish` command copies the statically generated site to the `wwwroot` folder within the API before it is bundled into a docker image.
 Additionally, the `release.yml` GitHub Actions workflow pushes the UI to the `gh-pages` branch of your repository to enable GitHub Pages.
 
-## Ways to deploy
+### Ways to deploy
 
 The template will trigger a deployment on every push or Release to the GitHub repository. It can also be deployed manually providing the *version* you want to redeploy.
 
