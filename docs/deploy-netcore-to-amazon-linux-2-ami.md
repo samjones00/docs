@@ -18,7 +18,7 @@ We'll start by SSH'ing into your Amazon Linux server, e.g:
 $ ssh -i ~/pem/<my>.pem ec2-user@ec2-<ip-address>.compute-1.amazonaws.com
 ```
 
-### Install .NET 5.0
+### Install .NET 6.0
 
 Being based on RHEL you can use yum and the [Cent OS 7 Install Instructions](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos#centos-7-)
 to install .NET Core on Amazon Linux 2:
@@ -30,13 +30,13 @@ $ sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsof
 If you just want a minimal ASP.NET Core runtime to run Web Apps you can just install:
 
 ```bash
-$ sudo yum install aspnetcore-runtime-5.0
+$ sudo yum install aspnetcore-runtime-6.0
 ```
 
 But if you'd also like to use dotnet tools like the [x super utility](/dotnet-tool) you'll need to install the SDK:
 
 ```bash
-$ sudo yum install dotnet-sdk-5.0
+$ sudo yum install dotnet-sdk-6.0
 ```
 
 Then install dotnet tools you want which will install under the `ec2-user` home directory at `~/.dotnet/tools`:
