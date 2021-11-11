@@ -147,7 +147,7 @@ We can use the same template below by replacing `my-app` with the name of your A
 
 ```ini
 [program:app-my-app]
-command=/usr/bin/dotnet /home/deploy/apps/my-app/MyApp.dll
+command=/usr/local/bin/dotnet /home/deploy/apps/my-app/MyApp.dll
 directory=/home/deploy/apps/my-app
 autostart=true
 autorestart=true
