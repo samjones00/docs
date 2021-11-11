@@ -833,7 +833,7 @@ into the rich colorful world of SVG is complete:
 To share our digital masterpiece with the world we just need to publish it in a GitHub repo, which I've already done for my Spirals app at: 
 [github.com/mythz/spirals](https://github.com/mythz/spirals).
 
-Anyone will then be able to install your App by first downloading the `app` tool themselves ([.NET 5.0 Required](https://www.microsoft.com/net/download/)):
+Anyone will then be able to install your App by first downloading the `app` tool themselves ([.NET 6.0 Required](https://www.microsoft.com/net/download/)):
 
 ```bash
 $ dotnet tool install -g app

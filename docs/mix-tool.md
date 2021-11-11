@@ -12,13 +12,13 @@ $ dotnet tool install --global x
 
 The same functionality is also built into the Windows [app](/netcore-windows-desktop) dotnet tool, both can be updated to the latest version with:
 
-.NET 5.0 (Windows/macOS/Linux):
+.NET 6.0 (Windows/macOS/Linux):
 
 ```bash
 $ dotnet tool update -g x
 ```
 
-.NET 5.0 (Windows x64):
+.NET 6.0 (Windows x64):
 
 ```bash
 $ dotnet tool update -g app
@@ -75,10 +75,10 @@ $ x mix
 Where it displays different features that can be added to your App, where they're added to and the author of the Gist:
 
 ```
- 1. init                 Empty C# .NET 5.0 ServiceStack App      to: .      by @ServiceStack  [project,C#]
- 2. init-lts             Empty C# .NET Core 3.1 LTS ServiceStack App  to: .      by @ServiceStack  [project,VB]
- 3. init-vb              Empty VB .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,F#]
- 4. init-fsharp          Empty F# .NET 5.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,C#]
+ 1. init                 Empty C# .NET 6.0 ServiceStack App      to: .      by @ServiceStack  [project,C#]
+ 2. init-lts             Empty C# .NET 6.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,VB]
+ 3. init-vb              Empty VB .NET 6.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,F#]
+ 4. init-fsharp          Empty F# .NET 6.0 LTS ServiceStack App  to: .      by @ServiceStack  [project,C#]
  5. init-corefx          Empty ASP.NET 2.1 LTS on .NET Framework to: .      by @ServiceStack  [project,C#]
  6. init-sharp-app       Empty ServiceStack #Script App               to: .      by @ServiceStack  [project,S#]
  7. bootstrap-sharp      Bootstrap + #Script Pages Starter Template   to: $HOST  by @ServiceStack  [ui,S#]
@@ -117,7 +117,7 @@ Where it displays different features that can be added to your App, where they'r
 40. northwind.sharpdata  northwind.sharpdata                          to: .      by @ServiceStack  [sharpdata]
 41. vue-lite-lib         Update vue-lite projects libraries           to: $HOST  by @ServiceStack  [lib,vue]
 42. react-lite-lib       Update react-lite projects libraries         to: $HOST  by @ServiceStack  [lib,react]
-43. grpc                 Configure gRPC (requires .NET 5.0)      to: $HOST  by @ServiceStack  [grpc]
+43. grpc                 Configure gRPC (requires .NET 6.0)      to: $HOST  by @ServiceStack  [grpc]
 44. grpc-android         Android gRPC SSL Channel Builder             to: .      by @ServiceStack  [java,grpc]
 45. bcl.proto            protobuf-net\bcl.proto                       to: .      by @ServiceStack  [grpc]
 46. example-validation   Contacts Validation Example                  to: $HOST  by @ServiceStack  [example]

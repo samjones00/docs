@@ -9,7 +9,7 @@ slug: templates-blazor
 
 ## Blazor Web Assembly Template
 
-[Sebastian Faltoni](https://github.com/nukedbit) from the ServiceStack community is maintaining a .NET 5.0 [Blazor WASM Template](https://github.com/nukedbit/blazor-wasm-servicestack)
+[Sebastian Faltoni](https://github.com/nukedbit) from the ServiceStack community is maintaining a .NET 6.0 [Blazor WASM Template](https://github.com/nukedbit/blazor-wasm-servicestack)
 
 A New ServiceStack + Blazor WASM templates can be created with:
 

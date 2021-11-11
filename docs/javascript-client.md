@@ -18,7 +18,7 @@ client.get(new Hello({ Name: 'World' }))
 
 ## Using JavaScript Typed DTOs in Web Apps
 
-To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET 5 project:
+To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET project:
 
 ```bash
 $ mkdir ProjectName && cd ProjectName

@@ -7,7 +7,7 @@ If you prefer starting from an Empty slate you can use the `web` template to cre
 
 <table class="table">
 <tr>
-    <th>.NET 5.0</th>
+    <th>.NET 6.0</th>
     <th>.NET Framework</th>
     <th>Empty Project Templates</th>
 </tr>

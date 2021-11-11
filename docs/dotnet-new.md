@@ -96,7 +96,7 @@ Vue CLI Bootstrap App
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-spa.png)](https://github.com/NetCoreTemplates/vue-spa)
 
 ```bash
-$ x new vue-spa ProjectName                # .NET 5
+$ x new vue-spa ProjectName                # .NET 6
 $ x new vue-spa-netfx ProjectName          # Classic ASP.NET on .NET Framework
 ```
 
@@ -107,7 +107,7 @@ React Create App CLI Bootstrap App
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-spa.png)](https://github.com/NetCoreTemplates/react-spa)
 
 ```bash
-$ x new react-spa ProjectName              # .NET 5
+$ x new react-spa ProjectName              # .NET 6
 $ x new react-spa-netfx ProjectName        # Classic ASP.NET on .NET Framework
 ```
 
@@ -118,7 +118,7 @@ Svelte SPA App with Bootstrap
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/svelte-spa.png)](https://github.com/NetCoreTemplates/svelte-spa)
 
 ```bash
-$ x new /svelte-spa ProjectName            # .NET 5
+$ x new /svelte-spa ProjectName            # .NET 6
 ```
 
 #### angular-spa
@@ -128,38 +128,38 @@ Angular 12 CLI Bootstrap App
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/angular-spa.png)](https://github.com/NetCoreTemplates/angular-spa)
 
 ```bash
-$ x new angular-spa ProjectName            # .NET 5
+$ x new angular-spa ProjectName            # .NET 6
 $ x new angular-spa-netfx ProjectName      # Classic ASP.NET on .NET Framework
 ```
 
 #### mvcauth
 
-.NET 5.0 MVC Website integrated with ServiceStack Auth
+.NET 6.0 MVC Website integrated with ServiceStack Auth
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)](https://github.com/NetCoreTemplates/mvcauth)
 
 ```bash
-$ x new mvcauth ProjectName                # .NET 5
+$ x new mvcauth ProjectName                # .NET 6
 ```
 
 #### mvcidentity
 
-.NET 5.0 MVC Website integrated with ServiceStack using MVC Identity Auth
+.NET 6.0 MVC Website integrated with ServiceStack using MVC Identity Auth
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)](https://github.com/NetCoreTemplates/mvcidentity)
 
 ```bash
-$ x new mvcidentity ProjectName            # .NET 5
+$ x new mvcidentity ProjectName            # .NET 6
 ```
 
 #### mvcidentityserver
 
-.NET 5.0 MVC Website integrated with ServiceStack using IdentityServer4 Auth
+.NET 6.0 MVC Website integrated with ServiceStack using IdentityServer4 Auth
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)](https://github.com/NetCoreTemplates/mvcidentityserver)
 
 ```bash
-$ x new mvcidentityserver ProjectName      # .NET 5
+$ x new mvcidentityserver ProjectName      # .NET 6
 ```
 
 #### react-lite
@@ -169,7 +169,7 @@ ASP.NET Core Simple + lite (npm-free) React SPA using TypeScript
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/react-lite.png)](https://github.com/NetCoreTemplates/react-lite)
 
 ```bash
-$ x new react-lite ProjectName             # .NET 5
+$ x new react-lite ProjectName             # .NET 6
 $ x new react-lite-corefx ProjectName      # ASP.NET Core on .NET Framework
 ```
 
@@ -180,7 +180,7 @@ ASP.NET Core Simple + lite (npm-free) Vue SPA using TypeScript
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-lite.png)](https://github.com/NetCoreTemplates/vue-lite)
 
 ```bash
-$ x new vue-lite ProjectName               # .NET 5
+$ x new vue-lite ProjectName               # .NET 6
 $ x new vue-lite-corefx ProjectName        # ASP.NET Core on .NET Framework
 ```
 
@@ -191,7 +191,7 @@ Nuxt.js SPA App with Bootstrap
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/vue-nuxt.png)](https://github.com/NetCoreTemplates/vue-nuxt)
 
 ```bash
-$ x new vue-nuxt ProjectName               # .NET 5
+$ x new vue-nuxt ProjectName               # .NET 6
 $ x new vue-nuxt-netfx ProjectName         # Classic ASP.NET on .NET Framework
 ```
 
@@ -202,7 +202,7 @@ $ x new vue-nuxt-netfx ProjectName         # Classic ASP.NET on .NET Framework
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/script.png)](https://github.com/NetCoreTemplates/script)
 
 ```bash
-$ x new script ProjectName                 # .NET 5
+$ x new script ProjectName                 # .NET 6
 $ x new script-corefx ProjectName          # ASP.NET Core on .NET Framework
 $ x new script-netfx ProjectName           # Classic ASP.NET on .NET Framework
 ```
@@ -214,7 +214,7 @@ ServiceStack.Razor Bootstrap Website
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/razor.png)](https://github.com/NetCoreTemplates/razor)
 
 ```bash
-$ x new razor ProjectName                  # .NET 5
+$ x new razor ProjectName                  # .NET 6
 $ x new razor-corefx ProjectName           # ASP.NET Core on .NET Framework
 $ x new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
 ```

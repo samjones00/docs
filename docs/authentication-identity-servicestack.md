@@ -3,7 +3,7 @@ slug: authentication-identity-servicestack
 title: Using ServiceStack Auth in MVC
 ---
 
-[mvcauth](https://github.com/NetCoreTemplates/mvcauth) is a .NET 5.0 MVC Website integrated with ServiceStack Auth:
+[mvcauth](https://github.com/NetCoreTemplates/mvcauth) is a .NET 6.0 MVC Website integrated with ServiceStack Auth:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvcauth.png)](https://github.com/NetCoreTemplates/mvcauth)
 

@@ -35,9 +35,9 @@ Where we can view all available gists that we can apply to our projects with:
 Which as of this writing lists:
 
 ```
-   1. init                 Empty .NET 5.0 ServiceStack App                                   to: .                            by @ServiceStack  [project]
-   2. init-lts             Empty .NET 5.0 LTS ServiceStack App                               to: .                            by @ServiceStack  [project]
-   3. init-corefx          Empty ASP.NET 5.0 LTS on .NET Framework                           to: .                            by @ServiceStack  [project]
+   1. init                 Empty .NET 6.0 ServiceStack App                                   to: .                            by @ServiceStack  [project]
+   2. init-lts             Empty .NET 6.0 LTS ServiceStack App                               to: .                            by @ServiceStack  [project]
+   3. init-corefx          Empty ASP.NET 6.0 LTS on .NET Framework                           to: .                            by @ServiceStack  [project]
    4. init-sharp-app       Empty ServiceStack Sharp App                                           to: .                            by @ServiceStack  [project]
    5. bootstrap-sharp      Bootstrap + Sharp Pages Starter Template                               to: $HOST                        by @ServiceStack  [ui,sharp]
    6. sqlserver            Use OrmLite with SQL Server                                            to: $HOST                        by @ServiceStack  [db]
@@ -84,8 +84,8 @@ e.g. you can view available starting projects with:
 ```
 Results matching tag [project]:
 
-   1. init            Empty .NET 5.0 ServiceStack App          to: .  by @ServiceStack  [project]
-   2. init-lts        Empty .NET 5.0 LTS ServiceStack App      to: .  by @ServiceStack  [project]
+   1. init            Empty .NET 6.0 ServiceStack App          to: .  by @ServiceStack  [project]
+   2. init-lts        Empty .NET 6.0 LTS ServiceStack App      to: .  by @ServiceStack  [project]
    3. init-corefx     Empty ASP.NET Core 2.1 LTS on .NET Framework  to: .  by @ServiceStack  [project]
    4. init-sharp-app  Empty ServiceStack Sharp App                  to: .  by @ServiceStack  [project]
 
@@ -103,7 +103,7 @@ Which can be chained together to search for all `project` and `sharp` gists we c
 Results matching tags [project,sharp]:
 
    1. init                 Empty .NET Core 3.2 ServiceStack App          to: .      by @ServiceStack  [project]
-   2. init-lts             Empty .NET 5.0 LTS ServiceStack App      to: .      by @ServiceStack  [project]
+   2. init-lts             Empty .NET 6.0 LTS ServiceStack App      to: .      by @ServiceStack  [project]
    3. init-corefx          Empty ASP.NET Core 2.1 LTS on .NET Framework  to: .      by @ServiceStack  [project]
    4. init-sharp-app       Empty ServiceStack Sharp App                  to: .      by @ServiceStack  [project]
    5. bootstrap-sharp      Bootstrap + Sharp Pages Starter Template      to: $HOST  by @ServiceStack  [ui,sharp]
@@ -117,7 +117,7 @@ Search:  web + #<tag>      Available tags: auth, config, db, example, lib, proje
 
 ### Creating customized projects
 
-From this list we can see that we can create an **Empty .NET 5.0 ServiceStack App** by starting in a new App Folder:
+From this list we can see that we can create an **Empty .NET 6.0 ServiceStack App** by starting in a new App Folder:
 
     $ mkdir ProjectName && cd ProjectName
 
@@ -153,7 +153,7 @@ Or we can give it a **Bootstrap Sharp Pages UI** with:
 
     $ x +bootstrap-sharp
 
-What's even better is that gists can be chained, so we can create a **.NET 5.0 Bootstrap Sharp Pages App using PostgreSQL** with:
+What's even better is that gists can be chained, so we can create a **.NET 6.0 Bootstrap Sharp Pages App using PostgreSQL** with:
 
     $ x +init+bootstrap-sharp+postgres
 

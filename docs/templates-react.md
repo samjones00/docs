@@ -58,7 +58,7 @@ Bootstrapped with [create-react-app](https://github.com/facebook/create-react-ap
 [react-spa.web-templates.io](http://react-spa.web-templates.io)
 :::
 
-Create new React 16 Project for .NET 5.0:
+Create new React 16 Project for .NET 6.0:
 
 ```bash
 $ x new react-spa ProjectName

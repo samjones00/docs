@@ -35,7 +35,7 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 [vue-spa.web-templates.io](http://vue-spa.web-templates.io)
 :::
 
-Create new Vue 2.5 Project for .NET 5.0:
+Create new Vue 2.5 Project for .NET 6.0:
 
 ```bash
 $ x new vue-spa ProjectName
@@ -57,7 +57,7 @@ Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/) and the [vuetify cli plugi
 [vuetify-spa.web-templates.io](http://vuetify-spa.web-templates.io)
 :::
 
-Create new Vuetify Project for .NET 5.0:
+Create new Vuetify Project for .NET 6.0:
 
 ```bash
 $ x new vuetify-spa ProjectName
@@ -79,7 +79,7 @@ Bootstrapped with [Nuxt.js starter template](https://nuxtjs.org/guide/installati
 [vue-nuxt.web-templates.io](http://vue-nuxt.web-templates.io)
 :::
 
-Create new Nuxt.js v1.4.2 Project for .NET 5.0:
+Create new Nuxt.js v1.4.2 Project for .NET 6.0:
 
 ```bash
 $ x new vue-nuxt ProjectName
@@ -101,7 +101,7 @@ Bootstrapped with [Nuxt.js + Vuetify.js starter template](https://github.com/vue
 [vuetify-nuxt.web-templates.io](http://vuetify-nuxt.web-templates.io)
 :::
 
-Create new Nuxt Vuetify Project for .NET 5.0:
+Create new Nuxt Vuetify Project for .NET 6.0:
 
 ```bash
 $ x new vuetify-nuxt ProjectName
