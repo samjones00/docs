@@ -31,7 +31,7 @@ This is where ServiceStack can offer a developer experience that will not only e
 
 ## Project Structure
 
-Following this JAMStack pattern, the `nextjs-jam` template has a separate folder for the `ui` NextJS application, and the `api` ServiceStack application.
+Following this JAMStack pattern, the `nextjs` template has a separate folder for the `ui` NextJS application, and the `api` ServiceStack application.
 
 - `.deploy` - Files used for built-in GitHub Actions deployment.
 - `.github` - GitHub Actions workflows for deployment to GitHub Pages and a Linux server with `docker compose`.
