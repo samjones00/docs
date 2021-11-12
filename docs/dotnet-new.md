@@ -11,11 +11,23 @@ import webTrouble from './.vitepress/includes/web-trouble.md';
 
 All ServiceStack Projects can be created using the .NET Core [x dotnet tool](https://www.nuget.org/packages/x):
 
+## Install
+
 ```bash
 $ dotnet tool install --global x 
 ```
 
-If you had a previous version installed, update with:
+### Apple M1
+
+Install on Apple's new M1 Pro and M1 Max ARM chips with:
+
+```bash
+$ dotnet tool install -g -a x64 x
+```
+
+### Update
+
+Or if you had a previous version installed, update with:
 
 ```bash
 $ dotnet tool update -g x

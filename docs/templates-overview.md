@@ -13,16 +13,28 @@ All ServiceStack Project Templates can be found and installed using the [x new](
 $ dotnet tool install --global x 
 ```
 
+### Apple M1
+
+Install on Apple's new M1 Pro and M1 Max ARM chips with:
+
+```bash
+$ dotnet tool install -g -a x64 x
+```
+
+### Update
+
+Or if you had a previous version installed, update with:
+
+```bash
+$ dotnet tool update -g x
+```
+
+## Explore available templates
+
 Then run `x new` to view the list of available project templates:
 
 ```bash
 $ x new
-```
-
-To upgrade to the latest version, run:
-
-```bash
-$ dotnet tool update -g x
 ```
 
 ## VS.NET Templates
