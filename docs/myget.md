@@ -54,13 +54,13 @@ need to manually delete the NuGet `/packages` folder for NuGet to pull down the 
 You can clear your local NuGet packages cache in any OS by running the command-line below in your favorite Terminal:
 
 ```bash
-$ nuget locals all --clear
+$ nuget locals all -clear
 ```
 
 If `nuget` is not in your Systems `PATH`, it can also be invoked from the `dotnet` tool:
 
 ```bash
-$ dotnet nuget locals all --clear
+$ dotnet nuget locals all -clear
 ```
 
 If you're using VS.NET you can also clear them from `Tools -> Options -> NuGet Package Manager` and click **Clear All NuGet Cache(s)**:
