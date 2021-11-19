@@ -53,10 +53,10 @@ public class MyCachedAutoQueryServices : Service
     public IAutoQueryData AutoQuery { get; set; }
 
     public object Any(QueryRockstars query) =>
-        AutoQuery.Execute(query, AutoQuery.CreateQuery(query, Request));
+        AutoQuery.Execute(query, AutoQuery.CreateQuery(query, Request), Request);
     
     public object Any(QueryRockstarAlbums query) =>
-        AutoQuery.Execute(query, AutoQuery.CreateQuery(query, Request));
+        AutoQuery.Execute(query, AutoQuery.CreateQuery(query, Request), Request);
 }
 ```
 
