@@ -171,10 +171,9 @@ public class CustomAutoQueryDataServices : Service
 
         var logs = csvLogsFile.ReadAllText().FromCsv<List<RequestLogEntry>>();
 
-        var q = AutoQuery.CreateQuery(query, Request,
-            db: new MemoryDataSource<RequestLogEntry>(logs, query, Request));
-
-        return AutoQuery.Execute(query, q);
+        var db = new MemoryDataSource<RequestLogEntry>(logs, query, Request);
+        var q = AutoQuery.CreateQuery(query, Request, db);
+        return AutoQuery.Execute(query, q, db);
     }
 }
 ```
