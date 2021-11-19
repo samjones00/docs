@@ -367,6 +367,29 @@ Alternatively all `.outq` messages can be disabled with:
 DisablePublishingToOutq = true
 ```
 
+### Flexible Queue Name strategies
+
+There are more flexible options for specifying the Queue Names where you can categorize queue names or avoid conflicts with 
+other MQ services by specifying a global prefix to be used for all Queue Names, e.g:
+
+```csharp
+QueueNames.SetQueuePrefix("site1.");
+
+QueueNames<Hello>.In //= site1.mq:Hello.inq
+```
+
+Or to gain complete control of each queue name used, provide a custom QueueName strategy, e.g:
+
+```csharp
+QueueNames.ResolveQueueNameFn = (typeName, suffix) =>
+    $"SITE.{typeName.ToLower()}{suffix.ToUpper()}";
+
+QueueNames<Hello>.In  //= SITE.hello.INQ
+```
+
+> Note: Custom QueueNames need to be declared on both MQ Client in addition to ServiceStack Hosts.  
+
+
 ## Authenticated Requests via MQ
 
 As MQ Requests aren't executed within the Context of a HTTP Request they don't have access to any HTTP Info like HTTP Cookies, Headers, FormData, etc. This also means the Users Session isn't typically available as it's based on the [ss-id Session Ids in Cookies](/sessions).
