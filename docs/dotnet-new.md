@@ -235,6 +235,25 @@ $ x new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
 
 All new projects can be further customized with [mix](/mix-tool) dotnet tool to mix in additional "layered" features.
 
+### Creating new projects of older Template versions
+
+You can explore each released Project Template version by going to its GitHub Projects `/releases` page, e.g.
+[/web/releases](https://github.com/NetCoreTemplates/web/releases) then clicking on the Release `<tag>` to explore its contents. 
+
+E.g. for the `web` template [/v27](https://github.com/NetCoreTemplates/web/tree/v27) was the last release to target **net5.0** in its `.csproj`.
+
+Once you know which release you want to create a new project with, use its full URL of its Source Code **.zip** archive 
+in place of the Template name, e.g:
+
+```bash
+$ mkdir ProjectName && cd ProjectName 
+$ x new https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
+```
+
+Alternatively if it's easier you can download **v27** release Source Code 
+[v27.zip](https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip) archive and either rename the project and
+folder names manually or copy over the original files you want into your existing solution.
+
 ## Why a new project template system?
 
 It's not often that a tool causes enough friction that it ends up requiring less effort to develop a replacement than 
