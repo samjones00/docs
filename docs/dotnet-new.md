@@ -242,7 +242,7 @@ If you're not yet ready to move to .NET 6 you can still create new project templ
 
 Where we've added .NET 5 project template support to our online Project creator page at:
 
-### servicestack.net/start?tag=net5
+**servicestack.net/start?tag=net5**
 
 Otherwise our .NET Core project templates have had their last .NET 5.0 version tagged with `net5` which can be installed with 
 the `x` tool by using the full URL of its Source Code **.zip** archive in place of the Template name, e.g:
@@ -268,9 +268,25 @@ $ x new https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
 
 Alternatively if it's easier you can download the Release Source Code archive manually
 
-#### https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
+**https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip**
 
 Then either rename the project and folder names manually or copy over the original files you want into your existing solution.
+
+### Using older mix features
+
+All [mix features](https://docs.servicestack.net/mix-tool) have been rewritten to use .NET 6's new `HostingStartup` model going forward,
+to help with migration please refer to the [mix diff](https://github.com/ServiceStack/mix/commit/b56746622aa1879e3e6a8cbf835e634f05db30db) 
+showing how each of the existing mix configurations were converted to the new model.
+
+To support older projects the [Existing ModularStartup configuration](https://gist.github.com/gistlyn/7362ea802aef361bbdc21097b6a99e0d)
+can still be used for when running on earlier .NET Core runtimes with the mix tool by setting its gist Id in the `MIX_SOURCE` 
+Environment Variable, e.g:
+
+```bash
+$ MIX_SOURCE=7362ea802aef361bbdc21097b6a99e0d x mix
+```
+
+Which will use the older mix Modular Startup configuration as its source.
 
 ## Why a new project template system?
 
