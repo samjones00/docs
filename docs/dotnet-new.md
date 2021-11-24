@@ -237,12 +237,10 @@ All new projects can be further customized with [mix](/mix-tool) dotnet tool to 
 
 ## Creating new .NET 5 projects
 
-If you're not yet ready to move to .NET 6 you can still create new project templates of older versions of
-[.NET Core project templates](https://github.com/NetCoreTemplates/).
+If you're not yet ready to move to .NET 6 you can still create new projects of older versions of
+the [.NET Core templates](https://github.com/NetCoreTemplates/).
 
-Where we've added .NET 5 project template support to our online Project creator page at:
-
-**servicestack.net/start?tag=net5**
+Which can also be created from our online Project builder at: **servicestack.net/start?tag=net5**
 
 Otherwise our .NET Core project templates have had their last .NET 5.0 version tagged with `net5` which can be installed with 
 the `x` tool by using the full URL of its Source Code **.zip** archive in place of the Template name, e.g:
@@ -256,9 +254,10 @@ $ x new https://github.com/NetCoreTemplates/<template>/archive/refs/tags/net5.zi
 To install any other version, explore each released Project Template version by going to its GitHub Projects `/releases` page, e.g.
 [/web/releases](https://github.com/NetCoreTemplates/web/releases) then clicking on the Release `<tag>` to explore its contents. 
 
-E.g. for the `web` template [/v27](https://github.com/NetCoreTemplates/web/tree/v27) was the last release to target **net5.0**.
+Once you know which release you want to create a new project of, e.g. for the `web` template 
+[/v27](https://github.com/NetCoreTemplates/web/tree/v27) was the last release to target **net5.0**.
 
-Once you know which release you want to create a new project with, use its full URL of its Source Code **.zip** archive 
+Use its full URL of its Source Code **.zip** archive 
 in place of the Template name, e.g:
 
 ```bash
@@ -266,11 +265,11 @@ $ mkdir ProjectName && cd ProjectName
 $ x new https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
 ```
 
-Alternatively if it's easier you can download the Release Source Code archive manually
+Alternatively if it's easier you can download the Release Source Code archive manually:
 
 **https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip**
 
-Then either rename the project and folder names manually or copy over the original files you want into your existing solution.
+Then either rename the project and folder names manually or copy over the original source files you want into your existing solution.
 
 ### Using older mix features
 
@@ -279,14 +278,14 @@ to help with migration please refer to the [mix diff](https://github.com/Service
 showing how each of the existing mix configurations were converted to the new model.
 
 To support older projects the [Existing ModularStartup configuration](https://gist.github.com/gistlyn/7362ea802aef361bbdc21097b6a99e0d)
-can still be used for when running on earlier .NET Core runtimes with the mix tool by setting its gist Id in the `MIX_SOURCE` 
+can still be used for when running on earlier .NET Core runtimes with the mix tool by changing the gist Id in the `MIX_SOURCE` 
 Environment Variable, e.g:
 
 ```bash
 $ MIX_SOURCE=7362ea802aef361bbdc21097b6a99e0d x mix
 ```
 
-Which will use the older mix Modular Startup configuration as its source.
+Which will chance to use the older mix Modular Startup configuration as its source.
 
 ## Why a new project template system?
 
