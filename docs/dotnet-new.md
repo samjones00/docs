@@ -235,12 +235,28 @@ $ x new razor-netfx ProjectName            # Classic ASP.NET on .NET Framework
 
 All new projects can be further customized with [mix](/mix-tool) dotnet tool to mix in additional "layered" features.
 
+## Creating new .NET 5 projects
+
+If you're not yet ready to move to .NET 6 you can still create new project templates of older versions of
+[.NET Core project templates](https://github.com/NetCoreTemplates/).
+
+Where we've added .NET 5 project template support to our online Project creator page at:
+
+### servicestack.net/start?tag=net5
+
+Otherwise our .NET Core project templates have had their last .NET 5.0 version tagged with `net5` which can be installed with 
+the `x` tool by using the full URL of its Source Code **.zip** archive in place of the Template name, e.g:
+
+```bash
+$ x new https://github.com/NetCoreTemplates/<template>/archive/refs/tags/net5.zip ProjectName
+```
+
 ### Creating new projects of older Template versions
 
-You can explore each released Project Template version by going to its GitHub Projects `/releases` page, e.g.
+To install any other version, explore each released Project Template version by going to its GitHub Projects `/releases` page, e.g.
 [/web/releases](https://github.com/NetCoreTemplates/web/releases) then clicking on the Release `<tag>` to explore its contents. 
 
-E.g. for the `web` template [/v27](https://github.com/NetCoreTemplates/web/tree/v27) was the last release to target **net5.0** in its `.csproj`.
+E.g. for the `web` template [/v27](https://github.com/NetCoreTemplates/web/tree/v27) was the last release to target **net5.0**.
 
 Once you know which release you want to create a new project with, use its full URL of its Source Code **.zip** archive 
 in place of the Template name, e.g:
@@ -250,9 +266,11 @@ $ mkdir ProjectName && cd ProjectName
 $ x new https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
 ```
 
-Alternatively if it's easier you can download **v27** release Source Code 
-[v27.zip](https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip) archive and either rename the project and
-folder names manually or copy over the original files you want into your existing solution.
+Alternatively if it's easier you can download the Release Source Code archive manually
+
+#### https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
+
+Then either rename the project and folder names manually or copy over the original files you want into your existing solution.
 
 ## Why a new project template system?
 
