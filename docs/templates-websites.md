@@ -85,7 +85,7 @@ $ dotnet watch run
 
 ### .NET 6.0 ServiceStack WebApp Template
 
-The .NET 6.0 [bare-app](https://github.com/NetCoreTemplates/bare-app) project template is a pre-built .NET 6.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+The .NET 6.0 [bare-app](https://github.com/sharp-apps/bare-app) project template is a pre-built .NET 6.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
 <table class="table">
 <tr>
@@ -93,7 +93,7 @@ The .NET 6.0 [bare-app](https://github.com/NetCoreTemplates/bare-app) project te
     <th>Sharp App</th>
 </tr>
 <tr>
-    <td><a href="https://github.com/NetCoreTemplates/rockwind-app">rockwind-app</a></td>
+    <td><a href="https://github.com/sharp-apps/rockwind-app">rockwind-app</a></td>
     <td align="center">
         <a href="http://rockwind-app.web-templates.io/"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/bare-app.png" width="650" /></a>
         <p><a href="http://rockwind-app.web-templates.io/">rockwind-app.web-templates.io</a></p>

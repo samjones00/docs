@@ -11,7 +11,6 @@
 | [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity)        | .NET 6 MVC Website integrated with ServiceStack using MVC Identity Auth |
 | [mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver)  | .NET 6 MVC Website integrated with ServiceStack using IdentityServer4 Auth |
 | [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET 6 Parcel TypeScript App |
-| [parcel-app](https://github.com/NetCoreTemplates/parcel-app)      | .NET 6 Parcel Sharp Apps |
 | [razor](https://github.com/NetCoreTemplates/razor)              | .NET 6 Website with ServiceStack.Razor |
 | [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET 6 simple + lite (npm-free) React SPA using TypeScript |
 | [react-spa](https://github.com/NetCoreTemplates/react-spa)          | .NET 6 React Create App CLI Bootstrap App |
@@ -27,6 +26,4 @@
 | [worker-redismq](https://github.com/NetCoreTemplates/worker-redismq)        | .NET 6 Redis MQ Worker Service |
 | [worker-servicebus](https://github.com/NetCoreTemplates/worker-servicebus)        | .NET 6 Azure Service Bus MQ Worker Service |
 | [worker-sqs](https://github.com/NetCoreTemplates/worker-sqs)        | .NET 6 AWS SQS MQ Worker Service |
-| [bare-app](https://github.com/NetCoreTemplates/bare-app)        | .NET 6 Bare Sharp Apps |
-| [rockwind-app](https://github.com/NetCoreTemplates/rockwind-app)    | .NET 6 Rockwind Sharp Apps |
 | [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET 6 Angular 4 Material Design Lite Webpack App |

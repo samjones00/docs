@@ -397,9 +397,9 @@ Those who prefer starting from an Empty slate can use the `web` template to crea
 
 ### .NET Core 2.0 ServiceStack WebApp Template
 
-The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [bare-app](https://github.com/NetCoreTemplates/bare-app) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
+The only .NET Core 2.0 project template not to have a .NET Framework equivalent is [bare-app](https://github.com/sharp-apps/bare-app) as it's a pre-built .NET Core 2.0 App that dramatically simplifies .NET Wep App development by enabling Websites and APIs to be developed instantly without compilation.
 
- - .NET Core: [bare-app](https://github.com/NetCoreTemplates/bare-app)
+ - .NET Core: [bare-app](https://github.com/sharp-apps/bare-app)
  - Live Preview: [rockwind-app.web-templates.io](http://rockwind-app.web-templates.io)
  
 See [sharpscript.net/docs/sharp-apps](https://sharpscript.net/docs/sharp-apps) to learn the different use-cases made possible with Web Apps.
@@ -1010,7 +1010,7 @@ Web Apps leverages Templates to develop entire content-rich, data-driven website
 
 Not having to write any C# code or perform any app builds dramatically reduces the cognitive overhead and conceptual knowledge required for development where the only thing front-end Web developers need to know is [Template's syntax](https://sharpscript.net/docs/syntax) and what [filters are available](https://sharpscript.net/docs/filters-reference) to call. Because of Template's high-fidelity with JavaScript, developing a Website with Templates will be instantly familiar to JavaScript developers despite calling and binding directly to .NET APIs behind the scenes.
 
-All complexity with C#, .NET, namespaces, references, .dlls, strong naming, packages, MVC, Razor, build tools, IDE environments, etc has been eliminated leaving all Web Developers needing to do is run a cross-platform [web/app.dll](https://github.com/ServiceStack/Web) .NET Core 2.0 executable and configure a simple [app.settings](https://github.com/NetCoreTemplates/bare-app/blob/master/app.settings) text file to specify which website folder to use, which ServiceStack features to enable, which db or redis providers to connect to, etc. 
+All complexity with C#, .NET, namespaces, references, .dlls, strong naming, packages, MVC, Razor, build tools, IDE environments, etc has been eliminated leaving all Web Developers needing to do is run a cross-platform [web/app.dll](https://github.com/ServiceStack/Web) .NET Core 2.0 executable and configure a simple [app.settings](https://github.com/sharp-apps/bare-app/blob/master/app.settings) text file to specify which website folder to use, which ServiceStack features to enable, which db or redis providers to connect to, etc. 
 
 ### Rapid Development Workflow
 
