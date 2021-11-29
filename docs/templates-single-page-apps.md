@@ -31,7 +31,6 @@ Click on the template name below to view a Live Demo and contents of each projec
 | [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET 6.0 Vue CLI Bootstrap App |
 | [vuetify-nuxt](https://github.com/NetCoreTemplates/vuetify-nuxt)       | .NET 6.0 Nuxt.js SPA App with Material Vuetify |
 | [vuetify-spa](https://github.com/NetCoreTemplates/vuetify-spa)        | .NET 6.0 Vue CLI App with Material Vuetify |
-| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET 6.0 Angular 4 Material Design Lite Webpack App |
 
 
 The .NET 6.0 project templates utilizes MSBuild's newer and human-friendly format which can be developed using your preferred C# IDE of VS.NET, VS Code or Rider.
@@ -46,7 +45,6 @@ The .NET 6.0 project templates utilizes MSBuild's newer and human-friendly forma
 | [vue-spa-netfx](https://github.com/NetFrameworkTemplates/vue-spa-netfx)            | .NET Framework Vue Bootstrap Webpack App |
 | [vuetify-nuxt-netfx](https://github.com/NetFrameworkTemplates/vuetify-nuxt-netfx)       | .NET Framework Vuetify Material Nuxt.js SPA Web App |
 | [vuetify-spa-netfx](https://github.com/NetFrameworkTemplates/vuetify-spa-netfx)        | .NET Framework Vuetify Material Webpack App |
-| [angular-lite-spa-netfx](https://github.com/NetFrameworkTemplates/angular-lite-spa-netfx)   | .NET Framework Angular 4 Material Design Lite Webpack App |
 
 | ASP.NET Core Framework Templates ||
 |-|-|
