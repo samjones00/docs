@@ -392,4 +392,13 @@ These are the only sources `x new` looks at to create ServiceStack projects, whi
 $ x new
 ```
 
+### Creating new Legacy Project Templates
+
+By Setting `APP_SOURCE_TEMPLATES` environment variable to [LegacyTemplates](https://github.com/LegacyTemplates) you can can use the `x` tool 
+to browse and create new legacy project templates, e.g:
+
+```bash
+$ APP_SOURCE_TEMPLATES=LegacyTemplates x new
+```
+
 <webTrouble></webTrouble>
