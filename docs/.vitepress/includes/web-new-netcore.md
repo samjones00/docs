@@ -26,4 +26,3 @@
 | [worker-redismq](https://github.com/NetCoreTemplates/worker-redismq)        | .NET 6 Redis MQ Worker Service |
 | [worker-servicebus](https://github.com/NetCoreTemplates/worker-servicebus)        | .NET 6 Azure Service Bus MQ Worker Service |
 | [worker-sqs](https://github.com/NetCoreTemplates/worker-sqs)        | .NET 6 AWS SQS MQ Worker Service |
-| [angular-lite-spa](https://github.com/NetCoreTemplates/angular-lite-spa)   | .NET 6 Angular 4 Material Design Lite Webpack App |
