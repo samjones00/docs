@@ -5,6 +5,21 @@ title: Testing
 
 The tests in [ServiceStack.WebHost.Endpoints.Tests](https://github.com/ServiceStack/ServiceStack/tree/master/tests/ServiceStack.WebHost.Endpoints.Tests) show good examples of how to create stand-alone integration tests that just use a self-hosted HttpListener AppHost. 
 
+## Quick Mix
+
+Use [mix](/mix-tool) to quickly create a [.NET 6 Integration Test](https://gist.github.com/gistlyn/114fbc40a89dbc65cfe9e04c2f4f8ef6) project:
+
+```bash
+$ x mix init-test
+```
+
+Or if you need to create a source compatible [.NET 6 and .NET v4.72 Integration Test](https://gist.github.com/gistlyn/e7c7fa5e825a033ce45e2edfec4c6244) project:
+
+```bash
+$ x mix init-test2
+```
+
+
 ## Example Stand-alone Integration tests
 
   - [BufferedRequestTests](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/BufferedRequestTests.cs)
