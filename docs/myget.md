@@ -36,7 +36,9 @@ If you're not using or don't have VS.NET installed, you can add the MyGet feed t
 </configuration>
 ```
 
-Download `NuGet.Config` for usage in local project using [mix dotnet tool](/mix-tool):
+### Quick Mix
+
+Use [mix](/mix-tool) to download `NuGet.Config` in the same folder as your `.sln` Solution:
 
 ```bash
 $ dotnet tool install --global x
