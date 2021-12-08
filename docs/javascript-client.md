@@ -83,6 +83,7 @@ experience without any additional build time or tooling complexity.
 An CDN alternative to using the `@servicestack/client` built into `ServiceStack.dll` is to reference it from unpkg.com:
 
  - [https://unpkg.com/@servicestack/client](https://unpkg.com/@servicestack/client)
+ - [servicestack-client.min.js](https://unpkg.com/@servicestack/client/dist/servicestack-client.min.js) (minified)
 
 If needed for IDE intelli-sense, the TypeScript definition for the `@servicestack/client` is available from:
 

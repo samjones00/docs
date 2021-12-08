@@ -76,6 +76,14 @@ which in React Native projects would look like:
 npm-free JavaScript Web Apps can use the [built-in UMD @servicestack/client](/servicestack-client-umd) in **ServiceStack.dll** 
 to call ServiceStack Services without any external dependencies.
 
+### CDN unpkg
+
+A CDN hosted version of UMD `@servicestack/client` is available on unpkg.com:
+
+```html
+<script src="https://unpkg.com/@servicestack/client/dist/servicestack-client.min.js"></script>
+```
+
 ## TypeScript ServiceClient
 
 The `@servicestack/client` is a clean "jQuery-free" implementation based on JavaScript's new 
