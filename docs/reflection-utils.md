@@ -124,6 +124,13 @@ var manager = (Employee)map.FromObjectDictionary(managerType);
 
 ### Dynamically Populate Instances
 
+Alternatively an untyped Object Dictionary can also be used to populate an existing instance with `PopulateInstance()`, e.g:
+
+```csharp
+var customer = new Customer { FirstName = "John", LastName = "Doe" };
+map.PopulateInstance(customer);
+```
+
 Being able to treat Types as Object Dictionaries allows us to easily apply generic behavior to POCOs that would be otherwise be tedious like 
 we could create a generic method to ensure that all string properties are trimmed with:
 

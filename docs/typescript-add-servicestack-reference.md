@@ -76,6 +76,14 @@ which in React Native projects would look like:
 npm-free JavaScript Web Apps can use the [built-in UMD @servicestack/client](/servicestack-client-umd) in **ServiceStack.dll** 
 to call ServiceStack Services without any external dependencies.
 
+### CDN unpkg
+
+A CDN hosted version of UMD `@servicestack/client` is available on unpkg.com:
+
+```html
+<script src="https://unpkg.com/@servicestack/client/dist/servicestack-client.min.js"></script>
+```
+
 ## TypeScript ServiceClient
 
 The `@servicestack/client` is a clean "jQuery-free" implementation based on JavaScript's new 
@@ -95,6 +103,15 @@ $ npm install @servicestack/client
 ```
 
 See [JavaScript Client](/javascript-client) for how to use `JsonServiceClient` in non-npm or non TypeScript projects.
+
+### @servicestack/client API
+
+The public TypeScript Definition containing the public API for all functionality contained in any of the above `@servicestack/client` libraries is available from [index.d.ts](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.d.ts). 
+
+Here are direct links to the 2 primary API Clients:
+
+ - [JsonServiceClient](https://github.com/ServiceStack/servicestack-client/blob/4d17350f77c6461965f3bf0a5451a4e60e35f992/src/index.d.ts#L288)
+ - [ServerEventsClient](https://github.com/ServiceStack/servicestack-client/blob/4d17350f77c6461965f3bf0a5451a4e60e35f992/src/index.d.ts#L167)
 
 #### Enabling TypeScript async/await 
 
@@ -477,6 +494,34 @@ raw `byte[]` responses:
 let str:string = await client.get(new ReturnString());
 
 let data:Uint8Array = await client.get(new ReturnBytes());
+```
+
+### Access Request / Response Headers
+
+You can use [JsonServiceClient](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.d.ts) instance 
+`requestFilter` and `responseFilter` to inspect the underlying 
+[fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API's:
+
+```ts
+export declare class JsonServiceClient {
+    //...
+    requestFilter: (req: IRequestInit) => void;
+    responseFilter: (res: Response) => void;
+}
+```
+
+To inspect the underlying W3C 
+[fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) 
+API's [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) and 
+[Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) objects, e.g:
+
+```js
+let client = new JsonServiceClient()
+client.responseFilter = res => {
+    console.log(res.headers)
+}
+
+var response = await client.get(new MyRequest())
 ```
 
 ### TypeScript Nullable properties
