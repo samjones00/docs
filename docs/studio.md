@@ -21,8 +21,10 @@ Then launch with:
 Or from a terminal with:
 
 ```bash
-$ app open studio
+$ app open studio6
 ```
+
+> Older .NET 5.0 v5.x of `x` and `app` dotnet tools can open with `studio` [more...](https://forums.servicestack.net/t/new-net-6-of-servicestack-studio-available/10233)
 
 ## Studio Preview
 
@@ -65,7 +67,7 @@ Where you can use `app` URL scheme support to launch **Studio** & automatically 
 This URL scheme gets translated & is equivalent to running **Studio** on the command-line with:
 
 ```bash
-$ app open studio -connect https://localhost:5001
+$ app open studio6 -connect https://localhost:5001
 ```
 
 Which downloads the [Studio Gist Desktop App](https://gist.github.com/gistlyn/d8e7a56027ed6ec3060d9a9896931909), loads it as a [Gist VFS](/virtual-file-system#gistvirtualfiles) whose static assets are then served by the .NET Core Server and loaded in the CEF Chromium browser.
@@ -81,7 +83,7 @@ Whilst not optimized for it, **Studio** can also be launched headless in your de
 <h3 class="my-4"><a href="xapp://studio?connect=https://localhost:5001">xapp://studio?connect=https://localhost:5001</a></h3>
 
 ```bash
-$ x open studio -connect https://localhost:5001
+$ x open studio6 -connect https://localhost:5001
 ```
 
 Where you'll then be able to view it by going to `https://localhost:5002`. Note if not launched in a browser **Studio** will have limited capacity and features, but will eventually be a supported mode for accessing **Studio** from macOS or Linux.
