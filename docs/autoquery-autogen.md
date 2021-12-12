@@ -61,6 +61,9 @@ Then use the `x` dotnet tool to download all the AutoQuery & Crud Services for a
 ```bash
 $ x csharp https://localhost:5001 -path /crud/all/csharp
 ```
+> If no schema is provided, a default schema is used which depends on the underlying Provider Dialect, eg SQL Server, PostgreSQL etc.
+> Multiple schema support requires the AutoQueryFeature to be configured with [multiple schemas](#multiple-schemas-and-rdbms-connections).
+
 
 #### Updating Generated Services
 
@@ -117,7 +120,7 @@ $ cd NorthwindApi
 $ x mix autocrudgen sqlite northwind.sqlite
 ```
 
-Which will mix in the [autocrudgen](https://gist.github.com/gistlyn/464a80c15cb3af4f41db7810082dc00c) gist to enable AutoQuery and tell it to Auto Generate AutoQuery and CRUD Services for all tables in the registered RDBMS:
+Which will mix in the [autocrudgen](https://gist.github.com/gistlyn/464a80c15cb3af4f41db7810082dc00c) gist to enable AutoQuery and tell it to Auto Generate AutoQuery and CRUD Services for all tables in the registered RDBMS (default schema):
 
 ```csharp
 public class ConfigureAutoQuery : IConfigureAppHost
@@ -315,7 +318,7 @@ Plugins.Add(new AutoQueryFeature {
 
 #### Multiple Schemas and RDBMS Connections
 
-This instructs ServiceStack to generate Services for the default option, i.e. all tables in the Database of the default registered Database connection.
+This instructs ServiceStack to generate Services for the default option, i.e. all tables in the Database of the default registered Database connection and default schema.
 
 Although should you wish to, you can also generate Services for multiple Databases and RDBMS Schemas within the same App.
 
