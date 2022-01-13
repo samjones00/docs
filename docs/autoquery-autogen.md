@@ -453,6 +453,8 @@ $ x csharp https://localhost:5001 -path /crud/new/csharp
 
 The existing `/crud/all/csharp` Service continues to return generated Services for all Tables but will stitch together and use existing types where they exist.
 
+> If your new code first services are missing, remember to make sure your AppHost is scanning the assembly they belong to by using `typeof(MyGeneratedType).Assembly` in your `AppHost` params.
+
 ### Trying it out
 
 We now have all the features we need to quickly servicify an existing database that we can easily customize to apply custom App logic to further protect & validate access.
