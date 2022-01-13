@@ -453,7 +453,7 @@ $ x csharp https://localhost:5001 -path /crud/new/csharp
 
 The existing `/crud/all/csharp` Service continues to return generated Services for all Tables but will stitch together and use existing types where they exist.
 
-> If your new code first services are missing, remember to make sure your AppHost is scanning the assembly they belong to by using `typeof(MyGeneratedType).Assembly` in your `AppHost` params.
+> If your new code first services are missing, remember to make sure your AppHost is scanning the assembly they belong to by using `typeof(MyGeneratedType).Assembly` in your `AppHost` base constructor.
 
 ### Trying it out
 
