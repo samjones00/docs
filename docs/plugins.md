@@ -116,6 +116,14 @@ var feature = Plugins.FirstOrDefault(x => x is RequestInfoFeature);
 Plugins.RemoveAll(x => x is RequestInfoFeature); 
 ```
 
+### SVG
+Providing ServiceStack's [SVG Support](/svg). 
+
+```csharp
+var feature = Plugins.FirstOrDefault(x => x is SvgFeature); 
+Plugins.RemoveAll(x => x is SvgFeature); 
+```
+
 ### [CSV Format](/csv-format)
 Providing ServiceStack's [CSV Format](/csv-format). 
 
