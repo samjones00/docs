@@ -108,6 +108,14 @@ var feature = Plugins.FirstOrDefault(x => x is PredefinedRoutesFeature);
 Plugins.RemoveAll(x => x is PredefinedRoutesFeature); 
 ```
 
+### Native Types
+Enables ServiceStack's [Add ServiceStack Reference](/add-servicestack-reference) support allowing API Consumers to download API DTOs generated in their preferred programming language.
+
+```csharp
+var feature = Plugins.FirstOrDefault(x => x is NativeTypesFeature); 
+Plugins.RemoveAll(x => x is NativeTypesFeature); 
+```
+
 ### Request Info
 Provides ServiceStack's Request Info feature useful for debugging requests. Just add **?debug=requestinfo** in your `/pathinfo` and ServiceStack will return a dump of all the HTTP Request parameters to help with with debugging interoperability issues. The RequestInfoFeature is only enabled for **Debug** builds.
 
@@ -117,24 +125,29 @@ Plugins.RemoveAll(x => x is RequestInfoFeature);
 ```
 
 ### SVG
-Providing ServiceStack's [SVG Support](/svg). 
+
+Enabling ServiceStack's [SVG Support](/svg). 
 
 ```csharp
 var feature = Plugins.FirstOrDefault(x => x is SvgFeature); 
 Plugins.RemoveAll(x => x is SvgFeature); 
 ```
 
-### [CSV Format](/csv-format)
-Providing ServiceStack's [CSV Format](/csv-format). 
+### CSV Format
+
+Registers the CSV Serializers to enable ServiceStack's [CSV Format](/csv-format). 
 
 ```csharp
 var feature = Plugins.FirstOrDefault(x => x is CsvFormat); 
 Plugins.RemoveAll(x => x is CsvFormat); 
 ```
 
-Note: By default the CSV Format tries serialize the Response object directly into CSV which is only ideal if your responses return `List<Poco>`. If however you mark your Response DTO with the **[Csv(CsvBehavior.FirstEnumerable)]** attribute the CSV Format instead will only serialize the first `IEnumerable<T>` it finds on your Response DTO e.g. if you had a `List<Poco> Results` property it will only serialize this list in the tabular CSV Format which is typically the behaviour you want.
+::: info
+By default the CSV Format tries serialize the Response object directly into CSV which is only ideal if your responses return `List<Poco>`. If however you mark your Response DTO with the **[Csv(CsvBehavior.FirstEnumerable)]** attribute the CSV Format instead will only serialize the first `IEnumerable<T>` it finds on your Response DTO e.g. if you had a `List<Poco> Results` property it will only serialize this list in the tabular CSV Format which is typically the behaviour you want.
+:::
 
-### [Html Format](/html5reportformat)
+### Html Format
+
 Providing ServiceStack's [Html Format](/html5reportformat). 
 
 ```csharp
@@ -142,15 +155,23 @@ var feature = Plugins.FirstOrDefault(x => x is HtmlFormat);
 Plugins.RemoveAll(x => x is HtmlFormat); 
 ```
 
-### [Razor Markdown Format](/markdown-razor)
-This provides ServiceStack's [Razor Markdown Format](/markdown-razor) and also enables ServiceStack to serve static **.md** or **.markdown** files in either plain text, rendered as HTML (partial), or rendered in HTML inside a static **_Layout.shtml** HTML template. 
+### Validation
+
+Enables the validation feature to enable ServiceStack's [Fluent Validation](/validation) and [Declarative validators](/declarative-validation) support. 
 
 ```csharp
-var feature = Plugins.FirstOrDefault(x => x is MarkdownFormat); 
-Plugins.RemoveAll(x => x is MarkdownFormat); 
+var feature = Plugins.FirstOrDefault(x => x is ValidationFeature); 
+Plugins.RemoveAll(x => x is ValidationFeature); 
 ```
-  - [Introduction to Markdown Razor](/markdown-razor)
-  - [Markdown Razor Features](/markdown-razor)
+
+### HTTP Caching
+
+Enables [HTTP Caching](/http-caching) support
+
+```csharp
+var feature = Plugins.FirstOrDefault(x => x is HttpCacheFeature); 
+Plugins.RemoveAll(x => x is HttpCacheFeature); 
+```
 
 ## Available Plugins
 
@@ -222,14 +243,6 @@ Plugins.Add(new RazorFormat());
 
 It's an optional .NET 4.0 plugin that is available in the [ServiceStack.Razor](https://nuget.org/packages/ServiceStack.Razor) NuGet package.
 
-### [Validation](/validation)
-Enable the validation feature if you want to ensure all of ServiceStack's Fluent validators for Request DTOs `IValidator<TRequestDto>` are automatically validated on every request. 
-
-```csharp
-Plugins.Add(new ValidationFeature());
-```
-
-More information on ServiceStack's built-in Fluent Validation support is described on the [Validation](/validation) page.
 
 ### [Authentication](/authentication-and-authorization)
 The Authentication Feature enables the [Authentication and Authorization](/authentication-and-authorization) support in ServiceStack. It makes available the AuthService at the default route at `/auth/{provider}`, registers **AssignRoles** and **UnAssignRoles** services (at `/assignroles` and `/unassignroles` default routes) and auto-enables Session support if it's not added already.
@@ -323,6 +336,18 @@ Plugins.Add(new EncryptedMessagesFeature {
 ```
 
 Where `PrivateKeyXml` is the Servers RSA Private Key Serialized as XML. See the [Encrypted Messaging docs](/encrypted-messaging) for more info.
+
+
+### [Razor Markdown Format](/markdown-razor)
+
+This provides ServiceStack's [Razor Markdown Format](/markdown-razor) and also enables ServiceStack to serve static **.md** or **.markdown** files in either plain text, rendered as HTML (partial), or rendered in HTML inside a static **_Layout.shtml** HTML template. 
+
+```csharp
+Plugins.Add(new MarkdownFormat()); 
+```
+  - [Introduction to Markdown Razor](/markdown-razor)
+  - [Markdown Razor Features](/markdown-razor)
+
 
 ## [Cancellable Requests](/cancellable-requests)
 
