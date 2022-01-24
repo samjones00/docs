@@ -21,7 +21,6 @@ const KeyboardEvents = defineAsyncComponent(() =>
   import('../../src/components/KeyboardEvents.vue'));
 
 const onKeyDown = (e:KeyboardEvent) => {
-  console.log(e.code)
   if (e.code === 'Escape') {
     hideSearch();
   }

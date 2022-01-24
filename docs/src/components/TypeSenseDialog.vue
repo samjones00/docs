@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
-import { useRouter } from 'vitepress';
+import { useRouter } from 'vitepress'
 
 defineProps<{ open: boolean }>();
 const emit = defineEmits<{ (event: 'hide'): void }>();
