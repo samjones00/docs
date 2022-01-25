@@ -6,7 +6,7 @@ title: Modular Startup (Legacy)
 ::: info
 This modular startup applies to version 5.6 to 5.12, prior to the support of .NET 6.
 If you are running 5.13+, we recommend you follow the use of the new .NET 6 modular startup.
-For more information, see [Modular Startup](./modular-startup-legacy.md) documentation page.
+For more information, see [Modular Startup](./modular-startup.md) documentation page.
 :::
 
 We want to dramatically simplify and improve the experience for configuring ASP.NET Core Apps and make them truly composable, 

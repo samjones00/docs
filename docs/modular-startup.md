@@ -2,6 +2,11 @@
 slug: modular-startup
 title: Modular Startup
 ---
+
+::: info
+For more information on the previous Modular Startup used in NET5 and ServiceStack v5.6 to v5.12, see our [Legacy Modular Startup page](./modular-startup-legacy.md)
+:::
+
 Taking advantage of C# 9 top level statements and .NET 6 [WebApplication Hosting Model](https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d), ServiceStack templates by utilize both these features to simplify configuring your AppHost in a modular way.
 
 `Program.cs` becomes a script-like file since C# 9 top level statements are generating application entry point implicitly.
@@ -287,10 +292,6 @@ To help with this you can refer to the [mix diff](https://github.com/ServiceStac
 showing how each of the existing mix configurations were converted to the new model.
 
 As a concrete example, lets take a look at the steps used to migrate our Chinook example application [from NET5 using the previous `Startup : ModularStartup`, to .NET 6 `HostingStartup`](https://github.com/NetCoreApps/Chinook/commit/2758af9deae9c3aa910a27134f95167f7ec6e541).
-
-::: info
-For more information on the previous Modular Startup used in NET5 and ServiceStack, see our [Legacy Modular Startup page](./modular-startup-legacy.md)
-:::
 
 ### Step 1
 Migrate your existing `ConfigureServices` and `Configure(IApplicationBuilder)` from `Startup : ModularStartup` to the top-level host builder in `Program.cs`. Eg
