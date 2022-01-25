@@ -505,43 +505,45 @@ This is due to the limitation of ASP.NET Core requiring all dependencies needing
 are loaded and why dependencies registered in ServiceStack's AppHost `Configure()` are only accessible from ServiceStack and 
 not the rest of ASP.NET Core. 
 
-But in [Modular Startup](/modular-startup) Apps you can override ASP.NET Core's `IConfigureServices.Configure(IServiceCollection)` method in your AppHost
-to register IOC dependencies where they'll now be accessible to both ServiceStack and the rest of your ASP.NET Core App, e.g:
+But in [Modular Startup](/modular-startup) Apps you can override ASP.NET Core's `builder.ConfigureServices(IServiceCollection)` method in your AppHost
+`Configure(IWebHostBuilder builder)` to register IOC dependencies where they'll now be accessible to both ServiceStack and the rest of your ASP.NET Core App, e.g:
 
 ```csharp
-public class AppHost : AppHostBase
+[assembly: HostingStartup(typeof(MyApp.AppHost))]
+
+namespace MyApp;
+
+public class AppHost : AppHostBase, IHostingStartup
 {
-    public override void Configure(IServiceCollection services)
-    {
-        services.AddSingleton<IRedisClientsManager>(
-            new RedisManagerPool(Configuration.GetConnectionString("redis")));
-    }
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => {
+            // Configure ASP .NET Core IOC Dependencies
+        })
+        .Configure(app => {
+            // Configure ASP .NET Core App
+            if (!HasInit)
+                app.UseServiceStack(new AppHost());
+        });
+
+    public AppHost() : base("MyApp", typeof(MyServices).Assembly) {}
 
     public override void Configure(Container container)
     {
-        var redisManager = container.Resolve<IRedisClientsManager>();
-        //...
-    }
-}
-```
-
-We can take this even further and have your ServiceStack AppHost implement `IConfigureApp` where it can also contain the logic to register itself
-as an alternative to registering ServiceStack in your `Startup` class, e.g:
-
-```csharp
-public class AppHost : AppHostBase, IConfigureApp
-{
-    public void Configure(IApplicationBuilder app)
-    {
-        app.UseServiceStack(new AppHost
-        {
-            AppSettings = new NetCoreAppSettings(Configuration)
+        // Configure ServiceStack only IOC, Config & Plugins
+        SetConfig(new HostConfig {
+            UseSameSiteCookies = true,
         });
     }
-
-    public override void Configure(Container container) { /***/ }
 }
 ```
+
+The `IWebHostBuilder` can also be used to hook into the `Configure(IApplicationBuilder)` to inject ASP.NET Core middleware, including ServiceStack and
+ the `AppHost` itself.
+
+::: info
+Reason for only conditionally registering ServiceStack with `if (!HasInit)` is to allow other plugins (like Auth) the opportunity
+to precisely control where ServiceStack is registered within its preferred ASP .NET Core's pipeline
+:::
 
 This will let you drop-in your custom `AppHost` into a [ModularStartup enabled ASP.NET Core App](/modular-startup) to enable the same 
 "no-touch" auto-registration.

@@ -483,26 +483,34 @@ along with a Management HTTP API to be able to manage them remotely. Dynamic Val
 performance profile as declarative attributes in code whose caches are only invalidated once they've been updated, upon which they'll come into
 immediate effect.
 
-Here's a [Modular Startup](/modular-startup) class you can drop into a ServiceStack Project to enable maintaining declarative Validation 
+Here's a [Modular Startup](/modular-startup) code you can drop into a ServiceStack Project to enable maintaining declarative Validation 
 Rules in your configured RDBMS:
 
 ```csharp
-public class ConfigureValidation : IConfigureServices, IConfigureAppHost
+using ServiceStack;
+using ServiceStack.Data;
+
+[assembly: HostingStartup(typeof(MyApp.ConfigureValidation))]
+
+namespace MyApp
 {
-    public void Configure(IServiceCollection services)
+    public class ConfigureValidation : IHostingStartup
     {
         // Add support for dynamically generated db rules
-        services.AddSingleton<IValidationSource>(c => 
-            new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>()));
-    }
-
-    public void Configure(IAppHost appHost)
-    {
-        appHost.Plugins.Add(new ValidationFeature());
-        appHost.Resolve<IValidationSource>().InitSchema();
+        public void Configure(IWebHostBuilder builder) => builder
+            .ConfigureServices(services => services.AddSingleton<IValidationSource>(c =>
+                new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>())))
+            .ConfigureAppHost(appHost => {
+                appHost.Resolve<IValidationSource>().InitSchema();
+            });
     }
 }
 ```
+
+::: info
+The above code can be imported into your ServiceStack project by using `x mix validation-source` 
+if you are using .NET 6 modular startup.
+:::
 
 DB Validation rules can be added programmatically, this example below adds 1x Type Validator and 2x Property Validators to the 
 `DynamicRules` Request DTO:
