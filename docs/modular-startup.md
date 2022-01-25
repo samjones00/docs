@@ -4,7 +4,7 @@ title: Modular Startup
 ---
 
 ::: info
-For more information on the previous Modular Startup used in NET5 and ServiceStack v5.6 to v5.12, see our [Legacy Modular Startup page](./modular-startup-legacy.md)
+For more information on the previous Modular Startup used in ServiceStack **v5.x** see our [Legacy Modular Startup](/modular-startup-legacy) docs
 :::
 
 Taking advantage of C# 9 top level statements and .NET 6 [WebApplication Hosting Model](https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d), ServiceStack templates by utilize both these features to simplify configuring your AppHost in a modular way.
