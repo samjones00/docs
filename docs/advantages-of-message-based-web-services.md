@@ -205,7 +205,7 @@ ServiceStack's JSON & JSV serializers are **case-insensitive** (i.e. supports bo
 JsConfig.Init(Config { TextCase = TextCase.CamelCase });
 ```
 
-They're both [very resilient and can withstand extreme versioning without error](https://github.com/ServiceStack/ServiceStack.Redis/wiki/MigrationsUsingSchemalessNoSql) making it easy to consume [3rd party APIs](https://github.com/ServiceStack/ServiceStack.Text/tree/master/tests/ServiceStack.Text.Tests/UseCases)
+They're both [very resilient and can withstand extreme versioning without error](./redis/schemaless-migration.md) making it easy to consume [3rd party APIs](https://github.com/ServiceStack/ServiceStack.Text/tree/master/tests/ServiceStack.Text.Tests/UseCases)
 
 ### Your services can be consumed by more than just HTTP
 
