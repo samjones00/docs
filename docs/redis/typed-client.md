@@ -5,7 +5,7 @@ title: Redis Typed Client
 
 A 'strongly-typed' API available on [Service Stack's C# Redis Client](https://github.com/ServiceStack/ServiceStack.Redis) to make all Redis Value operations to apply against any c# type
 
-# Strongly typed Generic Client API
+## Strongly typed Generic Client API
 
 Below is the strongly-typed API that you have access to after you call `IRedisClient.As<T>()` e.g.:
 
@@ -163,7 +163,7 @@ public interface IRedisTypedClient<T>
 ```
 
 
-# Common data access interface
+## Common data access interface
 
 Including the above methods, the Generic client also implements Redis non-specific
 common data access operations that can be easily implemented by other data persistence providers should you want to swap providers in future.

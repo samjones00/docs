@@ -5,14 +5,14 @@ title: Redis Client
 
 Details of the IRedisClient API implemented by the [ServiceStack.Redis client](https://github.com/ServiceStack/ServiceStack.Redis)
 
-# Introduction
+## Introduction
 
 This is a friendly, more descriptive API implemented by the [ServiceStack.Redis client](https://github.com/ServiceStack/ServiceStack.Redis)
 that provides access to key values as strings (or collection of strings for Redis lists and sets).
 
 Use this API if you just need to access values as strings or you want to have control over your own text serialization format.
 
-# [IRedisClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Redis/IRedisClient.cs) API
+## [IRedisClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Redis/IRedisClient.cs) API
 
 ```csharp
 public interface IRedisClient

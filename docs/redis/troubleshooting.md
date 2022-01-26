@@ -3,7 +3,7 @@ slug: troubleshooting
 title: Troubleshooting issues
 ---
 
-### Debugging Data Corruption Issues
+## Debugging Data Corruption Issues
 
 An issue that can be hard to debug is if the same `RedisClient` instance is shared across multiple threads which can result in returning corrupted data.
 Typically, this is a result of using `IRedisClient` field in a singleton instance or sharing it as a static instance. To prevent this, each Thread that
@@ -25,7 +25,7 @@ This captures the Thread's StackTrace each time the client is resolved from the 
 
 If it does detect the client is being accessed from a different thread it will throw a `InvalidAccessException` with the message containing the different **Thread Ids** and the **original StackTrace** where the client was resolved from the pool. You can compare this with the StackTrace of the Exception to hopefully identify where the client is being improperly used.
 
-#### Avoiding Concurrent Usage issues
+## Avoiding Concurrent Usage issues
 
 What to look out for in your code-base to prevent against multiple concurrent usage of a `IRedisClient` instance:
 

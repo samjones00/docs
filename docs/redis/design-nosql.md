@@ -10,7 +10,7 @@ This page illustrates a good solution on how to design a simple Blog application
 * Designing a NoSQL Database using Redis
 * [Painless data migrations using Redis and other schema-less NoSQL datastores](./schemaless-migration.md)
 
-# Designing a NoSQL Database using Redis
+## Designing a NoSQL Database using Redis
 
 Oren Eini from the popular .NET blog http://ayende.com/Blog/, is putting together a
 [series of blog posts](http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx) explaining how to go about designing a
