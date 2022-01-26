@@ -1,0 +1,69 @@
+[
+  {
+    "text": "Redis - Getting Started",
+    "children": [
+      {
+        "text": "Overview",
+        "link": "/redis/overview"
+      },
+      {
+        "text": "Redis Client Managers",
+        "link": "/redis/client-managers"
+      },
+      {
+        "text": "Redis Client Usage",
+        "link": "/redis/client-usage"
+      },
+      {
+        "text": "Redis Async",
+        "link": "/redis/async"
+      }
+    ]
+  },
+  {
+    "text": "Redis - Advanced",
+    "children": [
+      {
+        "text": "Redis Generic Custom Commands",
+        "link": "/redis/custom-commands"
+      },
+      {
+        "text": "Redis PubSub",
+        "link": "/redis/pubsub"
+      },
+      {
+        "text": "Redis Sentinel",
+        "link": "/redis/sentinel"
+      },
+      {
+        "text": "Redis Lua",
+        "link": "/redis/lua"
+      },
+      {
+        "text": "Redis Troubleshooting",
+        "link": "/redis/troubleshooting"
+      }
+    ]
+  },
+  {
+    "text": "Redis - Related Docs",
+    "children": [
+      {
+        "text": "Designing a NoSql Database",
+        "link": "/redis/design-nosql"
+      },
+      {
+        "text": "Data migrations with Redis",
+        "link": "/redis/schemaless-migration"
+      },
+      {
+        "text": "Redis Stats",
+        "link": "/redis/stats"
+      },
+      {
+        "text": "Automatic Retries",
+        "link": "/redis/automatic-retries"
+      }
+    ]
+  }
+]
