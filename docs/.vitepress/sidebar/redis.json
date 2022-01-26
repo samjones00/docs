@@ -21,7 +21,7 @@
     ]
   },
   {
-    "text": "Redis Advanced",
+    "text": "Redis - Advanced",
     "children": [
       {
         "text": "Redis Generic Custom Commands",
@@ -46,7 +46,7 @@
     ]
   },
   {
-    "text": "Related Docs",
+    "text": "Redis - Related Docs",
     "children": [
       {
         "text": "Designing a NoSql Database",
@@ -55,6 +55,14 @@
       {
         "text": "Data migrations with Redis",
         "link": "/redis/schemaless-migration"
+      },
+      {
+        "text": "Redis Stats",
+        "link": "/redis/stats"
+      },
+      {
+        "text": "Automatic Retries",
+        "link": "/redis/automatic-retries"
       }
     ]
   }

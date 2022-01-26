@@ -235,12 +235,12 @@ the minimal
 including start/stop scripts for instantly running multiple redis instances on a single (or multiple)
 Windows, OSX or Linux servers.
 
-### [Redis Stats](https://github.com/ServiceStack/ServiceStack.Redis/wiki/Redis-Stats)
+### [Redis Stats](stats.md)
 
 You can use the `RedisStats` class for visibility and introspection into your running instances.
-The [Redis Stats wiki](https://github.com/ServiceStack/ServiceStack.Redis/wiki/Redis-Stats) lists the stats available.
+The [Redis Stats wiki](stats.md) lists the stats available.
 
-## [Automatic Retries](https://github.com/ServiceStack/ServiceStack.Redis/wiki/Automatic-Retries)
+## [Automatic Retries](automatic-retries.md)
 
 To improve the resilience of client connections, `RedisClient` will transparently retry failed
 Redis operations due to Socket and I/O Exceptions in an exponential backoff starting from

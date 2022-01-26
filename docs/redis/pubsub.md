@@ -3,8 +3,6 @@ slug: pubsub
 title: Redis Managed Pub/Sub Server
 ---
 
-## Managed Pub/Sub Server
-
 The Pub/Sub engine powering
 [Redis ServerEvents](https://github.com/ServiceStack/ServiceStack/wiki/Redis-Server-Events) and
 [Redis MQ](https://github.com/ServiceStack/ServiceStack/wiki/Messaging-and-Redis) has been extracted
