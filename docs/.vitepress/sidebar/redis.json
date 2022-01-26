@@ -49,24 +49,40 @@
     "text": "Redis - Related Docs",
     "children": [
       {
-        "text": "Designing a NoSql Database",
-        "link": "/redis/design-nosql"
+        "text": "Redis Client",
+        "link": "/redis/client"
       },
       {
-        "text": "Data migrations with Redis",
-        "link": "/redis/schemaless-migration"
+        "text": "Redis Typed Client",
+        "link": "/redis/typed-client"
+      },
+      {
+        "text": "Redis Transactions",
+        "link": "/redis/transactions"
+      },
+      {
+        "text": "Redis Typed Transactions",
+        "link": "/redis/typed-transactions"
       },
       {
         "text": "Redis Stats",
         "link": "/redis/stats"
       },
       {
+        "text": "Reid Vue Desktop",
+        "link": "/redis/vue-desktop"
+      },
+      {
         "text": "Automatic Retries",
         "link": "/redis/automatic-retries"
       },
       {
-        "text": "Reid Vue Desktop",
-        "link": "/redis/vue-desktop"
+        "text": "Designing a NoSql Database",
+        "link": "/redis/design-nosql"
+      },
+      {
+        "text": "Data migrations with Redis",
+        "link": "/redis/schemaless-migration"
       }
     ]
   }

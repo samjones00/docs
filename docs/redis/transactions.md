@@ -5,7 +5,7 @@ title: Redis Transactions
 
 This page provides examples on how to create atomic Redis transactions with [ServiceStackRedis Service Stack's C# Redis Client](https://github.com/ServiceStack/ServiceStack.Redis)
 
-# How to create custom atomic operations in Redis
+## How to create custom atomic operations in Redis
 
 One of the main features of Redis is the ability to construct custom atomic operations. This is achieved by utilizing Redis's
 [MULTI/EXEC/DISCARD](https://redis.io/commands/multi) operations.
@@ -35,7 +35,7 @@ using (var trans = redis.CreateTransaction())
 
 ```
 
-### Other common examples
+## Other common examples
 The full-source code and other common examples can be found on the
 [common transaction tests page](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/RedisTransactionCommonTests.cs).
 
