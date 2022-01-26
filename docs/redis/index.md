@@ -1,5 +1,4 @@
 ---
-slug: overview
 title: C#/.NET Client for Redis
 ---
 

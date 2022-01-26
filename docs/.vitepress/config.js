@@ -23,7 +23,7 @@ module.exports = {
             { text: 'AutoQuery', link: '/autoquery', activeMatch: '^/(autoquery|why-not-odata)'},
             { text: 'Security', link: '/auth', activeMatch: '(auth|sessions)' },
             { text: 'gRPC', link: '/grpc', activeMatch: '^/grpc'},
-            { text: 'Redis', link: '/redis/overview', activeMatch: '^/redis/'}
+            { text: 'Redis', link: '/redis/', activeMatch: '^/redis/'}
         ],
         sidebar: {
             '/redis': navRedis,

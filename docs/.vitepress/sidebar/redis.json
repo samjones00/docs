@@ -4,7 +4,7 @@
     "children": [
       {
         "text": "Overview",
-        "link": "/redis/overview"
+        "link": "/redis/"
       },
       {
         "text": "Redis Client Managers",
