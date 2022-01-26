@@ -23,7 +23,7 @@ redis://clientid:password@localhost:6380?ssl=true&db=1
 ```
 
 ::: info
-[ConfigTests.cs](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/ConfigTests.cs)
+More examples can be seen in [ConfigTests.cs](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/ConfigTests.cs)
 :::
 
 Any additional configuration can be specified as QueryString parameters. The full list of options that can be specified include:
