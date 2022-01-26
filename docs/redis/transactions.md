@@ -22,7 +22,7 @@ If you don't call the `Commit()` before the end of the using block, `Dispose()` 
 
 Below is a simple example showing how to queue up Redis operations with and without a callback.
 
-```
+```csharp
 int callbackResult;
 using (var trans = redis.CreateTransaction())
 {
@@ -39,7 +39,7 @@ using (var trans = redis.CreateTransaction())
 The full-source code and other common examples can be found on the
 [common transaction tests page](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/RedisTransactionCommonTests.cs).
 
-```
+```csharp
 [Test]
 public void Can_Set_and_Expire_key_in_atomic_transaction()
 {
@@ -93,7 +93,7 @@ This and other examples can be found by looking at the
 
 Here is an all-in-one examples combining different Redis operations within a single transaction:
 
-```
+```csharp
 [Test]
 public void Supports_different_operation_types_in_same_transaction()
 {
