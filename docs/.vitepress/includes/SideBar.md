@@ -193,7 +193,6 @@
     - [CSV Format](/csv-format)
     - [MessagePack Format](/messagepack-format)
     - [ProtoBuf Format](/protobuf-format)
-    - [Wire Format](/wire-format)
     - [HTML5 Report Format](/html5reportformat)
 - ##### .NET Core
     - [Overview](/netcore)

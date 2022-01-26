@@ -40,8 +40,7 @@ ServiceStack Services are consumable via an array of built-in fast data formats 
 XML, 
 [CSV](/csv-format), 
 [JSV](/jsv-format), 
-[ProtoBuf](/protobuf-format), 
-[Wire](/wire-format) and 
+[ProtoBuf](/protobuf-format) and 
 [MsgPack](/messagepack-format)) 
 as well as XSD/WSDL for [SOAP endpoints](/soap-support) and 
 [Rabbit MQ](/rabbit-mq), 
@@ -424,7 +423,6 @@ of different formats, including:
  - [MsgPack](/messagepack-format)
  - [ProtoBuf](/protobuf-format)
  - [gRPC](/grpc)
- - [Wire](/wire-format)
  - [SOAP 1.1/1.2](/soap-support)
  - HTML
    - [HTML5 Report Format](/html5reportformat)

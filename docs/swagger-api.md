@@ -4,7 +4,7 @@ title: Swagger API
 ---
 
 ::: warning DEPRECATED
-`SwaggerFeature` implements Swagger 1.2 whilst [Open API](/openapi) implements the newer Swagger 2.0 / Open API specification. For new projects we recommend using [Open API](/openapi) which also has broader industry adoption
+`SwaggerFeature` implements Swagger 1.2 whilst **[Open API](/openapi)** implements the newer Swagger 2.0 / Open API specification. For new projects we recommend using **[Open API](/openapi)** which also has broader industry adoption
 :::
 
 [Swagger](http://swagger.io/) is a specification and complete framework implementation for describing, producing, consuming, and visualizing RESTful web services. ServiceStack implements the 

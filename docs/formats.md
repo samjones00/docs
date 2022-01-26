@@ -12,7 +12,6 @@ ServiceStack supports the following formats:
 - [SOAP 1.1/1.2](/soap-support) (requires ASP.NET Framework)
 - [Message Pack](/messagepack-format)
 - [Protocol Buffers](/protobuf-format)
-- [Wire](/wire-format)
 - HTML
     - [#Script Pages](https://sharpscript.net/docs/sharp-pages) (Simple, clean, fast alternative to Razor)
     - [Razor](http://razor.servicestack.net) (Microsoft's Razor View Engine)
