@@ -96,8 +96,9 @@ Which you can access as raw JSON by parsing the response as a String with:
 string json = redis.ExecLuaAsString(FastScanScript, "key:*", "10");
 ```
 
-> This is also the approach used in Redis React's
-[RedisServices](https://github.com/ServiceStackApps/RedisReact/blob/a1b66603d52d2f18b96227fc455ecb5323e424c8/src/RedisReact/RedisReact.ServiceInterface/RedisServices.cs#L60).
+::: info
+This is also the approach used in Redis React's [RedisServices](https://github.com/ServiceStackApps/RedisReact/blob/a1b66603d52d2f18b96227fc455ecb5323e424c8/src/RedisReact/RedisReact.ServiceInterface/RedisServices.cs#L60).
+:::
 
 ### ExecCachedLua
 

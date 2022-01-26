@@ -13,15 +13,18 @@ fully-qualified **URI** with multiple options specified on the QueryString.
 
 Some examples of supported formats:
 
-    localhost
-    127.0.0.1:6379
-    redis://localhost:6379
-    password@localhost:6379
-    clientid:password@localhost:6379
-    redis://clientid:password@localhost:6380?ssl=true&db=1
+```
+localhost
+127.0.0.1:6379
+redis://localhost:6379
+password@localhost:6379
+clientid:password@localhost:6379
+redis://clientid:password@localhost:6380?ssl=true&db=1
+```
 
-> More examples can be seen in
+::: info
 [ConfigTests.cs](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/ConfigTests.cs)
+:::
 
 Any additional configuration can be specified as QueryString parameters. The full list of options that can be specified include:
 

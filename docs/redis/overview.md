@@ -19,7 +19,9 @@ The interfaces work cleanly with any IOC and allows your app logic to bind to im
 
 An overview of class hierarchy for the C# Redis clients looks like:
 
-    RedisTypedClient (POCO) > RedisClient (string) > RedisNativeClient (raw byte[])
+```
+RedisTypedClient (POCO) > RedisClient (string) > RedisNativeClient (raw byte[])
+```
 
 With each client providing different layers of abstraction:
 

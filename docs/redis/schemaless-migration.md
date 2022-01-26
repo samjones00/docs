@@ -24,36 +24,38 @@ To illustrate what can be achieved in practice, I will run through two different
 * The do-nothing approach - where adding, removing fields and non-destructive change of field types are automatically handled.
 * Using a custom translation - using application level logic to customize the translation between the old and new types.
 
-The full runnable source code for these example are [available here](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostMigrations.cs).
+The full runnable source code for this example are [available here](https://github.com/ServiceStack/ServiceStack.Redis/blob/master/tests/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostMigrations.cs).
 
 ## Example Code
 To demonstrate a typical migration scenario, I'm using the `BlogPost` type defined on the previous page to project it to a fundamentally different `New.BlogPost` type. The full definition of the old and new types are shown below:
 
 ### The old schema
 
-	public class BlogPost
-	{
-		public BlogPost()
-		{
-			this.Categories = new List<string>();
-			this.Tags = new List<string>();
-			this.Comments = new List<BlogPostComment>();
-		}
+```csharp
+public class BlogPost
+{
+    public BlogPost()
+    {
+        this.Categories = new List<string>();
+        this.Tags = new List<string>();
+        this.Comments = new List<BlogPostComment>();
+    }
 
-		public int Id { get; set; }
-		public int BlogId { get; set; }
-		public string Title { get; set; }
-		public string Content { get; set; }
-		public List<string> Categories { get; set; }
-		public List<string> Tags { get; set; }
-		public List<BlogPostComment> Comments { get; set; }
-	}
+    public int Id { get; set; }
+    public int BlogId { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
+    public List<string> Categories { get; set; }
+    public List<string> Tags { get; set; }
+    public List<BlogPostComment> Comments { get; set; }
+}
 
-	public class BlogPostComment
-	{
-		public string Content { get; set; }
-		public DateTime CreatedDate { get; set; }
-	}
+public class BlogPostComment
+{
+    public string Content { get; set; }
+    public DateTime CreatedDate { get; set; }
+}
+```
 
 ### The new schema
 The 'new version' contains most changes you are likely to encounter in normal app development:
@@ -66,44 +68,46 @@ The 'new version' contains most changes you are likely to encounter in normal ap
 
 ### New schema types
 
-	public class BlogPost
-	{
-		public BlogPost()
-		{
-			this.Labels = new List<string>();
-			this.Tags = new HashSet<string>();
-			this.Comments = new List<Dictionary<string, string>>();
-		}
+```csharp
+public class BlogPost
+{
+    public BlogPost()
+    {
+        this.Labels = new List<string>();
+        this.Tags = new HashSet<string>();
+        this.Comments = new List<Dictionary<string, string>>();
+    }
 
-		//Changed int types to both a long and a double type
-		public long Id { get; set; }
-		public double BlogId { get; set; }
+    //Changed int types to both a long and a double type
+    public long Id { get; set; }
+    public double BlogId { get; set; }
 
-		//Added new field
-		public BlogPostType PostType { get; set; }
+    //Added new field
+    public BlogPostType PostType { get; set; }
 
-		public string Title { get; set; }
-		public string Content { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
 
-		//Renamed from 'Categories' to 'Labels'
-		public List<string> Labels { get; set; }
+    //Renamed from 'Categories' to 'Labels'
+    public List<string> Labels { get; set; }
 
-		//Changed from List to a HashSet
-		public HashSet<string> Tags { get; set; }
+    //Changed from List to a HashSet
+    public HashSet<string> Tags { get; set; }
 
-		//Changed from List of strongly-typed 'BlogPostComment' to loosely-typed string map
-		public List<Dictionary<string, string>> Comments { get; set; }
+    //Changed from List of strongly-typed 'BlogPostComment' to loosely-typed string map
+    public List<Dictionary<string, string>> Comments { get; set; }
 
-		//Added pointless calculated field
-		public int? NoOfComments { get; set; }
-	}
+    //Added pointless calculated field
+    public int? NoOfComments { get; set; }
+}
 
-	public enum BlogPostType
-	{
-		None,
-		Article,
-		Summary,
-	}
+public enum BlogPostType
+{
+    None,
+    Article,
+    Summary,
+}
+```
 
 
 ### 1. The do-nothing approach - using the old data with the new types
@@ -112,112 +116,114 @@ This is possible when there is non-destructive changes (i.e. no loss of informat
 The example below uses the repository from the previous example to populate Redis with test data from the old types. Just as if nothing happened you can read the old data using the new type:
 
 
-	var repository = new BlogRepository(redisClient);
+```csharp
+var repository = new BlogRepository(redisClient);
 
-	//Populate the datastore with the old schema from the 'BlogPostBestPractice'
-	BlogPostBestPractice.InsertTestData(repository);
+//Populate the datastore with the old schema from the 'BlogPostBestPractice'
+BlogPostBestPractice.InsertTestData(repository);
 
-	//Create a typed-client based on the new schema
-	using (var redisBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
-	{
-		//Automatically retrieve blog posts
-		IList<New.BlogPost> allBlogPosts = redisBlogPosts.GetAll();
+//Create a typed-client based on the new schema
+using (var redisBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
+{
+    //Automatically retrieve blog posts
+    IList<New.BlogPost> allBlogPosts = redisBlogPosts.GetAll();
 
-		//Print out the data in the list of 'New.BlogPost' populated from old 'BlogPost' type
-		Console.WriteLine(allBlogPosts.Dump());
-		/*Output:
-		[
-			{
-				Id: 3,
-				BlogId: 2,
-				PostType: None,
-				Title: Redis,
-				Labels: [],
-				Tags: 
-				[
-					Redis,
-					NoSQL,
-					Scalability,
-					Performance
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 2010-04-28T21:42:03.9484725Z
-					}
-				]
-			},
-			{
-				Id: 4,
-				BlogId: 2,
-				PostType: None,
-				Title: Couch Db,
-				Labels: [],
-				Tags: 
-				[
-					CouchDb,
-					NoSQL,
-					JSON
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 2010-04-28T21:42:03.9484725Z
-					}
-				]
-			},
-			{
-				Id: 1,
-				BlogId: 1,
-				PostType: None,
-				Title: RavenDB,
-				Labels: [],
-				Tags: 
-				[
-					Raven,
-					NoSQL,
-					JSON,
-					.NET
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 2010-04-28T21:42:03.9004697Z
-					},
-					{
-						Content: Second Comment!,
-						CreatedDate: 2010-04-28T21:42:03.9004697Z
-					}
-				]
-			},
-			{
-				Id: 2,
-				BlogId: 1,
-				PostType: None,
-				Title: Cassandra,
-				Labels: [],
-				Tags: 
-				[
-					Cassandra,
-					NoSQL,
-					Scalability,
-					Hashing
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 2010-04-28T21:42:03.9004697Z
-					}
-				]
-			}
-		]
+    //Print out the data in the list of 'New.BlogPost' populated from old 'BlogPost' type
+    Console.WriteLine(allBlogPosts.Dump());
+    /*Output:
+    [
+        {
+            Id: 3,
+            BlogId: 2,
+            PostType: None,
+            Title: Redis,
+            Labels: [],
+            Tags: 
+            [
+                Redis,
+                NoSQL,
+                Scalability,
+                Performance
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 2010-04-28T21:42:03.9484725Z
+                }
+            ]
+        },
+        {
+            Id: 4,
+            BlogId: 2,
+            PostType: None,
+            Title: Couch Db,
+            Labels: [],
+            Tags: 
+            [
+                CouchDb,
+                NoSQL,
+                JSON
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 2010-04-28T21:42:03.9484725Z
+                }
+            ]
+        },
+        {
+            Id: 1,
+            BlogId: 1,
+            PostType: None,
+            Title: RavenDB,
+            Labels: [],
+            Tags: 
+            [
+                Raven,
+                NoSQL,
+                JSON,
+                .NET
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 2010-04-28T21:42:03.9004697Z
+                },
+                {
+                    Content: Second Comment!,
+                    CreatedDate: 2010-04-28T21:42:03.9004697Z
+                }
+            ]
+        },
+        {
+            Id: 2,
+            BlogId: 1,
+            PostType: None,
+            Title: Cassandra,
+            Labels: [],
+            Tags: 
+            [
+                Cassandra,
+                NoSQL,
+                Scalability,
+                Hashing
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 2010-04-28T21:42:03.9004697Z
+                }
+            ]
+        }
+    ]
 
-		 */
-	}
+     */
+}
+```
 
 
 ### 2. Using a custom translation to migrate data using application logic
@@ -227,153 +233,155 @@ There will also be times when you want the newly migrated data to have specific 
 When you want more control over the migration of your old data, adding a custom translation is a trivial exercise when you can do it natively in code:
 
 
-	var repository = new BlogRepository(redisClient);
+```csharp
+var repository = new BlogRepository(redisClient);
 
-	//Populate the datastore with the old schema from the 'BlogPostBestPractice'
-	BlogPostBestPractice.InsertTestData(repository);
+//Populate the datastore with the old schema from the 'BlogPostBestPractice'
+BlogPostBestPractice.InsertTestData(repository);
 
-	//Create a typed-client based on the new schema
-	using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
-	using (var redisNewBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
-	{
-		//Automatically retrieve blog posts
-		IList<BlogPost> oldBlogPosts = redisBlogPosts.GetAll();
+//Create a typed-client based on the new schema
+using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
+using (var redisNewBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
+{
+    //Automatically retrieve blog posts
+    IList<BlogPost> oldBlogPosts = redisBlogPosts.GetAll();
 
-		//Write a custom translation layer to migrate to the new schema
-		var migratedBlogPosts = oldBlogPosts.ConvertAll(old => new New.BlogPost
-		{
-			Id = old.Id,
-			BlogId = old.BlogId,
-			Title = old.Title,
-			Content = old.Content,
-			Labels = old.Categories, //populate with data from renamed field
-			PostType = New.BlogPostType.Article, //select non-default enum value
-			Tags = old.Tags,
-			Comments = old.Comments.ConvertAll(x => new Dictionary<string, string> 
-				{ { "Content", x.Content }, { "CreatedDate", x.CreatedDate.ToString() }, }),
-			NoOfComments = old.Comments.Count, //populate using logic from old data
-		});
+    //Write a custom translation layer to migrate to the new schema
+    var migratedBlogPosts = oldBlogPosts.ConvertAll(old => new New.BlogPost
+    {
+        Id = old.Id,
+        BlogId = old.BlogId,
+        Title = old.Title,
+        Content = old.Content,
+        Labels = old.Categories, //populate with data from renamed field
+        PostType = New.BlogPostType.Article, //select non-default enum value
+        Tags = old.Tags,
+        Comments = old.Comments.ConvertAll(x => new Dictionary<string, string> 
+            { { "Content", x.Content }, { "CreatedDate", x.CreatedDate.ToString() }, }),
+        NoOfComments = old.Comments.Count, //populate using logic from old data
+    });
 
-		//Persist the new migrated blogposts 
-		redisNewBlogPosts.StoreAll(migratedBlogPosts);
+    //Persist the new migrated blogposts 
+    redisNewBlogPosts.StoreAll(migratedBlogPosts);
 
-		//Read out the newly stored blogposts
-		var refreshedNewBlogPosts = redisNewBlogPosts.GetAll();
-		//Note: data renamed fields are successfully migrated to the new schema
-		Console.WriteLine(refreshedNewBlogPosts.Dump());
-		/*
-		[
-			{
-				Id: 3,
-				BlogId: 2,
-				PostType: Article,
-				Title: Redis,
-				Labels: 
-				[
-					NoSQL,
-					Cache
-				],
-				Tags: 
-				[
-					Redis,
-					NoSQL,
-					Scalability,
-					Performance
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 28/04/2010 22:58:35
-					}
-				],
-				NoOfComments: 1
-			},
-			{
-				Id: 4,
-				BlogId: 2,
-				PostType: Article,
-				Title: Couch Db,
-				Labels: 
-				[
-					NoSQL,
-					DocumentDB
-				],
-				Tags: 
-				[
-					CouchDb,
-					NoSQL,
-					JSON
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 28/04/2010 22:58:35
-					}
-				],
-				NoOfComments: 1
-			},
-			{
-				Id: 1,
-				BlogId: 1,
-				PostType: Article,
-				Title: RavenDB,
-				Labels: 
-				[
-					NoSQL,
-					DocumentDB
-				],
-				Tags: 
-				[
-					Raven,
-					NoSQL,
-					JSON,
-					.NET
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 28/04/2010 22:58:35
-					},
-					{
-						Content: Second Comment!,
-						CreatedDate: 28/04/2010 22:58:35
-					}
-				],
-				NoOfComments: 2
-			},
-			{
-				Id: 2,
-				BlogId: 1,
-				PostType: Article,
-				Title: Cassandra,
-				Labels: 
-				[
-					NoSQL,
-					Cluster
-				],
-				Tags: 
-				[
-					Cassandra,
-					NoSQL,
-					Scalability,
-					Hashing
-				],
-				Comments: 
-				[
-					{
-						Content: First Comment!,
-						CreatedDate: 28/04/2010 22:58:35
-					}
-				],
-				NoOfComments: 1
-			}
-		]
+    //Read out the newly stored blogposts
+    var refreshedNewBlogPosts = redisNewBlogPosts.GetAll();
+    //Note: data renamed fields are successfully migrated to the new schema
+    Console.WriteLine(refreshedNewBlogPosts.Dump());
+    /*
+    [
+        {
+            Id: 3,
+            BlogId: 2,
+            PostType: Article,
+            Title: Redis,
+            Labels: 
+            [
+                NoSQL,
+                Cache
+            ],
+            Tags: 
+            [
+                Redis,
+                NoSQL,
+                Scalability,
+                Performance
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 28/04/2010 22:58:35
+                }
+            ],
+            NoOfComments: 1
+        },
+        {
+            Id: 4,
+            BlogId: 2,
+            PostType: Article,
+            Title: Couch Db,
+            Labels: 
+            [
+                NoSQL,
+                DocumentDB
+            ],
+            Tags: 
+            [
+                CouchDb,
+                NoSQL,
+                JSON
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 28/04/2010 22:58:35
+                }
+            ],
+            NoOfComments: 1
+        },
+        {
+            Id: 1,
+            BlogId: 1,
+            PostType: Article,
+            Title: RavenDB,
+            Labels: 
+            [
+                NoSQL,
+                DocumentDB
+            ],
+            Tags: 
+            [
+                Raven,
+                NoSQL,
+                JSON,
+                .NET
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 28/04/2010 22:58:35
+                },
+                {
+                    Content: Second Comment!,
+                    CreatedDate: 28/04/2010 22:58:35
+                }
+            ],
+            NoOfComments: 2
+        },
+        {
+            Id: 2,
+            BlogId: 1,
+            PostType: Article,
+            Title: Cassandra,
+            Labels: 
+            [
+                NoSQL,
+                Cluster
+            ],
+            Tags: 
+            [
+                Cassandra,
+                NoSQL,
+                Scalability,
+                Hashing
+            ],
+            Comments: 
+            [
+                {
+                    Content: First Comment!,
+                    CreatedDate: 28/04/2010 22:58:35
+                }
+            ],
+            NoOfComments: 1
+        }
+    ]
 
-		 */
-	}
+     */
+}
+```
 
 
 The end result is a datastore filled with new data populated in exactly the way you want it - ready to serve features of your new application.

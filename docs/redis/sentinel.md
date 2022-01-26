@@ -29,7 +29,9 @@ This shows a typical example of configuring a `RedisSentinel` which references 3
 the minimum number for a highly available setup which can survive any node failing).
 It's also configured to look at the `mymaster` configuration set (the default master group).
 
-> Redis Sentinels can monitor more than 1 master / slave group, each with a different master group name.
+::: info
+Redis Sentinels can monitor more than 1 master / slave group, each with a different master group name.
+:::
 
 The default port for sentinels is **26379** (when unspecified) and as RedisSentinel can auto-discover
 other sentinels, the minimum configuration required is just:
@@ -38,7 +40,9 @@ other sentinels, the minimum configuration required is just:
 var sentinel = new RedisSentinel("sentinel1");
 ```
 
-> Scanning and auto discovering of other Sentinels can be disabled with `ScanForOtherSentinels=false`
+::: info
+Scanning and auto discovering of other Sentinels can be disabled with `ScanForOtherSentinels=false`
+:::
 
 ### Start monitoring Sentinels
 
@@ -148,16 +152,22 @@ and doesn't require any software installation.
 
 To run the included Sentinel configuration, clone the redis-config repo on the server you want to run it on:
 
-    git clone https://github.com/ServiceStack/redis-config.git
+```
+git clone https://github.com/ServiceStack/redis-config.git
+```
 
 Then Start 1x Master, 2x Slaves and 3x Sentinel redis-servers with:
 
-    cd redis-config\sentinel3\windows
-    start-all.cmd
+```
+cd redis-config\sentinel3\windows
+start-all.cmd
+```
 
 Shutdown started instances:
 
-    stop-all.cmd
+```
+stop-all.cmd
+```
 
 If you're running the redis processes locally on your dev workstation the minimal configuration to connect
 to the running instances is just:
@@ -202,7 +212,7 @@ for a walk-through on setting up and inspecting a highly-available redis configu
 
 ### Change to use RedisManagerPool
 
-By default RedisSentinel uses a `PooledRedisClientManager`, this can be changed to use the
+By default, RedisSentinel uses a `PooledRedisClientManager`, this can be changed to use the
 newer `RedisManagerPool` with:
 
 ```csharp
