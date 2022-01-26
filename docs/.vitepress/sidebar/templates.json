@@ -47,6 +47,10 @@
             "link": "/templates-react"
           },
           {
+            "text": "Blazor-WASM Template",
+            "link": "/templates-blazor-wasm"
+          },
+          {
             "text": "Svelte Templates",
             "link": "/templates-svelte"
           },
