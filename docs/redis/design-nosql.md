@@ -8,7 +8,7 @@ This page illustrates a good solution on how to design a simple Blog application
 
 #### All Redis Blog application pages
 * Designing a NoSQL Database using Redis
-* [Painless data migrations using Redis and other schema-less NoSQL datastores](./design-nosql.md)
+* [Painless data migrations using Redis and other schema-less NoSQL datastores](./schemaless-migration.md)
 
 # Designing a NoSQL Database using Redis
 
