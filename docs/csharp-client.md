@@ -13,6 +13,8 @@ Using DTOs to define your web service interface makes it possible to provide str
 `<PackageReference Include="ServiceStack.Client" Version="5.*" />`
 :::
 
+
+
 Alternatively you can use the [HttpClient-based JsonHttpClient](/csharp-client#jsonhttpclient) in:
 
 ::: nuget
@@ -25,27 +27,6 @@ These packages also contain PCL versions of the Service Clients available with s
 If running on .NET Core we recommend using `HttpClient` ServiceClient due to .NET's `HttpWebRequest` having a suboptimal implementation wrapper over HttpClient which is much slower than the .NET Framework implementation
 :::
 
-### [Cache Aware Service Clients](/cache-aware-clients)
-
-When [caching is enabled on Services](/http-caching), the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
-
-The Cache-Aware clients implement the full `IServiceClient` interface so they should be an easy drop-in enhancement for existing Apps:
-
-```csharp
-IServiceClient client = new JsonServiceClient(baseUrl).WithCache(); 
-
-//equivalent to:
-IServiceClient client = new CachedServiceClient(new JsonServiceClient(baseUrl));
-```
-
-Likewise for the HttpClient-based `JsonHttpClient`:
-
-```csharp
-IServiceClient client = new JsonHttpClient(baseUrl).WithCache(); 
-
-//equivalent to:
-IServiceClient client = new CachedHttpClient(new JsonHttpClient(baseUrl));
-```
 
 ## REST API
 
@@ -55,10 +36,10 @@ All ServiceStack's C# clients share the same interfaces and are created by passi
 var client = new JsonServiceClient("http://host:8080/");
 ```
 
-Or if hosted on the `/api` custom path:
+Or if hosted on the `/custom` custom path:
 
 ```csharp
-var client = new JsonServiceClient("http://host/api/");
+var client = new JsonServiceClient("http://host/custom/");
 ```
 
 In addition, the Service Clients provide HTTP verbs (Get, Post & PostFile, Put, Delete, Patch, etc) enabling a productive typed API for consuming ServiceStack Services with their best matching Custom Routes as seen in the examples below:
@@ -79,14 +60,6 @@ Using C# `await`:
 ```csharp
 HelloResponse response = await client.GetAsync(
     new Hello { Name = "World!" });
-```
-
-Using Tasks:
-
-```csharp
-client.GetAsync(new Hello { Name = "World!" })
-    .Success(r => r => r.Result.Print())
-    .Error(ex => { throw ex; });
 ```
 
 ### Alternative API
@@ -137,6 +110,28 @@ var response = await client.SendAsync<HelloResponse>(
 The service clients use the automatic [pre-defined routes](/endpoints) for each service.
 
 <a name="native-responses"></a>
+
+### [Cache Aware Service Clients](/cache-aware-clients)
+
+When [caching is enabled on Services](/http-caching), the Cache-aware Service Clients can dramatically improve performance by eliminating server requests entirely as well as reducing bandwidth for re-validated requests. They also offer an additional layer of resiliency as re-validated requests that result in Errors will transparently fallback to using pre-existing locally cached responses. For bandwidth-constrained environments like Mobile Apps they can dramatically improve the User Experience.
+
+The Cache-Aware clients implement the full `IServiceClient` interface so they should be an easy drop-in enhancement for existing Apps:
+
+```csharp
+IServiceClient client = new JsonServiceClient(baseUrl).WithCache(); 
+
+//equivalent to:
+IServiceClient client = new CachedServiceClient(new JsonServiceClient(baseUrl));
+```
+
+Likewise for the HttpClient-based `JsonHttpClient`:
+
+```csharp
+IServiceClient client = new JsonHttpClient(baseUrl).WithCache(); 
+
+//equivalent to:
+IServiceClient client = new CachedHttpClient(new JsonHttpClient(baseUrl));
+```
 
 ## Support for Native built-in Response Types
 
@@ -895,8 +890,6 @@ Whilst the list below contain the built-in clients based on .NET's built-in `Htt
     (uses default endpoint with **Message-Pack**)
     - [ProtoBufServiceClient](/protobuf-format)
     (uses default endpoint with **Protocol Buffers**)
-    - [WireServiceClient](/wire-format)
-    (uses default endpoint with **Wire** Format)
 - implements `IServiceClient` only:
     - [Soap11ServiceClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/Soap11ServiceClient.cs) (uses **SOAP 11** endpoint)
     - [Soap12ServiceClient](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Client/Soap12ServiceClient.cs)

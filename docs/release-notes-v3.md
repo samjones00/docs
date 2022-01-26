@@ -437,7 +437,7 @@ A popular configuration that takes advantage of this feature would be to only al
 public class InternalHttpAndExternalHttps { }
 ```
 
-In Debug Mode the metdata pages shows all services including restricted ones, whilst when not in Debug mode the restricted services are hidden from the publically viewable list, which lets you hide the existence of internal services from the external metadata pages.
+In Debug Mode the metdata pages shows all services including restricted ones, whilst when not in Debug mode the restricted services are hidden from the publicly viewable list, which lets you hide the existence of internal services from the external metadata pages.
 
 
 ## [Other Security](/auth)

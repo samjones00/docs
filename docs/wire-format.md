@@ -3,6 +3,12 @@ slug: wire-format
 title: Wire Format
 ---
 
+::: warning DEPRECATED
+Development of the original Wire format was abandon and has consequently **ServiceStack.Wire** project been removed in **v6**.
+To continue using it you can copy the existing **[ServiceStack.Wire](https://github.com/ServiceStack/ServiceStack/tree/fx45/src/ServiceStack.Wire)** source code into your project
+
+:::
+
 [Wire](https://github.com/akkadotnet/Wire) is an efficient binary serialization format from the 
 [Akka.NET Team](http://getakka.net) with comparable performance to ProtoBuf but like MsgPack doesn’t 
 require your POCO’s to be annotated with `[DataContract]` attributes making it more suitable for 
