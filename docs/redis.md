@@ -1,7 +1,8 @@
 ---
-title: ServiceStack.Redis
+title: Redirecting to ServiceStack.Redis Docs...
 ---
 
-<ClientOnly>
-<script>location.href='redis/'</script>
-</ClientOnly>
+<script setup>
+import Redirect from './src/components/Redirect.vue'
+</script>
+<Redirect class="my-8" to="/redis/" />
