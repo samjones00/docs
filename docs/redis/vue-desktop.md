@@ -14,7 +14,7 @@ powershell iwr gist.cafe/install.ps1 -useb | iex
 
 Then run `redis` Vue Desktop App in a browser:
 
-### [app://redis](app://redis)
+### app://redis
 
 Or from the command-line:
 
