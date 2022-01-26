@@ -647,7 +647,7 @@ var response = client.Get(new QueryRockstars { AgeOlderThan = 42 });
 As well as making your API self-describing and gives you access to all of ServiceStack's metadata services including:
 
  - [Metadata pages](/metadata-page)
- - [Swagger UI](/swagger-api)
+ - [Open API](/openapi)
  - [Postman Support](/postman)
 
 Which is why we recommend formalizing your conventions you want to allow before deploying your API to production. 

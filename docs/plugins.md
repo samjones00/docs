@@ -199,21 +199,21 @@ Plugins.Add(new ServerEventsFeature());
 
 ## [Postman](/postman)
 
-The [Postman Rest Client](http://www.getpostman.com/) is a very popular and easy to use HTTP Request composer that makes it easy to call web services, similar to [Fiddler's Composer](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coUsingFiddlerCreateHTTPRequest.htm). It also provides as an alternative for auto-generating API documentation to [ServiceStack's Swagger support](/swagger-api) that makes it easier to call existing services but does require users to install the [Postman Rest Client](http://www.getpostman.com/).
+The [Postman Rest Client](http://www.getpostman.com/) is a very popular and easy to use HTTP Request composer that makes it easy to call web services, similar to [Fiddler's Composer](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coUsingFiddlerCreateHTTPRequest.htm). It also provides as an alternative for auto-generating API documentation to [ServiceStack's Open API support](/openapi) that makes it easier to call existing services but does require users to install the [Postman Rest Client](http://www.getpostman.com/).
 
 ```csharp
 Plugins.Add(new PostmanFeature());
 Plugins.Add(new CorsFeature());
 ```
 
-### [Swagger support](/swagger-api)
+### [Open API support](/openapi)
 
-Swagger support an optional add-on available in the [ServiceStack.Api.Swagger](https://nuget.org/packages/ServiceStack.Api.Swagger/) NuGet package.
+Swagger support an optional add-on available in the [ServiceStack.Api.OpenApi](https://nuget.org/packages/ServiceStack.Api.OpenApi/) NuGet package.
 
 After installing the NuGet package enable the Swagger with:
 
 ```csharp
-Plugins.Add(new SwaggerFeature());
+Plugins.Add(new OpenApiFeature());
 ```
 
 Now you can enjoy your shiny new Swagger UI at: `http://yoursite/swagger-ui/index.html`

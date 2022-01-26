@@ -890,10 +890,6 @@
         "link": "/openapi"
       },
       {
-        "text": "Swagger API",
-        "link": "/swagger-api"
-      },
-      {
         "text": "User Admin Feature",
         "link": "/admin-users"
       },
