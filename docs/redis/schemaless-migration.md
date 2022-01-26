@@ -9,7 +9,7 @@ This page runs through a typical example to show how painless typical data migra
 * [Designing a NoSQL Database using Redis](./design-nosql.md)
 * Painless data migrations using Redis and other schema-less NoSQL datastores
 
-# Painless data migrations with schema-less NoSQL datastores and Redis
+## Painless data migrations with schema-less NoSQL datastores and Redis
 
 Developing *new* greenfield database systems utilizing a RDBMS back-end is mostly a trouble-free experience. Before the system is live, you're able to easily modify a schema by nuking the entire application database, and re-creating it with automated DDL scripts that will create and populate it with test data that fits your new schema.
 
