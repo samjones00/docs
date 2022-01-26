@@ -33,7 +33,7 @@ public class MyRequestDto
 }
 ```
 
-If now the detail page of the specific service is inspected, the description configured above will be displayed on both the [Swagger UI](/swagger-api) and Metadata Detail Page:
+If now the detail page of the specific service is inspected, the description configured above will be displayed on both the [Open API](/openapi) and Metadata Detail Page:
 
 ![Metadata Detail Page](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/metadata-swagger-api.png)
 
