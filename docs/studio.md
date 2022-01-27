@@ -21,10 +21,10 @@ Then launch with:
 Or from a terminal with:
 
 ```bash
-$ app open studio6
+$ app open studio
 ```
 
-> Older .NET 5.0 v5.x of `x` and `app` dotnet tools can open with `studio` [more...](https://forums.servicestack.net/t/new-net-6-of-servicestack-studio-available/10233)
+> Older .NET 5.0 v5.x of `x` and `app` dotnet tools can open with `studio5` [more...](https://forums.servicestack.net/t/studio-desktop-app-switch/10342)
 
 ## Studio Preview
 

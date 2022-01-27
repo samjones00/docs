@@ -94,7 +94,7 @@ It does this by compiling C# down to portable binary code format called [Web Ass
 
 ### The ApiResult way
 
-The `Api(Request)` and `ApiAsync(Request)` return returns a typed `ApiResult<Response>` Value Result that encapsulates either a Typed Response or a structured API Error populated in `ResponseStatus` allowing you to handle API responses programmatically without `try/catch` handling:
+The `Api(Request)` and `ApiAsync(Request)` APIs returns a typed `ApiResult<Response>` Value Result encapsulating either a Typed Response or a structured API Error populated in `ResponseStatus` allowing you to handle API responses programmatically without `try/catch` handling:
 
 The below example code to create a new Booking:
 
