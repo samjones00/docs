@@ -7,39 +7,97 @@ Using DTOs to define your web service interface makes it possible to provide str
 
 <iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
- **ServiceStack.Client** is the primary NuGet package containing ServiceStack's 
+ **ServiceStack.Client** is the primary NuGet package containing ServiceStack's client libraries that can be included in your `.csproj` with:
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Client" Version="6.*" />`
 :::
 
-
-Alternatively you can use the [HttpClient-based JsonHttpClient](/csharp-client#jsonhttpclient) in:
+Earlier **.NET 6.0** can use the [HttpClient-based JsonHttpClient](/csharp-client#jsonhttpclient) in:
 
 ::: nuget
 `<PackageReference Include="ServiceStack.HttpClient" Version="6.*" />`
 :::
 
-These packages also contain PCL versions of the Service Clients available with support for [Xamarin.iOS, Xamarin.Android, Windows Store, WPF and Silverlight 5](https://github.com/ServiceStackApps/HelloMobile) platforms.
+### .NET 6+
 
-::: info
-If running on .NET Core we recommend using `HttpClient` ServiceClient due to .NET's `HttpWebRequest` having a suboptimal implementation wrapper over HttpClient which is much slower than the .NET Framework implementation
-:::
-
-
-## REST API
-
-All ServiceStack's C# clients share the same interfaces and are created by passing in the **Base URI** of your ServiceStack service in the clients constructor, e.g. if your ServiceStack instance was hosted on the root path `/` on the 8080 custom port:
+ServiceStack v6+ clients running on **.NET 6+** are recommended to use the [v6 JsonApiClient](/releases/v6#jsonapiclient):
 
 ```csharp
-var client = new JsonServiceClient("http://host:8080/");
+var client = new JsonApiClient(baseUri);
+```
+
+### HttpClient Factory Registration
+
+In client Apps that support it, the recommendation is to use a HttpClient Factory which can be done to register the `JsonApiClient` dependency in your App with:
+
+```csharp
+builder.Services.AddJsonApiClient(builder.Configuration["BaseUrl"]);
+```
+
+For simplification the docs will reference the substitutable & more broadly available `JsonServiceClient`.
+
+### Setup
+
+All ServiceStack's C# clients share the same interfaces and are created by passing in the **Base URI** of your ServiceStack service in the clients constructor, e.g. if your ServiceStack instance was hosted on the root path `/` on the **5001** custom port:
+
+```csharp
+var client = new JsonServiceClient("https://host:5001");
 ```
 
 Or if hosted on the `/custom` custom path:
 
 ```csharp
-var client = new JsonServiceClient("http://host/custom/");
+var client = new JsonServiceClient("https://host/custom/");
 ```
+
+## High level `Api` and `ApiAsync` methods
+
+.NET was originally conceived to use Exceptions for error control flow however there's been a tendency in modern languages & libraries to shun Exceptions and return errors as normal values, an approach we believe is a more flexible & ergonomic way to handle API responses.
+
+### The ApiResult way
+
+The new APIs simply returns a typed `ApiResult<Response>` Value Result that encapsulates either a Typed Response or a structured API Error populated in `ResponseStatus` allowing you to handle API responses programmatically without `try/catch` handling:
+
+```csharp
+var api = client.Api(new Hello { Name = name });
+if (api.Failed) 
+    Console.WriteLine($"Greeting failed! {api.error.errorMessage}");
+else
+    Console.WriteLine($"API Says: {api.response.result}"); //api.Succeeded
+```
+
+### C# Example
+
+A preview of what this looks like is visible in [Blazor WASMs Dev Model Preview](/templates-blazor-wasm#api-and-apiasync-methods) example code to create a new Booking:
+
+```csharp
+CreateBooking request = new();
+
+ApiResult<IdResponse> api = new();
+
+async Task OnSubmit()
+{
+    api = await Client.ApiAsync(request);
+
+    if (api.Succeeded)
+    {
+        await done.InvokeAsync(api.Response!);
+        request = new();
+    }
+}
+```
+
+Which despite its terseness handles both **success** and **error** API responses, **if successful** it invokes the `done()` callback notifying its parent of the new Booking API Response before resetting the Form's data model with a new Request DTO.
+
+Upon **failure** the error response is populated in `api.Error` which binds to the UI via Blazor's `<CascadingValue Value=@api.Error>` to propagate it to all its child components in order to show contextual validation errors next to their respective Input controls.
+
+
+### Available in all .NET and TypeScript Clients
+
+The new `Api` and `ApiAsync` methods is available in all .NET Service Clients, including [Service Gateway's](/service-gateway).
+
+## REST API
 
 In addition, the Service Clients provide HTTP verbs (Get, Post & PostFile, Put, Delete, Patch, etc) enabling a productive typed API for consuming ServiceStack Services with their best matching Custom Routes as seen in the examples below:
 
