@@ -67,7 +67,7 @@ Now that you're PostgreSQL instance is running, connecting with OrmLite will req
 ```
 
 ::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="5.*" />`
+`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />`
 :::
 
 Once this dependency is installed, the `OrmLiteConnectionFactory` can be used with the `PostgreSqlDialect.Provider` can be configured in the AppHost Configure method. For example.
@@ -187,7 +187,7 @@ Now that you're Aurora instance is running, connecting with OrmLite will require
 ```
 
 ::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="5.*" />`
+`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="6.*" />`
 :::
 
 Once this dependency is installed, the `OrmLiteConnectionFactory` can be used with the `MySqlDialect.Provider` can be configured in the AppHost Configure method. For example.
@@ -307,7 +307,7 @@ Now that you're MySQL instance is running, connecting with OrmLite will require 
 ```
 
 ::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="5.*" />`
+`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="6.*" />`
 :::
 
 Once this dependency is installed, the `OrmLiteConnectionFactory` can be used with the `MySqlDialect.Provider` can be configured in the AppHost Configure method. For example.
@@ -431,7 +431,7 @@ Now that you're MariaDB instance is running, connecting with OrmLite will requir
 ```
 
 ::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="5.*" />`
+`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="6.*" />`
 :::
 
 Once this dependency is installed, the `OrmLiteConnectionFactory` can be used with the `MySqlDialect.Provider` can be configured in the AppHost Configure method. For example.
@@ -556,7 +556,7 @@ If you are connecting to a new instance without a database, you'll need to creat
 ```
 
 ::: nuget
-`<PackageReference Include="ServiceStack.SqlServer" Version="5.*" />`
+`<PackageReference Include="ServiceStack.SqlServer" Version="6.*" />`
 :::
 
 Once this dependency is installed, the `OrmLiteConnectionFactory` can be used with the `SqlServerDialect.Provider` can be configured in the AppHost Configure method. For example.
@@ -665,7 +665,7 @@ Now you're your Redis nodes are ready, your AppHost can be configured to use the
 First, you'll need to install `ServiceStack.Redis` NuGet package if your application doesn't already use it.
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Redis" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Redis" Version="6.*" />`
 :::
 
 In this example, we are going to use a `PooledRedisClientManager` for our `IRedisClientsManager`. This will be responsible for creating `ICacheClient`s that our `Service`s will use to connect to the ElastiCache nodes. We will need to provide our `PooledRedisClientManager` with the nodes we have create. For example, as shown above, we created a cluster of **1 Primary** (master) and **2 Read Replicas** (slaves), these endpoint URLs can be accessed from the ElastiCache **Dashboard**.
@@ -794,7 +794,7 @@ Now you're your Memcached cluster is ready, your AppHost can be configured to us
 First, you'll need to install `ServiceStack.Caching.Memcached`:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Caching.Memcached" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Caching.Memcached" Version="6.*" />`
 :::
 
 To access the Memcached nodes from your `Service`s, you will need to register a `MemcachedClientCache` as a `ICacheClient` with the IoC container. This client has to initialized with each of the node endpoints provided by AWS. From the [ElastiCache Dashboard](https://console.aws.amazon.com/elasticache/home), click on the `nodes` on your cluster to see the node endpoint URLs. 

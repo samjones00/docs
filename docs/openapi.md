@@ -9,7 +9,7 @@ title: Open API
 [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) back-end and embeds the Swagger UI front-end in a separate plugin which is available under [OpenAPI NuGet package](http://nuget.org/packages/ServiceStack.Api.OpenApi/):
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Api.OpenApi" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Api.OpenApi" Version="6.*" />`
 :::
 
 ## Installation

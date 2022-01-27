@@ -140,7 +140,7 @@ configurations, related items, conventions, aliases, dep-free data annotation at
 PocoDynamo is contained in ServiceStack's AWS NuGet package:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Aws" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Aws" Version="6.*" />`
 :::
  
 > PocoDynamo has a 10 Tables [free-quota usage](https://servicestack.net/download#free-quotas) limit which can be unlocked with a [commercial license key](https://servicestack.net/pricing).

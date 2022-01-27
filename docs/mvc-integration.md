@@ -8,7 +8,7 @@ title: MVC Integration
 You can easily add ServiceStack to any ASP.NET MVC project by getting it from NuGet with:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Mvc" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Mvc" Version="6.*" />`
 :::
 
 This install ServiceStack with additional (and optional) integration support for MVC letting you use ServiceStack's IOC to initialize MVC controllers or create MVC Controllers with built-in access to ServiceStack's components.

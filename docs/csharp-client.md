@@ -7,18 +7,17 @@ Using DTOs to define your web service interface makes it possible to provide str
 
 <iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-**Note**: you have to install the NuGet package **ServiceStack.Client** in your client project, e.g. with the following command in the package manager console:
+ **ServiceStack.Client** is the primary NuGet package containing ServiceStack's 
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Client" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Client" Version="6.*" />`
 :::
-
 
 
 Alternatively you can use the [HttpClient-based JsonHttpClient](/csharp-client#jsonhttpclient) in:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.HttpClient" Version="5.*" />`
+`<PackageReference Include="ServiceStack.HttpClient" Version="6.*" />`
 :::
 
 These packages also contain PCL versions of the Service Clients available with support for [Xamarin.iOS, Xamarin.Android, Windows Store, WPF and Silverlight 5](https://github.com/ServiceStackApps/HelloMobile) platforms.
@@ -820,7 +819,7 @@ As .NET's HttpClient only supports async APIs it needs to use "sync over async" 
 JsonHttpClient can be downloaded from NuGet at:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.HttpClient" Version="5.*" />`
+`<PackageReference Include="ServiceStack.HttpClient" Version="6.*" />`
 :::
 
 ### Xamarin Native HttpClient
@@ -900,7 +899,7 @@ Whilst the list below contain the built-in clients based on .NET's built-in `Htt
 The HttpWebRequest clients above are available in:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Client" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Client" Version="6.*" />`
 :::
 
 # Community Resources

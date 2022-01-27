@@ -11,37 +11,37 @@ Currently there are 5 different .NET logging providers available on NuGet:
 #### [NLog](https://nuget.org/packages/ServiceStack.Logging.NLog)
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.NLog" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.NLog" Version="6.*" />`
 :::
 
 #### [Elmah](https://nuget.org/packages/ServiceStack.Logging.Elmah)
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.Elmah" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.Elmah" Version="6.*" />`
 :::
 
 #### [Log4Net](https://nuget.org/packages/ServiceStack.Logging.Log4Net)
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.Log4Net" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.Log4Net" Version="6.*" />`
 :::
 
 #### [EventLog](https://nuget.org/packages/ServiceStack.Logging.EventLog)
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.EventLog" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.EventLog" Version="6.*" />`
 :::
 
 #### [SlackLog](https://www.nuget.org/packages/ServiceStack.Logging.Slack/)
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.Slack" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.Slack" Version="6.*" />`
 :::
 
 #### [SerilogLogger](https://www.nuget.org/packages/ServiceStack.Logging.Serilog/)
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.Serilog" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.Serilog" Version="6.*" />`
 :::
 
 ::: info
@@ -222,7 +222,7 @@ More usage examples are available in [SlackLogFactoryTests](https://github.com/S
 To Configure Serilog Logging, first download [ServiceStack.Logging.Serilog](https://www.nuget.org/packages/ServiceStack.Logging.Serilog) from NuGet:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Logging.Serilog" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Logging.Serilog" Version="6.*" />`
 :::
 
 Then configure ServiceStack to use `SerilogFactory`:

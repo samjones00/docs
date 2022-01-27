@@ -14,7 +14,7 @@ run and explore all ServiceStack.Text features from the comfort of your browser 
 ## Install ServiceStack.Text
 
 ::: nuget
-`<PackageReference Include="ServiceStack.Text" Version="5.*" />`
+`<PackageReference Include="ServiceStack.Text" Version="6.*" />`
 :::
 
 ## Simple API

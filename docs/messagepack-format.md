@@ -14,7 +14,7 @@ MsgPack is a great addition to your ServiceStack's web services as it has [simil
 Message Pack is easily installed with the [ServiceStack.MsgPack](https://nuget.org/packages/ServiceStack.MsgPack) NuGet package:
 
 ::: nuget
-`<PackageReference Include="ServiceStack.MsgPack" Version="5.*" />`
+`<PackageReference Include="ServiceStack.MsgPack" Version="6.*" />`
 :::
 
 After the NuGet Package is added to your Project, enable the MsgPack format in your `AppHost` with:
