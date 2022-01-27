@@ -142,21 +142,6 @@ rest of your ASP.NET Core and MVC Application where it enables the following pop
  - [Using IdentityServer4 Auth in ServiceStack](/authentication-identityserver) - Use IdentityServer4 to Authenticate ASP.NET Core and ServiceStack Services, 
 pre-configured in the [mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver) project template.
 
-### Legacy OAuth and Open ID Auth Providers
-
-There are also a number Auth Providers have a dependency on `DotNetOpenAuth` that can only be used in classic ASP.NET System.Web projects:
-
-| Provider          | Class Name                   | Route                    | Create OAuth App Link |
-|-|-|-|-|
-| **Instagram**     | `InstagramOAuth2Provider`    | **/auth/instagram**      | [instagram.com/developer/authentication](http://instagram.com/developer/authentication/) |
-| **Custom OpenId** | `OpenIdOAuthProvider`        | **/auth/openid**         | |
-| **My OpenId**     | `MyOpenIdOAuthProvider`      | **/auth/myopenid**       | |
-| **Yahoo OpenId**  | `YahooOpenIdOAuthProvider`   | **/auth/yahooopenid**    | |
-
-
-The OAuth2 Providers are in [ServiceStack.Authentication.OAuth2](https://www.nuget.org/packages/ServiceStack.Authentication.OAuth2/) whilst the Open ID providers 
-are in [ServiceStack.Authentication.OpenId](https://www.nuget.org/packages/ServiceStack.Authentication.OpenId/) NuGet packages. More info available in [OAuth2 and OpenId 2.0 docs](/auth-openid). Although they should be considered legacy as DotNetOpenAuth is no longer maintained and can't be used in ASP.NET Core projects.
-
 ### Community Auth Providers
 
   - [Azure Active Directory](https://github.com/jfoshee/ServiceStack.Authentication.Aad) - Allow Custom App to login with Azure Active Directory

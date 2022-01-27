@@ -310,10 +310,6 @@
         "link": "/signin-with-apple"
       },
       {
-        "text": "Open Id 2.0 Support",
-        "link": "/openid"
-      },
-      {
         "text": "Restricting Services",
         "link": "/restricting-services"
       },
