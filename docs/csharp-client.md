@@ -62,9 +62,9 @@ The new APIs simply returns a typed `ApiResult<Response>` Value Result that enca
 ```csharp
 var api = client.Api(new Hello { Name = name });
 if (api.Failed) 
-    Console.WriteLine($"Greeting failed! {api.error.errorMessage}");
+    Console.WriteLine($"Greeting failed! {api.Error.ErrorMessage}");
 else
-    Console.WriteLine($"API Says: {api.response.result}"); //api.Succeeded
+    Console.WriteLine($"API Says: {api.Response.Result}"); //api.Succeeded
 ```
 
 ### C# Example
