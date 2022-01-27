@@ -116,10 +116,18 @@
     ]
   },
   {
-    "text": "ServiceStack Studio",
+    "text": "UIs",
     "children": [
       {
-        "text": "Overview",
+        "text": "API Explorer",
+        "link": "/api-explorer"
+      },
+      {
+        "text": "Admin UI",
+        "link": "/admin-ui"
+      },
+      {
+        "text": "Studio",
         "link": "/studio"
       },
       {
