@@ -323,13 +323,13 @@ We know what needs to be done, but how best to do it in Blazor WASM? Unfortunate
 isn't actually a prerendering solution, as is typically used to describe
 [Static Site Generators (SSG)](https://www.netlify.com/blog/2020/04/14/what-is-a-static-site-generator-and-3-ways-to-find-the-best-one/)
 prerendering static content at build-time, whilst Blazor WASM prerendering docs instead describes
-a [Server-Side-Rendering (SSR)](https://www.omnisci.com/technical-glossary/server-side-renderings) solution mandating the additional 
+a [Server-Side-Rendering (SSR)](https://www.omnisci.com/technical-glossary/server-side-rendering) solution mandating the additional 
 complexity of maintaining your Apps dependencies in both client and server projects. Unfortunately this approach also wont yield an 
 optimal result since prerendering is typically used so Apps can host their SSG content on static file hosts, instead SSR does the 
 opposite whose forced runtime coupling to the .NET Server Host prohibits Blazor WASM Apps from being served from a CDN.
 
-As this defeats [many of the benefits](hosting) of a Blazor WASM Jamstack App in the first place, we've instead opted for a more optimal 
-solution that doesn't compromise its CDN hostability.
+As this defeats [many of the benefits](https://blazor-wasm.jamstacks.net/docs/hosting) of a Blazor WASM Jamstack App in the first place, 
+we've instead opted for a more optimal solution that doesn't compromise its CDN hostability.
 
 ### Increasing Perceived Performance
 
