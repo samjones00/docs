@@ -4,6 +4,9 @@
   "start_urls": [
     {
       "url": "https://docs.servicestack.net/"
+    },
+    {
+      "url": "https://docs.servicestack.net/redis/"
     }
   ],
   "stop_urls": ["https://docs.servicestack.net/release*"],
