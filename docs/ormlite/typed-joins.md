@@ -1,0 +1,203 @@
+---
+title: Typed SqlExpression support for JOINs
+---
+
+Starting with the most basic example you can simply specify the table you want to join with:
+
+```csharp
+var q = db.From<Customer>()
+          .Join<CustomerAddress>();
+
+var dbCustomers = db.Select<Customer>(q);
+```
+
+This query roughly maps to the following SQL:
+
+```sql
+SELECT Customer.* 
+  FROM Customer 
+       INNER JOIN 
+       CustomerAddress ON (Customer.Id == CustomerAddress.CustomerId)
+```
+
+Just like before `q` is an instance of `SqlExpression<Customer>` which is bounded to the base `Customer` type (and what any subsequent implicit API's apply to).
+
+To better illustrate the above query, lets expand it to the equivalent explicit query:
+
+```csharp
+SqlExpression<Customer> q = db.From<Customer>();
+q.Join<Customer,CustomerAddress>((cust,address) => cust.Id == address.CustomerId);
+
+List<Customer> dbCustomers = db.Select(q);
+```
+
+## Reference Conventions
+
+The above query implicitly joins together the `Customer` and `CustomerAddress` POCO's using the same `{ParentType}Id` property convention used in [OrmLite's support for References](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/LoadReferencesTests.cs), e.g:
+
+```csharp
+class Customer {
+    public int Id { get; set; }
+    ...
+}
+class CustomerAddress {
+    public int Id { get; set; }
+    public int CustomerId { get; set; }  // Reference based on Property name convention
+}
+```
+
+References based on matching alias names is also supported, e.g:
+
+```csharp
+[Alias("LegacyCustomer")]
+class Customer {
+    public int Id { get; set; }
+    ...
+}
+class CustomerAddress {
+    public int Id { get; set; }
+
+    [Alias("LegacyCustomerId")]             // Matches `LegacyCustomer` Alias
+    public int RenamedCustomerId { get; set; }  // Reference based on Alias Convention
+}
+```
+
+## Self References
+
+Self References are also supported for **1:1** relations where the Foreign Key can instead be on the parent table:
+
+```csharp
+public class Customer
+{
+    ...
+    public int CustomerAddressId { get; set; }
+
+    [Reference]
+    public CustomerAddress PrimaryAddress { get; set; }
+}
+```
+
+## Foreign Key and References Attributes
+
+References that don't follow the above naming conventions can be declared explicitly using
+the `[References]` and `[ForeignKey]` attributes:
+
+```csharp
+public class Customer
+{
+    [References(typeof(CustomerAddress))]
+    public int PrimaryAddressId { get; set; }
+
+    [Reference]
+    public CustomerAddress PrimaryAddress { get; set; }
+}
+```
+
+::: info
+Reference Attributes take precedence over naming conventions
+:::
+
+### Multiple Self References
+
+The example below shows a customer with multiple `CustomerAddress` references which are able to be matched with
+the `{PropertyReference}Id` naming convention, e.g:
+
+```csharp
+public class Customer
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    [References(typeof(CustomerAddress))]
+    public int? HomeAddressId { get; set; }
+
+    [References(typeof(CustomerAddress))]
+    public int? WorkAddressId { get; set; }
+
+    [Reference]
+    public CustomerAddress HomeAddress { get; set; }
+
+    [Reference]
+    public CustomerAddress WorkAddress { get; set; }
+}
+```
+
+Once defined, it can be saved and loaded via OrmLite's normal Reference and Select API's, e.g:
+
+```csharp
+var customer = new Customer
+{
+    Name = "The Customer",
+    HomeAddress = new CustomerAddress {
+        Address = "1 Home Street",
+        Country = "US"
+    },
+    WorkAddress = new CustomerAddress {
+        Address = "2 Work Road",
+        Country = "UK"
+    },
+};
+
+db.Save(customer, references:true);
+
+var c = db.LoadSelect<Customer>(x => x.Name == "The Customer");
+c.WorkAddress.Address.Print(); // 2 Work Road
+
+var ukAddress = db.Single<CustomerAddress>(x => x.Country == "UK");
+ukAddress.Address.Print();     // 2 Work Road
+```
+
+## Implicit Reference Conventions are applied by default
+
+The implicit relationship above allows you to use any of these equivalent APIs to JOIN tables:
+
+```csharp
+q.Join<CustomerAddress>();
+q.Join<Customer,CustomerAddress>();
+q.Join<Customer,CustomerAddress>((cust,address) => cust.Id == address.CustomerId);
+```
+
+## Selecting multiple columns across joined tables
+
+The `SelectMulti` API lets you select from multiple joined tables into a typed tuple
+
+```csharp
+var q = db.From<Customer>()
+    .Join<Customer, CustomerAddress>()
+    .Join<Customer, Order>()
+    .Where(x => x.CreatedDate >= new DateTime(2016,01,01))
+    .And<CustomerAddress>(x => x.Country == "Australia");
+
+var results = db.SelectMulti<Customer, CustomerAddress, Order>(q);
+
+foreach (var tuple in results)
+{
+    Customer customer = tuple.Item1;
+    CustomerAddress custAddress = tuple.Item2;
+    Order custOrder = tuple.Item3;
+}
+```
+
+Thanks to Micro ORM's lightweight abstractions over ADO.NET that maps to clean POCOs, we can also use
+OrmLite's embedded version of [Dapper's QueryMultiple](http://stackoverflow.com/a/37420341/85785):
+
+```csharp
+var q = db.From<Customer>()
+    .Join<Customer, CustomerAddress>()
+    .Join<Customer, Order>()
+    .Select("*");
+
+using (var multi = db.QueryMultiple(q.ToSelectStatement()))
+{
+    var results = multi.Read<Customer, CustomerAddress, Order, 
+        Tuple<Customer,CustomerAddress,Order>>(Tuple.Create).ToList();
+
+    foreach (var tuple in results)
+    {
+        Customer customer = tuple.Item1;
+        CustomerAddress custAddress = tuple.Item2;
+        Order custOrder = tuple.Item3;
+    }
+}
+```

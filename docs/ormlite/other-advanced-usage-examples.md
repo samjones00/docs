@@ -1,0 +1,247 @@
+---
+title: OrmLite Advanced Usage Examples
+---
+
+OrmLite includes support for [SQL Check Constraints](https://en.wikipedia.org/wiki/Check_constraint) which will create your Table schema with the `[CheckConstraint]` specified, e.g:
+
+```csharp
+public class Table
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+
+    [Required]
+    [CheckConstraint("Age > 1")]
+    public int Age { get; set; }
+
+    [CheckConstraint("Name IS NOT NULL")]
+    public string Name { get; set; }
+}
+```
+
+### Bitwise operators
+
+The Typed SqlExpression bitwise operations support depends on the RDBMS used.
+
+E.g. all RDBMS's support Bitwise `And` and `Or` operators:
+
+```csharp
+db.Select<Table>(x => (x.Flags | 2) == 3);
+db.Select<Table>(x => (x.Flags & 2) == 2);
+```
+
+All RDBMS Except for SQL Server support bit shift operators:
+
+```csharp
+db.Select<Table>(x => (x.Flags << 1) == 4);
+db.Select<Table>(x => (x.Flags >> 1) == 1);
+```
+
+Whilst only SQL Server and MySQL Support Exclusive Or:
+
+```csharp
+db.Select<Table>(x => (x.Flags ^ 2) == 3);
+```
+
+## SQL Server Features
+
+### Memory Optimized Tables
+
+OrmLite allows access to many advanced SQL Server features including
+[Memory-Optimized Tables](https://msdn.microsoft.com/en-us/library/dn133165.aspx) where you can tell
+SQL Server to maintain specific tables in Memory using the `[SqlServerMemoryOptimized]` attribute, e.g:
+
+```csharp
+[SqlServerMemoryOptimized(SqlServerDurability.SchemaOnly)]
+public class SqlServerMemoryOptimizedCacheEntry : ICacheEntry
+{
+    [PrimaryKey]
+    [StringLength(StringLengthAttribute.MaxText)]
+    [SqlServerBucketCount(10000000)]
+    public string Id { get; set; }
+    [StringLength(StringLengthAttribute.MaxText)]
+    public string Data { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime? ExpiryDate { get; set; }
+    public DateTime ModifiedDate { get; set; }
+}
+```
+
+The `[SqlServerBucketCount]` attribute can be used to
+[configure the bucket count for a hash index](https://msdn.microsoft.com/en-us/library/mt706517.aspx#configuring_bucket_count)
+whilst the new `[SqlServerCollate]` attribute can be used to specify an SQL Server collation.
+
+## PostgreSQL Features
+
+### PostgreSQL Rich Data Types
+
+The `[PgSql*]` specific attributes lets you use attributes to define PostgreSQL rich data types, e.g:
+
+```csharp
+public class MyPostgreSqlTable
+{
+    [PgSqlJson]
+    public List<Poco> AsJson { get; set; }
+
+    [PgSqlJsonB]
+    public List<Poco> AsJsonB { get; set; }
+
+    [PgSqlTextArray]
+    public string[] AsTextArray { get; set; }
+
+    [PgSqlIntArray]
+    public int[] AsIntArray { get; set; }
+
+    [PgSqlBigIntArray]
+    public long[] AsLongArray { get; set; }
+}
+```
+
+By default all arrays of .NET's built-in **numeric**, **string** and **DateTime** types will be stored in PostgreSQL array types:
+
+```csharp
+public class Table
+{
+    public Guid Id { get; set; }
+
+    public int[] Ints { get; set; }
+    public long[] Longs { get; set; }
+    public float[] Floats { get; set; }
+    public double[] Doubles { get; set; }
+    public decimal[] Decimals { get; set; }
+    public string[] Strings { get; set; }
+    public DateTime[] DateTimes { get; set; }
+    public DateTimeOffset[] DateTimeOffsets { get; set; }
+}
+```
+
+You can opt-in to annotate other collections like `List<T>` to also be stored in array types by annotating them with `[Pgsql*]` attributes, e.g:
+
+```csharp
+public class Table
+{
+    public Guid Id { get; set; }
+
+    [PgSqlIntArray]
+    public List<int> ListInts { get; set; }
+    [PgSqlBigIntArray]
+    public List<long> ListLongs { get; set; }
+    [PgSqlFloatArray]
+    public List<float> ListFloats { get; set; }
+    [PgSqlDoubleArray]
+    public List<double> ListDoubles { get; set; }
+    [PgSqlDecimalArray]
+    public List<decimal> ListDecimals { get; set; }
+    [PgSqlTextArray]
+    public List<string> ListStrings { get; set; }
+    [PgSqlTimestamp]
+    public List<DateTime> ListDateTimes { get; set; }
+    [PgSqlTimestampTz]
+    public List<DateTimeOffset> ListDateTimeOffsets { get; set; }
+}
+```
+
+Alternatively if you **always** want `List<T>` stored in Array types, you can register them in the `PostgreSqlDialect.Provider`:
+
+```csharp
+PostgreSqlDialect.Provider.RegisterConverter<List<string>>(new PostgreSqlStringArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<int>>(new PostgreSqlIntArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<long>>(new PostgreSqlLongArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<float>>(new PostgreSqlFloatArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<double>>(new PostgreSqlDoubleArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<decimal>>(new PostgreSqlDecimalArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<DateTime>>(new PostgreSqlDateTimeTimeStampArrayConverter());
+PostgreSqlDialect.Provider.RegisterConverter<List<DateTimeOffset>>(new PostgreSqlDateTimeOffsetTimeStampTzArrayConverter());
+```
+
+### PostgreSQL Params
+
+The `PgSql.Param()` API provides a resolve the correct populated `NpgsqlParameter` and `NpgsqlDbType` from a C# Type
+which can be used to query custom PostgreSQL Data Types in APIs that accept `IDbDataParameter` parameters, e.g:
+
+```csharp
+public class FunctionResult
+{
+    public int[] Val { get; set; }
+}
+
+var p = PgSql.Param("paramValue", testVal);
+var sql = "SELECT * FROM my_func(@paramValue)";
+var rows = db.Select<FunctionResult>(sql, new [] { p });
+```
+
+### Hstore support
+
+To use `hstore`, its extension needs to be enabled in your PostgreSQL RDBMS by running:
+
+    CREATE EXTENSION hstore;
+
+Which can then be enabled in OrmLite with:
+
+```csharp
+PostgreSqlDialect.Instance.UseHstore = true;
+```
+
+Where it will now store **string Dictionaries** in `Hstore` columns:
+
+```csharp
+public class TableHstore
+{
+    public int Id { get; set; }
+
+    public Dictionary<string,string> Dictionary { get; set; }
+    public IDictionary<string,string> IDictionary { get; set; }
+}
+
+db.DropAndCreateTable<TableHstore>();
+
+db.Insert(new TableHstore
+{
+    Id = 1,
+    Dictionary = new Dictionary<string, string> { {"A", "1"} },
+    IDictionary = new Dictionary<string, string> { {"B", "2"} },
+});
+```
+
+Where they can than be queried in postgres using [Hstore SQL Syntax](https://www.postgresql.org/docs/9.0/hstore.html):
+
+```csharp
+db.Single(db.From<PostgreSqlTypes>().Where("dictionary -> 'A' = '1'")).Id //= 1
+```
+
+Thanks to [@cthames](https://forums.servicestack.net/users/cthames/activity) for this feature.
+
+### JSON data types
+
+If you instead wanted to store arbitrary complex types in PostgreSQL's rich column types to enable deep querying in postgres,
+you'd instead annotate them with `[PgSqlJson]` or `[PgSqlJsonB]`, e.g:
+
+```csharp
+public class TableJson
+{
+    public int Id { get; set; }
+
+    [PgSqlJson]
+    public ComplexType ComplexTypeJson { get; set; }
+
+    [PgSqlJsonB]
+    public ComplexType ComplexTypeJsonb { get; set; }
+}
+
+db.Insert(new TableJson
+{
+    Id = 1,
+    ComplexTypeJson = new ComplexType {
+        Id = 2, SubType = new SubType { Name = "JSON" }
+    },
+    ComplexTypeJsonb = new ComplexType {
+        Id = 3, SubType = new SubType { Name = "JSONB" }
+    },
+});
+```
+
+Where they can then be queried on the server with [JSON SQL Syntax and functions](https://www.postgresql.org/docs/9.3/functions-json.html):
+
+```csharp
+var result = db.Single<TableJson>("table_json->'SubType'->>'Name' = 'JSON'");
+```
