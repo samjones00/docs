@@ -7,15 +7,15 @@
         "link": "/ormlite/"
       },
       {
-        "text": "OrmLite Getting Started",
+        "text": "Getting Started",
         "link": "/ormlite/getting-started"
       },
       {
-        "text": "OrmLite API Examples",
+        "text": "API Examples",
         "link": "/ormlite/ormlite-apis"
       },
       {
-        "text": "OrmLite Async API",
+        "text": "Async API",
         "link": "/ormlite/async-api"
       }
     ]
@@ -24,51 +24,51 @@
     "text": "OrmLite - Advanced",
     "children": [
       {
-        "text": "OrmLite Ensure APIs",
+        "text": "Ensure APIs",
         "link": "/ormlite/ensure-apis"
       },
       {
-        "text": "OrmLite Nested Typed Sub SqlExpressions",
+        "text": "Nested Types",
         "link": "/ormlite/nested-typed-sub-sqlexpressions"
       },
       {
-        "text": "OrmLite Typed Join Expressions",
+        "text": "Typed Join Expressions",
         "link": "/ormlite/typed-joins"
       },
       {
-        "text": "OrmLite Dynamic Result Sets",
+        "text": "Dynamic Result Sets",
         "link": "/ormlite/dynamic-result-sets"
       },
       {
-        "text": "OrmLite Reference Support",
+        "text": "Reference Support",
         "link": "/ormlite/reference-support"
       },
       {
-        "text": "OrmLite Schema Commands",
+        "text": "Schema Commands",
         "link": "/ormlite/schema-commands"
       },
       {
-        "text": "OrmLite Logging & Introspection",
+        "text": "Logging & Introspection",
         "link": "/ormlite/logging-and-introspection"
       },
       {
-        "text": "OrmLite Filters",
+        "text": "Filters",
         "link": "/ormlite/filters"
       },
       {
-        "text": "OrmLite Type Converters",
+        "text": "Type Converters",
         "link": "/ormlite/type-converters"
       },
       {
-        "text": "OrmLite SqlExpressions with Custom SQL APIs",
+        "text": "SqlExpressions & Custom SQL",
         "link": "/ormlite/typed-sqlexpression-custom-sql"
       },
       {
-        "text": "OrmLite SQL Server Features",
+        "text": "SQL Server Features",
         "link": "/ormlite/sql-server-features"
       },
       {
-        "text": "OrmLite PostgreSQL Features",
+        "text": "PostgreSQL Features",
         "link": "/ormlite/postgres-features"
       }
     ]
@@ -81,15 +81,15 @@
         "link": "/ormlite/optimistic-concurrency"
       },
       {
-        "text": "OrmLite SQL Customizations",
+        "text": "SQL Customizations",
         "link": "/ormlite/custom-sql"
       },
       {
-        "text": "OrmLite Untyped API support & T4 templates",
+        "text": "Untyped APIs & T4 templates",
         "link": "/ormlite/untyped-api-and-t4"
       },
       {
-        "text": "Stored Procedures with output params",
+        "text": "Stored Procedures",
         "link": "/ormlite/stored-procedures"
       },
       {
@@ -101,7 +101,7 @@
         "link": "/ormlite/walk-through-example"
       },
       {
-        "text": "OrmLite Limitations",
+        "text": "Limitations",
         "link": "/ormlite/limitations"
       }
     ]

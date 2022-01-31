@@ -1,5 +1,5 @@
 ---
-title: Logging and Introspection utilities
+title: OrmLite Logging and Introspection
 ---
 
 One way to see what queries OrmLite generates is to enable a **debug** enabled logger, e.g:
