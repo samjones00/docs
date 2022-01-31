@@ -43,7 +43,7 @@ module.exports = {
         }
     },
     head: [
-        ['script', { src: 'custom.js' }],
+        ['script', { src: '/custom.js' }],
     ],
     markdown: {
         config: md => {
