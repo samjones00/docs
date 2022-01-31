@@ -7,6 +7,9 @@
     },
     {
       "url": "https://docs.servicestack.net/redis/"
+    },
+    {
+      "url": "https://docs.servicestack.net/ormlite/"
     }
   ],
   "stop_urls": ["https://docs.servicestack.net/release*"],
