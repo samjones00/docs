@@ -43,7 +43,12 @@ $ x mix firebird
 $ x mix marten
 ```
 
-
+::: info
+If you don't have the dotnet `x` tool installed, it can be installed using the command: 
+```bash
+dotnet tool install -g x
+```
+:::
 
 ## SQL Server Versions
 
