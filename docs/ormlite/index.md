@@ -34,45 +34,82 @@ level public properties.
 
 ## Download
 
-Install the NuGet package for your RDBMS Provider, e.g:
+Install the NuGet package for your RDBMS Provider via NuGet or adding a Package Reference, e.g:
 
-```
-$ dotnet add package ServiceStack.OrmLite.PostgreSQL
-```
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />`
+:::
 
-Package Reference:
-
-```xml
-<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.*" />
-```
 
 ## OrmLite RDBMS Providers
 
-- [ServiceStack.OrmLite.PostgreSQL](http://nuget.org/List/Packages/ServiceStack.OrmLite.PostgreSQL)
-- [ServiceStack.OrmLite.SqlServer](http://nuget.org/List/Packages/ServiceStack.OrmLite.SqlServer)
-- [ServiceStack.OrmLite.SqlServer.Data](http://nuget.org/List/Packages/ServiceStack.OrmLite.SqlServer.Data) (uses [Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/))
-- [ServiceStack.OrmLite.Sqlite](http://nuget.org/packages/ServiceStack.OrmLite.Sqlite)
-- [ServiceStack.OrmLite.Sqlite.Data](http://nuget.org/packages/ServiceStack.OrmLite.Sqlite.Data) (uses [Microsoft.Data.SQLite](https://stackoverflow.com/a/52025556/85785))
-- [ServiceStack.OrmLite.Sqlite.Cil](http://nuget.org/packages/ServiceStack.OrmLite.Sqlite.Cil) (uses [Uses SQLitePCLRaw.bundle_cil](https://ericsink.com/entries/sqlite_llama_preview.html))
-- [ServiceStack.OrmLite.Sqlite.Windows](http://nuget.org/packages/ServiceStack.OrmLite.Sqlite.Windows) (Windows / .NET Framework only)
-- [ServiceStack.OrmLite.MySql](http://nuget.org/List/Packages/ServiceStack.OrmLite.MySql)
-- [ServiceStack.OrmLite.MySqlConnector](http://nuget.org/List/Packages/ServiceStack.OrmLite.MySqlConnector) (uses [MySqlConnector](https://github.com/mysql-net/MySqlConnector))
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.SqlServer.Data" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Data" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Cil" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Windows" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.MySqlConnector" Version="6.*" />`
+:::
 
 These packages contain **.NET Framework v4.7.2**, **.NET Standard 2.0**, and .NET 6 versions and supports both .NET Framework and .NET Core projects.
 
 The `.Core` packages contains only **.NET Standard 2.0** versions which can be used in ASP.NET Core Apps running on the .NET Framework:
 
-- [ServiceStack.OrmLite.SqlServer.Core](http://nuget.org/List/Packages/ServiceStack.OrmLite.SqlServer.Core)
-- [ServiceStack.OrmLite.PostgreSQL.Core](http://nuget.org/List/Packages/ServiceStack.OrmLite.PostgreSQL.Core)
-- [ServiceStack.OrmLite.MySql.Core](http://nuget.org/List/Packages/ServiceStack.OrmLite.MySql.Core)
-- [ServiceStack.OrmLite.Sqlite.Core](http://nuget.org/packages/ServiceStack.OrmLite.Sqlite.Core)
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.SqlServer.Core" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL.Core" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.MySql.Core" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Core" Version="6.*" />`
+:::
 
 ### Community Providers
 
 Unofficial Releases maintained by ServiceStack Community:
 
-- [ServiceStack.OrmLite.Oracle](http://nuget.org/packages/ServiceStack.OrmLite.Oracle)
-- [ServiceStack.OrmLite.Firebird](http://nuget.org/List/Packages/ServiceStack.OrmLite.Firebird)
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Oracle" Version="6.*" />`
+:::
+
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.Firebird" Version="6.*" />`
+:::
 
 ## Getting Started with OrmLite and AWS RDS
 

@@ -4,9 +4,9 @@ title: Getting started with OrmLite
 
 First Install the NuGet package of the RDBMS you want to use, e.g:
 
-```
-PM> Install-Package ServiceStack.OrmLite.SqlServer
-```
+::: nuget
+`<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.*" />`
+:::
 
 Each RDBMS includes a specialized dialect provider that encapsulated the differences in each RDBMS
 to support OrmLite features. The available Dialect Providers for each RDBMS is listed below:
@@ -19,6 +19,31 @@ MySqlDialect.Provider          // MySql
 OracleDialect.Provider         // Oracle
 FirebirdDialect.Provider       // Firebird
 ```
+
+## Quickstart using `x mix`
+
+If you already have a .NET+ ASP.NET project, you can use the [ServiceStack dotnet tool `x`](../dotnet-tool) to `mix` in pre-configured modules for your database of choice.
+For example for SQL Server:
+
+```bash
+$ x mix sqlserver 
+```
+
+We have mix templates for all OrmLite's supported database vendors.
+
+```bash
+$ x mix postgres
+$ x mix mysql
+$ x mix sqlite
+$ x mix dynamodb
+$ x mix ravendb
+$ x mix oracle
+$ x mix mongodb
+$ x mix firebird
+$ x mix marten
+```
+
+
 
 ## SQL Server Versions
 
