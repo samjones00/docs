@@ -17,7 +17,7 @@ ServiceStack Auth supports using your own persistence back-ends but for the most
 
 #### Registering an Auth Repository
 
-The `OrmLiteAuthRepository` is the most common Auth Repository which will let you persist User Info in any of the [RDBMS's that OrmLite supports](https://github.com/ServiceStack/ServiceStack.OrmLite#8-flavours-of-ormlite-is-on-nuget). All Auth Repositories are registered by adding a `IAuthRepository` dependency in your IOC, e.g:
+The `OrmLiteAuthRepository` is the most common Auth Repository which will let you persist User Info in any of the [RDBMS's that OrmLite supports](/ormlite/#ormlite-rdbms-providers). All Auth Repositories are registered by adding a `IAuthRepository` dependency in your IOC, e.g:
 
 ```csharp
 container.Register<IDbConnectionFactory>(c =>

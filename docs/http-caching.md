@@ -143,7 +143,7 @@ Caching Validator. You can use any opaque string for the `ETag` that uniquely re
 response that you can use to determine what version the client has, which could be an MD5 or SHA Hash of
 the response but can also be a unique version string. E.g. Adding a `RowVersion` property to your OrmLite 
 POCO Data Models turns on 
-[OrmLite's Optimistic Concurrency](https://github.com/ServiceStack/ServiceStack.OrmLite#optimistic-concurrency)
+[OrmLite's Optimistic Concurrency](/ormlite/optimistic-concurrency)
 feature where each time a record is modified it's automatically populated with a new version, these 
 characteristics makes it ideal for use as an ETag which we can just return as a string:
 

@@ -53,7 +53,7 @@ MQ hosts.
 Its design and simplicity focus offers an unparalleled suite of productivity features that can be declaratively enabled 
 without code, from creating fully queryable Web API's with just a single Typed Request DTO with
 [Auto Query](/autoquery) supporting 
-[every major RDBMS](https://github.com/ServiceStack/ServiceStack.OrmLite#8-flavours-of-ormlite-is-on-nuget) 
+[every major RDBMS](/ormlite/#ormlite-rdbms-providers) 
 to the built-in support for
 [Auto Batched Requests](/auto-batched-requests) 
 or effortlessly enabling rich [HTTP Caching](/http-caching) and

@@ -34,7 +34,7 @@ Plugins.Add(new AutoQueryDataFeature { MaxLimit = 100 }
 
 The implementation of `GetTodaysUserActivity` Service uses an async OrmLite RDBMS call to get all User Logins 
 within the last day, fetches the Live Activity data from Redis, then 
-[merges the disconnected POCO result sets](https://github.com/ServiceStack/ServiceStack.OrmLite#merge-disconnected-poco-result-sets)
+[merges the disconnected POCO result sets](/ormlite/reference-support#merge-disconnected-poco-result-sets)
 into the `UserLogin` POCO which it returns:
 
 ```csharp

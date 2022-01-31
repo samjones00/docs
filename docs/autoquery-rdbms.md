@@ -3,7 +3,7 @@ slug: autoquery-rdbms
 title: AutoQuery RDBMS
 ---
 
-AutoQuery RDBMS enables the rapid development of high-performance, fully-queryable typed RDBMS data-driven services with just a POCO Request DTO class definition and [supports most major RDBMS](https://github.com/ServiceStack/ServiceStack.OrmLite#8-flavours-of-ormlite-is-on-nuget) courtesy of building on [OrmLite's high-performance RDBMS-agnostic API's](https://github.com/ServiceStack/ServiceStack.OrmLite).
+AutoQuery RDBMS enables the rapid development of high-performance, fully-queryable typed RDBMS data-driven services with just a POCO Request DTO class definition and [supports most major RDBMS](/ormlite/#ormlite-rdbms-providers) courtesy of building on [OrmLite's high-performance RDBMS-agnostic API's](https://github.com/ServiceStack/ServiceStack.OrmLite).
 
 ### AutoQuery Services are ServiceStack Services
 
@@ -1481,7 +1481,7 @@ Northwind database viewer, showing how to easily expose read and cached view ser
 
  - [AutoQuery](/autoquery)
    - [Northwind AutoQuery DTOs](https://github.com/ServiceStackApps/Northwind/blob/master/src/Northwind/Northwind.ServiceModel/AutoQuery.cs)
-   - [OrmLite Sqlite](https://github.com/ServiceStack/ServiceStack.OrmLite#download)
+   - [OrmLite Sqlite](/ormlite/#download)
 
 ## [StackApis](https://github.com/ServiceStackApps/StackApis)
 
@@ -1495,7 +1495,7 @@ AngularJS Single Page App leveraging AutoQuery in <50 lines of JavaScript + 1 Au
 
  - [AutoQuery](/autoquery)
    - [StackApis AutoQuery DTO](https://github.com/ServiceStackApps/StackApis#stackapis-autoquery-service)
-   - [OrmLite Sqlite](https://github.com/ServiceStack/ServiceStack.OrmLite#download)
+   - [OrmLite Sqlite](/ormlite/#download)
 
 ## [AutoQuery Viewer](https://github.com/ServiceStackApps/AutoQueryViewer)
 

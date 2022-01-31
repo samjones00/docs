@@ -135,7 +135,7 @@ public class CustomerService : Service
 }
 ```
 
-See the [OrmLite GitHub](https://github.com/ServiceStack/ServiceStack.OrmLite#api-examples) page for more info on working with OrmLite API.
+See the [OrmLite GitHub](/ormlite/ormlite-apis) page for more info on working with OrmLite API.
 
 ## Getting Started with AWS RDS Aurora and OrmLite
 
@@ -255,7 +255,7 @@ public class CustomerService : Service
 }
 ```
 
-See the [OrmLite GitHub](https://github.com/ServiceStack/ServiceStack.OrmLite#api-examples) page for more info on working with OrmLite API.
+See the [OrmLite GitHub](/ormlite/ormlite-apis) page for more info on working with OrmLite API.
 
 ## Getting Started with AWS RDS MySQL and OrmLite
 
@@ -375,7 +375,7 @@ public class CustomerService : Service
 }
 ```
 
-See the [OrmLite GitHub](https://github.com/ServiceStack/ServiceStack.OrmLite#api-examples) page for more info on working with OrmLite API.
+See the [OrmLite GitHub](/ormlite/ormlite-apis) page for more info on working with OrmLite API.
 
 ## Getting Started with AWS RDS MariaDB and OrmLite
 
@@ -499,7 +499,7 @@ public class CustomerService : Service
 }
 ```
 
-See the [OrmLite GitHub](https://github.com/ServiceStack/ServiceStack.OrmLite#api-examples) page for more info on working with OrmLite API.
+See the [OrmLite GitHub](/ormlite/ormlite-apis) page for more info on working with OrmLite API.
 
 ## Getting Started with AWS RDS SQL Server and OrmLite
 
@@ -624,7 +624,7 @@ public class CustomerService : Service
 }
 ```
 
-See the [OrmLite GitHub](https://github.com/ServiceStack/ServiceStack.OrmLite#api-examples) page for more info on working with OrmLite API.
+See the [OrmLite GitHub](/ormlite/ormlite-apis) page for more info on working with OrmLite API.
 
 ## Getting started with AWS ElastiCache Redis and ServiceStack
 
