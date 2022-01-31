@@ -24,7 +24,7 @@ module.exports = {
             { text: 'AutoQuery', link: '/autoquery', activeMatch: '^/(autoquery|why-not-odata)'},
             { text: 'Security', link: '/auth', activeMatch: '(auth|sessions)' },
             { text: 'gRPC', link: '/grpc', activeMatch: '^/grpc'},
-            { text: 'OrmLite', link: '/ormlite/', activeMatch: '^/ormlite'},
+            //{ text: 'OrmLite', link: '/ormlite/', activeMatch: '^/ormlite'},
             { text: 'Redis', link: '/redis/', activeMatch: '^/redis/'}
         ],
         sidebar: {
