@@ -7,6 +7,10 @@
         "link": "/ormlite/"
       },
       {
+        "text": "Installation",
+        "link": "/ormlite/installation"
+      },
+      {
         "text": "Getting Started",
         "link": "/ormlite/getting-started"
       },

@@ -65,7 +65,7 @@ Northwind database viewer, showing how to easily expose read and cached view ser
 
  - [AutoQuery](/autoquery)
    - [Northwind AutoQuery DTOs](https://github.com/ServiceStackApps/Northwind/blob/master/src/Northwind/Northwind.ServiceModel/AutoQuery.cs)
-   - [OrmLite Sqlite](/ormlite/#download)
+   - [OrmLite Sqlite](/ormlite/installation)
 
 ## [StackApis](https://github.com/ServiceStackApps/StackApis)
 
@@ -77,7 +77,7 @@ AngularJS Single Page App leveraging AutoQuery in <50 lines of JavaScript + 1 Au
 
  - [AutoQuery](/autoquery)
    - [StackApis AutoQuery DTO](https://github.com/ServiceStackApps/StackApis#stackapis-autoquery-service)
-   - [OrmLite Sqlite](/ormlite/#download)
+   - [OrmLite Sqlite](/ormlite/installation)
 
 ## [AutoQuery Viewer](https://github.com/ServiceStackApps/AutoQueryViewer)
 

@@ -417,7 +417,7 @@ If you need to implement a Webhooks solution for your Services check out [Servic
 
 ![](https://raw.githubusercontent.com/jezzsantos/ServiceStack.Webhooks/master/docs/images/Webhooks.Architecture.PNG)
 
-The ServiceStack.Webhooks plugin is versatile and supports persisting event subscriptions in [multiple back-end data stores](https://github.com/jezzsantos/ServiceStack.Webhooks/wiki/Plugins) including: Memory, Cache Clients, Azure Table Storage as well as every major [RDBMS that supported by OrmLite](/ormlite/#download).
+The ServiceStack.Webhooks plugin is versatile and supports persisting event subscriptions in [multiple back-end data stores](https://github.com/jezzsantos/ServiceStack.Webhooks/wiki/Plugins) including: Memory, Cache Clients, Azure Table Storage as well as every major [RDBMS that supported by OrmLite](/ormlite/installation).
 
 #### Getting Started
 

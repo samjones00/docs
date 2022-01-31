@@ -20,36 +20,6 @@ OracleDialect.Provider         // Oracle
 FirebirdDialect.Provider       // Firebird
 ```
 
-## Quickstart using `x mix`
-
-If you already have a .NET6+ ASP.NET Core project, you can use the [ServiceStack dotnet tool `x`](../dotnet-tool) to `mix` in pre-configured modules for your database of choice.
-For example for SQL Server:
-
-```bash
-$ x mix sqlserver 
-```
-
-We have mix templates for all OrmLite's supported database vendors.
-
-```bash
-$ x mix postgres
-$ x mix mysql
-$ x mix sqlite
-$ x mix dynamodb
-$ x mix ravendb
-$ x mix oracle
-$ x mix mongodb
-$ x mix firebird
-$ x mix marten
-```
-
-::: info
-If you don't have the dotnet `x` tool installed, it can be installed using the command: 
-```bash
-dotnet tool install -g x
-```
-:::
-
 ## SQL Server Versions
 
 There are a number of different SQL Server dialects to take advantage of features available in each version. For any version before SQL Server 2008 please use `SqlServer2008Dialect.Provider`, for any other version please use the best matching version:
@@ -106,3 +76,14 @@ browser without needing to install anything:
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/gistcafe/ormlite-tour-screenshot.png)](https://gist.cafe/87164fa870ac7503b43333d1d275456c?docs=8a70f8bf2755f0a755afeca6b2a5238e)
 
+## Getting Started with OrmLite and AWS RDS
+
+OrmLite has great support AWS's managed RDS Databases, follow these getting started guides to help to get up and running quickly:
+
+- [PostgreSQL](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-postgresql-and-ormlite)
+- [Aurora](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-aurora-and-ormlite)
+- [MySQL](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-mysql-and-ormlite)
+- [MariaDB](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-mariadb-and-ormlite)
+- [SQL Server](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-sql-server-and-ormlite)
+
+Source code for example can be found on our [AwsGettingStarted](https://github.com/ServiceStackApps/AwsGettingStarted) repositories.

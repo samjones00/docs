@@ -32,107 +32,25 @@ a convenient API to persist related models. Effectively this allows you to creat
 POCO type, and it should persist as expected in a DB Table with columns for each of the classes 1st
 level public properties.
 
-## Download
-
-Install the NuGet package for your RDBMS Provider via NuGet or adding a Package Reference, e.g:
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />`
-:::
-
-
-## OrmLite RDBMS Providers
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.SqlServer.Data" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Data" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Cil" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Windows" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.MySql" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.MySqlConnector" Version="6.*" />`
-:::
-
-These packages contain **.NET Framework v4.7.2**, **.NET Standard 2.0**, and .NET 6 versions and supports both .NET Framework and .NET Core projects.
-
-The `.Core` packages contains only **.NET Standard 2.0** versions which can be used in ASP.NET Core Apps running on the .NET Framework:
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.SqlServer.Core" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.PostgreSQL.Core" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.MySql.Core" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Sqlite.Core" Version="6.*" />`
-:::
-
-### Community Providers
-
-Unofficial Releases maintained by ServiceStack Community:
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Oracle" Version="6.*" />`
-:::
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.Firebird" Version="6.*" />`
-:::
-
-## Getting Started with OrmLite and AWS RDS
-
-OrmLite has great support AWS's managed RDS Databases, follow these getting started guides to help to get up and running quickly:
-
-- [PostgreSQL](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-postgresql-and-ormlite)
-- [Aurora](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-aurora-and-ormlite)
-- [MySQL](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-mysql-and-ormlite)
-- [MariaDB](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-mariadb-and-ormlite)
-- [SQL Server](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-sql-server-and-ormlite)
-
-Source code for example can be found on our [AwsGettingStarted](https://github.com/ServiceStackApps/AwsGettingStarted) repositories.
-
-
 ## Community Resources
 
 - [OrmLite and Redis: New alternatives for handling db communication](http://www.abtosoftware.com/blog/servicestack-ormlite-and-redis-new-alternatives-for-handling-db-communication) by [@abtosoftware](https://twitter.com/abtosoftware)
 - [Object Serialization as Step Towards Normalization](http://www.unpluggeddevelopment.com/post/85225892120/object-serialization-as-step-towards-normalization) by [@ 82unpluggd](https://twitter.com/82unpluggd)
-- [Creating a Data Access Layer using OrmLite](http://blogs.askcts.com/2014/05/07/getting-started-with-servicestack-part-2/) by [Lydon Bergin](http://blogs.askcts.com/)
 - [Code Generation using ServiceStack.OrmLite and T4 Text templates](http://jokecamp.wordpress.com/2013/09/07/code-generation-using-servicestack-ormlite-and-t4-text-templates/) by [@jokecamp](https://twitter.com/jokecamp)
 - [Simple ServiceStack OrmLite Example](http://www.curlette.com/?p=1068) by [@robrtc](https://twitter.com/robrtc)
-- [OrmLite Blobbing done with NHibernate and Serialized JSON](http://www.philliphaydon.com/2012/03/ormlite-blobbing-done-with-nhibernate-and-serialized-json/) by [@philliphaydon](https://twitter.com/philliphaydon)
+- [OrmLite Blobbing done with NHibernate and Serialized JSON](http://www.philliphaydon.com/2012/03/19/ormlite-blobbing-done-with-nhibernate-and-serialized-json/) by [@philliphaydon](https://twitter.com/philliphaydon)
 - [Creating An ASP.NET MVC Blog With ServiceStack.OrmLite](http://www.eggheadcafe.com/tutorials/asp-net/285cbe96-9922-406a-b193-3a0b40e31c40/creating-an-aspnet-mvc-blog-with-servicestackormlite.aspx) by [@peterbromberg](https://twitter.com/peterbromberg)
+
+If you know of an article/blog post about ServiceStack.OrmLite that is missing, let us know over on the ServiceStack GitHub Discussions, and we will be sure to include it here.
+
+<div class="my-8 flex justify-center">
+    <a href="https://github.com/ServiceStack/Discuss/discussions/categories/show-and-tell" class="hover:text-black inline-flex items-center px-6 py-3 border border-gray-300 shadow text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:no-underline">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" fill="currentColor"></path></g>
+        </svg>
+        <span class="mx-2">ServiceStack/Discuss</span>
+    </a>
+</div>
 
 ## Other notable Micro ORMs for .NET
 Many performance problems can be mitigated and a lot of use-cases can be simplified without the use of a heavyweight ORM, and their config, mappings and infrastructure.

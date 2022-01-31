@@ -235,7 +235,7 @@ ServiceStack resolves its `IAuthProvider` from the overridable `GetAuthRepositor
 based on the incoming request.
 
 This can be used with the new `OrmLiteAuthRepositoryMultitenancy` provider to maintain isolated 
-User Accounts per tenant in all [major supported RDBMS](/ormlite/#download)
+User Accounts per tenant in all [major supported RDBMS](/ormlite/installation)
 
 Since each tenant database uses their own isolated UserAuth tables we need to provide the list of db 
 connection strings that the OrmLite AuthRepository uses to check and create any missing User Auth tables:
