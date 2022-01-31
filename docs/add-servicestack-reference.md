@@ -11,6 +11,7 @@ ServiceStack's **Add ServiceStack Reference** feature allows adding generated Na
 Add ServiceStack Reference now supports 
 [C#](/csharp-add-servicestack-reference), 
 [TypeScript](/typescript-add-servicestack-reference), 
+[JavaScript](/javascript-add-servicestack-reference),
 [Python](/python-add-servicestack-reference), 
 [Swift](/swift-add-servicestack-reference), 
 [Java](/java-add-servicestack-reference), 
@@ -30,6 +31,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
     <tr>
         <td><a href="/csharp-add-servicestack-reference">C#</a></td>
         <td><a href="/typescript-add-servicestack-reference">TypeScript</a></td>
+        <td><a href="/javascript-add-servicestack-reference">JavaScript</a></td>
         <td><a href="/python-add-servicestack-reference">Python</a></td>
         <td><a href="/swift-add-servicestack-reference">Swift</a></td>
         <td><a href="/java-add-servicestack-reference">Java</a></td>
@@ -96,8 +98,9 @@ Add ServiceStack Reference lets you utilize the native SDK's and development env
 Options for the generated DTOs can be further customized by updating the commented section in the header of the file. Each language will have different options for leveraging features native to each Language. See the specific language documentation for details on available options:
 
 * [C# Options](/csharp-add-servicestack-reference#change-default-server-configuration)
-* [TypeScript Options](/typescript-add-servicestack-reference#change-default-server-configuration)
-* [Python Options](/python-add-servicestack-reference#swift-configuration)
+* [TypeScript Options](./typescript-add-servicestack-reference.md#customize-dto-type-generation)
+* [JavaScript Options](./javascript-add-servicestack-reference.md#customize-dto-type-generation)
+* [Python Options](./python-add-servicestack-reference.md#customize-dto-type-generation)
 * [Swift Options](/swift-add-servicestack-reference#swift-configuration)
 * [Java Options](/java-add-servicestack-reference#java-configuration)
 * [Kotlin Options](/kotlin-add-servicestack-reference#kotlin-configuration)
@@ -601,6 +604,7 @@ The Add ServiceStack Reference dialog just takes the URL provided and requests t
 - `/types/csharp` - C# 
 - `/types/typescript` - TypeScript 
 - `/types/typescript.d` - Ambient TypeScript Definitions
+- `/types/js` - CommonJS
 - `/types/python` - Python
 - `/types/swift` - Swift 
 - `/types/java` - Java 
