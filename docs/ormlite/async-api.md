@@ -28,8 +28,10 @@ await db.SaveAsync(product1, product2);
 var customer = await db.SingleAsync<Customer>(new { customer.Email });
 ```
 
-> Effectively the only Data Access API's that doesn't have async equivalents are `*Lazy` APIs yielding a lazy
-> sequence (incompatible with async) as well as **Schema** DDL API's which are typically not used at runtime.
+::: info
+Effectively the only Data Access API's that doesn't have async equivalents are `*Lazy` APIs yielding a lazy
+sequence (incompatible with async) as well as **Schema** DDL API's which are typically not used at runtime.
+:::
 
 For a quick preview of many of the new Async API's in action, checkout
 [ApiSqlServerTestsAsync.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/Async/ApiSqlServerTestsAsync.cs).

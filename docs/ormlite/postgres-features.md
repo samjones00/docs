@@ -26,7 +26,7 @@ public class MyPostgreSqlTable
 }
 ```
 
-By default all arrays of .NET's built-in **numeric**, **string** and **DateTime** types will be stored in PostgreSQL array types:
+By default, all arrays of .NET's built-in **numeric**, **string** and **DateTime** types will be stored in PostgreSQL array types:
 
 ```csharp
 public class Table
@@ -44,7 +44,7 @@ public class Table
 }
 ```
 
-You can opt-in to annotate other collections like `List<T>` to also be stored in array types by annotating them with `[Pgsql*]` attributes, e.g:
+You can opt in to annotate other collections like `List<T>` to also be stored in array types by annotating them with `[Pgsql*]` attributes, e.g:
 
 ```csharp
 public class Table
@@ -103,7 +103,9 @@ var rows = db.Select<FunctionResult>(sql, new [] { p });
 
 To use `hstore`, its extension needs to be enabled in your PostgreSQL RDBMS by running:
 
-    CREATE EXTENSION hstore;
+```
+CREATE EXTENSION hstore;
+```
 
 Which can then be enabled in OrmLite with:
 

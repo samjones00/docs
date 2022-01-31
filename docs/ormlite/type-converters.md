@@ -11,7 +11,7 @@ This use of individual decoupled Type Converters makes it possible to enhance or
 
 ## Encapsulated, reusable, customizable and debuggable
 
-Converters allows for great re-use as common functionality to support each type is maintained in the common
+Converters allow for great re-use as common functionality to support each type is maintained in the common
 [ServiceStack.OrmLite/Converters](https://github.com/ServiceStack/ServiceStack.OrmLite/tree/master/src/ServiceStack.OrmLite/Converters)
 whilst any RDBMS-specific functionality can inherit the common converters and provide any specialization
 required to support that type. E.g. SQL Server specific converters are maintained in
@@ -24,8 +24,8 @@ Type in Sql Server.
 Converters also provide good encapsulation as everything relating to handling the field type is contained within
 a single class definition. A Converter is any class implementing
 [IOrmLiteConverter](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/src/ServiceStack.OrmLite/IOrmLiteConverter.cs)
-although it's instead recommended to inherit from the `OrmLiteConverter` abstract class which allows
-only the minimum API's needing to be overridden, namely the `ColumnDefinition`
+although, it's instead recommended inheriting from the `OrmLiteConverter` abstract class which allows
+only the minimum APIs needing to be overridden, namely the `ColumnDefinition`
 used when creating the Table definition and the ADO.NET `DbType` it should use in parameterized queries.
 An example of this is in
 [GuidConverter](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/src/ServiceStack.OrmLite/Converters/GuidConverter.cs):
@@ -47,7 +47,7 @@ public class GuidConverter : OrmLiteConverter
 
 For this to work in SQL Server the `ColumnDefinition` should instead be **UniqueIdentifier** which is also
 what it needs to be cast to, to be able to query Guid's within an SQL Statement.
-Therefore Guids require a custom
+Therefore, Guids require a custom
 [SqlServerGuidConverter](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/src/ServiceStack.OrmLite.SqlServer/Converters/SqlServerGuidConverter.cs)
 to support Guids in SQL Server which looks like:
 
@@ -133,7 +133,7 @@ public class MyCustomGuidConverter : SqlServerGuidConverter
 
 Another popular Use Case now enabled with Converters is being able to override built-in functionality based on preference. E.g. by default TimeSpans are stored in the database as Ticks in a `BIGINT` column since it's the most reliable way to retain the same TimeSpan value uniformly across all RDBMS's.
 
-E.g SQL Server's **TIME** data type can't store Times greater than 24 hours or with less precision than **3ms**.
+E.g. SQL Server's **TIME** data type can't store Times greater than 24 hours or with less precision than **3ms**.
 But if using a **TIME** column was preferred it can now be enabled by registering to use the new
 [SqlServerTimeConverter](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/src/ServiceStack.OrmLite.SqlServer/Converters/SqlServerTimeConverter.cs)
 instead:
@@ -191,9 +191,9 @@ public static StringConverter GetStringConverter(this IOrmLiteDialectProvider d)
 ### Specify the DateKind in DateTimes
 
 It's now much simpler and requires less effort to implement new features that maintain the same behavior
-across all supported RDBM's thanks to better cohesion, re-use and reduced internal state. One new feature
+across all supported RDBMS thanks to better cohesion, re-use and reduced internal state. One new feature
 we've added as a result is the new `DateStyle` customization on `DateTimeConverter` which lets you change how
-Date's are persisted and populated, e.g:
+Dates are persisted and populated, e.g:
 
 ```csharp
 DateTimeConverter dates = OrmLiteConfig.DialectProvider.GetDateTimeConverter();
@@ -264,4 +264,4 @@ SqlServerDialect.Provider.RegisterConverter<Instant>(new SqlServerInstantDateTim
 
 ## SQL Server Types
 
-See [SQL Server Types](./sql-server-types.md) for how to enable support for SQL Server-specific `SqlGeography`, `SqlGeometry` and `SqlHierarchyId` Types.
+See [SQL Server Types](sql-server-features.md#sql-server-types) for how to enable support for SQL Server-specific `SqlGeography`, `SqlGeometry` and `SqlHierarchyId` Types.

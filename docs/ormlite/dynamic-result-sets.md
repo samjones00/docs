@@ -61,11 +61,13 @@ results[0].PrintDump();
 
 Output of objects in the returned `List<object>`:
 
-    [
-        10,
-        1,
-        10
-    ]
+```
+[
+    10,
+    1,
+    10
+]
+```
 
 You can also Select `Dictionary<string,object>` to return a dictionary of column names mapped with their values, e.g:
 
@@ -78,11 +80,13 @@ results[0].PrintDump();
 
 Output of objects in the returned `Dictionary<string,object>`:
 
-    {
-        Total: 10,
-        MinId: 1,
-        MaxId: 10
-    }
+```
+{
+    Total: 10,
+    MinId: 1,
+    MaxId: 10
+}
+```
 
 and can be used for API's returning a **Single** row result:
 
@@ -100,7 +104,7 @@ object result = db.Scalar<object>(db.From<Poco>().Select(x => x.Id));
 ## Select data from multiple tables into Dynamic ResultSets
 
 You can also select data from multiple tables into
-[dynamic result sets](/ormlite/dynamic-result-sets#)
+[dynamic result sets](dynamic-result-sets)
 which provide [several Convenience APIs](http://stackoverflow.com/a/37443162/85785)
 for accessing data from an unstructured queries.
 

@@ -4,7 +4,9 @@ title: Getting started with OrmLite
 
 First Install the NuGet package of the RDBMS you want to use, e.g:
 
-    PM> Install-Package ServiceStack.OrmLite.SqlServer
+```
+PM> Install-Package ServiceStack.OrmLite.SqlServer
+```
 
 Each RDBMS includes a specialized dialect provider that encapsulated the differences in each RDBMS
 to support OrmLite features. The available Dialect Providers for each RDBMS is listed below:
@@ -18,7 +20,7 @@ OracleDialect.Provider         // Oracle
 FirebirdDialect.Provider       // Firebird
 ```
 
-#### SQL Server Versions
+## SQL Server Versions
 
 There are a number of different SQL Server dialects to take advantage of features available in each version. For any version before SQL Server 2008 please use `SqlServer2008Dialect.Provider`, for any other version please use the best matching version:
 
@@ -30,7 +32,7 @@ SqlServer2016Dialect.Provider  // SQL Server 2016
 SqlServer2017Dialect.Provider  // SQL Server 2017+
 ```
 
-### Configure OrmLiteConnectionFactory
+## Configure OrmLiteConnectionFactory
 
 To configure OrmLite you need the DB Connection string along the Dialect Provider of the RDBMS you're
 connecting to, e.g:

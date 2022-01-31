@@ -2,7 +2,7 @@
 title: OrmLite APIs
 ---
 
-OrmLite provides terse and intuitive typed API's for database querying from simple
+OrmLite provides terse and intuitive typed APIs for database querying from simple
 lambda expressions to more complex LINQ-Like Typed SQL Expressions which you can use to
 construct more complex queries. To give you a flavour here are some examples:
 
@@ -507,7 +507,7 @@ using (var db = dbFactory.Open())
 ```
 
 This will add a record in all the above tables with all the Reference data properties automatically populated which we can quickly see
-by selecting the inserted `Player` record and all its referenced data by using [OrmLite's Load APIs](#querying-pocos-with-references), e.g:
+by selecting the inserted `Player` record and all its referenced data by using [OrmLite's Load APIs](reference-support.md#querying-pocos-with-references), e.g:
 
 ```csharp
 var dbPlayer = db.LoadSingleById<Player>(player.Id);

@@ -63,7 +63,7 @@ This saves the root customer POCO in the `Customer` table, its related PrimaryAd
 
 ## Querying POCO's with References
 
-The `Load*` API's are used to automatically load a POCO and all it's child references, e.g:
+The `Load*` APIs are used to automatically load a POCO and all it's child references, e.g:
 
 ```csharp
 var customer = db.LoadSingleById<Customer>(customerId);
@@ -81,17 +81,17 @@ Unlike normal complex properties, references:
 
 - Doesn't persist as complex type blobs
 - Doesn't impact normal querying
-- Saves and loads references independently from itself
+- Saves and loads references independently of itself
 - Are serializable with Text serializers (only populated are visible).
 - Loads related data only 1-reference-level deep
 
-Basically they provides a better story when dealing with referential data that doesn't impact the POCO's ability to be used as DTO's.
+Basically they provide a better story when dealing with referential data that doesn't impact the POCO's ability to be used as DTOs.
 
 ## Merge Disconnected POCO Result Sets
 
 The `Merge` extension method can stitch disconnected POCO collections together as per their relationships defined in OrmLite's POCO References.
 
-For example you can select a collection of Customers who've made an order with quantities of 10 or more and in a separate query select their filtered Orders and then merge the results of these 2 distinct queries together with:
+For example, you can select a collection of Customers who've made an order with quantities of 10 or more and in a separate query select their filtered Orders and then merge the results of these 2 distinct queries together with:
 
 ```csharp
 //Select Customers who've had orders with Quantities of 10 or more

@@ -87,13 +87,15 @@ using (var db = OpenDbConnection())
 
 Emits the Executed SQL along with any DB Parameters:
 
+```
+{
+    Sql: "SELECT ""Id"", ""FirstName"", ""LastName"", ""Age"" FROM ""Person"" WHERE ""Age"" = @Age",
+    Parameters: 
     {
-        Sql: "SELECT ""Id"", ""FirstName"", ""LastName"", ""Age"" FROM ""Person"" WHERE ""Age"" = @Age",
-        Parameters: 
-        {
-            Age: 27
-        }
+        Age: 27
     }
+}
+```
 
 ## Replay Exec Filter
 

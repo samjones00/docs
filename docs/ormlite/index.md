@@ -26,8 +26,8 @@ to the returned POCO's which could be different to the POCO used to create the q
 a subset of the fields you want populated.
 
 Any non-scalar properties (i.e. complex types) are text blobbed by default in a schema-less text field
-using any of the [available pluggable text serializers](#pluggable-complex-type-serializers).
-Support for [POCO-friendly references](#reference-support-poco-style) is also available to provide
+using any of the [available pluggable text serializers](logging-and-introspection#pluggable-complex-type-serializers).
+Support for [POCO-friendly references](reference-support) is also available to provide
 a convenient API to persist related models. Effectively this allows you to create a table from any
 POCO type, and it should persist as expected in a DB Table with columns for each of the classes 1st
 level public properties.

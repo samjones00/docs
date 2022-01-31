@@ -40,7 +40,9 @@ Types.
 Since these Types require an external dependency to the **Microsoft.SqlServer.Types** NuGet package they're
 contained in a separate NuGet package that can be installed with:
 
-    PM> Install-Package ServiceStack.OrmLite.SqlServer.Converters
+```
+PM> Install-Package ServiceStack.OrmLite.SqlServer.Converters
+```
 
 Once installed, all available SQL Server Types can be registered on your SQL Server Provider with:
 

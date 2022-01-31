@@ -206,7 +206,7 @@ using (var multi = db.QueryMultiple(q.ToSelectStatement()))
 
 ## SELECT DISTINCT in SelectMulti
 
-[SelectMulti](/ormlite/typed-joins) APIs for populating
+[SelectMulti](typed-joins) APIs for populating
 multiple tables now supports **SELECT DISTINCT** with:
 
 ```csharp
