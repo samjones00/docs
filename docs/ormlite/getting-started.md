@@ -22,7 +22,7 @@ FirebirdDialect.Provider       // Firebird
 
 ## Quickstart using `x mix`
 
-If you already have a .NET+ ASP.NET project, you can use the [ServiceStack dotnet tool `x`](../dotnet-tool) to `mix` in pre-configured modules for your database of choice.
+If you already have a .NET6+ ASP.NET Core project, you can use the [ServiceStack dotnet tool `x`](../dotnet-tool) to `mix` in pre-configured modules for your database of choice.
 For example for SQL Server:
 
 ```bash
