@@ -11,7 +11,7 @@ PM> Install-Package ServiceStack.OrmLite.SqlServer
 Each RDBMS includes a specialized dialect provider that encapsulated the differences in each RDBMS
 to support OrmLite features. The available Dialect Providers for each RDBMS is listed below:
 
-```
+```csharp
 SqlServerDialect.Provider      // SQL Server Version 2012+
 SqliteDialect.Provider         // Sqlite
 PostgreSqlDialect.Provider     // PostgreSQL 
