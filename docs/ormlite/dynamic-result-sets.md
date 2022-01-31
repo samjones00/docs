@@ -100,7 +100,7 @@ object result = db.Scalar<object>(db.From<Poco>().Select(x => x.Id));
 ## Select data from multiple tables into Dynamic ResultSets
 
 You can also select data from multiple tables into
-[dynamic result sets](https://github.com/ServiceStack/ServiceStack.OrmLite#dynamic-result-sets)
+[dynamic result sets](/ormlite/dynamic-result-sets#)
 which provide [several Convenience APIs](http://stackoverflow.com/a/37443162/85785)
 for accessing data from an unstructured queries.
 
@@ -135,4 +135,58 @@ Custom Key/Value Dictionary:
 
 ```csharp
 Dictionary<string,string> rows = db.Dictionary<string,string>(q);
+```
+
+
+## Dictionary APIs
+
+OrmLite's Dictionary APIs allow you to customize which parts of a Data Model should be modified by
+converting it into then manipulating an Object Dictionary, e.g:
+
+## Insert by Dictionary
+
+```csharp
+var row = new Person { FirstName = "John", LastName = "Smith" };
+Dictionary<string,object> obj = row.ToObjectDictionary();
+obj[nameof(Person.LastName)] = null;
+
+row.Id = (int) db.Insert<Person>(obj, selectIdentity:true);
+```
+
+## Update by Dictionary
+
+```csharp
+Person row = db.SingleById<Person>(row.Id);
+var obj = row.ToObjectDictionary();
+obj[nameof(Person.LastName)] = "Smith";
+db.Update<Person>(obj);
+```
+
+## UpdateOnly by Dictionary
+
+```csharp
+// By Primary Key Id
+var fields = new Dictionary<string, object> {
+    [nameof(Person.Id)] = 1,
+    [nameof(Person.FirstName)] = "John",
+    [nameof(Person.LastName)] = null,
+};
+
+db.UpdateOnly<Person>(fields);
+
+// By Custom Where Expression
+var fields = new Dictionary<string, object> {
+    [nameof(Person.FirstName)] = "John",
+    [nameof(Person.LastName)] = null,
+};
+
+db.UpdateOnly<Person>(fields, p => p.LastName == "Hendrix");
+```
+
+## Delete by Dictionary
+
+```csharp
+db.Delete<Rockstar>(new Dictionary<string, object> {
+    ["Age"] = 27
+});
 ```

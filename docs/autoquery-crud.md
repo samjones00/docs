@@ -653,7 +653,7 @@ AutoMapping.RegisterPopulator((Dictionary<string,object> target, CreateRockstar 
 ### Auto Guid's
 
 In addition to supporting `[AutoIncrement]` to insert records with Auto Incrementing Ids, you can use `[AutoId]` to insert entities with
-[RDBMS generated UUIDs](https://github.com/ServiceStack/ServiceStack.OrmLite#auto-populated-guid-ids) where they're supported otherwise
+[RDBMS generated UUIDs](/ormlite/reference-support#auto-populated-guid-ids) where they're supported otherwise
 OrmLite populates them with `Guid.NewGuid()`.
 
 ::: info
@@ -691,7 +691,7 @@ public class CreateRockstarWithAutoGuid : RockstarBase, ICreateDb<Rockstar>, IRe
 
 ### Optimistic Concurrency
 
-We can declaratively add support for [OrmLite's Optimistic Concurrency](https://github.com/ServiceStack/ServiceStack.OrmLite#optimistic-concurrency) by
+We can declaratively add support for [OrmLite's Optimistic Concurrency](/ormlite/optimistic-concurrency) by
 including `ulong RowVersion` property on Auto Crud Request/Response DTOs and Data Models, e.g:
 
 ```csharp

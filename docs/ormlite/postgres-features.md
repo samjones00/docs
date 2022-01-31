@@ -1,79 +1,8 @@
 ---
-title: OrmLite Advanced Usage Examples
+title: PostgreSQL Features
 ---
 
-OrmLite includes support for [SQL Check Constraints](https://en.wikipedia.org/wiki/Check_constraint) which will create your Table schema with the `[CheckConstraint]` specified, e.g:
-
-```csharp
-public class Table
-{
-    [AutoIncrement]
-    public int Id { get; set; }
-
-    [Required]
-    [CheckConstraint("Age > 1")]
-    public int Age { get; set; }
-
-    [CheckConstraint("Name IS NOT NULL")]
-    public string Name { get; set; }
-}
-```
-
-### Bitwise operators
-
-The Typed SqlExpression bitwise operations support depends on the RDBMS used.
-
-E.g. all RDBMS's support Bitwise `And` and `Or` operators:
-
-```csharp
-db.Select<Table>(x => (x.Flags | 2) == 3);
-db.Select<Table>(x => (x.Flags & 2) == 2);
-```
-
-All RDBMS Except for SQL Server support bit shift operators:
-
-```csharp
-db.Select<Table>(x => (x.Flags << 1) == 4);
-db.Select<Table>(x => (x.Flags >> 1) == 1);
-```
-
-Whilst only SQL Server and MySQL Support Exclusive Or:
-
-```csharp
-db.Select<Table>(x => (x.Flags ^ 2) == 3);
-```
-
-## SQL Server Features
-
-### Memory Optimized Tables
-
-OrmLite allows access to many advanced SQL Server features including
-[Memory-Optimized Tables](https://msdn.microsoft.com/en-us/library/dn133165.aspx) where you can tell
-SQL Server to maintain specific tables in Memory using the `[SqlServerMemoryOptimized]` attribute, e.g:
-
-```csharp
-[SqlServerMemoryOptimized(SqlServerDurability.SchemaOnly)]
-public class SqlServerMemoryOptimizedCacheEntry : ICacheEntry
-{
-    [PrimaryKey]
-    [StringLength(StringLengthAttribute.MaxText)]
-    [SqlServerBucketCount(10000000)]
-    public string Id { get; set; }
-    [StringLength(StringLengthAttribute.MaxText)]
-    public string Data { get; set; }
-    public DateTime CreatedDate { get; set; }
-    public DateTime? ExpiryDate { get; set; }
-    public DateTime ModifiedDate { get; set; }
-}
-```
-
-The `[SqlServerBucketCount]` attribute can be used to
-[configure the bucket count for a hash index](https://msdn.microsoft.com/en-us/library/mt706517.aspx#configuring_bucket_count)
-whilst the new `[SqlServerCollate]` attribute can be used to specify an SQL Server collation.
-
-## PostgreSQL Features
-
-### PostgreSQL Rich Data Types
+## PostgreSQL Rich Data Types
 
 The `[PgSql*]` specific attributes lets you use attributes to define PostgreSQL rich data types, e.g:
 
@@ -154,7 +83,7 @@ PostgreSqlDialect.Provider.RegisterConverter<List<DateTime>>(new PostgreSqlDateT
 PostgreSqlDialect.Provider.RegisterConverter<List<DateTimeOffset>>(new PostgreSqlDateTimeOffsetTimeStampTzArrayConverter());
 ```
 
-### PostgreSQL Params
+## PostgreSQL Params
 
 The `PgSql.Param()` API provides a resolve the correct populated `NpgsqlParameter` and `NpgsqlDbType` from a C# Type
 which can be used to query custom PostgreSQL Data Types in APIs that accept `IDbDataParameter` parameters, e.g:
@@ -170,7 +99,7 @@ var sql = "SELECT * FROM my_func(@paramValue)";
 var rows = db.Select<FunctionResult>(sql, new [] { p });
 ```
 
-### Hstore support
+## Hstore support
 
 To use `hstore`, its extension needs to be enabled in your PostgreSQL RDBMS by running:
 
@@ -211,7 +140,7 @@ db.Single(db.From<PostgreSqlTypes>().Where("dictionary -> 'A' = '1'")).Id //= 1
 
 Thanks to [@cthames](https://forums.servicestack.net/users/cthames/activity) for this feature.
 
-### JSON data types
+## JSON data types
 
 If you instead wanted to store arbitrary complex types in PostgreSQL's rich column types to enable deep querying in postgres,
 you'd instead annotate them with `[PgSqlJson]` or `[PgSqlJsonB]`, e.g:

@@ -1,62 +1,6 @@
 ---
-title: Reference Attribute Usage
+title: Reference Support, POCO style
 ---
-
-## BelongTo Attribute
-
-The `[BelongTo]` attribute can be used for specifying how Custom POCO results are mapped when the resultset is ambiguous, e.g:
-
-```csharp
-class A { 
-    public int Id { get; set; }
-}
-class B {
-    public int Id { get; set; }
-    public int AId { get; set; }
-}
-class C {
-    public int Id { get; set; }
-    public int BId { get; set; }
-}
-class Combined {
-    public int Id { get; set; }
-    [BelongTo(typeof(B))]
-    public int BId { get; set; }
-}
-
-var q = db.From<A>()
-    .Join<B>()
-    .LeftJoin<B,C>();
-
-var results = db.Select<Combined>(q); //Combined.BId = B.Id
-```
-
-## Advanced Example
-
-Seeing how the SqlExpression is constructed, joined and mapped, we can take a look at a more advanced example to showcase more of the new API's available:
-
-```csharp
-List<FullCustomerInfo> rows = db.Select<FullCustomerInfo>(  // Map results to FullCustomerInfo POCO
-  db.From<Customer>()                                       // Create typed Customer SqlExpression
-    .LeftJoin<CustomerAddress>()                            // Implicit left join with base table
-    .Join<Customer, Order>((c,o) => c.Id == o.CustomerId)   // Explicit join and condition
-    .Where(c => c.Name == "Customer 1")                     // Implicit condition on base table
-    .And<Order>(o => o.Cost < 2)                            // Explicit condition on joined Table
-    .Or<Customer,Order>((c,o) => c.Name == o.LineItem));    // Explicit condition with joined Tables
-```
-
-The comments next to each line document each Type of API used. Some of the new API's introduced in this example include:
-
-- Usage of `LeftJoin` for specifying a LEFT JOIN, `RightJoin` and `FullJoin` also available
-- Usage of `And<Table>()`, to specify an **AND** condition on a Joined table
-- Usage of `Or<Table1,Table2>`, to specify an **OR** condition against 2 joined tables
-
-More code examples of References and Joined tables are available in:
-
-- [LoadReferencesTests.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/LoadReferencesTests.cs)
-- [LoadReferencesJoinTests.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/LoadReferencesJoinTests.cs)
-
-## Reference Support, POCO style
 
 OrmLite lets you Store and Load related entities in separate tables using `[Reference]` attributes in primary tables in conjunction with `{Parent}Id` property convention in child tables, e.g:
 
@@ -327,3 +271,57 @@ Which emits the appropriate SQL Server hints:
 SELECT "Car"."CarId", "CarType"."CarTypeName" 
 FROM "Car" INNER JOIN "CarType" WITH (READUNCOMMITTED) ON ("Car"."CarId" = "CarType"."CarId")
 ```
+
+## BelongTo Attribute
+
+The `[BelongTo]` attribute can be used for specifying how Custom POCO results are mapped when the resultset is ambiguous, e.g:
+
+```csharp
+class A { 
+    public int Id { get; set; }
+}
+class B {
+    public int Id { get; set; }
+    public int AId { get; set; }
+}
+class C {
+    public int Id { get; set; }
+    public int BId { get; set; }
+}
+class Combined {
+    public int Id { get; set; }
+    [BelongTo(typeof(B))]
+    public int BId { get; set; }
+}
+
+var q = db.From<A>()
+    .Join<B>()
+    .LeftJoin<B,C>();
+
+var results = db.Select<Combined>(q); //Combined.BId = B.Id
+```
+
+## Advanced Example
+
+Seeing how the SqlExpression is constructed, joined and mapped, we can take a look at a more advanced example to showcase more of the new API's available:
+
+```csharp
+List<FullCustomerInfo> rows = db.Select<FullCustomerInfo>(  // Map results to FullCustomerInfo POCO
+  db.From<Customer>()                                       // Create typed Customer SqlExpression
+    .LeftJoin<CustomerAddress>()                            // Implicit left join with base table
+    .Join<Customer, Order>((c,o) => c.Id == o.CustomerId)   // Explicit join and condition
+    .Where(c => c.Name == "Customer 1")                     // Implicit condition on base table
+    .And<Order>(o => o.Cost < 2)                            // Explicit condition on joined Table
+    .Or<Customer,Order>((c,o) => c.Name == o.LineItem));    // Explicit condition with joined Tables
+```
+
+The comments next to each line document each Type of API used. Some of the new API's introduced in this example include:
+
+- Usage of `LeftJoin` for specifying a LEFT JOIN, `RightJoin` and `FullJoin` also available
+- Usage of `And<Table>()`, to specify an **AND** condition on a Joined table
+- Usage of `Or<Table1,Table2>`, to specify an **OR** condition against 2 joined tables
+
+More code examples of References and Joined tables are available in:
+
+- [LoadReferencesTests.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/LoadReferencesTests.cs)
+- [LoadReferencesJoinTests.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/LoadReferencesJoinTests.cs)

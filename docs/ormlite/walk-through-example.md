@@ -1,5 +1,5 @@
 ---
-title: OrmLite Implicit conventions example
+title: OrmLite walk through example
 ---
 
 In its simplest usage, OrmLite can persist any POCO type without any attributes required:
@@ -222,4 +222,47 @@ so it only returns results which aren't `IsDeleted` from any of queries below:
 var results = db.Select(db.From<Table>());
 var result = db.Single(db.From<Table>().Where(x => x.Name == "foo"));
 var result = db.Single(x => x.Name == "foo");
+```
+
+## Check Constraints
+
+OrmLite includes support for [SQL Check Constraints](https://en.wikipedia.org/wiki/Check_constraint) which will create your Table schema with the `[CheckConstraint]` specified, e.g:
+
+```csharp
+public class Table
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+
+    [Required]
+    [CheckConstraint("Age > 1")]
+    public int Age { get; set; }
+
+    [CheckConstraint("Name IS NOT NULL")]
+    public string Name { get; set; }
+}
+```
+
+### Bitwise operators
+
+The Typed SqlExpression bitwise operations support depends on the RDBMS used.
+
+E.g. all RDBMS's support Bitwise `And` and `Or` operators:
+
+```csharp
+db.Select<Table>(x => (x.Flags | 2) == 3);
+db.Select<Table>(x => (x.Flags & 2) == 2);
+```
+
+All RDBMS Except for SQL Server support bit shift operators:
+
+```csharp
+db.Select<Table>(x => (x.Flags << 1) == 4);
+db.Select<Table>(x => (x.Flags >> 1) == 1);
+```
+
+Whilst only SQL Server and MySQL Support Exclusive Or:
+
+```csharp
+db.Select<Table>(x => (x.Flags ^ 2) == 3);
 ```

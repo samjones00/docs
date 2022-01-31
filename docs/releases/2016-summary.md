@@ -849,7 +849,7 @@ db.ColumnExists<Poco>(x => x.Age); //= true
 
 ### New SelectMulti API
 
-Previously the only Typed API available to select data across multiple joined tables was to use a [Custom POCO with all the columns](https://github.com/ServiceStack/ServiceStack.OrmLite#selecting-multiple-columns-across-joined-tables) you want from any of the joined tables, e.g:
+Previously the only Typed API available to select data across multiple joined tables was to use a [Custom POCO with all the columns](/ormlite/typed-joins) you want from any of the joined tables, e.g:
 
 ```
 List<FullCustomerInfo> customers = db.Select<FullCustomerInfo>(
@@ -1853,7 +1853,7 @@ to use the latest **v3.0.5** of Npgsql which is only available for .NET 4.5+ pro
 dependency which contains .NET 4.0 .dll. 
 
 The primary benefit of upgrading means PostgreSQL now has true Async support where you can now use all of
-[OrmLite's Async APIs](https://github.com/ServiceStack/ServiceStack.OrmLite#async-api-overview) with PostgreSQL!
+[OrmLite's Async APIs](/ormlite/async-api) with PostgreSQL!
 See [ApiPostgreSqlTestsAsync.cs](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLiteV45.Tests/ApiPostgreSqlTestsAsync.cs)
 for a number of Async API's in action.
 

@@ -2,6 +2,15 @@
 title: OrmLite Sql.In and utils
 ---
 
+The `Sql.In()` API supports nesting and combining of multiple Typed SQL Expressions together
+in a single SQL Query, e.g:
+
+```csharp
+var usaCustomerIds = db.From<Customer>(c => c.Country == "USA").Select(c => c.Id);
+var usaCustomerOrders = db.Select(db.From<Order>()
+    .Where(x => Sql.In(x.CustomerId, usaCustomerIds)));
+``` 
+
 By using `Sql.In` from within a `SqlExpression<T>`, multiple values can be checked for a match in your query.
 
 ```csharp
@@ -96,4 +105,4 @@ var topVIPs = db.WhereLazy<Person>(new { Age = 27 }).Where(p => IsVip(p)).Take(5
 ## Other Notes
 
 - All **Insert**, **Update**, and **Delete** methods take multiple params, while `InsertAll`, `UpdateAll` and `DeleteAll` take IEnumerables.
-- Methods containing the word **Each** return an IEnumerable<T> and are lazily loaded (i.e. non-buffered).
+- Methods containing the word **Each** return an `IEnumerable<T>` and are lazily loaded (i.e. non-buffered).

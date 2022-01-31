@@ -116,7 +116,7 @@ var response = client.Get(new Secure { Name = "World" });
 
 The necessary functionality to support API Keys has been implemented in the following supported Auth Repositories:
 
- - `OrmLiteAuthRepository` - Supporting [most major RDBMS](https://github.com/ServiceStack/ServiceStack.OrmLite#8-flavours-of-ormlite-is-on-nuget)
+ - `OrmLiteAuthRepository` - Supporting [most major RDBMS](/ormlite/#ormlite-rdbms-providers)
  - `RedisAuthRepository` - Uses Redis back-end data store
  - `DynamoDbAuthRepository` - Uses AWS DynamoDB data store
  - `MongoDbAuthRepository` - Uses MongoDB data store

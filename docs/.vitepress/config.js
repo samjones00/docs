@@ -5,7 +5,8 @@ let navIndex = require('./sidebar/index.json'),
     navAutoQuery = require('./sidebar/autoquery.json'),
     navAuth = require('./sidebar/auth.json'),
     navGrpc = require('./sidebar/grpc.json'),
-    navRedis = require('./sidebar/redis.json')
+    navRedis = require('./sidebar/redis.json'),
+    navOrmLite = require('./sidebar/ormlite.json')
 
 module.exports = {
     title: 'Documentation',
@@ -23,10 +24,12 @@ module.exports = {
             { text: 'AutoQuery', link: '/autoquery', activeMatch: '^/(autoquery|why-not-odata)'},
             { text: 'Security', link: '/auth', activeMatch: '(auth|sessions)' },
             { text: 'gRPC', link: '/grpc', activeMatch: '^/grpc'},
+            { text: 'OrmLite', link: '/ormlite/', activeMatch: '^/ormlite'},
             { text: 'Redis', link: '/redis/', activeMatch: '^/redis/'}
         ],
         sidebar: {
             '/redis': navRedis,
+            '/ormlite': navOrmLite,
             '/templates': navTemplates,
             '/dotnet-new': navTemplates,
             '/autoquery': navAutoQuery,

@@ -21,7 +21,7 @@ int result = db.SqlScalar<int>("SELECT 10");
 
 The `SqlProc` API provides even greater customization by letting you modify the underlying
 ADO.NET Stored Procedure call by returning a prepared `IDbCommand` allowing for
-advanced customization like setting and retriving OUT parameters, e.g:
+advanced customization like setting and retrieving OUT parameters, e.g:
 
 ```csharp
 string spSql = @"DROP PROCEDURE IF EXISTS spSearchLetters;

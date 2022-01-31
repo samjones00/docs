@@ -45,13 +45,3 @@ var rows = db.Select(q);
 
 These APIs are useful for mandatory filters like "Soft Deletes" and Multitenant records.
 
-## Nested Typed Sub SqlExpressions
-
-The `Sql.In()` API supports nesting and combining of multiple Typed SQL Expressions together
-in a single SQL Query, e.g:
-
-```csharp
-var usaCustomerIds = db.From<Customer>(c => c.Country == "USA").Select(c => c.Id);
-var usaCustomerOrders = db.Select(db.From<Order>()
-    .Where(x => Sql.In(x.CustomerId, usaCustomerIds)));
-``` 

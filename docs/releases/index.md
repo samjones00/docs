@@ -1603,7 +1603,7 @@ var idValue = idGetter(instance);
 
 ### Support for C# 7 Value Tuples in OrmLite
 
-The fast, new C# 7 Value Tuple support in OrmLite enables an alternative terse, clean and typed API for accessing the [Dynamic Result Sets](https://github.com/ServiceStack/ServiceStack.OrmLite#dynamic-result-sets) returned when using a custom Select expression, e.g:
+The fast, new C# 7 Value Tuple support in OrmLite enables an alternative terse, clean and typed API for accessing the [Dynamic Result Sets](/ormlite/dynamic-result-sets) returned when using a custom Select expression, e.g:
 
 ```csharp
 var query = db.From<Employee>()

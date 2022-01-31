@@ -74,6 +74,19 @@ Unofficial Releases maintained by ServiceStack Community:
 - [ServiceStack.OrmLite.Oracle](http://nuget.org/packages/ServiceStack.OrmLite.Oracle)
 - [ServiceStack.OrmLite.Firebird](http://nuget.org/List/Packages/ServiceStack.OrmLite.Firebird)
 
+## Getting Started with OrmLite and AWS RDS
+
+OrmLite has great support AWS's managed RDS Databases, follow these getting started guides to help to get up and running quickly:
+
+- [PostgreSQL](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-postgresql-and-ormlite)
+- [Aurora](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-aurora-and-ormlite)
+- [MySQL](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-mysql-and-ormlite)
+- [MariaDB](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-mariadb-and-ormlite)
+- [SQL Server](https://github.com/ServiceStackApps/AwsGettingStarted#getting-started-with-aws-rds-sql-server-and-ormlite)
+
+Source code for example can be found on our [AwsGettingStarted](https://github.com/ServiceStackApps/AwsGettingStarted) repositories.
+
+
 ## Community Resources
 
 - [OrmLite and Redis: New alternatives for handling db communication](http://www.abtosoftware.com/blog/servicestack-ormlite-and-redis-new-alternatives-for-handling-db-communication) by [@abtosoftware](https://twitter.com/abtosoftware)

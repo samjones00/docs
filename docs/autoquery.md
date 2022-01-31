@@ -27,7 +27,7 @@ In addition to leveraging ServiceStack's existing functionality, maximizing re-u
 
 ### [AutoQuery RDBMS](/autoquery-rdbms)
 
-Enables the rapid development of high-performance, fully-queryable typed RDBMS data-driven services and [supports most major Relational Databases](https://github.com/ServiceStack/ServiceStack.OrmLite#8-flavours-of-ormlite-is-on-nuget)
+Enables the rapid development of high-performance, fully-queryable typed RDBMS data-driven services and [supports most major Relational Databases](./ormlite/#ormlite-rdbms-providers)
 
 ### [AutoQuery Data](/autoquery-data) Sources
 
@@ -65,7 +65,7 @@ Northwind database viewer, showing how to easily expose read and cached view ser
 
  - [AutoQuery](/autoquery)
    - [Northwind AutoQuery DTOs](https://github.com/ServiceStackApps/Northwind/blob/master/src/Northwind/Northwind.ServiceModel/AutoQuery.cs)
-   - [OrmLite Sqlite](https://github.com/ServiceStack/ServiceStack.OrmLite#download)
+   - [OrmLite Sqlite](/ormlite/#download)
 
 ## [StackApis](https://github.com/ServiceStackApps/StackApis)
 
@@ -77,7 +77,7 @@ AngularJS Single Page App leveraging AutoQuery in <50 lines of JavaScript + 1 Au
 
  - [AutoQuery](/autoquery)
    - [StackApis AutoQuery DTO](https://github.com/ServiceStackApps/StackApis#stackapis-autoquery-service)
-   - [OrmLite Sqlite](https://github.com/ServiceStack/ServiceStack.OrmLite#download)
+   - [OrmLite Sqlite](/ormlite/#download)
 
 ## [AutoQuery Viewer](https://github.com/ServiceStackApps/AutoQueryViewer)
 
