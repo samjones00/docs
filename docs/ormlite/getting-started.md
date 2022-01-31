@@ -24,7 +24,7 @@ FirebirdDialect.Provider       // Firebird
 
 There are a number of different SQL Server dialects to take advantage of features available in each version. For any version before SQL Server 2008 please use `SqlServer2008Dialect.Provider`, for any other version please use the best matching version:
 
-```
+```csharp
 SqlServer2008Dialect.Provider  // SQL Server <= 2008
 SqlServer2012Dialect.Provider  // SQL Server 2012
 SqlServer2014Dialect.Provider  // SQL Server 2014
