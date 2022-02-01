@@ -6,7 +6,6 @@ title: Wire Format
 ::: warning DEPRECATED
 Development of the original Wire format was abandon and has consequently **ServiceStack.Wire** project been removed in **v6**.
 To continue using it you can copy the existing **[ServiceStack.Wire](https://github.com/ServiceStack/ServiceStack/tree/fx45/src/ServiceStack.Wire)** source code into your project
-
 :::
 
 [Wire](https://github.com/akkadotnet/Wire) is an efficient binary serialization format from the 

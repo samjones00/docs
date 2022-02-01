@@ -1313,7 +1313,7 @@ here, for more details about each feature you can checkout the full
 
 We want to warn everyone that we will be upgrading all packages to .NET 4.5 and stop providing .NET 4.0 
 builds after August 1, 2016 now that Microsoft no longer supports them. If you absolutely need supported 
-.NET 4.0 builds after this date please leave a comment on [User Voice](https://servicestack.uservoice.com/forums/176786-feature-requests/suggestions/12528912-continue-supporting-net-4-0-projects)
+.NET 4.0 builds after this date please leave a comment on [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions/categories/ideas)
 
 ---
 
