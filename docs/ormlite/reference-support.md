@@ -222,56 +222,6 @@ db.Insert(row);
 row.Id //= Auto populated with new Guid
 ```
 
-## SQL Server 2012 Sequences
-
-The `[Sequence]` attribute can be used as an alternative to `[AutoIncrement]` for inserting rows with an auto incrementing integer value populated by SQL Server, but instead of needing an `IDENTITY` column it can populate a normal `INT` column from a user-defined Sequence, e.g:
-
-```csharp
-public class SequenceTest
-{
-    [Sequence("Seq_SequenceTest_Id"), ReturnOnInsert]
-    public int Id { get; set; }
-
-    public string Name { get; set; }
-    public string UserName { get; set; }
-    public string Email { get; set; }
-
-    [Sequence("Seq_Counter")]
-    public int Counter { get; set; }
-}
-
-var user = new SequenceTest { Name = "me", Email = "me@mydomain.com" };
-db.Insert(user);
-
-user.Id //= Populated by next value in "Seq_SequenceTest_Id" SQL Server Sequence
-```
-
-The new `[ReturnOnInsert]` attribute tells OrmLite which columns to return the values of, in this case it returns the new Sequence value the row was inserted with. Sequences offer more flexibility than `IDENTITY` columns where you can use multiple sequences in a table or have the same sequence shared across multiple tables.
-
-When creating tables, OrmLite will also create any missing Sequences automatically so you can continue to have reproducible tests and consistent Startups states that's unreliant on external state. But it doesn't drop sequences when OrmLite drops the table as they could have other external dependents.
-
-To be able to use the new sequence support you'll need to use an SQL Server dialect greater than SQL Server 2012+, e.g:
-
-```csharp
-var dbFactory = new OrmLiteConnectionFactory(connString, SqlServer2012Dialect.Provider);
-```
-
-## SQL Server Table Hints
-
-Using the same JOIN Filter feature OrmLite also lets you add SQL Server Hints on JOIN Table expressions, e.g:
-
-```csharp
-var q = db.From<Car>()
-    .Join<Car, CarType>((c, t) => c.CarId == t.CarId, SqlServerTableHint.ReadUncommitted);
-```
-
-Which emits the appropriate SQL Server hints:
-
-```sql
-SELECT "Car"."CarId", "CarType"."CarTypeName" 
-FROM "Car" INNER JOIN "CarType" WITH (READUNCOMMITTED) ON ("Car"."CarId" = "CarType"."CarId")
-```
-
 ## BelongTo Attribute
 
 The `[BelongTo]` attribute can be used for specifying how Custom POCO results are mapped when the resultset is ambiguous, e.g:

@@ -176,3 +176,27 @@ Where they can then be queried on the server with [JSON SQL Syntax and functions
 ```csharp
 var result = db.Single<TableJson>("table_json->'SubType'->>'Name' = 'JSON'");
 ```
+
+## Custom SQL using PostgreSQL Arrays
+
+The `PgSql.Array()` provides a typed API for generating [PostgreSQL Array Expressions](https://www.postgresql.org/docs/current/arrays.html), e.g:
+
+```csharp
+PgSql.Array(1,2,3)     //= ARRAY[1,2,3]
+var strings = new[]{ "A","B","C" };
+PgSql.Array(strings)   //= ARRAY['A','B','C']
+```
+
+Which you can safely use in Custom SQL Expressions that use PostgreSQL's native ARRAY support:
+
+```csharp
+q.And($"{PgSql.Array(anyTechnologyIds)} && technology_ids")
+q.And($"{PgSql.Array(labelSlugs)} && labels");
+```
+
+If you want and empty collection to return `null` instead of an empty `ARRAY[]` you can use the `nullIfEmpty` overload:
+
+```csharp
+PgSql.Array(new string[0], nullIfEmpty:true)      //= null
+PgSql.Array(new[]{"A","B","C"}, nullIfEmpty:true) //= ARRAY['A','B','C']
+```

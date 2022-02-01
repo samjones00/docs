@@ -1,6 +1,6 @@
 [
   {
-    "text": "OrmLite - Getting Started",
+    "text": "OrmLite",
     "children": [
       {
         "text": "Overview",
@@ -15,25 +15,46 @@
         "link": "/ormlite/getting-started"
       },
       {
-        "text": "API Examples",
+        "text": "API Overview",
         "link": "/ormlite/ormlite-apis"
       },
       {
-        "text": "Async API",
-        "link": "/ormlite/async-api"
+        "text": "Async APIs",
+        "link": "/ormlite/async-apis"
       }
     ]
   },
   {
-    "text": "OrmLite - Advanced",
+    "text": "OrmLite APIs",
     "children": [
       {
-        "text": "Ensure APIs",
-        "link": "/ormlite/ensure-apis"
+        "text": "Select APIs",
+        "link": "/ormlite/apis/select"
       },
       {
-        "text": "Nested Types",
-        "link": "/ormlite/nested-typed-sub-sqlexpressions"
+        "text": "Insert APIs",
+        "link": "/ormlite/apis/insert"
+      },
+      {
+        "text": "Update APIs",
+        "link": "/ormlite/apis/update"
+      },
+      {
+        "text": "Delete APIs",
+        "link": "/ormlite/apis/delete"
+      },
+      {
+        "text": "Schema APIs",
+        "link": "/ormlite/apis/schema"
+      }
+    ]
+  },
+  {
+    "text": "Advanced Topics",
+    "children": [
+      {
+        "text": "Reference Support",
+        "link": "/ormlite/reference-support"
       },
       {
         "text": "Typed Join Expressions",
@@ -44,29 +65,42 @@
         "link": "/ormlite/dynamic-result-sets"
       },
       {
-        "text": "Reference Support",
-        "link": "/ormlite/reference-support"
-      },
-      {
-        "text": "Schema Commands",
-        "link": "/ormlite/schema-commands"
-      },
-      {
-        "text": "Logging & Introspection",
-        "link": "/ormlite/logging-and-introspection"
-      },
-      {
-        "text": "Filters",
-        "link": "/ormlite/filters"
-      },
-      {
         "text": "Type Converters",
         "link": "/ormlite/type-converters"
       },
       {
-        "text": "SqlExpressions & Custom SQL",
-        "link": "/ormlite/typed-sqlexpression-custom-sql"
+        "text": "OrmLite Utils",
+        "link": "/ormlite/ormlite-utils"
       },
+      {
+        "text": "Ensure APIs",
+        "link": "/ormlite/ensure-apis"
+      },
+      {
+        "text": "Logging & Introspection",
+        "link": "/ormlite/introspection"
+      },
+      {
+        "text": "Insert & Update Filters",
+        "link": "/ormlite/filters"
+      },
+      {
+        "text": "Custom SQL",
+        "link": "/ormlite/custom-sql"
+      },
+      {
+        "text": "SQL Customizations",
+        "link": "/ormlite/custom-sql-features"
+      },
+      {
+        "text": "Dictionary APIs",
+        "link": "/ormlite/dictionary-apis"
+      }
+    ]
+  },
+  {
+    "text": "RDBMS specific features",
+    "children": [
       {
         "text": "SQL Server Features",
         "link": "/ormlite/sql-server-features"
@@ -78,32 +112,36 @@
     ]
   },
   {
-    "text": "OrmLite - Related Docs",
+    "text": "Background Info",
     "children": [
       {
-        "text": "OrmLite Optimistic Concurrency",
+        "text": "Optimistic Concurrency",
         "link": "/ormlite/optimistic-concurrency"
       },
       {
-        "text": "SQL Customizations",
-        "link": "/ormlite/custom-sql"
+        "text": "Untyped APIs",
+        "link": "/ormlite/untyped-apis"
       },
       {
-        "text": "Untyped APIs & T4 templates",
-        "link": "/ormlite/untyped-api-and-t4"
+        "text": "AutoGen & T4 templates",
+        "link": "/ormlite/autogen-t4"
       },
       {
         "text": "Stored Procedures",
         "link": "/ormlite/stored-procedures"
       },
       {
-        "text": "Multi nested database connections",
-        "link": "/ormlite/multi-nested-database-connections"
+        "text": "Multi database connections",
+        "link": "/ormlite/multi-database-connections"
       },
       {
-        "text": "OrmLite Walk-through example",
-        "link": "/ormlite/walk-through-example"
+        "text": "OrmLite Shippers example",
+        "link": "/ormlite/shippers-example"
       },
+      {
+        "text": "AWS & RDS Support",
+        "link": "/ormlite/aws-rds-databases"
+      },      
       {
         "text": "Limitations",
         "link": "/ormlite/limitations"

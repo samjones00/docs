@@ -26,7 +26,7 @@ to the returned POCO's which could be different to the POCO used to create the q
 a subset of the fields you want populated.
 
 Any non-scalar properties (i.e. complex types) are text blobbed by default in a schema-less text field
-using any of the [available pluggable text serializers](logging-and-introspection#pluggable-complex-type-serializers).
+using any of the [available pluggable text serializers](introspection#pluggable-complex-type-serializers).
 Support for [POCO-friendly references](reference-support) is also available to provide
 a convenient API to persist related models. Effectively this allows you to create a table from any
 POCO type, and it should persist as expected in a DB Table with columns for each of the classes 1st
@@ -43,7 +43,7 @@ level public properties.
 
 If you know of an article/blog post about ServiceStack.OrmLite that is missing, let us know over on the ServiceStack GitHub Discussions, and we will be sure to include it here.
 
-<div class="my-8 flex justify-center">
+<div class="my-8 pb-8 flex justify-center">
     <a href="https://github.com/ServiceStack/Discuss/discussions/categories/show-and-tell" class="hover:text-black inline-flex items-center px-6 py-3 border border-gray-300 shadow text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:no-underline">
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" fill="currentColor"></path></g>
@@ -53,14 +53,13 @@ If you know of an article/blog post about ServiceStack.OrmLite that is missing, 
 </div>
 
 ## Other notable Micro ORMs for .NET
-Many performance problems can be mitigated and a lot of use-cases can be simplified without the use of a heavyweight ORM, and their config, mappings and infrastructure.
-As [performance is the most important feature](https://github.com/mythz/ScalingDotNET) we can recommend the following list, each with their own unique special blend of features.
+Many performance problems can be mitigated and a lot of use-cases can be simplified without the use of a heavyweight ORM, and their config, mappings and infrastructure. We can recommend the following list, each with their own unique special blend of features.
 
 * **[Dapper](http://code.google.com/p/dapper-dot-net/)** - by [@samsaffron](http://twitter.com/samsaffron) and [@marcgravell](http://twitter.com/marcgravell)
-    - The current performance king, supports both POCO and dynamic access, fits in a single class. Put in production to solve [StackOverflow's DB Perf issues](http://samsaffron.com/archive/2011/03/30/How+I+learned+to+stop+worrying+and+write+my+own+ORM). Requires .NET 4.
+    - Current performance king, supports both POCO and dynamic access, fits in a single class. Used to solve [StackOverflow's Perf issues](http://samsaffron.com/archive/2011/03/30/How+I+learned+to+stop+worrying+and+write+my+own+ORM)
 * **[PetaPoco](http://www.toptensoftware.com/petapoco/)** - by [@toptensoftware](http://twitter.com/toptensoftware)
-    - Fast, supports dynamics, expandos and typed POCOs, fits in a single class, runs on .NET 3.5 and Mono. Includes optional T4 templates for POCO table generation.
+    - Fast, supports dynamics, expandos and typed POCOs, fits in a single class. Includes optional T4 templates for POCO table generation
 * **[Massive](https://github.com/robconery/massive)** - by [@robconery](http://twitter.com/robconery)
-    - Fast, supports dynamics and expandos, smart use of optional params to provide a wrist-friendly api, fits in a single class. Multiple RDBMS support. Requires .NET 4.
+    - Fast, supports dynamics and expandos, smart use of optional params for a wrist-friendly api, fits in a single class. Multi RDBMS
 * **[Simple.Data](https://github.com/markrendle/Simple.Data)** - by [@markrendle](http://twitter.com/markrendle)
-    - A little slower than above ORMS, most wrist-friendly courtesy of a dynamic API, multiple RDBMS support inc. Mongo DB. Requires .NET 4.
+    - A little slower than above ORMS, most wrist-friendly courtesy of a dynamic API, multiple RDBMS support inc. Mongo DB

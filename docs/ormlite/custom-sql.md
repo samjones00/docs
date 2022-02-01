@@ -1,202 +1,142 @@
 ---
-title: Custom SQL attribute usage
+title: Custom SQL
 ---
 
-A number of new hooks are available to provide more flexibility when creating and dropping your RDBMS tables.
-
-## CustomSelect Attribute
-
-The new `[CustomSelect]` can be used to define properties you want populated from a Custom SQL Function or
-Expression instead of a normal persisted column, e.g:
+OrmLite's Expression support satisfies the most common RDBMS queries with a strong-typed API.
+For more complex queries you can easily fall back to raw SQL where the Custom SQL APIs
+let you map custom SqlExpressions into different responses:
 
 ```csharp
-public class Block
-{
-    public int Id { get; set; }
-    public int Width { get; set; }
-    public int Height { get; set; }
+var q = db.From<Person>()
+          .Where(x => x.Age < 50)
+          .Select("*");
+List<Person> results = db.SqlList<Person>(q);
 
-    [CustomSelect("Width * Height")]
-    public int Area { get; set; }
+List<Person> results = db.SqlList<Person>(
+    "SELECT * FROM Person WHERE Age < @age", new { age=50});
 
-    [Default(OrmLiteVariables.SystemUtc)]
-    public DateTime CreatedDate { get; set; }
+List<string> results = db.SqlColumn<string>(db.From<Person>().Select(x => x.LastName));
+List<string> results = db.SqlColumn<string>("SELECT LastName FROM Person");
 
-    [CustomSelect("FORMAT(CreatedDate, 'yyyy-MM-dd')")]
-    public string DateFormat { get; set; }
-}
+HashSet<int> results = db.ColumnDistinct<int>(db.From<Person>().Select(x => x.Age));
+HashSet<int> results = db.ColumnDistinct<int>("SELECT Age FROM Person");
 
-db.Insert(new Block { Id = 1, Width = 10, Height = 5 });
-
-var block = db.SingleById<Block>(1);
-
-block.Area.Print(); //= 50
-
-block.DateFormat.Print(); //= 2016-06-08 (SQL Server)
+var q = db.From<Person>()
+          .Where(x => x.Age < 50)
+          .Select(Sql.Count("*"));
+int result = db.SqlScalar<int>(q);
+int result = db.SqlScalar<int>("SELCT COUNT(*) FROM Person WHERE Age < 50");
 ```
 
-## Order by dynamic expressions
-
-The `[CustomSelect]` attribute can be used to populate a property with a dynamic SQL Expression instead of an existing column, e.g:
+## Custom Insert and Updates
 
 ```csharp
-public class FeatureRequest
-{
-    public int Id { get; set; }
-    public int Up { get; set; }
-    public int Down { get; set; }
+Db.ExecuteSql("INSERT INTO page_stats (ref_id, fav_count) VALUES (@refId, @favCount)",
+              new { refId, favCount })
 
-    [CustomSelect("1 + Up - Down")]
-    public int Points { get; set; }
-}
+//Async:
+Db.ExecuteSqlAsync("UPDATE page_stats SET view_count = view_count + 1 WHERE id = @id", new { id })
 ```
 
-You can also order by the SQL Expression by referencing the property as you would a normal column. By extension this feature now also works in AutoQuery where you can [select it in a partial result set](http://docs.servicestack.net/autoquery-rdbms#custom-fields) and order the results by using its property name, e.g:
+## INSERT INTO SELECT
 
-```
-/features?fields=id,points&orderBy=points
-```
-
-## Custom SQL Fragments
-
-The `Sql.Custom()` API lets you use raw SQL Fragments in Custom `.Select()` expressions, e.g:
+You can use OrmLite's Typed `SqlExpression` to create a subselect expression that you can use to create and execute a
+typed **INSERT INTO SELECT** `SqlExpression` with:
 
 ```csharp
-var q = db.From<Table>()
+var q = db.From<User>()
+    .Where(x => x.UserName == "UserName")
     .Select(x => new {
-        FirstName = x.FirstName,
-        LastName = x.LastName,
-        Initials = Sql.Custom("CONCAT(LEFT(FirstName,1), LEFT(LastName,1))")
+        x.UserName, 
+        x.Email, 
+        GivenName = x.FirstName, 
+        Surname = x.LastName, 
+        FullName = x.FirstName + " " + x.LastName
     });
+
+var id = db.InsertIntoSelect<CustomUser>(q)
 ```
 
-## Custom Field Declarations
+## Foreign Key attribute for referential actions on Update/Deletes
 
-The `[CustomField]` attribute can be used for specifying custom field declarations in the generated Create table DDL statements, e.g:
+Creating a foreign key in OrmLite can be done by adding `[References(typeof(ForeignKeyTable))]` on the relation property,
+which will result in OrmLite creating the Foreign Key relationship when it creates the DB table with `db.CreateTable<Poco>`.
+
+Additional fine-grain options and behaviour are available in the `[ForeignKey]` attribute which will let you specify the desired behaviour when deleting or updating related rows in Foreign Key tables.
+
+An example of a table with the different available options:
 
 ```csharp
-public class PocoTable
+public class TableWithAllCascadeOptions
 {
-    public int Id { get; set; }
-
-    [CustomField("CHAR(20)")]
-    public string CharColumn { get; set; }
-
-    [CustomField("DECIMAL(18,4)")]
-    public decimal? DecimalColumn { get; set; }
-
-    [CustomField(OrmLiteVariables.MaxText)]        //= {MAX_TEXT}
-    public string MaxText { get; set; }
-
-    [CustomField(OrmLiteVariables.MaxTextUnicode)] //= {NMAX_TEXT}
-    public string MaxUnicodeText { get; set; }
+	[AutoIncrement] public int Id { get; set; }
+	
+	[References(typeof(ForeignKeyTable1))]
+	public int SimpleForeignKey { get; set; }
+	
+	[ForeignKey(typeof(ForeignKeyTable2), OnDelete = "CASCADE", OnUpdate = "CASCADE")]
+	public int? CascadeOnUpdateOrDelete { get; set; }
+	
+	[ForeignKey(typeof(ForeignKeyTable3), OnDelete = "NO ACTION")]
+	public int? NoActionOnCascade { get; set; }
+	
+	[Default(typeof(int), "17")]
+	[ForeignKey(typeof(ForeignKeyTable4), OnDelete = "SET DEFAULT")]
+	public int SetToDefaultValueOnDelete { get; set; }
+	
+	[ForeignKey(typeof(ForeignKeyTable5), OnDelete = "SET NULL")]
+	public int? SetToNullOnDelete { get; set; }
 }
-
-db.CreateTable<PocoTable>(); 
 ```
 
-Generates and executes the following SQL in SQL Server:
+## System Variables and Default Values
 
-```sql
-CREATE TABLE "PocoTable" 
-(
-  "Id" INTEGER PRIMARY KEY, 
-  "CharColumn" CHAR(20) NULL, 
-  "DecimalColumn" DECIMAL(18,4) NULL, 
-  "MaxText" VARCHAR(MAX) NULL, 
-  "MaxUnicodeText" NVARCHAR(MAX) NULL 
-); 
+To provide richer support for non-standard default values, each RDBMS Dialect Provider contains a
+`OrmLiteDialectProvider.Variables` placeholder dictionary for storing common, but non-standard RDBMS functionality.
+We can use this to define non-standard default values, in a declarative way, that works across all supported RDBMS's
+like automatically populating a column with the RDBMS UTC Date when Inserted with a `default(T)` Value:
+
+```csharp
+public class Poco
+{
+    [Default(OrmLiteVariables.SystemUtc)]  //= {SYSTEM_UTC}
+    public DateTime CreatedTimeUtc { get; set; }
+}
 ```
+
+OrmLite variables need to be surrounded with `{}` braces to identify that it's a placeholder variable, e.g `{SYSTEM_UTC}`.
+
+The [ForeignKeyTests](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/ForeignKeyAttributeTests.cs)
+show the resulting behaviour with each of these configurations in more detail.
 
 ::: info
-OrmLite replaces any variable placeholders with the value in each RDBMS DialectProvider's `Variables` Dictionary.
+Note: Only supported on RDBMS's with foreign key/referential action support, e.g.
+[Sql Server](http://msdn.microsoft.com/en-us/library/ms174979.aspx),
+[PostgreSQL](http://www.postgresql.org/docs/9.1/static/ddl-constraints.html),
+[MySQL](http://dev.mysql.com/doc/refman/5.5/en/innodb-foreign-key-constraints.html). Otherwise they're ignored.
 :::
 
-## Custom Insert and Update Expressions
 
-The `[CustomInsert]` and `[CustomUpdate]` attributes can be used to override what values rows are inserted during INSERT's and UPDATE's.
+## Custom SQL using PostgreSQL Arrays
 
-We can use this to insert a salted and hashed password using PostgreSQL native functions:
-
-```csharp
-public class CustomSqlUser
-{
-    [AutoIncrement]
-    public int Id { get; set; }
-
-    public string Email { get; set; }
-
-    [CustomInsert("crypt({0}, gen_salt('bf'))"),
-     CustomUpdate("crypt({0}, gen_salt('bf'))")]
-    public string Password { get; set; }
-}
-
-var user = new CustomSqlUser {
-    Email = "user@email.com", 
-    Password = "secret"
-};
-db.Insert(user);
-```
-
-We can then use `Sql.Custom()` to create a partially typed custom query to match on the hashed password, e.g:
+The `PgSql.Array()` provides a typed API for generating [PostgreSQL Array Expressions](https://www.postgresql.org/docs/current/arrays.html), e.g:
 
 ```csharp
-var quotedSecret = db.Dialect().GetQuotedValue("secret");
-var q = db.From<CustomSqlUser>()
-    .Where(x => x.Password == Sql.Custom($"crypt({quotedSecret}, password)"));
-var row = db.Single(q);
+PgSql.Array(1,2,3)     //= ARRAY[1,2,3]
+var strings = new[]{ "A","B","C" };
+PgSql.Array(strings)   //= ARRAY['A','B','C']
 ```
 
-#### Pre / Post Custom SQL Hooks when Creating and Dropping tables
-
-Pre / Post Custom SQL Hooks allow you to inject custom SQL before and after tables are created or dropped, e.g:
+Which you can safely use in Custom SQL Expressions that use PostgreSQL's native ARRAY support:
 
 ```csharp
-[PostCreateTable("INSERT INTO TableWithSeedData (Name) VALUES ('Foo');" +
-                 "INSERT INTO TableWithSeedData (Name) VALUES ('Bar');")]
-public class TableWithSeedData
-{
-    [AutoIncrement]
-    public int Id { get; set; }
-    public string Name { get; set; }
-}
+q.And($"{PgSql.Array(anyTechnologyIds)} && technology_ids")
+q.And($"{PgSql.Array(labelSlugs)} && labels");
 ```
 
-Which like other ServiceStack attributes, can also be added dynamically, e.g:
+If you want and empty collection to return `null` instead of an empty `ARRAY[]` you can use the `nullIfEmpty` overload:
 
 ```csharp
-typeof(TableWithSeedData)
-    .AddAttributes(new PostCreateTableAttribute(
-        "INSERT INTO TableWithSeedData (Name) VALUES ('Foo');" +
-        "INSERT INTO TableWithSeedData (Name) VALUES ('Bar');"));
+PgSql.Array(new string[0], nullIfEmpty:true)      //= null
+PgSql.Array(new[]{"A","B","C"}, nullIfEmpty:true) //= ARRAY['A','B','C']
 ```
-
-Custom SQL Hooks also allow executing custom SQL before and after a table has been created or dropped, i.e:
-
-```csharp
-[PreCreateTable(runSqlBeforeTableCreated)]
-[PostCreateTable(runSqlAfterTableCreated)]
-[PreDropTable(runSqlBeforeTableDropped)]
-[PostDropTable(runSqlAfterTableDropped)]
-public class Table {}
-```
-
-## Custom SqlExpression Filter
-
-The generated SQL from a Typed `SqlExpression` can also be customized using `.WithSqlFilter()`, e.g:
-
-```csharp
-var q = db.From<Table>()
-    .Where(x => x.Age == 27)
-    .WithSqlFilter(sql => sql + " option (recompile)");
-
-var q = db.From<Table>()
-    .Where(x => x.Age == 27)
-    .WithSqlFilter(sql => sql + " WITH UPDLOCK");
-
-var results = db.Select(q);
-```
-
-## Ignoring DTO Properties
-
-You may use the `[Ignore]` attribute to denote DTO properties that are not fields in the table. This will force the SQL generation to ignore that property.

@@ -239,7 +239,7 @@ Rules for how results are mapped is simply each property on `FullCustomerInfo` i
 
 The mapping also includes a fallback for referencing fully-qualified names in the format: `{TableName}{FieldName}` allowing you to reference ambiguous fields, e.g:
 
-- `CustomerId` => "Customer"."Id"
-- `OrderId` => "Order"."Id"
-- `CustomerName` => "Customer"."Name"
-- `OrderCost` => "Order"."Cost"
+- `CustomerId` => **"Customer"."Id"**
+- `OrderId` => **"Order"."Id"**
+- `CustomerName` => **"Customer"."Name"**
+- `OrderCost` => **"Order"."Cost"**

@@ -1,5 +1,5 @@
 ---
-title: Schema Commands and Table names
+title: Schema, Table & Column APIs
 ---
 
 As the queries for retrieving table names can vary amongst different RDBMS's, we've abstracted their implementations behind uniform APIs

@@ -1,5 +1,5 @@
 ---
-title: OrmLite Sql.In and utils
+title: OrmLite Utils
 ---
 
 The `Sql.In()` API supports nesting and combining of multiple Typed SQL Expressions together
@@ -41,30 +41,6 @@ var dialect = db.Dialect();
 dialect.SqlSpread(1, 2, 3);         //= 1,2,3
 dialect.SqlSpread("A", "B", "C");   //= 'A','B','C'
 dialect.SqlSpread("A'B", "C\"D");   //= 'A''B','C\"D'
-```
-
-## Custom SQL using PostgreSQL Arrays
-
-The `PgSql.Array()` provides a typed API for generating [PostgreSQL Array Expressions](https://www.postgresql.org/docs/current/arrays.html), e.g:
-
-```csharp
-PgSql.Array(1,2,3)     //= ARRAY[1,2,3]
-var strings = new[]{ "A","B","C" };
-PgSql.Array(strings)   //= ARRAY['A','B','C']
-```
-
-Which you can safely use in Custom SQL Expressions that use PostgreSQL's native ARRAY support:
-
-```csharp
-q.And($"{PgSql.Array(anyTechnologyIds)} && technology_ids")
-q.And($"{PgSql.Array(labelSlugs)} && labels");
-```
-
-If you want and empty collection to return `null` instead of an empty `ARRAY[]` you can use the `nullIfEmpty` overload:
-
-```csharp
-PgSql.Array(new string[0], nullIfEmpty:true)      //= null
-PgSql.Array(new[]{"A","B","C"}, nullIfEmpty:true) //= ARRAY['A','B','C']
 ```
 
 ## Lazy Queries
