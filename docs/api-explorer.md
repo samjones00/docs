@@ -3,7 +3,7 @@ slug: api-explorer
 title: API Explorer
 ---
 
-API Explorer is a Postman & Swagger UI alternative built into every **v6+** ServiceStack App that lets you explore, discover & call your APIs with an Auto UI dynamically generated from your APIs typed C# classes. It's built from the ground with multiple levels of customizations, supporting both declarative & programmatic models for customizing each properties Input UI control, each APIs form grid layout whilst and also you provide rich interactive HTML Components to document each of your APIs & their Types.
+API Explorer is a Postman & Swagger UI alternative built into every ServiceStack **v6+** App that lets you explore, discover & call your APIs with an Auto UI dynamically generated from your APIs typed C# classes. It's built from the ground with multiple levels of customizations, supporting both declarative & programmatic models for customizing each properties Input UI control, each APIs form grid layout whilst also providing the ability to provide rich interactive HTML Components to document each of your APIs & their Types.
 
 This video provides a quick overview of API Explorer's v1 featureset:
 
