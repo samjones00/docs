@@ -2,14 +2,7 @@
 title: Getting started with OrmLite
 ---
 
-First Install the NuGet package of the RDBMS you want to use, e.g:
-
-::: nuget
-`<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.*" />`
-:::
-
-Each RDBMS includes a specialized dialect provider that encapsulated the differences in each RDBMS
-to support OrmLite features. The available Dialect Providers for each RDBMS is listed below:
+After [installing OrmLite](installation) we now need to configure OrmLite's DB Connection Factory containing the RDBMS Dialect you want to use and the primary DB connection string you wish to connect to. Most NuGet OrmLite packages only contain a single provider listed below:
 
 ```csharp
 SqlServerDialect.Provider      // SQL Server Version 2012+
@@ -20,9 +13,9 @@ OracleDialect.Provider         // Oracle
 FirebirdDialect.Provider       // Firebird
 ```
 
-## SQL Server Versions
+### SQL Server Dialects
 
-There are a number of different SQL Server dialects to take advantage of features available in each version. For any version before SQL Server 2008 please use `SqlServer2008Dialect.Provider`, for any other version please use the best matching version:
+Except for SQL Server which has a number of different dialects to take advantage of features available in each version, please use the best matching version closest to your SQL Server version:
 
 ```csharp
 SqlServer2008Dialect.Provider  // SQL Server <= 2008
@@ -32,10 +25,9 @@ SqlServer2016Dialect.Provider  // SQL Server 2016
 SqlServer2017Dialect.Provider  // SQL Server 2017+
 ```
 
-## Configure OrmLiteConnectionFactory
+## OrmLite Connection Factory
 
-To configure OrmLite you need the DB Connection string along the Dialect Provider of the RDBMS you're
-connecting to, e.g:
+To configure OrmLite you'll need your App's DB Connection string along the above RDBMS Dialect Provider, e.g:
 
 ```csharp
 var dbFactory = new OrmLiteConnectionFactory(
@@ -43,35 +35,37 @@ var dbFactory = new OrmLiteConnectionFactory(
     SqlServerDialect.Provider);
 ```
 
-If you're using an IOC you can register `OrmLiteConnectionFactory` as a **singleton**, e.g:
+If you're using an IOC register `OrmLiteConnectionFactory` as a **singleton**:
 
 ```csharp
-container.Register<IDbConnectionFactory>(c => 
+services.AddSingleton<IDbConnectionFactory>(
     new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider)); //InMemory Sqlite DB
 ```
 
-You can then use the `dbFactory` to open ADO.NET DB Connections to your database.
-If connecting to an empty database you can use OrmLite's Create Table API's to create any tables
-you need based solely on the Schema definition of your POCO and populate it with any initial
-seed data you need, e.g:
+Which can then be used to open DB Connections to your RDBMS.
+
+### Creating Table and Seed Data Example
+
+If connecting to an empty database you can use OrmLite's Create Table APIs to create any missing tables you need, which OrmLite creates
+based solely on the Schema definition of your POCO data models.
+
+`CreateTableIfNotExists` returns **true** if the table didn't exist and OrmLite created it, where it can be further populated with any initial seed data it should have, e.g:
 
 ```csharp
-using (var db = dbFactory.Open())
-{
-    if (db.CreateTableIfNotExists<Poco>())
-    {
-        db.Insert(new Poco { Id = 1, Name = "Seed Data"});
-    }
+using var db = dbFactory.Open();
 
-    var result = db.SingleById<Poco>(1);
-    result.PrintDump(); //= {Id: 1, Name:Seed Data}
+if (db.CreateTableIfNotExists<Poco>())
+{
+    db.Insert(new Poco { Id = 1, Name = "Seed Data"});
 }
+
+var result = db.SingleById<Poco>(1);
+result.PrintDump(); //= {Id: 1, Name:Seed Data}
 ```
 
-## [OrmLite Interactive Tour](https://gist.cafe/87164fa870ac7503b43333d1d275456c?docs=8a70f8bf2755f0a755afeca6b2a5238e)
+## OrmLite Interactive Tour
 
-The best way to learn about OrmLite is to take the [OrmLite Interactive Tour](https://gist.cafe/87164fa870ac7503b43333d1d275456c?docs=8a70f8bf2755f0a755afeca6b2a5238e)
-which lets you try out and explore different OrmLite features immediately from the comfort of your own
+A quick way to learn about OrmLite is to take the [OrmLite Interactive Tour](https://gist.cafe/87164fa870ac7503b43333d1d275456c?docs=8a70f8bf2755f0a755afeca6b2a5238e) which lets you try out and explore different OrmLite features immediately from the comfort of your own
 browser without needing to install anything:
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/gistcafe/ormlite-tour-screenshot.png)](https://gist.cafe/87164fa870ac7503b43333d1d275456c?docs=8a70f8bf2755f0a755afeca6b2a5238e)
