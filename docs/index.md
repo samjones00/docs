@@ -113,7 +113,7 @@ layout: default
             </p>
         </div>
         <div class="w-full sm:w-1/2 text-center mt-8">
-            <a href="https://github.com/ServiceStack/ServiceStack.Text">
+            <a href="/text/">
                 <div class="mb-2">
                     <i class="fas fa-tools text-6xl"></i>
                 </div>
