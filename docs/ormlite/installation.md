@@ -4,7 +4,7 @@ title: OrmLite Installation
 
 OrmLite packages are available on NuGet and can be installed using your IDE or by adding a `PackageReference` in your `.csproj`
 
-### PostgreSQL
+## PostgreSQL
 
 Supports **.NET 6+**, .NET Framework **v4.7.2+** and **.NET Standard 2.0** (.NET 5 and lower)
 
@@ -12,7 +12,7 @@ Supports **.NET 6+**, .NET Framework **v4.7.2+** and **.NET Standard 2.0** (.NET
 `<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />`
 :::
 
-### SQL Server
+## SQL Server
 
 Uses **[Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/)** ADO .NET provider. Supports **.NET 6+** and **.NET Standard 2.0** (.NET 5 and lower)
 
@@ -26,7 +26,7 @@ Uses **System.Data.SqlClient**. Supports **.NET 6+**, .NET Framework **v4.7.2+**
 `<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.*" />`
 :::
 
-### MySql
+## MySql
 
 Uses **Mysql.Data**. Supports **.NET 6+**, .NET Framework **v4.7.2+** and **.NET Standard 2.0** (.NET 5 and lower)
 
@@ -40,7 +40,7 @@ Uses [MySqlConnector](https://mysqlconnector.net). Supports **.NET 6+**, .NET Fr
 `<PackageReference Include="ServiceStack.OrmLite.MySqlConnector" Version="6.*" />`
 :::
 
-### SQLite
+## SQLite
 
 Uses **[System.Data.SQLite](https://system.data.sqlite.org)**. Supports **.NET 6+**, .NET Framework **v4.7.2+** and **.NET Standard 2.0** (.NET 5 and lower)
 
@@ -63,7 +63,7 @@ Uses **[Microsoft.Data.Sqlite](https://docs.microsoft.com/en-us/dotnet/standard/
 :::
 
 
-### .NET 6 and .NET Standard 2.0 only packages
+## .NET 6 & .NET Standard 2.0 only packages
 
 The `.Core` packages contains only **.NET 6** and **.NET Standard 2.0** versions which can be used in [ASP.NET Core Apps on .NET Framework](/templates-corefx):
 
@@ -83,7 +83,7 @@ The `.Core` packages contains only **.NET 6** and **.NET Standard 2.0** versions
 `<PackageReference Include="ServiceStack.OrmLite.Sqlite.Core" Version="6.*" />`
 :::
 
-### Community Providers
+## Community Providers
 
 Unofficial providers contributed and supported by ServiceStack Community users:
 
@@ -97,7 +97,7 @@ Unofficial providers contributed and supported by ServiceStack Community users:
 
 Please raise support questions on [StackOverflow](https://stackoverflow.com/questions/ask?tags=servicestack,ormlite-servicestack) or [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions/categories/q-a) for best chance to reach community users.
 
-## Quick install in ASP .NET Core Apps with mix
+## Quick install in ASP .NET Core with mix
 
 The quickest way to install OrmLite in existing ASP .NET Core projects is to [mix in](/mix-tool) the desired RDBMS provider which both installs the required NuGet package and creates a [Modular Startup](/modular-startup) configuration all setup to read your App's configured RDBMS connection string for instant utility:
 
