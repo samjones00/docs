@@ -12,6 +12,7 @@ ServiceStack.Text is an **independent, dependency-free** serialization library c
  - [HTTP Utils](/http-utils)
  - [Dump Utils](/dump-utils)
  - [Fast Reflection Utils](/reflection-utils)
+ - [Mobile Apps Support](https://github.com/ServiceStackApps/HelloMobile)
 
 ### Try out [ServiceStack.Text Live](https://gist.cafe/c71b3f0123b3d9d08c1b11c98c2ff379)
 
