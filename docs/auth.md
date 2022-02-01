@@ -55,6 +55,9 @@ The following OAuth Providers are built into ServiceStack and can be used in bot
 | **VK**            | `VkAuthProvider`             | **/auth/vkcom**          | [vk.com/editapp?act=create](http://vk.com/editapp?act=create) |
 | **Odnoklassniki** | `OdnoklassnikiAuthProvider`  | **/auth/odnoklassniki**  | [www.odnoklassniki.ru/devaccess](http://www.odnoklassniki.ru/devaccess) |
 
+More information about how OAuth providers works, see the video tutorial below.
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/aQqF3Sf2fco" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### IAuthWithRequest Auth Providers
 
@@ -67,6 +70,7 @@ The following Auth Providers all implement `IAuthWithRequest` and "Authenticate 
 | **Basic Auth**    | `BasicAuthProvider`          | Basic Auth   | Authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) |
 | **Digest Auth**   | `DigestAuthProvider`         | Digest Auth  | Authentication using [HTTP Digest Auth](https://en.wikipedia.org/wiki/Digest_access_authentication) |
 
+<iframe class="video-hd" src="https://www.youtube.com/embed/NTCUT7atoLo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Other special Auth Providers that Authenticate per-request:
 
