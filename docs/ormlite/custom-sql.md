@@ -28,6 +28,25 @@ int result = db.SqlScalar<int>(q);
 int result = db.SqlScalar<int>("SELCT COUNT(*) FROM Person WHERE Age < 50");
 ```
 
+## Custom Selects
+
+```csharp
+public record CustomPoco(int Year, string Max);
+
+var upperNamesWithA = db.SqlColumn<string>(
+    "SELECT upper(Name) FROM Track WHERE instr(Name,'a') > 0");
+
+var meta = db.SqlList<CustomPoco>(
+    "SELECT DISTINCT Year % 10 as Year, hex(Year % 10) as Hex FROM Track");
+
+db.ExecuteSql("ALTER TABLE Track ADD Rand INT default 0");
+db.ExecuteSql("UPDATE Track SET Rand = abs(random()) % 1000");
+
+var trackRandValues = db.Dictionary<string,int>("SELECT Name, Rand FROM Track");
+
+var maxRand = db.SqlScalar<int>("SELECT MAX(Rand) FROM Track");
+```
+
 ## Custom Insert and Updates
 
 ```csharp

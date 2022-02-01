@@ -4,6 +4,36 @@ title: Dynamic Result Sets
 
 In addition to populating Typed POCOs, OrmLite has a number of flexible options for accessing dynamic resultsets with adhoc schemas:
 
+## Dynamic Results Examples
+
+```csharp
+
+var aggregates = db.Select<List<object>>(
+    db.From<Track>().Select("COUNT(*), MIN(Year), MAX(Year)")).First();
+
+var keyValuePairs = db.Select<Dictionary<string, object>>(
+    db.From<Track>().Select("COUNT(*) Total, MIN(Year) Min, MAX(Year)")).First();
+
+var q = db.From<Track>().Select("COUNT(*) Total, MIN(Year) Min, MAX(Year) Max");
+
+var customPoco = db.Select<Poco>(q).First();
+
+var dynamicResult = db.Select<dynamic>(q).First();
+long total = dynamicResult.Total;
+long min = dynamicResult.Min;
+long max = dynamicResult.Max;
+
+var artistsWithTracksFrom93 = db.SelectMulti<Track,Artist>(db.From<Track>()
+      .Join<Artist>()
+      .Where(x => x.Year == 1993));
+
+$"\nArtists with Tracks from 1993:".Print();
+foreach (var tuple in artistsWithTracksFrom93)
+{
+    $"\nTrack/Artist: {new {track=tuple.Item1, artist=tuple.Item2}.Dump()}".Print();
+}
+```
+
 ## C# 7 Value Tuples
 
 The C# 7 Value Tuple support enables a terse, clean and typed API for accessing the Dynamic Result Sets returned when using a custom Select expression:

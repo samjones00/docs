@@ -157,3 +157,249 @@ OrmLiteConfig.OnDbNullFilter = fieldDef =>
         ? "NULL"
         : null;
 ```
+
+## Modify Schema Versioning Examples
+
+OrmLite provides Typed APIs for modifying Table Schemas that makes it easy to inspect the state of an RDBMS Table which can be used to determine what modifications you want to apply to it to upgrade it to the latest version:
+
+```csharp
+public class Track
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Album { get; set; }
+    public int ArtistId { get; set; } 
+}
+
+// Map to same "Track" RDBMS Table, not needed when Track is refactored
+[Alias("Track")]
+public class Track_v2
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Album { get; set; }
+    public int ArtistId { get; set; } 
+    [Default(5)]
+    public int Rating { get; set; }  // ADD
+}
+
+var v1TableExists = db.TableExists<Track>();
+$"Table Exists: {v1TableExists}".Print();
+if (!v1TableExists)
+{
+	db.CreateTable<Track>(); 
+	v1TableExists = db.TableExists<Track>();
+}
+
+var v1RatingExists = db.ColumnExists<Track_v2>(x => x.Rating);
+$"Rating Exists v1: {v1RatingExists}".Print();
+if (!v1RatingExists)
+{
+    db.AddColumn<Track_v2>(x => x.Rating);
+    var v2RatingExists = db.ColumnExists<Track_v2>(x => x.Rating);
+}
+```
+
+## Create Table Examples
+
+As a code-first ORM, creating tables is effortless in OrmLite that uses your POCO Type definition to generate RDBMS Table schemas that cleanly maps .NET data types 1:1 to the most appropriate RDBMS column definition:
+
+```csharp
+public class AllFields
+{
+    public string Id { get; set; } //implicit Primary Key
+    public int Int { get; set; }
+    public int? NInt { get; set; }
+    public long Long { get; set; }
+    public long? NLong { get; set; }
+    public uint Uint { get; set; }
+    public uint? NUint { get; set; }
+    public Guid Guid { get; set; }
+    public Guid? NGuid { get; set; }
+    public bool Bool { get; set; }
+    public bool? NBool { get; set; }
+    public DateTime DateTime { get; set; }
+    public DateTime? NDateTime { get; set; }
+    public float Float { get; set; }
+    public float? NFloat { get; set; }
+    public double Double { get; set; }
+    public double? NDouble { get; set; }
+    public decimal Decimal { get; set; }
+    public decimal? NDecimal { get; set; }
+    public TimeSpan TimeSpan { get; set; }
+    public TimeSpan? NTimeSpan { get; set; }
+}
+
+if (db.CreateTableIfNotExists<AllFields>())  //= true; if table was created
+{
+    db.Insert(new AllFields { 
+        Id = "Id", Int = 1, Long = 2, Uint = 3, Guid = Guid.NewGuid(), Bool = true, DateTime = DateTime.UtcNow,
+        Float = 1.1f, Double = 2.2d, Decimal = 3.3m, TimeSpan = new TimeSpan(1,1,1,1) });
+}
+
+var allFields = db.SingleById<AllFields>("Id");
+
+db.DropAndCreateTable<AllFields>();
+var emptyAllFieldsCount = db.Count<AllFields>();
+
+db.DropTable<AllFields>();
+var oldTableExists = db.TableExists<AllFields>();
+
+db.CreateTable<AllFields>();
+var newTableExists = db.TableExists<AllFields>();
+```
+
+## Create Tables with Complex Types
+
+OrmLite also supports persisting rich complex types which are blobbed by default or you can use the [Reference] support to persist Nested Complex Types in their own Table Definitions:
+
+```csharp
+public class ArtistWithBlobTracks
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    //By default Complex Types are blobbed with the containing record
+    public List<Track> Tracks { get; set; }
+}
+public class Artist
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    //Complex Type References are persisted in own table
+    [Reference] public List<Track> Tracks { get; set; }
+}
+public class Track
+{
+    [AutoIncrement] 
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Album { get; set; }
+    public int ArtistId { get; set; } // Implicit Reference Id
+}
+
+db.CreateTable<ArtistWithBlobTracks>();
+db.CreateTable<Artist>();
+db.CreateTable<Track>();
+
+db.Insert(new ArtistWithBlobTracks { 
+    Id = 1, Name = "Faith No More", 
+    Tracks = new List<Track> { 
+        new Track { Name = "Everythings Ruined", Album = "Angel Dust" },
+        new Track { Name = "Ashes to Ashes", Album = "Album of the Year" } } 
+});
+var artistWithBlobTracks = db.SingleById<ArtistWithBlobTracks>(1);
+$"Artist with blobbed Tracks: {artistWithBlobTracks.Dump()}".Print();
+$"\nBlob Tracks Count: {db.Count<Track>()}".Print();
+
+db.Save(new Artist { 
+    Id = 1, Name = "Faith No More", 
+    Tracks = new List<Track> { 
+        new Track { Name = "Everythings Ruined", Album = "Angel Dust" },
+        new Track { Name = "Ashes to Ashes", Album = "Album of the Year" } }
+}, references: true);
+
+var artistWithRefTracks = db.LoadSingleById<Artist>(1);
+$"\nArtist with referenced Tracks: {artistWithRefTracks.Dump()}".Print();
+$"\nReferenced Tracks Count: {db.Count<Track>()}".Print();
+```
+
+## Customize Tables using Attributes
+
+When needed you can markup your POCO's with .NET Attributes to allow further specialization of your Table schema and unlock RDBMS server features:
+
+```csharp
+[Schema("TheSchema")]
+[Alias("TableAlias")]
+public class CustomTable
+{
+    [PrimaryKey]
+    [AutoIncrement]
+    public int CustomKey { get; set; }
+    
+    [Alias("RDBMS_NAME")]
+    public string CSharpName { get; set; }
+    
+    [Index(Unique = true)]
+    public string IndexColumn { get; set; }
+
+    [Default(100)]
+    public int? DefaultValue { get; set; }
+    
+    [Default(OrmLiteVariables.SystemUtc)]
+    public DateTime CurrentDate { get; set; }
+
+    [Required]
+    [StringLength(3)]
+    public string RequiredCustomLength { get; set; } //= NOT NULL
+    
+    [DecimalLength(18,4)]
+    public decimal? CustomDecimalPrecision { get; set; }
+    
+    [CustomField("DECIMAL(18,4)")]
+    public decimal? CustomProperty { get; set; }
+    
+    // Completely ignored in OrmLite (used in Serialization only)
+    [Ignore]
+    public int IgnoredProperty { get; set; }
+
+    // Doesn't exist on Table, only used in SELECT Statements
+    [CustomSelect("CustomKey + DefaultValue")] 
+	public int SelectOnlyProperty { get; set; }
+}
+
+db.CreateTable<CustomTable>();
+
+var id = db.Insert(new CustomTable { CSharpName = "Name", IndexColumn = "bar", RequiredCustomLength = "foo",
+	CustomDecimalPrecision = 1.111m, CustomProperty = 2.222m }, selectIdentity:true);
+
+var customTableRow = db.SingleById<CustomTable>(id);
+```
+
+## Create Tables with Foreign Keys
+
+A popular use-case where you'd want to use Attributes is to define Foreign Keys:
+
+```csharp
+public class Artist
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class Album
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    [ForeignKey(typeof(Album), OnDelete = "CASCADE")]
+    public int ArtistId { get; set; }
+}
+
+public class Track
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    [References(typeof(Album))]
+    public int AlbumId { get; set; } // db-agnostic attribute, generates FK to Artist
+
+    [ForeignKey(typeof(Artist), OnDelete = "CASCADE")]
+    public int ArtistId { get; set; }
+}
+
+
+db.CreateTable<Artist>();
+db.CreateTable<Album>();
+db.CreateTable<Track>(); //Order is important for tables with Foreign Keys
+
+db.Insert(new Artist { Id = 1, Name = "Nirvana" });
+db.Insert(new Album { Id = 2, Name = "Nevermind", ArtistId = 1 });
+db.Insert(new Track { Id = 3, Name = "Smells Like Teen Spirit", AlbumId = 2, ArtistId = 1 });
+
+var artist = db.SingleById<Artist>(1);
+var album = db.SingleById<Album>(2);
+var track = db.SingleById<Track>(3);
+```
+
