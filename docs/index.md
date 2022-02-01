@@ -81,7 +81,7 @@ layout: default
     </div>
     <div class="flex flex-wrap">
         <div class="w-full sm:w-1/2 text-center mt-8">
-            <a href="https://github.com/ServiceStack/ServiceStack.Redis">
+            <a href="/redis/">
                 <div class="service-icon text-center">
                     <svg class="w-20 h-20 inline-block" viewBox="0 -18 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet">
                         <path d="M245.97 168.943c-13.662 7.121-84.434 36.22-99.501 44.075-15.067 7.856-23.437 7.78-35.34 2.09-11.902-5.69-87.216-36.112-100.783-42.597C3.566 169.271 0 166.535 0 163.951v-25.876s98.05-21.345 113.879-27.024c15.828-5.679 21.32-5.884 34.79-.95 13.472 4.936 94.018 19.468 107.331 24.344l-.006 25.51c.002 2.558-3.07 5.364-10.024 8.988" fill="#0077b3"></path>
@@ -102,7 +102,7 @@ layout: default
             </p>
         </div>
         <div class="w-full sm:w-1/2 text-center mt-8">
-            <a href="https://github.com/ServiceStack/ServiceStack.OrmLite">
+            <a href="/ormlite/">
                 <div class="mb-3">
                     <i class="fas fa-database text-7xl"></i>
                 </div>

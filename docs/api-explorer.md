@@ -3,18 +3,22 @@ slug: api-explorer
 title: API Explorer
 ---
 
-API Explorer provides the ability to explore, discover and test your APIs for your ServiceStack application by dynamically generating a UI from your services.
-This feature is enabled by default through the `MetadataFeature` or controlled individually through the `UiFeature`. This makes API explorer available in your ServiceStack application at the default `/ui` address.
-For example, our Blazor-WASM demo is hosted at [`blazor-wasm-api.jamstacks.net`](https://blazor-wasm-api.jamstacks.net) has API Explorer available at [`blazor-wasm-api.jamstacks.net/ui`](https://blazor-wasm-api.jamstacks.net/ui). 
+API Explorer is a Postman alternative that lets you explore, discover and call your ServiceStack APIs with an Auto UI dynamically generated from your APIs typed C# classes. It's build from the ground up to provide multiple levels of customization, supporting both declarative & programmatic models for customizing each Input UI control, including form grid layout whilst also providing the ability to provide rich interactive content for each of your APIs or their Types.
+
+This video provides a quick overview of API Explorer's v1 featureset:
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/lUDlTMq9DHU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-Your service contracts, driven by the structure of your request and response Data Transfer Objects (DTOs), generates the UI and controls in API Explorer so no additional effort is required to get:
+::: info DEMO
+A Live demo is available at **/ui** in all ServiceStack **v6+** Apps, e.g: [blazor-wasm-api.jamstacks.net/ui](https://blazor-wasm-api.jamstacks.net/ui)
+:::
 
-- A list of your services
-- A form to test your API
-- A details page to document your API
-- A code page with how to use your API across different languages
+Your API service contracts, driven by the structure of your request and response Data Transfer Objects (DTOs), generates the UI and controls in API Explorer where no additional effort is required to get:
+
+- A list of APIs each user has access to
+- A dynamic form to call your APIs
+- A details page providing a complete description of your APIs
+- Source code feature letting API consumers browse API Service contracts in their preferred language ([9 languages supported](https://servicestack.net/service-reference))
 
 <a href="https://blazor-wasm-api.jamstacks.net/ui" class="block my-8 p-4 rounded shadow hover:shadow-lg">
     <img src="/images/apiexplorer/code-to-form.png">
@@ -27,8 +31,8 @@ API Explorer is also aware of registered plugins in your application AppHost, pr
 </a>
 
 ::: info
-This feature is enabled by default through the `MetadataFeature` or controlled individually through the `UiFeature`. 
-Removing either plugin will disable the API Explorer functionality.
+API Explorer is powered by the rich API metadata provided by the `MetadataFeature` can can be customized through the `UiFeature` plugin. 
+Removing either plugin disables API Explorer.
 :::
 
 ## API Tab
