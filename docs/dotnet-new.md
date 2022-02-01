@@ -13,39 +13,39 @@ All ServiceStack Projects can be created using the .NET Core [x dotnet tool](htt
 
 ## Install
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 ### Apple M1
 
 Install on Apple's new M1 Pro and M1 Max ARM chips with:
 
-```bash
-$ dotnet tool install -g -a x64 x
-```
+:::sh
+dotnet tool install -g -a x64 x
+:::
 
 ### Update
 
 Or if you had a previous version installed, update with:
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 All features from the cross-platform `x` dotnet tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
 
-```bash
-$ dotnet tool install --global app 
-```
+:::sh
+dotnet tool install --global app 
+:::
 
 #### Usage
 
 To view a list of projects run:
 
-```bash
-$ x new
-```
+:::sh
+x new
+:::
 
 Where it will display all repositories in [.NET Core](https://github.com/NetCoreTemplates), 
 [.NET Framework](https://github.com/NetFrameworkTemplates) and 
@@ -59,15 +59,16 @@ Where it will display all repositories in [.NET Core](https://github.com/NetCore
 
 #### Usage
 
+
 ```bash
 $ x new `<template>` `<name>`
 ```
 
 For example to create a new **Vue Single Page App**, run:
 
-```bash
-$ x new vue-spa ProjectName
-```
+:::sh
+x new vue-spa ProjectName
+:::
 
 Alternatively you can write new project files directly into an empty repository using the Directory Name as the ProjectName:
 
@@ -79,7 +80,7 @@ $ x new vue-spa
 
 Or download a customized project template from our Getting Started Page:
 
-#### [servicestack.net/start](https://servicestack.net/start)
+### [servicestack.net/start](https://servicestack.net/start)
 
 ## Modernized Project Templates
 
@@ -245,9 +246,9 @@ Which can also be created from our online Project builder at: **servicestack.net
 Otherwise our .NET Core project templates have had their last .NET 5.0 version tagged with `net5` which can be installed with 
 the `x` tool by using the full URL of its Source Code **.zip** archive in place of the Template name, e.g:
 
-```bash
-$ x new https://github.com/NetCoreTemplates/<template>/archive/refs/tags/net5.zip ProjectName
-```
+:::sh
+`x new https://github.com/NetCoreTemplates/<template>/archive/refs/tags/net5.zip ProjectName`
+:::
 
 ### Creating new projects of older Template versions
 
@@ -260,10 +261,13 @@ Once you know which release you want to create a new project of, e.g. for the `w
 Use its full URL of its Source Code **.zip** archive 
 in place of the Template name, e.g:
 
-```bash
-$ mkdir ProjectName && cd ProjectName 
-$ x new https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
-```
+:::sh
+mkdir ProjectName && cd ProjectName 
+:::
+
+:::sh
+x new https://github.com/NetCoreTemplates/web/archive/refs/tags/v27.zip
+:::
 
 Alternatively if it's easier you can download the Release Source Code archive manually:
 
@@ -281,9 +285,9 @@ To support older projects the [Existing ModularStartup configuration](https://gi
 can still be used for when running on earlier .NET Core runtimes with the mix tool by changing the gist Id in the `MIX_SOURCE` 
 Environment Variable, e.g:
 
-```bash
-$ MIX_SOURCE=7362ea802aef361bbdc21097b6a99e0d x mix
-```
+:::sh
+MIX_SOURCE=7362ea802aef361bbdc21097b6a99e0d x mix
+:::
 
 Which will chance to use the older mix Modular Startup configuration as its source.
 
@@ -388,17 +392,17 @@ These are the only sources `x new` looks at to create ServiceStack projects, whi
 [NetCoreTemplates](https://github.com/NetCoreTemplates), [NetFrameworkTemplates](https://github.com/NetFrameworkTemplates) and 
 [NetFrameworkCoreTemplates](https://github.com/NetFrameworkCoreTemplates) GitHub Organizations, whose repos will be listed when running:
 
-```bash
-$ x new
-```
+:::sh
+x new
+:::
 
 ### Creating new Legacy Project Templates
 
 By Setting `APP_SOURCE_TEMPLATES` environment variable to [LegacyTemplates](https://github.com/LegacyTemplates) you can can use the `x` tool 
 to browse and create new legacy project templates, e.g:
 
-```bash
-$ APP_SOURCE_TEMPLATES=LegacyTemplates x new
-```
+:::sh
+APP_SOURCE_TEMPLATES=LegacyTemplates x new
+:::
 
 <webTrouble></webTrouble>

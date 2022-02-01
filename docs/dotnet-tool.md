@@ -22,25 +22,25 @@ or generate typed endpoints for consuming ServiceStack Services by either
 
 To access available features, install with:
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 ### Apple M1
 
 Install on Apple's new M1 Pro and M1 Max ARM chips with:
 
-```bash
-$ dotnet tool install -g -a x64 x
-```
+:::sh
+dotnet tool install -g -a x64 x
+:::
 
 ### Update
 
 Or if you had a previous version installed, update with:
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 ::: info
 Both `x` and `app` have equivalent base functionality, whilst `app` has superset features for richer [Windows-only integration](/netcore-windows-desktop)
@@ -50,9 +50,9 @@ Both `x` and `app` have equivalent base functionality, whilst `app` has superset
 
 Then run `x` without any arguments to view Usage:
 
-```bash
-$ x
-```
+:::sh
+x
+:::
 
 ```
 Usage:
@@ -149,25 +149,35 @@ Options:
 This shows us we can Add a ServiceStack Reference with `x <lang> <baseurl>` which will let us create a TypeScript Reference 
 to the new [World Validation](/world-validation) App using its `ts` file extension alias:
 
-```bash
-$ x ts http://validation.web-app.io
 
+:::sh
+x ts http://validation.web-app.io
+:::
+
+Output:
+```
 Saved to: dtos.ts
 ```
 
 Or create a C# ServiceStack Reference with:
 
-```bash
-$ x cs http://validation.web-app.io
+:::sh
+x cs http://validation.web-app.io
+:::
 
+Output:
+```
 Saved to: dtos.cs
 ```
 
 To update run `x <lang>` which will recursively update all existing ServiceStack References:
 
-```bash
-$ x ts
+:::sh
+x ts
+:::
 
+Output:
+```
 Updated: dtos.ts
 ```
 
@@ -229,9 +239,9 @@ If you're updating references frequently you can save time by [assigning it a ke
 
 See [x new](/web-new) for available Project Templates you can create with:
 
-```bash
-$ x new
-```
+:::sh
+x new
+:::
 
 ### Mix Features into existing ASP.NET Core Apps
 
@@ -249,9 +259,9 @@ x gist <gist-id>          Write all Gist text files to current directory
 
 View available gists with:
 
-```bash
-$ x mix
-```
+:::sh
+x mix
+:::
 
 Where you can use `x mix nginx` to generate a common nginx template configuration for reverse proxying .NET Core Apps, making configuring 
 [Linux deployment servers for your .NET Core Apps](/netcore-deploy-rsync) less tedious. 
@@ -259,9 +269,9 @@ Where you can use `x mix nginx` to generate a common nginx template configuratio
 In addition to the pre-set templates, you can create your own [public GitHub gist](https://gist.github.com) with any number of different files customized 
 for your Environment that anyone can write to their current directory with **the gist id** or **gist URL**:
 
-```bash
-$ x gist <gist-id>
-```
+:::sh
+`x gist <gist-id>`
+:::
 
 ### Lisp REPL
 

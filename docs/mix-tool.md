@@ -6,23 +6,23 @@ title: Mix features into ASP.NET Core Projects from Gists
 To complete the picture of making it easy as possible to compose ASP.NET Core Apps & easily install features we've added `mix` support to the 
 [dotnet tools](/dotnet-tool):
 
-```bash
-$ dotnet tool install --global x
-```
+:::sh
+dotnet tool install --global x
+:::
 
 The same functionality is also built into the Windows [app](/netcore-windows-desktop) dotnet tool, both can be updated to the latest version with:
 
 .NET 6.0 (Windows/macOS/Linux):
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 .NET 6.0 (Windows x64):
 
-```bash
-$ dotnet tool update -g app
-```
+:::sh
+dotnet tool update -g app
+:::
 
 ### mix-enabled dotnet tools
 
@@ -68,9 +68,9 @@ Only display available gists with a specific tag:
 
 Although most of the time you're only going to run 2 commands, viewing available features with:
 
-```bash
-$ x mix
-```
+:::sh
+x mix
+:::
 
 Where it displays different features that can be added to your App, where they're added to and the author of the Gist:
 
@@ -150,9 +150,9 @@ Advanced:  x mix ?
 
 Then choosing which features you want to add to your project with `x mix <name>`, e.g:
 
-```bash
-$ x mix redis
-```
+:::sh
+x mix redis
+:::
 
 The entire list of available features is maintained in the self-documenting human and machine readable
 [mix.md](https://gist.github.com/gistlyn/9b32b03f207a191099137429051ebde8) feature index.
@@ -165,9 +165,9 @@ It should be noted that `ModularStartup` and `mix` dotnet tool aren't limited to
 that can easily add features to any .NET Core App. E.g. some of ServiceStack features relies on external dependencies which utilizes
 the same dependency registration used in all ASP.NET Core Apps, e.g running:
 
-```bash
-$ x mix mongodb
-```
+:::sh
+x mix mongodb
+:::
 
 Applies the `mongodb` feature to your HOST project as instructed by the `to: $HOST` modifier above that it finds by
 using the first folder containing either `appsettings.json`, `Program.cs` or `Startup.cs`
@@ -199,9 +199,9 @@ With all `MyApp` tokens replaced with the **Project Name** using the same replac
 
 By default it assumes the folder name is the project name, that's overridable using the `-name` flag:
 
-```bash
-$ x mix -name ProjectName mongodb
-```
+:::sh
+x mix -name ProjectName mongodb
+:::
 
 This feature also installs the **MongoDB.Driver** NuGet package as instructed by the `_init` command in the 
 [mongodb feature](https://gist.github.com/gistlyn/f777396583262127a66e2369ae475d3f).
@@ -213,17 +213,17 @@ So after just a single `mix` command and App restart, it's now configured and ru
 As a design goal `mix` features are designed to be layerable where you can existing features that builds upon existing registrations, 
 for example you can later configure your App to **enable auth** and configure it to use a `MongoDbAuthRepository` with:
 
-```bash
-$ x mix auth auth-mongodb
-```
+:::sh
+x mix auth auth-mongodb
+:::
 
 ### Mix in DB Support
 
 All DB servers are just as easily configurable, which we can quickly find using a `[db]` tag search:
 
-```bash
-$ x mix [db]
-```
+:::sh
+x mix [db]
+:::
 
 ::: info Tip
 search term needs to be quoted in unix shells, e.g: '[db]'
@@ -255,9 +255,9 @@ Advanced:  x mix ?
 
 So we can install Redis with:
 
-```bash
-$ x mix redis
-```
+:::sh
+x mix redis
+:::
 
 Where it will apply the [Redis Gist](https://gist.github.com/gistlyn/512309b3cb7d734bb0f7323907499b08) below:
 
@@ -294,27 +294,27 @@ most effort required to enable a feature is adding a Connection String in your `
 A nice characteristic about "no-touch" layerable features are that they're composable, where `mix` will let you hand-pick all features you
 want in a single command. For example you can enable Authentication, register an RDBMS Auth Repository using SQL Server with:
 
-```bash
-$ x mix auth auth-db sqlserver
-```
+:::sh
+x mix auth auth-db sqlserver
+:::
 
 Which will apply the [Configure.Auth.cs](https://gist.github.com/gistlyn/1ec54e10d44f87e0f20daaf7e2248fea), 
 [Configure.AuthRepository.cs](https://gist.github.com/gistlyn/16fddde0763b3eee516d670ab9fab194) and [Configure.Db.cs](https://gist.github.com/gistlyn/7075e53e1fe69d3da12996677b5f3a5a) gists.
 
 If you later wanted to switch to PostgreSQL, you can `mix` it in with:
 
-```bash
-$ x mix postgres
-```
+:::sh
+x mix postgres
+:::
 
 Where it will override [Configure.Db.cs](https://gist.github.com/gistlyn/faf62da8b8ef30849506631025a5d06c) to use the postgres version, 
 leaving any custom logic in `Configure.Auth.cs` or `Configure.AuthRepository.cs` untouched.
 
 Or if you later want to change the Auth Repository to use Redis instead, you can run:
 
-```bash
-$ x mix auth-redis
-```
+:::sh
+x mix auth-redis
+:::
 
 Where it will override the existing `Configure.AuthRepository.cs` added by **auth-db**.
 
@@ -323,9 +323,9 @@ Where it will override the existing `Configure.AuthRepository.cs` added by **aut
 In addition to being easy to add, `mix` makes it easy to undo where you can specify the `-delete` flag to remove all the Gist files added
 by all features, e.g:
 
-```bash
-$ x mix -delete auth auth-db sqlserver
-```
+:::sh
+x mix -delete auth auth-db sqlserver
+:::
 
 Which will let you review all the files in each Gist that will deleted, then hit `Enter` to confirm:
 
@@ -437,9 +437,9 @@ As it can take a while to piece together how to configure your preferred Auth Re
 and utilize [Auth Events](/sessions#session-events) to populate it, we now recommend using `mix` to configure
 your preferred Auth Repository, which you can query with:
 
-```bash
-$ x mix [auth]
-```
+:::sh
+x mix [auth]
+:::
 
 To display the current list of available Auth Repositories:
 
@@ -462,9 +462,9 @@ Results matching tag [auth]:
 Likewise we now recommend using `mix` to configure your preferred MQ Service, other than being quicker to add,
 it proposes adopting a naming convention in app settings and file names that other `mix` features can also make use of:
 
-```bash
-$ x mix [mq]
-```
+:::sh
+x mix [mq]
+:::
 
 Currently available list of MQ Services:
 
@@ -483,9 +483,9 @@ Results matching tag [mq]:
 
 You can configure your ServiceStack App to use Nuglify's Advanced HTML, CSS, JS Minifiers using [mix](/mix-tool) with:
 
-```bash
-$ x mix nuglify 
-```
+:::sh
+x mix nuglify 
+:::
 
 Which will write [Configure.Nuglify.cs](https://gist.github.com/gistlyn/4bdb79d21f199c22b8a86f032c186e2d) to your **HOST** project.
 
@@ -515,16 +515,19 @@ Authentication integration allowing each authenticated user to manage their own 
 
 To follow video's example, start with a new **Acme** project from `sharp` .NET Core Template:
 
-```bash
-$ x new script Acme
-```
+:::sh
+x new script Acme
+:::
 
 Add the `example-validation` mix:
 
-```bash
-$ cd Acme
-$ x mix example-validation
-```
+:::sh
+cd Acme
+:::
+
+:::sh
+x mix example-validation
+:::
 
 Which will prompt you with a link to the gist and the files that will be added to your project:
 
@@ -543,16 +546,18 @@ Proceed? (n/Y):
 
 Now after restarting your App you'll be able to add contacts by clicking on the new **Contacts** link in your App's main menu: 
 
-```bash
-$ cd Acme
-$ dotnet run
-```
+:::sh
+cd Acme
+:::
+:::sh
+dotnet run
+:::
 
 After you're done reviewing the example you can either refactor it to handle your App's requirements or completely remove it from your App with:
 
-```bash
-$ x mix -delete example-validation
-```
+:::sh
+x mix -delete example-validation
+:::
 
 ### feature-mq
 
@@ -570,9 +575,9 @@ or configure your App to use the In Memory `BackgroundMqService` implementation.
 
 Add `feature-mq` to your project with:
 
-```bash
-$ x mix feature-mq
-```
+:::sh
+x mix feature-mq
+:::
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/nav/feature-mq.png)
 

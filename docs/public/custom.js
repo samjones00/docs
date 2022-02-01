@@ -6,18 +6,20 @@
 ga('create', 'UA-7722718-13', 'auto');
 ga('send', 'pageview');
 
+function enc(o) {
+    return o == null ? null : typeof o == 'string'
+        ? o.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/"/g, '&#34;')
+        : `${o}`
+}
+
 function copy(e) {
-    let $el = document.createElement("input");
-    let $parent = e.parentElement.parentElement;
-    let $lbl = $parent.firstElementChild;
-    $el.setAttribute("value", $lbl.innerText);
-    document.body.appendChild($el);
-    $el.select();
-    document.execCommand("copy");
-    document.body.removeChild($el);
-    let $copyText = $parent.parentElement.querySelector('.copy-text');
-    $copyText.innerHTML = '<label>copied!</label>';
-    setTimeout(function () {
-        $copyText.innerHTML = '';
-    }, 5000);
+    e.classList.add('copying')
+    let $el = document.createElement("textarea")
+    let text = (e.querySelector('code') || e.querySelector('p')).innerHTML
+    $el.innerHTML = text
+    document.body.appendChild($el)
+    $el.select()
+    document.execCommand("copy")
+    document.body.removeChild($el)
+    setTimeout(() => e.classList.remove('copying'), 3000)
 }

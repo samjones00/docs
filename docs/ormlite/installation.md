@@ -101,17 +101,32 @@ Please raise support questions on [StackOverflow](https://stackoverflow.com/ques
 
 The quickest way to install OrmLite in existing ASP .NET Core projects is to [mix in](/mix-tool) the desired RDBMS provider which both installs the required NuGet package and creates a [Modular Startup](/modular-startup) configuration all setup to read your App's configured RDBMS connection string for instant utility:
 
-```bash
-$ x mix postgres
-$ x mix sqlserver 
-$ x mix mysql
-$ x mix sqlite
-$ x mix oracle
-$ x mix firebird
-```
+::: sh
+x mix postgres
+:::
+
+::: sh
+x mix sqlserver
+:::
+
+::: sh
+x mix mysql
+:::
+
+::: sh
+x mix sqlite
+:::
+
+::: sh
+x mix oracle
+:::
+
+::: sh
+x mix firebird
+:::
 
 If you don't have the dotnet `x` tool installed, it can be installed with: 
 
-```bash
+::: sh
 dotnet tool install -g x
-```
+:::

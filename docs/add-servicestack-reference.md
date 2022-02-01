@@ -114,9 +114,9 @@ The [x dotnet tool](/dotnet-tool) provides simple command-line utilities to easi
 
 ## Installation
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 This will make the following utilities available from your command-line which will let you download the Server DTO classes for a remote ServiceStack endpoint in your chosen language which you can use with ServiceStack's generic Service clients to be able to make end-to-end API calls.
 
@@ -182,9 +182,10 @@ We'll walkthrough an example using TypeScript to download Server Types from the 
 To Add a TypeScript ServiceStack Reference just call `x typescript` with the URL of 
 a remote ServiceStack instance:
 
-```bash
-$ x typescript https://techstacks.io
-```
+:::sh
+x typescript https://techstacks.io
+:::
+
 
 Result:
 
@@ -194,9 +195,9 @@ Saved to: dtos.ts
 
 Calling `x typescript` with just a URL will save the DTOs using the Host name, you can override this by specifying a FileName as the 2nd argument:
 
-```bash
-$ x typescript https://techstacks.io Tech
-```
+:::sh
+x typescript https://techstacks.io Tech
+:::
 
 Result:
 
@@ -208,9 +209,9 @@ Saved to: Tech.dtos.ts
 
 To Update an existing ServiceStack Reference, call `x typescript` with the Filename:
 
-```bash
-$ x typescript dtos.ts
-```
+:::sh
+x typescript dtos.ts
+:::
 
 Result:
 
@@ -224,9 +225,9 @@ Which will update the File with the latest TypeScript Server DTOs from [techstac
 
 Calling `x typescript` without any arguments will update **all TypeScript DTOs** in the current directory:
 
-```bash
-$ x typescript
-```
+:::sh
+x typescript
+:::
 
 Result:
 
@@ -241,11 +242,9 @@ To make it more wrist-friendly you can also use the shorter `x ts` alias instead
 
 Now we have our TechStacks Server DTOs we can use them with the generic `JsonServiceClient` in the [@servicestack/client](https://www.npmjs.com/package/@servicestack/client) npm package to make Typed API Calls.
 
-#### Install @servicestack/client
-
-```bash
-$ npm install @servicestack/client
-```
+:::sh
+npm install @servicestack/client
+:::
 
 #### TechStacks Example
 
@@ -274,15 +273,15 @@ the Typed Response DTOs in Promise callbacks.
 
 To run our TypeScript example we just need to compile it with TypeScript:
 
-```bash
-$ tsc demo.ts
-```
+:::sh
+tsc demo.ts
+:::
 
 Which will generate the compiled `demo.js` (and `typescript.dtos.js`) which we can then run with node:
 
-```bash
-$ node demo.js
-```
+:::sh
+node demo.js
+:::
 
 Result:
 
