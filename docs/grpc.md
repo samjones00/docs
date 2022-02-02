@@ -17,9 +17,9 @@ in developing gRPC Services on the Server, ServiceStack also offers a
 The easiest way to get started is to start from a new [grpc](https://github.com/NetCoreTemplates/grpc) template that's a copy of the 
 empty [web](https://github.com/NetCoreTemplates/web) project template pre-configured with gRPC support:
 
-```bash
-$ x new grpc MyGrpcProject
-```
+:::sh
+x new grpc MyGrpcProject
+:::
 
 ### ServiceStack Services are gRPC Services
 
@@ -81,17 +81,17 @@ Trying to call a Service without these annotations will result in an error that 
 By default this Service is available in [all of ServiceStack's supported formats](/formats), to also make it available via ASP.NET Core's
 gRPC Endpoints you can [mix it](/mix-tool) into [Modular Startup](/modular-startup) projects with:
 
-```bash
-$ x mix grpc
-```
+:::sh
+x mix grpc
+:::
 
 Which applies this [modular ConfigureGrpc configuration](https://gist.github.com/gistlyn/656c29a7257dc374d22d4aa709ba7244) to your project.
 
 Or to manually configure gRPC support, add a reference to the .NET Core 3 **ServiceStack.Extensions** NuGet package:
 
-```bash
-$ dotnet add package ServiceStack.Extensions
-```
+:::sh
+dotnet add package ServiceStack.Extensions
+:::
 
 Add the necessary dependencies:
 
@@ -256,9 +256,9 @@ additional annotations or interfaces that can allow for a richer client developm
 An alternative to sharing your **ServiceModel.dll** with .NET clients is for them to use [Add ServiceStack Reference](/add-servicestack-reference)
 to generate .NET DTOs locally which they can easily do using the [x dotnet tool](/dotnet-tool), e.g:
 
-```bash
-$ x csharp https://todoworld.servicestack.net
-```
+:::sh
+x csharp https://todoworld.servicestack.net
+:::
 
 This offers the same behavior as sharing **ServiceModel.dll** binary where they can be used in any 
 [.NET Generic Service Client](/csharp-client#built-in-clients), but also allows for clients to 
@@ -272,9 +272,9 @@ for whom previously there was no planned gRPC support.
 
 The new `GrpcServiceClient` can be used in **.NET Standard 2.1** and **.NET Core 3** .NET Clients by adding a reference to:
 
-```bash
-$ dotnet add package ServiceStack.GrpcClient
-```
+:::sh
+dotnet add package ServiceStack.GrpcClient
+:::
 
 This is a full-featured generic Service Client that provides a nicer and cleaner API than what's possible with `protoc` generated clients
 and contains most of the built-in functionality of other [C#/.NET Typed Generic Clients](/csharp-client), namely:
@@ -966,37 +966,37 @@ client configure and maintain their build system to use protoc tooling.
 
 Local **.proto** files aren't necessary for ServiceStack gRPC Services with gRPC clients only needing a URL, e.g:
 
-```bash
-$ x proto-<lang> https://todoworld.servicestack.net
-```
+:::sh
+`x proto-<lang> https://todoworld.servicestack.net`
+:::
 
 ### From .proto descriptors
 
 Other clients can generate protoc clients from either a single **.proto** services description:
 
-```bash
-$ x proto-<lang> services.proto
-```
+:::sh
+`x proto-<lang> services.proto`
+:::
 
 Or upload multiple **.proto** files by specifying a directory instead:
 
-```bash
-$ x proto-<lang> /path/to/grpc/protos
-```
+:::sh
+`x proto-<lang> /path/to/grpc/protos`
+:::
 
 Use **-out** to specify a different directory to save the protoc generated classes to, e.g:
 
-```bash
-$ x proto-<lang> services.proto -out /path/to/dir
-```
+:::sh
+`x proto-<lang> services.proto -out /path/to/dir`
+:::
 
 ### Using curl
 
 Alternatively you can use curl command-line HTTP Client to download protoc generated classes in a **.zip** archive:
 
-```bash
-$ curl -F 'file1=@services.proto' https://grpc.servicestack.net/protoc/[lang]?zip -L -o grpc.zip
-```
+:::sh
+curl -F 'file1=@services.proto' https://grpc.servicestack.net/protoc/[lang]?zip -L -o grpc.zip
+:::
 
 Below is a complete list of different languages supported by this public gRPC Service:
 
