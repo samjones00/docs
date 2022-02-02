@@ -9,33 +9,33 @@ ServiceStack has its strong foundations as a Web and MQ Services framework whose
 
 All ServiceStack Project Templates can be found and installed using the [x new](/web-new) .NET Core tool that can be installed with:
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 ### Apple M1
 
 Install on Apple's new M1 Pro and M1 Max ARM chips with:
 
-```bash
-$ dotnet tool install -g -a x64 x
-```
+:::sh
+dotnet tool install -g -a x64 x
+:::
 
 ### Update
 
 Or if you had a previous version installed, update with:
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 ## Explore available templates
 
 Then run `x new` to view the list of available project templates:
 
-```bash
-$ x new
-```
+:::sh
+x new
+:::
 
 ## Available Project Templates
 
