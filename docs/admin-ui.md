@@ -136,15 +136,3 @@ Enabling the use of custom properties as well as formatting for ease of use. `Us
         <img src="/images/admin-ui/users-edit-custom.png" style="max-width:800px;">
     </a>
 </div>
-
-## Limitations
-
-As of the first release of **Admin UI**, it requires the use of `camelCase` serialization which is the default in ASP.NET Core.
-
-.NET Framework projects can switch to camelCase serialization with:
-
-```csharp
-JsConfig.Init(new Config {
-    TextCase = TextCase.CamelCase
-});
-```
