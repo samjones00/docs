@@ -36,7 +36,7 @@ layout: default
     </div>
     <div class="w-full sm:w-1/2">
         <h3 class="text-2xl">
-            <a class="block" href="https://github.com/ServiceStack/Discuss/discussions/categories/ideas">
+            <a class="block" href="https://servicestack.net/ideas">
                 <i class="far fa-comments"></i>
                 Request a Feature</a>
         </h3>
