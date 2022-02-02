@@ -9,9 +9,9 @@ This is a quick walkthrough of getting your first web service up and running whi
 
 First we want to install the [x dotnet tool](/dotnet-tool):
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 The [dotnet tools](/dotnet-tool) are ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
 generating mobile, web & desktop DTOs with [Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc),
