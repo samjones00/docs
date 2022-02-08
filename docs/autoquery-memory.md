@@ -50,6 +50,62 @@ With just the empty Request DTO's above they're now queryable like any other Aut
    - /currencies.json?code=AUD
    - /repos.csv?watchers_count>=100&orderBy=-watchers_count,name&fields=name,homepage,language
 
+
+## Queryable PocoDataSource
+
+**PocoDataSource** is useful for quickly creating an In Memory Queryable Data Source as done in the [TODOs MVC Jamstack Examples](/templates-jamstack#todos-mvc):
+
+```csharp
+public class TodosServices : Service
+{
+    public IAutoQueryData AutoQuery { get; set; }
+
+    static readonly PocoDataSource<Todo> Todos = PocoDataSource.Create(new Todo[]
+    {
+        new () { Id = 1, Text = "Learn" },
+        new () { Id = 2, Text = "Blazor", IsFinished = true },
+        new () { Id = 3, Text = "WASM!" },
+    }, nextId: x => x.Select(e => e.Id).Max());
+
+    public object Get(QueryTodos query)
+    {
+        var db = Todos.ToDataSource(query, Request);
+        return AutoQuery.Execute(query, AutoQuery.CreateQuery(query, Request, db), db);
+    }
+
+    public Todo Post(CreateTodo request)
+    {
+        var newTodo = new Todo { Id = Todos.NextId(), Text = request.Text };
+        Todos.Add(newTodo);
+        return newTodo;
+    }
+
+    public Todo Put(UpdateTodo request)
+    {
+        var todo = request.ConvertTo<Todo>();
+        Todos.TryUpdateById(todo, todo.Id);
+        return todo;
+    }
+
+    // Handles Deleting the Todo item
+    public void Delete(DeleteTodo request) => Todos.TryDeleteById(request.Id);
+
+    public void Delete(DeleteTodos request) => Todos.TryDeleteByIds(request.Ids);
+}
+```
+
+Where it provides ThreadSafe CRUD operations to manage a collection of In Memory POCOs. 
+
+### In Memory AutoQuery
+
+The `QueryTodos` implementation utilizes an [AutoQuery Memory Source](/autoquery-memory) with the full capabilities of AutoQuery's [Implicit Conventions](/autoquery-rdbms#implicit-conventions):
+
+ - [/api/QueryTodos?Id>=1](https://blazor-wasm-api.jamstacks.net/api/QueryTodos?Id>=1)
+ - [/api/QueryTodos?TextContains=Blazor](https://blazor-wasm-api.jamstacks.net/api/QueryTodos?TextContains=Blazor)
+ - [/api/QueryTodos?IsFinished=false](https://blazor-wasm-api.jamstacks.net/api/QueryTodos?IsFinished=false)
+
+Where it can be used to iteratively prototype new data models under a productive **dotnet watch** workflow until it satisfies all your requirements where it could be easily converted to [AutoQuery CRUD](/autoquery-crud) APIs and integrated with your Systems configured RDBMS - which would require even less code.
+
 ### Cacheable Data Sources
 
 The examples above provides a nice demonstration of querying static memory collections. But Data Sources 

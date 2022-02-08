@@ -70,7 +70,7 @@ The report does not have any external CSS, JavaScript or Images which also helps
 ### Embeds the complete snapshot of your web services data
 The report embeds a complete, unaltered version of your 'JSON webservice' capturing a snapshot of the state of your data at a given point in time. 
 It's perfect for backups with the same document containing a human and programatic access to the data. 
-The JSON data is embedded inside a valid and well-formed document, making it programatically accessible using a standard XML/HTML parser. 
+The JSON data is embedded inside a valid and well-formed document, making it programmatically accessible using a standard XML/HTML parser. 
 The report also includes an interface to allow humans to copy it from a textbox.
   
 ### It's Fast

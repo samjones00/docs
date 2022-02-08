@@ -5,7 +5,7 @@ title: HTTP Utils
 
 The recommended way to call ServiceStack services is to use any of the [C# Service Clients](/csharp-client) which have a nice DRY and typed API optimized for this use. However when doing server programming you will often need to consume 3rd Party HTTP APIs, unfortunately the built-in way to do this in .NET doesn't make for a good development experience since it makes use of **WebRequest** - one of the legacy classes inherited from the early .NET days. WebRequest is an example of a class that's both versatile but also suffers from exposing an out-dated and unpleasant API for your application code to bind to.
 
-### Creating a pleasant DRY API with just extension methods
+### HTTP Utils - a pleasant DRY API using extension methods
 
 Rather than taking the normal .NET approach of wrapping WebRequest inside a suite of proxy and abstraction classes, we prefer to instead encapsulate any unnecessary boilerplate behind extension methods DRYing common access patterns behind terse, readable and chained APIs without any loss of flexibility since the underlying WebRequest remains accessible whenever it's needed. 
 
@@ -17,9 +17,107 @@ List<GithubRepo> repos = $"https://api.github.com/users/{user}/repos"
     .FromJson<List<GithubRepo>>();
 ```
 
+## Uses HttpClient in .NET 6
+
+As .NET's existing `HttpWebRequest` has been officially deprecated, the UX-friendly HTTP Utils extension methods utilize the recommended **HttpClient** implementation from .NET 6+ builds.
+
+### Source Compatible API
+
+Given .NET 6 HttpClient uses a different implementation to .NET's `HttpWebRequest` in previous .NET Versions it wasn't possible to enable 100% compatibility with existing code that utilize custom Request & Response **filters** however you can use the source compatible `.With()` APIs to customize a HTTP Request to support using the same source code in multi-targeted code-bases, e.g:
+
+```csharp
+var response = url.GetJsonFromUrl(requestFilter:req => req.With(c => c.UserAgent = UserAgent));
+var response = await url.GetJsonFromUrlAsync(requestFilter:req => req.With(c => c.UserAgent = UserAgent));
+```
+
+Which lets you configure a [HttpRequestConfig](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/HttpRequestConfig.cs) that is equally applied to their `HttpClient` and `HttpWebRequest` implementations. 
+
+It also includes `Set*` methods to simplify common tasks like creating Authenticated Requests, e.g:
+
+```csharp
+var json = await url.GetJsonFromUrlAsync(requestFilter: req => 
+    req.With(c => {
+        c.UserAgent = UserAgent;
+        c.SetAuthBasic(ClientId, ClientSecret);
+    }), token: token).ConfigAwait();
+```
+
+The full [HttpRequestConfig](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/HttpRequestConfig.cs) API available in this release include:
+
+```csharp
+public class HttpRequestConfig 
+{
+    public string? Accept { get; set; } 
+    public string? UserAgent { get; set; } 
+    public string? ContentType { get; set; }
+    public string? Referer { get; set; }
+    public string? Expect { get; set; }
+    public string[]? TransferEncoding { get; set; }
+    public bool? TransferEncodingChunked { get; set; }
+    public NameValue? Authorization { get; set; }
+    public LongRange? Range { get; set; }
+    public List<NameValue> Headers { get; set; } = new();
+
+    public void SetAuthBearer(string value) => Authorization = new("Bearer", value);
+    public void SetAuthBasic(string name, string value) => 
+        Authorization = new("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(name + ":" + value)));
+    public void SetRange(long from, long? to = null) => Range = new(from, to);
+
+    public void AddHeader(string name, string value) => Headers.Add(new(name, value));
+}
+```
+
+#### Inspecting Responses
+
+For source compatible APIs to inspect HTTP Responses you can use `GetHeader()` to retrieve HTTP Response Headers, `GetContentLength()` to retrieve the **Content-Length** if exists and `MatchesContentType()` to compare against existing MimeTypes which ignores whitespace, casing and charset suffixes, e.g:
+
+```csharp
+var response = baseUrl.AppendPath("dir","sub").AddQueryParam("id", 1)
+    .SendStringToUrl(method: "HEAD",
+        responseFilter: res => {
+            Assert.That(res.GetHeader("X-Method"), Is.EqualTo("HEAD"));
+            Assert.That(res.GetHeader("X-Id"), Is.EqualTo("1"));
+            Assert.That(res.MatchesContentType("video/mp4"));
+            Assert.That(res.GetContentLength(), Is.EqualTo(100));
+        });
+```
+
+#### Connect to HttpFactory
+
+The HttpClient HttpUtils use a lazy singleton for efficiency however if you're using it in a host that has an ASP.NET IOC you can configure it to make use of a HttpClient factory by using the `IServiceCollection.AddHttpUtilsClient()` extension method, e.g:
+
+```csharp
+public class AppHost : AppHostBase, IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => services.AddHttpUtilsClient())
+        .Configure(app => {
+            if (!HasInit) 
+                app.UseServiceStack(new AppHost());
+        });
+}
+```
+
+#### Custom HttpClient
+
+Alternatively you can configure it to use your own client factory with:
+
+```csharp
+HttpUtils.CreateClient = () => UseMyHttpClient()
+```
+
+The following Core APIs also have extension methods on `HttpClient` which existing HttpClient instances can make use of:
+
+ - `SendStringToUrl()`
+ - `SendStringToUrlAsync()`
+ - `SendBytesToUrl()`
+ - `SendBytesToUrlAsync()`
+ - `SendStreamToUrl()`
+ - `SendStreamToUrlAsync()`
+
 ### Url Extensions
 
-You can make use of the accompanying String Extensions to programatically construct a url as seen in this Twitter API example:
+You can make use of the accompanying String Extensions to programmatically construct a url as seen in this Twitter API example:
 
 ```csharp
 var url = $"http://api.twitter.com/statuses/user_timeline.json?screen_name={name}";

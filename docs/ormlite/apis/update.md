@@ -121,7 +121,7 @@ db.UpdateOnlyFields(new Person { FirstName = "JJ" },
     onlyFields: p => p.FirstName, 
     where: p => p.LastName == "Hendrix");
 ```
-Instead of using the expression filters above you can choose to use an SqlExpression builder which provides more flexibility when you want to programatically construct the update statement:
+Instead of using the expression filters above you can choose to use an SqlExpression builder which provides more flexibility when you want to programmatically construct the update statement:
 
 ```csharp
 var q = db.From<Person>()
