@@ -19,6 +19,10 @@
             "link": "/templates-blazor"
           },
           {
+            "text": "Jamstack Templates",
+            "link": "/templates-jamstack"
+          },
+          {
             "text": "Single Page App Templates",
             "link": "/templates-single-page-apps"
           },

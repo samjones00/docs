@@ -10,6 +10,8 @@ Utilizing Blazor WebAssembly (WASM) integrated with a ServiceStack backend yield
 
 By utilizing ServiceStack's [decoupled project structure](/physical-project-structure), combined with Blazor enabling C# on the client, we're able to get complete reuse of your APIs shared DTOs as-is to enable an end-to-end Typed API automatically free from any additional tooling or code-gen complexity.
 
+<iframe width="980" height="551" src="https://www.youtube.com/embed/TIgjMf_vtCI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ## Getting Started
 
 If you have the [x dotnet tool](/dotnet-new) installed you can create a new Blazor WASM Project with:
