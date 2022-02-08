@@ -3,6 +3,7 @@
 | [web](https://github.com/NetCoreTemplates/web)                | .NET 6 Empty Website |
 | [empty](https://github.com/NetCoreTemplates/empty)                | .NET 6 Empty Single Project Website |
 | [aws-lambda](https://github.com/NetCoreTemplates/aws-lambda)        | .NET 6 Website configured for AWS Lambda Containers |
+| [blazor-wasm](https://github.com/NetCoreTemplates/blazor-wasm)        | .NET 6 Blazor WASM + Bootstrap Template |
 | [angular-spa](https://github.com/NetCoreTemplates/angular-spa)        | .NET 6 Angular 9 CLI Bootstrap App |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)        | .NET 6 Aurelia CLI Bootstrap App |
 | [grpc](https://github.com/NetCoreTemplates/grpc)                | .NET 6 gRPC Services |
@@ -10,6 +11,7 @@
 | [mvcauth](https://github.com/NetCoreTemplates/mvcauth)            | .NET 6 MVC Website integrated with ServiceStack Auth |
 | [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity)        | .NET 6 MVC Website integrated with ServiceStack using MVC Identity Auth |
 | [mvcidentityserver](https://github.com/NetCoreTemplates/mvcidentityserver)  | .NET 6 MVC Website integrated with ServiceStack using IdentityServer4 Auth |
+| [nextjs](https://github.com/NetCoreTemplates/nextjs)             | .NET 6 Jamstack Next.js SSG React App |
 | [parcel](https://github.com/NetCoreTemplates/parcel)             | .NET 6 Parcel TypeScript App |
 | [razor](https://github.com/NetCoreTemplates/razor)              | .NET 6 Website with ServiceStack.Razor |
 | [react-lite](https://github.com/NetCoreTemplates/react-lite)         | .NET 6 simple + lite (npm-free) React SPA using TypeScript |
@@ -17,6 +19,8 @@
 | [selfhost](https://github.com/NetCoreTemplates/selfhost)           | .NET 6 self-hosting Console App |
 | [script](https://github.com/NetCoreTemplates/sharp)              | .NET 6 #Script Pages Bootstrap Website |
 | [svelte-spa](https://github.com/NetCoreTemplates/svelte-spa)            | .NET 6 Svelte v3 Rollup Bootstrap App |
+| [vue-vite](https://github.com/NetCoreTemplates/vue-vite)           | .NET 6 Jamstack Vue Vite Tailwind App |
+| [vue-ssg](https://github.com/NetCoreTemplates/vue-ssg)           | .NET 6 Jamstack Vue SSG App |
 | [vue-lite](https://github.com/NetCoreTemplates/vue-lite)           | .NET 6 simple + lite (npm-free) Vue SPA using TypeScript |
 | [vue-nuxt](https://github.com/NetCoreTemplates/vue-nuxt)           | .NET 6 Nuxt.js SPA App with Bootstrap |
 | [vue-spa](https://github.com/NetCoreTemplates/vue-spa)            | .NET 6 Vue CLI Bootstrap App |

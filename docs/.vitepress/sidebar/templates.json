@@ -15,6 +15,10 @@
             "link": "/dotnet-new"
           },
           {
+            "text": "Blazor WASM Template",
+            "link": "/templates-blazor"
+          },
+          {
             "text": "Single Page App Templates",
             "link": "/templates-single-page-apps"
           },
@@ -47,10 +51,6 @@
             "link": "/templates-react"
           },
           {
-            "text": "Blazor-WASM Template",
-            "link": "/templates-blazor-wasm"
-          },
-          {
             "text": "Svelte Templates",
             "link": "/templates-svelte"
           },
@@ -65,10 +65,6 @@
           {
             "text": "Desktop Templates",
             "link": "/templates-desktop"
-          },
-          {
-            "text": "Blazor Templates",
-            "link": "/templates-blazor"
           },
           {
             "text": "Vue, React, Angular Components",

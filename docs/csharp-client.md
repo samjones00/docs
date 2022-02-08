@@ -69,7 +69,7 @@ else
 
 ### C# Example
 
-A preview of what this looks like is visible in [Blazor WASMs Dev Model Preview](/templates-blazor-wasm#api-and-apiasync-methods) example code to create a new Booking:
+A preview of what this looks like is visible in [Blazor WASMs Dev Model Preview](/templates-blazor#api-and-apiasync-methods) example code to create a new Booking:
 
 ```csharp
 CreateBooking request = new();
