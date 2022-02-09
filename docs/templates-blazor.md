@@ -4,8 +4,8 @@ import { Icon } from "@iconify/vue"
 </script>
 
 <div class="my-8 ml-20 flex flex-col items-center">
-<Icon icon="simple-icons:blazor" class="w-44 h-44 text-purple-600" />
-<h1>Blazor WebAssembly Template</h1>
+    <Icon icon="simple-icons:blazor" class="w-44 h-44 text-purple-600" />
+    <h3 class="text-4xl">Blazor WebAssembly Template</h3>
 </div>
 
 The feature-rich Blazor WASM template is ideal for teams with strong C# skills building Line Of Business (LOB) applications.
