@@ -19,9 +19,9 @@ Earlier **.NET 6.0** can use the [HttpClient-based JsonHttpClient](/csharp-clien
 `<PackageReference Include="ServiceStack.HttpClient" Version="6.*" />`
 :::
 
-### .NET 6+
+### JsonApiClient
 
-ServiceStack v6+ clients running on **.NET 6+** are recommended to use the [v6 JsonApiClient](/releases/v6#jsonapiclient):
+From  **.NET 6+** it's recommended to use the newest [JsonApiClient](/releases/v6#jsonapiclient) released in v6+:
 
 ```csharp
 var client = new JsonApiClient(baseUri);
@@ -35,7 +35,7 @@ In client Apps that support it, the recommendation is to use a HttpClient Factor
 builder.Services.AddJsonApiClient(builder.Configuration["BaseUrl"]);
 ```
 
-For simplification the docs will reference the substitutable & more broadly available `JsonServiceClient`.
+It's now recommended to use `JsonApiClient` when it's available, but for simplification the docs will continue to reference the substitutable & more broadly available `JsonServiceClient`.
 
 ### Setup
 
