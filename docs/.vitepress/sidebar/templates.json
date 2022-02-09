@@ -7,10 +7,6 @@
             "link": "/templates-overview"
           },
           {
-            "text": "ASP.NET Core on .NET Framework",
-            "link": "/templates-corefx"
-          },
-          {
             "text": "x new - Project Template",
             "link": "/dotnet-new"
           },
@@ -69,6 +65,10 @@
           {
             "text": "Desktop Templates",
             "link": "/templates-desktop"
+          },
+          {
+            "text": "ASP.NET Core on .NET Framework",
+            "link": "/templates-corefx"
           },
           {
             "text": "Vue, React, Angular Components",

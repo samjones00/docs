@@ -891,7 +891,7 @@ A lot of features being announced are already well known to our active user-base
 
 ### Awesome Feedback
 
-We're estatic at the response we've received from the community this year which has seen our Contributor count more than doubled (now at [66 Contributors](https://github.com/ServiceStack/ServiceStack#contributors)!). We've also received great response from our users which we've started keeping track of this year under [@ServiceStack favourites](https://twitter.com/#!/ServiceStack/favorites) and in the [forums](https://groups.google.com/forum/?fromgroups#!forum/servicestack).
+We're estatic at the response we've received from the community this year which has seen our Contributor count more than doubled (now at [66 Contributors](https://github.com/ServiceStack/ServiceStack#contributors)!). We've also received great response from our users which we've started keeping track of this year under [@ServiceStack favorites](https://twitter.com/#!/ServiceStack/favorites) and in the [forums](https://groups.google.com/forum/?fromgroups#!forum/servicestack).
 
 ## New Demo Reference App
 

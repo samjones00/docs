@@ -77,7 +77,7 @@ From this they use their `protoc` command-line utility to generate native types 
 
 ## A Productivity Win 
 
-We've been building SOA systems like this with ServiceStack for years: the productivity boost you get from using typed, end-to-end, resilient, message-based API is unmatched. An example of this was having developed over 100+ Web Services for the [Redis WebServices](http://redisadminui.servicestack.net/redis/metadata) project in just 1 weekend. Others that have tried ServiceStack also agree its ease-of-development and **"pit of success"** design it promotes ultimately yields a productivity win - this positive sentiment is captured in [@ServiceStack's favourites](https://twitter.com/ServiceStack/likes) and throughout the [mailing group](https://groups.google.com/forum/?fromgroups#!forum/servicestack).
+We've been building SOA systems like this with ServiceStack for years: the productivity boost you get from using typed, end-to-end, resilient, message-based API is unmatched. An example of this was having developed over 100+ Web Services for the [Redis WebServices](http://redisadminui.servicestack.net/redis/metadata) project in just 1 weekend. Others that have tried ServiceStack also agree its ease-of-development and **"pit of success"** design it promotes ultimately yields a productivity win - this positive sentiment is captured in [@ServiceStack's favorites](https://twitter.com/ServiceStack/likes) and throughout the [mailing group](https://groups.google.com/forum/?fromgroups#!forum/servicestack).
 
 ### The anatomy of a ServiceStack service
 

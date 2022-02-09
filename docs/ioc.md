@@ -7,7 +7,7 @@ ServiceStack uses a slightly modified version of [Funq](http://funq.codeplex.com
 of its excellent [performance and memory characteristics](http://www.servicestack.net/benchmarks/). 
 ServiceStack's version of Funq has been enhanced with Expression-based Auto-wiring and lifetime Request Scope.
 
-If you so wish, you can still elect to use your favourite IOC by creating an `IContainerAdapter` for them. 
+If you so wish, you can still elect to use your favorite IOC by creating an `IContainerAdapter` for them. 
 See below for examples of adapters for popular IOC's. All ServiceStack's customizable hooks support 
 Auto-wiring out-of-the-box, namely:
 
