@@ -27,7 +27,7 @@
     - [x new - Project Template](/dotnet-new)
     - [Single Page App Templates](/templates-single-page-apps)
     - [Website Templates](/templates-websites)
-    - [Empty Starting Templates](/templates-empty-starting)
+    - [Empty Starting Templates](/templates-empty)
     - [Vue and React "lite" Templates](/templates-lite)
     - [Vuetify Templates](/templates-vuetify)
     - [Nuxt Templates](/templates-nuxt)

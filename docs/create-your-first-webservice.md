@@ -2,6 +2,9 @@
 slug: create-your-first-webservice
 title: Create your first WebService
 ---
+<script setup>
+import EmptyProjects from './.vitepress/includes/empty-projects.md'
+</script>
 
 This is a quick walkthrough of getting your first web service up and running whilst having a look at the how some of the different components work. 
 
@@ -195,49 +198,9 @@ Including their typed partial constructors:
 So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
 experience without any additional build time or tooling complexity.
 
-### Using mix to quickly create empty .NET Core Apps
+## Create Empty ServiceStack Apps
 
-As this requires no external deps or prescribed JS frameworks, it's used in the [init and init-lts](/mix-tool#mix-usage) mix scripts which you can 
-quickly add & run using the [x dotnet tool](/dotnet-tool):
-
-```bash
-$ dotnet tool install --global x 
-```
-
-Which can be used to quickly create & run a new .NET Core App in an empty directory:
-
-```
-$ mkdir ProjectName && cd ProjectName
-$ x mix init
-$ dotnet run
-```
-
-Which will install the [init Gist](https://gist.github.com/gistlyn/58030e271595520d87873c5df5e4c2eb) to your local directory using the `ProjectName` 
-directory name for the new Project name.
-
-#### Empty VB.NET .NET Core App
-
-Use `init-vb` to create a VB .NET Core App:
-
-```
-$ mkdir ProjectName && cd ProjectName
-$ x mix init-vb
-$ dotnet run
-```
-
-Which will install the [init-vb Gist](https://gist.github.com/gistlyn/88f2792fc4820de7dc4e68c0c5d76126).
-
-#### Empty F# .NET Core App
-
-Use `init-fsharp` to create a F# .NET Core App:
-
-```
-$ mkdir ProjectName && cd ProjectName
-$ x mix init-fsharp
-$ dotnet run
-```
-
-Which will install the [init-fsharp Gist](https://gist.github.com/gistlyn/4802ba22b665e68c7257aef9f57c1934).
+<EmptyProjects />
 
 ### TypeScript or JavaScript SPA Apps
 
