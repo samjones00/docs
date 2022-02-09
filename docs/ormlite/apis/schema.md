@@ -2,6 +2,111 @@
 title: Schema, Table & Column APIs
 ---
 
+## Create Table APIs
+
+OrmLite's `CreateTable` APIs can be used to create RDBMS tables from your C# POCO Data Models.
+
+If you also need to ensure tables are populated with Seed Data when they're created, use `CreateTableIfNotExists`, e.g:
+
+```csharp
+using var db = appHost.Resolve<IDbConnectionFactory>().Open();
+
+if (db.CreateTableIfNotExists<Person>())
+{
+    db.Insert(new Person { Id = 1, Name = "John Doe" });
+}
+```
+
+### Create Tables
+
+Or if you just want to create tables that don't exist:
+
+```csharp
+db.CreateTableIfNotExists<Person>()
+db.CreateTable<Person>(overwrite:false);
+
+// Runtime Type
+db.CreateTableIfNotExists(typeof(Person));
+db.CreateTables(overwrite:false, typeof(Person));
+
+// Multiple Tables
+db.CreateTableIfNotExists(typeof(TableA), typeof(TableB), typeof(TableC));
+db.CreateTables(overwrite:false, typeof(TableA), typeof(TableB), typeof(TableC));
+```
+
+### Recreate Tables
+
+To ensure existing tables are dropped and new tables are always re-created, use:
+
+```csharp
+db.DropAndCreateTable<Person>();
+db.CreateTable<Person>(overwrite:true);
+
+
+// Multiple Runtime Types
+db.DropAndCreateTables(typeof(TableA), typeof(TableB), typeof(TableC));
+db.CreateTables(overwrite:true, typeof(TableA), typeof(TableB), typeof(TableC));
+```
+
+### Drop and Create Tables
+
+However if your tables have foreign keys, you'll need to drop and re-create them in the order that satisfies their foreign key constraints, e.g:
+
+```csharp
+db.DropTable<TableB>();
+db.DropTable<TableA>();
+
+db.CreateTable<TableA>();
+db.CreateTable<TableB>();
+
+// Runtime Type
+db.DropTable(typeof(Person));
+db.CreateTable(typeof(Person));
+
+// Multiple Runtime Types
+db.DropTables(typeof(TableA), typeof(TableB), typeof(TableC));
+db.CreateTables(overwrite:true, typeof(TableA), typeof(TableB), typeof(TableC));
+```
+
+#### Pre / Post Custom SQL Hooks when Creating and Dropping tables
+
+Pre / Post Custom SQL Hooks allow you to inject custom SQL before and after tables are created or dropped, e.g:
+
+```csharp
+[PostCreateTable("INSERT INTO Person (Name) VALUES ('Foo');" +
+                 "INSERT INTO Person (Name) VALUES ('Bar');")]
+public class Person
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+```
+
+## Create Schemas
+
+The `CreateSchema` APIs can be used to create Schemas in RDBMSs that support it, where they don't already exist:
+
+```csharp
+db.CreateSchema("TheSchema");
+```
+
+Alternatively you can use the typed API to create Schemas defined on Data Models, e.g:
+
+```csharp
+[Schema("Schema")]
+public class Person
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+db.CreateSchema<Person>();
+```
+
+## Query Existing Tables
+
 As the queries for retrieving table names can vary amongst different RDBMS's, we've abstracted their implementations behind uniform APIs
 where you can now get a list of table names and their row counts for all supported RDBMS's with:
 
