@@ -349,7 +349,7 @@ var guid = new Guid(response.ReadFully());
 All these APIs are also available asynchronously as well:
 
 ```csharp
-HttpWebResponse response = await client.GetAsync(
+using HttpWebResponse response = await client.GetAsync(
     new Strings { Text = "Test" });
 response.Headers["X-Response"] // "World"
 
