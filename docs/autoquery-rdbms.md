@@ -889,7 +889,7 @@ ServiceStack provides a number of ways to [request your preferred content-type](
 [CSV Format](/csv-format) responses can use the same [scoped custom responses as JSON](/customize-json-responses) to allow
 Typed Results to exclude default values columns when returning limited [custom fields with `?fields`](/autoquery-rdbms#custom-fields):
 
- - Camel Humps Notation: `?jsconfig=edf`
+ - Camel Humps Notation: `?jsconfig=edv`
  - Full configuration: `?jsconfig=ExcludeDefaultValues`
 
 ## Named Connection
