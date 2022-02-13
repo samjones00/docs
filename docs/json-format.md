@@ -370,7 +370,7 @@ using property initializers:
 
 ```csharp
 using (JsConfig.With(new Config { 
-    TextCase == TextCase.CamelCase, 
+    TextCase = TextCase.CamelCase, 
     PropertyConvention = PropertyConvention.Lenient
 }))
 {
