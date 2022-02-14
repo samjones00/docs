@@ -147,25 +147,22 @@ A **dep-free alternative** to jQuery that works in all modern browsers is to use
 [TypeScript Generated DTOs](/typescript-add-servicestack-reference) to enable an optimal typed modern async API:
 
 ```html
-<h2><a href="/json/metadata?op=Hello">Hello</a> API</h2>
+<h2><a href="/ui/Hello">Hello</a> API</h2>
 <input type="text" id="txtName" onkeyup="callHello(this.value)">
 <div id="result"></div>
 
-<script>
-  var exports = { __esModule:true }, module = { exports:exports }
-  function require(name) { return exports[name] || window[name] }
-</script>
+<script src="/js/require.js"></script>
 <script src="/js/servicestack-client.js"></script>
-<script src="/dtos.js"></script>
+<script src="/types/js"></script>
 <script>
-Object.assign(window, exports) //import
+var { JsonServiceClient, Hello } = exports
 
-let client = new JsonServiceClient()
-function callHello(val) {
-client.get(new Hello({ name: val }))
-  .then(function(r) {
-      document.getElementById('result').innerHTML = r.result;
-  })
+var client = new JsonServiceClient();
+function callHello(name) {
+    client.get(new Hello({ name }))
+        .then(function(r) {
+            document.getElementById('result').innerHTML = r.result;
+        });
 }
 </script>
 ```

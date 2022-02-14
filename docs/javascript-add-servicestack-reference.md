@@ -3,11 +3,19 @@ slug: javascript-add-servicestack-reference
 title: JavaScript Add ServiceStack Reference
 ---
 
-In addition to [TypeScript](./typescript-add-servicestack-reference.md) support for generating typed Data Transfer Objects (DTOs), JavaScript is now supported.
+In addition to [TypeScript](/typescript-add-servicestack-reference) support for generating typed Data Transfer Objects (DTOs), JavaScript is now supported.
 
-Unlike TypeScript, JavaScript generated DTOs can be used directly from the browser, removing the need to keep your DTOs in sync with extra tooling.
+Unlike TypeScript, JavaScript generated DTOs can be used directly from the browser, removing the need to keep your DTOs in sync with extra tooling by including a direct reference in your HTML Page:
 
-To make typed API Requests from web pages, you need only include `/js/require.js` containing a simple `require()` to load **CommonJS** libraries, `/js/servicestack-client.js` (production build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client)) and `/types/js` containing your APIs typed JS DTOs - all built-in ServiceStack.
+```html
+<script src="/types/js"></script>
+```
+
+To make typed API Requests from web pages, you need only include: 
+
+  - **/js/require.js** - containing a simple `require()` to load **CommonJS** libraries
+  - **/js/servicestack-client.js** - production build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client)
+  - **/types/js** - containing your APIs typed JS DTOs - all built-in ServiceStack
 
 After which you'll have access to the generic `JsonServiceClient` with your APIs Typed Request DTOs, e.g:
 

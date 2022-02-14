@@ -3,6 +3,10 @@ slug: javascript-client
 title: JavaScript Client
 ---
 
+<script setup>
+import RefServiceClient from './.vitepress/includes/ref-servicestack-client.md';
+</script>
+
 Whilst you can use any of the multitude of Ajax libraries to consume ServiceStack's pure JSON REST APIs, leveraging
 the [integrated TypeScript](/typescript-add-servicestack-reference) support still offers the best development UX 
 for calling ServiceStack's JSON APIs in JavaScript where you can use the TypeScript `JsonServiceClient` with 
@@ -10,10 +14,10 @@ for calling ServiceStack's JSON APIs in JavaScript where you can use the TypeScr
 DTO's to get the same productive end-to-end Typed APIs available in ServiceStack's Typed .NET Clients, e.g:
 
 ```ts
-let client = new JsonServiceClient(baseUrl);
+let client = new JsonServiceClient(baseUrl)
 
 client.get(new Hello({ Name: 'World' }))
-  .then(r => console.log(r.Result));
+  .then(r => console.log(r.Result))
 ```
 
 ## Using JavaScript Typed DTOs in Web Apps
@@ -27,38 +31,348 @@ $ x mix init
 
 That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
-
-With a single command you can update your App's TypeScript DTOs, compile them to JavaScript & move them to `/wwwroot`:
-
-```bash
-$ npm run dtos
-```
-
 To use them in your Web Page create a basic UMD loader and include the UMD `@servicestack/client` library & `dtos.js`:
 
 ```html
-<script>
-  var exports = { __esModule:true }, module = { exports:exports }
-  function require(name) { return exports[name] || window[name] }
-</script>
+<script src="/js/require.js"></script>
 <script src="/js/servicestack-client.js"></script>
-<script src="/dtos.js"></script>
+<script src="/types/js"></script>
 ```
 
-We can then import the library and DTO types in the global namespace to use them directly:
+Which utilizes the [JavaScript Add ServiceStack Reference](/javascript-add-servicestack-reference) **/types/js** to instantly generate JavaScript Types for all your APIs DTOs which can immediately be used with the [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient) to make Typed API requests:
 
-```js
-Object.assign(window, exports) //import
+```html
+<script>
+var { JsonServiceClient, Hello } = exports
 
-var client = new JsonServiceClient()
-client.get(new Hello({ name: name }))
-    .then(function(r) {
-        console.log(r.result)
-    })
+var client = new JsonServiceClient();
+function callHello(name) {
+    client.get(new Hello({ name }))
+        .then(function(r) {
+            document.getElementById('result').innerHTML = r.result;
+        });
+}
+</script>
 ```
 
-### Rich intelli-sense support
+
+## JsonServiceClient
+
+### API method
+
+The `api` returns a typed `ApiResult<Response>` Value Result that encapsulates either a Typed Response or a 
+structured API Error populated in `ResponseStatus` allowing you to handle API responses programmatically without
+`try/catch` handling:
+
+```ts
+const api = client.api(new Hello({ name }))
+if (api.failed) {
+    console.log(`Greeting failed! ${e.errorCode}: ${e.errorMessage}`);
+    return;
+}
+
+console.log(`API Says: ${api.response.result}`) //api.succeeded
+```
+
+### Simplified API Handling
+
+Being able to treat errors as values greatly increases the ability to programmatically handle and genericise api handling
+and greatly simplifies functionality needing to handle both successful and error responses like binding to UI components.
+
+An example of this is below where we're able to concurrently fire off multiple unrelated async requests in parallel, 
+wait for them all to complete, print out the ones that have succeeded or failed then access their strong typed responses: 
+
+```ts
+import { JsonServiceClient } from "@servicestack/client"
+
+let requests:ApiRequest[] = [
+    new AppOverview(),            // GET => AppOverviewResponse
+    new DeleteTechnology(),       // DELETE => IReturnVoid (requires auth) 
+    new GetAllTechnologies(),     // GET => GetAllTechnologiesResponse
+    new GetAllTechnologyStacks(), // GET => GetAllTechnologyStacksResponse
+]
+
+let results = await Promise.all(requests.map(async (request) =>
+    ({ request, api:await client.api(request) as ApiResponse}) ))
+
+let failed = results.filter(x => x.api.failed)
+console.log(`${failed.length} failed:`)
+failed.forEach(x =>
+    console.log(`    ${x.request.getTypeName()} Request Failed: ${failed.map(x => x.api.errorMessage)}`))
+
+let succeeded = results.filter(x => x.api.succeeded)
+console.log(`\n${succeeded.length} succeeded: ${succeeded.map(x => x.request.getTypeName()).join(', ')}`)
+
+let r = succeeded.find(x => x.request.getTypeName() == 'AppOverview')?.api.response as AppOverviewResponse
+if (r) console.log(`Top 5 Technologies: ${r.topTechnologies.slice(0,4).map(tech => tech.name).join(', ')}`)
+```
+
+Output:
+
+```
+1 failed
+DeleteTechnology Request Failed: Unauthorized
+
+3 succeeded: AppOverview, GetAllTechnologies, GetAllTechnologyStacks
+Top 5 Technologies: Redis, MySQL, Amazon EC2, Nginx
+```
+
+Being able to treat Errors as values has dramatically reduced the effort required to accomplish the same feat if needing 
+to handle errors with `try/catch`.
+
+### Ideal Typed Message-based API
+
+The TypeScript `JsonServiceClient` enables the same productive, typed API development experience available 
+in ServiceStack's other [1st-class supported client platforms](http://docs.servicestack.net/typescript-add-servicestack-reference). 
+
+The `JsonServiceClient` leverages the additional type hints ServiceStack embeds in each TypeScript Request DTO 
+to achieve the ideal typed, message-based API - so all API requests benefit from a succinct, boilerplate-free 
+Typed API. 
+
+Here's a quick look at what it looks like. The example below shows how to create a 
+[C# Gist in Gistlyn](https://github.com/ServiceStack/Gistlyn) 
+after adding a [TypeScript ServiceStack Reference](http://docs.servicestack.net/typescript-add-servicestack-reference)
+to `gistlyn.com` and installing the [@servicestack/client](https://www.npmjs.com/package/@servicestack/client) 
+npm package: 
+
+```ts
+import { JsonServiceClient } from '@servicestack/client';
+import { StoreGist, GithubFile } from './dtos';
+
+const client = new JsonServiceClient("https://gistlyn.com");
+
+const request = new StoreGist({
+    files: { 
+        [file.filename]: new GithubFile({
+            filename: 'main.cs',
+            content: 'var greeting = "Hi, from TypeScript!";' 
+        }) 
+    }
+})
+
+const api = client.api(request); //response:StoreGistResponse
+if (api.succeeded) {
+    console.log(`New C# Gist was created with id: ${r.gist}`);
+    location.href = `https://gist.cafe/${r.gist}`;
+} else {
+    console.log("Failed to create Gist: ", e.errorMessage);
+}
+```
+
+Where the `response` param is typed to `StoreGistResponse` DTO Type.
+
+### Sending additional arguments with Typed API Requests
+
+Many AutoQuery Services utilize 
+[implicit conventions](http://docs.servicestack.net/autoquery-rdbms#implicit-conventions) 
+to query fields that aren't explicitly defined on AutoQuery Request DTOs, these can now be queried by specifying additional arguments with the typed Request DTO, e.g:
+
+```ts
+//typed to QueryResponse<TechnologyStack> 
+const response = await client.get(new FindTechStacks(), { VendorName: "ServiceStack" });
+```
+
+Which will [return TechStacks](http://techstacks.io/ss_admin/autoquery/FindTechStacks) developed by ServiceStack.
+
+### Calling APIs with Custom URLs
+
+You can call Services using relative or absolute urls, e.g:
+
+```ts
+client.get<GetTechnologyResponse>("/technology/ServiceStack")
+
+client.get<GetTechnologyResponse>("http://techstacks.io/technology/ServiceStack")
+
+// GET http://techstacks.io/technology?Slug=ServiceStack
+client.get<GetTechnologyResponse>("/technology", { Slug: "ServiceStack" }) 
+```
+
+as well as POST Request DTOs to custom urls:
+
+```ts
+client.postToUrl("/custom-path", request, { Slug: "ServiceStack" });
+
+client.putToUrl("http://example.org/custom-path", request);
+```
+
+### Raw Data Responses
+
+The `JsonServiceClient` also supports Raw Data responses like `string` and `byte[]` which also get a Typed API 
+once declared on Request DTOs using the `IReturn<T>` marker:
+
+```csharp
+public class ReturnString : IReturn<string> {}
+public class ReturnBytes : IReturn<byte[]> {}
+```
+
+Which can then be accessed as normal, with their Response typed to a JavaScript `string` or `Uint8Array` for 
+raw `byte[]` responses:
+
+```ts
+let str:string = await client.get(new ReturnString());
+
+let data:Uint8Array = await client.get(new ReturnBytes());
+```
+
+### Authenticating using Basic Auth
+
+Basic Auth support is implemented in `JsonServiceClient` and follows the same API made available in the C# 
+Service Clients where the `userName/password` properties can be set individually, e.g:
+
+```ts
+var client = new JsonServiceClient(baseUrl);
+client.userName = user;
+client.password = pass;
+
+const response = await client.get(new SecureRequest());
+```
+
+Or use `client.setCredentials()` to have them set both together.
+
+### Authenticating using Credentials
+
+Alternatively you can authenticate using userName/password credentials by 
+[adding a TypeScript Reference](http://docs.servicestack.net/typescript-add-servicestack-reference#add-typescript-reference) 
+to your remote ServiceStack Instance and sending a populated `Authenticate` Request DTO, e.g:
+
+```ts
+const response = await client.post(new Authenticate({
+    provider: "credentials", userName, password, rememberMe: true }));
+```
+
+This will populate the `JsonServiceClient` with 
+[Session Cookies](http://docs.servicestack.net/sessions#cookie-session-ids) 
+which will transparently be sent on subsequent requests to make authenticated requests.
+
+### Authenticating using JWT
+
+Use the `bearerToken` property to Authenticate with a [ServiceStack JWT Provider](http://docs.servicestack.net/jwt-authprovider) using a JWT Token:
+
+```ts
+client.bearerToken = jwtToken;
+```
+
+Alternatively you can use a [Refresh Token](http://docs.servicestack.net/jwt-authprovider#refresh-tokens) instead:
+
+```ts
+client.refreshToken = refreshToken;
+```
+
+### Authenticating using an API Key
+
+Use the `bearerToken` property to Authenticate with an [API Key](http://docs.servicestack.net/api-key-authprovider):
+
+```ts
+client.bearerToken = apiKey;
+```
+
+### Transparently handle 401 Unauthorized Responses
+
+If the server returns a 401 Unauthorized Response either because the client was Unauthenticated or the 
+configured Bearer Token or API Key used had expired or was invalidated, you can use `onAuthenticationRequired`
+callback to re-configure the client before automatically retrying the original request, e.g:
+
+```ts
+client.onAuthenticationRequired = async () => {
+    const authClient = new JsonServiceClient(authBaseUrl);
+    authClient.userName = userName;
+    authClient.password = password;
+    const response = await authClient.get(new Authenticate());
+    client.bearerToken = response.bearerToken;
+};
+
+//Automatically retries requests returning 401 Responses with new bearerToken
+var response = await client.get(new Secured());
+```
+
+### Automatically refresh Access Tokens
+
+With the [Refresh Token support in JWT](http://docs.servicestack.net/jwt-authprovider#refresh-tokens) 
+you can use the `refreshToken` property to instruct the Service Client to automatically fetch new 
+JWT Tokens behind the scenes before automatically retrying failed requests due to invalid or expired JWTs, e.g:
+
+```ts
+//Authenticate to get new Refresh Token
+const authClient = new JsonServiceClient(authBaseUrl);
+authClient.userName = userName;
+authClient.password = password;
+const authResponse = await authClient.get(new Authenticate());
+
+//Configure client with RefreshToken
+client.refreshToken = authResponse.RefreshToken;
+
+//Call authenticated Services and clients will automatically retrieve new JWT Tokens as needed
+const response = await client.get(new Secured());
+```
+
+Use the `refreshTokenUri` property when refresh tokens need to be sent to a different ServiceStack Server, e.g:
+
+```ts
+client.refreshToken = refreshToken;
+client.refreshTokenUri = authBaseUrl + "/access-token";
+```
+
+### [ServerEvents Client](http://docs.servicestack.net/typescript-server-events-client)
+
+The [TypeScript ServerEventClient](http://docs.servicestack.net/typescript-server-events-client) 
+is an idiomatic port of ServiceStack's 
+[C# Server Events Client](http://docs.servicestack.net/csharp-server-events-client) 
+in native TypeScript providing a productive client to consume ServiceStack's 
+[real-time Server Events](http://docs.servicestack.net/server-events) that can be used in TypeScript 
+[Web, Node.js Server and React Native iOS and Android Mobile Apps](https://github.com/ServiceStackApps/typescript-server-events).
+
+```ts
+const channels = ["home"];
+const client = new ServerEventsClient("/", channels, {
+    handlers: {
+        onConnect: (sub:ServerEventConnect) => {  // Successful SSE connection
+            console.log("You've connected! welcome " + sub.displayName);
+        },
+        onJoin: (msg:ServerEventJoin) => {        // User has joined subscribed channel
+            console.log("Welcome, " + msg.displayName);
+        },
+        onLeave: (msg:ServerEventLeave) => {      // User has left subscribed channel
+            console.log(msg.displayName + " has left the building");
+        },
+        onUpdate: (msg:ServerEventUpdate) => {    // User channel subscription was changed
+            console.log(msg.displayName + " channels subscription were updated");
+        },        
+        onMessage: (msg:ServerEventMessage) => {},// Invoked for each other message
+        //... Register custom handlers
+        announce: (text:string) => {},            // Handle messages with simple argument
+        chat: (chatMsg:ChatMessage) => {},        // Handle messages with complex type argument
+        CustomMessage: (msg:CustomMessage) => {}, // Handle complex types with default selector
+    },
+    receivers: { 
+        //... Register any receivers
+        tv: {
+            watch: function (id) {                // Handle 'tv.watch {url}' messages 
+                var el = document.querySelector("#tv");
+                if (id.indexOf('youtu.be') >= 0) {
+                    var v = splitOnLast(id, '/')[1];
+                    el.innerHTML = templates.youtube.replace("{id}", v);
+                } else {
+                    el.innerHTML = templates.generic.replace("{id}", id);
+                }
+                el.style.display = 'block'; 
+            },
+            off: function () {                    // Handle 'tv.off' messages
+                var el = document.querySelector("#tv");
+                el.style.display = 'none';
+                el.innerHTML = '';
+            }
+        }
+    },
+    onException: (e:Error) => {},                 // Invoked on each Error
+    onReconnect: (e:Error) => {}                  // Invoked after each auto-reconnect
+})
+.addListener("theEvent",(e:ServerEventMessage) => {}) // Add listener for pub/sub event trigger
+.start();                                             // Start listening for Server Events!
+```
+
+When publishing a DTO Type for your Server Events message, your clients will be able to benefit from the generated DTOs in [TypeScript ServiceStack References](http://docs.servicestack.net/typescript-add-servicestack-reference).
+
+## Rich intelli-sense support
 
 Even pure HTML/JS Apps that don't use TypeScript or any external dependencies will still benefit from the Server 
 generated `dtos.ts` and `servicestack-client.d.ts` definitions as Smart IDEs like 
@@ -98,7 +412,7 @@ bundle any TypeScript `.ts` source files, just the generated [index.js](https://
 [index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript npm projects as any other module, e.g:
 
 ```js
-import { JsonServiceClient } from "@servicestack/client";
+import { JsonServiceClient } from "@servicestack/client"
 ```
 
 Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [x dotnet tool](/dotnet-tool)
@@ -158,31 +472,6 @@ $ npm run dtos
 
 The [TechStacks][6] (Vue/Nuxt) and [React Native Mobile App][7] (React) are examples of JavaScript-only projects using the TypeScript `JsonServiceClient` in this way.
 
-### jQuery JsonServiceClient
+## Install
 
-We also provide our older jQuery JsonServiceClient which mimics the [.NET Clients](/clients-overview) in functionality that we make use of in our [Redis Admin UI](http://www.servicestack.net/RedisAdminUI/AjaxClient/) and suitable for use when needing to support older browsers without W3C's fetch or a polyfill:
-
-  - [JsonServiceClient.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4/lib/js/JsonServiceClient.js) - Pure JavaScript client
-  - [JsonServiceClient.closure.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4/lib/js/JsonServiceClient.closure.js) - a [Google Closure](https://developers.google.com/closure/) enabled version of the client allowing compilation and bundling within a Closure project
-
-Although most dynamic languages like JavaScript already include support for HTTP and JSON where in most cases it's easier to just use the libraries already provided. Here are a couple of examples from [Backbones Todos](http://todos.netcore.io) and [Redis StackOverflow](http://redisstackoverflow.netcore.io) that uses jQuery to talk to back-end ServiceStack JSON services:
-
-### Using jQuery Ajax APIs:
-
-```javascript
-$.getJSON("http://localhost/Backbone.Todo/todos", function(todos) {
-    alert(todos.length == 1);
-});
-
-$.post("questions", { 
-  UserId: authUser.Id, Title: title, Content: body, Tags: dtoTags 
-}, refresh);
-```
-
-## JSV Service Client
-
-In our pursuit to provide the fastest end-to-end communication we've also developed a JsvServiceClient in JavaScript that uses the [fast JSV Format](https://github.com/ServiceStackV3/mythz_blog/blob/master/pages/176.md):  
-
-  - [JsvServiceClient.js](https://github.com/ServiceStack/ServiceStack/blob/v5.4.1/lib/js/JSV.js)
-
-JSV is marginally faster than **safe JSON** in modern browsers (marginally slower than Eval) but because of the poor JS and String Performance in IE7/8 it performs over **20x** slower than IE's native `eval()`.
+<RefServiceClient/>

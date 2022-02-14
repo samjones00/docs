@@ -3,11 +3,19 @@ slug: typescript-add-servicestack-reference
 title: TypeScript Add ServiceStack Reference
 ---
 
+<script setup>
+import RefServiceClient from './.vitepress/includes/ref-servicestack-client.md';
+</script>
+
 ![ServiceStack and TypeScript Banner](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/servicestack-heart-typescript.png)
 
 ServiceStack's **Add ServiceStack Reference** feature allows clients to generate Native Types from directly within VS.NET using [ServiceStackVS VS.NET Extension](/create-your-first-webservice) - providing a simple way to give clients typed access to your ServiceStack Services.
 
-### React Native JsonServiceClient
+## Install
+
+<RefServiceClient />
+
+## React Native JsonServiceClient
 
 React Native Android JavaScript Example using VS Code
 
@@ -71,38 +79,6 @@ which in React Native projects would look like:
 }
 ```
 
-#### UMD @servicestack/client
-
-npm-free JavaScript Web Apps can use the [built-in UMD @servicestack/client](/servicestack-client-umd) in **ServiceStack.dll** 
-to call ServiceStack Services without any external dependencies.
-
-### CDN unpkg
-
-A CDN hosted version of UMD `@servicestack/client` is available on unpkg.com:
-
-```html
-<script src="https://unpkg.com/@servicestack/client/dist/servicestack-client.min.js"></script>
-```
-
-## TypeScript ServiceClient
-
-The `@servicestack/client` is a clean "jQuery-free" implementation based on JavaScript's new 
-[Fetch API standard](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), 
-utilizing the [isomorphic-fetch](https://www.npmjs.com/package/isomorphic-fetch) implementation
-so it can be used in both JavaScript client web apps as well as node.js server projects.
-
-### [@servicestack/client](https://www.npmjs.com/package/@servicestack/client)
-
-The easiest way to use TypeScript with ServiceStack is to start with one of 
-[ServiceStackVS TypeScript projects](https://github.com/ServiceStack/ServiceStackVS). 
-
-Other TypeScript or ES6 projects can install `@servicestack/client` from npm with:
-
-```bash
-$ npm install @servicestack/client
-```
-
-See [JavaScript Client](/javascript-client) for how to use `JsonServiceClient` in non-npm or non TypeScript projects.
 
 ### @servicestack/client API
 

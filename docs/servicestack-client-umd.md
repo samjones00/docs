@@ -26,42 +26,26 @@ $ dotnet run
 Where its dep-free [/index.html](https://gist.github.com/gistlyn/58030e271595520d87873c5df5e4c2eb#file-wwwroot-index-html) use its
 `JsonServiceClient` to call its **/hello** API:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/init.png)
-
-To call APIs you'll need to include the JS transpiled DTOs of your Services [TypeScript DTOs](/typescript-add-servicestack-reference)
-which most [.NET Project Templates](/dotnet-new) allow you to update with:
-
-```bash
-$ npm run dtos
-```
-
-Then just import the built-in `@servicestack/client` library and transpiled TypeScript DTOs to enable productive typed API requests:
-
 ```html
-<h2><a href="/json/metadata?op=Hello">Hello</a> API</h2>
-<input type="text" id="txtName" onkeyup="callHello(this.value)">
-<div id="result"></div>
-
-<script>
-  var exports = { __esModule:true }, module = { exports:exports }
-  function require(name) { return exports[name] || window[name] }
-</script>
+<script src="/js/require.js"></script>
 <script src="/js/servicestack-client.js"></script>
-<script src="/dtos.js"></script>
+<script src="/types/js"></script>
 <script>
-  Object.assign(window, exports) //import
+var { JsonServiceClient, Hello } = exports
 
-  var client = new JsonServiceClient()
-  function callHello(val) {
-    client.get(new Hello({ name: val }))
-      .then(function(r) {
-          document.getElementById('result').innerHTML = r.result;
-      })
-  }
+var client = new JsonServiceClient();
+function callHello(name) {
+    client.get(new Hello({ name }))
+        .then(function(r) {
+            document.getElementById('result').innerHTML = r.result;
+        });
+}
 </script>
 ```
 
-Which modern browsers (as well as any TypeScript or Webpack project) let you use the much nicer async/await syntax:
+Which utilizes the [JavaScript Add ServiceStack Reference](/javascript-add-servicestack-reference) **/types/js** to instantly generate JavaScript Types for all your APIs DTOs which can immediately be used with the [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient) to make Typed API requests.
+
+That modern browsers (as well as any TypeScript or Webpack project) let you use the much nicer async/await syntax:
 
 ```js
 let r = await client.get(new Hello({ name: val }))
