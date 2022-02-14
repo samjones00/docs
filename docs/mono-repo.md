@@ -2,15 +2,11 @@
 title: ServiceStack Mono Repo
 ---
 
-All actively maintained ServiceStack libraries and NuGet packages are now being maintained in ServiceStack's mono repo:
+All active ServiceStack libraries and NuGet packages are now being developed and maintained in ServiceStack's mono repo:
 
-### https://github.com/ServiceStack/ServiceStack
+<a class="block my-8 font-medium text-center text-2xl" href="https://github.com/ServiceStack/ServiceStack">github.com/ServiceStack/ServiceStack</a>
 
-The migration to a Mono repo has greatly simplified all maintenance efforts around ServiceStack's code base, including building, contributing and debugging, where now there's only 1 repo that needs to be checked out to make changes to any ServiceStack package.
-
-### Debugging ServiceStack
-
-It also dramatically improves the debuggability of ServiceStack source code from your App where you can choose to replace binary package references with source project references. Or for small projects, a simpler alternative is to attach your projects to the main [ServiceStack.sln](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src) where most ServiceStack projects are readably available for quick reference.
+The new Mono repo has greatly simplified all maintenance efforts around ServiceStack's code base, including building, contributing and debugging, where there's now only 1 repo that needs to be checked out to make changes to any ServiceStack package.
 
 ### Mono repo project structure
 
@@ -27,6 +23,10 @@ Whilst all projects are contained within the same repo, they continue to be inde
 - [/ServiceStack.Logging](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack.Logging)
 
 All top-level solutions follow the same uniform project structure which require no other external build tools or scripts other than a default VS .NET install, you can open the **.sln** in each folder and start utilizing projects immediately.
+
+### Debugging ServiceStack
+
+It also dramatically improves the debuggability of ServiceStack source code from your App where you can choose to replace binary package references with source project references. Or for small projects, a simpler alternative is to attach your projects to the main [ServiceStack.sln](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src) where most ServiceStack projects are readably available for quick reference.
 
 ### Building All ServiceStack Projects
 
