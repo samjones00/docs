@@ -51,8 +51,7 @@ After dropping v4.5 .NET Framework support, deleting platform specific .NET 4.5 
 
 #### Poor cross dependency support
 
-Actively developing cross-repo dependencies has always been a source of friction where previously to debug and maintain changes across all packages we've had to maintain parallel `*.Source.csproj` for each project that used Project Source references instead of binary references which needed to be checked out and maintained in a separate physical location since .NET doesn't properly handle multiple `.csproj's` in the same folder. We were hoping being support for source references for development and binary references for release would improve in time, however we gave up on that hope when the .NET team moved to a mono repo themselves.
-
+Actively developing cross-repo dependencies has always been a source of friction where previously to debug and maintain changes across all packages we've had to maintain parallel `*.Source.csproj` for each project that used Project Source references instead of binary references which needed to be checked out and maintained in a separate physical location since .NET doesn't properly handle multiple `.csproj's` in the same folder. We were hoping support for source references for development and binary references for release would improve in time, however we gave up on this ever improving when the .NET team moved to a mono repo themselves.
 
 ### Legacy Branches and Releases
 
