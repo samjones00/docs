@@ -825,11 +825,20 @@
     ]
   },
   {
-    "text": "Use Cases",
+    "text": "Azure",
     "children": [
       {
-        "text": "Azure",
+        "text": "Overview",
         "link": "/azure"
+      }
+    ]
+  },
+  {
+    "text": "Stripe",
+    "children": [
+      {
+        "text": "Overview",
+        "link": "/stripe"
       }
     ]
   },
