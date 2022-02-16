@@ -27,6 +27,16 @@ JSON.parse("[{a:1}]") //= new List<object> { new Dictionary<string, object> { { 
 
 It can be used to parse dynamic JSON and any primitive JavaScript data type. The inverse API of `JSON.stringify()` is also available.
 
+### Register JS Utils in ServiceStack.Text
+
+JS Utils is already pre-configured in ServiceStack Web Apps to handle serializing & deserializing `object` types. 
+
+You can also configure to use it in **ServiceStack.Text** Typed JSON Serializers **outside of ServiceStack** with:
+
+```csharp
+JS.Configure();
+```
+
 ## Eval
 
 Eval is useful if you want to execute custom JavaScript functions, or if you want to have a text DSL or scripting language for executing custom logic or business rules you want to be able to change without having to compile or redeploy your App. It uses [#Script Sandbox](https://sharpscript.net/docs/sandbox) which lets you evaluate the script within a custom scope that defines what functions and arguments it has access to, e.g:

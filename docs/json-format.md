@@ -106,7 +106,23 @@ JS.eval("3.itemsOf(arg.reverse().padRight(8, '_'))", scope) //= ["eulav___", "eu
 JS.eval("{a: 3.itemsOf(arg.reverse().padRight(8, '_')) }", scope)
 ```
 
-ServiceStack's JS Utils is available in the [ServiceStack.Common](https://www.nuget.org/packages/ServiceStack.Common) NuGet package.
+### Install JS Utils
+
+ServiceStack's JS Utils is available in the [ServiceStack.Common](https://www.nuget.org/packages/ServiceStack.Common) NuGet package:
+
+:::nuget
+`<PackageReference Include="ServiceStack.Common" Version="6.*" />`
+:::
+
+### Register JS Utils in ServiceStack.Text
+
+JS Utils is already pre-configured in ServiceStack Web Apps to handle serializing & deserializing `object` types. 
+
+You can also configure to use it in **ServiceStack.Text** Typed JSON Serializers **outside of ServiceStack** with:
+
+```csharp
+JS.Configure();
+```
 
 ### Pretty Print JSON
 
