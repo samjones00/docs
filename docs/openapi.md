@@ -48,7 +48,7 @@ You can set specific description for each HTTP method like shown below:
     Notes = "Longer description of the POST method which says 'Hello'")]
 ```
 
-You can further document your services in the OpenAPI with the new `[Api]` and `[ApiMember]` annotation attributes, e,g: Here's an example of a fully documented service:
+You can also document your services in the OpenAPI with the new `[Api]` and `[ApiMember]` annotation attributes, e,g: Here's an example of a fully documented service:
 
 ```csharp
 [Api("Service Description")]
@@ -65,11 +65,6 @@ public class MyRequestDto
     public string Name { get; set; }
 }
 ```
-
-::: info
-The use of `ApiMember` is turns the properties of your DTO as **opt-in only**. 
-Meaning that only properties annotated with `[ApiMember]` will be included in the OpenApi metadata.
-:::
 
 Please note, that if you used `ApiMember.DataType` for annotating `OpenApiFeature` then you need to change the types to OpenAPI type when migrating to `OpenApiFeature`. For example, annotation of 
 ```csharp
@@ -101,6 +96,12 @@ You can use `[ApiAllowableValues]` lets you anotate enum properties as well as a
 [ApiAllowableValues("Includes", Values = new string[] { "Genres", "Releases", "Contributors" })]
 public string[] Includes { get; set; }
 ```
+
+::: info
+The use of `ApiMember` turns your DTO properties as **opt-in only** for OpenApi metadata.
+Meaning that only properties annotated with `[ApiMember]` will be included in the OpenApi metadata for classes
+that use `[ApiMember]` on any of its properties.
+:::
 
 ### Group APIs with Tags
 
