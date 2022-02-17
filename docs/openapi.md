@@ -48,7 +48,7 @@ You can set specific description for each HTTP method like shown below:
     Notes = "Longer description of the POST method which says 'Hello'")]
 ```
 
-You can further document your services in the OpenAPI with the new `[Api]` and `[ApiMember]` annotation attributes, e,g: Here's an example of a fully documented service:
+You can also document your services in the OpenAPI with the new `[Api]` and `[ApiMember]` annotation attributes, e,g: Here's an example of a fully documented service:
 
 ```csharp
 [Api("Service Description")]
@@ -97,9 +97,15 @@ You can use `[ApiAllowableValues]` lets you anotate enum properties as well as a
 public string[] Includes { get; set; }
 ```
 
+::: info
+The use of `ApiMember` turns your DTO properties as **opt-in only** for OpenApi metadata.
+Meaning that only properties annotated with `[ApiMember]` will be included in the OpenApi metadata for classes
+that use `[ApiMember]` on any of its properties.
+:::
+
 ### Group APIs with Tags
 
-You can tag the DTO with `[Tag]` attribute. Attributes are are annotated by the same tag are grouped by the tag name in Swagger UI. DTOs can have multiple tags, e.g:
+You can tag the DTO with `[Tag]` attribute. Attributes are annotated by the same tag are grouped by the tag name in Swagger UI. DTOs can have multiple tags, e.g:
 
 ```csharp
 [Tag("Core Features")]

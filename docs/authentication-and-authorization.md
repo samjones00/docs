@@ -740,11 +740,11 @@ class MyService : MyServiceBase {
 Otherwise you can use a [global Request Filter](/request-and-response-filters) if you wanted to restrict all requests any other way, e.g something like:
 
 ```csharp
-GlobalRequestFilters.Add((req, res, requestDto) =>
+GlobalRequestFiltersAsync.Add(async (req, res, requestDto) =>
 {
     if (ShouldProtectRequest(requestDto)) 
     {
-        new AuthenticateAttribute().Execute(req, res, requestDto);
+        await new AuthenticateAttribute().ExecuteAsync(req, res, requestDto);
     }
 });
 ```
