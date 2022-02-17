@@ -66,6 +66,11 @@ public class MyRequestDto
 }
 ```
 
+::: info
+The use of `ApiMember` is turns the properties of your DTO as **opt-in only**. 
+Meaning that only properties annotated with `[ApiMember]` will be included in the OpenApi metadata.
+:::
+
 Please note, that if you used `ApiMember.DataType` for annotating `OpenApiFeature` then you need to change the types to OpenAPI type when migrating to `OpenApiFeature`. For example, annotation of 
 ```csharp
 [ApiMember(DataType="int")]
@@ -99,7 +104,7 @@ public string[] Includes { get; set; }
 
 ### Group APIs with Tags
 
-You can tag the DTO with `[Tag]` attribute. Attributes are are annotated by the same tag are grouped by the tag name in Swagger UI. DTOs can have multiple tags, e.g:
+You can tag the DTO with `[Tag]` attribute. Attributes are annotated by the same tag are grouped by the tag name in Swagger UI. DTOs can have multiple tags, e.g:
 
 ```csharp
 [Tag("Core Features")]
