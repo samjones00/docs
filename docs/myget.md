@@ -17,7 +17,7 @@ x mix myget
 
 ### Add using VS .NET
 
-Instructions to add ServiceStack's MyGet feed to VS.NET are:
+Instructions to add ServiceStack's MyGet feed to VS .NET are:
 
   1. Go to **Tools** > **Options** > **Nuget Package Manager** > **Package Sources**
   2. Add the Source `https://www.myget.org/F/servicestack` with the name of your choice, 
@@ -32,9 +32,9 @@ package manager dialog:
 
 Which will allow you to search and install pre-release packages from the selected MyGet feed.
 
-### Adding MyGet feed without VS.NET
+### Adding MyGet feed without VS .NET
 
-If you're not using or don't have VS.NET installed, you can add the MyGet feed to your NuGet.config at `%AppData%\NuGet\NuGet.config`:
+If you're not using or don't have VS .NET installed, you can add the MyGet feed to your NuGet.config at `%AppData%\NuGet\NuGet.config`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -65,7 +65,7 @@ If `nuget` is not in your Systems `PATH`, it can also be invoked from the `dotne
 dotnet nuget locals all -clear
 :::
 
-If you're using VS.NET you can also clear them from `Tools -> Options -> NuGet Package Manager` and click **Clear All NuGet Cache(s)**:
+Within VS .NET you can clear them from **Tools** > **Options** > **Nuget Package Manager** and click **Clear All NuGet Cache(s)**:
 
 ![Clear Packages Cache](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/myget/clear-package-cache.png)
 
