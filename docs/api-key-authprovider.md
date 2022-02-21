@@ -41,6 +41,25 @@ Plugins.Add(new AuthFeature(...,
 ));
 ```
 
+Or for Apps utilizing encapsulated [Modular Startup](/modular-startup) configuration blocks:
+
+```csharp
+[assembly: HostingStartup(typeof(MyApp.ConfigureAuth))]
+
+public class ConfigureAuth : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureAppHost(appHost => {
+            appHost.Plugins.Add(new AuthFeature(() => new AuthUserSession(),
+                new IAuthProvider[] {
+                    new ApiKeyAuthProvider(appHost.AppSettings),
+                    new CredentialsAuthProvider(appHost.AppSettings),
+                    //...
+                }));
+        });
+}
+```
+
 The `ApiKeyAuthProvider` works similarly to the other ServiceStack `IAuthWithRequest` providers where a 
 successful API Key initializes the current `IRequest` with the user's Authenticated Session. It also adds the 
 [ApiKey](https://github.com/ServiceStack/ServiceStack/blob/c4a8f9741e496793d949c09cecb84e84fca86686/src/ServiceStack/Auth/ApiKeyAuthProvider.cs#L31) POCO Model to the request which can be accessed with:
@@ -49,9 +68,7 @@ successful API Key initializes the current `IRequest` with the user's Authentica
 ApiKey apiKey = req.GetApiKey();
 ```
 
-The `ApiKey` can be later inspected throughout the 
-[request pipeline](/order-of-operations) 
-to determine which API Key, Type and Environment was used.
+The `ApiKey` can be later inspected throughout the [request pipeline](/order-of-operations) to determine which API Key, Type and Environment was used.
 
 #### Interoperable
 
@@ -307,30 +324,58 @@ new ApiKeyAuthProvider { ServiceRoutes = new Dictionary<Type, string[]>() }
 
 Whilst the API Key Auth Provider will automatically generate API Keys for new users, if you also want to add API Keys for existing users you'll need to use the `ApiKeyAuthProvider` to generate new keys for all users that don't have keys. 
 
-Here's a script you can add to `AppHost.Configure()` that lets you do that when using an `OrmLiteAuthRepository` which only needs to be run once: 
+Here's a script you can use when using an `OrmLiteAuthRepository` to generate API Keys for all users with missing API Keys on startup:
 
 ```csharp
-AfterInitCallbacks.Add(host =>
+public class ConfigureAuth : IHostingStartup
 {
-    var authProvider = (ApiKeyAuthProvider)
-        AuthenticateService.GetAuthProvider(ApiKeyAuthProvider.Name);
-    using (var db = host.TryResolve<IDbConnectionFactory>().Open())
-    {
-        var userWithKeysIds = db.Column<string>(db.From<ApiKey>()
-            .SelectDistinct(x => x.UserAuthId)).Map(int.Parse);
-
-        var userIdsMissingKeys = db.Column<string>(db.From<UserAuth>()
-            .Where(x => userWithKeysIds.Count == 0 || !userWithKeysIds.Contains(x.Id))
-            .Select(x => x.Id));
-
-        var authRepo = (IManageApiKeys)host.TryResolve<IAuthRepository>();
-        foreach (var userId in userIdsMissingKeys)
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureAppHost(appHost =>
         {
-            var apiKeys = authProvider.GenerateNewApiKeys(userId.ToString());
-            authRepo.StoreAll(apiKeys);
-        }
-    }
-});
+            appHost.Plugins.Add(new AuthFeature(() => new AuthUserSession(),
+                new IAuthProvider[] {
+                    new ApiKeyAuthProvider(appHost.AppSettings)
+                }));
+        }, afterAppHostInit: appHost => {
+            var authProvider = (ApiKeyAuthProvider)
+                AuthenticateService.GetAuthProvider(ApiKeyAuthProvider.Name);
+            
+            using var db = appHost.TryResolve<IDbConnectionFactory>().Open();
+            var userWithKeysIds = db.Column<string>(db.From<ApiKey>()
+                .SelectDistinct(x => x.UserAuthId)).Map(int.Parse);
+
+            var userIdsMissingKeys = db.Column<string>(db.From<UserAuth>() // Use custom UserAuth if configured
+                .Where(x => userWithKeysIds.Count == 0 || !userWithKeysIds.Contains(x.Id))
+                .Select(x => x.Id));
+
+            var authRepo = (IManageApiKeys)appHost.TryResolve<IAuthRepository>();
+            foreach (var userId in userIdsMissingKeys)
+            {
+                var apiKeys = authProvider.GenerateNewApiKeys(userId);
+                authRepo.StoreAll(apiKeys);
+            }
+        });
+}
 ```
 
-If using another Auth Repository backend this script will need to be modified to fetch the userIds for all users missing API Keys.
+:::info
+If using another Auth Repository backend this script will need to be modified to fetch the userIds for all users missing API Keys
+:::
+
+### .NET Framework Example
+
+Older platforms can register Startup initialization logic using the `HostContext.ConfigureAppHost()` singleton: 
+
+```csharp
+HostContext.ConfigureAppHost(afterAppHostInit:appHost => ...);
+```
+
+Or adding to `AfterInitCallbacks` in their `AppHost.Configure()`, e.g:
+
+```csharp
+public override void Configure(Container container)
+{
+    AfterInitCallbacks.Add(appHost => ...);
+}
+```
+
