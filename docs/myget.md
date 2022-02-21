@@ -4,12 +4,22 @@ title: MyGet
 
 ## ServiceStack pre-release MyGet Feed
 
-Our interim pre-release NuGet packages first get published to 
-[MyGet](https://www.myget.org/).
+Our interim pre-release NuGet packages in between major releases on NuGet are published to [MyGet](https://www.myget.org/).
+
+
+### Add using Mix
+
+If you have the [dotnet x tool](/dotnet-tool) installed, you can configure your projects by downloading `NuGet.Config` in the same folder as your **.sln**
+
+:::sh
+x mix myget
+:::
+
+### Add using VS .NET
 
 Instructions to add ServiceStack's MyGet feed to VS.NET are:
 
-  1. Go to `Tools -> Options -> Package Manager -> Package Sources`
+  1. Go to **Tools** > **Options** > **Nuget Package Manager** > **Package Sources**
   2. Add the Source `https://www.myget.org/F/servicestack` with the name of your choice, 
   e.g. _ServiceStack MyGet feed_
 
@@ -31,19 +41,9 @@ If you're not using or don't have VS.NET installed, you can add the MyGet feed t
 <configuration>
   <packageSources>
     <add key="ServiceStack MyGet feed" value="https://www.myget.org/F/servicestack" />
-    <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
   </packageSources>
 </configuration>
-```
-
-### Quick Mix
-
-Use [mix](/mix-tool) to download `NuGet.Config` in the same folder as your `.sln` Solution:
-
-```bash
-$ dotnet tool install --global x
-
-$ x mix myget
 ```
 
 ## Redownloading MyGet packages
@@ -55,15 +55,15 @@ need to manually delete the NuGet `/packages` folder for NuGet to pull down the 
 
 You can clear your local NuGet packages cache in any OS by running the command-line below in your favorite Terminal:
 
-```bash
-$ nuget locals all -clear
-```
+:::sh
+nuget locals all -clear
+:::
 
 If `nuget` is not in your Systems `PATH`, it can also be invoked from the `dotnet` tool:
 
-```bash
-$ dotnet nuget locals all -clear
-```
+:::sh
+dotnet nuget locals all -clear
+:::
 
 If you're using VS.NET you can also clear them from `Tools -> Options -> NuGet Package Manager` and click **Clear All NuGet Cache(s)**:
 
@@ -71,18 +71,26 @@ If you're using VS.NET you can also clear them from `Tools -> Options -> NuGet P
 
 Alternatively on Windows you can delete the Cached NuGet packages manually with:
 
-```bash
+:::sh
 $ del %LOCALAPPDATA%\NuGet\Cache\*.nupkg /q
-```
+:::
 
 ### Full Package Clean
 
-In most cases clearing the NuGet packages cache will suffice, sometimes you'll also need to manually delete the other local packages cache
+In most cases clearing the NuGet packages cache will suffice, sometimes you'll also need to manually delete other local packages caches
 
-```bash
-$ rd /q /s packages  # delete all NuGet packages in `/packages` folder
-$ rd /q /s bin obj   # delete `/bin` and `/obj` folders in host project
-```
+delete all NuGet packages in `/packages` folder:
+
+:::sh
+rd /q /s packages 
+:::
+
+delete `/bin` and `/obj` folders in host project
+
+:::sh
+rd /q /s bin obj
+:::
+
 
 ## Versioning Scheme
 
