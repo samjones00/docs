@@ -551,7 +551,7 @@ So to can the field name, which matches both these rules:
 
 An alternative to using wordy suffixes are the built-in short-hand syntax:
 
-|||
+| Param | Behavior |
 |-|-|
 |**>Age**|`Age >= {Value}`|
 |**Age>**|`Age  > {Value}`|
