@@ -72,7 +72,7 @@ slug: community-resources
   - [Logging to elmah.io from ServiceStack](http://blog.elmah.io/logging-to-elmah-io-from-servicestack/) by [@elmah_io](https://twitter.com/elmah_io)
   - [Experiment in Restful API Partial Updates via PATCH verb in ServiceStack](http://jokecamp.wordpress.com/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/) by [@jokecamp](https://twitter.com/jokecamp)
   - [Is WCF Redundant?](http://stephenhaunts.com/2013/11/22/is-wcf-redundant/) by [Stephen Haunts](http://stephenhaunts.com/about/)
-  - [Servicestack performance in mono](http://forcedtoadmin.blogspot.ru/2013/11/servicestack-performance-in-mono-p1.html) by [+SergeyZhukov](https://plus.google.com/u/0/116353697232909302306/posts)
+  - [Servicestack performance in mono](http://forcedtoadmin.blogspot.ru/2013/11/servicestack-performance-in-mono-p1.html) by SergeyZhukov
   - [How to return JSV formatted collection types from SQL Server in OrmLite](http://blog.falafel.com/Blogs/adam-anderson/2013/10/28/how-to-return-jsv-formatted-collection-types-from-sql-server-to-servicestack.ormlite) by [AdamAnderson](http://blog.falafel.com/blogs/AdamAnderson)
   - [How to migrate ASP.NET Membership users to ServiceStack](http://blog.falafel.com/Blogs/adam-anderson/2013/10/23/how-to-migrate-asp.net-membership-users-to-servicestack) by [AdamAnderson](http://blog.falafel.com/blogs/AdamAnderson)
   - [Fantastic Step-by-step walk-thru into ServiceStack with Screenshots!](http://nilsnaegele.com/codeedge/servicestack.html) by [@nilsnagele](https://twitter.com/nilsnagele)
@@ -86,7 +86,7 @@ slug: community-resources
   - [Code Generation using ServiceStack.OrmLite and T4 Text templates](http://jokecamp.wordpress.com/2013/09/07/code-generation-using-servicestack-ormlite-and-t4-text-templates/) by [@jokecamp](https://twitter.com/jokecamp)
   - [Building a ServiceStack OAuth2 resource server using DotNetOpenAuth](http://dylanbeattie.blogspot.com/2013/08/building-servicestack-based-oauth2.html) by [@dylanbeattie](https://twitter.com/dylanbeattie)
   - [ServiceStack extensibility using MEF](https://bhameyie.wordpress.com/2013/09/03/servicestack-extensibility-using-mef/) by [@bhameyie](https://twitter.com/bhameyie)
-  - [Productivity gains with the ServiceStack web framework](http://alexvpop.blogspot.co.uk/2013/08/whyservicestack.html) by [+AlexandruVasilePop](https://plus.google.com/104553804192329546520/posts)
+  - [Productivity gains with the ServiceStack web framework](http://alexvpop.blogspot.co.uk/2013/08/whyservicestack.html) by Alexandru Vasile Pop
   - [How I Stopped Worrying and Learned to Love the WWW and UNIX Way](http://abdullin.com/journal/2013/8/27/how-i-stopped-worrying-and-learned-to-love-the-www-and-unix.html) by [@abdullin](https://twitter.com/abdullin)
   - [ServiceStack: IoC with Microsoft Unity](http://www.agile-code.com/blog/servicestack-ioc-with-microsoft-unity/) by [@zoranmax](https://twitter.com/zoranmax)
   - [Building Cross-Platform Web Services with ServiceStack](http://msdn.microsoft.com/en-us/magazine/dn342871.aspx)
@@ -169,7 +169,7 @@ slug: community-resources
   - [MyMediaLite + ServiceStack](http://www.marrk.nl/post/mymedialite-servicestack/) by [@TMSVmusic](https://twitter.com/TMSVmusic)
   - [OrmLite Blobbing done with NHibernate and Serialized JSON](http://www.philliphaydon.com/2012/03/ormlite-blobbing-done-with-nhibernate-and-serialized-json/) by [@philliphaydon](https://twitter.com/philliphaydon)
   - [Creating An ASP.NET MVC Blog With ServiceStack.OrmLite](http://eggheadcafe.com/tutorials/asp-net/285cbe96-9922-406a-b193-3a0b40e31c40/creating-an-aspnet-mvc-blog-with-servicestackormlite.aspx) by [@peterbromberg](https://twitter.com/peterbromberg)
-  - [MiniProfiler for AJAX calls with ServiceStack.Net](http://tunurgitr.blogspot.com/2012/04/miniprofiler-for-ajax-calls-with.html) by [+Jeff Harris](https://plus.google.com/116988314718225555687/posts)
+  - [MiniProfiler for AJAX calls with ServiceStack.Net](http://tunurgitr.blogspot.com/2012/04/miniprofiler-for-ajax-calls-with.html) by Jeff Harris
   - [Servicestack and PHP](http://www.majorsilence.com/servicestack_and_php) by [@majorsilence](https://github.com/majorsilence)
   - [Using NHibernate with ServiceStack](http://www.philliphaydon.com/2012/06/using-nhibernate-with-servicestack/) by [@philliphaydon](https://twitter.com/philliphaydon)
   - [Using the Azure Cache With ServiceStack](http://emmanuelnelson.com/blogs/service-stack-and-azure) by [@emmanuelnelson](http://emmanuelnelson.com/about-me)
@@ -180,10 +180,10 @@ slug: community-resources
   - [Building a Web API in SharePoint 2010 with ServiceStack](http://www.mattjcowan.com/funcoding/2012/05/04/building-a-web-api-in-sharepoint-2010-with-servicestack)
   - [Default web service page how to](http://jaspreetchahal.org/servicestack-default-web-index-page/) by [@jschahal](https://twitter.com/jschahal)
   - [REST with ProtoBuf - Web Services in 5 easy steps](http://stevenhollidge.blogspot.com/2012/04/servicestack-rest-with-protobuf.html) by [@stevenhollidge](https://twitter.com/stevenhollidge)
-  - [JQueryMobile and ServiceStack: EventsManager tutorial part #3](http://paymentnetworks.wordpress.com/2012/04/24/jquerymobile-and-service-stack-eventsmanager-tutorial-post-3/) by [+Kyle Hodgson](https://plus.google.com/u/0/113523377752095590770/posts)
+  - [JQueryMobile and ServiceStack: EventsManager tutorial part #3](http://paymentnetworks.wordpress.com/2012/04/24/jquerymobile-and-service-stack-eventsmanager-tutorial-post-3/) by Kyle Hodgson
   - [REST Raiding. ServiceStack](http://dgondotnet.blogspot.de/2012/04/rest-raiding-servicestack.html) by [Daniel Gonzalez](http://www.blogger.com/profile/13468563783321963413)
-  - [JQueryMobile and ServiceStack: EventsManager tutorial](http://paymentnetworks.wordpress.com/2012/04/22/jquerymobile-and-service-stack-eventsmanager-tutorial-post-2/) by [+Kyle Hodgson](https://plus.google.com/u/0/113523377752095590770/posts)
-  - [Like WCF: Only cleaner!](http://paymentnetworks.wordpress.com/2012/04/19/like-wcf-only-cleaner-9/) by [+Kyle Hodgson](https://plus.google.com/u/0/113523377752095590770/posts)
+  - [JQueryMobile and ServiceStack: EventsManager tutorial](http://paymentnetworks.wordpress.com/2012/04/22/jquerymobile-and-service-stack-eventsmanager-tutorial-post-2/) by Kyle Hodgson
+  - [Like WCF: Only cleaner!](http://paymentnetworks.wordpress.com/2012/04/19/like-wcf-only-cleaner-9/) by Kyle Hodgson
   - [ServiceStack vs WCF Data Services](http://codealoc.wordpress.com/2012/03/24/service-stack-vs-wcf-data-services/)
   - [ServiceStack - REST with Protobuf](http://stevenhollidge.blogspot.co.uk/2012/04/servicestack-rest-with-protobuf.html) by [@stevenhollidge](https://twitter.com/stevenhollidge)
   - [ServiceStack a quick IPC solution](http://www.simonsegal.net/blog/2012/03/20/service-stack-a-quick-ipc-solution/)
@@ -212,11 +212,11 @@ slug: community-resources
 ### Related Community Projects
 
   - [Meal planning per configured interval powered by AngularJS, Bower and GruntJS](https://github.com/bradgearon/whats-cookin) by [@bradgearon](https://twitter.com/bradgearon)
-  - [Hello Docker!](https://github.com/MarFarMa/ServiceStack.Hello) by [+Pauli Price](https://plus.google.com/u/0/108232133950129763782)
+  - [Hello Docker!](https://github.com/MarFarMa/ServiceStack.Hello) by Pauli Price
   - [License manager for Portable.Licensing using AngularJS and ServiceStack](https://github.com/dnauck/License.Manager) by [@dnauck](https://github.com/dnauck)
   - [Web services using ServiceStack framework in F#](https://github.com/chirdeeptomar/ServiceStackFSharpSample) by [@chirdeeptomar](https://twitter.com/chirdeeptomar)
   - [Use DotNetOpenAuth and ServiceStack to create an OAuth2 resource server.](https://github.com/dylanbeattie/OAuthStack) by [@dylanbeattie](https://twitter.com/dylanbeattie)
-  - [ServiceStack API for GeoLocation using MongoDB](https://github.com/bp4151/SSGeoAPI) by [+BruceParr](https://plus.google.com/u/0/112378079014682485883/posts)
+  - [ServiceStack API for GeoLocation using MongoDB](https://github.com/bp4151/SSGeoAPI) by Bruce Parr
   - [AngularJS metadata explorer for ServiceStack](https://github.com/bradgearon/ServiceStack.Api.AngularJS/) by [@bradgearon](https://twitter.com/bradgearon)
   - [Example of ServiceStack integrated with ASP.Net MVC 4](https://github.com/crscastillo/HR) by [@crscastillo](https://twitter.com/crscastillo)
   - [Pretty enum serialization for ServiceStack](https://github.com/Chatham/ServiceStack.Text.EnumMemberSerializer) by [@tonydcarl](https://twitter.com/TonyDCarl) 

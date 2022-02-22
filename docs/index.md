@@ -187,6 +187,14 @@ layout: default
     </div>
 </div>
 
+## ServiceStack Community
+
+- servicestack.net/discord - Join **#ServiceStack** Discord Channel
+- servicestack.net/discuss - ServiceStack Community GitHub Discussions
+    - servicestack.net/ask - Q & A Community Support
+    - servicestack.net/ideas - Submit Ideas & Feature Requests
+    - servicestack.net/showcase - Share your Apps with the community
+
 ## ServiceStack Examples and Live Demos
 
 - [Instant Client Apps](https://apps.servicestack.net) - Instant Client Apps
@@ -197,13 +205,13 @@ layout: default
 
 ## ServiceStack Downloads
 
+- [Free for Individuals & OSS](https://servicestack.net/free) - ServiceStack is FREE for Individuals & OSS
 - [ServiceStack Downloads](https://servicestack.net/download) - Official downloads are available on NuGet
 - [License Registration](/register) - ServiceStack License Key Registration Options
 - [Pre-release MyGet Packages](/myget) - The latest downloads in-between each release are available on MyGet
-- [Free for OSS](/oss) - OSS projects can use ServiceStack without a commercial license
 
-## ServiceStack Community
+## Contributing
 
-- [Community-Resources](/community-resources) (Blog Posts, Gists, StackOverflow, Pod casts...)
 - [Contributors](/contributors) - Special thanks to all of ServiceStack's Contributors
-- [Contributing Guide](/contributing) - Read our Contributing Guide before contributing
+- [Contributing Guide](/contributing) - Read our Contributing Guide
+- [Contribution License Agreement](https://docs.google.com/forms/d/16Op0fmKaqYtxGL4sg7w_g-cXXyCoWjzppgkuqzOeKyk/viewform) - Please sign our CLA before Contributing

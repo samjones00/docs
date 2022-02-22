@@ -4,7 +4,7 @@ slug: release-notes-v3
 
 ## v3.9.62 Release Notes
 
-v3.9.62 marks the point where v3 goes into feature-freeze to make room for the future [v4 commercial version of ServiceStack](https://plus.google.com/106787359118990653189/posts/g8TcZaE7bv9). In order to reduce efforts of maintaining 2 separate code-bases, we've automated as much of the development and deploying workflow as possible. Building on the efforts of ServiceStack's CI build master [@desunit](https://twitter.com/desunit), v3.9.62 is the first release of ServiceStack to be fully automated and deployed with [Team City](http://www.jetbrains.com/teamcity/). 
+v3.9.62 marks the point where v3 goes into feature-freeze to make room for the future v4 commercial version of ServiceStack. In order to reduce efforts of maintaining 2 separate code-bases, we've automated as much of the development and deploying workflow as possible. Building on the efforts of ServiceStack's CI build master [@desunit](https://twitter.com/desunit), v3.9.62 is the first release of ServiceStack to be fully automated and deployed with [Team City](http://www.jetbrains.com/teamcity/). 
 
 #### Source Symbols are now included in all NuGet packages
 
@@ -40,7 +40,7 @@ This release saw the introduction of new **ServiceStack.Authentication.OAuth2** 
 
 Now that v3 is in feature-freeze, if you need to add a fix to the existing v3 release of ServiceStack it will need to added it to the `v3-fixes` branch (i.e. instead of master) which is a placeholder for merging future fixes into both master (v4) and v3 release branches. Future commits to any ServiceStack project will also need to agree to the [Contributor License Agreement](https://docs.google.com/forms/d/16Op0fmKaqYtxGL4sg7w_g-cXXyCoWjzppgkuqzOeKyk/viewform).
 
-Join the [ServiceStack G+ Community](https://plus.google.com/u/0/communities/112445368900682590445) if you want to keep track of the progress of ServiceStack v4 or be notified of any announcements from the ServiceStack community.
+Join the [ServiceStack Community](https://servicestack.net/discuss) if you want to keep track of the progress of ServiceStack v4 or be notified of any announcements from the ServiceStack community.
 
 ### Unified build system across all projects
 
@@ -180,7 +180,7 @@ There's also been a number of quality community posts that have been added in th
   - [Code Generation using ServiceStack.OrmLite and T4 Text templates](http://jokecamp.wordpress.com/2013/09/07/code-generation-using-servicestack-ormlite-and-t4-text-templates/) by [@jokecamp](https://twitter.com/jokecamp)
   - [Building a ServiceStack OAuth2 resource server using DotNetOpenAuth](http://dylanbeattie.blogspot.com/2013/08/building-servicestack-based-oauth2.html) by [@dylanbeattie](https://twitter.com/dylanbeattie)
   - [ServiceStack extensibility using MEF](http://bhameyie.com/2013/09/03/servicestack-extensibility-using-mef/) by [@bhameyie](https://twitter.com/bhameyie)
-  - [Productivity gains with the ServiceStack web framework](http://alexvpop.blogspot.co.uk/2013/08/whyservicestack.html) by [+AlexandruVasilePop](https://plus.google.com/104553804192329546520/posts)
+  - [Productivity gains with the ServiceStack web framework](http://alexvpop.blogspot.co.uk/2013/08/whyservicestack.html) by Alexandru Vasile Pop
   - [How I Stopped Worrying and Learned to Love the WWW and UNIX Way](http://abdullin.com/journal/2013/8/27/how-i-stopped-worrying-and-learned-to-love-the-www-and-unix.html) by [@abdullin](https://twitter.com/abdullin)
   - [ServiceStack: IoC with Microsoft Unity](http://www.agile-code.com/blog/servicestack-ioc-with-microsoft-unity/) by [@zoranmax](https://twitter.com/zoranmax)
   - [Building Cross-Platform Web Services with ServiceStack](http://msdn.microsoft.com/en-us/magazine/dn342871.aspx)
@@ -200,7 +200,7 @@ More quality community content to be found in the [Community Resources](/communi
 
 .
 
-Follow [@ServiceStack](http://twitter.com/ServiceStack) or join the [ServiceStack G+ Community](https://plus.google.com/u/0/communities/112445368900682590445) for project updates.
+Follow [@ServiceStack](http://twitter.com/ServiceStack) or join the [ServiceStack G+ Community](https://servicestack.net/discuss) for project updates.
 
 *****
 

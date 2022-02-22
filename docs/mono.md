@@ -19,8 +19,8 @@ If needed ServiceStack also runs on [Mono](http://www.mono-project.com):
 
 # Community Resources
 
-  - [Servicestack performance in mono](http://forcedtoadmin.blogspot.ru/2013/11/servicestack-performance-in-mono-p1.html) by [+SergeyZhukov](https://plus.google.com/u/0/116353697232909302306/posts)
-  - [Hello Docker!](https://github.com/MarFarMa/ServiceStack.Hello) by [+Pauli Price](https://plus.google.com/u/0/108232133950129763782)
+  - [Servicestack performance in mono](http://forcedtoadmin.blogspot.ru/2013/11/servicestack-performance-in-mono-p1.html) by SergeyZhukov
+  - [Hello Docker!](https://github.com/MarFarMa/ServiceStack.Hello) by Pauli Price
   - [How to Deploy Mono Web Applications With Capistrano-mono-deploy](http://www.antonydenyer.co.uk/blog/2012/12/13/howto-deploy-mono-web-applications-with-capistrano-mono-deploy/) by [@tonydenyer](https://twitter.com/tonydenyer)
   - [Setting up a ServiceStack Service on nginx and deploy to Azure](http://www.philliphaydon.com/2013/07/setting-up-a-servicestack-service/) by [@philliphaydon](https://twitter.com/philliphaydon)
   - [ServiceStack, With F# on Linux (inc Vagrant / Puppet)](http://saxonmatt.co.uk/2013/07/service-stack-fsharp-mono-fastcgi-nginx.html) by [@mattdrivendev](https://twitter.com/MattDrivenDev)

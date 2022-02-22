@@ -121,4 +121,4 @@ Notice the special attention the MVC MiniProfiler team put into identifying **Du
 
 # Community Resources
 
-  - [MiniProfiler for AJAX calls with ServiceStack.Net](http://tunurgitr.blogspot.com/2012/04/miniprofiler-for-ajax-calls-with.html) by [+Jeff Harris](https://plus.google.com/116988314718225555687/posts)
+  - [MiniProfiler for AJAX calls with ServiceStack.Net](http://tunurgitr.blogspot.com/2012/04/miniprofiler-for-ajax-calls-with.html) by Jeff Harris

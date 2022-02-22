@@ -19,7 +19,7 @@ Add ServiceStack Reference now supports
 [Dart](/dart-add-servicestack-reference), 
 [F#](/fsharp-add-servicestack-reference) and 
 [VB.NET](/vbnet-add-servicestack-reference)
-including integration with most leading IDE's to provide a flexible alternative than sharing your DTO assembly with clients. Clients can now easily add a reference to a remote ServiceStack url and update DTOs directly from within VS.NET, Xamarin Studio, Xcode, Android Studio, IntelliJ and Eclipse. We plan on expanding on this foundation into adding seamless, typed, end-to-end integration with other languages - Add a [feature request for your favorite language](http://servicestack.uservoice.com/forums/176786-feature-requests) to prioritize support for it sooner!
+including integration with most leading IDE's to provide a flexible alternative than sharing your DTO assembly with clients. Clients can now easily add a reference to a remote ServiceStack url and update DTOs directly from within VS.NET, Xamarin Studio, Xcode, Android Studio, IntelliJ and Eclipse. We plan on expanding on this foundation into adding seamless, typed, end-to-end integration with other languages - Add a [feature request for your favorite language](https://servicestack.net/ideas) to prioritize support for it sooner!
 
 Native Types provides an alternative for sharing DTO dlls, that can enable a better dev workflow for external clients who are now able to generate (and update) Typed APIs for your Services from a single remote url directly within their favorite IDE - reducing the burden and effort required to consume ServiceStack Services whilst benefiting from clients native language strong-typing feedback.
 
