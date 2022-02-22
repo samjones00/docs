@@ -93,8 +93,8 @@ to **.NET Core** to take advantage of its superior performance, stability and gr
 is a production-grade platform for running ServiceStack/.NET Server Apps on Linux we can recommend. 
 We'll be on standby to quickly resolve any issues you may hit and are very interested in hearing 
 about your experience with upgrading your existing code-bases to use .NET Core - feel free to post
-your experience in the [Customer Forums](https://forums.servicestack.net/) or on the 
-[Google+ Group](https://plus.google.com/u/0/).
+your experience in the [Customer Forums](https://forums.servicestack.net/) or on 
+[ServiceStack/Discuss](https://servicestack.net/discuss).
 
 # [v4.5.0 Release Notes](/releases/v4_5_0)
 

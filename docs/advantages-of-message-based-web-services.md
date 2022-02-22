@@ -15,7 +15,7 @@ ServiceStack's message-based design is optimal for the design of **any remote se
 ## Best-practices for remote services
 
 Inspiration should've ideally been taken from Martin Fowler or from companies that have [SOA](http://en.wikipedia.org/wiki/Service-oriented_architecture) ingrained in their DNA who have successfully run long-term evolving SOA solutions that have enabled rich and complex platforms.
-Amazon is a shining example of this, where even Steve Yegge admits [it's the only thing they do better than Google](https://plus.google.com/112678702228711889851/posts/eVeouesvaVX). Where their relentless dedication to exposing SOA services over all their systems have enabled their industry leading EC2 and [aws.amazon.com](http://aws.amazon.com/) cloud services.
+Amazon is a shining example of this, where even Steve Yegge admits [it's the only thing they do better than Google](https://gigaom.com/2011/10/12/419-the-biggest-thing-amazon-got-right-the-platform/). Where their relentless dedication to exposing SOA services over all their systems have enabled their industry leading EC2 and [aws.amazon.com](http://aws.amazon.com/) cloud services.
 
 ## The Service API of Amazon's Web Services
 

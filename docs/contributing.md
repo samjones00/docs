@@ -82,7 +82,7 @@ Please keep in mind that not all requests will be approved. Requests are reviewe
 
 ## Code Reviews
 
-Feature requests should be proposed on [ServiceStack Discussions](https://servicestack.net/ideas), whilst the ServiceStack community has a [discussion group](https://plus.google.com/u/0/communities/112445368900682590445) used for submitting code reviews and discussing design changes, best practices, and other important topics. Any disruptive changes to any project should be discussed here before any code is contributed.
+Feature requests should be proposed on [ServiceStack Ideas](https://servicestack.net/ideas), whilst general ServiceStack discussions can be posted on [ServiceStack/Discuss](https://servicestack.net/discuss) for submitting code reviews and discussing design changes, best practices, and other important topics. Any disruptive changes to any project should be discussed here before any code is contributed.
 
 Expect a good amount of feedback as part of any pull request: not only which branch to merge to and from, but also consistency guidelines, matching existing code, and making targeted, smart changes when fixing bugs.
 
