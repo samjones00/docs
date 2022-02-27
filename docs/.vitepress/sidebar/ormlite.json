@@ -81,6 +81,10 @@
         "link": "/ormlite/introspection"
       },
       {
+        "text": "Complex Type Serializers",
+        "link": "/ormlite/complex-type-serializers"
+      },
+      {
         "text": "Insert & Update Filters",
         "link": "/ormlite/filters"
       },
@@ -138,6 +142,10 @@
         "text": "OrmLite Shippers example",
         "link": "/ormlite/shippers-example"
       },
+      {
+        "text": "Customer Orders example",
+        "link": "/ormlite/customer-orders-example"
+      },      
       {
         "text": "AWS & RDS Support",
         "link": "/ormlite/aws-rds-databases"
