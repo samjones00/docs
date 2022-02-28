@@ -33,15 +33,9 @@ An example of this is in
 ```csharp
 public class GuidConverter : OrmLiteConverter
 {
-    public override string ColumnDefinition
-    {
-        get { return "GUID"; }
-    }
+    public override string ColumnDefinition => "GUID";
 
-    public override DbType DbType
-    {
-        get { return DbType.Guid; }
-    }
+    public override DbType DbType => DbType.Guid;
 }
 ```
 
@@ -54,16 +48,9 @@ to support Guids in SQL Server which looks like:
 ```csharp
 public class SqlServerGuidConverter : GuidConverter
 {
-    public override string ColumnDefinition
-    {
-        get { return "UniqueIdentifier"; }
-    }
+    public override string ColumnDefinition => "UniqueIdentifier";
 
-    public override string ToQuotedString(Type fieldType, object value)
-    {
-        var guidValue = (Guid)value;
-        return string.Format("CAST('{0}' AS UNIQUEIDENTIFIER)", guidValue);
-    }
+    public override string ToQuotedString(Type fieldType, object value) => $"CAST('{(Guid)value}' AS UNIQUEIDENTIFIER)";
 }
 ```
 
