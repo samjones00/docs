@@ -116,7 +116,7 @@ public class GameItem
 
 public class Level
 {
-    public Guid Id { get; set; }                    // Unique Identifer/GUID Primary Key
+    public Guid Id { get; set; }                    // Unique Identifier/GUID Primary Key
     public byte[] Data { get; set; }                // Saved as BLOB/Binary where possible
 }
 ```
@@ -124,61 +124,60 @@ public class Level
 We can drop the existing tables and re-create the above table definitions with:
 
 ```csharp
-using (var db = dbFactory.Open())
+using var db = dbFactory.Open();
+
+if (db.TableExists<Level>())
+    db.DeleteAll<Level>();                      // Delete ForeignKey data if exists
+
+//DROP and CREATE ForeignKey Tables in dependent order
+db.DropTable<Player>();
+db.DropTable<Level>();
+db.CreateTable<Level>();
+db.CreateTable<Player>();
+
+//DROP and CREATE tables without Foreign Keys in any order
+db.DropAndCreateTable<Profile>();
+db.DropAndCreateTable<GameItem>();
+
+var savedLevel = new Level
 {
-    if (db.TableExists<Level>())
-        db.DeleteAll<Level>();                      // Delete ForeignKey data if exists
+    Id = Guid.NewGuid(),
+    Data = new byte[]{ 1, 2, 3, 4, 5 },
+};
+db.Insert(savedLevel);
 
-    //DROP and CREATE ForeignKey Tables in dependent order
-    db.DropTable<Player>();
-    db.DropTable<Level>();
-    db.CreateTable<Level>();
-    db.CreateTable<Player>();
-
-    //DROP and CREATE tables without Foreign Keys in any order
-    db.DropAndCreateTable<Profile>();
-    db.DropAndCreateTable<GameItem>();
-
-    var savedLevel = new Level
+var player = new Player
+{
+    Id = 1,
+    FirstName = "North",
+    LastName = "West",
+    Email = "north@west.com",
+    PhoneNumbers = new List<Phone>
     {
-        Id = Guid.NewGuid(),
-        Data = new byte[]{ 1, 2, 3, 4, 5 },
-    };
-    db.Insert(savedLevel);
-
-    var player = new Player
+        new Phone { Kind = PhoneKind.Mobile, Number = "123-555-5555"},
+        new Phone { Kind = PhoneKind.Home,   Number = "555-555-5555", Ext = "123"},
+    },
+    GameItems = new List<GameItem>
     {
-        Id = 1,
-        FirstName = "North",
-        LastName = "West",
-        Email = "north@west.com",
-        PhoneNumbers = new List<Phone>
+        new GameItem { Name = "WAND", Description = "Golden Wand of Odyssey"},
+        new GameItem { Name = "STAFF", Description = "Staff of the Magi"},
+    },
+    Profile = new Profile
+    {
+        Username = "north",
+        Role = PlayerRole.Leader,
+        Region = Region.Australasia,
+        HighScore = 100,
+        GamesPlayed = 10,
+        ProfileUrl = "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg",
+        Meta = new Dictionary<string, string>
         {
-            new Phone { Kind = PhoneKind.Mobile, Number = "123-555-5555"},
-            new Phone { Kind = PhoneKind.Home,   Number = "555-555-5555", Ext = "123"},
+            {"Quote", "I am gamer"}
         },
-        GameItems = new List<GameItem>
-        {
-            new GameItem { Name = "WAND", Description = "Golden Wand of Odyssey"},
-            new GameItem { Name = "STAFF", Description = "Staff of the Magi"},
-        },
-        Profile = new Profile
-        {
-            Username = "north",
-            Role = PlayerRole.Leader,
-            Region = Region.Australasia,
-            HighScore = 100,
-            GamesPlayed = 10,
-            ProfileUrl = "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg",
-            Meta = new Dictionary<string, string>
-            {
-                {"Quote", "I am gamer"}
-            },
-        },
-        SavedLevelId = savedLevel.Id,
-    };
-    db.Save(player, references: true);
-}
+    },
+    SavedLevelId = savedLevel.Id,
+};
+db.Save(player, references: true);
 ```
 
 This will add a record in all the above tables with all the Reference data properties automatically populated which we can quickly see
