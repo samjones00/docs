@@ -29,6 +29,77 @@ e.g. the pre-defined url to call a JSON 'Hello' Service is:
 /api?/[soap11|soap12]
 ```
 
+## JSON /api pre-defined route
+
+Over the last decade [JSON](https://www.json.org/json-en.html) has stood out and become more popular than all others combined, where it's the lingua franca for calling APIs in Web Apps and what our [Add ServiceStack Reference](/add-servicestack-reference) ecosystem of languages relies on. Due to its overwhelming dominance for usage in APIs we've decided to elevate its status and give it a pre-defined route of its very own at:
+
+<h3 class="text-4xl text-center text-indigo-800 pb-3">/api/{Request}</h3>
+
+This simple convention makes it easy to remember the route new APIs are immediately available on & pairs nicely with [API Explorer's](/api-explorer):
+
+<h3 class="text-4xl text-center text-indigo-800 pb-3">/ui/{Request}</h3>
+
+### Benefits in Jamstack Apps
+
+The `/api` route is particularly useful in Jamstack Apps as the 2 ways to call back-end APIs from decoupled UIs hosted on CDNs is to make CORS requests which doesn't send pre-flight CORS requests for [Simple Browser requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests). As such, we can improve the latency of **GET** and **POST** API Requests by configuring our `JsonServiceClient` to use `/api` and to not send the `Content-Type: application/json` HTTP Header which isn't necessary for `/api` requests which always expects and returns JSON:
+
+### Configuring in TypeScript
+
+```ts
+export const client = new JsonServiceClient(API_URL).apply(c => {
+    c.basePath = "/api"
+    c.headers = new Headers() //avoid pre-flight CORS requests
+})
+```
+
+It also benefits the **alternative method** to CORS in only needing to define a **single reverse proxy rule** on the CDN host to proxy all API requests to downstream back-end servers.
+
+#### Configuring in .NET
+
+No configuration is necessary for the new **.NET 6+** [JsonApiClient](#jsonapiclient) that's pre-configured to use `/api` fallback by default:
+
+```csharp
+var client = new JsonApiClient(baseUri);
+```
+
+All .NET Clients use any **matching user-defined routes** defined on the Request DTO with the existing Service Clients falling back to `/json/[reply|oneway]` if none exist who can be configured to use the `/api` fallback with:
+
+```csharp
+var client = new JsonServiceClient(baseUri) {
+    UseBasePath = "/api"
+};
+var client = new JsonHttpClient(baseUri) {
+    UseBasePath = "/api"
+};
+```
+
+### ApiHandlers
+
+Using the new [ApiHandlers](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ApiHandlers.cs), the code to enable the new `/api` pre-defined route is just:
+
+```csharp
+RawHttpHandlers.Add(ApiHandlers.Json("/api/{Request}"));
+```
+
+`ApiHandlers` is a simpler wrapper that registers a Raw HttpHandler delegating all matching requests to a `GenericHandler` configured with that Mime Type and includes typed overloads for each built-in data format. 
+
+So you could also define a new pre-defined route at `/excel/*` with:
+
+```csharp
+RawHttpHandlers.Add(ApiHandlers.Csv("/excel/{Request}"));
+```
+
+Where it can now be used to download any APIs response in a `*.csv` file.
+
+### Disable API Route
+
+To avoid potential conflicts `/api` isn't registered if your AppHost configures its own Custom BasePath, or can be explicitly disabled with:
+
+```csharp
+ConfigurePlugin<PredefinedRoutesFeature>(feature => feature.JsonApiRoute = null);
+```
+
+
 ## Custom Routes
 
 In its most basic form, a Route is just any string literal attributed on your Request DTO:
