@@ -28,6 +28,24 @@ int result = db.SqlScalar<int>(q);
 int result = db.SqlScalar<int>("SELCT COUNT(*) FROM Person WHERE Age < 50");
 ```
 
+## Custom SQL with Typed SqlExpression
+
+Using a typed SQL Expression with a mix of typed an custom SQL Expressions:
+
+```csharp
+var q = db.From<Person>();
+q.Where("Age < {0}", 50);
+List<Person> results = db.Select(q)
+
+var q = db.From<Person>().Where("Age < {0}", 50);
+string sql = q.ToSelectStatement();
+List<Person> results = db.Select(sql, q.Params);
+```
+
+:::tip
+If your custom SQL Expression fails because it contains raw SQL with comments or write commands you can use `Unsafe*` APIs to by-pass SQL Validation, e.g. `q.UnsafeWhere(rawSql)`
+:::
+
 ## Custom Selects
 
 ```csharp
