@@ -112,3 +112,50 @@ foreach (var crudEvent in rowAuditEvents)
 ```
 
 If for instance you wanted it to execute through your latest logic with any enhancements or bug fixes, etc.
+
+
+### Ignoring Crud Events
+
+You can selectively choose to ignore capturing events by returning `null` in the `EventsFilter` when registering `OrmLiteCrudEvents`, e.g:
+
+```csharp
+new OrmLiteCrudEvents(c.Resolve<IDbConnectionFactory>()) {
+    EventsFilter = (row,context) => MyShouldIgnore(context) 
+        ? null
+        : row
+}
+```
+
+The `CrudContext` contains all the relevant information about the AutoQuery Crud request, including:
+
+```csharp
+public class CrudContext
+{
+    public IRequest Request { get; private set; }
+    public IDbConnection Db { get; private set; }
+    public ICrudEvents Events { get; private set; }
+    public string Operation { get; set; }
+    public object Dto { get; private set; }
+    public Type ModelType { get; private set; }
+    public Type RequestType { get; private set; }
+    public Type ResponseType { get; private set; }
+    public ModelDefinition ModelDef { get; private set; }
+    public PropertyAccessor IdProp { get; private set; }
+    public PropertyAccessor ResultProp { get; private set; }
+    public PropertyAccessor CountProp { get; private set; }
+    public PropertyAccessor RowVersionProp { get; private set; }
+    
+    public object Id { get; set; }    
+    public object Response { get; set; }    
+    public long? RowsUpdated { get; set; }
+}
+```
+
+Alternatively you can ignore recording the event for requests tagged with `IRequest.Items[Keywords.IgnoreEvent]`, e.g:
+
+```csharp
+GlobalRequestFilters.Add((req, res, dto) => {
+    if (MyShouldIgnore(dto))
+        req.Items[Keywords.IgnoreEvent] = bool.TrueString;
+});
+```
