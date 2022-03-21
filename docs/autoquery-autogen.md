@@ -48,7 +48,11 @@ Plugins.Add(new AutoQueryFeature {
 });
 ```
 
-#### Generating AutoQuery Types & Services
+## Export Code-First DTOs
+
+After restarting your App with AutoGen's `GenerateCrudServices` enabled you can export the auto-generated APIs and Data Models into code-first C# classes
+
+### Generating AutoQuery APIs and Data Models
 
 The development experience is essentially the same as [Add ServiceStack Reference](/add-servicestack-reference) where you'll need to run the .NET Core App in 1 terminal:
 
@@ -61,11 +65,13 @@ Then use the `x` dotnet tool to download all the AutoQuery & Crud Services for a
 ```bash
 $ x csharp https://localhost:5001 -path /crud/all/csharp
 ```
-> If no schema is provided, a default schema is used which depends on the underlying Provider Dialect, eg SQL Server, PostgreSQL etc.
-> Multiple schema support requires the AutoQueryFeature to be configured with [multiple schemas](#multiple-schemas-and-rdbms-connections).
 
+::: tip
+If no schema is provided, a default schema is used which depends on the underlying Provider Dialect, eg SQL Server, PostgreSQL etc.
+Multiple schema support requires the AutoQueryFeature to be configured with [multiple schemas](#multiple-schemas-and-rdbms-connections).
+:::
 
-#### Updating Generated Services
+### Updating Generated Services
 
 If your RDBMS schema changes you'd just need to restart your .NET Core App, then you can update all existing `dtos.cs` with:
 
@@ -76,6 +82,19 @@ $ x csharp
 i.e. the same experience as updating normal DTOs.
 
 You can do the same for all other ServiceStack's supported languages as shown in autodto at the start of this release.
+
+### Switch to code-first dev model
+
+After generating `dtos.cs` AutoGen is no longer needed and can now be removed by removing `GenerateCrudServices`
+
+```csharp
+Plugins.Add(new AutoQueryFeature {
+    MaxLimit = 1000,
+    // GenerateCrudServices = new GenerateCrudServices {}
+});
+```
+
+All functionality and features can now be added to annotating & enhancing your code-first C# Typed DTOs.
 
 ## AutoRegister AutoGen AutoQuery Services
 
