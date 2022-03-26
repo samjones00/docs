@@ -62,7 +62,7 @@ nuget locals all -clear
 If `nuget` is not in your Systems `PATH`, it can also be invoked from the `dotnet` tool:
 
 :::sh
-dotnet nuget locals all -clear
+dotnet nuget locals all --clear
 :::
 
 Within VS .NET you can clear them from **Tools** > **Options** > **Nuget Package Manager** and click **Clear All NuGet Cache(s)**:
