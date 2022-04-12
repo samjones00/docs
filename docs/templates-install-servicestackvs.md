@@ -27,6 +27,6 @@ If you're still using VS.NET 2017, 2015 or 2013 you can use the earlier VS.NET S
 
 ::: info
 A limited selection of .NET Framework project templates can also be created inside VS.NET using the previous version of
-[ServiceStackVS VS.NET Extension](https://github.com/ServiceStack/ServiceStackVS/raw/master/dist/2021/ServiceStackVS.vsix), however these templates are no longer updated.
+[ServiceStackVS VS.NET Extension](https://github.com/ServiceStack/ServiceStackVS/raw/master/dist/2021/ServiceStackVS.vsix), however these templates are no longer updated. From ServiceStack VS v3+, impacting Visual Studio 2019-2022, templates are no longer available in the extension. To get started with our templates it is best to use our [Getting Started page on our website](https://servicestack.net/start) or the ServiceStack [dotnet `x` tool to create new projects](/templates-overview#x-new).
 :::
 
