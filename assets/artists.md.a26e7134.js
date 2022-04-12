@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as s,b as a}from"./app.da189b1e.js";const m='{"title":"Artists","description":"","frontmatter":{"title":"Artists"},"relativePath":"artists.md","lastUpdated":1649756884287}',r={},o=a("p",null,"Search for the artists.",-1),c=[o];function i(n,_,p,d,l,f){return s(),e("div",null,c)}var u=t(r,[["render",i]]);export{m as __pageData,u as default};
