@@ -301,27 +301,27 @@ call protected Services in `/swagger-ui`.
 You can use OpenAPI plugin to automatically generate client using [Autorest](https://github.com/Azure/Autorest). 
 To use AutoRest first install it from npm:
 
-```bash
-$ npm install -g autorest
-```
+:::sh
+npm install -g autorest
+:::
 
 Then you need to download the Open API specification for your Services using a tool like curl:
 
-```bash
-$ curl http://your.domain/openapi > openapi.json
-```
+:::sh
+curl http://your.domain/openapi > openapi.json
+:::
 
 Or using `iwr` if you have PowerShell installed:
 
-```bash
-$ iwr http://your.domain/openapi -o openapi.json
-```
+:::sh
+iwr http://your.domain/openapi -o openapi.json
+:::
 
 You can then use the `openapi.json` with autorest to generate a client for your API in your preferred language, e.g:
 
-```bash
-$ autorest --latest-release -Input openapi.json -CodeGenerator CSharp -OutputDirectory AutoRestClient -Namespace AutoRestClient
-```
+:::sh
+autorest --latest-release -Input openapi.json -CodeGenerator CSharp -OutputDirectory AutoRestClient -Namespace AutoRestClient
+:::
 
 This will generate directory containing your model types and REST operations that you can use with the 
 generated client, e.g:

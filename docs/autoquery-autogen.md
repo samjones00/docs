@@ -26,15 +26,15 @@ Plugins.Add(new AutoQueryFeature {
 
 If you don't have an existing database, you can quickly test this out with a Northwind SQLite database available from [https://github.com/NetCoreApps/NorthwindAuto](https://github.com/NetCoreApps/NorthwindAuto):
 
-```bash
-$ x download NetCoreApps/NorthwindAuto
-```
+:::sh
+x download NetCoreApps/NorthwindAuto
+:::
 
 As you'll need to use 2 terminal windows, I'd recommend opening the project with **VS Code** which has great multi-terminal support:
 
-```bash
-$ code NorthwindAuto
-```
+:::sh
+code NorthwindAuto
+:::
 
 The important parts of this project is the registering the OrmLite DB Connection, the above configuration and the local **northwind.sqlite** database, i.e:
 
@@ -56,15 +56,15 @@ After restarting your App with AutoGen's `GenerateCrudServices` enabled you can 
 
 The development experience is essentially the same as [Add ServiceStack Reference](/add-servicestack-reference) where you'll need to run the .NET Core App in 1 terminal:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 Then use the `x` dotnet tool to download all the AutoQuery & Crud Services for all tables in the configured DB connection:
 
-```bash
-$ x csharp https://localhost:5001 -path /crud/all/csharp
-```
+:::sh
+x csharp https://localhost:5001 -path /crud/all/csharp
+:::
 
 ::: tip
 If no schema is provided, a default schema is used which depends on the underlying Provider Dialect, eg SQL Server, PostgreSQL etc.
@@ -75,9 +75,9 @@ Multiple schema support requires the AutoQueryFeature to be configured with [mul
 
 If your RDBMS schema changes you'd just need to restart your .NET Core App, then you can update all existing `dtos.cs` with:
 
-```bash
-$ x csharp
-```
+:::sh
+x csharp
+:::
 
 i.e. the same experience as updating normal DTOs.
 
@@ -127,17 +127,17 @@ See the annotated guide below to follow along:
 
 Create a new [grpc](https://github.com/NetCoreTemplates/grpc) .NET Core project and open it in VS Code:
 
-```bash
-$ x new grpc NorthwindApi
-$ code NorthwindApi
-```
+:::sh
+x new grpc NorthwindApi
+code NorthwindApi
+:::
 
 Inside VS Code open a Terminal Window and [mix in](/mix-tool) the required configuration:
 
-```bash
-$ cd NorthwindApi
-$ x mix autocrudgen sqlite northwind.sqlite
-```
+:::sh
+cd NorthwindApi
+x mix autocrudgen sqlite northwind.sqlite
+:::
 
 Which will mix in the [autocrudgen](https://gist.github.com/gistlyn/464a80c15cb3af4f41db7810082dc00c) gist to enable AutoQuery and tell it to Auto Generate AutoQuery and CRUD Services for all tables in the registered RDBMS (default schema):
 
@@ -173,9 +173,9 @@ Then we apply the [northwind.sqlite](https://gist.github.com/gistlyn/97d0bcd3ebd
 
 Now that our App's configured we can run it with:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 Where it will start the ServiceStack gRPC App on 3 ports configured in **appsettings.json**:
 
@@ -213,9 +213,9 @@ It's also now accessible via [ServiceStack's gRPC endpoint](/grpc) which opens y
 We can test Dart's gRPC integration and development workflow in a new Dart Console App we can create with:
 
 ```bash
-$ mkdir dart-grpc && cd dart-grpc
-$ pub global activate stagehand
-$ stagehand console-full
+mkdir dart-grpc && cd dart-grpc
+pub global activate stagehand
+stagehand console-full
 ```
 
 We'll need to update **pubspec.yaml** with the required gRPC dependencies:
@@ -230,15 +230,15 @@ dependencies:
 
 When you save **pubspec.yaml** Dart's VS Code extension will automatically fetch any new dependencies which can also be manually run with:
 
-```bash
-$ pub get
-```
+:::sh
+pub get
+:::
 
 We can then use the [protoc support in the dotnet tools](/grpc#public-grpc-protoc-service-and-ui) to download our `.proto` Services descriptor and generate Dart's gRPC classes with a single command:
 
-```bash
-$ x proto-dart https://localhost:5001 -out lib
-```
+:::sh
+x proto-dart https://localhost:5001 -out lib
+:::
 
 We're now all set to consume our gRPC Services using the protoc generated gRPC proxy in our `main()` function in **main.dart**:
 
@@ -260,9 +260,9 @@ void main(List<String> arguments) async {
 
 Which can be run with:
 
-```bash
-$ dart bin\main.dart
-```
+:::sh
+dart bin\main.dart
+:::
 
 ### Calling gRPC SSL Services
 
@@ -458,17 +458,17 @@ To assist in code-generation a number of high-level APIs are available to help w
 
 The expected use-case for these new features is that you'd create a new project that points to an existing database to bootstrap your project with code-first AutoQuery Services using the dotnet tool to download the generated types, i.e:
 
-```bash
-$ x csharp https://localhost:5001 -path /crud/all/csharp
-```
+:::sh
+x csharp https://localhost:5001 -path /crud/all/csharp
+:::
 
 At which point you'd "eject" from the generated AutoQuery Services (forgetting about this feature), copy the generated types into your **ServiceModel** project and continue on development as code-first Services just as if you'd created the Services manually.
 
 But the `GenerateCrudServices` feature also supports a "hybrid" mode where you can also just generate Services for any **new** AutoQuery Services that don't exist, i.e. for tables for which there are no existing services which you can access their generated Services from:
 
-```bash
-$ x csharp https://localhost:5001 -path /crud/new/csharp
-```
+:::sh
+x csharp https://localhost:5001 -path /crud/new/csharp
+:::
 
 The existing `/crud/all/csharp` Service continues to return generated Services for all Tables but will stitch together and use existing types where they exist.
 
@@ -481,9 +481,9 @@ We now have all the features we need to quickly servicify an existing database t
 So you can quickly explore these new features locally, you can download the enhanced Northwind example with this customization above in the new [github.com/NetCoreApps/NorthwindCrud](https://github.com/NetCoreApps/NorthwindCrud) project which you can download & run with:
 
 ```bash
-$ x download NetCoreApps/NorthwindCrud
-$ cd NorthwindCrud
-$ dotnet run
+x download NetCoreApps/NorthwindCrud
+cd NorthwindCrud
+dotnet run
 ```
 
 This example App is also configured with other new features in incoming release including Crud Events in 
@@ -578,9 +578,9 @@ We can see an immediate effect of these customizations in **NorthwindCrud** wher
 
 If we then try to run our Dart `main.dart` example against the customized **NorthwindCrud** APIs by first regenerating gRPC protoc Types:
 
-```bash
-$ x proto-dart https://localhost:5001 -out lib
-```
+:::sh
+x proto-dart https://localhost:5001 -out lib
+:::
 
 Then try rerunning `main.dart` where it will now fail with an **Unauthorized** exception:
 

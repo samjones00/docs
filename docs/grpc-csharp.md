@@ -11,34 +11,33 @@ title: gRPC protoc C# Client
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 Create a new C# Console App:
 
-```bash
-$ dotnet new console
-```
+:::sh
+dotnet new console
+:::
 
 Add required NuGet Packages:
 
-```bash
-$ dotnet add package Google.Protobuf
-$ dotnet add package ServiceStack.GrpcClient
-```
+:::sh
+dotnet add package Google.Protobuf ServiceStack.GrpcClient
+:::
     
 Download TodoWorld SSL Certificate used for its gRPC HTTP/2 Services:
 
-```bash
+:::sh
 $ x get https://todoworld.servicestack.net/grpc.crt 
 ```
 
 Add protoc generated TodoWorld DTOs and gRPC GrpcServiceClient:
 
-```bash
-$ x proto-csharp https://todoworld.servicestack.net
-```
+:::sh
+x proto-csharp https://todoworld.servicestack.net
+:::
     
 Use protoc generated DTOs and  `GrpcServiceClient` to call TodoWorld gRPC Service:
 
@@ -78,15 +77,15 @@ namespace TodoWorld
 
 Override `Program.cs` with the above C# Example: 
 
-```bash
-$ x mix todoworld-csharp-smart
-```
+:::sh
+x mix todoworld-csharp-smart
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### protoc-only generated Service Client
 
@@ -96,10 +95,9 @@ auth headers needing to be populated manually.
 
 Add required core package dependencies:
 
-```bash
-$ dotnet add package Grpc.Core
-$ dotnet add package Grpc.Net.Client
-```
+:::sh
+dotnet add package Grpc.Core Grpc.Net.Client
+:::
 
 ### C# protoc gRPC insecure Example
 
@@ -129,15 +127,15 @@ namespace TodoWorld
 
 Override `Program.cs` with the above C# Example: 
 
-```bash
-$ x mix todoworld-csharp
-```
+:::sh
+x mix todoworld-csharp
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### C# protoc gRPC SSL Example
 
@@ -177,15 +175,15 @@ namespace TodoWorld
 
 Override `Program.cs` with the above C# Example: 
 
-```bash
-$ x mix todoworld-csharp-ssl
-```
+:::sh
+x mix todoworld-csharp-ssl
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### C# Local Development gRPC SSL CRUD Example
 

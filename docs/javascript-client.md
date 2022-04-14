@@ -24,10 +24,13 @@ client.get(new Hello({ Name: 'World' }))
 
 To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET project:
 
-```bash
-$ mkdir ProjectName && cd ProjectName
-$ x mix init
-```
+:::sh
+mkdir ProjectName && cd ProjectName
+:::
+
+:::sh
+x mix init
+:::
 
 That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
 
@@ -418,23 +421,28 @@ import { JsonServiceClient } from "@servicestack/client"
 Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [x dotnet tool](/dotnet-tool)
 to download the DTOs of a remote ServiceStack API with:
 
-```bash
-$ dotnet tool install --global x 
-$ x typescript http://yourdomain.org
-```
+:::sh
+dotnet tool install --global x 
+:::
+
+Then generate DTOs with:
+
+:::sh
+x typescript http://yourdomain.org
+:::
 
 For JavaScript projects that haven't configured transpilation of TypeScript, you'll need to use TypeScript to generate the `dtos.js` JavaScript version
 which can be used instead:
 
-```bash
-$ tsc dtos.ts 
-```
+:::sh
+tsc dtos.ts 
+:::
 
 Use the [--module compiler flag](https://www.typescriptlang.org/docs/handbook/compiler-options.html) if needing to generate a specific module version, e.g:
 
-```bash
-$ tsc -m ES6 dtos.ts
-```
+:::sh
+tsc -m ES6 dtos.ts
+:::
 
 The generated `dtos.js` can then be used with the `JsonServiceClient` to provide a succinct Typed API:
 
@@ -450,9 +458,9 @@ let response = await client.get(new GetConfig());
 
 To update your generated DTOs when your server API changes, run `x typescript` or its shorter `x ts` alias without any arguments:
 
-```bash
-$ x ts
-```
+:::sh
+x ts
+:::
 
 Which will update to the latest version of `dtos.ts`. This can be easily automated with an [npm script][5], e.g:
 
@@ -466,9 +474,9 @@ Which will update to the latest version of `dtos.ts`. This can be easily automat
 
 Which will let you update and compile the dtos with:
 
-```bash
-$ npm run dtos
-```
+:::sh
+npm run dtos
+:::
 
 The [TechStacks][6] (Vue/Nuxt) and [React Native Mobile App][7] (React) are examples of JavaScript-only projects using the TypeScript `JsonServiceClient` in this way.
 

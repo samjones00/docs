@@ -86,9 +86,10 @@ without assembly scanning.
 
 This is a standard ASP .NET Core feature that we can use to configure Mongo DB in any ASP .NET Core App with:
 
-```bash
-$ x mix mongodb
-```
+:::sh
+x mix mongodb
+:::
+
 Which adds the `mongodb` gist file contents to your ASP .NET Core Host project:
 
 ```csharp
@@ -115,23 +116,23 @@ namespace MyApp
 As it's not a ServiceStack feature it can be used to configure ASP .NET Core Apps with any feature,
 e.g. we could also easily configure [Marten](https://martendb.io) in an ASP .NET Core App with:
 
-```bash
-$ x mix marten
-```
+:::sh
+x mix marten
+:::
 
 The benefit of this approach is entire modules of features can be configured in a single command, e.g. An empty
 ServiceStack App can be configured with MongoDB, ServiceStack Auth and a MongoDB Auth Repository with a single command:
 
 
-```bash
-$ x mix auth auth-mongodb mongodb
-```
+:::sh
+x mix auth auth-mongodb mongodb
+:::
 
 Likewise, you can replace MongoDB with a completely different PostgreSQL RDBMS implementation by running:
 
-```bash
-$ x mix auth auth-db postgres
-```
+:::sh
+x mix auth auth-db postgres
+:::
 
 ### ConfigureAppHost
 
@@ -272,9 +273,9 @@ either temporarily if needing to isolate & debug a runtime issue by:
 Or easier to permanently replace or remove features by either directly deleting the isolated `*.cs` source files or by undoing mixing in the feature
 using `mix -delete`, e.g:
 
-```bash
-$ x mix -delete auth auth-db postgres
-```
+:::sh
+x mix -delete auth auth-db postgres
+:::
 
 Which works similar to package managers where it removes all files contained within each mix gist.
 

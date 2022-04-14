@@ -14,69 +14,69 @@ It is optimized for use in Amazon EC2 with a latest and tuned Linux kernel versi
 
 We'll start by SSH'ing into your Amazon Linux server, e.g:
 
-```bash
-$ ssh -i ~/pem/<my>.pem ec2-user@ec2-<ip-address>.compute-1.amazonaws.com
-```
+:::sh
+ssh -i ~/pem/<my>.pem ec2-user@ec2-<ip-address>.compute-1.amazonaws.com
+:::
 
 ### Install .NET 6.0
 
 Being based on RHEL you can use yum and the [Cent OS 7 Install Instructions](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos#centos-7-)
 to install .NET Core on Amazon Linux 2:
 
-```bash
-$ sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
-```
+:::sh
+sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+:::
 
 If you just want a minimal ASP.NET Core runtime to run Web Apps you can just install:
 
-```bash
-$ sudo yum install aspnetcore-runtime-6.0
-```
+:::sh
+sudo yum install aspnetcore-runtime-6.0
+:::
 
 But if you'd also like to use dotnet tools like the [x super utility](/dotnet-tool) you'll need to install the SDK:
 
-```bash
-$ sudo yum install dotnet-sdk-6.0
-```
+:::sh
+sudo yum install dotnet-sdk-6.0
+:::
 
 Then install dotnet tools you want which will install under the `ec2-user` home directory at `~/.dotnet/tools`:
 
-```bash
-$ dotnet tool install --global x
-```
+:::sh
+dotnet tool install --global x
+:::
 
 You'll either need to exit & re login to configure the dotnet tool path or you can import it manually with:
 
-```bash
-$ . /etc/profile.d/dotnet-cli-tools-bin-path.sh
-```
+:::sh
+. /etc/profile.d/dotnet-cli-tools-bin-path.sh
+:::
 
 Where you should now be able be able to run dotnet tools, e.g:
 
-```bash
-$ x
-```
+:::sh
+x
+:::
 
 ### Setup the deploy User Account
 
 We'll then create a dedicated user account for hosting and running your .NET Core Apps to mitigate potential abuse. 
 Create the `deploy` user account with a `/home/deploy` home directory and add them to the `sudo` group:
 
-```bash
-$ sudo useradd -m deploy
-```
+:::sh
+sudo useradd -m deploy
+:::
 
 Create a password (optional):
 
-```bash
-$ sudo passwd deploy
-```
+:::sh
+sudo passwd deploy
+:::
 
 For seamless deployments use `visudo`:
 
-```bash
-$ sudo visudo
-```
+:::sh
+sudo visudo
+:::
 
 To allow `deploy` to run `supervisorctl` without prompting for a password:
 
@@ -99,44 +99,44 @@ In vi type `i` to start editing a file and `ESC` to quit edit mode and `:wq` to 
 Now we'll create an `~/apps` folder as the `deploy` user where your .NET Core Apps should be deployed to, e.g:
 
 ```bash
-$ sudo su - deploy
-$ mkdir ~/apps
-$ exit
+sudo su - deploy
+mkdir ~/apps
+exit
 ```
 
 ### Setup supervisor
 
 Install **supervisor** on Amazon Linux 2 by first [enabling the EPEL repository](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-enable-epel/):
 
-```bash
-$ sudo amazon-linux-extras install epel
-```
+:::sh
+sudo amazon-linux-extras install epel
+:::
 
 Then use `yum` to install `supervisor`
 
-```bash
-$ sudo yum install supervisor
-```
+:::sh
+sudo yum install supervisor
+:::
 
 You'll also need to create a `supervisord.service` systemd script which you can install with:
 
-```bash
-$ sudo x mix supervisord.service
-```
+:::sh
+sudo x mix supervisord.service
+:::
 
 Which will write this [supervisord.service](https://gist.github.com/gistlyn/18dbaa471ea09f744493d5866ede599e) gist to `/usr/lib/systemd/system`.
 
 We'll also want to configure supervisor to look for our `*.conf` scripts in the conventional location:
 
-```bash
-$ echo 'files = /etc/supervisor/conf.d/*.conf' | sudo tee -a /etc/supervisord.conf
-```
+:::sh
+echo 'files = /etc/supervisor/conf.d/*.conf' | sudo tee -a /etc/supervisord.conf
+:::
 
 We can then enable & start the systemd supervisord.service with:
 
 ```bash
-$ sudo systemctl enable supervisord.service
-$ sudo systemctl start supervisord
+sudo systemctl enable supervisord.service
+sudo systemctl start supervisord
 ```
 
 You'll then need to create a separate config file for each app in `/etc/supervisor/conf.d/`. 
@@ -160,35 +160,35 @@ stopsignal=INT
 
 We can use [x mix](/mix-tool) to simplify this by downloading & renaming the `supervisor` configuration template above:
 
-```bash
-$ sudo x mix supervisor -name acme
-```
+:::sh
+sudo x mix supervisor -name acme
+:::
 
 You can further customize the template by adding any number of `-replace term=with` switches, e.g. you can replace the `port` with:
 
-```bash
-$ sudo x mix supervisor -name acme -replace 5000=5002
-```
+:::sh
+sudo x mix supervisor -name acme -replace 5000=5002
+:::
 
 Then tell supervisor to register our App configuration:
 
-```bash
-$ sudo supervisorctl update
-```
+:::sh
+sudo supervisorctl update
+:::
         
 ### Setup nginx
 
 Use `yum` to install nginx:
 
-```bash
-$ sudo yum install nginx
-```
+:::sh
+sudo yum install nginx
+:::
 
 ### Start nginx
 
-```bash
-$ sudo systemctl start nginx.service
-```
+:::sh
+sudo systemctl start nginx.service
+:::
 
 ### Create Virtual Host Configuration
 
@@ -222,15 +222,15 @@ server {
 
 Or use [x mix](/mix-tool) to write the above template using your preferred **port** and **TLD** with:
 
-```bash
-$ sudo x mix nginx-yum -name acme -replace 5000=5002 -replace org=io
-```
+:::sh
+sudo x mix nginx-yum -name acme -replace 5000=5002 -replace org=io
+:::
 
 After this we can tell nginx to reload its configuration, as there's nothing listening to `http://localhost:5002` yet nginx will return a 502 Bad Gateway response but will start working as soon as our deployed .NET Core Apps are up and running.
 
-```bash
-$ sudo nginx -s reload
-```
+:::sh
+sudo nginx -s reload
+:::
 
 ### Setting up SSH keys
 
@@ -238,25 +238,25 @@ We can now exit our remote Linux server and return to our local machine and prep
 
 A manual 'tool-free' solution if you're using WSL is to copy your SSH public key to the clipboard, e.g:
 
-```bash
-$ cat ~/.ssh/id_rsa.pub | clip.exe
-```
+:::sh
+cat ~/.ssh/id_rsa.pub | clip.exe
+:::
 
 Then as the `deploy` user paste the contents of `id_rsa.pub` to `/home/deploy/.ssh/authorized_keys` and ensure it has the correct restrictive permissions:
 
 ```bash
-$ mkdir ~/.ssh
-$ vi ~/.ssh/authorized_keys
+mkdir ~/.ssh
+vi ~/.ssh/authorized_keys
 # i + paste clipboard + <esc>:wq
-$ chmod 700 ~/.ssh
-$ chmod 600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
 ```
 
 ### Create the deployment script
 
 [rsync](https://rsync.samba.org/) is a beautiful utility that provides a fast, secure file transfer over SSH which you can use to sync the contents of folders to a remote site. There's only 2 commands you need to run to deploy a local .NET Core App remotely, `rsync` to sync the published .NET Core App files and `supervisorctl` to restart the `supervisord` process that runs and monitor the .NET Core App which you can add to a [deploy.sh](https://github.com/NetCoreApps/TechStacks/blob/master/src/TechStacks/deploy.sh) that you can run with WSL bash:
 
-```shell
+```bash
 rsync -avz -e 'ssh' bin/Release/net5/publish/ deploy@ec2-<ip-address>.compute-1.amazonaws.com:/home/deploy/apps/acme
 ssh deploy@ec2-<ip-address>.compute-1.amazonaws.com "sudo supervisorctl restart app-acme"
 ```
@@ -272,32 +272,32 @@ To automate the entire deployment down to a single command you can add an npm sc
 
 Now to deploy your App you can just run:
 
-```bash
-$ npm run deploy
-```
+:::sh
+npm run deploy
+:::
 
 Which deploys your published App to your remote Linux server instance using `rsync` to only copy the incremental parts of the App that's changed (typically completing in <1s) and `ssh` to run a remote command to restart the `suprvisord` process, starting the .NET Core App with the latest deployed version.
 
 After you deploy your and restart your `supervisor` Service your .NET Core App should now be publicly available at your chosen domain, if you have issues
 you can view your App's error log for info, e.g:
 
-```bash
-$ tail -n 50 /var/log/app-<my-app>.err.log
-```
+:::sh
+tail -n 50 /var/log/app-<my-app>.err.log
+:::
 
 ### Setup Lets Encrypt
 
 If you're configuring an Internet Website you'll also likely want to configure it to use SSL, the easiest & free way is to use 
 [letsencrypt.org](https://letsencrypt.org/) which you can install with:
 
-```bash
-$ sudo yum install certbot python2-certbot-nginx 
-```
+:::sh
+sudo yum install certbot python2-certbot-nginx 
+:::
 
 Then use `certbot` to automatically configure the domains you want to configure to use SSL, e.g:
 
-```bash
-$ sudo certbot -d acme.io -d www.acme.io
-```
+:::sh
+sudo certbot -d acme.io -d www.acme.io
+:::
 
 Now you're .NET Core creation should be accessible via `https://` & the shiny new secure badge in the users Browsers URL.

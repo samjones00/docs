@@ -25,9 +25,9 @@ Like other ServiceStack providers, all MQ Servers are interchangeable, visible i
 In ASP.NET Core Apps we recommend using [mix](/mix-tool) to configure your preferred MQ Service, other than being quicker to add,
 it proposes adopting a naming convention in app settings and file names that other `mix` features can also make use of:
 
-```bash
-$ x mix [mq]
-```
+:::sh
+x mix [mq]
+:::
 
 Currently available list of MQ Services:
 
@@ -69,9 +69,9 @@ or configure your App to use the In Memory `BackgroundMqService` implementation.
 
 Add `feature-mq` to your project with:
 
-```bash
-$ x mix feature-mq
-```
+:::sh
+x mix feature-mq
+:::
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/nav/feature-mq.png)
 

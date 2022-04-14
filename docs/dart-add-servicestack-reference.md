@@ -25,15 +25,15 @@ You can use the same [x dotnet tool](https://docs.servicestack.net/dotnet-tool) 
 
 Install [.NET Core](https://dotnet.microsoft.com/download) then install the `x` dotnet tool:
 
-```bash
-$ dotnet tool install --global x
-```
+:::sh
+dotnet tool install --global x
+:::
 
 You can then execute `x dart` with the URL of the remote ServiceStack Instance you want to generated DTOs for, e.g:
 
-```bash
-$ x dart https://techstacks.io
-```
+:::sh
+x dart https://techstacks.io
+:::
 
 This will generate Dart DTOs for the [entire TechStacks API](https://techstacks.io/metadata):
 
@@ -325,9 +325,9 @@ Saving `pubspec.yaml` automatically runs [flutter packages get](https://flutter.
 Our App will be making API calls to 2 different ServiceStack instances which we'll need to get typed DTOs for using the `x` command-line utility:
 
 ```bash
-$ cd lib
-$ x dart https://techstacks.io
-$ x dart http://test.servicestack.net test
+cd lib
+x dart https://techstacks.io
+x dart http://test.servicestack.net test
 ```
 
 Which will save the DTOs for each endpoint in different files:
@@ -339,9 +339,9 @@ Saved to: test.dtos.dart
 
 Incidentally you can get the latest version for all Dart Service References by running `x dart` without arguments:
 
-```bash
-$ x dart
-```
+:::sh
+x dart
+:::
 
 Which updates all Dart references in the current directory, including any customization options available in the header of each file:
 

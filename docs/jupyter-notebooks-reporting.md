@@ -62,15 +62,15 @@ We've created a `mix` template to setup this workflow more straight forward.
 
 All command line utils used are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 Or if you had a previous version installed, update with:
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 ### Create a new GitHub repository
 To work with MyBinder.org service, you will need to create a *public* GitHub repository so the service can build and host your notebook environment.
@@ -81,9 +81,9 @@ For private repositories to work, you will need to host and run your own infrast
 
 Clone your newly created *public* GitHub repository locally and run the following command in the root directory of the repository.
 
-```bash
-$ x mix docker-jupyter-reports
-```
+:::sh
+x mix docker-jupyter-reports
+:::
 
 Commit the generated `Dockerfile` and push your changes to GitHub.
 
@@ -93,9 +93,9 @@ Since we want to be able to work on notebook reports both locally and on MyBinde
 
 From the root of your local git repository, run the following command where `jupyter-reports` can be replaced with your preferred tag.
 
-```bash
-$ docker build . -t jupyter-reports
-```
+:::sh
+docker build . -t jupyter-reports
+:::
 
 ::: info
 This will likely take a few minutes locally due to all the required packages and size of the numerous dependencies

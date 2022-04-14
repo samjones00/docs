@@ -305,15 +305,15 @@ copy it into a permanent location, e.g `~/pem/ecs-demo.pem`.
 Before we can SSH with the Private Key we need to lock down the permissions so only we can read it which you 
 can do with:
 
-```bash
-$ chmod 400 ~/pem/ecs-demo.pem
-```
+:::sh
+chmod 400 ~/pem/ecs-demo.pem
+:::
 
 Once locked down you can use it to SSH into your instance using the `-i` flag, logging in as the `ec2-user`:
 
-```bash
-$ ssh -i ~/pem/ecs-demo.pem ec2-user@ecsdemo.netcore.io
-```
+:::sh
+ssh -i ~/pem/ecs-demo.pem ec2-user@ecsdemo.netcore.io
+:::
 
 Replace `ecsdemo.netcore.io` with your domain name or Elastic IP. If everything went to plan you should now
 be logged into your EC2 Instance:
@@ -323,9 +323,9 @@ be logged into your EC2 Instance:
 We're only assigned one task while we're here which is to run an instance of the `jwilder/nginx-proxy` 
 Docker App copying the command below:
 
-```bash
-$ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
-```
+:::sh
+docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+:::
 
 This will pull the [jwilder/nginx-proxy](https://hub.docker.com/r/jwilder/nginx-proxy/) Docker Image from 
 [Dockers public repository](https://hub.docker.com/explore/) which sets up 
@@ -350,19 +350,19 @@ include this **nginx-proxy** and AWS's ECS agent.
 
 If you wanted to host any of your Apps under SSL you'll instead need to run your `jwilder/nginx-proxy` container with:
 
-```bash
-$ docker run --detach --name nginx-proxy --publish 80:80 --publish 443:443 \
+:::sh
+docker run --detach --name nginx-proxy --publish 80:80 --publish 443:443 \
     --volume /etc/nginx/certs --volume /etc/nginx/vhost.d --volume /usr/share/nginx/html \
     --volume /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
-```
+:::
 
 You'll also need to run the [letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion)
 companion Docker container for `nginx-proxy` with:
 
-```bash
-$ docker run --detach --name nginx-proxy-letsencrypt --volumes-from nginx-proxy \
+:::sh
+docker run --detach --name nginx-proxy-letsencrypt --volumes-from nginx-proxy \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro jrcs/letsencrypt-nginx-proxy-companion
-```
+:::
 
 SSL Requires additional info added via environment variables included your .NET Core Docker App's deployment script
 which are documented in [Configure support for SSL](#configure-support-for-ssl).
@@ -385,9 +385,9 @@ to a local folder:
 
 Lets open the folder in VS code to inspect what deployment scripts we have:
 
-```bash
+:::sh
 C:\src\redis-geo>code .
-```
+:::
 
 The `.travis.yml` is used to configure the environment which **Travis CI** will execute your build under.
 Here we're telling Travis we want a **csharp** environment for our solution located at **src/RedisGeo.sln**

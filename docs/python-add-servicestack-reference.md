@@ -100,15 +100,15 @@ The `HelloResponse` optional type hint doesn't change runtime behavior but enabl
 
 The only requirements for Python apps to perform typed API Requests are the generated Python DTOs and the generic `JsonServiceClient` which can be installed globally or in a virtual Python environment using [Python's pip](https://pypi.org/project/pip/):
 
-```bash
-$ pip install servicestack
-```
+:::sh
+pip install servicestack
+:::
 
 Or if preferred can be installed with [conda](https://conda.io):
 
-```bash
-$ conda install conda-build.
-```
+:::sh
+conda install conda-build.
+:::
 
  - Add conda-forge as channel using `conda config --add channels conda-forge`
  - On root directory run `conda build .`
@@ -151,17 +151,17 @@ Developers using other Python IDEs and Text Editors like VS Code can utilize the
 
 To install first install the [latest .NET SDK](https://dotnet.microsoft.com/download) for your OS then install the [`x` dotnet tool](/dotnet-tool) with:
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 ### Adding a ServiceStack Reference
 
 To Add a Python ServiceStack Reference just call `x python` with the URL of a remote ServiceStack instance:
 
-```bash
-$ x python https://techstacks.io
-```
+:::sh
+x python https://techstacks.io
+:::
 
 Result:
 
@@ -171,9 +171,9 @@ Saved to: dtos.py
 
 Calling `x python` with just a URL will save the DTOs using the Host name, you can override this by specifying a FileName as the 2nd argument:
 
-```bash
-$ x python https://techstacks.io Tech
-```
+:::sh
+x python https://techstacks.io Tech
+:::
 
 Result:
 
@@ -185,9 +185,9 @@ Saved to: Tech.dtos.py
 
 To Update an existing ServiceStack Reference, call `x python` with the Filename:
 
-```bash
-$ x python dtos.py
-```
+:::sh
+x python dtos.py
+:::
 
 Result:
 
@@ -201,9 +201,9 @@ Which will update the File with the latest Python Server DTOs from [techstacks.i
 
 Calling `x python` without any arguments will update all Python DTOs in the current directory:
 
-```bash
-$ x python
-```
+:::sh
+x python
+:::
 
 Result:
 

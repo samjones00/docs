@@ -82,15 +82,18 @@ Installing Docker for Ubuntu 20.04 can be done via the repository with some setu
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
+
 > These scripts required sudo privileges, see [Docker notes regarding security](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
 > Full repository based [script available here](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
 > Docker is installed remoting under root in this example for simplification. Information of Docker security can be found in the [Docker docs](https://docs.docker.com/engine/security/#docker-daemon-attack-surface)
 
 ### Docker-compose install
+
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+
 Run `docker-compose --version` to confirm.
 > See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
 
@@ -152,9 +155,9 @@ scp -i <path to private ssh key> ./nginx-proxy-compose.yml root@<server_floating
 
 Once copied, we can use `docker-compose` to bring up the nginx reverse proxy.
 
-```bash
+:::sh
 docker-compose -f ~/nginx-proxy-compose.yml up -d
-```
+:::
 
 To confirm these are running, you can run `docker ps` so have a look at what containers are running on your server.
 
@@ -269,9 +272,9 @@ To kick off any new deployment, we use GitHub Releases.
 
 Provide a version number and name, the version will be used to tag the Docker image in GHCR.io. If you are using the GitHub CLI, you can also do this via the command line. For example,
 
-```bash
+:::sh
 gh release create v1 -t "v1" --notes ""
-```
+:::
 
 Go to the Actions tab in your repository to see the progress of your deployment.
 

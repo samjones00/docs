@@ -306,15 +306,15 @@ Authentication, Registration and protected Services.
 Most of [ServiceStack's Project Templates](/dotnet-new) are configured with Auth out-of-the-box or can be easily added to an empty [web](https://github.com/NetCoreTemplates/web)
 project template:
 
-```bash
-$ x new web ProjectName
-```
+:::sh
+x new web ProjectName
+:::
 
 By [mixing in your desired auth](/mix-tool#mix-in-auth-repository) features, e.g. to configure your App to enable auth & maintain in SQL Server run:
 
-```bash
-$ x mix auth auth-db sqlserver
-```
+:::sh
+x mix auth auth-db sqlserver
+:::
 
 Checkout the [Bookings CRUD YouTube demo](https://youtu.be/XpHAaCTV7jE) for a quick preview of this in action.
 

@@ -27,9 +27,9 @@ Importantly, the dotnet tools lets you create [.NET Core, .NET Framework](/dotne
 Unless you're restricted to working with .NET Framework you'll want to start with a [.NET Core project template](/dotnet-new#usage), for this example
 we'll start with the Empty [web](https://github.com/NetCoreTemplates/web) template which implicitly uses the folder name for the Project Name:
 
-```bash
-$ x new web WebApp
-```
+:::sh
+x new web WebApp
+:::
 
 ## Step 3: Run your project
 
@@ -41,9 +41,9 @@ Press `Ctrl+F5` to run your project!
 
 An alternative to running your project in your IDE is to run a watched build using the `dotnet` tool on the command-line:
 
-```bash
-$ dotnet watch run
-```
+:::sh
+dotnet watch run
+:::
 
 Where it will automatically rebuild & restart your App when it detects any changes to your App's source files.
 

@@ -39,9 +39,9 @@ to `/usr/bin` (just like described in the guide, except that they use
 
 You'll then be able to launch redis with:
 
-```bash
-$ redis-server --daemonize yes
-```
+:::sh
+redis-server --daemonize yes
+:::
 
 Which will run redis in the background freeing your shell so you can play with it using the redis client:
 
@@ -61,9 +61,9 @@ Which you can connect to from within bash or from your Windows desktop using the
 
 2. Download the [vagrant-redis.zip](https://raw.github.com/ServiceStack/redis-windows/master/downloads/vagrant-redis.zip) vagrant configuration
 
-```bash
-$ wget https://raw.github.com/ServiceStack/redis-windows/master/downloads/vagrant-redis.zip
-```
+:::sh
+wget https://raw.github.com/ServiceStack/redis-windows/master/downloads/vagrant-redis.zip
+:::
 
 3. Extract `vagrant-redis.zip` in any folder, e.g. in `c:\vagrant-redis`
 
@@ -91,9 +91,9 @@ These 64-bit binary releases are created by building the [Microsoft's native por
 
 1. Download the [redis-latest.zip](https://github.com/ServiceStack/redis-windows/raw/master/downloads/redis-latest.zip) native 64bit Windows port of redis
 
-```bash
-$ wget https://github.com/ServiceStack/redis-windows/raw/master/downloads/redis-latest.zip
-```
+:::sh
+wget https://github.com/ServiceStack/redis-windows/raw/master/downloads/redis-latest.zip
+:::
 
 2. Extract `redis64-latest.zip` in any folder, e.g. in `c:\redis`
 
@@ -135,27 +135,27 @@ During installation of the MSI you can either use the installer’s user interfa
 
 #### default install (port 6379 and firewall exception ON):
 
-```bash
-$ msiexec /i Redis-Windows-x64.msi 
-```
+:::sh
+msiexec /i Redis-Windows-x64.msi 
+:::
 
 #### set port and turn OFF firewall exception:
 
-```bash
-$ msiexec /i Redis-Windows-x64.msi PORT=1234 ADD_FIREWALL_RULE=""
-```
+:::sh
+msiexec /i Redis-Windows-x64.msi PORT=1234 ADD_FIREWALL_RULE=""
+:::
 
 #### set port and turn ON firewall exception:
 
-```bash
-$ msiexec /i Redis-Windows-x64.msi PORT=1234 ADD_FIREWALL_RULE =1
-```
+:::sh
+msiexec /i Redis-Windows-x64.msi PORT=1234 ADD_FIREWALL_RULE =1
+:::
 
 #### install with no user interface:
 
-```bash
-$ msiexec /quiet /i Redis-Windows-x64.msi
-```
+:::sh
+msiexec /quiet /i Redis-Windows-x64.msi
+:::
     
 If you did not install Redis using the MSI package, then you still run Redis as a Windows service by following these instructions:
 
@@ -177,9 +177,9 @@ This command does not start the service.
 
 For instance:
 
-```bash
-$ redis-server --service-install redis.windows.conf --loglevel verbose
-```
+:::sh
+redis-server --service-install redis.windows.conf --loglevel verbose
+:::
 
 #### Uninstalling the Service
 
@@ -192,9 +192,9 @@ This does command not to stop the service.
 
 For instance:
 
-```bash
-$ redis-server --service-uninstall
-```
+:::sh
+redis-server --service-uninstall
+:::
 
 #### Starting the Service
 
@@ -206,9 +206,9 @@ This will start the Redis service. Upon successful startup, a success message wi
 
 For instance:  
 
-```bash
-$ redis-server --service-start
-```
+:::sh
+redis-server --service-start
+:::
 
 #### Stopping the Service
 
@@ -220,9 +220,9 @@ This will stop the Redis service. Upon successful termination, a success message
 
 For instance:
 
-```bash
-$ redis-server --service-stop
-```
+:::sh
+redis-server --service-stop
+:::
 
 #### Naming the Service
 

@@ -26,9 +26,9 @@ To provide better visibility of the state of the Rabbit MQ Server instance it's 
 
 To see the new changes you need to restart the **RabbitMQ** Windows Service which can be done on the command line with:
 
-```bash
-$ net stop RabbitMQ && net start RabbitMQ
-```
+:::sh
+net stop RabbitMQ && net start RabbitMQ
+:::
 
 Or by restarting the service from the **services.msc** MMC applet UI:
 

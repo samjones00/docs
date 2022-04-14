@@ -37,36 +37,36 @@ Using `IPatchDb<T>` Partial Updates are also beneficial in [crud audit logs](/au
 The quickest way to run the [Bookings AutoQuery Example](https://github.com/NetCoreApps/BookingsCrud) is to install the [app tool](/netcore-windows-desktop), download & run the repo:
 
 ```bash
-$ app download NetCoreApps/BookingsCrud
-$ cd BookingsCrud\Acme
-$ dotnet run
+app download NetCoreApps/BookingsCrud
+cd BookingsCrud\Acme
+dotnet run
 ```
 
 ### Custom project from Scratch
 
 If you have different App requirements you can instead create a project from scratch that integrates with your existing preferred infrastructure - the [mix tool](/mix-tool) and ServiceStack's layered [Modular Startup](/modular-startup) configurations makes this a cinch, start with an empty `web` project:
 
-```bash
-$ app new web ProjectName
-```
+:::sh
+app new web ProjectName
+:::
 
 Then mix in your desired features. E.g. In order for this project to be self-hosting it utilizes the embedded SQLite database, which we can configure along with configuration to enable popular Authentication providers and an RDBMS SQLite Auth Repository with:
 
-```bash
-$ app mix auth auth-db sqlite
-```
+:::sh
+app mix auth auth-db sqlite
+:::
 
 But if you also wanted to enable the new [Sign in with Apple](/auth-signin-with-apple) and use SQL Server you'll instead run:
 
-```bash
-$ app mix auth-ext auth-db sqlserver
-```
+:::sh
+app mix auth-ext auth-db sqlserver
+:::
 
 You can view all DB and Auth options available by searching for available layered gist configurations by tag:
 
 ```bash
-$ app mix [db]
-$ app mix [auth]
+app mix [db]
+app mix [auth]
 ```
 
 Typically the only configuration that needs updating is your DB connection string in [Configure.Db.cs](https://github.com/NetCoreApps/BookingsCrud/blob/main/Acme/Configure.Db.cs), in this case it's changed to use a persistent SQLite DB:

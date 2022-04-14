@@ -37,8 +37,8 @@ As the elliptic curve algorithms required to integrate with Sign In with Apple r
 A quick way to can create a working project from scratch with your preferred configuration using the [mix tool](/mix-tool), e.g: 
 
 ```bash
-$ mkdir web && cd web
-$ x mix init auth-ext auth-db sqlite
+mkdir web && cd web
+x mix init auth-ext auth-db sqlite
 ```
 
 This creates an empty project, with Auth Enabled, adds the **ServiceStack.Extensions** NuGet package, registers OrmLite, SQLite and the `OrmLiteAuthRepository`.
@@ -79,15 +79,15 @@ Plugins.Add(new AuthFeature(() => new CustomUserSession(),
 
 For a working example you can **clone** or **fork** the [/NetCoreApps/AppleSignIn](https://github.com/NetCoreApps/AppleSignIn) repo or alternatively download the latest master `.zip` with:
 
-```bash
-$ x download NetCoreApps/AppleSignIn
-```
+:::sh
+x download NetCoreApps/AppleSignIn
+:::
 
 Then after updating **appsettings.json** with your iOS App's configuration, copying your Private Key into the `web` Content Folder you're all set to run your App:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 #### Android Support
 

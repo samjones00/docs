@@ -38,15 +38,15 @@ if (Config.DebugMode)
 Whilst you can now connect to it with basic `telnet`, it's a much nicer experience to use it with the [rlwrap](https://linux.die.net/man/1/rlwrap)
 readline wrap utility which provides an enhanced experience with line editing, persistent history and completion.
 
-```bash
-$ sudo apt-get install rlwrap
-```
+:::sh
+sudo apt-get install rlwrap
+:::
 
 Then you can open a TCP Connection to connect to a new Lisp REPL with:
 
-```bash
-$ rlwrap telnet localhost 5005
-```
+:::sh
+rlwrap telnet localhost 5005
+:::
 
 Where you now have full scriptability of the running server as allowed by [#Script Pages](https://sharpscript.net/docs/sharp-pages) `SharpPagesFeature` which
 allows [scripting of all .NET Types](https://sharpscript.net/docs/script-net#allowscriptingofalltypes) by default. 

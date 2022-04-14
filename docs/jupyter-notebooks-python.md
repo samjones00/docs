@@ -64,15 +64,15 @@ Jupyter Commands lets you generate Python Jupyter Notebooks for calling ServiceS
 
 All command line utils used are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 Or if you had a previous version installed, update with:
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 ### Generate Python Jupyter Notebooks
 
@@ -91,9 +91,9 @@ Options:
 
 The same syntax for invoking APIs with the [Post Command HTTP Utils](/post-command) can also be used to generate Python Jupyter Notebooks, e.g:
 
-```bash
-$ x jupyter-python https://techstacks.io FindTechStacks "{Ids:[1,2,3],VendorName:'Google',Take:5}"
-```
+:::sh
+x jupyter-python https://techstacks.io FindTechStacks "{Ids:[1,2,3],VendorName:'Google',Take:5}"
+:::
 
 Output:
 

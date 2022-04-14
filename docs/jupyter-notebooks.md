@@ -41,15 +41,15 @@ JupyterLab is Jupyter's next-gen web-based development environment designed arou
 
 An easy way to install JupyterLab is to use the pip package manager installed with Python:
 
-```bash
-$ pip install jupyterlab
-```
+:::sh
+pip install jupyterlab
+:::
 
 Once installed you can launch JupyterLab's UI from a directory containing your Notebooks where they'll be accessible from its built-in File Explorer UI:
 
-```bash
-$ jupyter-lab
-```
+:::sh
+jupyter-lab
+:::
 
 ### Jupyter Notebook
 
@@ -59,15 +59,15 @@ The original Jupyter Notebook Web Application offering a simplified single docum
 
 Install with Python's pip package manager:
 
-```bash
-$ pip install notebook
-```
+:::sh
+pip install notebook
+:::
 
 Then launch from any directory containing Notebooks to open them from the Jupyter Notebook App:
 
-```bash
-$ jupyter notebook
-```
+:::sh
+jupyter notebook
+:::
 
 ### PyCharm
 

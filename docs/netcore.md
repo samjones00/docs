@@ -92,9 +92,9 @@ There are **11 .NET 6.0 project templates** for each of ServiceStack's most popu
 
 All .NET 6.0 Templates can be developed using your preferred choice of either VS Code, VS.NET or JetBrains Project Rider on your preferred Desktop OS. Given the diverse ecosystem used to develop .NET Core Applications, the new Project Templates are being maintained on GitHub and made available via our new [x new](/web-new) command-line utility, installable from npm with:
  
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
  
 This makes the `x` .NET Core tool globally available which can be run without arguments to view all templates available:
 
@@ -104,15 +104,15 @@ This makes the `x` .NET Core tool globally available which can be run without ar
 
 That can be used to create new projects with:
  
-```bash
+:::sh
 x new `<template-name>` `<project-name>`
-```
+:::
  
 Example of creating a new **Vue SPA** project called **Acme**:
  
-```bash
-$ x new vue-spa Acme
-```
+:::sh
+x new vue-spa Acme
+:::
  
 The resulting `Acme.sln` can be opened in VS 2017 which will automatically restore and install both the .NET and npm packages upon first load and build. This can take a while to install all client and server dependencies, once finished the `wwwroot` folder will be populated with your generated Webpack App contained within a `/dist` folder alongside a generated `index.html` page. After these are generated you can run your App with **F5** to run your project as normal:
 
@@ -168,9 +168,9 @@ To illustrate the various features available we've developed a number of Web App
 
 You can quickly get started by creating a Web App from the project template:
 
-```bash
-$ dotnet-new bare-app ProjectName
-```
+:::sh
+dotnet-new bare-app ProjectName
+:::
 
 ## Run ASP.NET Core Apps on the .NET Framework
 
@@ -221,11 +221,15 @@ To make it as easy as possible to get started you can use the [NetFrameworkCoreT
 
 This will let you create an ASP.NET Core App running on the .NET Framework v4.7 with the [dotnet tool](/dotnet-tool):
 
-```bash
-$ dotnet tool install --global x 
+:::sh
+dotnet tool install --global x 
+:::
 
-$ x new web-corefx AcmeNetFx
-```
+Then create a new project with:
+
+:::sh
+x new web-corefx AcmeNetFx
+:::
 
 Which can then be opened in your preferred VS.NET or Project Rider C# IDE.
 

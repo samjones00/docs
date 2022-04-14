@@ -12,9 +12,9 @@ all connections to be secure by default, it's become the defacto standard to bot
 In most cases it's sufficient to run .NET Core Apps on `https://localhost:5001` for normal browser development and if you receive an invalid certificate
 error you can run:
 
-```bash
-$ dotnet dev-certs https --trust
-```
+:::sh
+dotnet dev-certs https --trust
+:::
 
 To trust the local development certificate and remove the SSL Certificate error in your browser.
 
@@ -65,22 +65,22 @@ you easily add custom DNS rules whilst falling back to use its default DNS resol
 
 The easiest way to install Dnsmasq on macOS is to use [Homebrew](https://brew.sh):
 
-```bash
-$ brew install dnsmasq
-```
+:::sh
+brew install dnsmasq
+:::
 
 Once installed copy over the default configuration files:
 
 ```bash
-$ cp $(brew list dnsmasq | grep /dnsmasq.conf.example$) /usr/local/etc/dnsmasq.conf
-$ sudo cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
+cp $(brew list dnsmasq | grep /dnsmasq.conf.example$) /usr/local/etc/dnsmasq.conf
+sudo cp $(brew list dnsmasq | grep /homebrew.mxcl.dnsmasq.plist$) /Library/LaunchDaemons/
 ```
 
 Then configure Dnsmasq to start automatically by registering it with **launchd**:
 
-```bash
-$ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
-```
+:::sh
+sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+:::
 
 The easiest to configure the IP Address for a single domain is to still add it to `/etc/hosts`, e.g. if your local ASP.NET
 dev server is on a different server to your macOS being used to develop/test iOS Apps, you would use that IP Address instead:
@@ -91,9 +91,9 @@ dev server is on a different server to your macOS being used to develop/test iOS
 
 Alternatively you can maintain these rules in Dnsmasq's config which offers far greater flexibility:
 
-```bash
-$ sudo vi /usr/local/etc/dnsmasq.conf
-```
+:::sh
+sudo vi /usr/local/etc/dnsmasq.conf
+:::
 
 ```
 address=/dev.servicestack.com/192.168.0.2
@@ -107,17 +107,17 @@ In which case you'll also want to update the OS's resolver config to
 After making changes to your DNS configuration, restart dnsmasq for it to take effect:
 
 ```bash
-$ sudo launchctl stop homebrew.mxcl.dnsmasq
-$ sudo launchctl start homebrew.mxcl.dnsmasq
+sudo launchctl stop homebrew.mxcl.dnsmasq
+sudo launchctl start homebrew.mxcl.dnsmasq
 ```
 
 ### Update iOS to use your custom DNS Server
 
 First find out the current IP Address of your macOS instance:
 
-```bash
-$ ipconfig getifaddr en0
-```
+:::sh
+ipconfig getifaddr en0
+:::
 
 Which you can get your iOS development device to use by going into your **Wi-Fi** Network Info in iOS **Settings**:
 
@@ -140,8 +140,8 @@ To simplify creation of self-signed certificate for `*.servicestack.com` you can
 to download the openssl script and running it:
 
 ```bash
-$ x mix gen-dev-crt.sh
-$ bash gen-dev-crt.sh
+x mix gen-dev-crt.sh
+bash gen-dev-crt.sh
 ```
 
 Which will write this script below to your projects HOST project:
@@ -186,9 +186,9 @@ Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\SystemCertificates\Root\Certificat
 
 In macOS you can [add a trusted root certificate to your System.keychain](https://derflounder.wordpress.com/2011/03/13/adding-new-trusted-root-certificates-to-system-keychain/) with:
 
-```bash
-$ sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" dev.crt
-```
+:::sh
+sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" dev.crt
+:::
 
 #### Linux
 
@@ -271,20 +271,20 @@ If you're only using Windows you'll typically only end up using the PKCS #12 `de
 which can be safely removed to clear unnecessary generated artifacts & clear-text copy of the private key:
 
 ```bash
-$ del dev.key
-$ del dev.crt
+del dev.key
+del dev.crt
 ```
 
 Where as other OS's predominantly use Certificates & Private Keys, which if needed can be later extracted from the `dev.pfx`:
 
 #### Extract Certificate
 
-```bash
-$ openssl pkcs12 -in dev.pfx -clcerts -nokeys -out dev.crt
-```
+:::sh
+openssl pkcs12 -in dev.pfx -clcerts -nokeys -out dev.crt
+:::
 
 #### Extract Private Key
 
-```bash
-$ openssl pkcs12 -in dev.pfx -nocerts -nodes | openssl rsa -out dev.key
-```
+:::sh
+openssl pkcs12 -in dev.pfx -nocerts -nodes | openssl rsa -out dev.key
+:::

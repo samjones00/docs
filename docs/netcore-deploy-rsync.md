@@ -16,9 +16,9 @@ $ sudo usermod -aG sudo deploy
 
 For seamless deployments use `visudo`:
 
-```bash
-$ visudo
-```
+:::sh
+visudo
+:::
 
 To allow `deploy` to run `supervisorctl` without prompting for a password:
 
@@ -36,9 +36,9 @@ In vi type `i` to start editing a file and `ESC` to quit edit mode and `:wq` to 
 
 Install supervisor using apt-get:
 
-```bash
-$ sudo apt-get install supervisor
-```
+:::sh
+sudo apt-get install supervisor
+:::
 
 You'll need to create a separate config file for each app in `/etc/supervisor/conf.d/`. We can use the same template below by replacing `myapp` with the name of your App:
 
@@ -89,15 +89,15 @@ server {
 
 You'll then need to create symlink for each website to tell nginx you want each website to be enabled:
 
-```bash
-$ ln -s /etc/nginx/sites-available/myapp.example.org /etc/nginx/sites-enabled/myapp.example.org
-```
+:::sh
+ln -s /etc/nginx/sites-available/myapp.example.org /etc/nginx/sites-enabled/myapp.example.org
+:::
 
 After this we can tell nginx to reload its configuration, as there's nothing listening to `http://localhost:5001` yet nginx will return a 502 Bad Gateway response but will start working as soon as our deployed .NET Core Apps are up and running.
 
-```bash
-$ /etc/init.d/nginx reload
-```
+:::sh
+/etc/init.d/nginx reload
+:::
 
 ## Setting up SSH keys
 
@@ -123,8 +123,8 @@ To automate the entire deployment down to a single command you can add an npm sc
 
 Now to deploy your App you can just run:
 
-```bash
-$ npm run deploy
-```
+:::sh
+npm run deploy
+:::
 
 Which deploys your published App to your remote Ubuntu server instance using `rsync` to only copy the incremental parts of the App that's changed (typically completing in <1s) and `ssh` to run a remote command to restart the `suprvisord` process, starting the .NET Core App with the latest deployed version.

@@ -9,9 +9,9 @@ title: Using ASP.NET Identity Auth in ServiceStack
 
 Create new `mvcidentity` project with:
 
-```bash
-$ x new mvcidentity ProjectName
-```
+:::sh
+x new mvcidentity ProjectName
+:::
 
 [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity) is essentially the same App with the same functionality as [mvcauth](https://github.com/NetCoreTemplates/mvcauth)
 but rewritten to use ASP.NET Identity Auth instead of ServiceStack Auth, including the registration options which are handled implemented

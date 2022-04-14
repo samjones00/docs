@@ -18,9 +18,9 @@ without any external file references with the single `<script/>` reference:
 This is used by the updated [mix init](/mix-tool#mix-usage) gists when generating its empty Web Apps:
 
 ```bash
-$ mkdir web && cd web
-$ x mix init
-$ dotnet run
+mkdir web && cd web
+x mix init
+dotnet run
 ```
 
 Where its dep-free [/index.html](https://gist.github.com/gistlyn/58030e271595520d87873c5df5e4c2eb#file-wwwroot-index-html) use its

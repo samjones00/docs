@@ -18,9 +18,9 @@ From any of the ServiceStack code repositories on GitHub, you can **Fork** the c
 
 To get the source on your local development machine, simply clone your local forked repo using Git:
 
-```bash
-$ git clone https://github.com/USERNAME/PROJECT.git
-```
+:::sh
+git clone https://github.com/USERNAME/PROJECT.git
+:::
 
 Each repository has a README that should be helpful to learn more about the specifics of the language, project and its development environment.
 

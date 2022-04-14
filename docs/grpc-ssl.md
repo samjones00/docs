@@ -5,9 +5,9 @@ title: gRPC SSL Configuration
 
 By default gRPC projects uses ASP.NET Core's trusted Development certificate (typically created on install), or can be configured with:
 
-```bash
-$ dotnet dev-certs https --trust
-```
+:::sh
+dotnet dev-certs https --trust
+:::
 
 Many other languages requires this development certificate in order to establish a secure SSL connection, which can be exported with:
 
@@ -15,21 +15,21 @@ Many other languages requires this development certificate in order to establish
 
 Export your localhost self-signed .NET Core development certificate with:
 
-```bash
-$ dotnet dev-certs https --export-path .
-```
+:::sh
+dotnet dev-certs https --export-path .
+:::
 
 If that fails see if you can diagnose and resolve the issue from the verbose output:
 
-```bash
-$ dotnet dev-certs https --export-path . --verbose
-```
+:::sh
+dotnet dev-certs https --export-path . --verbose
+:::
 
 If you can't keep copy of the certificates **thumbprint**, then export it via Windows Certificate Manager:
 
-```bash
-$ certmgr
-```
+:::sh
+certmgr
+:::
 
 1. Go to `Personal > Certificates`
 2. Select certificate **Issued To** `localhost`
@@ -45,9 +45,9 @@ Should you prefer, you can create and use your own self-signed certificate using
 
 A quick way to download them is using the [mix tool](/mix-tool):
 
-```bash
-$ x mix -name ProjectName gen.https.sh
-```
+:::sh
+x mix -name ProjectName gen.https.sh
+:::
 
 Otherwise you can create local text files and manually copy them with the contents below:
 
@@ -110,35 +110,35 @@ rm dev.config dev.csr.pem
 
 Linux or WSL Bash:
 
-```bash
-$ ./gen-dev.https.sh
-```
+:::sh
+./gen-dev.https.sh
+:::
 
 Windows:
 
-```bash
-C:\> bash gen-dev.https.sh
-```
+:::sh
+bash gen-dev.https.sh
+:::
 
 Options:
 
-```bash
-$ gen-dev.https.sh <PASSWORD>
-```
+:::sh
+gen-dev.https.sh <PASSWORD>
+:::
 
 ### Trust Certificate on Windows
 
 Import the pfx certificate:
 
 ```bash
-$ powershell Import-PfxCertificate -FilePath dev.pfx Cert:\LocalMachine\My -Password (ConvertTo-SecureString grpc -asplaintext -force) -Exportable
+powershell Import-PfxCertificate -FilePath dev.pfx Cert:\LocalMachine\My -Password (ConvertTo-SecureString grpc -asplaintext -force) -Exportable
 ```
 
 Trust the certificate by importing the pfx certificate into your trusted root:
 
-```bash
-$ powershell Import-Certificate -FilePath dev.crt -CertStoreLocation Cert:\CurrentUser\Root
-```
+:::sh
+powershell Import-Certificate -FilePath dev.crt -CertStoreLocation Cert:\CurrentUser\Root
+:::
 
 ### Trust Certificate on Linux or macOS
 
@@ -212,15 +212,15 @@ Either replace `DOMAIN=...` and `PASSWORD=...` with your domain and password or 
 
 Linux or WSL Bash:
 
-```bash
-$ ./gen-prod.https.sh <DOMAIN> <PASSWORD>
-```
+:::sh
+./gen-prod.https.sh <DOMAIN> <PASSWORD>
+:::
 
 Windows:
 
-```bash
-C:\> bash gen-prod.https.sh <DOMAIN> <PASSWORD>
-```
+:::sh
+bash gen-prod.https.sh <DOMAIN> <PASSWORD>
+:::
 
 ### .NET Core Configuration
 
@@ -306,9 +306,9 @@ server {
 
 You can quickly test each of these gRPC Endpoints by downloading the [C# Add ServiceStack Reference](/csharp-add-servicestack-reference) DTOs with:
 
-```bash
-$ x csharp https://todoworld.servicestack.net
-```
+:::sh
+x csharp https://todoworld.servicestack.net
+:::
 
 Which can be used to test gRPC Services on each of the different gRPC endpoints below:
 
@@ -349,9 +349,9 @@ var client = InsecureProdClient(5054);
 If you're experiencing network connection issues trying to connect with your own gRPC hosted service, make sure you've opened
 access to each of the non-standard ports used. Example using Ubuntu's UFW firewall:
 
-```bash
-$ ufw allow 50051
-```
+:::sh
+ufw allow 50051
+:::
 
 ### Lets Encrypt
 

@@ -60,9 +60,9 @@ Where it will display all repositories in [.NET Core](https://github.com/NetCore
 #### Usage
 
 
-```bash
-$ x new `<template>` `<name>`
-```
+:::sh
+x new `<template>` `<name>`
+:::
 
 For example to create a new **Vue Single Page App**, run:
 

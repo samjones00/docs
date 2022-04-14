@@ -13,21 +13,21 @@ title: gRPC protoc Dart Client
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
     
 Install [stagehand](https://pub.dev/packages/stagehand):
 
-```bash
-$ pub global activate stagehand
-```
+:::sh
+pub global activate stagehand
+:::
 
 Create a new Dart Console App:
 
-```bash
-$ stagehand console-full
-```
+:::sh
+stagehand console-full
+:::
 
 Add required dependencies to **pubspec.yaml**:
 
@@ -41,17 +41,17 @@ dependencies:
 
 Install dependencies:
 
-```bash
-$ pub get
-```
+:::sh
+pub get
+:::
     
 ### Generate protoc Dart gRPC Client
 
 Add protoc generated TodoWorld DTOs and gRPC GrpcServiceClient to `lib/` folder:
 
-```bash
-$ x proto-dart https://todoworld.servicestack.net -out lib
-```
+:::sh
+x proto-dart https://todoworld.servicestack.net -out lib
+:::
 
 ### Dart protoc gRPC insecure Example
 
@@ -77,23 +77,23 @@ void main(List<String> args) async {
 
 Override `bin/main.dart` with the above Dart Example: 
 
-```bash
-$ x mix todoworld-dart -out bin
-```
+:::sh
+x mix todoworld-dart -out bin
+:::
 
 Run example:
 
-```bash
-$ dart run
-```
+:::sh
+dart run
+:::
 
 ### Dart protoc gRPC SSL Example
 
 Download TodoWorld SSL Certificate used for its gRPC HTTP/2 Services:
 
-```bash
-$ x get https://todoworld.servicestack.net/grpc.crt
-```
+:::sh
+x get https://todoworld.servicestack.net/grpc.crt
+:::
 
 Use certificate when initializing `GrpcServicesClient`:
 
@@ -119,15 +119,15 @@ void main(List<String> args) async {
 
 Override `bin/main.dart` with the above Dart Example: 
 
-```bash
-$ x mix todoworld-dart-ssl -out bin
-```
+:::sh
+x mix todoworld-dart-ssl -out bin
+:::
 
 Run example:
 
-```bash
-$ dart run
-```
+:::sh
+dart run
+:::
 
 ### Dart Local Development gRPC SSL CRUD Example
 

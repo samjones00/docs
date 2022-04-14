@@ -11,15 +11,15 @@ Jupyter Commands lets you generate C# Jupyter Notebooks for calling ServiceStack
 
 All command line utils used are available in the latest [dotnet tool](/dotnet-tool) which can be installed from:
 
-```bash
-$ dotnet tool install --global x
-```
+:::sh
+dotnet tool install --global x
+:::
 
 Or if you had a previous version installed, update with:
 
-```bash
-$ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 ### Generate C# Jupyter Notebooks
 
@@ -38,9 +38,9 @@ Options:
 
 The same syntax for invoking APIs with the [Post Command HTTP Utils](/post-command) can also be used to generate C# Jupyter Notebooks, e.g:
 
-```bash
-$ x jupyter-csharp https://techstacks.io FindTechStacks "{Ids:[1,2,3],VendorName:'Google',Take:5}"
-```
+:::sh
+x jupyter-csharp https://techstacks.io FindTechStacks "{Ids:[1,2,3],VendorName:'Google',Take:5}"
+:::
 
 Output:
 
@@ -72,9 +72,9 @@ dotnet interactive jupyter install
 
 To verify these have been installed successfully, you can list the currently registered kernels using the command.
 
-```bash
-$ jupyter kernelspec list
-```
+:::sh
+jupyter kernelspec list
+:::
 
 This should list `.net-csharp` as one of the kernels which is what the C# notebooks will use.
 
@@ -82,9 +82,9 @@ This should list `.net-csharp` as one of the kernels which is what the C# notebo
 
 With everything setup, navigate to a local directory with your notebooks and run:
 
-```bash
-$ jupyter-lab
-```
+:::sh
+jupyter-lab
+:::
 
 The context of where this command is run from matter as JupyterLab will mount list files in the same directory is was run, so make sure your running the `jupyter-lab` command from where your notebooks are located or where you new notebooks to be saved.
 
@@ -92,9 +92,9 @@ The context of where this command is run from matter as JupyterLab will mount li
 
 From your notebook directory that JupyterLab is using, open a new command prompt/terminal and run:
 
-```bash
-$ x jupyter-csharp https://covid-vac-watch.netcore.io QueryVaccinationRates
-```
+:::sh
+x jupyter-csharp https://covid-vac-watch.netcore.io QueryVaccinationRates
+:::
 
 This will generate the file `covid_vac_watch.netcore.io-QueryVaccinationRates.ipynb` in that directory. This file has everything that is needed to call the `QueryVaccinationRates` service and display data in the response.
 

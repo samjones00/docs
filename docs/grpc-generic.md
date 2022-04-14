@@ -13,27 +13,27 @@ title: Smart Generic C# / F# / VB.NET Service Client
 
 Install [x dotnet tool](/web-tool):
     
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 Create a new C# App:
 
-```bash
-$ dotnet new console
-```
+:::sh
+dotnet new console
+:::
 
 Add [ServiceStack.GrpcClient](https://www.nuget.org/packages/ServiceStack.GrpcClient) NuGet Package:
 
-```bash
-$ dotnet add package ServiceStack.GrpcClient
-```
+:::sh
+dotnet add package ServiceStack.GrpcClient
+:::
 
 Add TodoWorld DTOs:
 
-```bash
-$ x csharp https://todoworld.servicestack.net
-```
+:::sh
+x csharp https://todoworld.servicestack.net
+:::
     
 Use TodoWorld DTOs with generic `GrpcServiceClient` to call TodoWorld gRPC Service:
 
@@ -64,15 +64,15 @@ namespace TodoWorld
 
 Override `Program.cs` with the above C# Example: 
 
-```bash
-$ x mix todoworld-cs
-```
+:::sh
+x mix todoworld-cs
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### C# gRPC SSL Example
 
@@ -103,15 +103,15 @@ namespace TodoWorld
 
 Override `Program.cs` with the above C# Example: 
 
-```bash
-$ x mix todoworld-cs-ssl
-```
+:::sh
+x mix todoworld-cs-ssl
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### C# Local Development gRPC SSL CRUD Example
 
@@ -188,27 +188,27 @@ For more C# `GrpcServiceClient` examples check out the integration tests at:
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 Create a new VB.NET App:
 
-```bash
-$ dotnet new console -lang vb
-```
+:::sh
+dotnet new console -lang vb
+:::
 
 Add [ServiceStack.GrpcClient](https://www.nuget.org/packages/ServiceStack.GrpcClient) NuGet Package:
 
-```bash
-$ dotnet add package ServiceStack.GrpcClient
-```
+:::sh
+dotnet add package ServiceStack.GrpcClient
+:::
 
 Add TodoWorld DTOs:
 
-```bash
-$ x vb https://todoworld.servicestack.net
-```
+:::sh
+x vb https://todoworld.servicestack.net
+:::
     
 Use TodoWorld DTOs with generic `GrpcServiceClient` to call TodoWorld gRPC Service:
 
@@ -241,15 +241,15 @@ End Module
 
 Override `Program.vb` with the above VB.NET Example: 
 
-```bash
-$ x mix todoworld-vb
-```
+:::sh
+x mix todoworld-vb
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### VB.NET gRPC SSL Example
 
@@ -282,15 +282,15 @@ End Module
 
 Override `Program.vb` with the above VB.NET Example: 
 
-```bash
-$ x mix todoworld-vb-ssl
-```
+:::sh
+x mix todoworld-vb-ssl
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### VB.NET Local Development gRPC SSL CRUD Example
 
@@ -365,34 +365,33 @@ for a complete example project.
 
 Install [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
     
-```bash
-$ dotnet tool install --global x
-```
+:::sh
+dotnet tool install --global x
+:::
 
 Create a new F# App:
 
-```bash
-$ dotnet new console -lang f#
-```bash
-
+:::sh
+dotnet new console -lang f#
+:::
 
 Add [ServiceStack.GrpcClient](https://www.nuget.org/packages/ServiceStack.GrpcClient) NuGet Package:
 
-```bash
-$ dotnet add package ServiceStack.GrpcClient
-```
+:::sh
+dotnet add package ServiceStack.GrpcClient
+:::
 
 Add [TaskBuilder.fs](https://www.nuget.org/packages/TaskBuilder.fs) NuGet Package
 
-```bash
-$ dotnet add package TaskBuilder.fs
-```
+:::sh
+dotnet add package TaskBuilder.fs
+:::
 
 Add TodoWorld DTOs:
 
-```bash
-$ x fsharp https://todoworld.servicestack.net
-```
+:::sh
+x fsharp https://todoworld.servicestack.net
+:::
 
 Register `dto.fs` source file to `*.fsproj`:
 
@@ -467,15 +466,15 @@ let main argv =
 
 Override `Program.fs` with the above F# Example:
 
-```bash
-$ x mix todoworld-fs-ssl
-```
+:::sh
+x mix todoworld-fs-ssl
+:::
 
 Run example:
 
-```bash
-$ dotnet run
-```
+:::sh
+dotnet run
+:::
 
 ### F# Local Development gRPC SSL CRUD Example
 
