@@ -32,6 +32,7 @@ jobs:
         run: |
           cd docs/.vitepress/dist
           git config --global --add safe.directory /github/workspace/docs/.vitepress/dist
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git init
           git add -A
           git config --local user.email "action@github.com"
