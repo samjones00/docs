@@ -123,7 +123,7 @@ bash gen-dev.https.sh
 Options:
 
 :::sh
-gen-dev.https.sh <PASSWORD>
+gen-dev.https.sh $PASSWORD
 :::
 
 ### Trust Certificate on Windows
@@ -213,13 +213,13 @@ Either replace `DOMAIN=...` and `PASSWORD=...` with your domain and password or 
 Linux or WSL Bash:
 
 :::sh
-./gen-prod.https.sh <DOMAIN> <PASSWORD>
+./gen-prod.https.sh $DOMAIN $PASSWORD
 :::
 
 Windows:
 
 :::sh
-bash gen-prod.https.sh <DOMAIN> <PASSWORD>
+bash gen-prod.https.sh $DOMAIN $PASSWORD
 :::
 
 ### .NET Core Configuration

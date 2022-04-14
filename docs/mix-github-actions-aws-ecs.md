@@ -152,9 +152,9 @@ Check [docker-compose documentation](https://docs.docker.com/compose/install/) f
 
 To copy you can use scp or create a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the ~/ (home) directory.
 
-:::sh
+```bash
 scp -i <path to private ssh key> ./nginx-proxy-compose.yml ec2-user@<server_floating_ip>:~/nginx-proxy.compose.yml
-:::
+```
 
 For example, once copied to remote `~/nginx-proxy-compose.yml`, the following command can be run on the remote server.
 

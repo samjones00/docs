@@ -14,9 +14,9 @@ It is optimized for use in Amazon EC2 with a latest and tuned Linux kernel versi
 
 We'll start by SSH'ing into your Amazon Linux server, e.g:
 
-:::sh
+```bash
 ssh -i ~/pem/<my>.pem ec2-user@ec2-<ip-address>.compute-1.amazonaws.com
-:::
+```
 
 ### Install .NET 6.0
 
@@ -282,7 +282,7 @@ After you deploy your and restart your `supervisor` Service your .NET Core App s
 you can view your App's error log for info, e.g:
 
 :::sh
-tail -n 50 /var/log/app-<my-app>.err.log
+tail -n 50 /var/log/app-[my-app].err.log
 :::
 
 ### Setup Lets Encrypt
