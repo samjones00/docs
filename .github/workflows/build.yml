@@ -19,6 +19,8 @@ jobs:
           rm -rf docs/.vitepress/dist/
       - name: Install and build
         run: |
+          git config --global --add safe.directory /github/workspace/docs/.vitepress/dist
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           npm install
           npm run docs:build
       - name: Copy release files for permalinks
