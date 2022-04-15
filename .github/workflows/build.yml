@@ -13,14 +13,13 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16
       - name: Clear dist folder
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           rm -rf docs/.vitepress/dist/
       - name: Install and build
         run: |
-          git config --global --add safe.directory /github/workspace/docs/.vitepress/dist
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           npm install
           npm run docs:build
       - name: Copy release files for permalinks
@@ -34,7 +33,6 @@ jobs:
         run: |
           cd docs/.vitepress/dist
           git init
-          git config --global --add safe.directory /github/workspace/docs/.vitepress/dist
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -42,9 +40,6 @@ jobs:
           git commit -m 'deploy'2
       - name: Force push to destination branch
         uses: ad-m/github-push-action@v0.5.0
-        run: |
-          git config --global --add safe.directory /github/workspace/docs/.vitepress/dist
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
