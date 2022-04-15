@@ -116,17 +116,17 @@ The [dotnet tools](/dotnet-tool) include built in support for generating TypeScr
 
 ### Installation
 
-```bash
-$ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 ### Adding a ServiceStack Reference
 
 To Add a TypeScript ServiceStack Reference just call `x typescript` with the URL of a remote ServiceStack instance:
 
-```bash
-$ x typescript https://techstacks.io
-```
+:::sh
+`x typescript https://techstacks.io`
+:::
 
 Result:
 
@@ -136,9 +136,9 @@ Saved to: dtos.ts
 
 Calling `x typescript` with just a URL will save the DTOs using the Host name, you can override this by specifying a FileName as the 2nd argument:
 
-```bash
-$ x typescript https://techstacks.io Tech
-```
+:::sh
+`x typescript https://techstacks.io Tech`
+:::
 
 Result:
 
@@ -150,9 +150,9 @@ Saved to: Tech.dtos.ts
 
 To Update an existing ServiceStack Reference, call `x typescript` with the Filename:
 
-```bash
-$ x typescript dtos.ts
-```
+:::sh
+x typescript dtos.ts
+:::
 
 Result:
 
@@ -166,9 +166,9 @@ Which will update the File with the latest TypeScript Server DTOs from [techstac
 
 Calling `x typescript` without any arguments will update all TypeScript DTOs in the current directory:
 
-```bash
-$ x typescript
-```
+:::sh
+x typescript
+:::
 
 Result:
 

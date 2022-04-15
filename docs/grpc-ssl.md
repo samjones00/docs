@@ -307,7 +307,7 @@ server {
 You can quickly test each of these gRPC Endpoints by downloading the [C# Add ServiceStack Reference](/csharp-add-servicestack-reference) DTOs with:
 
 :::sh
-x csharp https://todoworld.servicestack.net
+`x csharp https://todoworld.servicestack.net`
 :::
 
 Which can be used to test gRPC Services on each of the different gRPC endpoints below:

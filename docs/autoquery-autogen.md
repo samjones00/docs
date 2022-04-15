@@ -63,7 +63,7 @@ dotnet run
 Then use the `x` dotnet tool to download all the AutoQuery & Crud Services for all tables in the configured DB connection:
 
 :::sh
-x csharp https://localhost:5001 -path /crud/all/csharp
+`x csharp https://localhost:5001 -path /crud/all/csharp`
 :::
 
 ::: tip
@@ -459,7 +459,7 @@ To assist in code-generation a number of high-level APIs are available to help w
 The expected use-case for these new features is that you'd create a new project that points to an existing database to bootstrap your project with code-first AutoQuery Services using the dotnet tool to download the generated types, i.e:
 
 :::sh
-x csharp https://localhost:5001 -path /crud/all/csharp
+`x csharp https://localhost:5001 -path /crud/all/csharp`
 :::
 
 At which point you'd "eject" from the generated AutoQuery Services (forgetting about this feature), copy the generated types into your **ServiceModel** project and continue on development as code-first Services just as if you'd created the Services manually.
@@ -467,7 +467,7 @@ At which point you'd "eject" from the generated AutoQuery Services (forgetting a
 But the `GenerateCrudServices` feature also supports a "hybrid" mode where you can also just generate Services for any **new** AutoQuery Services that don't exist, i.e. for tables for which there are no existing services which you can access their generated Services from:
 
 :::sh
-x csharp https://localhost:5001 -path /crud/new/csharp
+`x csharp https://localhost:5001 -path /crud/new/csharp`
 :::
 
 The existing `/crud/all/csharp` Service continues to return generated Services for all Tables but will stitch together and use existing types where they exist.

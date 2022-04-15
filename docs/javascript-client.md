@@ -428,7 +428,7 @@ dotnet tool install --global x
 Then generate DTOs with:
 
 :::sh
-x typescript http://yourdomain.org
+`x typescript http://yourdomain.org`
 :::
 
 For JavaScript projects that haven't configured transpilation of TypeScript, you'll need to use TypeScript to generate the `dtos.js` JavaScript version

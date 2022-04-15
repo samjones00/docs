@@ -257,7 +257,7 @@ An alternative to sharing your **ServiceModel.dll** with .NET clients is for the
 to generate .NET DTOs locally which they can easily do using the [x dotnet tool](/dotnet-tool), e.g:
 
 :::sh
-x csharp https://todoworld.servicestack.net
+`x csharp https://todoworld.servicestack.net`
 :::
 
 This offers the same behavior as sharing **ServiceModel.dll** binary where they can be used in any 

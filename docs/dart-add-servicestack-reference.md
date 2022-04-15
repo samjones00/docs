@@ -32,7 +32,7 @@ dotnet tool install --global x
 You can then execute `x dart` with the URL of the remote ServiceStack Instance you want to generated DTOs for, e.g:
 
 :::sh
-x dart https://techstacks.io
+`x dart https://techstacks.io`
 :::
 
 This will generate Dart DTOs for the [entire TechStacks API](https://techstacks.io/metadata):

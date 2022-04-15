@@ -32,7 +32,7 @@ dotnet add package ServiceStack.GrpcClient
 Add TodoWorld DTOs:
 
 :::sh
-x csharp https://todoworld.servicestack.net
+`x csharp https://todoworld.servicestack.net`
 :::
     
 Use TodoWorld DTOs with generic `GrpcServiceClient` to call TodoWorld gRPC Service:
