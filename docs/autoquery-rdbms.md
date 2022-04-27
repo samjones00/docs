@@ -34,8 +34,11 @@ container.Register<IDbConnectionFactory>(
 
 The above config registers an In Memory Sqlite database although as the AutoQuery test suite works in all [supported RDBMS providers](https://github.com/ServiceStack/ServiceStack.OrmLite/#download) you're free to use your registered DB of choice.
 
-The `MaxLimit` option ensures each query returns a maximum limit of **100** rows. 
-> It is recommended `MaxLimit` is set based on your own requirements, not setting the `MaxLimit` option will return **all rows** for a query.
+The `MaxLimit` option ensures each query returns a maximum limit of **100** rows.
+
+::: tip
+It is recommended `MaxLimit` is set based on your own requirements, not setting the `MaxLimit` option will return **all rows** for a query
+:::
 
 Now that everything's configured we can create our first service. To implement the ideal API for [OData's movie ratings query](/why-not-odata) we just need to define the Request DTO for our service, i.e:
 
