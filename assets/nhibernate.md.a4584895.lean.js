@@ -1,1 +1,0 @@
-import{_ as e,c as r,o as t,a}from"./app.da189b1e.js";const m='{"title":"Community Resources","description":"","frontmatter":{"slug":"nhibernate"},"relativePath":"nhibernate.md","lastUpdated":1650017944149}',n={},i=a('',2),o=[i];function l(h,s,c,p,_,d){return t(),r("div",null,o)}var u=e(n,[["render",l]]);export{m as __pageData,u as default};
