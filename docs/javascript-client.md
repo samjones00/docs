@@ -20,6 +20,24 @@ client.get(new Hello({ Name: 'World' }))
   .then(r => console.log(r.Result))
 ```
 
+## Instant Typed JavaScript DTOs 🚀
+
+Ultimately the key to maximizing productivity is avoiding things that interrupt your dev workflow. Since we use `JsonServiceClient` for all API requests one area that still interrupts us is regenerating TypeScript `dtos.ts` after adding new APIs, as it was the only way to generate typed DTOs for use in the generic `JsonServiceClient` in both Vanilla JS and TypeScript Apps.
+
+For Vanilla JS Apps typically this means running the [x dotnet tool](/typescript-add-servicestack-reference#simple-command-line-utilities-for-typescript) to update `dtos.ts`, then using TypeScript to compile it to JavaScript:
+
+```bash
+$ x ts && tsc dtos.ts 
+```
+
+While not a great hindrance, it can frequently interrupt our workflow when developing new APIs. 
+
+Although thanks to the **native JavaScript Language** support this can be avoided by referencing Typed JavaScript DTOs directly from **/types/js**
+
+Since importing JavaScript doesn't require any tooling or build steps, it greatly simplifies calling ServiceStack APIs from **Vanilla JS** Apps which all our [.NET 6 Empty Project Templates](https://servicestack.net/start) take advantage of for its now optimal friction-less dev model.
+
+Using **/types/js** has the same behavior as using `dtos.js` generated from `$ tsc dtos.ts` whose outputs are identical, i.e. both containing your API DTOs generated in CommonJS format. It's feasible to simulate the TypeScript compiler's output in this instance as ServiceStack only needs to generate DTO Types and Enums to enable its end-to-end API, and not any other of TypeScript's vast featureset.
+
 ## Using JavaScript Typed DTOs in Web Apps
 
 To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET project:
@@ -34,7 +52,9 @@ x mix init
 
 That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
 
-To use them in your Web Page create a basic UMD loader and include the UMD `@servicestack/client` library & `dtos.js`:
+To make typed API Requests from web pages, you need only include `/js/require.js` containing a simple `require()` to load **CommonJS** libraries, `/js/servicestack-client.js` (production build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client)) and `/types/js` containing your APIs typed JS DTOs - all built-in ServiceStack. 
+
+After which you'll have access to full feature-set of the generic `JsonServiceClient` with your APIs Typed Request DTOs, e.g:
 
 ```html
 <script src="/js/require.js"></script>
@@ -57,7 +77,6 @@ function callHello(name) {
 }
 </script>
 ```
-
 
 ## JsonServiceClient
 
