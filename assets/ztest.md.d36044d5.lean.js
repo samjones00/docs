@@ -1,1 +1,0 @@
-import{_ as t,c as e,o as a}from"./app.da189b1e.js";const l='{"title":"ztest","description":"","frontmatter":{"slug":"ztest","title":"ztest"},"relativePath":"ztest.md","lastUpdated":1651394717013}',s={};function r(o,c,n,p,_,d){return a(),e("div")}var f=t(s,[["render",r]]);export{l as __pageData,f as default};

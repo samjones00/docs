@@ -1,0 +1,1 @@
+import{_ as t,c as e,o,a as r}from"./app.da189b1e.js";const d='{"title":"","description":"","frontmatter":{"slug":"how-to-contribute"},"relativePath":"how-to-contribute.md","lastUpdated":1651481453726}',s={},n=r('',2),a=[n];function i(l,c,g,_,p,u){return o(),e("div",null,a)}var f=t(s,[["render",i]]);export{d as __pageData,f as default};
