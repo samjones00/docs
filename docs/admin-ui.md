@@ -74,6 +74,8 @@ The `AdminUsersFeature` has multiple fiends that can be used to customize the UI
 | `QueryMediaRules`         | Which columns *start* appearing at different screen sizes.         |
 | `UserFormLayout`          | Control which fields are used for Create/Edit and their placement. |
 
+### Custom User Form Layout
+
 Similar to the [API Explorer](./api-explorer.md#formlayout) `FormLayout` customization, `UserFormLayout` is used to control placement and details about individual fields.
 
 ```csharp
