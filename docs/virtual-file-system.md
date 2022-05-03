@@ -339,9 +339,10 @@ Folders are implicitly created when writing a file to folders that don't exist
 The new `IVirtualFiles` API is available in local FileSystem, In Memory, Gists and S3 Virtual path providers:
 
  - `FileSystemVirtualFiles`
- - `MemoryVirtualFiles`
- - `GistVirtualFiles`
  - `S3VirtualFiles`
+ - `AzureBlobVirtualFiles`
+ - `GistVirtualFiles`
+ - `MemoryVirtualFiles`
 
 All `IVirtualFiles` providers share the same 
 [VirtualPathProviderTests](https://github.com/ServiceStack/ServiceStack.Aws/blob/master/tests/ServiceStack.Aws.Tests/S3/VirtualPathProviderTests.cs)
