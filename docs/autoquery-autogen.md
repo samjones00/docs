@@ -96,6 +96,27 @@ Plugins.Add(new AutoQueryFeature {
 
 All functionality and features can now be added to annotating & enhancing your code-first C# Typed DTOs.
 
+### AutoGen specific options in AutoGen DTOs
+
+When using AutoGen to [generate Typed AutoQuery DTOs](/autoquery-autogen#generating-autoquery-types-services) for your RDBMS Tables:
+
+```bash
+$ x csharp https://localhost:5001 -path /crud/all/csharp
+```
+
+The generated `dtos.cs` includes AutoGen-specific options that can be used to maintain multiple custom RDBMS Tables and AutoQuery APIs, e.g. you could maintain one for each of your different RDBMS schemas:
+
+```csharp
+/* Options:
+//...
+//IncludeCrudOperations: 
+Schema: custom
+//NamedConnection: 
+//IncludeTables: 
+//ExcludeTables: 
+*/
+```
+
 ## AutoRegister AutoGen AutoQuery Services
 
 To recap we've now got an integrated scaffolding solution where we can quickly generate code-first AutoQuery Services and integrate them into our App to quickly build an AutoQuery Service layer around our existing database.
