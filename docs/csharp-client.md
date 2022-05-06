@@ -37,6 +37,14 @@ builder.Services.AddJsonApiClient(builder.Configuration["BaseUrl"]);
 
 It's now recommended to use `JsonApiClient` when it's available, but for simplification the docs will continue to reference the substitutable & more broadly available `JsonServiceClient`.
 
+#### Blazor Client Registration
+
+**Blazor WASM** should instead use the tailored `AddBlazorApiClient()` which also configures a CORS-enabled typed `JsonApiClient`:
+
+```csharp
+builder.Services.AddBlazorApiClient(builder.Configuration["ApiBaseUrl"] ?? builder.HostEnvironment.BaseAddress);
+```
+
 ### Setup
 
 All ServiceStack's C# clients share the same interfaces and are created by passing in the **Base URI** of your ServiceStack service in the clients constructor, e.g. if your ServiceStack instance was hosted on the root path `/` on the **5001** custom port:
@@ -50,6 +58,16 @@ Or if hosted on the `/custom` custom path:
 ```csharp
 var client = new JsonServiceClient("https://host/custom/");
 ```
+
+### Recommended ServiceClient for .NET 6+#
+
+Going forward we'll continue improving `JsonApiClient` with new .NET runtime features and optimizations as they're available and now that .NET's `HttpWebRequest` has been officially **deprecated in .NET 6+** we recommend switching to use `JsonApiClient` in .NET 6+ runtimes.
+
+### Safe Sync HttpClient APIs
+
+Until adding **net6.0** TFM builds there was no officially supported way to perform synchronous requests with `HttpClient`, to implement the complete `IServiceClient` interface, `JsonHttpClient` had to adopt the least problematic sync-over-async solution.
+
+`JsonApiClient` improves its synchronous support by rewriting all Sync methods to use HttpClient's new blocking `Send()` method. Whilst Blocking I/O continues to impact scalability, it's nice to finally have an officially supported safe method to use free from deadlock concerns.
 
 ## High level `Api` and `ApiAsync` methods
 
@@ -869,7 +887,7 @@ var response = await client.GetAsync(new GetTechnology { Slug = "servicestack" }
 ```
 
 ::: warning
-As .NET's HttpClient only supports async APIs it needs to use "sync over async" to implement sync APIs **which should be avoided**. If your API needs to make sync API calls it should use the `JsonServiceClient` instead.
+As .NET's HttpClient only supports async APIs it needs to use "sync over async" to implement sync APIs **which should be avoided**. If your API needs to make sync API calls it should use .NET 6's `JsonApiClient` or the `JsonServiceClient` instead.
 :::
 
 #### Install
