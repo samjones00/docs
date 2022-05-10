@@ -535,6 +535,8 @@ public static class Behavior
 }
 ```
 
+#### AuditAutoCrudMetadataFilter
+
 This functionality is implemented by extending the metadata for AutoQuery CRUD Services with additional attributes in `AutoQueryFeature.AutoCrudMetadataFilters` delegate filters where they result in the same behavior as if the Request DTOs were annotated with attributes directly. E.g. Here's the built-in filter for implementing the above behaviors:
 
 ```csharp
