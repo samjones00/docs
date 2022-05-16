@@ -2,6 +2,7 @@ let container = require('markdown-it-container')
 
 let navIndex = require('./sidebar/index.json'), 
     navTemplates = require('./sidebar/templates.json'),
+    navLocode = require('./sidebar/locode.json'),
     navAutoQuery = require('./sidebar/autoquery.json'),
     navAuth = require('./sidebar/auth.json'),
     navGrpc = require('./sidebar/grpc.json'),
@@ -42,8 +43,8 @@ module.exports = {
         lastUpdated: 'Last Updated',
         //lastUpdated: false,
         nav: [
-            { text: "What's New", link: 'https://servicestack.net/whatsnew' },
             { text: 'Project Templates', link: '/templates-overview', activeMatch: '^/(templates|dotnet-new)'},
+            //{ text: 'Locode', link: '/locode/', activeMatch: '^/locode'},
             { text: 'AutoQuery', link: '/autoquery', activeMatch: '^/(autoquery|why-not-odata)'},
             { text: 'Security', link: '/auth', activeMatch: '(auth|sessions)' },
             { text: 'gRPC', link: '/grpc', activeMatch: '^/grpc'},
@@ -55,6 +56,7 @@ module.exports = {
             '/ormlite': navOrmLite,
             '/templates': navTemplates,
             '/dotnet-new': navTemplates,
+            '/locode': navLocode,
             '/autoquery': navAutoQuery,
             '/why-not-odata': navAutoQuery,
             '/auth': navAuth,

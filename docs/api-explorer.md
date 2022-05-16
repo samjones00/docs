@@ -574,36 +574,24 @@ Customizing this layout using `ConfigureOperation`, we can control the placement
 When overriding the `FormLayout`, it is in the structure of Rows, then columns in the nested list. So grouping controls like `City`, `State` and `PostalCode` in the same row allows us to control the presentation.
 
 ```csharp
-appHost.ConfigureOperation<CreateCustomers>(operation =>
-{
-    operation.FormLayout = new List<List<InputInfo>>
-    {
-        new()
-        {
-            Input.For<CreateCustomers>(x => x.FirstName),
-            Input.For<CreateCustomers>(x => x.LastName),
-        },
-        new() { Input.For<CreateCustomers>(x => x.Email) },
-        new() { Input.For<CreateCustomers>(x => x.Company) },
-        new() { Input.For<CreateCustomers>(x => x.Address) },
-        new()
-        {
-            Input.For<CreateCustomers>(x => x.City),
-            Input.For<CreateCustomers>(x => x.State),
-            Input.For<CreateCustomers>(x => x.PostalCode)
-        },
-        new()
-        {
+appHost.ConfigureOperation<CreateCustomers>(operation => operation.FormLayout = new() {
+    Input.For<CreateCustomers>(x => x.FirstName,    c => c.FieldsPerRow(2)),
+    Input.For<CreateCustomers>(x => x.LastName,     c => c.FieldsPerRow(2)),
 
-            Input.For<CreateCustomers>(x => x.Country)
-        },
-        new()
-        {
-            Input.For<CreateCustomers>(x => x.Phone),
-            Input.For<CreateCustomers>(x => x.Fax),
-        },
-        new() { Input.For<CreateCustomers>(x => x.SupportRepId) }
-    };
+    Input.For<CreateCustomers>(x => x.Email),
+    Input.For<CreateCustomers>(x => x.Company),
+    Input.For<CreateCustomers>(x => x.Address),
+
+    Input.For<CreateCustomers>(x => x.City,         c => c.FieldsPerRow(3)),
+    Input.For<CreateCustomers>(x => x.State,        c => c.FieldsPerRow(3)),
+    Input.For<CreateCustomers>(x => x.PostalCode,   c => c.FieldsPerRow(3)),
+    
+    Input.For<CreateCustomers>(x => x.Country),
+    
+    Input.For<CreateCustomers>(x => x.Phone,        c => c.FieldsPerRow(2)),
+    Input.For<CreateCustomers>(x => x.Fax,          c => c.FieldsPerRow(2)),
+
+    Input.For<CreateCustomers>(x => x.SupportRepId),
 });
 ```
 
@@ -618,15 +606,11 @@ Gives us the updated layout in API Explorer.
 Each input field can be customized with client side visual and behavioural changes by using `InputInfo` when customizing `FormLayout`.
 
 ```csharp
-new() 
-{ 
-    Input.For<CreateCustomers>(x => x.Email, info =>
-        {
-            info.Label = "Personal Email Address";
-            info.Placeholder = "me@email.com";
-            info.Type = "email";
-        }) 
-},
+Input.For<CreateCustomers>(x => x.Email, info => {
+    info.Label = "Personal Email Address";
+    info.Placeholder = "me@email.com";
+    info.Type = "email";
+}) 
 ```
 
 Now our `label` and `placeholder` changes are visible and trying to submit a value without an `@` we get a client side warning.
@@ -654,10 +638,10 @@ The built-in `RegistrationFeature` also uses a custom Form layout to mask its pa
 ```csharp
 appHost.ConfigureOperation<Register>(op => op.FormLayout = new()
 {
-    new(){ Input.For<Register>(x => x.DisplayName, x => x.Help = "Your first and last name") },
-    new(){ Input.For<Register>(x => x.Email, x => x.Type = Input.Types.Email) },
-    new(){ Input.For<Register>(x => x.Password, x => x.Type = Input.Types.Password) },
-    new(){ Input.For<Register>(x => x.ConfirmPassword, x => x.Type = Input.Types.Password) },
+    Input.For<Register>(x => x.DisplayName,     x => x.Help = "Your first and last name"),
+    Input.For<Register>(x => x.Email,           x => x.Type = Input.Types.Email),
+    Input.For<Register>(x => x.Password,        x => x.Type = Input.Types.Password),
+    Input.For<Register>(x => x.ConfirmPassword, x => x.Type = Input.Types.Password),
 });
 ```
 
