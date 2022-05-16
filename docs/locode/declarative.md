@@ -216,7 +216,7 @@ These attributes can be used to document and annotate APIs which will customize 
 Metadata services, [Add ServiceStack Reference](/add-servicestack-reference)
 generated DTOs and metadata driven, capability-based Auto UIs like
 [API Explorer](/api-explorer),
-[Locode](https://locode.dev) and
+[Locode](https://www.locode.dev) and
 [Swagger UI](/openapi).
 
 ### Annotate APIs
@@ -258,7 +258,7 @@ Refer to the [Formatters docs](/locode/formatters) for more info on how to use f
 
 ### Custom Fields and Inputs
 
-These attributes can be used to customize how fields and HTML Input controls in Auto UIs like [Locode](https://locode.dev)
+These attributes can be used to customize how fields and HTML Input controls in Auto UIs like [Locode](https://www.locode.dev)
 and [API Explorer](/api-explorer).
 
 | Attribute       | Description                                                               |

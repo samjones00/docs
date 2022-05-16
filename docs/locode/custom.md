@@ -64,7 +64,7 @@ Type definitions for functionality available in ServiceStack UI's
 
 | UI                                                       | Description                                                                                                  |
 |----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| [locode](https://api.locode.dev/modules/locode.html)     | Global App and Type instances available in [Locode Apps](https://locode.dev)                                 |
+| [locode](https://api.locode.dev/modules/locode.html)     | Global App and Type instances available in [Locode Apps](https://www.locode.dev)                                 |
 | [explorer](https://api.locode.dev/modules/explorer.html) | Global App and Type instances available in [API Explorer](/api-explorer)        |
 | [admin](https://api.locode.dev/modules/admin.html)       | Global App and Type instances available in ServiceStack's [Admin UI](/admin-ui) |
 
@@ -88,7 +88,7 @@ We'll go through each App's folder to better visualize their extension placehold
 
 ### /locode
 
-Lets you customize [Locode Apps](https://locode.dev) where [Custom Forms](/locode/custom-forms) can either be registered in 
+Lets you customize [Locode Apps](https://www.locode.dev) where [Custom Forms](/locode/custom-forms) can either be registered in 
 `custom.html` or added to `/components/*.html` where you can also override any of Locode's components by including 
 a locally modified copy from
 [/components/*.html](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/modules/locode/components)
