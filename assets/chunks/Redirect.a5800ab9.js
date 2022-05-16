@@ -1,0 +1,1 @@
+import{g as t,h as s,o as c,c as n,b as a}from"../app.877820b6.js";const r={class:"custom theme"},i=["href"],m=t({props:{to:null},setup(e){const o=e;return s(()=>location.href=o.to),(l,d)=>(c(),n("div",r,[a("a",{href:e.to,"aria-label":"redirecting"},"direct link",8,i)]))}});export{m as _};
