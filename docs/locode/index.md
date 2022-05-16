@@ -25,3 +25,14 @@ behaviour that can be further customized & extended and [customized using C# att
     <iframe class="video-hd" width="560" height="315" src="https://www.youtube.com/embed/hkuO_DMFXmc" title="YouTube video player"
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+<h1 class="mt-16 text-center text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+    API Reference
+</h1>
+<p class="text-center mt-6 text-xl text-gray-500">
+    <a href="/locode/custom">Custom Locode Apps</a>
+    can benefit from TypeScript definitions for all functionality in ServiceStack UI's at 
+    <b><a href="https://api.locode.dev">api.locode.dev</a></b>
+</p>
+
+[![](/images/locode/shared-api-reference.png)](https://api.locode.dev/modules/shared.html)
