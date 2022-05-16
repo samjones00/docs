@@ -426,7 +426,7 @@ of different formats, including:
  - [SOAP 1.1/1.2](/soap-support)
  - HTML
    - [HTML5 Report Format](/html5reportformat)
-   - [Sharp Pages](https://sharpscript.net/docs/sharp-pages)
+   - [Sharp Pages](https://sharpscript.net/docs/script-pages)
    - [Razor](http://razor.servicestack.net/)
    - [Markdown Razor](/markdown-razor)
 

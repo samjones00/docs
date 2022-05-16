@@ -326,7 +326,7 @@ The Webpack templates have been updated to utilize [Webpack's DllPlugin](https:/
  
     $ npm run dev
 
-Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [#Script Pages hot-reloading](https://sharpscript.net/docs/sharp-apps/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port http://localhost:3000 
+Which will watch and re-compile your App for any changes. These new templates also include a new hot-reload feature which works similar to [#Script Pages hot-reloading](https://sharpscript.net/docs/sharp-apps/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. This provides a hot-reload alternative to `npm run dev-server` to run a Webpack Dev Server proxy on port `http://localhost:3000` 
 
 ### Deployments
 
@@ -715,7 +715,7 @@ public class CustomFeedView { ... }
 
 ### #Script Pages
 
-[#Script Pages](https://sharpscript.net/docs/sharp-pages) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
+[#Script Pages](https://sharpscript.net/docs/script-pages) gains support for the last missing feature from ServiceStack.Razor with its new **View Pages** support which lets you use `.html` Template Pages to render the HTML for Services Responses. 
 
 It works similarly to Razor ViewPages where it uses first matching View Page with the Response DTO is injected as the `Model` property. The View Pages can be in any folder within the `/Views` folder using the format `{PageName}.html` where `PageName` can be either the **Request DTO** or **Response DTO** Name, but all page names within the `/Views` folder need to be unique.
 
@@ -1133,7 +1133,7 @@ var hasFoo = container.Exists<IFoo>();
 ```
 
 Both `Funq.Container` and `SimpleContainer` implement the `IContainer` interface which 
-[ServiceStack's SharpPagesFeature](https://sharpscript.net/docs/sharp-pages) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
+[ServiceStack's SharpPagesFeature](https://sharpscript.net/docs/script-pages) utilizes to replace the TemplateContext's built-in IOC to use Funq where it shares the same IOC instance and is able to resolve ServiceStack's AppHost dependencies.
 
 ### Fast, small, dependency-free IOC
 

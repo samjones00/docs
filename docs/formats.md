@@ -13,7 +13,7 @@ ServiceStack supports the following formats:
 - [Message Pack](/messagepack-format)
 - [Protocol Buffers](/protobuf-format)
 - HTML
-    - [#Script Pages](https://sharpscript.net/docs/sharp-pages) (Simple, clean, fast alternative to Razor)
+    - [#Script Pages](https://sharpscript.net/docs/script-pages) (Simple, clean, fast alternative to Razor)
     - [Razor](http://razor.servicestack.net) (Microsoft's Razor View Engine)
     - [Markdown Razor](/markdown-razor) (Razor-inspired syntax combined with markdown)
     - [HTML5 Report](/html5reportformat) (Human-friendly HTML auto-layout to quickly visualize data returned by services)

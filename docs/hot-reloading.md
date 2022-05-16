@@ -31,7 +31,7 @@ Which is enabled during development in `_layout.html` by including `/js/hot-file
 ```
 :::
 
-Or if you're not using [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can add the script tag:
+Or if you're not using [#Script Pages](https://sharpscript.net/docs/script-pages) you can add the script tag:
 
 ```html
 <script src="/js/hot-fileloader.js"></script>
@@ -57,7 +57,7 @@ This is enabled in your pages with this snippet which renders the hot reload cli
 :::
 
 Which starts a long poll that calls the smart `HotReloadFilesService` which recursively inspects the current tokenized 
-[Sharp Pages](https://sharpscript.net/docs/sharp-pages) to find if it or any dependent layouts, partials or file includes have changed.
+[Sharp Pages](https://sharpscript.net/docs/script-pages) to find if it or any dependent layouts, partials or file includes have changed.
 
 Sharp Page's Hot Reload feature now also monitors **Paged Based Routing Pages** and **View Pages**.
 

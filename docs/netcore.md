@@ -676,7 +676,7 @@ Config.HandlerFactoryPath //= api
 When necessary the `PathBase` property is available in both server rendered views:
 
 ::: v-pre
-  - `{{PathBase}}` variable in [#Script Pages](https://sharpscript.net/docs/sharp-pages)
+  - `{{PathBase}}` variable in [#Script Pages](https://sharpscript.net/docs/script-pages)
   - `PathBase` in Razor Views
 :::
 

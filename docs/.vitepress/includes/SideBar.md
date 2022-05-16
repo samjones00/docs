@@ -239,7 +239,7 @@
     - [ss-utils.js JavaScript Client Library](/ss-utils-js)
 - ##### #Script
     - [Overview](https://sharpscript.net)
-    - [#Script Pages](https://sharpscript.net/docs/sharp-pages)
+    - [#Script Pages](https://sharpscript.net/docs/script-pages)
     - [Sharp Apps](https://sharpscript.net/docs/sharp-apps)
     - [Gist Desktop Apps](https://sharpscript.net/docs/gist-desktop-apps)
     - [Sharp APIs](https://sharpscript.net/docs/sharp-apis)

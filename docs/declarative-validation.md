@@ -213,7 +213,7 @@ public class MyValidateScripts : ScriptMethods
 }
 ```
 
-Which can be registered, either directly on your [Script Pages plugin](https://sharpscript.net/docs/sharp-pages) if your AppHost uses one:
+Which can be registered, either directly on your [Script Pages plugin](https://sharpscript.net/docs/script-pages) if your AppHost uses one:
 
 ```csharp
 Plugins.Add(new SharpPagesFeature {

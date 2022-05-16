@@ -95,7 +95,7 @@ Results matching tag [project]:
 Search:  web + #<tag> Available tags: auth, config, db, example, lib, project, react, sharp, ui, vue
 ```
 
-Which can be chained together to search for all `project` and `sharp` gists we can use for [Sharp Pages](https://sharpscript.net/docs/sharp-pages) projects:
+Which can be chained together to search for all `project` and `sharp` gists we can use for [Sharp Pages](https://sharpscript.net/docs/script-pages) projects:
 
     $ x + #project,sharp
 

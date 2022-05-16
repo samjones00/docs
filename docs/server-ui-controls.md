@@ -3,12 +3,12 @@ title: Script and Razor Server UI Controls
 slug: server-ui-controls
 ---
 
-Deprecated. Moved to [#Script Pages UI Controls](http://localhost:5000/docs/sharp-pages#ui-controls) and
+Deprecated. Moved to [#Script Pages UI Controls](https://sharpscript.net/docs/script-pages#ui-controls) and
 [Razor UI Controls](/razor-ui-controls) dedicated docs.
 
 ---
 
-Both [#Script Pages](https://sharpscript.net/docs/sharp-pages) and [ServiceStack.Razor](/netcore-razor) Share the same implementations for
+Both [#Script Pages](https://sharpscript.net/docs/script-pages) and [ServiceStack.Razor](/netcore-razor) Share the same implementations for
 their Server Controls which are utilized in [ASP.NET Core Project Templates](/web-new) and [World Validation](/world-validation) Application.
 
 ### UI Component List
@@ -337,7 +337,7 @@ The Server Navigation Controls are used to render your Apps [Unified Navigation]
 
 ### `#Script` Pages
 
-In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can use render the `navbar` and `navButtonGroup` methods to render NavItems:
+In [#Script Pages](https://sharpscript.net/docs/script-pages) you can use render the `navbar` and `navButtonGroup` methods to render NavItems:
 
 #### Navbar
 

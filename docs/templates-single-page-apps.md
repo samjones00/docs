@@ -132,7 +132,7 @@ Whilst CSS is a powerful language for styling Web Apps it lacks many of the DRY 
 
 The templates include a hot-reload feature which works similar to [Sharp Pages hot-reloading](https://sharpscript.net/docs/hot-reloading) where in **DebugMode** it will long poll the server to watch for any modified files in `/wwwroot` and automatically refresh the page. 
 
-Hot Reloading works by leveraging [ServiceStack Sharp Pages](https://sharpscript.net/docs/sharp-pages) which works seamlessly with Webpack's generated `index.html` where it evaluates server Template Expressions when returning the SPA home page. This is leveraged to enable Hot Reloading support by [including the expression](https://github.com/NetCoreTemplates/vue-spa/blob/0c13183b6a5ae20564f650e50d29b9d4e36cbd0c/MyApp/index.template.ejs#L8):
+Hot Reloading works by leveraging [ServiceStack Sharp Pages](https://sharpscript.net/docs/script-pages) which works seamlessly with Webpack's generated `index.html` where it evaluates server Template Expressions when returning the SPA home page. This is leveraged to enable Hot Reloading support by [including the expression](https://github.com/NetCoreTemplates/vue-spa/blob/0c13183b6a5ae20564f650e50d29b9d4e36cbd0c/MyApp/index.template.ejs#L8):
 
 ::: v-pre
 ```html
@@ -512,7 +512,7 @@ document.querySelector("#Name")!.addEventListener("input", async e => {
 ```
 
 The Parcel Template also includes customizations to integrate it with .NET Core Project conventions and 
-[Sharp Pages](https://sharpscript.net/docs/sharp-pages) Website enabling access to additional flexibility like dynamic Web Pages and server-side rendering
+[Sharp Pages](https://sharpscript.net/docs/script-pages) Website enabling access to additional flexibility like dynamic Web Pages and server-side rendering
 when needed. See the [Parcel Template docs](https://github.com/NetCoreTemplates/parcel#development-workflow) for information on the
 available `dev`, `build`, `dtos` and `publish` npm scripts used to manage the Development workflow.
 

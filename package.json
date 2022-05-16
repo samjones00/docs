@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "@iconify/vue": "^3.1.2",
-    "@servicestack/client": "^1.0.55",
+    "@servicestack/client": "^1.2.1",
     "autoprefixer": "^10.3.7",
     "gray-matter": "^4.0.3",
     "markdown-it-container": "^3.0.0",

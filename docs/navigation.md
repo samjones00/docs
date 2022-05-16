@@ -248,7 +248,7 @@ it includes additional "wrapper" HTML tags around each component.
 
 ### `#Script` Pages
 
-In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can use render the `navbar` and `navButtonGroup` methods to render NavItems:
+In [#Script Pages](https://sharpscript.net/docs/script-pages) you can use render the `navbar` and `navButtonGroup` methods to render NavItems:
 
 #### Navbar
 

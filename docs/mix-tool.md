@@ -284,7 +284,7 @@ namespace MyApp
 ```
 
 The configuration is declarative where it only runs `Configure(IAppHost appHost)` in ServiceStack Apps and only adds the `RedisScripts`
-if it's configured with [#Script Pages](https://sharpscript.net/docs/sharp-pages), otherwise any additional configuration is inert and isn't run.
+if it's configured with [#Script Pages](https://sharpscript.net/docs/script-pages), otherwise any additional configuration is inert and isn't run.
 
 Typically DB's will require you to specify your App DB's connection string to your external DB (with a default fallback) - where typically the
 most effort required to enable a feature is adding a Connection String in your `appsettings.json`.

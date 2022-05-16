@@ -301,7 +301,7 @@ public override void Configure(Container container)
 ```
 
 Will render the contents of the `/notfound.html` for 404 NotFound Requests and `/login.html` page for 401 Unauthorized requests if you're using
-static HTML, Single Page Apps or [#Script Pages](https://sharpscript.net/docs/sharp-pages).
+static HTML, Single Page Apps or [#Script Pages](https://sharpscript.net/docs/script-pages).
 
 If you're using Razor instead you can `RazorHandler` to render `/notfound.cshtml` or `/login.cshtml` ServiceStack Razor pages:
 

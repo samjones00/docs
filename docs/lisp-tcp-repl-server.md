@@ -48,7 +48,7 @@ Then you can open a TCP Connection to connect to a new Lisp REPL with:
 rlwrap telnet localhost 5005
 :::
 
-Where you now have full scriptability of the running server as allowed by [#Script Pages](https://sharpscript.net/docs/sharp-pages) `SharpPagesFeature` which
+Where you now have full scriptability of the running server as allowed by [#Script Pages](https://sharpscript.net/docs/script-pages) `SharpPagesFeature` which
 allows [scripting of all .NET Types](https://sharpscript.net/docs/script-net#allowscriptingofalltypes) by default. 
 
 ## TechStacks TCP Lisp REPL Demo

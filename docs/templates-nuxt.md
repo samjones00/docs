@@ -95,7 +95,7 @@ $ npm run build
 
 This will generate a static encapsulated production build of your App in .NET Core's `/wwwroot` which you can view served from your ServiceStack Server App directly at:
 
- - [http://localhost:5000](http://localhost:5000)
+    http://localhost:5000
 
 
 ### Publishing App for Deployment

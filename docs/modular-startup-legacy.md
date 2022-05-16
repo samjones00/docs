@@ -379,7 +379,7 @@ Most ServiceStack features are encapsulated within [Plugins](/plugins) which are
 adding a declarative class instance to the `Plugins` collection. Plugins encapsulate the entire feature, taking care of all IOC 
 registrations and how to configure itself with ServiceStack.
 
-So if you wanted to enable [#Script Pages](https://sharpscript.net/docs/sharp-pages) (alternative to MVC) and give all pages
+So if you wanted to enable [#Script Pages](https://sharpscript.net/docs/script-pages) (alternative to MVC) and give all pages
 access to OrmLite's DB functionality - it can all be configured with a single declarative expression:
 
 ```csharp

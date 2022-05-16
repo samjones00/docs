@@ -258,7 +258,7 @@ Or in Razor with:
 
 ## Using SVG images in `#Script`
 
-In [#Script Pages](https://sharpscript.net/docs/sharp-pages) you can embed SVG xml with the `svgImage` and `svgDataUri` scripts:
+In [#Script Pages](https://sharpscript.net/docs/script-pages) you can embed SVG xml with the `svgImage` and `svgDataUri` scripts:
 
 ::: v-pre
 ```hbs
@@ -327,7 +327,7 @@ Or inside a CSS class:
 
 ### Server Controls
 
-Use these `#Script` methods to reference and modify individual SVG images in [#Script Pages](https://sharpscript.net/docs/sharp-pages):
+Use these `#Script` methods to reference and modify individual SVG images in [#Script Pages](https://sharpscript.net/docs/script-pages):
 
 ```csharp
 svgImage(string name) => Svg.GetImage(name)

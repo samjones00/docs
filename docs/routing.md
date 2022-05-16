@@ -186,7 +186,7 @@ public class MyServices : Service
 }
 ```
 
-Which will returns the the default `index.html` page using [#Script Pages](https://sharpscript.net/docs/sharp-pages).
+Which will returns the the default `index.html` page using [#Script Pages](https://sharpscript.net/docs/script-pages).
 
 #### SPA Fallback
 

@@ -100,9 +100,9 @@ All functionality and features can now be added to annotating & enhancing your c
 
 When using AutoGen to [generate Typed AutoQuery DTOs](/autoquery-autogen#generating-autoquery-types-services) for your RDBMS Tables:
 
-```bash
-$ x csharp https://localhost:5001 -path /crud/all/csharp
-```
+:::sh
+`x csharp https://localhost:5001 -path /crud/all/csharp`
+:::
 
 The generated `dtos.cs` includes AutoGen-specific options that can be used to maintain multiple custom RDBMS Tables and AutoQuery APIs, e.g. you could maintain one for each of your different RDBMS schemas:
 
@@ -258,7 +258,7 @@ pub get
 We can then use the [protoc support in the dotnet tools](/grpc#public-grpc-protoc-service-and-ui) to download our `.proto` Services descriptor and generate Dart's gRPC classes with a single command:
 
 :::sh
-x proto-dart https://localhost:5001 -out lib
+`x proto-dart https://localhost:5001 -out lib`
 :::
 
 We're now all set to consume our gRPC Services using the protoc generated gRPC proxy in our `main()` function in **main.dart**:
@@ -600,7 +600,7 @@ We can see an immediate effect of these customizations in **NorthwindCrud** wher
 If we then try to run our Dart `main.dart` example against the customized **NorthwindCrud** APIs by first regenerating gRPC protoc Types:
 
 :::sh
-x proto-dart https://localhost:5001 -out lib
+`x proto-dart https://localhost:5001 -out lib`
 :::
 
 Then try rerunning `main.dart` where it will now fail with an **Unauthorized** exception:

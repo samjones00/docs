@@ -293,7 +293,7 @@ defined lisp functions, macros and variables:
 Here's an annotated version of the demo below which explains what each of the different expressions is doing.
 
 Just like [Sharp Scripts](https://sharpscript.net/docs/sharp-scripts) and [Sharp Apps](https://sharpscript.net/docs/sharp-apps) the Lisp REPL runs within the 
-[#Script Pages](https://sharpscript.net/docs/sharp-pages) ScriptContext [sandbox](https://sharpscript.net/docs/sandbox) that when run from a Sharp App folder, 
+[#Script Pages](https://sharpscript.net/docs/script-pages) ScriptContext [sandbox](https://sharpscript.net/docs/sandbox) that when run from a Sharp App folder, 
 starts a .NET Core App Server that simulates a fully configured .NET Core App. 
 In this case it's running in the [redis Sharp App](https://github.com/sharp-apps/redis) directory where it was able to access its static web assets
 as well as its redis-server connection configured in its [app.settings](https://github.com/sharp-apps/redis/blob/master/app.settings).
