@@ -44,7 +44,7 @@ module.exports = {
         //lastUpdated: false,
         nav: [
             { text: 'Project Templates', link: '/templates-overview', activeMatch: '^/(templates|dotnet-new)'},
-            //{ text: 'Locode', link: '/locode/', activeMatch: '^/locode'},
+            { text: 'Locode', link: '/locode/', activeMatch: '^/locode'},
             { text: 'AutoQuery', link: '/autoquery', activeMatch: '^/(autoquery|why-not-odata)'},
             { text: 'Security', link: '/auth', activeMatch: '(auth|sessions)' },
             { text: 'gRPC', link: '/grpc', activeMatch: '^/grpc'},
